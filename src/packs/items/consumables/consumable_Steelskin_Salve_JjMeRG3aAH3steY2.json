@@ -1,0 +1,23 @@
+{
+  "name": "Steelskin Salve",
+  "type": "consumable",
+  "img": "icons/commodities/materials/bowl-powder-pink.webp",
+  "system": {
+    "description": "<p>You can apply this salve to your skin to gain a bonus to your damage thresholds equal to your tier until the end of the scene.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "JjMeRG3aAH3steY2",
+  "effects": [],
+  "folder": null,
+  "sort": 4000000,
+  "flags": {},
+  "_key": "!items!JjMeRG3aAH3steY2"
+}

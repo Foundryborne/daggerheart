@@ -1,0 +1,23 @@
+{
+  "name": "Verglasian Seed",
+  "type": "consumable",
+  "img": "icons/commodities/gems/gem-faceted-oval-blue.webp",
+  "system": {
+    "description": "<p>You can use this ice shard to instantly freeze an area of water up to Close range.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "302mC6Hg0w5je1AX",
+  "effects": [],
+  "folder": null,
+  "sort": 700000,
+  "flags": {},
+  "_key": "!items!302mC6Hg0w5je1AX"
+}

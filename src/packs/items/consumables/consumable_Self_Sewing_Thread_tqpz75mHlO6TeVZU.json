@@ -1,0 +1,23 @@
+{
+  "name": "Self-Sewing Thread",
+  "type": "consumable",
+  "img": "icons/tools/hand/needle-thread-spool.webp",
+  "system": {
+    "description": "<p>You can use this thread to clear either a Hit Point or 2 Armor Slots.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "tqpz75mHlO6TeVZU",
+  "effects": [],
+  "folder": null,
+  "sort": 10600000,
+  "flags": {},
+  "_key": "!items!tqpz75mHlO6TeVZU"
+}

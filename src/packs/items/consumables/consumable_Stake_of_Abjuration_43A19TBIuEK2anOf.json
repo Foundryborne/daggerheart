@@ -1,0 +1,23 @@
+{
+  "name": "Stake of Abjuration",
+  "type": "consumable",
+  "img": "icons/sundries/survival/stake-rough-heavy-brown.webp",
+  "system": {
+    "description": "<p>You can hammer this stake into the ground and make a proclamation. Until your next rest, a creature within Far range of the stake who transgresses that proclamation must mark a Stress. The stake lasts until your next rest, then it shatters.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "43A19TBIuEK2anOf",
+  "effects": [],
+  "folder": null,
+  "sort": 1000000,
+  "flags": {},
+  "_key": "!items!43A19TBIuEK2anOf"
+}

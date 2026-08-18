@@ -1,0 +1,23 @@
+{
+  "name": "Arcticite Shard",
+  "type": "consumable",
+  "_id": "nSjz413RgiOwfzdb",
+  "img": "icons/commodities/gems/gem-faceted-cushion-teal-black.webp",
+  "system": {
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "description": "<p>Choose a point within Far range. All targets within Close range of that point must succeed on a Reaction Roll (16) or take 3d6 magic damage and become temporarily Restrained by ice.</p>",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {},
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!nSjz413RgiOwfzdb"
+}

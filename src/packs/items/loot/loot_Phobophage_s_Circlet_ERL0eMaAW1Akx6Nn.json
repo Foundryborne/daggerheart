@@ -1,0 +1,22 @@
+{
+  "name": "Phobophage’s Circlet",
+  "type": "loot",
+  "img": "icons/commodities/treasure/crown-gold-laurel-wreath.webp",
+  "system": {
+    "description": "<p>When the GM spends a Fear, roll a d4. Once per scene on a result of 4, you clear a Stress.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "ERL0eMaAW1Akx6Nn",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ERL0eMaAW1Akx6Nn"
+}

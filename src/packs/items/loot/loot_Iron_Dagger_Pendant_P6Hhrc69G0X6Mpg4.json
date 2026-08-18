@@ -1,0 +1,22 @@
+{
+  "name": "Iron Dagger Pendant",
+  "type": "loot",
+  "img": "icons/equipment/neck/necklace-simple-engraved-stone.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can spend a Hope to tell the pendant a creature's name. The pendant gently pulls you toward that creature's current location until your next long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "P6Hhrc69G0X6Mpg4",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!P6Hhrc69G0X6Mpg4"
+}

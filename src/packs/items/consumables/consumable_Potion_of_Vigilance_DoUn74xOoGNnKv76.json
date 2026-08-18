@@ -1,0 +1,23 @@
+{
+  "name": "Potion of Vigilance",
+  "type": "consumable",
+  "img": "icons/consumables/potions/potion-flask-corked-cyan.webp",
+  "system": {
+    "description": "<p>You can drink this potion to gain a +1 bonus to your Evasion until you mark a Hit Point.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "DoUn74xOoGNnKv76",
+  "effects": [],
+  "folder": null,
+  "sort": 2700000,
+  "flags": {},
+  "_key": "!items!DoUn74xOoGNnKv76"
+}

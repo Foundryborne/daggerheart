@@ -1,0 +1,23 @@
+{
+  "name": "Vial of Featherfall",
+  "type": "consumable",
+  "img": "icons/consumables/potions/conical-ornate-purple.webp",
+  "system": {
+    "description": "<p>You can drink this potion to ignore damage from falling for the next 10 minutes.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "pT5amnkvObOegrJr",
+  "effects": [],
+  "folder": null,
+  "sort": 10000000,
+  "flags": {},
+  "_key": "!items!pT5amnkvObOegrJr"
+}

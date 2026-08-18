@@ -1,0 +1,22 @@
+{
+  "name": "Insomniac’s Periapt",
+  "type": "loot",
+  "img": "icons/equipment/neck/necklace-simple-carved-spiral-blue.webp",
+  "system": {
+    "description": "<p>When you take a rest without clearing Hit Points or Stress, you gain a +2 bonus to attack and damage rolls until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "o9aFNNwFJkEeyWel",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!o9aFNNwFJkEeyWel"
+}

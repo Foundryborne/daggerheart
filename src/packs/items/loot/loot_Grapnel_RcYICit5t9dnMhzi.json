@@ -1,0 +1,22 @@
+{
+  "name": "Grapnel",
+  "type": "loot",
+  "img": "icons/weapons/thrown/shuriken-triple-purple.webp",
+  "system": {
+    "description": "<p>You gain advantage on action rolls to climb sheer surfaces.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "RcYICit5t9dnMhzi",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!RcYICit5t9dnMhzi"
+}

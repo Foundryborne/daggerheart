@@ -1,0 +1,22 @@
+{
+  "name": "Quillshawl",
+  "type": "loot",
+  "img": "icons/commodities/cloth/ribbon-bow-purple.webp",
+  "system": {
+    "description": "<p>If an adversary attacks you within Melee range, they must succeed on a Reaction Roll (12) or mark a Hit Point.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "HE6Ka3DD2jdreiVO",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!HE6Ka3DD2jdreiVO"
+}

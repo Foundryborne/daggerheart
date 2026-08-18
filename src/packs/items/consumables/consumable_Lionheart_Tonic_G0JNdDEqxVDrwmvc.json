@@ -1,0 +1,23 @@
+{
+  "name": "Lionheart Tonic",
+  "type": "consumable",
+  "img": "icons/consumables/potions/potion-bottle-corked-stopper-ornate-yellow.webp",
+  "system": {
+    "description": "<p>You can drink this tonic to gain a +1 bonus to your Proficiency until you roll with Fear.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "G0JNdDEqxVDrwmvc",
+  "effects": [],
+  "folder": null,
+  "sort": 3200000,
+  "flags": {},
+  "_key": "!items!G0JNdDEqxVDrwmvc"
+}

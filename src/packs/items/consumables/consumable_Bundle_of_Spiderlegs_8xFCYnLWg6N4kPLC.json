@@ -1,0 +1,23 @@
+{
+  "name": "Bundle of Spiderlegs",
+  "type": "consumable",
+  "img": "icons/containers/bags/coinpouch-simple-leather-brown.webp",
+  "system": {
+    "description": "<p>You can eat these spiderlegs to walk on walls until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "8xFCYnLWg6N4kPLC",
+  "effects": [],
+  "folder": null,
+  "sort": 1900000,
+  "flags": {},
+  "_key": "!items!8xFCYnLWg6N4kPLC"
+}

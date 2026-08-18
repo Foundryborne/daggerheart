@@ -1,0 +1,23 @@
+{
+  "name": "Magic-User’s Malison",
+  "type": "consumable",
+  "img": "icons/commodities/treasure/gem-framed-spiral-purple.webp",
+  "system": {
+    "description": "<p>When you release this spellcaster's trapped soul, you can cast one spell from a card in your vault as if it were in your loadout. This doesn't work for permanently vaulted cards.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "USKNUVdtgl17llZq",
+  "effects": [],
+  "folder": null,
+  "sort": 5500000,
+  "flags": {},
+  "_key": "!items!USKNUVdtgl17llZq"
+}

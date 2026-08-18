@@ -1,0 +1,22 @@
+{
+  "name": "Hero’s Helm",
+  "type": "loot",
+  "img": "icons/equipment/head/helm-barbute-brass-steel.webp",
+  "system": {
+    "description": "<p>When you critically succeed on an attack, all allies within Close range gain a Hope.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "kKl1YqFQASZWlcal",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!kKl1YqFQASZWlcal"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Gossip Flower",
+  "type": "consumable",
+  "img": "icons/commodities/flowers/holly-buds-white.webp",
+  "system": {
+    "description": "<p>You can plant this seed in soil. It instantly grows into a small flower that records everything it hears for up to one week. When plucked, the flower recites what it recorded in real time, then withers.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "BnvXUsVqI8coqj8F",
+  "effects": [],
+  "folder": null,
+  "sort": 2300000,
+  "flags": {},
+  "_key": "!items!BnvXUsVqI8coqj8F"
+}

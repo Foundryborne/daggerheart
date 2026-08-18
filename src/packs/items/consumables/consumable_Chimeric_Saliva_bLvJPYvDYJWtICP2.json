@@ -1,0 +1,23 @@
+{
+  "name": "Chimeric Saliva",
+  "type": "consumable",
+  "img": "icons/commodities/materials/liquid-purple.webp",
+  "system": {
+    "description": "<p>You can apply this saliva to a weapon that deals physical damage to change its damage type to magic until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "bLvJPYvDYJWtICP2",
+  "effects": [],
+  "folder": null,
+  "sort": 6600000,
+  "flags": {},
+  "_key": "!items!bLvJPYvDYJWtICP2"
+}

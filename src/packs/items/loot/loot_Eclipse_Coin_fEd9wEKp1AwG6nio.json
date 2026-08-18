@@ -1,0 +1,22 @@
+{
+  "name": "Eclipse Coin",
+  "type": "loot",
+  "img": "icons/commodities/currency/coin-engraved-waves-copper.webp",
+  "system": {
+    "description": "<p>Once per rest, flip a coin. On heads, you gain a +1 bonus to attack rolls until your next successful attack. On tails, you gain +1 to your Evasion until an attack fails against you.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "fEd9wEKp1AwG6nio",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!fEd9wEKp1AwG6nio"
+}

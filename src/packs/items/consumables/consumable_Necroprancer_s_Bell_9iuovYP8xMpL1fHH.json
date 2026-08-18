@@ -1,0 +1,23 @@
+{
+  "name": "Necroprancer’s Bell",
+  "type": "consumable",
+  "img": "icons/tools/instruments/bell-gold.webp",
+  "system": {
+    "description": "<p>You can break this rusted, clapperless bell against the ground to summon a skeletal steed that climbs out of the earth and serves you until the next sunrise.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "9iuovYP8xMpL1fHH",
+  "effects": [],
+  "folder": null,
+  "sort": 2000000,
+  "flags": {},
+  "_key": "!items!9iuovYP8xMpL1fHH"
+}

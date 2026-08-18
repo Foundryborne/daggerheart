@@ -1,0 +1,23 @@
+{
+  "name": "Mesmer’s Tonic",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-conical-bubbling-blue.webp",
+  "system": {
+    "description": "<p>When you drink this tonic, the only thing you can hear until your next rest are the surface thoughts of creatures within Very Close range.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "2ItBeUYNkiPEPSgc",
+  "effects": [],
+  "folder": null,
+  "sort": 600000,
+  "flags": {},
+  "_key": "!items!2ItBeUYNkiPEPSgc"
+}

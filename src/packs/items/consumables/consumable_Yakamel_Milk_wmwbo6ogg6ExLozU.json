@@ -1,0 +1,23 @@
+{
+  "name": "Yakamel Milk",
+  "type": "consumable",
+  "img": "icons/consumables/drinks/coconut-fruit-milk.webp",
+  "system": {
+    "description": "<p>After consuming this milk, the next time you clear 1 or more Hit Points, you clear an additional Hit Point.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "wmwbo6ogg6ExLozU",
+  "effects": [],
+  "folder": null,
+  "sort": 11100000,
+  "flags": {},
+  "_key": "!items!wmwbo6ogg6ExLozU"
+}

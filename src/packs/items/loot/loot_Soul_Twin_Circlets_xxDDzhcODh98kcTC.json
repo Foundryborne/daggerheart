@@ -1,0 +1,22 @@
+{
+  "name": "Soul-Twin Circlets",
+  "type": "loot",
+  "img": "icons/commodities/treasure/trinket-wing-white.webp",
+  "system": {
+    "description": "<p>Two creatures can wear this pair of circlets. You can spend a Hope to switch places with whoever is wearing the other circlet.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "xxDDzhcODh98kcTC",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!xxDDzhcODh98kcTC"
+}

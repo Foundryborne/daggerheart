@@ -1,0 +1,22 @@
+{
+  "name": "Molepaw Mittens",
+  "type": "loot",
+  "img": "icons/equipment/hand/glove-armored-leather-worn-brown.webp",
+  "system": {
+    "description": "<p>Spend a Hope to swim through earth as if it were water for the next 10 minutes.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "KzRYiDcJeVHPXf8d",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!KzRYiDcJeVHPXf8d"
+}

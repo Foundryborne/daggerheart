@@ -1,0 +1,23 @@
+{
+  "name": "Snakeskin Spirit",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-round-label-cork-purple.webp",
+  "system": {
+    "description": "<p>You can drink this potion to slough off your outer layer of skin and heal a scar.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "QQjaWV5yQVjxEKdG",
+  "effects": [],
+  "folder": null,
+  "sort": 4900000,
+  "flags": {},
+  "_key": "!items!QQjaWV5yQVjxEKdG"
+}

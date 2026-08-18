@@ -1,0 +1,23 @@
+{
+  "name": "Formoid Serum",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-bulb-empty-glass.webp",
+  "system": {
+    "description": "<p>You can drink this potion to become a swarm of 16 million ants until the end of the scene. You keep and have access to all equipment, loot, and features.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "qhpwdNc4mApeKfk7",
+  "effects": [],
+  "folder": null,
+  "sort": 10100000,
+  "flags": {},
+  "_key": "!items!qhpwdNc4mApeKfk7"
+}

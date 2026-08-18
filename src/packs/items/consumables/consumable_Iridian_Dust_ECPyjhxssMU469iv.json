@@ -1,0 +1,23 @@
+{
+  "name": "Iridian Dust",
+  "type": "consumable",
+  "img": "icons/commodities/materials/powder-red-green-yellow.webp",
+  "system": {
+    "description": "<p>This multicolored powder sticks to everything and prevents creatures covered in it from becoming Hidden.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "ECPyjhxssMU469iv",
+  "effects": [],
+  "folder": null,
+  "sort": 200000,
+  "flags": {},
+  "_key": "!items!ECPyjhxssMU469iv"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Fulgurite Shard",
+  "type": "consumable",
+  "_id": "vrbpqW9l3zf6GPZy",
+  "img": "icons/commodities/gems/gem-rough-cushion-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "description": "<p>Choose a point within Far range. All targets within Close range of that point must succeed on a Reaction Roll (16) or take 3d6 magic damage and mark 1d4 Stress as lightning crackles through the area.</p>",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {},
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!vrbpqW9l3zf6GPZy"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Godling’s Pomelo",
+  "type": "consumable",
+  "img": "icons/consumables/fruit/plum-ripe-yellow.webp",
+  "system": {
+    "description": "<p>You can eat this citrus fruit to clear all Hit Points and Stress.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "QowgtRfI0AmzGroZ",
+  "effects": [],
+  "folder": null,
+  "sort": 5100000,
+  "flags": {},
+  "_key": "!items!QowgtRfI0AmzGroZ"
+}

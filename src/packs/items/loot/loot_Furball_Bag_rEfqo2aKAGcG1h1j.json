@@ -1,0 +1,22 @@
+{
+  "name": "Furball Bag",
+  "type": "loot",
+  "img": "icons/containers/bags/pouch-leather-pink.webp",
+  "system": {
+    "description": "<p>Once per rest, you can produce 2d20 harmless, cat-sized fur creatures of indeterminate origin and species from this bag.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "rEfqo2aKAGcG1h1j",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!rEfqo2aKAGcG1h1j"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Temporal Sanctuary",
+  "type": "loot",
+  "img": "icons/commodities/treasure/token-worn-yang-brown.webp",
+  "system": {
+    "description": "<p>A PC who takes a rest in the temporal sanctuary can choose an additional downtime move.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "3t5jyhCi2hs6YJMg",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!3t5jyhCi2hs6YJMg"
+}

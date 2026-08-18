@@ -1,0 +1,23 @@
+{
+  "name": "Stonemason’s Fortune",
+  "type": "consumable",
+  "img": "icons/commodities/stone/masonry-bricks-brown.webp",
+  "system": {
+    "description": "<p>When you throw this gray brick on the ground, it immediately grows into a 6-foot-tall, 10-foot-wide, and 2-foot-deep wall of solid stone.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "6B6Snn2h3N8g7E3Z",
+  "effects": [],
+  "folder": null,
+  "sort": 1300000,
+  "flags": {},
+  "_key": "!items!6B6Snn2h3N8g7E3Z"
+}

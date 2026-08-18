@@ -1,0 +1,22 @@
+{
+  "name": "Timekeeper’s Pendant",
+  "type": "loot",
+  "img": "icons/equipment/neck/amulet-round-gold-green-blue.webp",
+  "system": {
+    "description": "<p>You can choose an additional downtime move each rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "4qUp8YWnsgi7ws8Q",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!4qUp8YWnsgi7ws8Q"
+}

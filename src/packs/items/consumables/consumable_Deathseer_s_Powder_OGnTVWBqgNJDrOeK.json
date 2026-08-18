@@ -1,0 +1,23 @@
+{
+  "name": "Deathseer’s Powder",
+  "type": "consumable",
+  "img": "icons/commodities/materials/bowl-powder-teal.webp",
+  "system": {
+    "description": "<p>You can sprinkle this powder over a recently deceased corpse to conjure a spectral reprise of their final minute of life.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "OGnTVWBqgNJDrOeK",
+  "effects": [],
+  "folder": null,
+  "sort": 4600000,
+  "flags": {},
+  "_key": "!items!OGnTVWBqgNJDrOeK"
+}

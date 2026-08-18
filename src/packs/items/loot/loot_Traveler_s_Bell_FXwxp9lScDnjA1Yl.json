@@ -1,0 +1,22 @@
+{
+  "name": "Traveler’s Bell",
+  "type": "loot",
+  "img": "icons/tools/instruments/bell-brass-brown.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can ring this bell to magically open the shortest safe path through rough terrain for 1 hour.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "FXwxp9lScDnjA1Yl",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!FXwxp9lScDnjA1Yl"
+}

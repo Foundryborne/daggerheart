@@ -1,0 +1,23 @@
+{
+  "name": "Cacophonous Concoction",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-bulb-corked-purple.webp",
+  "system": {
+    "description": "<p>When you drink this potion, anything you say or do in the next hour becomes impossible for a witness to recount. Any attempts they make to communicate what they saw, heard, or otherwise sensed comes out garbled or nonsensical.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "4CDCPkloeXY7kD5H",
+  "effects": [],
+  "folder": null,
+  "sort": 1100000,
+  "flags": {},
+  "_key": "!items!4CDCPkloeXY7kD5H"
+}

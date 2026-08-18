@@ -1,0 +1,23 @@
+{
+  "name": "Cupbearer’s Bezoar",
+  "type": "consumable",
+  "img": "icons/commodities/materials/slime-thick-orange.webp",
+  "system": {
+    "description": "<p>You can swallow this bezoar to become immune to poisons until your next long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "OEfUMLY95eWMogPO",
+  "effects": [],
+  "folder": null,
+  "sort": 4500000,
+  "flags": {},
+  "_key": "!items!OEfUMLY95eWMogPO"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Staff of Reversal",
+  "type": "consumable",
+  "img": "icons/weapons/staves/staff-simple-spiral.webp",
+  "system": {
+    "description": "<p>You can break this staff against the ground to reverse one magical transformation or effect within Far range.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "joHLyjtZLsG7Uwi3",
+  "effects": [],
+  "folder": null,
+  "sort": 8800000,
+  "flags": {},
+  "_key": "!items!joHLyjtZLsG7Uwi3"
+}

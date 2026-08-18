@@ -1,0 +1,22 @@
+{
+  "name": "Warp Pendant",
+  "type": "loot",
+  "img": "icons/equipment/neck/pendant-runed-hagalz-blue.webp",
+  "system": {
+    "description": "<p>Once per rest, mark a Stress to teleport to a location you can clearly see.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "C2lZrVCqXZ09t7U5",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!C2lZrVCqXZ09t7U5"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Glowmoss Mushroom",
+  "type": "consumable",
+  "img": "icons/consumables/mushrooms/umbontae-green.webp",
+  "system": {
+    "description": "<p>You can break this mushroom into pieces, causing it to glow bright blue until your next long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "Qnvfa3o3EaHskRZ7",
+  "effects": [],
+  "folder": null,
+  "sort": 5000000,
+  "flags": {},
+  "_key": "!items!Qnvfa3o3EaHskRZ7"
+}

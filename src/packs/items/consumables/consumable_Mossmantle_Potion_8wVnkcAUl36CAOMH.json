@@ -1,0 +1,23 @@
+{
+  "name": "Mossmantle Potion",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-conical-corked-green.webp",
+  "system": {
+    "description": "<p>You can drink this tea to perfectly blend into natural environments until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "8wVnkcAUl36CAOMH",
+  "effects": [],
+  "folder": null,
+  "sort": 1800000,
+  "flags": {},
+  "_key": "!items!8wVnkcAUl36CAOMH"
+}

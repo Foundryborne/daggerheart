@@ -1,0 +1,23 @@
+{
+  "name": "Instant Camp",
+  "type": "consumable",
+  "img": "icons/containers/boxes/crate-tech-silver-tan.webp",
+  "system": {
+    "description": "<p>You can unfold this small mechanical box into a camping tent large enough to safely house six people. The tent collapses at the end of your next long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "NjrThlxWMaLZT0Sa",
+  "effects": [],
+  "folder": null,
+  "sort": 4200000,
+  "flags": {},
+  "_key": "!items!NjrThlxWMaLZT0Sa"
+}

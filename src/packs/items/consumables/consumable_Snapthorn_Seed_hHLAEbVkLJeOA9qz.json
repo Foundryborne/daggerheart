@@ -1,0 +1,23 @@
+{
+  "name": "Snapthorn Seed",
+  "type": "consumable",
+  "img": "icons/consumables/plants/thorned-curled-vine-green.webp",
+  "system": {
+    "description": "<p>You can throw this seed at a point you can see. It explodes into a tangle of binding vines that temporarily Restrains all creatures within Close range of that point.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "hHLAEbVkLJeOA9qz",
+  "effects": [],
+  "folder": null,
+  "sort": 8400000,
+  "flags": {},
+  "_key": "!items!hHLAEbVkLJeOA9qz"
+}

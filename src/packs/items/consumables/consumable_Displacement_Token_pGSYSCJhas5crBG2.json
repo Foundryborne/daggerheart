@@ -1,0 +1,23 @@
+{
+  "name": "Displacement Token",
+  "type": "consumable",
+  "img": "icons/commodities/treasure/token-brass-round.webp",
+  "system": {
+    "description": "<p>You can swallow this token to conjure two illusions of yourself that you can control. Each illusion lasts until it takes damage or until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "pGSYSCJhas5crBG2",
+  "effects": [],
+  "folder": null,
+  "sort": 9900000,
+  "flags": {},
+  "_key": "!items!pGSYSCJhas5crBG2"
+}

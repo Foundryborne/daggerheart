@@ -1,0 +1,23 @@
+{
+  "name": "Invisibility Potion",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-round-empty-glass.webp",
+  "system": {
+    "description": "<p>You are Hidden until you deal damage to another creature or until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "bd5DgRHcLN0lP0oI",
+  "effects": [],
+  "folder": null,
+  "sort": 6700000,
+  "flags": {},
+  "_key": "!items!bd5DgRHcLN0lP0oI"
+}

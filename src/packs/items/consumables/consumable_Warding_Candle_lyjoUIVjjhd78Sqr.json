@@ -1,0 +1,23 @@
+{
+  "name": "Warding Candle",
+  "type": "consumable",
+  "img": "icons/sundries/lights/candle-lit-yellow.webp",
+  "system": {
+    "description": "<p>You can light this candle to fill an area within Close range with a halo of light. A creature outside the halo can't enter it if they have ill intent toward a creature within it. The candle burns for an hour.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "lyjoUIVjjhd78Sqr",
+  "effects": [],
+  "folder": null,
+  "sort": 9100000,
+  "flags": {},
+  "_key": "!items!lyjoUIVjjhd78Sqr"
+}

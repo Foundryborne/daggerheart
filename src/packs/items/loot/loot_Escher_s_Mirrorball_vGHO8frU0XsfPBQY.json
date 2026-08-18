@@ -1,0 +1,22 @@
+{
+  "name": "Escher’s Mirrorball",
+  "type": "loot",
+  "img": "icons/commodities/gems/pearl-swirl-blue.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can command this fist-sized silver orb to capture an omnidirectional image of its surroundings on its surface. This image lasts until your next long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "vGHO8frU0XsfPBQY",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!vGHO8frU0XsfPBQY"
+}

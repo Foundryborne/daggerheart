@@ -1,0 +1,23 @@
+{
+  "name": "Midas Flask",
+  "type": "consumable",
+  "img": "icons/consumables/potions/flask-corked-yellow-glow.webp",
+  "system": {
+    "description": "<p>You can pour this small flask of alchemical liquid over a mundane item to instantly transmute it into a handful of gold.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "IU9cj5UPFPOD8jVH",
+  "effects": [],
+  "folder": null,
+  "sort": 3800000,
+  "flags": {},
+  "_key": "!items!IU9cj5UPFPOD8jVH"
+}

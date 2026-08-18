@@ -1,0 +1,23 @@
+{
+  "name": "Demiurge’s Draught",
+  "type": "consumable",
+  "_id": "W5lLL29DqYFoZuwS",
+  "img": "icons/consumables/potions/potion-vial-corked-labeled-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "description": "<p>You can drink this draught to gain a +1 bonus to your Proficiency for your next successful attack roll.</p>",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {},
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!W5lLL29DqYFoZuwS"
+}

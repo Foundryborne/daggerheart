@@ -1,0 +1,22 @@
+{
+  "name": "Nighthawker’s Ring",
+  "type": "loot",
+  "img": "icons/equipment/finger/ring-band-thin-silver-teal.webp",
+  "system": {
+    "description": "<p>Spend a Hope to activate the gemstone in this ring until the end of the scene. While active, the gemstone changes color to indicate the wearer's proximity to hidden treasure: warm colors for near, cool colors for far.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "E7iVLwAEHiTccm3A",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!E7iVLwAEHiTccm3A"
+}

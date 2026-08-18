@@ -1,0 +1,22 @@
+{
+  "name": "Communion Relic",
+  "type": "loot",
+  "img": "icons/commodities/treasure/token-engraved-spiral-grey.webp",
+  "system": {
+    "description": "<p>Once per rest, you can spend a Hope to use an ally's Experience as if it were your own. You can carry only one relic.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "AHqRDhPuWAdecutZ",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!AHqRDhPuWAdecutZ"
+}

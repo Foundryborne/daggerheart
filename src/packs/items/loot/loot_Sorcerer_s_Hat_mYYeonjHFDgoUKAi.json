@@ -1,0 +1,22 @@
+{
+  "name": "Sorcerer’s Hat",
+  "type": "loot",
+  "img": "icons/equipment/head/hat-pointed-leather-blue.webp",
+  "system": {
+    "description": "<p>This conical blue hat is covered in silver stars. Once per rest, you can cast a spell from your vault with a Recall Cost equal to or less than your tier. This doesn't work for permanently vaulted cards.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "mYYeonjHFDgoUKAi",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!mYYeonjHFDgoUKAi"
+}

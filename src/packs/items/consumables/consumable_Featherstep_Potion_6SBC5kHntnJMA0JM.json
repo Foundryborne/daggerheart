@@ -1,0 +1,23 @@
+{
+  "name": "Featherstep Potion",
+  "type": "consumable",
+  "img": "icons/consumables/potions/potion-flask-corked-tied-necklace-teal.webp",
+  "system": {
+    "description": "<p>You can drink this potion to sprout small wings from your ankles that give you a bonus to your Evasion equal to your tier until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "6SBC5kHntnJMA0JM",
+  "effects": [],
+  "folder": null,
+  "sort": 1400000,
+  "flags": {},
+  "_key": "!items!6SBC5kHntnJMA0JM"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Ciscan Fog Bottle",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-corked-empty.webp",
+  "system": {
+    "description": "<p>You can break this jar to fill the area within Close range with magical mist. A creature who enters the mist clears a Stress and becomes Hidden.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "1D81W1ECLzGHHyAv",
+  "effects": [],
+  "folder": null,
+  "sort": 500000,
+  "flags": {},
+  "_key": "!items!1D81W1ECLzGHHyAv"
+}

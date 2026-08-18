@@ -1,0 +1,23 @@
+{
+  "name": "Slayer’s Salt",
+  "type": "consumable",
+  "img": "icons/commodities/materials/bowl-powder-gold.webp",
+  "system": {
+    "description": "<p>You can spread this salt in a line along windowsills or thresholds to create a magical barrier that undead creatures can't cross until the line is broken.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "0jQGjzdnAlkOu9hb",
+  "effects": [],
+  "folder": null,
+  "sort": 400000,
+  "flags": {},
+  "_key": "!items!0jQGjzdnAlkOu9hb"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Salamander Salve",
+  "type": "consumable",
+  "img": "icons/commodities/materials/bowl-powder-blue.webp",
+  "system": {
+    "description": "<p>You can apply this salve to your skin to make yourself immune to heat until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "eTQJhbNW5i6x79vI",
+  "effects": [],
+  "folder": null,
+  "sort": 7700000,
+  "flags": {},
+  "_key": "!items!eTQJhbNW5i6x79vI"
+}

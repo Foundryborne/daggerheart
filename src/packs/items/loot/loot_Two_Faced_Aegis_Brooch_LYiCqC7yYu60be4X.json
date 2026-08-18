@@ -1,0 +1,22 @@
+{
+  "name": "Two-Faced Aegis Brooch",
+  "type": "loot",
+  "img": "icons/commodities/currency/coin-engraved-moon-silver.webp",
+  "system": {
+    "description": "<p>Once per rest, flip a coin. On heads, you become immune to the next physical damage you take. On tails, you become immune to the next magic damage you take.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "LYiCqC7yYu60be4X",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!LYiCqC7yYu60be4X"
+}

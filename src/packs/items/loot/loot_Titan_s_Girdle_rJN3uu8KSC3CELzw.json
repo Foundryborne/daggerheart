@@ -1,0 +1,22 @@
+{
+  "name": "Titan’s Girdle",
+  "type": "loot",
+  "img": "icons/equipment/waist/belt-thick-bossed.webp",
+  "system": {
+    "description": "<p>Once per scene, you can activate this girdle to gain a +1 bonus to your Proficiency for your next attack.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "rJN3uu8KSC3CELzw",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!rJN3uu8KSC3CELzw"
+}

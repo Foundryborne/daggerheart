@@ -1,0 +1,23 @@
+{
+  "name": "Night Hag’s Dust",
+  "type": "consumable",
+  "img": "icons/commodities/materials/bowl-powder-grey.webp",
+  "system": {
+    "description": "<p>You can blow this dust in an adversary's face to prevent them from clearing Stress until your next long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "wljly6bqiDe3ZmVy",
+  "effects": [],
+  "folder": null,
+  "sort": 11000000,
+  "flags": {},
+  "_key": "!items!wljly6bqiDe3ZmVy"
+}

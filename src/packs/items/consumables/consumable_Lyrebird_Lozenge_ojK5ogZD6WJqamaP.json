@@ -1,0 +1,23 @@
+{
+  "name": "Lyrebird Lozenge",
+  "type": "consumable",
+  "img": "icons/commodities/treasure/token-silver-blue.webp",
+  "system": {
+    "description": "<p>You can dissolve this lozenge in your mouth to perfectly mimic any voice you've heard until the end of the scene.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Hope & Fear SRD",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "ojK5ogZD6WJqamaP",
+  "effects": [],
+  "folder": null,
+  "sort": 9700000,
+  "flags": {},
+  "_key": "!items!ojK5ogZD6WJqamaP"
+}
