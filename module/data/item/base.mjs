@@ -223,9 +223,12 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                         {
                             _stats: { compendiumSource: fBase.uuid },
                             system: {
-                                originItemType: this.parent.type,
-                                identifier: f.item ? f.type : null,
-                                multiclassOrigin: this.isMulticlass
+                                granter: {
+                                    id: this.parent.id,
+                                    originItemType: this.parent.type,
+                                    multiclassOrigin: this.isMulticlass
+                                },
+                                identifier: f.item ? f.type : null
                             }
                         },
                         { inplace: false }

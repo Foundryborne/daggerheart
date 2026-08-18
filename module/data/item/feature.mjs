@@ -24,12 +24,15 @@ export default class DHFeature extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            originItemType: new fields.StringField({
-                choices: CONFIG.DH.ITEM.featureTypes,
-                nullable: true,
-                initial: null
+            granter: new fields.SchemaField({
+                id: new fields.StringField(),
+                originItemType: new fields.StringField({
+                    choices: CONFIG.DH.ITEM.featureTypes,
+                    nullable: true,
+                    initial: null
+                }),
+                multiclassOrigin: new fields.BooleanField({ initial: false })
             }),
-            multiclassOrigin: new fields.BooleanField({ initial: false }),
             identifier: new fields.StringField(),
             featureForm: new fields.StringField({
                 required: true,

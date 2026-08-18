@@ -49,6 +49,22 @@ export default class DhpActor extends Actor {
     /** @inheritDoc */
     static migrateData(source) {
         if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
+
+        if (source.type === 'character') {
+            for (const feature of source.items.filter(x => x.type === 'feature' && x.system.granter?.originItemType)) {
+                if (feature.system.granter?.id) continue;
+
+                let originFeature = source.items.find(x => x.type === feature.system.granter?.originItemType)?._id;
+                if (!originFeature) continue;
+                
+                feature.system.granter = {
+                    id: originFeature,
+                    originItemType: feature.system.granter?.originItemType,
+                    multiclassOrigin: feature.system.multiclassOrigin
+                };
+            }
+        }
+
         return super.migrateData(source);
     }
 
@@ -281,7 +297,7 @@ export default class DhpActor extends Actor {
                         x =>
                             x.uuid === multiclass?.itemUuid ||
                             x.system.isMulticlass ||
-                            (['class', 'subclass'].includes(x.system.originItemType) && x.system.multiclassOrigin)
+                            (['class', 'subclass'].includes(x.system.granter?.originItemType) && x.system.granter?.multiclassOrigin)
                     );
 
                     this.deleteEmbeddedDocuments(
