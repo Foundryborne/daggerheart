@@ -40,6 +40,21 @@ export function mapValues(obj, transform) {
     }, {});
 }
 
+/**
+ * Given an array, creates an object that references each element by a key gen function
+ * @template T
+ * @template K
+ * @param {T[]} arr 
+ * @param {(value: T) => K} keyFn 
+ * @returns {Record<K, T>}
+ */
+export function keyBy(arr, keyFn) {
+    return arr.reduce((r, current) => {
+        r[keyFn(current)] = current;
+        return r;
+    }, {})
+}
+
 export function rollCommandToJSON(text) {
     if (!text) return {};
 
@@ -857,7 +872,10 @@ export function camelize(str) {
         .replace(/\s+/g, '');
 }
 
-/** Bulk load a list of documents using uuids. Returns the documents in the same order */
+/** 
+ * Bulk load a list of documents using uuids. Returns the documents in the same order.
+ * @returns {Promise<foundry.abstract.Document[]>}
+ */
 export async function fromUuids(uuids) {
     // Set up base entries. Each step works on a sublist of these objects
     const entries = uuids.map(uuid => ({

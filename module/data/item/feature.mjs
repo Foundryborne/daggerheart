@@ -50,6 +50,6 @@ export default class DHFeature extends BaseDataItem {
             const canHaveGranter = this.actor && (options.keepId || this.actor.items.has(data.system.granter.id));
             if (!canHaveGranter) this.updateSource({ granter: null });
         }
-        return super._preCreate(data, options, user)
+        return super._preCreate(data, options, user);
     }
 }
