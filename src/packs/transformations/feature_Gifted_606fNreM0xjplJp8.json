@@ -1,0 +1,20 @@
+{
+  "folder": "N7xHRMW9dU0dva2y",
+  "name": "Gifted",
+  "type": "feature",
+  "_id": "606fNreM0xjplJp8",
+  "img": "icons/magic/control/buff-luck-fortune-green-gold.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>You gain a +1 bonus to action, reaction, and damage rolls.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!606fNreM0xjplJp8"
+}
