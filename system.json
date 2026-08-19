@@ -285,7 +285,10 @@
             "armor": {
                 "htmlFields": ["description", "gmNotes"]
             },
-            "beastform": {}
+            "beastform": {},
+            "transformation": {  
+                "htmlFields": ["description", "gmNotes"]
+            }
         },
         "ActiveEffect": {
             "beastform": {},

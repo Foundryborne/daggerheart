@@ -198,6 +198,11 @@ Hooks.once('init', () => {
         makeDefault: true,
         label: sheetLabel('TYPES.Item.beastform')
     });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Transformation, {
+        types: ['transformation'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.transformation')
+    });
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Character, {

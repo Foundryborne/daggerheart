@@ -1534,6 +1534,10 @@ export const featureTypes = {
     beastform: {
         if: 'beastform',
         label: 'TYPES.Item.beastform'
+    },
+    transformation: {
+        id: 'transformation',
+        label: 'TYPES.Item.transformation'
     }
 };
 

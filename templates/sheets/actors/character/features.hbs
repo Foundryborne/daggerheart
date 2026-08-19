@@ -11,13 +11,14 @@
                     canCreate=@root.editable
                     showActions=@root.editable
                 }}
-                {{else if category.values}}
+            {{else if (or category.values.length category.deleteUuid)}}
                 {{> 'daggerheart.inventory-items'
                     title=category.title
                     type='feature'
                     actorType='character'
                     collection=category.values
                     canCreate=false
+                    deleteUuid=category.deleteUuid
                     showActions=@root.editable
                 }}
             {{/if}}

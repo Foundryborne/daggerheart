@@ -11,7 +11,8 @@
             "loot": "Loot",
             "weapon": "Weapon",
             "armor": "Armor",
-            "beastform": "Beastform"
+            "beastform": "Beastform",
+            "transformation": "Transformation"
         },
         "ActiveEffect": {
             "base": "Standard",
@@ -2595,6 +2596,10 @@
                 "single": "Trait",
                 "plural": "Traits"
             },
+            "Transformation": {
+                "single": "Transformation",
+                "plural": "Transformations"
+            },
             "actorName": "Actor Name",
             "amount": "Amount",
             "any": "Any",
@@ -2951,6 +2956,9 @@
                 "foundationFeatures": "Foundation Features",
                 "specializationFeature": "Specialization Feature",
                 "masteryFeature": "Mastery Feature"
+            },
+            "Transformation": {
+                "featuresLabel": "Transformation Features"
             },
             "Weapon": {
                 "weaponType": "Weapon Type",
