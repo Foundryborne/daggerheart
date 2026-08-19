@@ -42,4 +42,14 @@ export default class DHFeature extends BaseDataItem {
             })
         };
     }
+
+    _preCreate(data, options, user) {
+        // Ensure granter is purged if this is being created as a world item
+        // Otherwise, check if valid. If keepId is on, it may be a batch creation, so we presume its with intent
+        if (data.system?.granter) {
+            const canHaveGranter = this.actor && (options.keepId || this.actor.items.has(data.system.granter.id));
+            if (!canHaveGranter) this.updateSource({ granter: null });
+        }
+        return super._preCreate(data, options, user)
+    }
 }

@@ -12,8 +12,9 @@ declare global {
 
 
 declare module './base.mjs' {
-    export default interface BaseDataItem extends foundry.abstract.TypeDataModel {
+    export default interface BaseDataItem {
         parent: DHItem<this>;
         actor: DhpActor;
+        test: number;
     }
 }
