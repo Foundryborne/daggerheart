@@ -59,25 +59,35 @@ export default class DHItem extends foundry.documents.Item {
             }
             operation.keepId = true;
         }
-        const grantedFeatures = await fromUuids(grantingItems.flatMap(i => i.system.features.map(f => f.item)));
+
+        const getUuid = f => {
+            const item = f.item === null ? null : (f.item ?? f);
+            return typeof item === 'object' ? item.uuid : item;
+        } 
+
+        const grantedFeatures = await fromUuids(
+            grantingItems.flatMap(i => i.system.features.map(getUuid))
+        );
         const grantedFeaturesByUuid = keyBy(grantedFeatures, f => f.uuid)
         for (const granter of grantingItems) {
             for (const f of granter.system.features) {
-                if (!f.item) continue;
-                const feature = grantedFeaturesByUuid[f.item];
+                const itemUuid = getUuid(f);
+                if (!itemUuid) continue;
+
+                const feature = grantedFeaturesByUuid[itemUuid];
                 sources.push(
                     foundry.utils.mergeObject(feature.toObject(), {
                         _stats: {
-                            compendiumSource: f.item.startsWith('Compendium.') ? f.item : null,
-                            duplicateSource: !f.item.startsWith('Compendium.') ? f.item : null
+                            compendiumSource: itemUuid.startsWith('Compendium.') ? itemUuid : null,
+                            duplicateSource: !itemUuid.startsWith('Compendium.') ? itemUuid : null
                         },
                         system: {
                             granter: {
                                 id: granter._id,
-                                originItemType: granter.type,
-                                multiclassOrigin: Boolean(granter.system.isMulticlass)
-                            },
-                            identifier: f.item ? f.type : null
+                                type: granter.type,
+                                multiclass: Boolean(granter.system.isMulticlass),
+                                identifier: f.type ?? null
+                            }
                         }
                     })
                 );
