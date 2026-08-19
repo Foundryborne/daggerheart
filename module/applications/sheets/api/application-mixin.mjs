@@ -753,9 +753,9 @@ export default function DHApplicationMixin(Base) {
                 systemData = {
                     granter: {
                         id: this.document.id,
-                        originItemType: this.document.type
-                    },
-                    identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                        type: this.document.type,
+                        identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                    }
                 };
             }
             if (featureForm) systemData.featureForm = featureForm;

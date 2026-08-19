@@ -26,14 +26,14 @@ export default class DHFeature extends BaseDataItem {
             ...super.defineSchema(),
             granter: new fields.SchemaField({
                 id: new fields.StringField(),
-                originItemType: new fields.StringField({
+                type: new fields.StringField({
                     choices: CONFIG.DH.ITEM.featureTypes,
                     nullable: true,
                     initial: null
                 }),
-                multiclassOrigin: new fields.BooleanField({ initial: false })
+                multiclass: new fields.BooleanField({ initial: false }),
+                identifier: new fields.StringField()
             }, { nullable: true, initial: null }),
-            identifier: new fields.StringField(),
             featureForm: new fields.StringField({
                 required: true,
                 initial: 'passive',

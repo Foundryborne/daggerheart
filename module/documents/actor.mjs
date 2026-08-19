@@ -62,8 +62,8 @@ export default class DhpActor extends Actor {
                 
                 feature.system.granter = {
                     id: originFeature,
-                    originItemType: feature.system.originItemType,
-                    multiclassOrigin: feature.system.multiclassOrigin
+                    type: feature.system.originItemType,
+                    multiclass: feature.system.multiclassOrigin
                 };
             }
         }
@@ -300,7 +300,7 @@ export default class DhpActor extends Actor {
                         x =>
                             x.uuid === multiclass?.itemUuid ||
                             x.system.isMulticlass ||
-                            (['class', 'subclass'].includes(x.system.granter?.originItemType) && x.system.granter?.multiclassOrigin)
+                            (['class', 'subclass'].includes(x.system.granter?.type) && x.system.granter?.multiclass)
                     );
 
                     this.deleteEmbeddedDocuments(

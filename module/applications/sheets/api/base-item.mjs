@@ -177,9 +177,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             systemData = {
                 granter: {
                     id: this.document.id,
-                    originItemType: this.document.type
-                },
-                identifier: multiclass ?? type
+                    type: this.document.type,
+                    identifier: multiclass ?? type
+                }
             };
         }
 
@@ -321,9 +321,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                             ...itemData.system,
                             granter: {
                                 id: this.document.id,
-                                originItemType: this.document.type
-                            },
-                            identifier: multiclass ?? target.dataset.type
+                                type: this.document.type,
+                                identifier: multiclass ?? target.dataset.type
+                            }
                         }
                     },
                     { parent: this.document.parent }
