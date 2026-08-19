@@ -51,15 +51,18 @@ export default class DhpActor extends Actor {
         if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
 
         if (source.type === 'character') {
-            for (const feature of source.items.filter(x => x.type === 'feature' && x.system.granter?.originItemType)) {
+            for (const feature of source.items.filter(x => x.type === 'feature' && x.system.originItemType)) {
                 if (feature.system.granter?.id) continue;
 
-                let originFeature = source.items.find(x => x.type === feature.system.granter?.originItemType)?._id;
+                const isMulticlass = feature.system.multiclassOrigin;
+                let originFeature = source.items.find(
+                    x => x.type === feature.system.originItemType && (!isMulticlass || x.system.isMulticlass)
+                )?._id;
                 if (!originFeature) continue;
                 
                 feature.system.granter = {
                     id: originFeature,
-                    originItemType: feature.system.granter?.originItemType,
+                    originItemType: feature.system.originItemType,
                     multiclassOrigin: feature.system.multiclassOrigin
                 };
             }

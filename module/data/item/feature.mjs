@@ -32,7 +32,7 @@ export default class DHFeature extends BaseDataItem {
                     initial: null
                 }),
                 multiclassOrigin: new fields.BooleanField({ initial: false })
-            }),
+            }, { nullable: true, initial: null }),
             identifier: new fields.StringField(),
             featureForm: new fields.StringField({
                 required: true,
