@@ -378,7 +378,7 @@ export const typeConfig = {
                 format: domains => {
                     const config = CONFIG.DH.DOMAIN.allDomains();
                     return domains
-                        .map(x => (x ? game.i18n.localize(config[x].label) : null))
+                        .map(x => _loc(config[x]?.label) ?? null)
                         .filter(x => x)
                         .join(', ');
                 }
