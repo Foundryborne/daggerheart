@@ -4,7 +4,9 @@
   "folder": null,
   "system": {
     "loreReference": "warborne",
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
     "description": "<p>Being part of a warborne community means you come from a place that is, or was, ravaged by war.</p>",
     "gmNotes": "",
     "features": [

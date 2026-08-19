@@ -4,7 +4,9 @@
   "folder": null,
   "system": {
     "loreReference": "skykin",
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
     "description": "<p>Skykin are humanoids whose bodies are made of flesh and air.</p>",
     "gmNotes": "",
     "features": [

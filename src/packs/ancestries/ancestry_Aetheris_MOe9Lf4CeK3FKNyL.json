@@ -4,7 +4,9 @@
   "folder": null,
   "system": {
     "loreReference": "aetheris",
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
     "description": "<p>Aetheris are humanoids most easily recognized by their wings and sacred markings.</p>",
     "gmNotes": "",
     "features": [

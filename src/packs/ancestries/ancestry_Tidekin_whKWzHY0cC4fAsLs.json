@@ -4,7 +4,9 @@
   "folder": null,
   "system": {
     "loreReference": "tidekin",
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
     "description": "<p>Tidekin are humanoids whose bodies are made of flesh and water.</p>",
     "gmNotes": "",
     "features": [

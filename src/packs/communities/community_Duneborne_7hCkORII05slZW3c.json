@@ -4,7 +4,9 @@
   "folder": null,
   "system": {
     "loreReference": "duneborne",
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
     "description": "<p>Being part of a duneborne community means you've made a home among the shifting sands and arid climate of the desert.</p>",
     "gmNotes": "",
     "features": [

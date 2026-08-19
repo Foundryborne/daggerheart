@@ -4,7 +4,9 @@
   "folder": null,
   "system": {
     "loreReference": "freeborne",
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
     "description": "<p>Being part of a freeborne community means you're from a collective that once lived under tyrannical rule but is now liberated.</p>",
     "gmNotes": "",
     "features": [

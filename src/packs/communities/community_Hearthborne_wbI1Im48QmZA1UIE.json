@@ -4,7 +4,9 @@
   "folder": null,
   "system": {
     "loreReference": "hearthborne",
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
     "description": "<p>Being part of a hearthborne community means you come from humble origins, having lived in a modest village or quaint countryside.</p>",
     "gmNotes": "",
     "features": [
