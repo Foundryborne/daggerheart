@@ -14,9 +14,11 @@ export default class DHTransformation extends BaseDataItem {
 
     /** @inheritDoc */
     static defineSchema() {
+        const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            questions: new fields.HTMLField()
         };
     }
 

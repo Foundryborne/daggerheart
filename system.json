@@ -198,6 +198,15 @@
             "type": "Item",
             "private": false,
             "flags": {}
+        },
+        {
+            "name": "transformations",
+            "label": "Transformations",
+            "system": "daggerheart",
+            "path": "packs/transformations.db",
+            "type": "Item",
+            "private": false,
+            "flags": {}
         }
     ],
     "packFolders": [
@@ -211,7 +220,7 @@
                     "name": "Character Options",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": ["ancestries", "communities", "classes", "subclasses", "domains", "beastforms"]
+                    "packs": ["ancestries", "communities", "classes", "subclasses", "domains", "beastforms", "transformations"]
                 },
                 {
                     "name": "Items",
@@ -287,7 +296,7 @@
             },
             "beastform": {},
             "transformation": {  
-                "htmlFields": ["description", "gmNotes"]
+                "htmlFields": ["description", "gmNotes", "questions"]
             }
         },
         "ActiveEffect": {
