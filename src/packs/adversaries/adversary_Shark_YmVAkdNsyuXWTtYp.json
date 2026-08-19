@@ -249,35 +249,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hope": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "hope",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {
                 "hope": {
@@ -333,12 +304,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "w46d3D2gXUIJh2GH",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -373,60 +342,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d12",
-                    "bonus": 1,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                },
-                "armor": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "armor",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -523,12 +438,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "zT4AOW20LPlDoncy",
       "img": "icons/creatures/abilities/mouth-teeth-lamprey-red.webp",
@@ -587,12 +500,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "LBKPfi8XktBAwbrt",
       "img": "icons/skills/wounds/blood-spurt-spray-red.webp",

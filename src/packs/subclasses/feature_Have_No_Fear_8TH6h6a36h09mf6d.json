@@ -8,13 +8,14 @@
     "description": "<p>The extra magic damage from your \"Face Your Fear\" feature increases to <strong>3d10</strong>.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 26,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

@@ -10,66 +10,9 @@
       "max": 7
     },
     "description": "",
-    "actions": {
-      "8PD5JQuS05IA6HJT": {
-        "type": "attack",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Slow Time",
-        "description": "Mark an Armor Slot to roll a d4 and add its result as a bonus to your Evasion against an incoming attack.",
-        "img": "icons/magic/time/hourglass-brown-orange.webp",
-        "cost": [
-          {
-            "key": "resource",
-            "itemId": "armorSlot",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "roll": {
-          "type": "diceSet",
-          "diceRolling": {
-            "dice": "d4",
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "compare": null,
-            "treshold": null
-          },
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "useDefault": false
-        },
-        "_id": "8PD5JQuS05IA6HJT",
-        "effects": [],
-        "systemPath": "actions",
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "damage": {
-          "parts": {},
-          "includeBase": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 4,
     "equipped": false,
-    "baseScore": 7,
     "armorFeatures": [
       {
         "value": "timeslowing",
@@ -79,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -90,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

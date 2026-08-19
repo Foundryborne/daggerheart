@@ -38,7 +38,13 @@
         },
         "name": "Mark Stress",
         "img": "icons/magic/light/projectile-beam-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "1qjnoz5I7NqrWMkp": {
         "type": "effect",
@@ -53,7 +59,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -74,16 +81,23 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/light/projectile-beam-yellow.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 21,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -99,25 +113,30 @@
             "key": "system.bonuses.damage.physical.dice",
             "type": "add",
             "value": "+1d8",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.dice",
             "type": "add",
             "value": "+1d8",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Deal an extra 1d8 damage on a successful attack.</p>",
       "tint": "#ffffff",
@@ -127,6 +146,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!KkQH0tYhagIqe2MT.PfCwuVbKLxhnrm9X"
     }
   ],

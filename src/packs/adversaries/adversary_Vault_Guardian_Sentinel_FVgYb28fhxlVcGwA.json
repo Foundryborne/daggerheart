@@ -234,12 +234,10 @@
         "description": "<p>Targets who take damage from the @Lookup[@name]'s standard attack are knocked back to Very Close range.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "eXgcX8stbsTetuoU",
       "img": "icons/magic/movement/trail-streak-impact-blue.webp",
@@ -303,12 +301,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "DLspoIclNJcTB3YJ",
       "img": "icons/magic/perception/eye-ringed-glow-angry-red.webp",
@@ -397,35 +393,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d8",
-                    "bonus": 20,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -504,12 +471,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "LVFZ4AfVhS6Q9hRy",
       "img": "icons/magic/sonic/projectile-shock-wave-blue.webp",
@@ -544,35 +509,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "fear": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "fear",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "fear": {
@@ -634,12 +570,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "N4446BxubUanUQHH",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

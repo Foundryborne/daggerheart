@@ -279,12 +279,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "1YxbPc8C0X64w1JN",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -304,12 +302,10 @@
         "description": "<p>While the @Lookup[@name] has 7 or fewer marked HP, they can make their standard attack against two targets within range.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "z01hq9CKFTupyRwT",
       "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
@@ -344,8 +340,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -390,12 +384,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "vz2BWhispgR7mSWF",
       "img": "icons/magic/water/orb-water-bubbles-blue.webp",
@@ -478,36 +470,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 4,
-                    "dice": "d6",
-                    "bonus": 9,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": "",
               "main": {
                 "value": {
                   "custom": {
@@ -587,12 +549,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "eksa3E2ecBgdib6h",
       "img": "icons/magic/water/projectile-icecicle-glowing.webp",
@@ -627,35 +587,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "fear": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "fear",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "fear": {
@@ -717,12 +648,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "m4aybzb8tXWHelDU",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

@@ -6,30 +6,7 @@
   "img": "icons/weapons/staves/staff-engraved-red.webp",
   "system": {
     "description": "",
-    "actions": {
-      "9j81Lxp3sDskHFDS": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Burn",
-        "description": "When you roll a 6 on a damage die, the target must mark a Stress.",
-        "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
-        "_id": "9j81Lxp3sDskHFDS",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "secondary": false,
@@ -71,35 +48,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d6",
-              "bonus": 7,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "magical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d6",
+            "bonus": 7,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "magical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -108,14 +88,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -128,7 +114,10 @@
       "source": "Daggerheart SRD",
       "page": 49,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

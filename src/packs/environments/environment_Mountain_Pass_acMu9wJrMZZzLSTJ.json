@@ -137,12 +137,10 @@
         "description": "<p>Large markings and engravings have been made in the mountainside. A PC with a relevant background or Experience identifi es them as weather magic increasing the power of the icy winds. A PC who succeeds on a Knowledge Roll can recall information about the sigils, potential information about their creators, and the knowledge of how to dispel them. If a PC critically succeeds, they recognize that the sigils are of a style created by ridgeborne enchanters and they gain advantage on a roll to dispel the sigils.</p><section id=\"secret-5FNK8Z7pIo0nEyCA\" class=\"secret\"><p><em>Who laid this enchantment? Are they nearby? Why did they want the weather to be more daunting?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "cIAMenvMXHPTpOFn",
       "img": "icons/magic/symbols/star-yellow.webp",
@@ -177,33 +175,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d20",
-                    "bonus": null,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -251,12 +222,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "jkm03DXYYajsRk2j",
       "img": "icons/magic/earth/projectile-boulder-dust.webp",
@@ -306,12 +275,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "hkZVEduCWJFR0h2S",
       "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
@@ -346,34 +313,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "stress": {
@@ -480,12 +419,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "K8ld4m5yTA6WZwUs",
       "img": "icons/magic/water/snowflake-ice-blue-white.webp",

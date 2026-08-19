@@ -10,33 +10,9 @@
       "max": 5
     },
     "description": "",
-    "actions": {
-      "Ch6IhuPewBeseGez": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Quiet",
-        "description": "You gain a +2 bonus to rolls you make to move silently.",
-        "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
-        "_id": "Ch6IhuPewBeseGez",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 2,
     "equipped": false,
-    "baseScore": 5,
     "armorFeatures": [
       {
         "value": "quiet",
@@ -46,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 8,
       "severe": 18
@@ -57,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 56,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

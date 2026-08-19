@@ -11,16 +11,20 @@
       "value": 0,
       "max": "@system.traits.strength.value",
       "icon": "",
-      "recovery": "session"
+      "recovery": "session",
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 20,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 100000,

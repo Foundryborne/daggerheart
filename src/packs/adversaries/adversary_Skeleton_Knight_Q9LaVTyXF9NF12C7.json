@@ -251,34 +251,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hope": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "hope",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "hope": {
@@ -325,13 +297,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
@@ -375,61 +344,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d8",
-                    "bonus": 2,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                },
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
-              "groupAttack": "",
               "main": {
                 "value": {
                   "custom": {
@@ -536,13 +450,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "effects": [],
       "folder": null,
@@ -577,35 +488,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d4",
-                    "bonus": 8,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -675,13 +557,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "effects": [],
       "folder": null,

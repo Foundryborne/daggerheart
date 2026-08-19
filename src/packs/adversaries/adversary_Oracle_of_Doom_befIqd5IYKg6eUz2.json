@@ -255,35 +255,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hope": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "hope",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {
                 "hope": {
@@ -339,12 +310,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "mKSk2GBYLoATQlVT",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -379,34 +348,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "stress": {
@@ -453,12 +394,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "8xbzF3kIC6vPF9ya",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -502,35 +441,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 4,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -600,12 +510,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "QoFecwKWBFzrk4Wp",
       "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
@@ -649,8 +557,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -690,12 +596,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "A4yI2RENCuLk6mg9",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -715,12 +619,10 @@
         "description": "<p>When the @Lookup[@name] sees a mortal creature, they instantly know one of their personal nightmares.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "IPoWZmSQ2kgWek5T",
       "img": "icons/magic/symbols/mask-yellow-orange.webp",
@@ -764,35 +666,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 4,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -842,12 +715,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "kuxTMjy8lOmNSa8e",
       "img": "icons/magic/control/sihouette-hold-beam-green.webp",

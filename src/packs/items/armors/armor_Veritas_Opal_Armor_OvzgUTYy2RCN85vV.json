@@ -10,33 +10,9 @@
       "max": 6
     },
     "description": "",
-    "actions": {
-      "sY3W5JYspN5Du5ag": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Truthseeking",
-        "description": "This armor glows when another creature within Close range tells a lie.",
-        "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
-        "_id": "sY3W5JYspN5Du5ag",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 4,
     "equipped": false,
-    "baseScore": 6,
     "armorFeatures": [
       {
         "value": "truthseeking",
@@ -46,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -57,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

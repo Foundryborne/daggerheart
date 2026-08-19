@@ -240,12 +240,10 @@
         "description": "<p>Attacks against the @Lookup[@name] are made with disadvantage unless the attacker spends a handful of gold. This @Lookup[@name] starts with a number of handfuls equal to the number of PCs. When a target marks HP from the @Lookup[@name]'s standard attack, they can spend a handful of gold instead of marking HP (1 handful per HP). Add a handful of gold to the @Lookup[@name] for each handful of gold spent by PCs on this feature.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "qoQinutpe4Itohp0",
       "img": "icons/commodities/currency/coin-engraved-skull-gold.webp",
@@ -274,12 +272,10 @@
           "dieFaces": "d4"
         },
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "ILocyy5hvyQXXjhs",
       "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
@@ -344,12 +340,10 @@
         "description": "<p><strong>Spend 3 handfuls of gold (or a Fear)</strong> to spotlight [[/r 1d4+1]] allies.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "BKgv2D1IdI813R8k",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",

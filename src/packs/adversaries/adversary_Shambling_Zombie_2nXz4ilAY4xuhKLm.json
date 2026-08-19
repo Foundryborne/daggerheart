@@ -236,13 +236,10 @@
         "description": "<p>When the @Lookup[@name] is within Melee range of a creature and at least one other @Lookup[@name] is within Close range, all attacks against that creature have advantage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
@@ -277,34 +274,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "stress": {
@@ -351,13 +320,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,

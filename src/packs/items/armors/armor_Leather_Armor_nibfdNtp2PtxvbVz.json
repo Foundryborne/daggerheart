@@ -11,14 +11,9 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 1,
     "equipped": false,
-    "baseScore": 3,
     "armorFeatures": [],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 6,
       "severe": 13
@@ -27,7 +22,10 @@
       "source": "Daggerheart SRD",
       "page": 56,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

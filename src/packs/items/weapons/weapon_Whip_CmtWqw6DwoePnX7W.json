@@ -6,37 +6,7 @@
   "img": "icons/weapons/misc/whip-red-yellow.webp",
   "system": {
     "description": "",
-    "actions": {
-      "N0CCc4o6N1HseQTn": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Startle",
-        "description": "Mark a Stress to crack the whip and force all adversaries within Melee range back to Close range.",
-        "img": "icons/magic/control/fear-fright-mask-orange.webp",
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "scalable": false,
-            "step": null
-          }
-        ],
-        "_id": "N0CCc4o6N1HseQTn",
-        "effects": [],
-        "systemPath": "actions",
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 1,
     "equipped": false,
     "secondary": true,
@@ -78,35 +48,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d6",
-              "bonus": null,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "physical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d6",
+            "bonus": null,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -115,14 +88,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -135,7 +114,10 @@
       "source": "Daggerheart SRD",
       "page": 52,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

@@ -144,34 +144,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "@system.resources.hitPoints.max"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "hitPoints",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "hitPoints": {
@@ -233,12 +205,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "hgHpS2k1sVxHKiG1",
       "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
@@ -258,12 +228,10 @@
         "description": "<p>A PC who prays to a deity while in the Hallowed Temple can make an Instinct Roll to receive answers. If the god they beseech isn't welcome in this temple, the roll is made with disadvantage.</p><ul><li><p><strong>Critical Success:</strong> The PC gains clear information. Additionally, they gain [[/r 1d4]] Hope, which can be distributed between the party if they share the vision and guidance they received.</p></li><li><p><strong>Success with Hope:</strong> The PC receives clear information.</p></li><li><p><strong>Success with Fear:</strong> The PC receives brief flashes of insight and an emotional impression conveying an answer.</p></li><li><p><strong>Any Failure:</strong> The PC receives only vague flashes. They can mark a Stress to receive one clear image without context.</p></li></ul><section class=\"secret\" id=\"secret-EYCrn403Zbz0NQKo\"><p><em>What does it feel like as you are touched by this vision? What feeling lingers after the images have passed?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "uqV1mTkJmXJwMYue",
       "img": "icons/magic/holy/chalice-glowing-yellow-blue.webp",
@@ -298,34 +266,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "stress": {
@@ -372,12 +312,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "vICfHK2urDQ2Jm8s",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
@@ -436,12 +374,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "8tGAuFRyM4onvQ2o",
       "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",

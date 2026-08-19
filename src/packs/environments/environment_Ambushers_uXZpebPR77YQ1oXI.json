@@ -120,12 +120,10 @@
         "description": "<p>The Difficulty of this environment equals that of the adversary with the highest Difficulty.</p><section class=\"secret\" id=\"secret-zPYO0951x4IKM5FN\"><p><em>Which adversary is the least prepared? Which one is the most?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "hAGzlRjI3lpadVs7",
       "img": "icons/environment/people/charge.webp",
@@ -184,12 +182,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "b6Qviz1ANG8OrAYq",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",

@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 2,
     "equipped": false,
-    "baseScore": 4,
     "armorFeatures": [
       {
         "value": "flexible",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 7,
       "severe": 16
@@ -35,27 +30,40 @@
       "source": "Daggerheart SRD",
       "page": 56,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Flexible",
       "description": "+1 to Evasion",
       "img": "icons/magic/movement/abstract-ribbons-red-orange.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "1"
-        }
-      ],
       "_id": "BFwU3ErPaajUSMUz",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -66,6 +74,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!jphnMZjnS2FkOH3s.BFwU3ErPaajUSMUz"
     }
   ],

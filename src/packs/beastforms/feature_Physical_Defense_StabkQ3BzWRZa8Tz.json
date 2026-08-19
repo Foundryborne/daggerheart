@@ -6,14 +6,14 @@
     "description": "<p>You gain a +3 bonus to your damage thresholds.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 14,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -21,30 +21,36 @@
       "type": "base",
       "_id": "hs9vWE92QQQx15ET",
       "img": "icons/commodities/leather/scales-green.webp",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.damageThresholds.major",
-          "type": "add",
-          "value": "3",
-          "priority": null
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
         },
-        {
-          "key": "system.damageThresholds.severe",
-          "type": "add",
-          "value": "3",
-          "priority": null
-        }
-      ],
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You gain a +3 bonus to your damage thresholds.</p>",
       "origin": null,
@@ -56,6 +62,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!StabkQ3BzWRZa8Tz.hs9vWE92QQQx15ET"
     }
   ],

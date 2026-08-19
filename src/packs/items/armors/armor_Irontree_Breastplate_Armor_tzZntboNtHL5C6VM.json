@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 2,
     "equipped": false,
-    "baseScore": 4,
     "armorFeatures": [
       {
         "value": "reinforced",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 9,
       "severe": 20
@@ -35,39 +30,48 @@
       "source": "Daggerheart SRD",
       "page": 56,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Reinforced",
       "description": "<p>When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot.</p>",
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-green.webp",
-      "changes": [
-        {
-          "key": "system.damageThresholds.major",
-          "type": "add",
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.damageThresholds.severe",
-          "type": "add",
-          "value": "2",
-          "priority": null
-        }
-      ],
       "_id": "P3aCN8PQgPXP4C9M",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -78,6 +82,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!tzZntboNtHL5C6VM.P3aCN8PQgPXP4C9M"
     }
   ],

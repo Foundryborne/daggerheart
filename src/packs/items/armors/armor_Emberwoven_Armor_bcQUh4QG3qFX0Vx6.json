@@ -10,64 +10,9 @@
       "max": 6
     },
     "description": "",
-    "actions": {
-      "L8mHf4A8SylyxsMH": {
-        "type": "damage",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Burn",
-        "description": "When an adversary attacks you within Melee range, they mark a Stress.",
-        "img": "icons/magic/fire/flame-burning-embers-yellow.webp",
-        "range": "melee",
-        "target": {
-          "type": "hostile",
-          "amount": null
-        },
-        "damage": {
-          "parts": {
-            "stress": {
-              "applyTo": "stress",
-              "value": {
-                "custom": {
-                  "enabled": true,
-                  "formula": "1"
-                },
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null
-              },
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              },
-              "base": false,
-              "type": []
-            }
-          },
-          "includeBase": false
-        },
-        "_id": "L8mHf4A8SylyxsMH",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 4,
     "equipped": false,
-    "baseScore": 6,
     "armorFeatures": [
       {
         "value": "burning",
@@ -77,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -88,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

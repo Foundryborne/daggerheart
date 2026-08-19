@@ -8,13 +8,14 @@
     "description": "<p>When your Focus makes an attack against you, you gain a +2 bonus to your Evasion against the attack.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 17,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -26,13 +27,17 @@
             "key": "system.evasion",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
           "type": "",
           "description": "<p>Against the attack.</p>"
-        }
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "X4llFOcAcdJLbear",
       "img": "icons/creatures/mammals/beast-horned-scaled-glowing-orange.webp",

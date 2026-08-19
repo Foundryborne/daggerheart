@@ -234,12 +234,10 @@
         "description": "<p>Creatures within Melee range of the @Lookup[@name] have disadvantage on attack rolls against them. Creatures trapped inside the @Lookup[@name] are immune to this feature.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "YiF0i85DeRoP4lEs",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
@@ -283,8 +281,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -329,12 +325,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "VlHp8RjHy7MK8rqC",
       "img": "icons/environment/traps/cage-grey-steel.webp",

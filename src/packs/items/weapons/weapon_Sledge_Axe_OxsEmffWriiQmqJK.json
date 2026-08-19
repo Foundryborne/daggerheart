@@ -6,61 +6,7 @@
   "img": "icons/weapons/axes/axe-battle-heavy-jagged.webp",
   "system": {
     "description": "",
-    "actions": {
-      "0qVTvNMfapVST3sQ": {
-        "type": "damage",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Destruction",
-        "description": "DAGGERHEART.CONFIG.WeaponFeature.destructive.actions.attack.descriptive",
-        "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
-        "range": "veryClose",
-        "target": {
-          "type": "hostile",
-          "amount": null
-        },
-        "damage": {
-          "parts": {
-            "stress": {
-              "applyTo": "stress",
-              "value": {
-                "custom": {
-                  "enabled": true,
-                  "formula": "1"
-                },
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null
-              },
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              },
-              "base": false,
-              "type": []
-            }
-          },
-          "includeBase": false
-        },
-        "_id": "0qVTvNMfapVST3sQ",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": false,
@@ -104,35 +50,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d12",
-              "bonus": 13,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "physical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d12",
+            "bonus": 13,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -141,14 +90,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -161,27 +116,40 @@
       "source": "Daggerheart SRD",
       "page": 50,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Destructive",
       "description": "DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility",
       "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
-      "changes": [
-        {
-          "key": "system.traits.agility.value",
-          "type": "add",
-          "value": "-1"
-        }
-      ],
       "_id": "dhhIibfRBwCGZ6Ab",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.traits.agility.value",
+            "type": "add",
+            "value": -1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -192,6 +160,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!OxsEmffWriiQmqJK.dhhIibfRBwCGZ6Ab"
     }
   ],

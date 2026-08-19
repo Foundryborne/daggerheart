@@ -20,13 +20,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -40,16 +43,23 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/perception/eye-ringed-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 17,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -60,17 +70,20 @@
       "_id": "SXi2dQWqpwY9fap4",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Until this feature ends or the ranger makes a different creature their Focus, they gain the following benefits against this adversary:</p><ul><li><p>They know precisely what direction they are in.</p></li><li><p>When they deal damage to them, the adverasry must mark a Stress.</p></li><li><p>When they fail an attack against them, they can end their Ranger’s Focus feature to reroll their Duality Dice.</p></li></ul>",
       "tint": "#ffffff",
@@ -80,6 +93,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ncLx2P8BOUtrAD38.SXi2dQWqpwY9fap4"
     }
   ],

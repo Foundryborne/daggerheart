@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 1,
     "equipped": false,
-    "baseScore": 4,
     "armorFeatures": [
       {
         "value": "heavy",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 7,
       "severe": 15
@@ -35,27 +30,40 @@
       "source": "Daggerheart SRD",
       "page": 56,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Heavy",
       "description": "-1 to Evasion",
       "img": "icons/commodities/metal/ingot-worn-iron.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "-1"
-        }
-      ],
       "_id": "ZfO5NjpqEIzZVlPq",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": -1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -66,6 +74,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!haULhuEg37zUUvhb.ZfO5NjpqEIzZVlPq"
     }
   ],

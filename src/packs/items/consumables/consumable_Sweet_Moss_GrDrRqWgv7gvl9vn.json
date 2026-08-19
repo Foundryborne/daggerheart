@@ -27,14 +27,17 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "flat",
                 "flatMultiplier": 1,
@@ -50,13 +53,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "",
@@ -80,7 +83,13 @@
         },
         "name": "Clear Hit Points",
         "img": "icons/consumables/plants/succulent-bundle-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "IolxVguij8PjHSVt": {
         "type": "healing",
@@ -102,14 +111,17 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "flat",
                 "dice": "d10",
@@ -125,13 +137,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "",
@@ -155,7 +167,13 @@
         },
         "name": "Clear Stress",
         "img": "icons/consumables/plants/succulent-bundle-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -163,7 +181,8 @@
       "source": "Daggerheart SRD",
       "page": 62,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

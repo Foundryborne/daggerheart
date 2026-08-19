@@ -8,13 +8,14 @@
     "description": "<p>When you succeed with Fear on an attack roll, you deal an extra <strong>1d10</strong> magic damage.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 25,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

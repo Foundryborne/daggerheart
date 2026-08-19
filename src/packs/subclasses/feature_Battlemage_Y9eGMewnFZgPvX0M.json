@@ -8,13 +8,14 @@
     "description": "<p>You've focused your studies on becoming an unconquerable force on the battlefield. Gain an additional Hit Point slot.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 25,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -25,22 +26,26 @@
           {
             "key": "system.resources.hitPoints.max",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "6jjKzvBxAJTHHGoX",
       "img": "icons/equipment/chest/collar-steel.webp",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Gain an additional Hit Point slot.</p>",
       "origin": null,
@@ -52,6 +57,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!Y9eGMewnFZgPvX0M.6jjKzvBxAJTHHGoX"
     }
   ],

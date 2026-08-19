@@ -10,40 +10,9 @@
       "max": 5
     },
     "description": "",
-    "actions": {
-      "J1MCpcfXByKaSSgx": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Impenetrable",
-        "description": "Once per short rest, when you would mark your last Hit Point, you can instead mark a Stress.",
-        "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-purple-orange.webp",
-        "uses": {
-          "max": 1,
-          "recovery": "shortRest",
-          "value": 0
-        },
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "scalable": false,
-            "step": null
-          }
-        ],
-        "_id": "J1MCpcfXByKaSSgx",
-        "effects": [],
-        "systemPath": "actions",
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 3,
     "equipped": false,
-    "baseScore": 5,
     "armorFeatures": [
       {
         "value": "impenetrable",
@@ -53,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 11,
       "severe": 27
@@ -64,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

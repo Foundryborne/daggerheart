@@ -257,8 +257,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -298,13 +296,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
@@ -339,8 +334,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -385,13 +378,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "effects": [
         {

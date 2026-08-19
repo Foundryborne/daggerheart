@@ -17,8 +17,9 @@
         "cost": [],
         "uses": {
           "value": 1,
-          "max": 1,
-          "recovery": "longRest"
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -27,14 +28,21 @@
         },
         "name": "Pour",
         "img": "icons/containers/kitchenware/jug-wrapped-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 58,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

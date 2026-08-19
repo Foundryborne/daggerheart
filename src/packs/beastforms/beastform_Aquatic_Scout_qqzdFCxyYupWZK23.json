@@ -10,7 +10,9 @@
     "tokenSize": {
       "height": null,
       "width": null,
-      "size": "tiny"
+      "size": "tiny",
+      "scale": 1,
+      "depth": null
     },
     "mainTrait": "agility",
     "advantageOn": {
@@ -29,7 +31,10 @@
       "Compendium.daggerheart.beastforms.Item.QFg1hNCEoKVDd9Zo"
     ],
     "evolved": {
-      "mainTraitBonus": 0
+      "mainTraitBonus": 0,
+      "damageBonus": 0,
+      "evasionBonus": 0,
+      "increaseDamageDice": 0
     },
     "hybrid": {
       "beastformOptions": 2,
@@ -53,9 +58,14 @@
         "characterTokenData": {
           "tokenImg": null,
           "tokenRingImg": "icons/svg/mystery-man.svg",
-          "tokenSize": {}
+          "tokenSize": {
+            "height": 1,
+            "width": 1,
+            "scale": 1
+          },
+          "usesDynamicToken": false
         },
-        "advantageOn": [],
+        "advantageOn": {},
         "featureIds": [],
         "effectIds": [],
         "changes": [
@@ -90,8 +100,12 @@
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

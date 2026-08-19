@@ -31,7 +31,6 @@
       "img": "icons/skills/melee/hand-grip-staff-teal.webp",
       "system": {
         "rangeDependence": {
-          "enabled": true,
           "type": "withinRange",
           "target": "hostile",
           "range": "melee"

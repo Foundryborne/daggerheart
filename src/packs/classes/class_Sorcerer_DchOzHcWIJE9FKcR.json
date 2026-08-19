@@ -30,10 +30,6 @@
         "item": "Compendium.daggerheart.classes.Item.P02cbN50LIoD662z"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.wg1H0hROc2acHwZh",
-      "Compendium.daggerheart.subclasses.Item.GLpRVxnY5E82khxH"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -77,7 +73,8 @@
       "Why do you trust me so deeply?",
       "What did I do that makes you cautious around me?",
       "Why do we keep our shared past a secret?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

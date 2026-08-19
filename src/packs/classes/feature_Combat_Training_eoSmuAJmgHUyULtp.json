@@ -8,13 +8,14 @@
     "description": "<p>You ignore burden when equipping weapons. When you deal physical damage, you gain a bonus to your damage roll equal to your level.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 23,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -26,27 +27,32 @@
             "key": "system.bonuses.damage.physical.bonus",
             "type": "add",
             "value": "@system.levelData.level.current",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.rules.burden.ignore",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "Y7sTM0tw0VpgU6pC",
       "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You ignore burden when equipping weapons. When you deal physical damage, you gain a bonus to your damage roll equal to your level.</p>",
       "origin": null,
@@ -58,6 +64,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!eoSmuAJmgHUyULtp.Y7sTM0tw0VpgU6pC"
     }
   ],

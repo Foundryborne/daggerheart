@@ -11,7 +11,8 @@
       "source": "Daggerheart SRD",
       "page": 59,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -19,24 +20,29 @@
       "type": "base",
       "_id": "2yr8Ps6wvaG3b1qy",
       "img": "icons/magic/life/heart-cross-strong-purple-orange.webp",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.traits.presence.value",
-          "type": "add",
-          "value": "1",
-          "priority": null
-        }
-      ],
+      "system": {
+        "changes": [
+          {
+            "key": "system.traits.presence.value",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You gain a +1 bonus to your Presence.</p>",
       "origin": null,
@@ -48,6 +54,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!9P9jqGSlxVCbTdLe.2yr8Ps6wvaG3b1qy"
     }
   ],

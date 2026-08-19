@@ -17,8 +17,9 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": 1,
-          "recovery": "longRest"
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -32,14 +33,21 @@
         },
         "name": "Activate",
         "img": "icons/equipment/finger/ring-shield-silver.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 59,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -54,26 +62,31 @@
           {
             "key": "system.resistance.magical.resistance",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.resistance.physical.resistance",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Once per long rest, you can activate this ring after a successful attack against you to halve the damage.</p>",
       "tint": "#ffffff",
@@ -83,6 +96,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!aUqRifqR5JXXa1dN.Sj7uGf560T7u4rlX"
     }
   ],

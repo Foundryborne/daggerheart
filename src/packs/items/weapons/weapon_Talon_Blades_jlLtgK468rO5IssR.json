@@ -6,30 +6,7 @@
   "img": "icons/weapons/swords/sword-guard-flanged.webp",
   "system": {
     "description": "",
-    "actions": {
-      "G7pAyfTwQ8uteLsP": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.name",
-        "description": "DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.description",
-        "img": "icons/skills/melee/strike-dagger-blood-red.webp",
-        "_id": "G7pAyfTwQ8uteLsP",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "secondary": false,
@@ -71,35 +48,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d10",
-              "bonus": 7,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "physical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d10",
+            "bonus": 7,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -108,14 +88,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -128,7 +114,10 @@
       "source": "Daggerheart SRD",
       "page": 48,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

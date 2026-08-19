@@ -234,12 +234,10 @@
         "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 6 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "OlJpLaFanzspeShi",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -288,39 +286,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "applyTo": "hitPoints",
-                  "resultBased": false,
-                  "value": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": true,
-                      "formula": "8"
-                    }
-                  },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "base": false,
-                  "type": [
-                    "physical"
-                  ]
-                }
-              },
-              "includeBase": false,
-              "direct": false,
-              "groupAttack": "close",
               "main": {
                 "applyTo": "hitPoints",
                 "resultBased": false,
@@ -385,12 +350,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "fh8ehANkVOnxEKVa",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

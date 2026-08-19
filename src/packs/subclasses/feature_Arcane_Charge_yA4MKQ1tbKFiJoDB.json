@@ -13,16 +13,18 @@
       "icon": "",
       "recovery": null,
       "diceStates": {},
-      "dieFaces": "d4"
+      "dieFaces": "d4",
+      "progression": "increasing"
     },
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 23,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -34,21 +36,25 @@
             "key": "system.bonuses.damage.magical.bonus",
             "type": "add",
             "value": "+10",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "z49V45ir45HGHOBB",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>When you successfully make an attack that deals magic damage while Charged, you can clear your Charge to either gain a +10 bonus to the damage roll or gain a +3 bonus to the Difficulty of a reaction roll the spell causes the target to make. You stop being Charged at your next long rest.</p>",
       "origin": null,
@@ -60,6 +66,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!yA4MKQ1tbKFiJoDB.z49V45ir45HGHOBB"
     }
   ],

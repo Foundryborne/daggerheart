@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 4,
     "equipped": false,
-    "baseScore": 4,
     "armorFeatures": [
       {
         "value": "fortified",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 15,
       "severe": 40
@@ -35,27 +30,40 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Fortified",
       "description": "When you mark an Armor Slot, you reduce the severity of an attack by two thresholds instead of one.",
       "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.increasePerArmorMark",
-          "type": "override",
-          "value": "2"
-        }
-      ],
       "_id": "QIefVb73cm9gYju8",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.increasePerArmorMark",
+            "type": "override",
+            "value": 2,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -66,6 +74,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!7emTSt6nhZuTlvt5.QIefVb73cm9gYju8"
     }
   ],

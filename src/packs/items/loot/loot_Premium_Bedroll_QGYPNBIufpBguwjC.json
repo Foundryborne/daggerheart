@@ -18,37 +18,14 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "target": {
           "type": "self",
           "amount": null
         },
         "effects": [],
-        "healing": {
-          "applyTo": "hitPoints",
-          "resultBased": false,
-          "value": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
         "roll": {
           "type": null,
           "trait": null,
@@ -66,14 +43,25 @@
         },
         "name": "Take a nap",
         "img": "icons/sundries/survival/bedroll-blue-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": [],
+        "damage": {
+          "main": null,
+          "resources": {}
+        }
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 58,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

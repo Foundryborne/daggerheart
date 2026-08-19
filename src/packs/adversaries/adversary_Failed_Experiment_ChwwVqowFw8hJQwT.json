@@ -240,12 +240,10 @@
         "description": "<p>The @Lookup[@name] is resistant to physical damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "nCIGFPFOKzyznL0O",
       "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
@@ -310,12 +308,10 @@
         "description": "<p>When a target the @Lookup[@name] attacks has other adversaries within Very Close range, the @Lookup[@name] deals double damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "1fE6xo8yIOmZkGNE",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -419,12 +415,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "g0h3Zo6xqgfSlyxi",
       "img": "icons/skills/melee/strike-slashes-red.webp",

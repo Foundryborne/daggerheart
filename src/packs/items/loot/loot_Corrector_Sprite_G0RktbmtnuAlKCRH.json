@@ -17,8 +17,9 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": 1,
-          "recovery": "shortRest"
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -27,14 +28,21 @@
         },
         "name": "Listen",
         "img": "icons/magic/light/orbs-smoke-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 58,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

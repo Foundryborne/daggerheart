@@ -26,10 +26,6 @@
         "item": "Compendium.daggerheart.classes.Item.eoSmuAJmgHUyULtp"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.NAFU9roaVG7f3RNJ",
-      "Compendium.daggerheart.subclasses.Item.bcNe5qP3o6CKadhK"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw",
@@ -73,7 +69,8 @@
       "We knew each other long before this party came together. How?",
       "What mundane task do you usually help me with off the battlefield?",
       "What fear am I helping you overcome?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

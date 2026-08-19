@@ -19,13 +19,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": 1,
-          "recovery": "shortRest"
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -39,14 +42,21 @@
         },
         "name": "Activate",
         "img": "icons/equipment/finger/ring-ball-purple.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 59,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -57,17 +67,20 @@
       "_id": "9JSLRu7amQ4iuIO7",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Your footsteps are silent until your next rest.</p>",
       "tint": "#ffffff",
@@ -77,6 +90,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!K1ysGnTpNyxPu5Au.9JSLRu7amQ4iuIO7"
     }
   ],

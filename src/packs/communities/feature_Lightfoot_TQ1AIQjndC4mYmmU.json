@@ -8,14 +8,14 @@
     "description": "<p>Your movement is naturally silent. You have advantage on rolls to move without being heard.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 34,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -29,12 +29,17 @@
             "key": "system.advantageSources",
             "type": "add",
             "value": "Move without being heard.",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

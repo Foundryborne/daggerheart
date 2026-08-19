@@ -6,44 +6,7 @@
   "img": "icons/equipment/shield/heater-wooden-worn.webp",
   "system": {
     "description": "",
-    "actions": {
-      "BspGQXodaANPEQcl": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Deflect",
-        "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack.",
-        "img": "icons/skills/melee/hand-grip-sword-strike-orange.webp",
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "cost": [
-          {
-            "key": "resource",
-            "itemId": "armorSlot",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "effects": [
-          {
-            "_id": "Anbxt99bL9IWnlGh",
-            "onSave": false
-          }
-        ],
-        "_id": "BspGQXodaANPEQcl",
-        "systemPath": "actions",
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "secondary": true,
@@ -87,35 +50,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d4",
-              "bonus": 4,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "physical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d4",
+            "bonus": 4,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -124,14 +90,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -144,29 +116,42 @@
       "source": "Daggerheart SRD",
       "page": 53,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Deflecting",
       "description": "Gain a bonus to your Evasion equal to your Armor Score against the attack",
       "img": "icons/skills/melee/hand-grip-sword-strike-orange.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "@system.armorScore.max",
-          "priority": 21
-        }
-      ],
       "transfer": false,
       "_id": "Anbxt99bL9IWnlGh",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": "@system.armorScore.max",
+            "priority": 21,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -176,6 +161,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!EmFTp9wzT6MHSaNz.Anbxt99bL9IWnlGh"
     }
   ],

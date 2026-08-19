@@ -20,13 +20,16 @@
             "scalable": false,
             "key": "hope",
             "value": 3,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -40,16 +43,23 @@
         },
         "name": "Spend Hope",
         "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 19,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -74,8 +84,11 @@
           "description": "<p>Until the next time an attack succeeds against you.</p>"
         },
         "stacking": {
-          "max": null
-        }
+          "max": null,
+          "value": 1
+        },
+        "rangeDependence": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

@@ -26,10 +26,6 @@
         "item": "Compendium.daggerheart.classes.Item.6YsfFjmCGuFYVhT4"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.qqQlgCqhOivUFoQn",
-      "Compendium.daggerheart.subclasses.Item.4y9Ph7RsCIAbkwTk"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw",
@@ -73,7 +69,8 @@
       "What favor have I asked of you that you’re not sure you can fulfill?",
       "What weird hobby or strange fascination do we both share?",
       "What secret about yourself have you entrusted only to me?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

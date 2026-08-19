@@ -10,40 +10,9 @@
       "max": 4
     },
     "description": "",
-    "actions": {
-      "Nn33zCIcWe6LQMDH": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Shift",
-        "description": "When you are targeted for an attack, you can mark an Armor Slot to give the attack roll against you disadvantage.",
-        "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "scalable": false,
-            "step": null
-          }
-        ],
-        "_id": "Nn33zCIcWe6LQMDH",
-        "effects": [],
-        "systemPath": "actions",
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 2,
     "equipped": false,
-    "baseScore": 4,
     "armorFeatures": [
       {
         "value": "shifting",
@@ -53,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 9,
       "severe": 20
@@ -64,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 56,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

@@ -240,12 +240,10 @@
         "description": "<p>The @Lookup[@name]'s standard attack deals direct damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "m8qmsssYQ3uFHkil",
       "img": "icons/magic/control/fear-fright-monster-purple-blue.webp",
@@ -265,12 +263,10 @@
         "description": "<p>When the @Lookup[@name] marks HP from an attack, <strong>spend a number of Fear equal to the HP marked by the @Lookup[@name]</strong> to cause the attacker to mark the same number of HP.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "KVyhgMJSSHTwRISA",
       "img": "icons/magic/control/fear-fright-monster-grin-purple-blue.webp",
@@ -338,12 +334,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "pSAupMWw1eYqm84z",
       "img": "icons/magic/perception/eye-ringed-glow-angry-small-teal.webp",
@@ -378,9 +372,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {}
             },
@@ -429,12 +420,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "589tCxFc8KZ3rdzP",
       "img": "icons/magic/perception/hand-eye-black.webp",

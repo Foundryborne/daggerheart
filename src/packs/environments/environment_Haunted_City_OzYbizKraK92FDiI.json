@@ -129,12 +129,10 @@
         "description": "<p>The city has countless mysteries to unfold. A PC who seeks knowledge about the fallen city can make an Instinct or Knowledge Roll to learn about this place and discover (potentially haunted) loot.</p><ul><li><p><strong>Critical Success</strong>: Gain valuable information and a related useful item.</p></li><li><p><strong>Success with Hope:</strong> Gain valuable information.</p></li><li><p><strong>Success with Fear:</strong> Uncover vague or incomplete information.</p></li><li><p><strong>Any Failure:</strong> Mark a Stress to find a lead after an exhaustive search.</p></li></ul><section id=\"secret-b7Tkr2KzblSvwAPj\" class=\"secret\"><p><em>What greater secrets does the city contain? Why have so many ghosts lingered here? What doomed adventurers have met a bad fate here already?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "h8Dv8pToiCVklPhv",
       "img": "icons/sundries/documents/document-writing-pink.webp",
@@ -189,12 +187,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "gRpkBU3CLJvDnB7I",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -259,12 +255,10 @@
         "description": "<p>The ghosts of an earlier era manifest scenes from their bygone era, such as a street festival, a revolution, or a heist. These hauntings change the layout of the city around the PCs, blocking the way behind them, forcing a detour, or presenting them with a challenge, such as mistaking them for rival thieves during the heist.</p><section id=\"secret-ttpwol0cvVxPyK7e\" class=\"secret\"><p><em>What do the ghosts want from you? What do you need from them?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "ZA2RzxH5FlnrcYLN",
       "img": "icons/magic/death/undead-ghosts-trio-blue.webp",
@@ -334,12 +328,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "i0FV2Djaq0vB57cq",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",

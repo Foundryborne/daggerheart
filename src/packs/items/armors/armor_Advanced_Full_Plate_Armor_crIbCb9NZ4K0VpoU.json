@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 3,
     "equipped": false,
-    "baseScore": 6,
     "armorFeatures": [
       {
         "value": "veryheavy",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 15,
       "severe": 35
@@ -35,32 +30,46 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Very Heavy",
       "description": "-2 to Evasion; -1 to Agility",
       "img": "icons/commodities/metal/ingot-stamped-steel.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "type": "add",
-          "value": "-2"
-        },
-        {
-          "key": "system.traits.agility.value",
-          "type": "add",
-          "value": "-1"
-        }
-      ],
       "_id": "awdHgEaM54G3emOU",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": -2,
+            "phase": "initial"
+          },
+          {
+            "key": "system.traits.agility.value",
+            "type": "add",
+            "value": -1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -71,6 +80,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!crIbCb9NZ4K0VpoU.awdHgEaM54G3emOU"
     }
   ],

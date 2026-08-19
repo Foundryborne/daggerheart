@@ -10,16 +10,21 @@
       "type": "simple",
       "value": 0,
       "max": "@system.proficiency",
-      "icon": "fa-solid fa-skull"
+      "icon": "fa-solid fa-skull",
+      "recovery": null,
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 24,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

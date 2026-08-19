@@ -18,7 +18,8 @@
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "session"
+          "recovery": "session",
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -32,16 +33,23 @@
         },
         "name": "Rally your allies!",
         "img": "icons/tools/instruments/drum-hand-tan.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 9,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -57,19 +65,23 @@
             "key": "system.bonuses.rally",
             "type": "add",
             "value": "6 + min((floor(@system.levelData.level.current / 5)*2), 2)",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -79,6 +91,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!PydiMnNCKpd44SGS.FrSJH9vzDHkFGYQL"
     }
   ],

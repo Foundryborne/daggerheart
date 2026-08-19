@@ -10,7 +10,11 @@
       "type": "die",
       "value": 0,
       "max": "",
-      "icon": ""
+      "icon": "",
+      "recovery": null,
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {
       "KZiZ8m8uqH5iG96d": {
@@ -42,16 +46,20 @@
         },
         "name": "Become Unstoppable",
         "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 15,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -67,43 +75,51 @@
             "key": "system.bonuses.damage.physical.bonus",
             "type": "add",
             "value": "ORIGIN.@item.resource.value",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.bonus",
             "type": "add",
             "value": "ORIGIN.@item.resource.value",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.rules.damageReduction.reduceSeverity.physical",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.rules.conditionImmunities.vulnerable",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.rules.conditionImmunities.restrained",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -113,6 +129,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!PnD2UCgzIlwX6cY3.xzQtFSuDS48kUdAZ"
     }
   ],

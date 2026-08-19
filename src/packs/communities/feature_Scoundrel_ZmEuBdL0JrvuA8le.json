@@ -8,14 +8,14 @@
     "description": "<p>You have advantage on rolls to negotiate with criminals, detect lies, or find a safe place to hide.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 33,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -29,24 +29,31 @@
             "key": "system.advantageSources",
             "type": "add",
             "value": "Negotiate with criminals",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.advantageSources",
             "type": "add",
             "value": "Detect lies",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.advantageSources",
             "type": "add",
             "value": "Find a safe place to hide",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

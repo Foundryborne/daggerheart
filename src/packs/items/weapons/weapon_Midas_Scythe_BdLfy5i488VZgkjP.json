@@ -6,35 +6,7 @@
   "img": "icons/weapons/sickles/scythe-bone-green-fire.webp",
   "system": {
     "description": "",
-    "actions": {
-      "kKEAq1C1fz0WZmlZ": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Greedy",
-        "description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll.",
-        "img": "icons/commodities/currency/coins-crown-stack-gold.webp",
-        "effects": [
-          {
-            "_id": "1C5o1D5JYgLdt2eU",
-            "onSave": false
-          }
-        ],
-        "_id": "kKEAq1C1fz0WZmlZ",
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": false,
@@ -78,35 +50,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d10",
-              "bonus": 9,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "magical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d10",
+            "bonus": 9,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "magical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -115,14 +90,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -135,28 +116,41 @@
       "source": "Daggerheart SRD",
       "page": 51,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Greed",
       "description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll.",
       "img": "icons/commodities/currency/coins-crown-stack-gold.webp",
-      "changes": [
-        {
-          "key": "system.proficiency",
-          "type": "add",
-          "value": "1"
-        }
-      ],
       "transfer": false,
       "_id": "1C5o1D5JYgLdt2eU",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -166,6 +160,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!BdLfy5i488VZgkjP.1C5o1D5JYgLdt2eU"
     }
   ],

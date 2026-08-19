@@ -10,40 +10,9 @@
       "max": 6
     },
     "description": "",
-    "actions": {
-      "37KLF2bim9nRdPTU": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Pain",
-        "description": "Each time you mark an Armor Slot, you must mark a Stress.",
-        "img": "icons/skills/wounds/injury-face-impact-orange.webp",
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "scalable": false,
-            "step": null
-          }
-        ],
-        "_id": "37KLF2bim9nRdPTU",
-        "effects": [],
-        "systemPath": "actions",
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 3,
     "equipped": false,
-    "baseScore": 6,
     "armorFeatures": [
       {
         "value": "painful",
@@ -53,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 17,
       "severe": 43
@@ -64,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

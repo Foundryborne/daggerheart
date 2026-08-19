@@ -21,7 +21,8 @@
             "key": "hitPoints",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -37,16 +38,23 @@
         },
         "name": "Transform",
         "img": "icons/magic/fire/elemental-fire-flying.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 22,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -58,12 +66,17 @@
             "key": "system.damageThresholds.severe",
             "value": "+4",
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "zFOpzO3tBJPcZcRc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
@@ -100,19 +113,22 @@
       "name": "Bonus to Trait",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "cTgSmxkTi89y6sbc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>+1 bonus to a character trait of your choice</p>",
       "origin": null,
@@ -124,6 +140,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!th6HZwEFnVBjUtqm.cTgSmxkTi89y6sbc"
     },
     {
@@ -135,21 +154,25 @@
             "key": "system.proficiency",
             "type": "add",
             "value": "+1",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "oWf3iXf4dawdbmzd",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>+1 bonus to your Proficiency</p>",
       "origin": null,
@@ -161,25 +184,31 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!th6HZwEFnVBjUtqm.oWf3iXf4dawdbmzd"
     },
     {
       "name": "Bonus to Evasion",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "2LCF6lSnWFqNiPs5",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>+2 bonus to your Evasion</p>",
       "origin": null,
@@ -191,6 +220,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!th6HZwEFnVBjUtqm.2LCF6lSnWFqNiPs5"
     }
   ],

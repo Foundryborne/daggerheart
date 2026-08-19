@@ -234,11 +234,10 @@
         "description": "<p>Before they make their first attack in a fight or after they become Hidden the @Lookup[@name] is indistinguishable from other trees until they next act or a PC succeeds on an Instinct Roll to identify them.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false,
         "attribution": {},
         "gmNotes": "",
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "ERco8urSuHgrtnzL",
       "img": "icons/environment/wilderness/tree-spruce-green.webp",
@@ -282,37 +281,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 5,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -362,11 +330,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "multiclassOrigin": false,
         "featureForm": "action",
         "attribution": {},
-        "gmNotes": ""
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "Q2slH9qkBO5SPw43",
       "img": "icons/consumables/nuts/nut-spiked-shell.webp",
@@ -430,11 +397,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "multiclassOrigin": false,
         "featureForm": "action",
         "attribution": {},
-        "gmNotes": ""
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "sqkgw26P2KiQVtXT",
       "img": "icons/consumables/plants/thorned-stem-brown.webp",

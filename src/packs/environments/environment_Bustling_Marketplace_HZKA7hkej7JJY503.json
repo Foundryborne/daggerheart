@@ -135,12 +135,10 @@
         "description": "<p>PCs can gain advantage on a Presence Roll by offering a handful of gold as part of the interaction.</p><section id=\"secret-SkvXxhBWKBtYdJaq\" class=\"secret\"><p><em>Will any coin be accepted or only local currency? How overt are the PCs in offering this bribe?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "w8YmhoWPGc66Wrx3",
       "img": "icons/commodities/currency/coins-assorted-mix-copper-silver-gold.webp",
@@ -160,12 +158,10 @@
         "description": "<p>Reveal to the PCs that one of the merchants has something they want or need, such as food from their home, a rare book, magical components, a dubious treasure map, or a magical key.</p><section id=\"secret-vuqosTt63aXllb93\" class=\"secret\"><p><em>What cost beyond gold will the merchant ask for in exchange for this rarity?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "60uDqt9omFifZ7xd",
       "img": "icons/commodities/treasure/brooch-jeweled-pink.webp",
@@ -200,8 +196,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -295,12 +289,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "56qjiKMoN6S9riI6",
       "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
@@ -320,12 +312,10 @@
         "description": "<p> When one of the PCs splits from the group, the crowds shift and cut them off  from the party.</p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd's movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "l2FzZpR2reVmlkdp",
       "img": "icons/skills/movement/arrow-upward-blue.webp",

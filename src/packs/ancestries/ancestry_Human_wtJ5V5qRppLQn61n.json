@@ -20,7 +20,8 @@
       "page": 30,
       "artist": ""
     },
-    "loreReference": "human"
+    "loreReference": "human",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "wtJ5V5qRppLQn61n",

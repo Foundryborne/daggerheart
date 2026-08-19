@@ -8,14 +8,14 @@
     "description": "<p>Your scales act as natural protection. When you would take Severe damage, you can <strong>mark a Stress</strong> to mark 1 fewer Hit Points.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 27,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -28,20 +28,24 @@
           {
             "key": "system.rules.damageReduction.stressDamageReduction.severe.cost",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>When you would take Severe damage, you can mark a Stress to mark 1 fewer Hit Points.</p>",
       "origin": null,
@@ -53,6 +57,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!u8ZhV962rNmUlzkp.b6Pkwwk7pgBeeUTe"
     }
   ],

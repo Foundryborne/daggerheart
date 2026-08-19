@@ -275,12 +275,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "Fz2lnUEeBxsDpx0G",
       "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
@@ -347,12 +345,10 @@
         "description": "<p>The @Lookup[@name] has advantage on attacks if they are <em>Hidden</em>.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "of6g4piugKzTI4dv",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
@@ -461,12 +457,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "lAmiK8wVxjyHwKlp",
       "img": "icons/magic/air/fog-gas-smoke-green.webp",

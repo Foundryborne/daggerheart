@@ -8,13 +8,14 @@
     "description": "<p>While flying, you deal an extra 1d12 damage instead of 1d8 from your \"Wings of Light\" feature.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 21,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

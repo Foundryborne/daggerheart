@@ -8,13 +8,14 @@
     "description": "<p>You are vigilant in the face of mounting danger. While you have 2 or fewer Hit Points unmarked, you can roll a <strong>d20</strong> as your Hope Die.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 24,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

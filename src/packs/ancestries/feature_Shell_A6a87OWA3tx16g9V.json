@@ -8,14 +8,14 @@
     "description": "<p>Gain a bonus to your damage thresholds equal to your Proficiency.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 29,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -29,25 +29,30 @@
             "key": "system.damageThresholds.major",
             "type": "add",
             "value": "@prof",
-            "priority": 21
+            "priority": 21,
+            "phase": "initial"
           },
           {
             "key": "system.damageThresholds.severe",
             "type": "add",
             "value": "@prof",
-            "priority": 21
+            "priority": 21,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Gain a bonus to your damage thresholds equal to your Proficiency.</p>",
       "origin": null,
@@ -59,6 +64,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!A6a87OWA3tx16g9V.41uiZKXzSSomf9YD"
     }
   ],

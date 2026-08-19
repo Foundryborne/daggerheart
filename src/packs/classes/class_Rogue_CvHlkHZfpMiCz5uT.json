@@ -26,10 +26,6 @@
         "item": "Compendium.daggerheart.classes.Item.5QqpEwmwkPfZHpMW"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.h161OSIK24Up4qNd",
-      "Compendium.daggerheart.subclasses.Item.95QxNZwgyEm1LqdG"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -73,7 +69,8 @@
       "What did I recently convince you to do that got us both in trouble?",
       "What have I discovered about your past that I hold secret from the others?",
       "Who do you know from my past, and how have they influenced your feelings about me?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

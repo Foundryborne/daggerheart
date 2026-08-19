@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 3,
     "equipped": false,
-    "baseScore": 5,
     "armorFeatures": [
       {
         "value": "sharp",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 10,
       "severe": 25
@@ -35,32 +30,46 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Sharp",
       "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll.",
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-green.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.primaryWeapon.dice",
-          "type": "add",
-          "value": "1d4"
-        },
-        {
-          "key": "system.bonuses.damage.secondaryWeapon.dice",
-          "type": "add",
-          "value": "1d4"
-        }
-      ],
       "_id": "V8CcTcVAIxHq8KNd",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.dice",
+            "type": "add",
+            "value": "1d4",
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.secondaryWeapon.dice",
+            "type": "add",
+            "value": "1d4",
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -71,6 +80,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!QjwsIhXKqnlvRBMv.V8CcTcVAIxHq8KNd"
     }
   ],

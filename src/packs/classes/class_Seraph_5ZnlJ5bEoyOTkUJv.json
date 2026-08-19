@@ -22,10 +22,6 @@
         "item": "Compendium.daggerheart.classes.Item.Xd7RYhfTxIj9aWI2"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.M5mpGoAj8LRkylrY",
-      "Compendium.daggerheart.subclasses.Item.y7ERWRIpJsdP9Re4"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -69,7 +65,8 @@
       "What promise did you make me agree to, should you die on the battlefield?",
       "Why do you ask me so many questions about my god?",
       "You’ve told me to protect one member of our party above all others, even yourself. Who are they and why?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

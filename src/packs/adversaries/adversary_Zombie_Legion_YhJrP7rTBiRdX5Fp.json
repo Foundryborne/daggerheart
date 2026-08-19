@@ -234,12 +234,10 @@
         "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "FYwMzXwULePzFyYJ",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
@@ -259,12 +257,10 @@
         "description": "<p>The @Lookup[@name] has resistance to physical damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "o1qQhASA882Fn9HN",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
@@ -368,12 +364,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "fCYLZKeTn0YSpVDI",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -432,12 +426,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "d5Vilu9cUub1O6TD",
       "img": "icons/skills/melee/strike-slashes-orange.webp",

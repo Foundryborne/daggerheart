@@ -18,7 +18,8 @@
         "uses": {
           "value": null,
           "max": "3",
-          "recovery": "shortRest"
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -27,14 +28,21 @@
         },
         "name": "Use",
         "img": "icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 58,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -48,25 +56,30 @@
             "key": "system.bonuses.damage.physical.bonus",
             "type": "add",
             "value": "@system.proficiency",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.bonus",
             "type": "add",
             "value": "@system.proficiency",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Add your Proficiency to the damage roll of this attack.</p>",
       "origin": null,
@@ -78,6 +91,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!I63LTFD6GXHgyGpR.lRfqfbwlfxzPbE6U"
     }
   ],

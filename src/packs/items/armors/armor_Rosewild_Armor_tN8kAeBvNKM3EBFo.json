@@ -10,33 +10,9 @@
       "max": 5
     },
     "description": "",
-    "actions": {
-      "QRTnCYxJfuJHdnyV": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Hope",
-        "description": "When you would spend a Hope, you can mark an Armor Slot instead.",
-        "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "_id": "QRTnCYxJfuJHdnyV",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 2,
     "equipped": false,
-    "baseScore": 5,
     "armorFeatures": [
       {
         "value": "hopeful",
@@ -46,9 +22,6 @@
         ]
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 11,
       "severe": 23
@@ -57,7 +30,10 @@
       "source": "Daggerheart SRD",
       "page": 56,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,

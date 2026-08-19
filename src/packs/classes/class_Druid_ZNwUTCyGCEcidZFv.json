@@ -26,10 +26,6 @@
         "item": "Compendium.daggerheart.classes.Item.fqSdfUYUK9QUcVE4"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.W9hs5kxOWeY7eA4Q",
-      "Compendium.daggerheart.subclasses.Item.xp0XMjYT85Q7E90o"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -73,7 +69,8 @@
       "What did you confide in me that makes me leap into danger for you every time?",
       "What animal do I say you remind me of?",
       "What affectionate nickname have you given me?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

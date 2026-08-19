@@ -21,7 +21,8 @@
             "key": "hope",
             "value": 3,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -42,16 +43,23 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 23,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -72,11 +80,15 @@
           }
         ],
         "duration": {
-          "type": "shortRest"
+          "type": "shortRest",
+          "description": ""
         },
         "stacking": {
-          "max": null
-        }
+          "max": null,
+          "value": 1
+        },
+        "rangeDependence": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

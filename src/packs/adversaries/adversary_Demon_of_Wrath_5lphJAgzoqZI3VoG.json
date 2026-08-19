@@ -240,12 +240,10 @@
         "description": "<p>The @Lookup[@name]'s attacks deal direct damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "QDrOLKVWVjUnDPK3",
       "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
@@ -317,12 +315,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "a33PW8UkziliowlR",
       "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
@@ -419,37 +415,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d8",
-                    "bonus": 1,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "direct": true,
-              "groupAttack": "",
               "main": {
                 "value": {
                   "custom": {
@@ -529,12 +494,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "DjGydqLXT4rDa7Av",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -624,12 +587,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "2F75BO0xEU8Zlj7T",
       "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",

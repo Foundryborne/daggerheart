@@ -8,14 +8,14 @@
     "description": "<p>You have advantage on rolls to consort with nobles, negotiate prices, or leverage your reputation to get what you want.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 32,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -29,24 +29,31 @@
             "key": "system.advantageSources",
             "type": "add",
             "value": "Consort with nobles",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.advantageSources",
             "type": "add",
             "value": "Negotiate prices",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.advantageSources",
             "type": "add",
             "value": "Leverage your reputation to get what you want",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

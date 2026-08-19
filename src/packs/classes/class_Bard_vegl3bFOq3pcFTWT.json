@@ -22,10 +22,6 @@
         "item": "Compendium.daggerheart.classes.Item.PydiMnNCKpd44SGS"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.ld8MIvk0xVJydSBz",
-      "Compendium.daggerheart.subclasses.Item.XTSODVM8st75Os8M"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -69,7 +65,8 @@
       "What made you realize we were going to be such good friends?",
       "What do I do that annoys you?",
       "Why do you grab my hand at night?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "flags": {},

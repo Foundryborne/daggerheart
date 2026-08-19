@@ -6,42 +6,7 @@
   "img": "icons/equipment/hand/gauntlet-armored-leather-teal-orange.webp",
   "system": {
     "description": "",
-    "actions": {
-      "GlA0PwKQSq5vwh7D": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Charge",
-        "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.",
-        "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "scalable": false,
-            "step": null
-          }
-        ],
-        "effects": [
-          {
-            "_id": "n5EB7pI0kv2Zx35G",
-            "onSave": false
-          }
-        ],
-        "_id": "GlA0PwKQSq5vwh7D",
-        "systemPath": "actions",
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        }
-      }
-    },
-    "attached": [],
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "secondary": true,
@@ -85,35 +50,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d6",
-              "bonus": 4,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "physical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d6",
+            "bonus": 4,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -122,14 +90,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -142,28 +116,41 @@
       "source": "Daggerheart SRD",
       "page": 53,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Charged",
       "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.",
       "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
-      "changes": [
-        {
-          "key": "system.proficiency",
-          "type": "add",
-          "value": "1"
-        }
-      ],
       "transfer": false,
       "_id": "n5EB7pI0kv2Zx35G",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -173,6 +160,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!bW3xw5S9DbaLCN3E.n5EB7pI0kv2Zx35G"
     }
   ],

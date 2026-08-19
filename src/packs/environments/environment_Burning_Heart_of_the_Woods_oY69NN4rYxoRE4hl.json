@@ -142,12 +142,10 @@
         "description": "<p>When a PC makes a Spellcast Roll, they must roll two Fear Dice and take the higher result.</p><section id=\"secret-oR4iWlNQoOg4IXMr\" class=\"secret\"><p><em>What does it feel like to work magic in this chaostouched place? What do you fear will happen if you lose control of the spell?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "hU32a8QZy62gdLGc",
       "img": "icons/magic/unholy/beams-impact-pink.webp",
@@ -167,12 +165,10 @@
         "description": "<p>PCs who approach the central tree can make a Knowledge Roll to try to identify the magic that consumed this environment.</p><ul><li><p><strong>On a success:</strong> They learn three of the below details. On a success with Fear, they learn two.</p></li><li><p><strong>On a failure:</strong> They can mark a Stress to learn one and gain advantage on the next action roll to investigate this environment.</p></li><li><p><strong>Details:</strong> This is a result of Fallen magic. The corruption is spread through the ashen moss. It can be cleansed only by a ritual of nature magic with a Progress Countdown (8).</p></li></ul><section id=\"secret-SkDRzA8454MaIFU3\" class=\"secret\"><p><em>What Fallen cult corrupted these woods? What have they already done with the cursed wood and sap from this tree?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "nrwEMjdl5F86oES9",
       "img": "icons/magic/unholy/projectile-smoke-trail-pink.webp",
@@ -207,8 +203,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -253,12 +247,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "1aOeMMX0XuDtZbbB",
       "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
@@ -341,36 +333,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d12",
-                    "bonus": 3,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": "",
               "main": {
                 "value": {
                   "custom": {
@@ -450,12 +412,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "JKFkDvwUOP35Tsr1",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
@@ -490,36 +450,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 4,
-                    "dice": "d6",
-                    "bonus": 5,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "direct": true,
               "main": {
                 "value": {
                   "custom": {
@@ -609,12 +539,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "kYxuTZjH7HDUGeWh",
       "img": "icons/magic/air/fog-gas-smoke-brown.webp",

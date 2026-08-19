@@ -143,12 +143,10 @@
         "description": "<p>A PC can ask the bartender, staff , or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.</p><ul><li><p>A fascinating rumor with a connection to a PC's background</p></li><li><p>A promising job for the party involving a nearby threat or situation</p></li><li><p>Local folklore that relates to something they've seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "7to5Zu0lNycExCQi",
       "img": "icons/skills/social/wave-halt-stop.webp",
@@ -168,12 +166,10 @@
         "description": "<p>A PC can perform one time for the guests by making a Presence Roll. On a success, they earn <strong>[[/r 1d4]]</strong> handfuls of gold (<strong>[[/r 2d4]]</strong> if they critically succeed). On a failure, they mark a Stress.</p><section id=\"secret-vrH9YdQGP2sTa3cV\" class=\"secret\"><p><em>What piece do you perform? What does that piece mean to you? When's the last time you performed it for a crowd?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "oLn3co1mN83OiFWo",
       "img": "icons/tools/instruments/bell-gold.webp",
@@ -193,12 +189,10 @@
         "description": "<p> Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What's their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "cAbSo5VQHxJqJPKm",
       "img": "icons/magic/unholy/silhouette-robe-evil-power.webp",
@@ -218,12 +212,10 @@
         "description": "<p>Introduce a significant NPC who wants to hire the party for something or who relates to a PC's background.</p><section class=\"secret\" id=\"secret-DB6Th0yGCjAsAZp6\"><p><em>Did they know the PCs were here? What do they want in this town?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "QPezCAC18vIc5xRC",
       "img": "icons/environment/people/commoner.webp",
@@ -258,33 +250,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": 2,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -332,12 +297,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "H3LNvVrUbsAkgjni",
       "img": "icons/skills/melee/unarmed-punch-fist-white.webp",

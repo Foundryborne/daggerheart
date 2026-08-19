@@ -5,7 +5,7 @@
   "_id": "UFR67BUOhNGLFyg9",
   "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
   "system": {
-    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can't move.<br /><br />(When marked, manually enable the Retract effect to Active in effects tab and mark disadvantage when doing any action rolls. Manually disable the Retract effect to Inactive in the effects tab when no longer retracted into your shell.)</p>",
+    "description": "<p><strong>Mark a Stress</strong> to retract into your shell. While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can't move.<br><br>(When marked, manually enable the Retract effect to Active in effects tab and mark disadvantage when doing any action rolls. Manually disable the Retract effect to Inactive in the effects tab when no longer retracted into your shell.)</p>",
     "resource": null,
     "actions": {
       "HfiAg14hrYt7Yvnj": {
@@ -20,15 +20,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "keyIsID": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -42,17 +43,23 @@
         },
         "name": "Mark Stress",
         "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 29,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -80,8 +87,12 @@
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {

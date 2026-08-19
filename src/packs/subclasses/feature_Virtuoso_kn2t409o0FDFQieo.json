@@ -7,13 +7,14 @@
     "description": "<p>You are among the greatest of your craft and your skill is boundless. You can perform each of your <strong>\"Gifted Performer\"</strong> feature's songs <strong>twice per long rest.</strong></p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 9,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "flags": {},

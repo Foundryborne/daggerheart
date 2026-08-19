@@ -8,13 +8,14 @@
     "description": "<p>Gain a permanent +3 bonus to your damage thresholds.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 16,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -25,28 +26,33 @@
           {
             "key": "system.damageThresholds.severe",
             "type": "add",
-            "value": "3",
-            "priority": null
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.damageThresholds.major",
             "type": "add",
-            "value": "3",
-            "priority": null
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "zggFRaerHCj1e5F5",
       "img": "icons/skills/melee/shield-block-gray-yellow.webp",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Gain a permanent +3 bonus to your damage thresholds.</p>",
       "origin": null,
@@ -58,6 +64,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!866b2jjyzXP8nPRQ.zggFRaerHCj1e5F5"
     }
   ],

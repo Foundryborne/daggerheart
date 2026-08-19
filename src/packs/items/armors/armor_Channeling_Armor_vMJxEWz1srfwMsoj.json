@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 4,
     "equipped": false,
-    "baseScore": 5,
     "armorFeatures": [
       {
         "value": "channeling",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -35,27 +30,40 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Channeling",
       "description": "+1 to Spellcast Rolls",
       "img": "icons/magic/symbols/rune-sigil-horned-blue.webp",
-      "changes": [
-        {
-          "key": "system.bonuses.roll.spellcast",
-          "type": "add",
-          "value": "1"
-        }
-      ],
       "_id": "8bwf1Ri3jYkjphEv",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.roll.spellcast",
+            "type": "add",
+            "value": 1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -66,6 +74,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!vMJxEWz1srfwMsoj.8bwf1Ri3jYkjphEv"
     }
   ],

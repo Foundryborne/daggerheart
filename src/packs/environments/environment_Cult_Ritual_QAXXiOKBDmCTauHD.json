@@ -164,12 +164,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "iiHjguQG2aBn9g8i",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -273,12 +271,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "0Rgqw1kUPeJ11ldd",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
@@ -456,12 +452,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "oFfu3hUhp4ta4qwT",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
@@ -481,12 +475,10 @@
         "description": "<p>If the ritual's leader is targeted by an attack or spell, an ally within Very Close range of them can <strong>mark a Stress</strong> to be targeted by that attack or spell instead.</p><section id=\"secret-4QYQNJKFywfwkGGp\" class=\"secret\"><p><em>What does it feel like to see such devotion turned to the pursuit of fear and domination?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "WltEUhtYwfnX8WCc",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",

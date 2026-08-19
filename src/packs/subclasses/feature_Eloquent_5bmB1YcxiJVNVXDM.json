@@ -18,7 +18,8 @@
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "session"
+          "recovery": "session",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -27,16 +28,23 @@
         },
         "name": "Use Feature",
         "img": "icons/skills/social/diplomacy-writing-letter.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 10,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "flags": {},

@@ -19,13 +19,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": null,
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -34,7 +37,13 @@
         },
         "name": "Imbue",
         "img": "icons/equipment/neck/amulet-round-engraved-spiral-gold.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "xof31iSNIfxhbZH9": {
         "type": "healing",
@@ -47,38 +56,14 @@
         "uses": {
           "value": null,
           "max": null,
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "target": {
           "type": "any",
           "amount": null
         },
         "effects": [],
-        "healing": {
-          "applyTo": "hope",
-          "resultBased": false,
-          "value": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": true,
-              "formula": "1"
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
         "roll": {
           "type": null,
           "trait": null,
@@ -96,14 +81,25 @@
         },
         "name": "Use",
         "img": "icons/equipment/neck/amulet-round-engraved-spiral-gold.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": [],
+        "damage": {
+          "main": null,
+          "resources": {}
+        }
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 59,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

@@ -8,13 +8,14 @@
     "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll.</p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2</p></li><li><p>Levels 5–7 -&gt; Tier 3</p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 19,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -30,25 +31,30 @@
             "key": "system.bonuses.damage.physical.dice",
             "type": "add",
             "value": "@tierd6",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.dice",
             "type": "add",
             "value": "@tierd6",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll.</p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2</p></li><li><p>Levels 5–7 -&gt; Tier 3</p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
       "tint": "#ffffff",
@@ -58,6 +64,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!5QqpEwmwkPfZHpMW.380jFzw756qSy5ae"
     }
   ],

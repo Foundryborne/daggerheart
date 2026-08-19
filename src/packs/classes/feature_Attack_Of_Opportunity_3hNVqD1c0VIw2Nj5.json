@@ -8,13 +8,14 @@
     "description": "<p>If an adversary within Melee range attempts to leave that range, make a reaction roll using a trait of your choice against their Difficulty. Choose one effect on a success, or two if you critically succeed:</p><ul><li><p>They can't move from where they are.</p></li><li><p>You deal damage to them equal to your primary weapon's damage.</p></li><li><p>You move with them.</p></li></ul>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 23,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

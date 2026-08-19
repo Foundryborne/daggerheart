@@ -7,13 +7,14 @@
     "description": "<p>Your rallying songs steel the courage of those who listen. When you give a <strong>Rally Die</strong> to an ally, they can <strong>gain a Hope</strong> or <strong>clear a Stress</strong>.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 9,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "flags": {},

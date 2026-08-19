@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 3,
     "equipped": false,
-    "baseScore": 6,
     "armorFeatures": [
       {
         "value": "physical",
@@ -24,9 +22,6 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 16,
       "severe": 39
@@ -35,27 +30,40 @@
       "source": "Daggerheart SRD",
       "page": 57,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Physical",
       "description": "You can't mark an Armor Slot to reduce magic damage.",
       "img": "icons/commodities/stone/ore-pile-tan.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.physical",
-          "type": "override",
-          "value": "1"
-        }
-      ],
       "_id": "s8KtTIngTjnOlaTP",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.physical",
+            "type": "override",
+            "value": 1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "origin": null,
       "tint": "#ffffff",
@@ -66,6 +74,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!mNN6pvcsS10ChrWF.s8KtTIngTjnOlaTP"
     }
   ],

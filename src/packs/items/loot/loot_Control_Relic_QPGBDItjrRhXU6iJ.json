@@ -11,7 +11,8 @@
       "source": "Daggerheart SRD",
       "page": 59,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -19,24 +20,29 @@
       "type": "base",
       "_id": "OwjK2TqOizTiRGxD",
       "img": "icons/skills/targeting/target-glowing-yellow.webp",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.traits.finesse.value",
-          "type": "add",
-          "value": "1",
-          "priority": null
-        }
-      ],
+      "system": {
+        "changes": [
+          {
+            "key": "system.traits.finesse.value",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You gain a +1 bonus to your Finesse.</p>",
       "origin": null,
@@ -48,6 +54,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!QPGBDItjrRhXU6iJ.OwjK2TqOizTiRGxD"
     }
   ],

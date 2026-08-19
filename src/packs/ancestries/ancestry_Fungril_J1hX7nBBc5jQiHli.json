@@ -4,7 +4,7 @@
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Fungril resemble humanoid mushrooms.</p>",
+    "description": "<p>Galapa resemble anthropomorphic turtles with large, domed shells into which they can retract.</p>",
     "features": [
       {
         "type": "primary",
@@ -20,7 +20,8 @@
       "page": 29,
       "artist": ""
     },
-    "loreReference": "fungril"
+    "loreReference": "fungril",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "J1hX7nBBc5jQiHli",

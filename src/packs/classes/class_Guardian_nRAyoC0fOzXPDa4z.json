@@ -22,10 +22,6 @@
         "item": "Compendium.daggerheart.classes.Item.PnD2UCgzIlwX6cY3"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.rKRxFBlkbh9cDK8K",
-      "Compendium.daggerheart.subclasses.Item.SUo8NPBPO8aN193u"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -69,7 +65,8 @@
       "How did I save your life the first time we met?",
       "What small gift did you give me that you notice I always carry with me?",
       "What lie have you told me about yourself that I absolutely believe?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

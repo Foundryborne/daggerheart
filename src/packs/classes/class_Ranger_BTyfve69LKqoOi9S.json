@@ -22,10 +22,6 @@
         "item": "Compendium.daggerheart.classes.Item.ncLx2P8BOUtrAD38"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.TIUsIlTS1WkK5vr2",
-      "Compendium.daggerheart.subclasses.Item.zsUglcU4NgZ8tNgZ"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -69,7 +65,8 @@
       "What friendly competition do we have?",
       "Why do you act differently when we’re alone than when others are around?",
       "What threat have you asked me to watch for, and why are you worried about it?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
