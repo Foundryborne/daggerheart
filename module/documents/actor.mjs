@@ -63,7 +63,8 @@ export default class DhpActor extends Actor {
                 feature.system.granter = {
                     id: originFeature,
                     type: feature.system.originItemType,
-                    multiclass: feature.system.multiclassOrigin
+                    multiclass: feature.system.multiclassOrigin,
+                    identifier: feature.system.identifier
                 };
             }
         }
