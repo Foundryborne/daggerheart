@@ -1026,6 +1026,16 @@
                 }
             },
             "ArmorFeature": {
+                "absorbing": {
+                    "name": "Absorbing",
+                    "description": "Once per scene when you take magic damage, you can clear an Armor Slot.",
+                    "actions": {
+                        "heal": {
+                            "name": "Clear Armor",
+                            "description": "Once per scene when you take magic damage, you can clear an Armor Slot."
+                        }
+                    }
+                },
                 "accursed": {
                     "name": "Accursed",
                     "description": "When you mark any number of Hit Points from an attack, roll a d4. On a result of 4, the attacker must mark an equal number of Stress.",
@@ -1039,7 +1049,7 @@
                 "aquatic": {
                     "name": "Aquatic",
                     "description": "You can breathe underwater and gain advantage on Agility Rolls while submerged.",
-                    "actions": {
+                    "effects": {
                         "aquatic": {
                             "name": "Aquatic",
                             "description": "You can breathe underwater and gain advantage on Agility Rolls while submerged."
@@ -1070,8 +1080,8 @@
                     "name": "Bloodthirsty",
                     "description": "When you critically succeed on a weapon attack within Melee range, clear a Hit Point.",
                     "actions": {
-                        "bloodthirsty": {
-                            "name": "Bloodthirsty",
+                        "heal": {
+                            "name": "Clear Hitpoint",
                             "description": "When you critically succeed on a weapon attack within Melee range, clear a Hit Point."
                         }
                     }
@@ -1106,6 +1116,16 @@
                         }
                     }
                 },
+                "cumbersome": {
+                    "name": "Cumbersome",
+                    "description": "-1 to Finesse",
+                    "effects": {
+                        "cumbersome": {
+                            "name": "Cumbersome",
+                            "description": "-1 to Finesse"
+                        }
+                    }
+                },
                 "difficult": {
                     "name": "Difficult",
                     "description": "-1 to all character traits and Evasion",
@@ -1120,8 +1140,8 @@
                     "name": "Divine",
                     "description": "When you mark an Armor Slot, gain a Hope.",
                     "actions": {
-                        "divine": {
-                            "name": "Divine",
+                        "heal": {
+                            "name": "Gain Hope",
                             "description": "When you mark an Armor Slot, gain a Hope."
                         }
                     }
@@ -1336,7 +1356,7 @@
                     "name": "Resplendent",
                     "description": "Once per scene when you spend Hope, you can clear an Armor Slot.",
                     "actions": {
-                        "resplendent": {
+                        "heal": {
                             "name": "Resplendent",
                             "description": "Once per scene when you spend Hope, you can clear an Armor Slot."
                         }
@@ -1346,7 +1366,7 @@
                     "name": "Self-Healing",
                     "description": "When you take a rest, clear an Armor Slot.",
                     "actions": {
-                        "selfHealing": {
+                        "heal": {
                             "name": "Self-Healing",
                             "description": "When you take a rest, clear an Armor Slot."
                         }
@@ -1419,6 +1439,32 @@
                         "vigilant": {
                             "name": "Vigilant",
                             "description": "+2 to Evasion."
+                        }
+                    }
+                },
+                "vitreous": {
+                    "name": "Vitreous",
+                    "description": "When you would take Severe or greater damage, you can mark 2 Armor Slots to negate that damage. If you do, you gain a -5 penalty to your damage thresholds until you choose to repair your armor as a downtime move.",
+                    "actions": {
+                        "vitreous": {
+                            "name": "Vitreous",
+                            "description": "When you would take Severe or greater damage, you can mark 2 Armor Slots to negate that damage. If you do, you gain a -5 penalty to your damage thresholds until you choose to repair your armor as a downtime move."
+                        }
+                    },
+                    "effects": {
+                        "vitreous": {
+                            "name": "Vitreous",
+                            "description": "You have a -5 penalty to your damage thresholds until you choose to repair your armor as a downtime move"
+                        }
+                    }
+                },
+                "wallCrawling": {
+                    "name": "Wall-Crawling",
+                    "description": "+1 Evasion; you can walk on walls as easily as on the ground.",
+                    "effects": {
+                        "wallCrawling": {
+                            "name": "Wall-Crawling",
+                            "description": "+1 Evasion; you can walk on walls as easily as on the ground."
                         }
                     }
                 },

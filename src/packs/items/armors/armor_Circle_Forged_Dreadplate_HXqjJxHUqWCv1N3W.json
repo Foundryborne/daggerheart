@@ -1,0 +1,95 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Circle-Forged Dreadplate",
+  "type": "armor",
+  "_id": "HXqjJxHUqWCv1N3W",
+  "img": "icons/equipment/chest/tech-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "3io8jJeWVrwcKBcF": {
+        "type": "attack",
+        "chatDisplay": true,
+        "name": "Accursed",
+        "description": "When you mark any number of Hit Points from an attack, roll a d4. On a result of 4, the attacker must mark an equal number of Stress.",
+        "img": "icons/magic/unholy/hand-marked-pink.webp",
+        "roll": {
+          "type": "diceSet",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d4",
+            "compare": "equal",
+            "treshold": 4
+          },
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "useDefault": false
+        },
+        "_id": "3io8jJeWVrwcKBcF",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {}
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        }
+      }
+    },
+    "tier": 4,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
+    "baseThresholds": {
+      "major": 14,
+      "severe": 38
+    },
+    "armorFeatures": [
+      {
+        "value": "accursed",
+        "effectIds": [],
+        "actionIds": [
+          "3io8jJeWVrwcKBcF"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!HXqjJxHUqWCv1N3W"
+}

@@ -1,0 +1,117 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Trollhide Cuirass",
+  "type": "armor",
+  "_id": "TeMjFTO8sOULN30r",
+  "img": "icons/commodities/biological/shell-ridged-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "3KVzpGEV8ThH4jhu": {
+        "type": "healing",
+        "chatDisplay": true,
+        "name": "Self-Healing",
+        "description": "When you take a rest, clear an Armor Slot.",
+        "img": "icons/magic/life/cross-beam-green.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "damage": {
+          "resources": {
+            "armor": {
+              "applyTo": "armor",
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "base": false,
+              "resultBased": false,
+              "fullRestore": false,
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          },
+          "main": null
+        },
+        "_id": "3KVzpGEV8ThH4jhu",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        }
+      }
+    },
+    "tier": 2,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
+    "baseThresholds": {
+      "major": 11,
+      "severe": 26
+    },
+    "armorFeatures": [
+      {
+        "value": "selfHealing",
+        "effectIds": [],
+        "actionIds": [
+          "3KVzpGEV8ThH4jhu"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!TeMjFTO8sOULN30r"
+}

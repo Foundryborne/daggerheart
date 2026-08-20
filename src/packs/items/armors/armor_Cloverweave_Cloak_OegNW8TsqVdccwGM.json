@@ -1,0 +1,71 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Cloverweave Cloak",
+  "type": "armor",
+  "_id": "OegNW8TsqVdccwGM",
+  "img": "icons/equipment/chest/coat-collared-red.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "0JzAOuMyJDSdEpy3": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Fortune-Favored",
+        "description": "Once per scene, you can change a failure with Hope into a success with Fear.",
+        "img": "icons/magic/control/buff-luck-fortune-green-gold.webp",
+        "uses": {
+          "max": "1",
+          "recovery": "scene",
+          "value": 0,
+          "consumeOnSuccess": false
+        },
+        "_id": "0JzAOuMyJDSdEpy3",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "tier": 3,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
+    "baseThresholds": {
+      "major": 11,
+      "severe": 27
+    },
+    "armorFeatures": [
+      {
+        "value": "fortuneFavored",
+        "effectIds": [],
+        "actionIds": [
+          "0JzAOuMyJDSdEpy3"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!OegNW8TsqVdccwGM"
+}

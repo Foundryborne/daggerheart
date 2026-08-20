@@ -232,12 +232,6 @@ export default class DhCharacter extends DhCreature {
                             minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor'),
                             any: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.any')
                         }),
-                        fullNegateArmor: new fields.NumberField({
-                            nullable: true,
-                            integer: true,
-                            initial: null,
-                            min: 0
-                        }),
                         increasePerArmorMark: new fields.NumberField({
                             integer: true,
                             initial: 1,
@@ -434,9 +428,11 @@ export default class DhCharacter extends DhCreature {
     get loadoutSlot() {
         const loadoutCount = this.domainCards.loadout?.length ?? 0;
         const worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout;
+        const limit = worldSetting + this.bonuses.maxLoadout;
+
         return {
             current: loadoutCount,
-            available: loadoutCount < worldSetting
+            available: loadoutCount < limit
         };
     }
 

@@ -1,0 +1,71 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Enchanter's Robes",
+  "type": "armor",
+  "_id": "z8dQR56ZNXmRE0w9",
+  "img": "icons/equipment/chest/robe-collared-blue.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "SqJwukvzZAPDgCJy": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Mnemonic",
+        "description": "Once per scene, you can recall a domain card from your vault without paying its Recall Cost.",
+        "img": "icons/magic/symbols/circle-ouroboros.webp",
+        "uses": {
+          "max": "1",
+          "recovery": "scene",
+          "value": 0,
+          "consumeOnSuccess": false
+        },
+        "_id": "SqJwukvzZAPDgCJy",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "tier": 2,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 4
+    },
+    "baseThresholds": {
+      "major": 9,
+      "severe": 20
+    },
+    "armorFeatures": [
+      {
+        "value": "mnemonic",
+        "effectIds": [],
+        "actionIds": [
+          "SqJwukvzZAPDgCJy"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!z8dQR56ZNXmRE0w9"
+}

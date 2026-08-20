@@ -1,0 +1,117 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Gilded Sunplate",
+  "type": "armor",
+  "_id": "G3NnXEXmT6m2Mr9z",
+  "img": "icons/equipment/chest/breastplate-layered-gilded-orange.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "d9r7VK4r3fb7KHMu": {
+        "type": "healing",
+        "chatDisplay": true,
+        "name": "Resplendent",
+        "description": "Once per scene when you spend Hope, you can clear an Armor Slot.",
+        "img": "icons/magic/light/explosion-star-glow-yellow.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "uses": {
+          "max": "1",
+          "recovery": "scene",
+          "value": 0,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "resources": {
+            "armor": {
+              "applyTo": "armor",
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "base": false,
+              "resultBased": false,
+              "fullRestore": false,
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          },
+          "main": null
+        },
+        "_id": "d9r7VK4r3fb7KHMu",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        }
+      }
+    },
+    "tier": 2,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
+    "baseThresholds": {
+      "major": 12,
+      "severe": 26
+    },
+    "armorFeatures": [
+      {
+        "value": "resplendent",
+        "effectIds": [],
+        "actionIds": [
+          "d9r7VK4r3fb7KHMu"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!G3NnXEXmT6m2Mr9z"
+}

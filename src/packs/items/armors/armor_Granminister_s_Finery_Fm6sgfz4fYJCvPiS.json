@@ -1,0 +1,34 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Granminister's Finery",
+  "type": "armor",
+  "_id": "Fm6sgfz4fYJCvPiS",
+  "img": "icons/equipment/chest/coat-collared-studded-red.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {},
+    "tier": 3,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 2
+    },
+    "baseThresholds": {
+      "major": 11,
+      "severe": 27
+    },
+    "armorFeatures": []
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!Fm6sgfz4fYJCvPiS"
+}

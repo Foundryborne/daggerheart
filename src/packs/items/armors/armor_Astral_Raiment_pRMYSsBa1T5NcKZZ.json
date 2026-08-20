@@ -1,0 +1,80 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Astral Raiment",
+  "type": "armor",
+  "_id": "pRMYSsBa1T5NcKZZ",
+  "img": "icons/equipment/chest/breastplate-layered-leather-blue-gold.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "1xXZfSn4U37AgDRB": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Stellar",
+        "description": "Mark a Stress to gain advantage on a Spellcast roll.",
+        "img": "icons/magic/light/explosion-star-glow-blue-purple.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "_id": "1xXZfSn4U37AgDRB",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "tier": 3,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
+    "baseThresholds": {
+      "major": 11,
+      "severe": 27
+    },
+    "armorFeatures": [
+      {
+        "value": "stellar",
+        "effectIds": [],
+        "actionIds": [
+          "1xXZfSn4U37AgDRB"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!pRMYSsBa1T5NcKZZ"
+}

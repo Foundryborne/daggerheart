@@ -1,0 +1,71 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Hallowed Heroplate",
+  "type": "armor",
+  "_id": "ukIkx5TCBUlgleBw",
+  "img": "icons/equipment/chest/breastplate-collared-steel-grey.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "BI0HMrVMByFTti3u": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Blessed",
+        "description": "Once per long rest, you can spend any number of Hope before you make the Risk It All death move. You gain a bonus to the result of your Hope Die equal to the number of Hope spent.",
+        "img": "icons/magic/holy/barrier-shield-winged-cross.webp",
+        "uses": {
+          "max": "1",
+          "recovery": "longRest",
+          "value": 0,
+          "consumeOnSuccess": false
+        },
+        "_id": "BI0HMrVMByFTti3u",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "tier": 4,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 7
+    },
+    "baseThresholds": {
+      "major": 13,
+      "severe": 35
+    },
+    "armorFeatures": [
+      {
+        "value": "blessed",
+        "effectIds": [],
+        "actionIds": [
+          "BI0HMrVMByFTti3u"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ukIkx5TCBUlgleBw"
+}
