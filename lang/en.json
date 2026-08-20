@@ -1819,6 +1819,16 @@
                         }
                     }
                 },
+                "draining": {
+                    "name": "Draining",
+                    "description": "On a successful attack, you can spend a Hope to force the target to mark a Stress. If they do, you clear a Stress.",
+                    "actions": {
+                        "draining": {
+                            "name": "Draining",
+                            "description": "On a successful attack, you can spend a Hope to force the target to mark a Stress. If they do, you clear a Stress."
+                        }
+                    }
+                },
                 "dueling": {
                     "name": "Dueling",
                     "description": "When there are no other creatures within Close range of the target, gain advantage on your attack roll against them.",
@@ -1829,6 +1839,22 @@
                         }
                     }
                 },
+                "entangling": {
+                    "name": "Entangling",
+                    "description": "On a successful attack with your primary weapon against a target within Very Close range, you can spend a Hope to make the target temporarily Vulnerable.",
+                    "actions": {
+                        "entangling": {
+                            "name": "Entangling",
+                            "description": "On a successful attack with your primary weapon against a target within Very Close range, you can spend a Hope to make the target temporarily Vulnerable."
+                        }
+                    },
+                    "effects": {
+                        "entangling": {
+                            "name": "Entangling",
+                            "description": ""
+                        }
+                    }
+                },
                 "eruptive": {
                     "name": "Eruptive",
                     "description": "On a successful attack against a target within Melee range, all other adversaries within Very Close range must succeed on a reaction roll (14) or take half damage.",
@@ -1836,6 +1862,32 @@
                         "erupt": {
                             "name": "Erupt",
                             "description": "On a successful attack against a target within Melee range, all other adversaries within Very Close range must succeed on a reaction roll (14) or take half damage."
+                        }
+                    }
+                },
+                "focused": {
+                    "name": "Focused",
+                    "description": "+1 to primary weapon damage to targets within Very Close range.",
+                    "effects": {
+                        "focused": {
+                            "name": "Focused",
+                            "description": "+1 to primary weapon damage to targets within Very Close range."
+                        }
+                    }
+                },
+                "followUp": {
+                    "name": "Follow-Up",
+                    "description": "On a successful attack with your primary weapon within Melee range, you can mark a Stress to gain a +1 bonus to your Proficiency for this attack.",
+                    "actions": {
+                        "followUp": {
+                            "name": "Follow-Up",
+                            "description": "On a successful attack with your primary weapon within Melee range, you can mark a Stress to gain a +1 bonus to your Proficiency for this attack."
+                        }
+                    },
+                    "effects": {
+                        "followUp": {
+                            "name": "Follow-Up",
+                            "description": "You have a +1 bonus to your Proficiency for this attack."
                         }
                     }
                 },
@@ -1899,6 +1951,16 @@
                         }
                     }
                 },
+                "inverted": {
+                    "name": "Inverted",
+                    "description": "When you roll a weapon attack with Fear, you gain a Hope.",
+                    "effects": {
+                        "inverted": {
+                            "name": "Inverted",
+                            "description": "When you roll a weapon attack with Fear, you gain a Hope."
+                        }
+                    }
+                },
                 "invigorating": {
                     "name": "Invigorating",
                     "description": "On a successful attack, roll a d4. On a result of 4, clear a Stress.",
@@ -1959,6 +2021,20 @@
                         }
                     }
                 },
+                "nonlethal": {
+                    "name": "Nonlethal",
+                    "description": "When a target would mark any number of Hit Points from an attack with this weapon, they mark an equal number of Stress instead."
+                },
+                "padded": {
+                    "name": "Padded",
+                    "description": "@Resolve[@item.tier + 1|sign]{+2} to damage thresholds.",
+                    "effects": {
+                        "padded": {
+                            "name": "Padded",
+                            "description": "@Resolve[@item.tier + 1|sign]{+2} to damage thresholds."
+                        }
+                    }
+                },
                 "painful": {
                     "name": "Painful",
                     "description": "Each time you make a successful attack, you must mark a Stress.",
@@ -2011,6 +2087,10 @@
                         }
                     }
                 },
+                "poisonous": {
+                    "name": "Poisonous",
+                    "description": "When a target marks any number of Hit Points from an attack you rolled with Fear, they mark an equal number of Stress."
+                },
                 "pompous": {
                     "name": "Pompous",
                     "description": "You must have a Presence of 0 or lower to use this weapon.",
@@ -2048,6 +2128,16 @@
                         "quick": {
                             "name": "Quick",
                             "description": "When you make an attack, you can mark a Stress to target another creature within range."
+                        }
+                    }
+                },
+                "recursive": {
+                    "name": "Recursive",
+                    "description": "When you roll the maximum value on a damage die, roll an additional damage die and add the result to the total damage. This feature can trigger repeatedly.",
+                    "effects": {
+                        "recursive": {
+                            "name": "Recursive",
+                            "description": "When you roll the maximum value on a damage die, roll an additional damage die and add the result to the total damage. This feature can trigger repeatedly."
                         }
                     }
                 },
@@ -2151,6 +2241,26 @@
                         }
                     }
                 },
+                "stockpiled": {
+                    "name": "Stockpiled",
+                    "description": "You can throw this weapon within @Lookup[@item.attack.range|type:range|adjustment:2] range. You don't have to retrieve it, as you always have another on hand.",
+                    "actions": {
+                        "stockpiled": {
+                            "name": "Stockpiled",
+                            "description": "You can throw this weapon within @Lookup[@item.attack.range|type:range|adjustment:2] range. You don't have to retrieve it, as you always have another on hand." 
+                        }
+                    }
+                },
+                "targeted": {
+                    "name": "Targeted",
+                    "description": "When you fail a weapon attack, you can spend a Hope to succeed on your next weapon attack.",
+                    "actions": {
+                        "targeted": {
+                            "name": "Targeted",
+                            "description": "When you fail a weapon attack, you can spend a Hope to succeed on your next weapon attack."
+                        }
+                    }
+                },
                 "timebending": {
                     "name": "Timebending",
                     "description": "You can choose the target of your attack after making your attack roll.",
@@ -2158,6 +2268,16 @@
                         "bendTime": {
                             "name": "Bend Time",
                             "description": "You can choose the target of your attack after making your attack roll."
+                        }
+                    }
+                },
+                "trusty": {
+                    "name": "Trusty",
+                    "description": "+1 to attack rolls made with your primary weapon.",
+                    "effects": {
+                        "trusty": {
+                            "name": "Trusty",
+                            "description": "+1 to attack rolls made with your primary weapon."
                         }
                     }
                 }

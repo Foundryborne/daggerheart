@@ -876,6 +876,32 @@ export const weaponFeatures = {
             }
         ]
     },
+    draining: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.draining.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.draining.description',
+        actions: [
+            {
+                type: 'damage',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.draining.actions.draining.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.draining.actions.draining.description',
+                img: 'icons/magic/unholy/hand-light-green.webp',
+                damage: {
+                    resources: {
+                        stress: {
+                            applyTo: 'stress',
+                            value: {
+                                multiplier: 'flat',
+                                flatMultiplier: 0,
+                                dice: 'd6',
+                                bonus: 1
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
     dueling: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.dueling.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.dueling.description',
@@ -889,6 +915,36 @@ export const weaponFeatures = {
             }
         ]
     },
+    entangling: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.entangling.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.entangling.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.entangling.actions.entangling.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.entangling.actions.entangling.description',
+                img: 'icons/magic/nature/root-vine-entangle-foot-green.webp',
+                target: {
+                    type: 'self'
+                },
+                cost: [
+                    {
+                        type: 'hope',
+                        value: 1
+                    }
+                ],
+                effects: [
+                    {
+                        name: 'DAGGERHEART.CONFIG.WeaponFeature.entangling.effects.entangling.name',
+                        description: 'DAGGERHEART.CONFIG.WeaponFeature.entangling.effects.entangling.description',
+                        img: 'icons/magic/nature/root-vine-entangle-foot-green.webp',
+                        statuses: ['vulnerable']
+                    }
+                ]
+            }
+        ]
+    },
     eruptive: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.eruptive.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.eruptive.description',
@@ -899,6 +955,68 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.eruptive.actions.erupt.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.eruptive.actions.erupt.description',
                 img: 'icons/skills/melee/strike-hammer-destructive-blue.webp'
+            }
+        ]
+    },
+    focused: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.focused.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.focused.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.focused.effects.focused.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.focused.effects.focused.description',
+                img: 'icons/magic/light/orb-shadow-blue.webp',
+                system: {
+                    changes: [
+                        {
+                            key: 'system.bonuses.damage.primaryWeapon.bonus',
+                            type: 'add',
+                            value: 1
+                        }
+                    ],
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'veryClose',
+                        target: 'hostile',
+                        type: 'withinRange'
+                    }
+                }
+            }
+        ]
+    },
+    followUp: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.followUp.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.followUp.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.followUp.actions.followUp.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.followUp.actions.followUp.description',
+                img: 'icons/skills/melee/strike-sword-steel-yellow.webp',
+                target: {
+                    type: 'self'
+                },
+                cost: [{
+                    key: 'stress',
+                    value: 1
+                }],
+                effects: [
+                    {
+                        name: 'DAGGERHEART.CONFIG.WeaponFeature.followUp.effects.followUp.name',
+                        description: 'DAGGERHEART.CONFIG.WeaponFeature.followUp.effects.followUp.description',
+                        img: 'icons/skills/melee/strike-sword-steel-yellow.webp',
+                        system: {
+                            changes: [
+                                {
+                                    key: 'system.proficiency',
+                                    type: 'add',
+                                    value: '1'
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -1042,6 +1160,17 @@ export const weaponFeatures = {
             }
         ]
     },
+    inverted: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.effects.inverted.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.effects.inverted.description',
+                img: 'icons/magic/symbols/runes-carved-stone-yellow.webp'
+            }
+        ]
+    },
     lifestealing: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.lifestealing.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.lifestealing.description',
@@ -1114,6 +1243,35 @@ export const weaponFeatures = {
                             key: 'system.evasion',
                             type: 'add',
                             value: '-1'
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    nonlethal: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.nonlethal.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.nonlethal.description'
+    },
+    padded: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.padded.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.padded.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.padded.effects.padded.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.padded.effects.padded.description',
+                img: 'icons/commodities/cloth/cloth-patterned-teal.webp',
+                system: {
+                    changes: [
+                        {
+                            key: 'system.damageThresholds.major',
+                            type: 'add',
+                            value: '1 + @system.tier'
+                        },
+                        {
+                            key: 'system.damageThresholds.severe',
+                            type: 'add',
+                            value: '1 + @system.tier'
                         }
                     ]
                 }
@@ -1216,6 +1374,10 @@ export const weaponFeatures = {
             }
         ]
     },
+    poisonous: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.poisonous.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.poisonous.description' 
+    },
     pompous: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.pompous.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.pompous.description',
@@ -1282,6 +1444,17 @@ export const weaponFeatures = {
                         value: 1
                     }
                 ]
+            }
+        ]
+    },
+    recursive: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.recursive.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.recursive.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.recursive.effects.recursive.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.recursive.effects.recursive.description',
+                img: 'icons/magic/light/beam-deflect-path-yellow.webp'
             }
         ]
     },
@@ -1432,6 +1605,36 @@ export const weaponFeatures = {
             }
         ]
     },
+    stockpiled: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.stockpiled.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.stockpiled.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.stockpiled.actions.stockpiled.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.stockpiled.actions.stockpiled.description',
+                img: 'icons/weapons/polearms/javelin.webp'
+            }
+        ]
+    },
+    targeted: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.targeted.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.targeted.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.targeted.actions.targeted.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.targeted.actions.targeted.description',
+                img: 'icons/skills/targeting/crosshair-arrowhead-blue.webp',
+                costs: [{
+                    key: 'hope',
+                    value: 1
+                }]
+            }
+        ]
+    },
     timebending: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.description',
@@ -1442,6 +1645,24 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.actions.bendTime.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.actions.bendTime.description',
                 img: 'icons/magic/time/clock-spinning-gold-pink.webp'
+            }
+        ]
+    },
+    trusty: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.trusty.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.trusty.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.trusty.effects.trusty.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.trusty.effects.trusty.description',
+                img: 'icons/skills/melee/sword-twirl-orange.webp',
+                changes: [
+                    {
+                        key: 'system.bonuses.roll.primaryWeapon.bonus',
+                        type: 'add',
+                        value: 1
+                    }
+                ]
             }
         ]
     }
