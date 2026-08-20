@@ -91,7 +91,6 @@ export default function DHApplicationMixin(Base) {
             actions: {
                 triggerContextMenu: DHSheetV2.#triggerContextMenu,
                 createDoc: DHSheetV2.#onCreateDoc,
-                deleteDocCategory: DHSheetV2.#onDeleteDocCategory,
                 editDoc: DHSheetV2.#editDoc,
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
@@ -788,23 +787,6 @@ export default function DHApplicationMixin(Base) {
                 });
             }
             return doc;
-        }
-
-        /**
-         * Delete an embedded document and all features associatd with it.
-         * Currently only used for Transformations.
-         * @type {ApplicationClickAction}
-         */
-        static async #onDeleteDocCategory(_event, target) {
-            const doc = await fromUuid(target.dataset.uuid);
-            if (doc.type === 'transformation') {
-                const transformationFeatures = this.document.items.filter(x => 
-                    x.type === 'feature' && x.system.granter?.id === doc.id);
-                this.document.deleteEmbeddedDocuments('Item', [
-                    doc.id,
-                    ...transformationFeatures.map(x => x.id)
-                ]);
-            } 
         }
 
         /**

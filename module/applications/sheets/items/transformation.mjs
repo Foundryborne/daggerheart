@@ -11,7 +11,10 @@ export default class TransformationSheet extends DHBaseItemSheet {
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/transformation/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
+        description: { 
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs',
+            scrollable: ['.description-section']
+        },
         features: { 
             template: 'systems/daggerheart/templates/sheets/items/transformation/features.hbs',
             scrollable: ['']
@@ -40,7 +43,8 @@ export default class TransformationSheet extends DHBaseItemSheet {
                 context.enrichedQuestions = 
                     await TextEditor.implementation.enrichHTML(this.document.system.questions, {
                         secrets: this.document.isOwner,
-                        relativeTo: this.document
+                        relativeTo: this.document,
+                        rollData: this.document.getRollData()
                     });
                 break;
         }

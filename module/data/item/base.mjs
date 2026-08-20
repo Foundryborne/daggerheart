@@ -177,6 +177,12 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         });
     }
 
+    getLinkedItems() {
+        if (!this.actor) return [];
+
+        return this.actor.items.filter(x => x.system.granter?.id === this.parent.id);
+    }
+
     /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.
