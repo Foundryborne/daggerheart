@@ -1651,6 +1651,26 @@
                 "triggerError": "{trigger} trigger on {item}({itemUuid}) failed for {actor}. It's probably configured wrong."
             },
             "WeaponFeature": {
+                "accelerator": {
+                    "name": "Accelerator",
+                    "description": "Once per scene, mark a Stress to move to Far range then make an attack. Gain a +1 bonus to your Proficiency on this attack.",
+                    "actions": {
+                        "accelerator": {
+                            "name": "Accelerator",
+                            "description": "Once per scene, mark a Stress to move to Far range then make an attack. Gain a +1 bonus to your Proficiency on this attack."
+                        }
+                    }
+                },
+                "aimed": {
+                    "name": "Aimed",
+                    "description": "Your attack has disadvantage if the target is within Very Close range of you or within Melee range of one of your allies. You can mark a Stress to ignore this penalty.",
+                    "actions": {
+                        "aimed": {
+                            "name": "Aimed",
+                            "description": "Your attack has disadvantage if the target is within Very Close range of you or within Melee range of one of your allies. You can mark a Stress to ignore this penalty."
+                        }
+                    }
+                },
                 "barrier": {
                     "name": "Barrier",
                     "description": "@Resolve[@item.tier + 1|sign]{Gain Weapon Tier + 1} to Armor Score; -1 to Evasion",
@@ -1658,6 +1678,24 @@
                         "barrier": {
                             "name": "Barrier",
                             "description": "Gain Weapon Tier + 1 to Armor Score; -1 to Evasion"
+                        }
+                    }
+                },
+                "braced": {
+                    "name": "Braced",
+                    "description": "When an adversary within this weapon's range deals damage to you, you can mark 2 Stress to force them to mark a Hit Point.",
+                    "actions": {
+                        "name": "Braced",
+                        "description": "When an adversary within this weapon's range deals damage to you, you can mark 2 Stress to force them to mark a Hit Point."
+                    }
+                },
+                "bolstering": {
+                    "name": "Bolstering",
+                    "description": "When you critically succeed on an attack, all PCs within Close range gain a Hope.",
+                    "actions": {
+                        "bolstering": {
+                            "name": "Bolstering",
+                            "description": "When you critically succeed on an attack, all PCs within Close range gain a Hope."
                         }
                     }
                 },
@@ -1708,6 +1746,22 @@
                         "burn": {
                             "name": "Burn",
                             "description": "When you roll a 6 on a damage die, the target must mark a Stress."
+                        }
+                    }
+                },
+                "catalytic": {
+                    "name": "Catalytic",
+                    "description": "On a successful attack, you can mark a Stress to give an ally within Close range a +3 bonus to their next attack roll.",
+                    "actions": {
+                        "catalytic": {
+                            "name": "Catalytic",
+                            "description": "On a successful attack, you can mark a Stress to give an ally within Close range a +3 bonus to their next attack roll."
+                        }
+                    },
+                    "effects": {
+                        "catalytic": {
+                            "name": "Catalytic",
+                            "description": "You have a +3 bonus to your next attack roll."
                         }
                     }
                 },
@@ -1799,6 +1853,16 @@
                         }
                     }
                 },
+                "disturbing": {
+                    "name": "Disturbing",
+                    "description": "When you defeat a creature with this weapon, all adversaries within Close range must mark a Stress.",
+                    "actions": {
+                        "disturbing": {
+                            "name": "Disturbing",
+                            "description": "When you defeat a creature with this weapon, all adversaries within Close range must mark a Stress."
+                        }
+                    }
+                },
                 "doubleDuty": {
                     "name": "Double Duty",
                     "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
@@ -1865,6 +1929,26 @@
                         }
                     }
                 },
+                "ethereal": {
+                    "name": "Ethereal",
+                    "description": "You must mark a Stress to conjure this weapon. It lasts until the end of the scene.",
+                    "actions": {
+                        "ethereal": {
+                            "name": "Ethereal",
+                            "description": "You must mark a Stress to conjure this weapon. It lasts until the end of the scene."
+                        }
+                    },
+                    "effects": {
+                        "ethereal": {
+                            "name": "Ethereal",
+                            "description": "This weapon lasts until the end of the scene."
+                        }
+                    }
+                },
+                "extending": {
+                    "name": "Extending",
+                    "description": "You can increase the range of this weapon up to Very Far. You gain a -1 penalty to attack rolls for each step you increase the range by (such as Melee to Very Close, Very Close to Close, or Close to Far)."
+                },
                 "focused": {
                     "name": "Focused",
                     "description": "+1 to primary weapon damage to targets within Very Close range.",
@@ -1888,6 +1972,22 @@
                         "followUp": {
                             "name": "Follow-Up",
                             "description": "You have a +1 bonus to your Proficiency for this attack."
+                        }
+                    }
+                },
+                "freezing": {
+                    "name": "Freezing",
+                    "description": "When an attack from this weapon causes a target to mark 2 or more HP, they become temporarily Restrained.",
+                    "actions": {
+                        "freezing": {
+                            "name": "Freezing",
+                            "description": "When an attack from this weapon causes a target to mark 2 or more HP, they become temporarily Restrained."
+                        }
+                    },
+                    "effects": {
+                        "freezing": {
+                            "name": "Freezing",
+                            "description": ""
                         }
                     }
                 },
@@ -1951,6 +2051,22 @@
                         }
                     }
                 },
+                "incendiary": {
+                    "name": "Incendiary",
+                    "description": "-1 to Agility; on a successful attack, all creatures within Very Close range of the target must mark a Hit Point.",
+                    "actions": {
+                        "incendiary": {
+                            "name": "Incendiary",
+                            "description": "On a successful attack, all creatures within Very Close range of the target must mark a Hit Point."
+                        }
+                    },
+                    "effects": {
+                        "incendiary": {
+                            "name": "Incendiary",
+                            "description": "-1 to Agility."
+                        }
+                    }
+                },
                 "inverted": {
                     "name": "Inverted",
                     "description": "When you roll a weapon attack with Fear, you gain a Hope.",
@@ -2011,6 +2127,16 @@
                         }
                     }
                 },
+                "magnetic": {
+                    "name": "Magnetic",
+                    "description": "When you make an attack with this weapon, you can spend a Hope to force all adversaries within Very Close range of the target to make a Reaction Roll (16). Creatures who fail must mark a Stress and are pulled into Melee range of the target.",
+                    "actions": {
+                        "magnetic": {
+                            "name": "Magnetic",
+                            "description": "When you make an attack with this weapon, you can spend a Hope to force all adversaries within Very Close range of the target to make a Reaction Roll (16). Creatures who fail must mark a Stress and are pulled into Melee range of the target."
+                        }
+                    }
+                },
                 "massive": {
                     "name": "Massive",
                     "description": "-1 to Evasion; on a successful attack, roll an additional damage die and discard the lowest result.",
@@ -2024,6 +2150,14 @@
                 "nonlethal": {
                     "name": "Nonlethal",
                     "description": "When a target would mark any number of Hit Points from an attack with this weapon, they mark an equal number of Stress instead."
+                },
+                "omnipresent": {
+                    "name": "Omnipresent",
+                    "description": "You can make attacks against targets within Very Far range, but must do so with disadvantage."
+                },
+                "otherwordly": {
+                    "name": "Otherwordly",
+                    "description": "On a successful attack, you can deal physical or magic damage."
                 },
                 "padded": {
                     "name": "Padded",
@@ -2087,6 +2221,16 @@
                         }
                     }
                 },
+                "piercing": {
+                    "name": "Piercing",
+                    "description": "Damage dealt with this weapon treats the target's Major threshold as having a -2 penalty.",
+                    "effects": {
+                        "piercing": {
+                            "name": "Piercing",
+                            "description": "Damage dealt with this weapon treats the target's Major threshold as having a -2 penalty."
+                        }
+                    }
+                },
                 "poisonous": {
                     "name": "Poisonous",
                     "description": "When a target marks any number of Hit Points from an attack you rolled with Fear, they mark an equal number of Stress."
@@ -2130,6 +2274,10 @@
                             "description": "When you make an attack, you can mark a Stress to target another creature within range."
                         }
                     }
+                },
+                "rebounding": {
+                    "name": "Rebounding",
+                    "description": "When you throw this weapon, it returns to your hand. On a failed attack, you can reroll your attack with disadvantage."
                 },
                 "recursive": {
                     "name": "Recursive",
@@ -2178,6 +2326,16 @@
                         "return": {
                             "name": "Return",
                             "description": "When this weapon is thrown within its range, it appears in your hand immediately after the attack."
+                        }
+                    }
+                },
+                "ricochet": {
+                    "name": "Ricochet",
+                    "description": "When you throw this weapon, it returns to your hand. When you make an attack, you can mark a Stress to target another creature within Very Close range of the first target with that attack.",
+                    "actions": {
+                        "ricochet": {
+                            "name": "Ricochet",
+                            "description": "When you make an attack, you can mark a Stress to target another creature within Very Close range of the first target with that attack."
                         }
                     }
                 },
@@ -2278,6 +2436,32 @@
                         "trusty": {
                             "name": "Trusty",
                             "description": "+1 to attack rolls made with your primary weapon."
+                        }
+                    }
+                },
+                "venomous": {
+                    "name": "Venomous",
+                    "description": "When you deal Major or greater damage with this weapon, the target becomes temporarily Vulnerable.",
+                    "actions": {
+                        "venomous": {
+                            "name": "Venomous",
+                            "description": "When you deal Major or greater damage with this weapon, the target becomes temporarily Vulnerable."
+                        }
+                    },
+                    "effects": {
+                        "venomous": {
+                            "name": "Venomous",
+                            "description": ""
+                        }
+                    }
+                },
+                "volleyed": {
+                    "name": "Volleyed",
+                    "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage.",
+                    "actions": {
+                        "volleyed": {
+                            "name": "Volleyed",
+                            "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage."
                         }
                     }
                 }
