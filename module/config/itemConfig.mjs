@@ -1,4 +1,135 @@
 export const armorFeatures = {
+    accursed: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.accursed.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.accursed.description',
+        actions: [{
+            type: 'attack',
+            chatDisplay: true,
+            name: 'DAGGERHEART.CONFIG.ArmorFeature.accursed.actions.accursed.name',
+            description: 'DAGGERHEART.CONFIG.ArmorFeature.accursed.actions.accursed.description',
+            img: 'icons/magic/unholy/hand-marked-pink.webp',
+            roll: {
+                type: 'diceSet',
+                diceRolling: {
+                    multiplier: 'flat',
+                    flatMultiplier: 1,
+                    dice: 'd4',
+                    compare: 'equal',
+                    treshold: 4
+                }
+            }
+        }]
+    },
+    aquatic: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.aquatic.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.aquatic.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.aquatic.actions.aquatic.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.aquatic.actions.aquatic.description',
+                img: 'icons/magic/water/orb-water-bubbles-blue.webp'
+            }
+        ]
+    },
+    attuned: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.attuned.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.attuned.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.attuned.effects.attuned.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.attuned.effects.attuned.description',
+                img: 'icons/magic/symbols/rune-sigil-horned-blue.webp',
+                system: {       
+                    changes: [
+                        {
+                            key: 'system.damageThresholds.major',
+                            type: 'add',
+                            value: '@system.tier'
+                        },
+                        {
+                            key: 'system.damageThresholds.severe',
+                            type: 'add',
+                            value: '@system.tier'
+                        },
+                        {
+                            key: 'system.bonuses.maxLoadout',
+                            type: 'subtract',
+                            value: 1
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    blessed: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.blessed.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.blessed.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.blessed.actions.blessed.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.blessed.actions.blessed.description',
+                img: 'icons/magic/holy/barrier-shield-winged-cross.webp',
+                uses: {
+                    max: 1,
+                    recovery: 'longRest',
+                    value: 1
+                }
+            }
+        ]
+    },
+    bloodthirsty: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.bloodthirsty.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.bloodthirsty.description',
+        actions: [
+            {
+                type: 'healing',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.bloodthirsty.actions.heal.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.bloodthirsty.actions.heal.description',
+                img: 'icons/skills/wounds/blood-spurt-spray-red.webp',
+                target: {
+                    type: 'self'
+                },
+                damage: {
+                    resources: {
+                        hitPoints: {
+                            applyTo: 'hitPoints',
+                            value: {
+                                multiplier: 'flat',
+                                flatMultiplier: 0,
+                                dice: 'd6',
+                                bonus: 1
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    bulky: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.bulky.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.bulky.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.bulky.effects.bulky.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.bulky.effects.bulky.description',
+                img: 'icons/commodities/metal/ingot-stamped-steel.webp',
+                system: {       
+                    changes: [
+                        {
+                            key: 'system.evasion',
+                            type: 'subtract',
+                            value: 1
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     burning: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.burning.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.burning.description',
@@ -99,6 +230,60 @@ export const armorFeatures = {
             }
         ]
     },
+    divine: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.divine.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.divine.description',
+        actions: [
+            {
+                type: 'healing',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.divine.actions.heal.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.divine.actions.heal.description',
+                img: 'icons/magic/holy/chalice-glowing-yellow-blue.webp',
+                target: {
+                    type: 'self'
+                },
+                damage: {
+                    resources: {
+                        hope: {
+                            applyTo: 'hope',
+                            value: {
+                                multiplier: 'flat',
+                                flatMultiplier: 0,
+                                dice: 'd6',
+                                bonus: 1
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    enchanted: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.enchanted.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.enchanted.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.enchanted.effects.enchanted.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.enchanted.effects.enchanted.description',
+                img: 'icons/magic/symbols/chevron-elipse-circle-blue.webp',
+                system: {
+                    changes: [
+                        {
+                            key: 'system.damageThresholds.major',
+                            type: 'add',
+                            value: '@cast'
+                        },
+                        {
+                            key: 'system.damageThresholds.severe',
+                            type: 'add',
+                            value: '@cast'
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     flexible: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.flexible.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.flexible.description',
@@ -139,6 +324,46 @@ export const armorFeatures = {
             }
         ]
     },
+    fortuneFavored: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.fortuneFavored.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.fortuneFavored.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.fortuneFavored.actions.fortuneFavored.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.fortuneFavored.actions.fortuneFavored.description',
+                img: 'icons/magic/control/buff-luck-fortune-green-gold.webp',
+                uses: {
+                    max: 1,
+                    recovery: 'scene',
+                    value: 1
+                }
+            }
+        ]
+    },
+    ghostwalker: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.ghostwalker.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.ghostwalker.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.ghostwalker.actions.ghostwalker.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.ghostwalker.actions.ghostwalker.description',
+                img: '',
+                uses: {
+                    max: 1,
+                    recovery: 'shortRest',
+                    value: 1
+                },
+                cost: [{
+                    key: 'stress',
+                    value: 1
+                }]
+            }
+        ]
+    },
     gilded: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.gilded.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.gilded.description',
@@ -156,6 +381,19 @@ export const armorFeatures = {
                         }
                     ]
                 }
+            }
+        ]
+    },
+    gliding: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.gliding.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.gliding.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.gliding.actions.gliding.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.gliding.actions.gliding.description',
+                img: 'icons/skills/movement/arrow-upward-yellow.webp'
             }
         ]
     },
@@ -216,6 +454,26 @@ export const armorFeatures = {
             }
         ]
     },
+    lined: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.lined.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.lined.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.lined.effects.lined.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.lined.effects.lined.description',
+                img: 'icons/magic/defensive/shield-barrier-glowing-triangle-blue-yellow.webp',
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.damageReduction.stressDamageReduction.minor.cost',
+                            type: 'override',
+                            value: 2
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     magical: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.magical.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.magical.description',
@@ -232,6 +490,49 @@ export const armorFeatures = {
                             value: 1
                         }
                     ]
+                }
+            }
+        ]
+    },
+    magnificent: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.magnificent.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.magnificent.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.magnificent.effects.magnificent.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.magnificent.effects.magnificent.description',
+                img: 'icons/magic/holy/barrier-shield-winged-blue.webp',
+                system: {
+                    changes: [
+                        {
+                            type: 'armor',
+                            priority: 20,
+                            value: {
+                                max: '@system.traits.presence.value',
+                                current: 0,
+                                damageThresholds: null,
+                                interaction: 'none'
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    mnemonic: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.mnemonic.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.mnemonic.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.mnemonic.actions.mnemonic.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.mnemonic.actions.mnemonic.description',
+                img: 'icons/magic/symbols/circle-ouroboros.webp',
+                uses: {
+                    max: 1,
+                    recovery: 'scene',
+                    value: 1
                 }
             }
         ]
@@ -288,6 +589,19 @@ export const armorFeatures = {
             }
         ]
     },
+    quickStriding: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.quickStriding.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.quickStriding.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.quickStriding.actions.quickStriding.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.quickStriding.actions.quickStriding.description',
+                img: 'icons/skills/movement/feet-winged-boots-glowing-yellow.webp'
+            }
+        ]
+    },
     reinforced: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.description',
@@ -336,6 +650,69 @@ export const armorFeatures = {
             }
         ]
     },
+    resplendent: {
+        name: 'DAGGERHEART.CONFIG.WeaponFeature.resplendent.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.resplendent.description',
+        actions: [
+            {
+                type: 'healing',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.resplendent.actions.heal.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.resplendent.actions.heal.description',
+                img: 'icons/magic/light/explosion-star-glow-yellow.webp',
+                target: {
+                    type: 'self'
+                },
+                uses: {
+                    max: 1,
+                    recovery: 'scene',
+                    value: 1  
+                },
+                damage: {
+                    resources: {
+                        armor: {
+                            applyTo: 'armor',
+                            value: {
+                                multiplier: 'flat',
+                                flatMultiplier: 0,
+                                dice: 'd6',
+                                bonus: 1
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    selfHealing: {
+        name: 'DAGGERHEART.CONFIG.WeaponFeature.selfHealing.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.selfHealing.description',
+        actions: [
+            {
+                type: 'healing',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.selfHealing.actions.heal.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.selfHealing.actions.heal.description',
+                img: 'icons/magic/life/cross-beam-green.webp',
+                target: {
+                    type: 'self'
+                },
+                damage: {
+                    resources: {
+                        armor: {
+                            applyTo: 'armor',
+                            value: {
+                                multiplier: 'flat',
+                                flatMultiplier: 0,
+                                dice: 'd6',
+                                bonus: 1
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
     sharp: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.description',
@@ -377,6 +754,23 @@ export const armorFeatures = {
                         value: 1
                     }
                 ]
+            }
+        ]
+    },
+    stellar: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.stellar.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.stellar.description',
+        actions: [
+            {
+                type: 'effect',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.stellar.actions.stellar.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.stellar.actions.stellar.description',
+                img: 'icons/magic/light/explosion-star-glow-blue-purple.webp',
+                cost: [{
+                    key: 'stress',
+                    value: 1    
+                }]
             }
         ]
     },
@@ -439,6 +833,26 @@ export const armorFeatures = {
                             key: 'system.traits.agility.value',
                             type: 'add',
                             value: '-1'
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    vigilant: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.vigilant.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.vigilant.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.vigilant.effects.vigilant.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.vigilant.effects.vigilant.description',
+                img: 'icons/magic/perception/eye-ringed-green.webp',
+                system: {       
+                    changes: [
+                        {
+                            key: 'system.evasion',
+                            type: 'add',
+                            value: 2
                         }
                     ]
                 }
@@ -2013,9 +2427,49 @@ export const weaponFeatures = {
             }
         ]
     },
+    vitreous: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.vitreous.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.vitreous.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.vitreous.effects.vitreous.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.vitreous.effects.vitreous.description',
+                img: 'icons/magic/defensive/armor-stone-skin.webp',
+                system: {       
+                    changes: [
+                        {
+                            key: 'system.rules.damageReduction.fullNegateArmor',
+                            type: 'override',
+                            value: 2
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     volleyed: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.volleyed.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.volleyed.description'
+    },
+    wallCrawling: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.wallCrawling.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.wallCrawling.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.wallCrawling.effects.wallCrawling.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.wallCrawling.effects.wallCrawling.description',
+                img: 'icons/skills/movement/arrow-upward-blue.webp',
+                system: {       
+                    changes: [
+                        {
+                            key: 'system.evasion',
+                            type: 'add',
+                            value: 1
+                        }
+                    ]
+                }
+            }
+        ]
     }
 };
 

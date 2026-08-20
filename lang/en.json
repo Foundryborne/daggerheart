@@ -1026,6 +1026,66 @@
                 }
             },
             "ArmorFeature": {
+                "accursed": {
+                    "name": "Accursed",
+                    "description": "When you mark any number of Hit Points from an attack, roll a d4. On a result of 4, the attacker must mark an equal number of Stress.",
+                    "actions": {
+                        "accursed": {
+                            "name": "Accursed",
+                            "description": "When you mark any number of Hit Points from an attack, roll a d4. On a result of 4, the attacker must mark an equal number of Stress."
+                        }
+                    }
+                },
+                "aquatic": {
+                    "name": "Aquatic",
+                    "description": "You can breathe underwater and gain advantage on Agility Rolls while submerged.",
+                    "actions": {
+                        "aquatic": {
+                            "name": "Aquatic",
+                            "description": "You can breathe underwater and gain advantage on Agility Rolls while submerged."
+                        }
+                    }
+                },
+                "attuned": {
+                    "name": "Attuned",
+                    "description": "The maximum number of domain cards in your loadout is reduced by one, but you gain a bonus to your damage thresholds equal to your tier.",
+                    "effects": {
+                        "attuned": {
+                            "name": "Attuned",
+                            "description": "The maximum number of domain cards in your loadout is reduced by one, but you gain a bonus to your damage thresholds equal to your tier."
+                        }
+                    }
+                },
+                "blessed": {
+                    "name": "Blessed",
+                    "description": "Once per long rest, you can spend any number of Hope before you make the Risk It All death move. You gain a bonus to the result of your Hope Die equal to the number of Hope spent.",
+                    "actions": {
+                        "blessed": {
+                            "name": "Blessed",
+                            "description": "Once per long rest, you can spend any number of Hope before you make the Risk It All death move. You gain a bonus to the result of your Hope Die equal to the number of Hope spent."
+                        }
+                    }
+                },
+                "bloodthirsty": {
+                    "name": "Bloodthirsty",
+                    "description": "When you critically succeed on a weapon attack within Melee range, clear a Hit Point.",
+                    "actions": {
+                        "bloodthirsty": {
+                            "name": "Bloodthirsty",
+                            "description": "When you critically succeed on a weapon attack within Melee range, clear a Hit Point."
+                        }
+                    }
+                },
+                "bulky": {
+                    "name": "Bulky",
+                    "description": "−1 to Evasion; when you take Severe damage, you must mark a Stress.",
+                    "effects": {
+                        "bulky": {
+                            "name": "Bulky",
+                            "description": "−1 to Evasion; when you take Severe damage, you must mark a Stress."
+                        }
+                    }
+                },
                 "burning": {
                     "name": "Burning",
                     "description": "When an adversary attacks you within Melee range, they mark a Stress.",
@@ -1056,6 +1116,26 @@
                         }
                     }
                 },
+                "divine": {
+                    "name": "Divine",
+                    "description": "When you mark an Armor Slot, gain a Hope.",
+                    "actions": {
+                        "divine": {
+                            "name": "Divine",
+                            "description": "When you mark an Armor Slot, gain a Hope."
+                        }
+                    }
+                },
+                "enchanted": {
+                    "name": "Enchanted",
+                    "description": "Gain a bonus to your damage thresholds equal to your Spellcast trait.",
+                    "effects": {
+                        "enchanted": {
+                            "name": "Enchanted",
+                            "description": "Gain a bonus to your damage thresholds equal to your Spellcast trait."
+                        }
+                    }
+                },
                 "flexible": {
                     "name": "Flexible",
                     "description": "+1 to Evasion",
@@ -1076,6 +1156,26 @@
                         }
                     }
                 },
+                "fortuneFavored": {
+                    "name": "Fortune-Favored",
+                    "description": "Once per scene, you can change a failure with Hope into a success with Fear.",
+                    "actions": {
+                        "fortuneFavored": {
+                            "name": "Fortune-Favored",
+                            "description": "Once per scene, you can change a failure with Hope into a success with Fear."
+                        }
+                    }
+                },
+                "ghostwalker": {
+                    "name": "Ghostwalker",
+                    "description": "Once per rest, mark a Stress to move up to Close range through solid objects.",
+                    "actions": {
+                        "ghostwalker": {
+                            "name": "Ghostwalker",
+                            "description": "Once per rest, mark a Stress to move up to Close range through solid objects."
+                        }
+                    }
+                },
                 "gilded": {
                     "name": "Gilded",
                     "description": "+1 to Presence",
@@ -1083,6 +1183,16 @@
                         "gilded": {
                             "name": "Gilded",
                             "description": "+1 to Presence"
+                        }
+                    }
+                },
+                "gliding": {
+                    "name": "Gliding",
+                    "description": "You can glide up to Far range and are immune to damage from falling.",
+                    "actions": {
+                        "gliding": {
+                            "name": "Gliding",
+                            "description": "You can glide up to Far range and are immune to damage from falling."
                         }
                     }
                 },
@@ -1116,6 +1226,16 @@
                         }
                     }
                 },
+                "lined": {
+                    "name": "Lined",
+                    "description": "Mark a Stress to negate Minor damage.",
+                    "effects": {
+                        "lined": {
+                            "name": "Lined",
+                            "description": "Mark a Stress to negate Minor damage."
+                        }
+                    }
+                },
                 "magical": {
                     "name": "Magical",
                     "description": "You can't mark an Armor Slot to reduce physical damage.",
@@ -1123,6 +1243,26 @@
                         "magical": {
                             "name": "Magical",
                             "description": "You can't mark an Armor Slot to reduce physical damage."
+                        }
+                    }
+                },
+                "magnificent": {
+                    "name": "Magnificent",
+                    "description": "Gain a bonus to your Armor Score equal to your Presence.",
+                    "effects": {
+                        "magnificent": {
+                            "name": "Magnificent",
+                            "description": "Gain a bonus to your Armor Score equal to your Presence."
+                        }
+                    }
+                },
+                "mnemonic": {
+                    "name": "Mnemonic",
+                    "description": "Once per scene, you can recall a domain card from your vault without paying its Recall Cost.",
+                    "actions": {
+                        "mnemonic": {
+                            "name": "Mnemonic",
+                            "description": "Once per scene, you can recall a domain card from your vault without paying its Recall Cost."
                         }
                     }
                 },
@@ -1156,6 +1296,16 @@
                         }
                     }
                 },
+                "quickStriding": {
+                    "name": "Quick-Striding",
+                    "description": "You can't be Restrained and can move up to Far range as part of an action roll.",
+                    "actions": {
+                        "quickStriding": {
+                            "name": "Quick-Striding",
+                            "description": "You can't be Restrained and can move up to Far range as part of an action roll."
+                        }
+                    }
+                },
                 "reinforced": {
                     "name": "Reinforced",
                     "description": "When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot.",
@@ -1182,6 +1332,26 @@
                         }
                     }
                 },
+                "resplendent": {
+                    "name": "Resplendent",
+                    "description": "Once per scene when you spend Hope, you can clear an Armor Slot.",
+                    "actions": {
+                        "resplendent": {
+                            "name": "Resplendent",
+                            "description": "Once per scene when you spend Hope, you can clear an Armor Slot."
+                        }
+                    }
+                },
+                "selfHealing": {
+                    "name": "Self-Healing",
+                    "description": "When you take a rest, clear an Armor Slot.",
+                    "actions": {
+                        "selfHealing": {
+                            "name": "Self-Healing",
+                            "description": "When you take a rest, clear an Armor Slot."
+                        }
+                    }
+                },
                 "sharp": {
                     "name": "Sharp",
                     "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll.",
@@ -1199,6 +1369,16 @@
                         "shift": {
                             "name": "Shift",
                             "description": "When you are targeted for an attack, you can mark an Armor Slot to give the attack roll against you disadvantage."
+                        }
+                    }
+                },
+                "stellar": {
+                    "name": "Stellar",
+                    "description": "Mark a Stress to gain advantage on a Spellcast roll.",
+                    "actions": {
+                        "stellar": {
+                            "name": "Stellar",
+                            "description": "Mark a Stress to gain advantage on a Spellcast roll."
                         }
                     }
                 },
@@ -1229,6 +1409,16 @@
                         "veryHeavy": {
                             "name": "Very Heavy",
                             "description": "-2 to Evasion; -1 to Agility"
+                        }
+                    }
+                },
+                "vigilant": {
+                    "name": "Vigilant",
+                    "description": "+2 to Evasion.",
+                    "effects": {
+                        "vigilant": {
+                            "name": "Vigilant",
+                            "description": "+2 to Evasion."
                         }
                     }
                 },

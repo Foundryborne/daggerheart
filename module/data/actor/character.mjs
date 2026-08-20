@@ -232,6 +232,12 @@ export default class DhCharacter extends DhCreature {
                             minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor'),
                             any: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.any')
                         }),
+                        fullNegateArmor: new fields.NumberField({
+                            nullable: true,
+                            integer: true,
+                            initial: null,
+                            min: 0
+                        }),
                         increasePerArmorMark: new fields.NumberField({
                             integer: true,
                             initial: 1,
