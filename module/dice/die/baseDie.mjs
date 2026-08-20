@@ -60,6 +60,8 @@ export default class BaseDie extends foundry.dice.terms.Die {
     }
 
     async #setDualityDiePreset(dualityType) {
+        if (!game.dice3d) return;
+
         const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
         const dualityDie = diceSoNice[dualityType];
         if (!dualityDie) return;
