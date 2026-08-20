@@ -55,7 +55,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
         this.#setDualityDiePreset('advantage');
     }
 
-    async disadvantage () {
+    async disadvantage() {
         this.#setDualityDiePreset('disadvantage');
     }
 
