@@ -1,4 +1,4 @@
-import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
+import { diceTypes, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
 /**
@@ -106,37 +106,6 @@ export const getCommandTarget = (options = {}) => {
     }
 
     return target;
-};
-
-export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
-    if (!game.dice3d) return;
-    const diceSoNicePresets = await getDiceSoNicePresets(
-        rollResult,
-        hopeFaces,
-        fearFaces,
-        advantageFaces,
-        advantageFaces
-    );
-    rollResult.dice[0].options = diceSoNicePresets.hope;
-    rollResult.dice[1].options = diceSoNicePresets.fear;
-    if (rollResult.dice[2] && advantageState) {
-        rollResult.dice[2].options =
-            advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
-    }
-};
-
-export const setDiceSoNiceForHopeFateRoll = async (rollResult, hopeFaces) => {
-    if (!game.dice3d) return;
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
-    rollResult.dice[0].options = diceSoNicePresets;
-};
-
-export const setDiceSoNiceForFearFateRoll = async (rollResult, fearFaces) => {
-    if (!game.dice3d) return;
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.fear, fearFaces);
-    rollResult.dice[0].options = diceSoNicePresets;
 };
 
 export const chunkify = (array, chunkSize, mappingFunc) => {

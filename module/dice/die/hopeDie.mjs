@@ -1,9 +1,4 @@
-import { getDiceSoNicePresets } from '../../config/generalConfig.mjs';
+
 import DualityDie from './dualityDie.mjs';
 
-export default class HopeDie extends DualityDie {
-    async getDiceSoNiceAppearance(roll) {
-        const { hope } = await getDiceSoNicePresets(roll, this.denomination, this.denomination);
-        return hope;
-    }
-}
+export default class HopeDie extends DualityDie { }
