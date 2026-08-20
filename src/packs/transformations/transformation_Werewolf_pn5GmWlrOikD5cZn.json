@@ -4,7 +4,11 @@
   "_id": "pn5GmWlrOikD5cZn",
   "img": "icons/creatures/mammals/wolf-howl-moon-forest-blue.webp",
   "system": {
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
     "description": "<p>Werewolves are creatures who transform into large supernatural wolves. While some are born werewolves, others undergo this transformation because of a curse, an infection through another werewolf's bite, or another unnatural cause. Werewolves look like typical members of their ancestry until they shift, whereupon they transform into a massive otherworldly wolf. Some might even take on a shape that is an amalgamation of their ancestry and their wolf form. Stories describe werewolves shifting with the phases of the moon, though an individual's experience with this change varies based on the cause of their transformation. </p><p>Werewolves often struggle to control their hunting instinct and violence while in their wolf form, and they must have immense self-discipline, use significant energy, or resort to fleeing or locking themselves away to avoid harming their loved ones. The longer a werewolf has experience with their condition, the more likely they are to have developed methods of controlling themselves.</p>",
     "gmNotes": "",
     "features": [

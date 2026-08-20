@@ -4,7 +4,11 @@
   "_id": "GmtWLEbAeVWS3svb",
   "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
   "system": {
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
     "description": "<p>Vampires are undead creatures with sharp fangs who feed on the blood of the living. They aren't born, but created—sired by another vampire through a bite and exchange of blood, transformed through an occult ritual, or changed through other mysterious methods. Because those who become vampires die and come back as supernatural entities, they must consume the blood—the life essence—of others to survive. </p><p>At first glance, many vampires are indistinguishable from typical members of their ancestry. Beyond their telltale fangs, they can be affected by their vampirism in myriad subtle or conspicuous ways, displaying traits such as sallow skin, visible veins, eyes that shine in the dark, or, in some cases, enhanced beauty. Depending on the nature of their vampiric origin, individuals may stop aging at the time of their transformation and remain vibrant and powerful long after their cohorts have succumbed to the ravages of time. No matter their appearance, all vampires possess enhanced abilities that can result in a terrifying end for their targets.</p>",
     "gmNotes": "",
     "features": [

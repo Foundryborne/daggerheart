@@ -4,7 +4,11 @@
   "_id": "8M9ox7sPmGlSZDSy",
   "img": "icons/magic/death/hand-dirt-undead-zombie.webp",
   "system": {
-    "attribution": {},
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
     "description": "<p>Reanimated are corpses who have been brought back to life. Whether through a spell, a holy ritual, arcane experimentation, or other unnatural methods, these mortals have returned from beyond the veil of death as undead and are bound to their decaying bodies. Newly reanimated are more likely to look like a typical member of their ancestry, but as they go on, they must patch and repair their bodies with bones, flesh, and other materials harvested from the recently deceased. While some repair their wounds and decay with needle, thread, and herbs, others use magic to incorporate these materials into themselves. </p><p>Many stories of the reanimated describe them as possessing increased durability or, in some cases, immunity to pain. This may be true for some reanimated, but many experience prolonged agony—whether from the physical echoes of their own demise, the discomfort of moving a decomposing body, the trouble controlling their amalgamated parts, or the mental anguish of being forcibly pulled back from death into a second life.</p>",
     "gmNotes": "",
     "features": [
