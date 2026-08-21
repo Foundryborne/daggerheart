@@ -39,7 +39,7 @@ export default class DHSubclass extends BaseDataItem {
     /* -------------------------------------------- */
 
     get class() {
-        return this.actor.items.find(i => i.type === 'class' && i.sourceUuid === this.linkedClass);
+        return this.actor?.items.find(i => i.type === 'class' && i.sourceUuid === this.linkedClass);
     }
 
     get foundationFeatures() {

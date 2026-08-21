@@ -13,8 +13,7 @@ export default class DHFeature extends BaseDataItem {
     }
 
     get granterItem() {
-        if (!this.actor) return null;
-        return this.actor.items.get(this.granter.id);
+        return this.actor?.items.get(this.granter.id);
     }
 
     /* -------------------------------------------- */

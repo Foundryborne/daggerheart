@@ -61,6 +61,10 @@ export default class DHClass extends BaseDataItem {
 
     /* -------------------------------------------- */
 
+    get subclass() {
+        return this.actor?.items.find(i => i.type === 'subclass' && i.system.class === this.parent);
+    }
+
     get hopeFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.hope).map(x => x.item);
     }
