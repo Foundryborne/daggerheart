@@ -2169,11 +2169,11 @@
                 },
                 "padded": {
                     "name": "Padded",
-                    "description": "@Resolve[@item.tier + 1|sign]{+2} to damage thresholds.",
+                    "description": "Gain this weapon's tier + 1 to damage thresholds.",
                     "effects": {
                         "padded": {
                             "name": "Padded",
-                            "description": "@Resolve[@item.tier + 1|sign]{+2} to damage thresholds."
+                            "description": "Gain this weapon's tier + 1 to damage thresholds."
                         }
                     }
                 },
