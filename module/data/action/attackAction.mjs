@@ -9,32 +9,11 @@ export default class DHAttackAction extends DHDamageAction {
 
     prepareData() {
         super.prepareData();
-        if (this.item?.system?.attack) {
-            if (this.damage.main.includeBase) {
-                const baseDamage = this.getParentHitPointDamage();
-                if (baseDamage) {
-                    if (!this.damage.main) {
-                        this.damage.main = baseDamage;
-                    } else {
-                        for (const type of baseDamage.type) this.damage.main.type.add(type);
 
-                        this.damage.main.value.custom = {
-                            enabled: true,
-                            formula: `${baseDamage.value.getFormula()} + ${this.damage.main.value.getFormula()}`
-                        };
-                    }
-                }
-            }
-            
-            if (this.roll.useDefault) {
-                this.roll.trait = this.item.system.attack.roll.trait;
-                this.roll.type = 'attack';
-            }
+        if (this.roll.useDefault) {
+            this.roll.trait = this.item.system.attack.roll.trait;
+            this.roll.type = 'attack';
         }
-    }
-
-    getParentHitPointDamage() {
-        return this.item?.system?.attack.damage.main;
     }
 
     get damageFormula() {

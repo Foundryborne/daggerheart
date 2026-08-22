@@ -394,7 +394,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": false,
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -408,9 +417,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 4,
-                  "dice": "d12",
-                  "bonus": 13,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -429,7 +438,7 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
                 "groupAttack": "",
                 "fullRestore": false
@@ -461,7 +470,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Mark Stress",
             "img": "icons/skills/melee/sword-stuck-glowing-pink.webp",
             "range": "veryClose",
             "areas": [

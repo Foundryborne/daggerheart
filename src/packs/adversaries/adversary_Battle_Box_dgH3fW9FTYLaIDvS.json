@@ -1149,20 +1149,61 @@
         "description": "<p>Before rolling damage for the @Lookup[@name]'s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
         "resource": null,
         "actions": {
-          "3XOvKoYz4CqMNrU9": {
-            "type": "healing",
-            "_id": "3XOvKoYz4CqMNrU9",
+          "U6ND54T8GFzkOEOM": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "U6ND54T8GFzkOEOM",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
+            "areas": [],
             "cost": [
               {
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null,
                 "itemId": null,
+                "step": null,
                 "consumeOnSuccess": false
               }
             ],
@@ -1172,66 +1213,13 @@
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "damage": {
-              "main": null,
-              "resources": {
-                "fear": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": ""
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "fear",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
-                }
-              }
-            },
             "target": {
-              "type": "self",
+              "type": "any",
               "amount": null
             },
             "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
             "name": "Mark Stress",
-            "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
-            "range": "self",
-            "baseAction": false,
-            "originItem": {
-              "type": "itemCollection"
-            },
-            "triggers": [],
-            "areas": []
+            "range": ""
           }
         },
         "featureForm": "reaction",

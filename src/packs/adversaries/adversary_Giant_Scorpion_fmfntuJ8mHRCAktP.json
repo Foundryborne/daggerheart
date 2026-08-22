@@ -272,9 +272,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 1,
-                  "dice": "d12",
-                  "bonus": 2,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -293,9 +293,10 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },

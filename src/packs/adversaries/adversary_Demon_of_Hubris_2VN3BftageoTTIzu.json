@@ -456,9 +456,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 3,
-                  "dice": "d10",
-                  "bonus": null,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -477,9 +477,10 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },
@@ -488,7 +489,7 @@
               "amount": 1
             },
             "effects": [],
-            "name": "Damage",
+            "name": "Mark Stress",
             "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
             "range": "close",
             "baseAction": false,

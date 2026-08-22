@@ -183,12 +183,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      */
     static getSourceConfig(parent) {
         const updateSource = {};
-        if (parent?.parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
+
+        const { attack, damage } = game.system.api.models.actions.actionsTypes;
+        if (this === attack || this === damage) {
             updateSource['damage'] = { includeBase: true };
-            updateSource['range'] = parent?.attack?.range;
-            updateSource['roll'] = {
-                useDefault: true
-            };
+        }
+        
+        if (this === attack) {
+            if (parent?.parent?.type === 'weapon') {
+                updateSource['range'] = parent?.attack?.range;
+                updateSource['roll'] = {
+                    useDefault: true
+                };
+            }
         } else {
             if (parent?.trait) {
                 updateSource['roll'] = {

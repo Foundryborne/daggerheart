@@ -287,9 +287,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 2,
+                  "flatMultiplier": 0,
                   "dice": "d6",
-                  "bonus": 4,
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -308,9 +308,10 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },
@@ -339,7 +340,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Mark Stress",
             "img": "icons/magic/lightning/bolt-strike-sparks-teal.webp",
             "range": "veryClose",
             "baseAction": false,

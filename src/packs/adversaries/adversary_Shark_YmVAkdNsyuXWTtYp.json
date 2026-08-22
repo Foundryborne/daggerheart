@@ -461,20 +461,61 @@
         "description": "<p>When a creature within Close range of the @Lookup[@name] marks HP from another creature's attack, you can <strong>mark a Stress</strong> to immediately spotlight the @Lookup[@name], moving them into Melee range of the target and making a standard attack.</p>",
         "resource": null,
         "actions": {
-          "sE9KRd9siZeYHPhb": {
-            "type": "effect",
-            "_id": "sE9KRd9siZeYHPhb",
+          "K8MhGxVJxLaNRqm1": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "K8MhGxVJxLaNRqm1",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
+            "areas": [],
             "cost": [
               {
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null,
                 "itemId": null,
+                "step": null,
                 "consumeOnSuccess": false
               }
             ],
@@ -484,20 +525,33 @@
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "effects": [],
             "target": {
-              "type": "self",
+              "type": "any",
               "amount": null
             },
-            "name": "Mark Stress",
-            "img": "icons/skills/wounds/blood-spurt-spray-red.webp",
-            "range": "",
-            "baseAction": false,
-            "originItem": {
-              "type": "itemCollection"
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
             },
-            "triggers": [],
-            "areas": []
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "close"
           }
         },
         "featureForm": "reaction",

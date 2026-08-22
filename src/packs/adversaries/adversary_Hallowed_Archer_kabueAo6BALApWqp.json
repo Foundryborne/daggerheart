@@ -332,9 +332,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 4,
-                  "dice": "d8",
-                  "bonus": 8,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -353,9 +353,10 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },
@@ -384,7 +385,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Mark Stress",
             "img": "icons/skills/ranged/arrows-flying-salvo-yellow.webp",
             "range": "far",
             "baseAction": false,
