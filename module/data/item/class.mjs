@@ -61,10 +61,6 @@ export default class DHClass extends BaseDataItem {
 
     /* -------------------------------------------- */
 
-    get subclass() {
-        return this.actor?.items.find(i => i.type === 'subclass' && i.system.class === this.parent);
-    }
-
     get hopeFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.hope).map(x => x.item);
     }
@@ -184,6 +180,11 @@ export default class DHClass extends BaseDataItem {
         super._onUpdate(changed, options, userId);
 
         updateLinkedItemApps(options, this.parent.sheet);
+    }
+
+    prepareDerivedData() {
+        super.prepareDerivedData();
+        this.subclassItem = this.actor?.items.find(i => i.type === 'subclass' && i.system.linkedClass === this.parent.sourceUuid);
     }
 
     /**@inheritdoc */
