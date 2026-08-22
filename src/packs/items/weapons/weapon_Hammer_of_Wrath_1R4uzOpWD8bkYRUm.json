@@ -6,7 +6,45 @@
   "img": "icons/weapons/hammers/hammer-double-studded.webp",
   "system": {
     "description": "",
-    "actions": {},
+    "actions": {
+      "b9Nl6rOzaIoGUX5v": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Devastate",
+        "description": "Before you make an attack roll, you can mark a Stress to use a d20 as your damage die.",
+        "img": "icons/skills/melee/strike-flail-destructive-yellow.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "_id": "b9Nl6rOzaIoGUX5v",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 3,
     "equipped": false,
     "secondary": false,
@@ -16,7 +54,7 @@
         "value": "devastating",
         "effectIds": [],
         "actionIds": [
-          "nTogna9Phzw7VjPr"
+          "b9Nl6rOzaIoGUX5v"
         ]
       }
     ],

@@ -1659,6 +1659,12 @@
                             "name": "Accelerator",
                             "description": "Once per scene, mark a Stress to move to Far range then make an attack. Gain a +1 bonus to your Proficiency on this attack."
                         }
+                    },
+                    "effects": {
+                        "accelerator": {
+                            "name": "Accelerator",
+                            "description": "Gain a +1 bonus to your Proficiency on this attack."
+                        }
                     }
                 },
                 "aimed": {
@@ -1685,8 +1691,10 @@
                     "name": "Braced",
                     "description": "When an adversary within this weapon's range deals damage to you, you can mark 2 Stress to force them to mark a Hit Point.",
                     "actions": {
-                        "name": "Braced",
-                        "description": "When an adversary within this weapon's range deals damage to you, you can mark 2 Stress to force them to mark a Hit Point."
+                        "braced": {
+                            "name": "Braced",
+                            "description": "When an adversary within this weapon's range deals damage to you, you can mark 2 Stress to force them to mark a Hit Point."
+                        }
                     }
                 },
                 "bolstering": {
@@ -2311,13 +2319,7 @@
                 },
                 "retractable": {
                     "name": "Retractable",
-                    "description": "The blade can be hidden in the hilt to avoid detection.",
-                    "actions": {
-                        "retract": {
-                            "name": "Retract",
-                            "description": "The blade can be hidden in the hilt to avoid detection."
-                        }
-                    }
+                    "description": "The blade can be hidden in the hilt to avoid detection."
                 },
                 "returning": {
                     "name": "Returning",
@@ -2401,13 +2403,7 @@
                 },
                 "stockpiled": {
                     "name": "Stockpiled",
-                    "description": "You can throw this weapon within @Lookup[@item.attack.range|type:range|adjustment:2] range. You don't have to retrieve it, as you always have another on hand.",
-                    "actions": {
-                        "stockpiled": {
-                            "name": "Stockpiled",
-                            "description": "You can throw this weapon within @Lookup[@item.attack.range|type:range|adjustment:2] range. You don't have to retrieve it, as you always have another on hand." 
-                        }
-                    }
+                    "description": "You can throw this weapon within @Lookup[@item.attack.range|type:range|adjustment:2] range. You don't have to retrieve it, as you always have another on hand."
                 },
                 "targeted": {
                     "name": "Targeted",
@@ -2457,13 +2453,7 @@
                 },
                 "volleyed": {
                     "name": "Volleyed",
-                    "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage.",
-                    "actions": {
-                        "volleyed": {
-                            "name": "Volleyed",
-                            "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage."
-                        }
-                    }
+                    "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage."
                 }
             }
         },

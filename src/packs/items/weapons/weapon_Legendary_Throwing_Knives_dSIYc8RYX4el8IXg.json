@@ -14,36 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "vCvhDzHBIgXkuxFv": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Stockpiled",
-        "description": "You can throw this weapon within @Lookup[@item.attack.range|type:range|adjustment:2] range. You don't have to retrieve it, as you always have another on hand.",
-        "img": "icons/weapons/polearms/javelin.webp",
-        "_id": "vCvhDzHBIgXkuxFv",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": true,
@@ -52,9 +23,7 @@
       {
         "value": "stockpiled",
         "effectIds": [],
-        "actionIds": [
-          "vCvhDzHBIgXkuxFv"
-        ]
+        "actionIds": []
       }
     ],
     "attack": {
