@@ -1,11 +1,11 @@
-#tooltip:has(.dh-style.tooltip.move),
-aside[role='tooltip']:has(.dh-style.tooltip.move) {
+#tooltip:has(.dh-style.tooltip.basic),
+aside[role='tooltip']:has(.dh-style.tooltip.basic) {
     width: 25rem;
     background-image: url('../assets/parchments/dh-parchment-dark.png');
     padding: 1rem;
 }
 
-.dh-style.tooltip.move {
+.dh-style.tooltip.basic {
     align-items: start;
     gap: 6px;
 
@@ -36,28 +36,31 @@ aside[role='tooltip']:has(.dh-style.tooltip.move) {
     }
     
     .tooltip-duration {
-        font-style: italic;
         text-align: start;
         position: relative;
         width: 100%;
-        padding: 5px 10px;
-        margin: 5px 0px;
+        padding: 2px 0;
+        margin: 4px 0px;
 
         &::before {
             content: '';
-            background: @golden;
-            mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
-            height: 2px;
+            background: @color-text-subtle;
+            height: 1px;
             width: calc(100% - 10px);
             position: absolute;
             top: -5px;
             font-size: 14px;
         }
 
+        .label {
+            font-style: italic;
+            font-weight: bold;
+        }
+
         .duration-inner-container {
             display: flex;
-            justify-content: center;
-            gap: 2px;
+            justify-content: start;
+            gap: 0.25rem;
             width: 100%;
         }
     }
