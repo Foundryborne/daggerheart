@@ -4,6 +4,11 @@
 // General tooltip element styles. These mostly override foundry stuff or introduce new elements
 // Common elements that are not highly opiniated on styling
 .dh-style.tooltip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border-width: 0;
     text-align: start;
 
     .tooltip-separator {
@@ -110,12 +115,6 @@
     }
 
     .daggerheart.dh-style.tooltip {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-        border-width: 0;
-
         .simple-info {
             font-style: italic;
         }

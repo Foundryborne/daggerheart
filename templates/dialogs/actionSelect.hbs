@@ -4,7 +4,7 @@
     </header>
     <ul class="action-buttons-list">
     {{#each actions}}
-        <li class="action-item">
+        <li class="action-item" data-tooltip="#item#{{uuid}}">
             <button type="button" class="list-button reverted" data-action-id="{{id}}" data-action="choose">
                 <img src="{{ img }}">
                 <span>{{ name }}</span>

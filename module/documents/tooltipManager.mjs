@@ -1,4 +1,5 @@
 import { AdversaryBPPerEncounter, BaseBPPerEncounter } from '../config/encounterConfig.mjs';
+import { pick } from '../helpers/utils.mjs';
 
 export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
     #wide = false;
@@ -142,28 +143,70 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             return this.tooltip.innerHTML;
         }
 
-        const isAction = item instanceof game.system.api.models.actions.actionsTypes.base;
-        const isEffect = item instanceof ActiveEffect;
         await this.enrichText(item);
 
-        const type = isAction ? 'action' : isEffect ? 'effect' : 'item';
-
         const tags = item._getTags() ?? [];
-        if (['feature'].includes(item.type)) {
-            tags.unshift(_loc(`TYPES.Item.${item.type}`));
-        } else if (item.system.secondary) {
-            tags.unshift(_loc('DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full'))
+        if (item.type === 'feature') {
+            const granter = item.actor?.items.get(item.system.granter?.id);
+            if (granter) {
+                tags.unshift(granter.name + ' ' + _loc(`TYPES.Item.${item.type}`));
+            }
         } else if (item.type === 'weapon') {
-            tags.unshift(_loc('DAGGERHEART.ITEMS.Weapon.primaryWeapon.full'))
+            const type = item.system.secondary ? 'secondary' : 'primary';
+            tags.unshift(_loc(`DAGGERHEART.ITEMS.Weapon.${type}Weapon.full`));
         }
         if (item instanceof Item && item.system.metadata.isQuantifiable) {
             tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`)
         }
+        if (item instanceof game.system.api.models.actions.actionsTypes.base) {
+            // todo: should these be in action._getTags()?
+            function safeEval(formula) {
+                try {
+                    if (isNaN(formula)) {
+                        const data = item.getRollData.bind(item)(),
+                            roll = new Roll(Roll.replaceFormulaData(formula, data)).evaluateSync();
+                        formula = roll.total;
+                    }
+                    return formula;
+                } catch (ex) {
+                    console.error(ex);
+                    return formula;
+                }
+            }
+
+            const refreshType = CONFIG.DH.GENERAL.refreshTypes[item.uses.recovery];
+            if (item.uses.max) {
+                tags.push(...[
+                    `${_loc('DAGGERHEART.GENERAL.used')} ${item.uses.value ?? 0} / ${safeEval(item.uses.max)}`,
+                    refreshType ? `${_loc('DAGGERHEART.GENERAL.recovery')} ${_loc(refreshType.label)}` : null
+                ].filter(Boolean));
+            }
+            tags.push(
+                ...item.cost.map(cost => {
+                    const costType = CONFIG.DH.GENERAL.abilityCosts[cost.key];
+                    const baseTag = `${_loc('DAGGERHEART.GENERAL.Cost.single')} ${cost.value} ${_loc(costType?.label)}`;
+                    if (cost.scalable) {
+                        return `${baseTag} (${_loc('DAGGERHEART.GENERAL.scalable')} ${cost.step})`;
+                    }
+                    return baseTag;
+                })
+            );
+            if (CONFIG.DH.GENERAL.range[item.range]) {
+                tags.push(_loc(CONFIG.DH.GENERAL.range[item.range].label));
+            }
+            const targetType = item.target?.type ? CONFIG.DH.GENERAL.targetTypes[item.target.type] : null;
+            if (targetType) {
+                const typeAddend = targetType.id === 'any' ? '' : ` ${_loc(targetType.label)}`;
+                tags.push(`${_loc('DAGGERHEART.GENERAL.Target.single')} ${item.target.amount}${typeAddend}`);
+            } else {
+                tags.push(`${_loc('DAGGERHEART.GENERAL.Target.single')} ${_loc('DAGGERHEART.GENERAL.none')}`);
+            }
+        }
 
         const html = await foundry.applications.handlebars.renderTemplate(
-            `systems/daggerheart/templates/ui/tooltip/${type}.hbs`,
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
             {
-                item: item,
+                ...pick(item, ['img', 'name']),
                 description: item.system?.enrichedDescription ?? item.enrichedDescription,
                 config: CONFIG.DH,
                 tags
@@ -179,15 +222,29 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const actorUuid = element.dataset.tooltip.slice(8);
         const actor = await foundry.utils.fromUuid(actorUuid);
         const attack = actor.system.attack;
+        if (!attack) return null;
 
         const description = await foundry.applications.ux.TextEditor.enrichHTML(attack.description);
+        const trait = CONFIG.DH.ACTOR.abilities[attack.roll?.trait];
+        const range = CONFIG.DH.GENERAL.range[attack.range];
+
+        const typeTags = Array.from(attack.damage?.main?.type)
+            .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
+            .join(' | ');
+        const typeAddendum = typeTags ? ` (${typeTags})` : ``;
+
+        const tags = [
+            trait ? `${_loc('DAGGERHEART.GENERAL.Trait.single')} ${_loc(trait.label)}` : null,
+            range ? _loc(range.label) : null,
+            `${attack.getDamageFormula()}${typeAddendum}`
+        ].filter(t => Boolean(t));
         const html = await foundry.applications.handlebars.renderTemplate(
-            `systems/daggerheart/templates/ui/tooltip/attack.hbs`,
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
             {
-                attack: attack,
+                ...pick(attack, ['img', 'name']),
                 description: description,
                 parent: actor,
-                config: CONFIG.DH
+                tags
             }
         );
 
@@ -217,10 +274,8 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const description = element.dataset.deathDescription;
 
         const html = await foundry.applications.handlebars.renderTemplate(
-            `systems/daggerheart/templates/ui/tooltip/move.hbs`,
-            {
-                move: { name: name, img: img, description: description }
-            }
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
+            { name, img, description }
         );
 
         this.tooltip.innerHTML = html;
@@ -240,9 +295,9 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const move = moves[key];
         const description = await foundry.applications.ux.TextEditor.enrichHTML(move.description);
         const html = await foundry.applications.handlebars.renderTemplate(
-            `systems/daggerheart/templates/ui/tooltip/move.hbs`,
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
             {
-                move: move,
+                ...pick(move, ['img', 'name']),
                 description: description
             }
         );
