@@ -10,7 +10,7 @@ export default class DHAttackAction extends DHDamageAction {
     prepareData() {
         super.prepareData();
         if (this.item?.system?.attack) {
-            if (this.damage.main.includeBase) {
+            if (this.damage.main?.includeBase) {
                 const baseDamage = this.getParentHitPointDamage();
                 if (baseDamage) {
                     if (!this.damage.main) {

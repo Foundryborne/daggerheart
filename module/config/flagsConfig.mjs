@@ -23,7 +23,8 @@ export const compendiumBrowserLite = {
 export const userFlags = {
     welcomeMessage: 'welcome-message',
     countdownMode: 'countdown-mode',
-    countdownTypeModes: 'countdown-type-modes'
+    countdownTypeModes: 'countdown-type-modes',
+    previousDamageTypeChoice: 'previous-damage-type-choice'
 };
 
 export const combatToggle = 'combat-toggle-origin';

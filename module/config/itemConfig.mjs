@@ -1120,6 +1120,26 @@ export const weaponFeatures = {
             }
         ]
     },
+    otherwordly: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.description',
+                img: 'icons/weapons/swords/sword-flanged-lightning.webp',
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.attack.damage.canChooseDamageType',
+                            type: 'override',
+                            value: 1
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     painful: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.painful.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.painful.description',

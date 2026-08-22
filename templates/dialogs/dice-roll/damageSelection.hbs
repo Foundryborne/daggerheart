@@ -38,13 +38,21 @@
             <div class="damage-formula">
                 <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
                 <span class="damage-details">
-                    {{localize "DAGGERHEART.GENERAL.damage"}}
                     {{#if damageTypes}}
-                        {{#each damageTypes as | type | }}
-                            {{#with (lookup @root.config.GENERAL.damageTypes type)}}
-                                <i class="fa-solid {{icon}}"></i>
-                            {{/with}}
-                        {{/each}}
+                        {{#if @root.canChooseDamageType}}
+                            {{#each @root.damageTypesChoices as | choice |}}
+                                <div class="damage-choice">
+                                    <input type="radio" data-action="updateDamageType" data-type="{{choice.id}}" {{#if choice.selected}}checked{{/if}}>
+                                    <i class="fa-solid {{choice.icon}}" data-tooltip="{{localize choice.label}}"></i>
+                                </div>
+                            {{/each}}
+                        {{else}}
+                            {{#each damageTypes as | type | }}
+                                {{#with (lookup @root.config.GENERAL.damageTypes type)}}
+                                    <i class="fa-solid {{icon}}"></i>
+                                {{/with}}
+                            {{/each}}
+                        {{/if}}
                     {{/if}}
                 </span>
             </div>

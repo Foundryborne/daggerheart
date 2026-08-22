@@ -1931,6 +1931,16 @@
                         }
                     }
                 },
+                "otherwordly": {
+                    "name": "Otherwordly",
+                    "description": "On a successful attack, you can deal physical or magic damage.",
+                    "effects": {
+                        "otherwordly": {
+                            "name": "Otherwordly",
+                            "description": "On a successful attack, you can deal physical or magic damage."
+                        }
+                    }
+                },
                 "painful": {
                     "name": "Painful",
                     "description": "Each time you make a successful attack, you must mark a Stress.",

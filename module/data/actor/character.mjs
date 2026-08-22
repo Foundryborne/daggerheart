@@ -258,6 +258,11 @@ export default class DhCharacter extends DhCreature {
                                 initial: 0,
                                 min: 0,
                                 label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
+                            }),
+                            canChooseDamageType: new fields.BooleanField({
+                                required: true,
+                                nullable: false,
+                                initial: false
                             })
                         },
                         roll: new fields.SchemaField({
