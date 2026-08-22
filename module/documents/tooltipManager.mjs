@@ -228,7 +228,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         const trait = CONFIG.DH.ACTOR.abilities[attack.roll?.trait];
         const range = CONFIG.DH.GENERAL.range[attack.range];
 
-        const typeTags = Array.from(attack.damage?.main?.type)
+        const typeTags = Array.from(attack.damage?.main?.type??[])
             .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
             .join(' | ');
         const typeAddendum = typeTags ? ` (${typeTags})` : ``;
