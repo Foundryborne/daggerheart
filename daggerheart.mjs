@@ -394,6 +394,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
     }
 });
 
+Hooks.on(CONFIG.DH.HOOKS.hooksConfig.downtimeTrigger, applications.sheets.actors.Party.downtimeMoveQuery);
+
 const updateActorsRangeDependentEffects = async token => {
     if (!token) return;
 
