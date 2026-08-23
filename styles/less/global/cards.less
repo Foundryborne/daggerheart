@@ -4,6 +4,7 @@
  */
 .dh-card-header {
     .domain-card-banner {
+        --border-color: @golden;
         position: absolute;
         width: var(--width);
         top: 0;
@@ -12,7 +13,6 @@
         color: white;
 
         svg {
-            --border-color: @golden;
             width: 100%;
         }
         .details {
@@ -31,9 +31,13 @@
                 letter-spacing: -0.05em;
             }
             
+            > span:has(.domain-icon),
+            > .domain-icon {
+                width: 80%;
+            }
+            
             .domain-icon {
                 filter: brightness(0) invert(1);
-                width: 80%;
                 border: none;
             }
         }
@@ -99,20 +103,26 @@
     }
 }
 
+/** Prevent opening up applications on clicking domain cards in journal embeds */
+.journal-sheet .dh-card img {
+    pointer-events: none;
+}
+
 /**
  * Main card styling. They often use svg or image masks and some color mixing.
  * These may be used in journal embeds and can't presume dh-style
  * The cards are mostly resizable via the width parameter, but only mostly, some additional work will be needed to get it to the finish line.
  */
 .dh-card {
-    --width: calc(18.25rem);
+    --width: 18.25rem;
     --initial-portrait-ratio: 0.665;
+    --height: calc(var(--width) * 1.4);
 
     position: relative;
     border: 1px solid @card-trim-color;
     border-radius: 12px;
     width: var(--width);
-    height: calc(var(--width) * 1.4);
+    aspect-ratio: 5/7;
     background: light-dark(#f5f5f5, #101217);
     line-height: 1.25;
 
@@ -134,7 +144,6 @@
 
     > header.dh-card-header {
         position: relative;
-        max-height: calc(var(--width) * var(--initial-portrait-ratio));
         flex: 0 1 calc(var(--width) * var(--initial-portrait-ratio));
         .domain-card-banner {
             --width: 3.625rem;
@@ -156,7 +165,7 @@
             height: 100%;
         }
         img {
-            pointer-events: none;
+            cursor: default;
             user-select: none;
         }
     }
@@ -165,7 +174,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        max-height: calc(25rem - 7.25rem); // height of card - min portrait height
+        max-height: calc(var(--height) * 0.75);
         > header.name {
             text-align: center;
             text-transform: uppercase;

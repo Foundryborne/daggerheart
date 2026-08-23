@@ -3,11 +3,14 @@
         <img class="portrait" src="{{item.img}}"/>
         {{#> "systems/daggerheart/templates/components/card-banner.hbs" domain=domain}}
             <span class="level">{{item.system.level}}</span>
-            <img class="domain-icon" src="{{domain.src}}" data-tooltip="{{domain.label}}">
+            <span data-tooltip="{{domain.label}}">
+                <!-- images ignore pointer events in journals for these, so we wrap it for tooltip -->
+                <img class="domain-icon" src="{{domain.src}}">
+            </span>
         {{/ "systems/daggerheart/templates/components/card-banner.hbs"}}
-        <div class="recall-cost">
+        <div class="recall-cost" data-tooltip="DAGGERHEART.ITEMS.DomainCard.recallCost">
             <span>{{item.system.recallCost}}</span>
-            <i class="fa-solid fa-bolt"></i>
+            <i class="fa-solid fa-bolt" inert></i>
         </div>
     </header>
     <article>
