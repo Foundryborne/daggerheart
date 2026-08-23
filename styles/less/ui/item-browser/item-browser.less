@@ -259,9 +259,9 @@
                 height: 40px;
                 flex: unset;
                 object-fit: cover;
-                
-                // cards use centers but regular items usually use center/top. We prioritize cards
-                object-position: center center;
+                // Cards use center center, however they're often wider than tall, so center/top is the same
+                // Adversaries and all other item types prefer center top
+                object-position: center top;
             }
             .item-list-name {
                 flex-grow: 3;
