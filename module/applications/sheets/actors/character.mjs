@@ -407,7 +407,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (_, target) => {
                     const doc = await getDocFromElement(target);
-                    await doc.system.toLoadout();
+                    await doc.system.toggleVault();
                 }
             },
             {
@@ -431,7 +431,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (_, target) => {
                     const doc = await getDocFromElement(target);
-                    await doc.system.toVault();
+                    await doc.system.toggleVault();
                 }
             }
         ].map(option => ({
@@ -887,12 +887,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
      */
     static async #toggleVault(_event, button) {
         const doc = await getDocFromElement(button);
-        const { available } = this.document.system.loadoutSlot;
-        if (doc.system.inVault && !available && !doc.system.loadoutIgnore) {
-            return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
-        }
-
-        await doc?.update({ 'system.inVault': !doc.system.inVault });
+        if (!doc) return;
+        return await doc.system.toggleVault();
     }
 
     /**

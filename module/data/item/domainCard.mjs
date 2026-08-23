@@ -157,14 +157,21 @@ export default class DHDomainCard extends BaseDataItem {
         return container.children;
     }
 
-    async toLoadout() {
-        const actorLoadout = this.actor.system.loadoutSlot;
-        if (actorLoadout.available) return await this.parent.update({ 'system.inVault': false });
-        ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
-    }
+    /**
+     * Switch Domain Card vault state
+     * 
+     * @param {boolean} [toVault] - The desired vault state. If omitted, toggles the current state.
+     * @returns {Promise<Document>} The promise resolving to the updated parent document,
+     * or a warning notification result when the operation is prevented.
+     */
+    async toggleVault(toVault) {
+        const { available } = this.actor.system.loadoutSlot;
+        toVault ??= !this.inVault;
+        if (!toVault && !available && !this.loadoutIgnore) {
+            return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
+        }
 
-    async toVault() {
-        return await this.parent.update({ 'system.inVault': true });
+        return await this.parent.update({ 'system.inVault': toVault });
     }
 
     async recall() {
