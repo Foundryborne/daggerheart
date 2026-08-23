@@ -160,28 +160,36 @@ export default class DHDomainCard extends BaseDataItem {
     /**
      * Switch Domain Card vault state
      * 
+     * @param {Event} [event] - The triggering event passed to the action handler.
      * @param {boolean} [toVault] - The desired vault state. If omitted, toggles the current state.
+     * @param {boolean} [isRecall] - True if recall cost dialog should be performed.
      * @returns {Promise<Document>} The promise resolving to the updated parent document,
-     * or a warning notification result when the operation is prevented.
+     * or a warning notification result when max loadout is reached and not ignored for this domain card.
      */
-    async toggleVault(toVault) {
+    async toggleVault(event, toVault, isRecall) {
         const { available } = this.actor.system.loadoutSlot;
         toVault ??= !this.inVault;
         if (!toVault && !available && !this.loadoutIgnore) {
             return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
         }
 
+        if (!toVault && isRecall && !(await this.onRecallCost(event))) {
+            return;
+        }
+
         return await this.parent.update({ 'system.inVault': toVault });
     }
 
-    async recall() {
-        const actorLoadout = this.actor.system.loadoutSlot;
-        if (!actorLoadout.available) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
-            return;
-        }
+    /**
+     * Processes the stress cost associated with recalling an item from the vault.
+     * 
+     * @async
+     * @param {Event} [event] - The triggering event passed to the action handler.
+     * @returns {Promise<object|void>} Resolves to true if the cost is 0 or if dialog is validated, void if dialog is closed.
+     */
+    async onRecallCost(event) {
         if (this.recallCost == 0) {
-            return await this.parent.update({ 'system.inVault': false });
+            return true;
         }
         const type = 'effect';
         const cls = game.system.api.models.actions.actionsTypes[type];
@@ -201,7 +209,7 @@ export default class DHDomainCard extends BaseDataItem {
         );
         const config = await action.use(event);
         if (config) {
-            return await this.parent.update({ 'system.inVault': false });
+            return !!(await this.toggleVault(false));
         }
     }
 }

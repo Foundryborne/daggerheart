@@ -1,7 +1,7 @@
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
-import PartySheet from '../applications/sheets/actors/party.mjs';
 
 export function handleSocketEvent({ action = null, data = {} } = {}) {
+    const { Party } = game.system.api.applications.sheets.actors;
     switch (action) {
         case socketEvent.GMUpdate:
             Hooks.callAll(socketEvent.GMUpdate, data);
@@ -16,7 +16,7 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
             Hooks.call(socketEvent.Refresh, data);
             break;
         case socketEvent.DowntimeTrigger:
-            PartySheet.downtimeMoveQuery(data);
+            Party.downtimeMoveQuery(data);
             break;
         case socketEvent.TagTeamStart:
             Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, data);

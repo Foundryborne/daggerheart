@@ -405,9 +405,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && doc.system.inVault;
                 },
-                onClick: async (_, target) => {
+                onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    await doc.system.toggleVault(false);
+                    await doc.system.toggleVault(event, false);
                 }
             },
             {
@@ -419,7 +419,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    await doc.system.recall();
+                    await doc.system.toggleVault(event, false, true);
                 }
             },
             {
@@ -429,9 +429,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && !doc.system.inVault;
                 },
-                onClick: async (_, target) => {
+                onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    await doc.system.toggleVault(true);
+                    await doc.system.toggleVault(event, true);
                 }
             }
         ].map(option => ({
@@ -885,10 +885,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Toggles whether an item is stored in the vault.
      * @type {ApplicationClickAction}
      */
-    static async #toggleVault(_event, button) {
+    static async #toggleVault(event, button) {
         const doc = await getDocFromElement(button);
         if (!doc) return;
-        return await doc.system.toggleVault();
+        return await doc.system.toggleVault(event);
     }
 
     /**
