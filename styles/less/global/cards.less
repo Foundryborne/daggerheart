@@ -51,6 +51,8 @@
     }
 
     .recall-cost {
+        --border-size: max(2px, calc(var(--width) * 0.066));
+        
         position: absolute;
         top: 8px;
         right: 8px;
@@ -63,14 +65,14 @@
         background-color: lab(8.11897% .811279 -12.254);
         color: white;
         font: bold calc(0.52 * var(--width)) @font-description;
-        border: 2px solid @golden;
+        border: var(--border-size) solid @golden;
         border-radius: 50%;
 
         &::after {
             content: ' ';
             position: absolute;
             inset: 0;
-            border: 2px solid lab(47.7841% -.393182 -10.0268);
+            border: var(--border-size) solid lab(47.7841% -.393182 -10.0268);
             border-radius: 50%;
         }
 
@@ -79,8 +81,8 @@
         }
 
         i {
-            margin-left: -0.125rem;
-            margin-right: -0.125rem;
+            margin-left: -0.1945em;
+            margin-right: -0.1945em;
             padding-top: 0.1em;
             font-size: 0.55em;
         }
