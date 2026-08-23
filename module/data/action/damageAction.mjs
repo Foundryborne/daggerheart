@@ -14,7 +14,7 @@ export default class DHDamageAction extends DHBaseAction {
                 } else {
                     for (const type of parentBaseDamage.type) this.damage.main.type.add(type);
 
-                    const actionDamage = this.damage.main.value.getHasEmptyFormula() ? 
+                    const actionDamage = this.damage.main.value.hasFormula ? 
                         null : this.damage.main.value.getFormula();
                     this.damage.main.value.custom = {
                         enabled: true,

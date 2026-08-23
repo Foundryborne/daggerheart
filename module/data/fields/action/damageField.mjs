@@ -297,7 +297,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
         };
     }
 
-    getHasEmptyFormula() {
+    get hasFormula() {
         const formula = this.getFormula();
         return formula === '0';
     }
