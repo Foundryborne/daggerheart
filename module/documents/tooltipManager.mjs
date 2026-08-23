@@ -145,6 +145,22 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         await this.enrichText(item);
 
+        // Beastform special case
+        if (item.type === 'beastform') {
+            const html = await foundry.applications.handlebars.renderTemplate(
+                `systems/daggerheart/templates/ui/tooltip/beastform.hbs`,
+                {
+                    item,
+                    description: item.system?.enrichedDescription ?? item.enrichedDescription,
+                    config: CONFIG.DH
+                }
+            );
+
+            this.tooltip.innerHTML = html;
+            options.direction ??= this._determineItemTooltipDirection(element);
+            return html;
+        }
+
         const tags = item._getTags() ?? [];
         if (item.type === 'feature') {
             const granter = item.actor?.items.get(item.system.granter?.id);
