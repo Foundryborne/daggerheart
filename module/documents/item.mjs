@@ -38,7 +38,7 @@ export default class DHItem extends foundry.documents.Item {
         }
         return doc;
     }
-
+    
     static async createDocuments(sources, operation) {
         // Ensure that items being created are valid to the actor its being added to
         const actor = operation.parent;
@@ -49,7 +49,14 @@ export default class DHItem extends foundry.documents.Item {
             const actorType = _loc(`TYPES.Actor.${actor.type}`);
             ui.notifications.error('DAGGERHEART.ACTORS.Base.CannotAddType', { format: { itemType, actorType } });
         }
+        
+        // Beastform already manages its features creation
+        if (addedType !== 'beastform') await this.prepareGrantedItems(actor, sources, operation);
 
+        return super.createDocuments(sources, operation);
+    }
+
+    static async prepareGrantedItems(actor, sources, operation) {
         // If the item grants any features, include them and set the granter flags
         // If keepId is false, set random ids and from then on switch keepId to true
         const grantingItems = actor ? sources.filter(s => s.system?.features?.length) : [];
@@ -93,8 +100,6 @@ export default class DHItem extends foundry.documents.Item {
                 );
             }
         }
-
-        return super.createDocuments(sources, operation);
     }
 
     /* -------------------------------------------- */

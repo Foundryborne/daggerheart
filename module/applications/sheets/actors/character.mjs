@@ -1242,13 +1242,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             const itemData = item.toObject();
             const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
-            if (!data?.selectedImage) {
-                return;
-            } else if (data) {
+            if (data?.selectedImage) {
                 if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
                 else itemData.system.tokenImg = data.selectedImage;
-                return await this._onDropItemCreate(itemData);
             }
+            return await this._onDropItemCreate(itemData);
         }
 
         // If this is a type that gets deleted, delete it first (but still defer to super)
