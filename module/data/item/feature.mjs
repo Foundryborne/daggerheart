@@ -12,10 +12,6 @@ export default class DHFeature extends BaseDataItem {
         });
     }
 
-    get granterItem() {
-        return this.actor?.items.get(this.granter.id);
-    }
-
     /* -------------------------------------------- */
 
     /**@override */
@@ -55,5 +51,10 @@ export default class DHFeature extends BaseDataItem {
             if (!canHaveGranter) this.updateSource({ granter: null });
         }
         return super._preCreate(data, options, user);
+    }
+
+    prepareDerivedData() {
+        super.prepareDerivedData();
+        this.granterItem = this.actor?.items.get(this.granter?.id);
     }
 }
