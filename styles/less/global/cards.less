@@ -4,6 +4,7 @@
  */
 .dh-card-header {
     .domain-card-banner {
+        --border-color: @golden;
         position: absolute;
         width: var(--width);
         top: 0;
@@ -12,7 +13,6 @@
         color: white;
 
         svg {
-            --border-color: @golden;
             width: 100%;
         }
         .details {
@@ -31,9 +31,13 @@
                 letter-spacing: -0.05em;
             }
             
+            > span:has(.domain-icon),
+            > .domain-icon {
+                width: 80%;
+            }
+            
             .domain-icon {
                 filter: brightness(0) invert(1);
-                width: 80%;
                 border: none;
             }
         }
@@ -47,6 +51,8 @@
     }
 
     .recall-cost {
+        --border-size: max(2px, calc(var(--width) * 0.066));
+        
         position: absolute;
         top: 8px;
         right: 8px;
@@ -59,14 +65,14 @@
         background-color: lab(8.11897% .811279 -12.254);
         color: white;
         font: bold calc(0.52 * var(--width)) @font-description;
-        border: 2px solid @golden;
+        border: var(--border-size) solid @golden;
         border-radius: 50%;
 
         &::after {
             content: ' ';
             position: absolute;
             inset: 0;
-            border: 2px solid lab(47.7841% -.393182 -10.0268);
+            border: var(--border-size) solid lab(47.7841% -.393182 -10.0268);
             border-radius: 50%;
         }
 
@@ -75,8 +81,8 @@
         }
 
         i {
-            margin-left: -0.125rem;
-            margin-right: -0.125rem;
+            margin-left: -0.1945em;
+            margin-right: -0.1945em;
             padding-top: 0.1em;
             font-size: 0.55em;
         }
@@ -99,21 +105,36 @@
     }
 }
 
+/** Prevent opening up applications on clicking domain cards in journal embeds */
+.journal-sheet .dh-card img {
+    pointer-events: none;
+}
+
 /**
  * Main card styling. They often use svg or image masks and some color mixing.
  * These may be used in journal embeds and can't presume dh-style
  * The cards are mostly resizable via the width parameter, but only mostly, some additional work will be needed to get it to the finish line.
  */
 .dh-card {
-    --width: calc(18.25rem);
+    --width: var(--card-width, 18.25rem);
     --initial-portrait-ratio: 0.665;
+    --height: calc(var(--width) * 1.4);
+
+    /** 
+     * A multiplier for internal elements based on the base width of 292px
+     * The width may have changed either due to css overrides or font size changes.
+     * In all cases, the elements inside must scale uniformly.
+     * This does mean that if the width is set to a non-rem value, fonts inside won't scale with font size changes.
+     */
+    --scale: calc(var(--width) / 292px);
 
     position: relative;
     border: 1px solid @card-trim-color;
     border-radius: 12px;
     width: var(--width);
-    height: calc(var(--width) * 1.4);
+    aspect-ratio: 5/7;
     background: light-dark(#f5f5f5, #101217);
+    color: @color-text-primary;
     line-height: 1.25;
 
     display: flex;
@@ -134,17 +155,16 @@
 
     > header.dh-card-header {
         position: relative;
-        max-height: calc(var(--width) * var(--initial-portrait-ratio));
         flex: 0 1 calc(var(--width) * var(--initial-portrait-ratio));
         .domain-card-banner {
-            --width: 3.625rem;
-            left: 0.75rem;
-            margin-top: -0.25rem; // banner might need to be less tall, but taller looks good in the item sheet?
+            --width: calc(58px * var(--scale));
+            left: calc(12px * var(--scale));
+            margin-top: calc(-4px * var(--scale)); // banner might need to be less tall, but taller looks good in the item sheet?
         }
         .recall-cost {
-            --width: 2.25rem;
-            top: 1rem;
-            right: 1rem;
+            --width: calc(36px * var(--scale));
+            top: calc(16px * var(--scale));
+            right: calc(16px * var(--scale));
         }
         img.portrait {
             border: none;
@@ -156,7 +176,7 @@
             height: 100%;
         }
         img {
-            pointer-events: none;
+            cursor: default;
             user-select: none;
         }
     }
@@ -165,25 +185,25 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        max-height: calc(25rem - 7.25rem); // height of card - min portrait height
+        max-height: calc(var(--height) * 0.75);
         > header.name {
             text-align: center;
             text-transform: uppercase;
-            font: 900 var(--font-size-16)/1 @font-description;
+            font: 900 calc(16px * var(--scale))/1 @font-description;
             letter-spacing: -1%;
-            padding-top: 0.5rem;
+            padding-top: calc(8px * var(--scale));
             margin-bottom: -0.125em; // 2px less
         }
         > section.description {
-            font-size: var(--font-size-13);
+            font-size: calc(13px * var(--scale));
             flex: 1;
             overflow: auto;
-            padding: 0 0.625rem;
+            padding: 0.5em calc(10px * var(--scale));
             .with-scroll-shadows();
         }
         .attribution {
             padding: 5px 8px;
-            font: var(--font-size-9)/1 @font-description;
+            font: calc(9px * var(--scale))/1 @font-description;
             letter-spacing: -3.5%;
             font-style: italic;
             display: flex;
@@ -200,14 +220,14 @@
 
 .dh-card.domainCard {
     --initial-portrait-ratio: 0.665;
-    --trim-height: 1.375rem;
+    --trim-height: calc(22px * var(--scale));
 
     .trim {
         position: relative;
         display: flex;
         justify-content: center;
         height: var(--trim-height);
-        margin-top: -0.625rem;
+        margin-top: calc(-10px * var(--scale));
         color: white;
 
         &.invert-text {
@@ -236,7 +256,7 @@
             position: relative;
             text-align: center;
             text-transform: uppercase;
-            font: 600 var(--font-size-12)/var(--trim-height) @font-description;
+            font: 600 calc(12px * var(--scale))/var(--trim-height) @font-description;
             width: calc(var(--trim-height) * 5.35);
 
             &::before {
@@ -267,7 +287,7 @@
         display: flex;
         justify-content: center;
         height: var(--trim-height);
-        margin-top: -0.75rem;
+        margin-top: calc(-12px * var(--scale));
         color: white;
 
         &.invert-text {
@@ -300,7 +320,7 @@
             overflow: hidden;
 
             text-transform: uppercase;
-            font: 600 var(--font-size-12) @font-description;
+            font: 600 calc(12px * var(--scale)) @font-description;
             color: @golden;
             text-shadow: 1px 1px 2px black;
             letter-spacing: -3.5%;
@@ -329,7 +349,7 @@
     --trim-height: calc(var(--width) * 0.17466);
 
     .dh-card-header {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 5.5% calc(100% - 1rem), 0 calc(100% - 0.25rem));
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 6% calc(100% - (16px * var(--scale))), 0 calc(100% - (4px * var(--scale))));
     }
 
     .trim {
@@ -359,16 +379,15 @@
 
             text-align: center;
             text-transform: uppercase;
-            font: 300 var(--font-size-12) @font-description;
-            line-height: 1.5;
+            font: 300 calc(12px * var(--scale))/1.5 @font-description;
         }
     }
 
     header.name {
-        margin-top: -1.75rem;
+        margin-top: calc(-28px * var(--scale));
         text-align: left;
-        padding-left: 10px;
-        font-size: var(--font-size-24);
+        padding-left: calc(10px * var(--scale));
+        font-size: calc(24px * var(--scale));
         &::before {
             content: ' ';
             float: right;
@@ -399,7 +418,7 @@
         display: flex;
         justify-content: center;
         height: var(--trim-height);
-        margin-top: calc(-0.92 * var(--trim-height));
+        margin-top: calc(-0.925 * var(--trim-height));
         color: black;
 
         &::after {
@@ -421,15 +440,15 @@
 
             text-align: center;
             text-transform: uppercase;
-            font: 300 var(--font-size-12) @font-description;
+            font: 300 calc(12px * var(--scale)) @font-description;
             line-height: 1.5;
         }
     }
 
     header.name {
         text-align: left;
-        padding-left: 10px;
-        font-size: var(--font-size-24);
+        padding-left: calc(10px * var(--scale));
+        font-size: calc(24px * var(--scale));
     }
 
     .description {
@@ -477,7 +496,7 @@
 
             text-align: center;
             text-transform: uppercase;
-            font: 300 var(--font-size-11)/1.3 @font-description;
+            font: 300 calc(11px * var(--scale))/1.3 @font-description;
             letter-spacing: -6%;
         }
     }
@@ -485,7 +504,7 @@
     header.name {
         text-align: left;
         padding-left: 10px;
-        font-size: var(--font-size-24);
+        font-size: calc(24px * var(--scale));
     }
 
     .description {

@@ -1,47 +1,50 @@
-{{#if description}}
-    <div class="tooltip-description dh-card-description">{{{description}}}</div>
-{{/if}}
+<div class="beastform-tooltip-data">
+    {{#if description}}
+        <div class="tooltip-description dh-card-description">{{{description}}}</div>
+    {{/if}}
 
-<div class="tags">
-    {{#with item.system.beastformAttackData}} 
-        <div class="tag">
-            <span>{{localize "DAGGERHEART.ITEMS.Beastform.mainTrait"}} {{this.trait}}</span>
-        </div>
-        <div class="tag">
-            <span>{{localize "DAGGERHEART.ITEMS.Beastform.traitBonus"}} {{this.traitBonus}}</span>
-        </div>
-        <div class="tag">
-            <span>{{localize "DAGGERHEART.GENERAL.evasion"}} {{this.evasionBonus}}</span>
-        </div>
-        <div class="tag">
-            <span>{{localize "DAGGERHEART.GENERAL.damage"}} {{this.damage}} <i class="fa-solid fa-hand-fist"></i></span>
+    <div class="tags">
+        {{#with item.system.beastformAttackData}} 
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.ITEMS.Beastform.mainTrait"}} {{this.trait}}</span>
+            </div>
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.ITEMS.Beastform.traitBonus"}} {{this.traitBonus}}</span>
+            </div>
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.GENERAL.evasion"}} {{this.evasionBonus}}</span>
+            </div>
+            <div class="tag">
+                <span>{{localize "DAGGERHEART.GENERAL.damage"}} {{this.damage}} <i class="fa-solid fa-hand-fist"></i></span>
+            </div>
+        {{/with}}
+    </div>
+
+    <h2 class="tooltip-title">{{localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label"}}</h2>
+    <div class="tags advantages">
+        {{#each item.system.advantageOn as | chip |}}
+            <div class="tag">
+                <span>{{ifThen chip.value chip.value chip}}</span>
+            </div>
+        {{/each}}
+    </div>
+
+    {{#with item.system.features as |features|}}
+        {{#if (gt features.length 0)}}
+            <h2 class="tooltip-title">{{localize "DAGGERHEART.GENERAL.features"}}</h2>
+        {{/if}}
+        <div class="tooltip-tags">
+            {{#each features as | feature |}}
+                {{#with (ifThen ../isAction feature (ifThen feature.item feature.item feature))}}
+                    <div class="tooltip-tag">
+                        <div class="tooltip-tag-label-container">
+                                {{#if this.img}}<img class="tooltip-tag-image" src="{{this.img}}" />{{/if}}
+                                <span class="tooltip-tag-label">{{localize this.name}}</span>
+                        </div>
+                        <div class="tooltip-tag-description dh-card-description">{{{localize (ifThen this.enrichedDescription this.enrichedDescription this.system.enrichedDescription)}}}</div>
+                    </div>
+                {{/with}}
+            {{/each}}
         </div>
     {{/with}}
 </div>
-
-<h2 class="tooltip-title">{{localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label"}}</h2>
-<div class="tags advantages">
-    {{#each item.system.advantageOn as | chip |}}
-        <div class="tag">
-            <span>{{ifThen chip.value chip.value chip}}</span>
-        </div>
-    {{/each}}
-</div>
-
-{{#with item.system.features as |features|}}
-    {{#if (gt features.length 0)}}<h2 class="tooltip-title">{{localize "DAGGERHEART.GENERAL.features"}}</h2>{{/if}}
-    <div class="tooltip-separator"></div>
-    <div class="tooltip-tags">
-        {{#each features as | feature |}}
-            {{#with (ifThen ../isAction feature (ifThen feature.item feature.item feature))}}
-                <div class="tooltip-tag">
-                    <div class="tooltip-tag-label-container">
-                            {{#if this.img}}<img class="tooltip-tag-image" src="{{this.img}}" />{{/if}}
-                            <span class="tooltip-tag-label">{{localize this.name}}</span>
-                    </div>
-                    <div class="tooltip-tag-description">{{{localize (ifThen this.enrichedDescription this.enrichedDescription this.system.enrichedDescription)}}}</div>
-                </div>
-            {{/with}}
-        {{/each}}
-    </div>
-{{/with}}

@@ -145,6 +145,22 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         await this.enrichText(item);
 
+        // Beastform special case
+        if (item.type === 'beastform') {
+            const html = await foundry.applications.handlebars.renderTemplate(
+                `systems/daggerheart/templates/ui/tooltip/beastform.hbs`,
+                {
+                    item,
+                    description: item.system?.enrichedDescription ?? item.enrichedDescription,
+                    config: CONFIG.DH
+                }
+            );
+
+            this.tooltip.innerHTML = html;
+            options.direction ??= this._determineItemTooltipDirection(element);
+            return html;
+        }
+
         const tags = item._getTags() ?? [];
         if (item.type === 'feature') {
             const granter = item.actor?.items.get(item.system.granter?.id);
@@ -196,8 +212,11 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             }
             const targetType = item.target?.type ? CONFIG.DH.GENERAL.targetTypes[item.target.type] : null;
             if (targetType) {
-                const typeAddend = targetType.id === 'any' ? '' : ` ${_loc(targetType.label)}`;
-                tags.push(`${_loc('DAGGERHEART.GENERAL.Target.single')} ${item.target.amount}${typeAddend}`);
+                tags.push([
+                    _loc('DAGGERHEART.GENERAL.Target.single'),
+                    Number.isInteger(item.target.amount) ? item.target.amount : null,
+                    targetType.id !== 'any' ? _loc(targetType.label) : null
+                ].filter(Boolean).join(' '));
             } else {
                 tags.push(`${_loc('DAGGERHEART.GENERAL.Target.single')} ${_loc('DAGGERHEART.GENERAL.none')}`);
             }

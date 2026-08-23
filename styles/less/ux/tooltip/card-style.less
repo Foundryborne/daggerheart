@@ -5,114 +5,112 @@ aside[role='tooltip']:has(div.daggerheart.dh-style.tooltip.card-style) {
     padding-bottom: 8px;
     border: none;
     border-radius: 10px;
-    width: 18.25rem;
+    width: 18rem;
     background-image: url('../assets/parchments/dh-parchment-dark.png');
     outline: 1px solid light-dark(@dark-80, @beige-80);
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+}
 
-    .dh-style.tooltip.card-style {
+.dh-style.tooltip.card-style {
+    display: flex;
+    flex-direction: column;
+    
+    .tooltip-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-bottom: 1px solid @card-trim-color;
+    }
+
+    .tooltip-title {
+        color: @color-text-emphatic;
+        margin: 0;
+        margin-top: var(--spacer-8);
+        font: 900 var(--font-size-20)/1 @font-subtitle;
+        text-align: center;
+    }
+
+    .tooltip-subtitle {
+        margin: 0;
+    }
+
+    .tags {
+        padding: 0 6px;
+        margin: 0;
+        margin-top: -0.125rem;
+    }
+
+    .tooltip-description{
+        overflow: auto;
+        margin: var(--spacer-4) 0 0 0;
+        padding: 0 10px;
+        align-self: stretch;
+        flex: 1;
+        .with-scroll-shadows();
+    }
+
+    .item-icons-list {
+        position: absolute;
         display: flex;
         flex-direction: column;
-        max-height: calc(18.25rem * 1.6);
-        min-height: calc(18.25rem * 1.1);
-        
-        .tooltip-image {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-bottom: 1px solid @card-trim-color;
-        }
+        gap: 5px;
+        align-items: end;
+        justify-content: center;
+        top: 25px;
+        right: 10px;
+        z-index: 1;
 
-        .tooltip-title {
-            color: @color-text-primary;
-            margin: 0;
-            margin-top: var(--spacer-8);
-            font: 900 var(--font-size-20)/1 @font-description;
-            text-align: center;
-        }
-
-        .tooltip-subtitle {
-            margin: 0;
-        }
-
-        .tags {
-            padding: 0 6px;
-            margin: 0;
-            margin-top: -0.125rem;
-        }
-
-        .tooltip-description{
-            overflow: auto;
-            margin: var(--spacer-4) 0 0 0;
-            padding: 0 10px;
-            align-self: stretch;
-            flex: 1;
-            .with-scroll-shadows();
-        }
-
-        .item-icons-list {
-            position: absolute;
+        .item-icon {
             display: flex;
-            flex-direction: column;
-            gap: 5px;
-            align-items: end;
-            justify-content: center;
-            top: 25px;
-            right: 10px;
-            z-index: 1;
+            align-items: center;
+            justify-content: end;
+            text-align: center;
+            padding-right: 8px;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            background: light-dark(@dark-blue-60, @dark-golden-80);
+            backdrop-filter: blur(8px);
+            border: 4px double light-dark(@beige, @golden);
+            color: light-dark(@beige, @golden);
+            border-radius: 999px;
+            transition: all 0.3s ease;
 
-            .item-icon {
-                display: flex;
-                align-items: center;
-                justify-content: end;
-                text-align: center;
-                padding-right: 8px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                background: light-dark(@dark-blue-60, @dark-golden-80);
-                backdrop-filter: blur(8px);
-                border: 4px double light-dark(@beige, @golden);
-                color: light-dark(@beige, @golden);
-                border-radius: 999px;
+            .recall-label {
+                font-size: var(--font-size-14);
+                opacity: 0;
+                margin-right: 0.3rem;
                 transition: all 0.3s ease;
+            }
+
+            i {
+                font-size: 0.8rem;
+            }
+
+            img {
+                height: 24px;
+                width: 24px;
+            }
+
+            &:hover {
+                max-width: 300px;
+                padding: 0 10px;
+                border-radius: 60px;
 
                 .recall-label {
-                    font-size: var(--font-size-14);
-                    opacity: 0;
-                    margin-right: 0.3rem;
-                    transition: all 0.3s ease;
-                }
-
-                i {
-                    font-size: 0.8rem;
-                }
-
-                img {
-                    height: 24px;
-                    width: 24px;
-                }
-
-                &:hover {
-                    max-width: 300px;
-                    padding: 0 10px;
-                    border-radius: 60px;
-
-                    .recall-label {
-                        opacity: 1;
-                    }
+                    opacity: 1;
                 }
             }
         }
+    }
 
-        .tooltip-hint {
-            border-radius: 3px;
-            padding: 3px;
-            background: light-dark(@dark-blue-60, @rustic-brown-80);
-            color: @color-text-emphatic;
-            font-size: 12px;
-            margin-top: auto;
-        }
+    .tooltip-hint {
+        border-radius: 3px;
+        padding: 3px;
+        background: light-dark(@dark-blue-60, @rustic-brown-80);
+        color: @color-text-emphatic;
+        font-size: 12px;
+        margin-top: auto;
     }
 }
 
