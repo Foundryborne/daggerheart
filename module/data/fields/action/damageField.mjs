@@ -107,9 +107,16 @@ export default class DamageField extends fields.SchemaField {
                     const takenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
                     configDamage.main.total = Math.ceil(config.damage.main.total * takenMultiplier);
 
-                    if (config.onSave && target.saveResult?.success === true) {
-                        const mod = CONFIG.DH.ACTIONS.damageOnSave[config.onSave]?.mod ?? 1;
-                        configDamage.main.total *= mod;
+                    if (config.onSave) {
+                        const onSaveData = CONFIG.DH.ACTIONS.damageOnSave[config.onSave];
+                        if (onSaveData) {
+                            if (
+                                (onSaveData.onSuccess && target.saveResult?.success === true) ||
+                                (!onSaveData.onSuccess && !target.saveResult?.success)
+                            ) {
+                                configDamage.main.total *= onSaveData.mod ?? 1;
+                            }
+                        }
                     }
                 }
 

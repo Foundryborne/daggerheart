@@ -1577,6 +1577,12 @@
                     "name": "Highest Roll"
                 }
             },
+            "DamageOnSave": {
+                "none": { "name": "None" },
+                "half": { "name": "Half On Success" },
+                "full": { "name": "Full On Success" },
+                "doubleOnFail": { "name": "Double On Fail" }
+            },
             "DamageType": {
                 "physical": {
                     "name": "Physical",
