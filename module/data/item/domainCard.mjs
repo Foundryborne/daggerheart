@@ -156,4 +156,45 @@ export default class DHDomainCard extends BaseDataItem {
         container.innerHTML = content;
         return container.children;
     }
+
+    async toLoadout() {
+        const actorLoadout = this.actor.system.loadoutSlot;
+        if (actorLoadout.available) return await this.parent.update({ 'system.inVault': false });
+        ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+    }
+
+    async toVault() {
+        return await this.parent.update({ 'system.inVault': true });
+    }
+
+    async recall() {
+        const actorLoadout = this.actor.system.loadoutSlot;
+        if (!actorLoadout.available) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+            return;
+        }
+        if (this.recallCost == 0) {
+            return await this.parent.update({ 'system.inVault': false });
+        }
+        const type = 'effect';
+        const cls = game.system.api.models.actions.actionsTypes[type];
+        const action = new cls(
+            {
+                ...cls.getSourceConfig(this),
+                type: type,
+                chatDisplay: false,
+                cost: [
+                    {
+                        key: 'stress',
+                        value: this.recallCost
+                    }
+                ]
+            },
+            { parent: this }
+        );
+        const config = await action.use(event);
+        if (config) {
+            return await this.parent.update({ 'system.inVault': false });
+        }
+    }
 }

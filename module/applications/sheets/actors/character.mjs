@@ -407,9 +407,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (_, target) => {
                     const doc = await getDocFromElement(target);
-                    const actorLoadout = doc.actor.system.loadoutSlot;
-                    if (actorLoadout.available) return doc.update({ 'system.inVault': false });
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+                    await doc.system.toLoadout();
                 }
             },
             {
@@ -421,34 +419,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    const actorLoadout = doc.actor.system.loadoutSlot;
-                    if (!actorLoadout.available) {
-                        ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
-                        return;
-                    }
-                    if (doc.system.recallCost == 0) {
-                        return doc.update({ 'system.inVault': false });
-                    }
-                    const type = 'effect';
-                    const cls = game.system.api.models.actions.actionsTypes[type];
-                    const action = new cls(
-                        {
-                            ...cls.getSourceConfig(doc.system),
-                            type: type,
-                            chatDisplay: false,
-                            cost: [
-                                {
-                                    key: 'stress',
-                                    value: doc.system.recallCost
-                                }
-                            ]
-                        },
-                        { parent: doc.system }
-                    );
-                    const config = await action.use(event);
-                    if (config) {
-                        return doc.update({ 'system.inVault': false });
-                    }
+                    await doc.system.recall();
                 }
             },
             {
@@ -458,7 +429,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && !doc.system.inVault;
                 },
-                onClick: async (_, target) => (await getDocFromElement(target)).update({ 'system.inVault': true })
+                onClick: async (_, target) => {
+                    const doc = await getDocFromElement(target);
+                    await doc.system.toVault();
+                }
             }
         ].map(option => ({
             ...option,
