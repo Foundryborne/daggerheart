@@ -210,7 +210,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 description: item.system?.enrichedDescription ?? item.enrichedDescription,
                 config: CONFIG.DH,
                 tags,
-                duration: item.system?.duration.type
+                duration: item.system?.duration?.type
             }
         );
 
