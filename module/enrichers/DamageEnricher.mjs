@@ -55,13 +55,13 @@ export const renderDamageButton = async event => {
         targets: Array.from(game.user.targets).map(t =>
             game.system.api.fields.ActionFields.TargetField.formatTarget(t)
         ),
-        roll: [
-            {
-                formula: value,
-                applyTo: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
-                damageTypes: type
-            }
-        ]
+        damageFormula: {
+            formula: value,
+            damageTypes: type,
+            applyTo: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
+            fullRestore: false
+        },
+        resourceFormulas: []
     };
 
     CONFIG.Dice.daggerheart.DamageRoll.build(config);
