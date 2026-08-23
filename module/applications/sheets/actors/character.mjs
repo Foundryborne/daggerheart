@@ -407,7 +407,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (_, target) => {
                     const doc = await getDocFromElement(target);
-                    await doc.system.toggleVault();
+                    await doc.system.toggleVault(false);
                 }
             },
             {
@@ -431,7 +431,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (_, target) => {
                     const doc = await getDocFromElement(target);
-                    await doc.system.toggleVault();
+                    await doc.system.toggleVault(true);
                 }
             }
         ].map(option => ({
