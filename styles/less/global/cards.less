@@ -116,7 +116,7 @@
  * The cards are mostly resizable via the width parameter, but only mostly, some additional work will be needed to get it to the finish line.
  */
 .dh-card {
-    --width: 18.25rem;
+    --width: var(--card-width, 18.25rem);
     --initial-portrait-ratio: 0.665;
     --height: calc(var(--width) * 1.4);
 
@@ -348,7 +348,7 @@
     --trim-height: calc(var(--width) * 0.17466);
 
     .dh-card-header {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 6% calc(100% - 1rem), 0 calc(100% - 0.25rem));
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 6% calc(100% - (16px * var(--scale))), 0 calc(100% - (4px * var(--scale))));
     }
 
     .trim {
