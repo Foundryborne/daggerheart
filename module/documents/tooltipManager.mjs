@@ -196,8 +196,11 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             }
             const targetType = item.target?.type ? CONFIG.DH.GENERAL.targetTypes[item.target.type] : null;
             if (targetType) {
-                const typeAddend = targetType.id === 'any' ? '' : ` ${_loc(targetType.label)}`;
-                tags.push(`${_loc('DAGGERHEART.GENERAL.Target.single')} ${item.target.amount}${typeAddend}`);
+                tags.push([
+                    _loc('DAGGERHEART.GENERAL.Target.single'),
+                    Number.isInteger(item.target.amount) ? item.target.amount : null,
+                    targetType.id !== 'any' ? _loc(targetType.label) : null
+                ].filter(Boolean).join(' '));
             } else {
                 tags.push(`${_loc('DAGGERHEART.GENERAL.Target.single')} ${_loc('DAGGERHEART.GENERAL.none')}`);
             }

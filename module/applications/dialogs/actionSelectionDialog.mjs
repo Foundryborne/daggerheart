@@ -57,17 +57,15 @@ export default class ActionSelectionDialog extends HandlebarsApplicationMixin(Ap
 
     /** @inheritDoc */
     async _prepareContext(options) {
-        const actions = this.#item.system.actionsList.map(action => ({
-                ...action.toObject(),
+        return {
+            ...(await super._prepareContext(options)),
+            actions: this.#item.system.actionsList.map(action => ({
                 id: action.id,
+                name: action.name,
                 img: action.baseAction ? action.parent.parent.img : action.img,
                 uuid: action.uuid
             })),
-            itemName = this.#item.name;
-        return {
-            ...(await super._prepareContext(options)),
-            actions,
-            itemName
+            item: this.#item
         };
     }
 
