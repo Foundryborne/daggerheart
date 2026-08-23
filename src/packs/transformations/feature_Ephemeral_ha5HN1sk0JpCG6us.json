@@ -1,0 +1,20 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Ephemeral",
+  "type": "feature",
+  "_id": "ha5HN1sk0JpCG6us",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Your body wavers in and out of being corporeal. You are resistant to physical damage, take double magic damage, and can <strong>mark 2 Stress</strong> to momentarily pass through a solid object.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ha5HN1sk0JpCG6us"
+}
