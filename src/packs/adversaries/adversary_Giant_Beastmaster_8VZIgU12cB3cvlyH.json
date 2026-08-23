@@ -270,7 +270,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": true,
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -284,13 +293,15 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 2,
-                  "dice": "d8",
-                  "bonus": 4,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
-                "type": [],
+                "type": [
+                  "physical"
+                ],
                 "base": false,
                 "resultBased": false,
                 "valueAlt": {
@@ -303,9 +314,10 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },

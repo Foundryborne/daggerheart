@@ -1,0 +1,25 @@
+<div class="dh-card domainCard">
+    <header class="dh-card-header">
+        <img class="portrait" src="{{item.img}}"/>
+        {{#> "systems/daggerheart/templates/components/card-banner.hbs" domain=domain}}
+            <span class="level">{{item.system.level}}</span>
+            <img class="domain-icon" src="{{domain.src}}" data-tooltip="{{domain.label}}">
+        {{/ "systems/daggerheart/templates/components/card-banner.hbs"}}
+        <div class="recall-cost">
+            <span>{{item.system.recallCost}}</span>
+            <i class="fa-solid fa-bolt"></i>
+        </div>
+    </header>
+    <article>
+        <section class="trim {{#if domain.invertText}}invert-text{{/if}}" style="--domain-color: {{domain.color}}">
+            <div class="type">
+                <span>{{localize cardType.label}}</span>
+            </div>
+        </section>
+        <header class="name">{{item.name}}</header>
+        <section class="dh-card-description description">
+            {{{description}}}
+        </section>
+        {{> "systems/daggerheart/templates/components/card/_attribution.hbs" item=item}}
+    </article>
+</div>

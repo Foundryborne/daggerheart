@@ -380,9 +380,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 4,
-                  "dice": "d12",
-                  "bonus": 15,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -401,7 +401,7 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
                 "groupAttack": "",
                 "fullRestore": false
@@ -438,7 +438,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Mark Stress",
             "img": "icons/skills/melee/strike-axe-energy-pink.webp",
             "range": "veryClose",
             "areas": [

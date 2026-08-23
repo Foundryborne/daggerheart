@@ -90,9 +90,29 @@
  * Override core foundry color variables in theme scopes, and add some new theme specific variants.
  * These are intended to be more representative of its use case, so avoid naming these after the color.
  * Some foundry variables are heavily scoped and we need to redefine them (https://github.com/foundryvtt/foundryvtt/issues/12893)
- * Convention for the redefined ones is --dh-{element}-color-{thing}
+ * Convention for the redefined ones is --dh-{element}-color-{thing}.
+ *
+ * --dh ones are implicitly system styles and are not namespaced. This allows them to be usable in things like embeds.
  */
 @scope (.theme-light, .theme-dark) to (.themed) {
+    --dh-card-trim-color: @golden;
+    --dh-card-trim-highlight: #ff9933;
+
+    --dh-color-text-shadow-contrast: light-dark(#ffffffa0, @dark-80);
+    --dh-input-color-border: light-dark(@dark, @beige);
+    --dh-input-color-text: light-dark(@dark, @beige);
+    --dh-button-color-bg: light-dark(transparent, @golden);
+    --dh-button-color-border: @dark-blue;
+    --dh-button-color-text: @dark-blue;
+    --dh-trait-color-bg: light-dark(#b1afb6, #50433F);
+    --dh-trait-color-border: light-dark(#8e8d96, #927952);
+    --dh-window-button-color-bg: light-dark(#e8e6e3, @deep-black);
+    --dh-window-button-color-text: light-dark(@dark-blue, @beige);
+    --dh-resistance-color-border: #ffa500;
+    --dh-resistance-color-bg: #ffa50010;
+    --dh-immunity-color-border: @chat-purple;
+    --dh-immunity-color-bg: @chat-purple-10;
+
     .dh-style :scope,
     :scope.dh-style,
     .dh-style,
@@ -101,21 +121,6 @@
         --color-fieldset-border: light-dark(@dark-blue, @golden);
         --color-text-emphatic: light-dark(@dark-blue, @golden);;
         --color-text-subtle: light-dark(#555, #a29086);
-
-        --dh-color-text-shadow-contrast: light-dark(#ffffffa0, @dark-80);
-        --dh-input-color-border: light-dark(@dark, @beige);
-        --dh-input-color-text: light-dark(@dark, @beige);
-        --dh-button-color-bg: light-dark(transparent, @golden);
-        --dh-button-color-border: @dark-blue;
-        --dh-button-color-text: @dark-blue;
-        --dh-trait-color-bg: light-dark(#b1afb6, #50433F);
-        --dh-trait-color-border: light-dark(#8e8d96, #927952);
-        --dh-window-button-color-bg: light-dark(#e8e6e3, @deep-black);
-        --dh-window-button-color-text: light-dark(@dark-blue, @beige);
-        --dh-resistance-color-border: #ffa500;
-        --dh-resistance-color-bg: #ffa50010;
-        --dh-immunity-color-border: @chat-purple;
-        --dh-immunity-color-bg: @chat-purple-10;
     }
 }
 
@@ -233,6 +238,7 @@
 @color-text-primary: var(--color-text-primary);
 @color-text-subtle: var(--color-text-subtle);
 @color-text-shadow-contrast: var(--dh-color-text-shadow-contrast);
+@card-trim-color: var(--dh-card-trim-color);
 @input-color-border: var(--dh-input-color-border);
 @input-color-text: var(--dh-input-color-text);
 @button-color-bg: var(--dh-button-color-bg);

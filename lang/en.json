@@ -154,7 +154,7 @@
                 "attackName": "Attack Name",
                 "criticalThreshold": "Critical Threshold",
                 "includeBase": {
-                    "label": "Include Item Damage"
+                    "label": "Include Base Damage"
                 },
                 "groupAttack": {
                     "label": "Group Attack"

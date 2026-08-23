@@ -630,55 +630,6 @@
         font-size: var(--font-size-11);
         text-transform: uppercase;
     }
-
-    secret-block {
-        display: block;
-
-        /** A buffer to make the hover behavior work a bit better. The bottom in the button needs to compensate */
-        @buffer: 8px;
-        margin-top: -@buffer;
-        padding-top: @buffer;
-
-        button.reveal {
-            --button-size: 1rem;
-            height: var(--button-size);
-            position: absolute;
-            margin: auto;
-            left: 0;
-            right: 0;
-            width: min-content;
-            padding: 1px 8px 0 8px;
-            bottom: calc(100% - 0.4375rem - 1px);
-            
-            background-color: var(--dh-window-button-color-bg); // todo: find a better var name
-            border-color: var(--color-secret-border);
-            color: var(--dh-window-button-color-text);
-            font-size: var(--font-size-10);
-            user-select: none;
-            text-transform: uppercase;
-            white-space: nowrap;
-
-            visibility: hidden;
-        }
-
-        &:hover button.reveal {
-            visibility: visible;
-        }
-    }
-
-    /** 
-     * The element inside a secret-block. 
-     * This is separate since during prosemirror editing, the secret-block container does not exist.
-     */
-    section.secret {
-        --color-secret-bg: @red-10;
-        --color-revealed-bg: @green-10;
-        position: relative;
-        padding: 0;
-        p {
-            margin: 0.5rem 0;
-        }
-    }
 }
 
 .system-daggerheart {

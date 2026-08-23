@@ -275,9 +275,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 2,
-                  "dice": "d4",
-                  "bonus": 3,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -296,21 +296,22 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {
                 "stress": {
                   "value": {
                     "custom": {
-                      "enabled": true,
+                      "enabled": false,
                       "formula": "1"
                     },
                     "multiplier": "flat",
-                    "flatMultiplier": 1,
+                    "flatMultiplier": 0,
                     "dice": "d6",
-                    "bonus": null
+                    "bonus": 1
                   },
                   "applyTo": "stress",
                   "base": false,
@@ -354,7 +355,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Spend Fear",
             "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
             "range": "far",
             "baseAction": false,

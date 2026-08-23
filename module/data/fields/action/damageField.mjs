@@ -297,6 +297,11 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
         };
     }
 
+    get hasFormula() {
+        const formula = this.getFormula();
+        return formula === '0';
+    }
+
     /**
      * @returns {string} the formula associated with this damage field
      */

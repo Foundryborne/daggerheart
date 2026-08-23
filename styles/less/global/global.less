@@ -69,12 +69,6 @@
                 margin-bottom: 4px;
             }
 
-            .item-description-inner-container {
-                p {
-                    display: inline;
-                }
-            }
-
             .item-links {
                 display: flex;
                 gap: 4px;
@@ -118,4 +112,9 @@ body.theme-light,
 
 body:not([data-gm=true]) [data-visibility="gm"] {
     display: none;
+}
+
+/** Embedded cards are usually inline */
+document-embed:has(.dh-card) {
+    display: inline-block;
 }

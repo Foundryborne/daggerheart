@@ -60,7 +60,8 @@ export default class ActionSelectionDialog extends HandlebarsApplicationMixin(Ap
         const actions = this.#item.system.actionsList.map(action => ({
                 ...action.toObject(),
                 id: action.id,
-                img: action.baseAction ? action.parent.parent.img : action.img
+                img: action.baseAction ? action.parent.parent.img : action.img,
+                uuid: action.uuid
             })),
             itemName = this.#item.name;
         return {
@@ -70,6 +71,10 @@ export default class ActionSelectionDialog extends HandlebarsApplicationMixin(Ap
         };
     }
 
+    /**     
+     * @this ActionSelectionDialog
+     * @type {import("@client/applications/_types.mjs").ApplicationClickAction}
+     */
     static async #onChooseAction(event, button) {
         const { actionId } = button.dataset;
         this.#action = this.item.system.actionsList.find(a => a._id === actionId);

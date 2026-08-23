@@ -421,9 +421,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 3,
-                  "dice": "d8",
-                  "bonus": 1,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -442,7 +442,7 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": true,
                 "groupAttack": "",
                 "fullRestore": false

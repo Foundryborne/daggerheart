@@ -5,6 +5,8 @@ import BaseDataItem from './base.mjs';
 const fields = foundry.data.fields;
 
 export default class DHCommunity extends BaseDataItem {
+    static embedTemplate = 'systems/daggerheart/templates/components/card/community.hbs';
+
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -47,9 +49,26 @@ export default class DHCommunity extends BaseDataItem {
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
-            { label: 'DAGGERHEART.ITEMS.Community.featuresLabel', features }
+            { features }
         );
 
         return { prefix: null, value: baseDescription, suffix };
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        // Card styling has certain defaults designed for embedding
+        config.caption ??= false;
+        config.cite ??= false;
+        config.inline ??= true;
+
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'tooltip' });
+        const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
+            item: this.parent,
+            description
+        })
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        return container.children;
     }
 }

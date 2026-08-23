@@ -417,9 +417,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 4,
-                  "dice": "d8",
-                  "bonus": 7,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -438,7 +438,7 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
                 "groupAttack": "",
                 "fullRestore": false
@@ -470,7 +470,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Mark Stress",
             "img": "icons/skills/melee/blood-slash-foam-red.webp",
             "range": "veryClose",
             "areas": [
