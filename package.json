@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node ./tools/run-start.mjs",
+    "watch": "npx concurrently \"rollup -c --watch\" \"gulp\"",
     "build": "npm run rollup && npm run gulp",
     "rollup": "rollup -c",
     "gulp": "gulp less",

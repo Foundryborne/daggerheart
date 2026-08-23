@@ -256,7 +256,12 @@
             }
             .item-list-img {
                 width: 40px;
+                height: 40px;
                 flex: unset;
+                object-fit: cover;
+                
+                // cards use centers but regular items usually use center/top. We prioritize cards
+                object-position: center center;
             }
             .item-list-name {
                 flex-grow: 3;
