@@ -15,7 +15,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>Greetings prospective GM or Player. The Foundryborne team hopes you'll have a great time using the system and enjoying Daggerheart.</p><p>We've included some good to know information here as a first time message. You refer back to this journal in the Compendium Journals.</p><p></p><p>You can find the comprehensive documentation for the system here:</p><p><a href=\"https://github.com/Foundryborne/daggerheart/wiki\" title=\"System Documentation\">System Documentation</a></p><p></p><h2>Official Content</h2><p></p><p>You can find all official content modules in the <a href=\"https://www.foundryvtt.store/creators/darrington-press\">FoundryVTT Store</a></p><p>This includes the Core Rulebook, Hope &amp; Fear, digital dice sets and more!</p>"
+        "content": "<p>Greetings prospective GM or Player. The Foundryborne team hopes you'll have a great time using the system and enjoying Daggerheart.</p><p>We've included some good to know information here as a first time message. You refer back to this journal in the Compendium Journals.</p><p></p><p>You can find the comprehensive documentation for the system here:</p><p><a href=\"https://github.com/Foundryborne/daggerheart/wiki\" title=\"System Documentation\">System Documentation</a></p><p></p><h2>Official Content</h2><p></p><p>You can find all official content modules in the <a href=\"https://www.foundryvtt.store/creators/darrington-press\">FoundryVTT Store</a></p><p>This includes the Core Rulebook, Hope &amp; Fear, digital dice sets and more!</p><p>Also available: The <a href=\"https://www.foundryvtt.store/bundles/daggerheart-bundle\">Daggerheart Bundle</a>, containing the Core Rulebook, Hope &amp; Fear and free digital dice!</p>"
       },
       "video": {
         "controls": true,
@@ -36,7 +36,7 @@
         "systemId": "daggerheart",
         "systemVersion": "2.7.4",
         "createdTime": 1787131648446,
-        "modifiedTime": 1787500296031,
+        "modifiedTime": 1787500770940,
         "lastModifiedBy": "G1yqZ2WFlRCnqBMu"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.Qn12vkbvV4m8LW3E"
