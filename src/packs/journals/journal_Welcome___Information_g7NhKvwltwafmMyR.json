@@ -15,7 +15,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>Greetings prospective GM or Player. The Foundryborne team hopes you'll have a great time using the system and enjoying Daggerheart.</p><p>We've included some good to know information here as a first time message. You refer back to this journal in the Compendium Journals.</p><p></p><p>You can find the comprehensive documentation for the system here:</p><p><a href=\"https://github.com/Foundryborne/daggerheart/wiki\" title=\"System Documentation\">System Documentation</a></p><p></p><h2>Official Content</h2><p></p><p>You can find all official content modules in the <a href=\"https://www.foundryvtt.store/creators/darrington-press\">FoundryVTT Store</a></p><p>This includes the Core Rulebook, Hope &amp; Fear, digital dice sets and more!</p><p>Also available: The <a href=\"https://www.foundryvtt.store/bundles/daggerheart-bundle\">Daggerheart Bundle</a>, containing the Core Rulebook, Hope &amp; Fear and free digital dice!</p>"
+        "content": "<p>Greetings prospective GM or Player. The Foundryborne team hopes you'll have a great time using the system and enjoying Daggerheart.</p><p>We've included some good to know information here as a first time message. You refer back to this journal in the Compendium Journals.</p><p></p><p>You can find the comprehensive documentation for the system here:</p><p><a href=\"https://github.com/Foundryborne/daggerheart/wiki\" title=\"System Documentation\">System Documentation</a></p><p></p><h2>Official Content</h2><p></p><h3>Official Daggerheart content modules are now available for preorder!</h3><ul><li><p><strong>Core Rulebook</strong>: Includes official artwork for domain cards, adversaries, tokens, portraits, dynamic token rings, spotlight tracker, premium journals, character sheet options and many campaign frame specific features.</p></li><li><p><strong>Hope &amp; Fear</strong>: Additional Classes &amp; Subclasses, new Domains, Ancestries, Communities, Transformations, Adversaries, Environments and Campaign Frames in beautiful premium journals with full artwork.</p></li><li><p><strong>Digital Dice Set</strong>: 3 beautiful digital dice sets for Dice So Nice, including specially crafted Hope &amp; Fear dice options.<br></p></li></ul><p>You can find all official content modules in the <a href=\"https://www.foundryvtt.store/creators/darrington-press\">FoundryVTT Store</a></p><p>You can also grab the <a href=\"https://www.foundryvtt.store/bundles/daggerheart-bundle\">Daggerheart Bundle</a>, which combines the Core Rulebook and Hope &amp; Fear expansion, and includes the digital dice set for free as a special preorder bonus!</p>"
       },
       "video": {
         "controls": true,
@@ -36,7 +36,7 @@
         "systemId": "daggerheart",
         "systemVersion": "2.7.4",
         "createdTime": 1787131648446,
-        "modifiedTime": 1787500770940,
+        "modifiedTime": 1787573436460,
         "lastModifiedBy": "G1yqZ2WFlRCnqBMu"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.Qn12vkbvV4m8LW3E"
