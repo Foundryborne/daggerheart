@@ -154,6 +154,9 @@ export default class DHDomainCard extends BaseDataItem {
         })
         const container = document.createElement('div');
         container.innerHTML = content;
+        if (['dark', 'light'].includes(config.theme)) {
+            container.children[0].classList.add('themed', `theme-${config.theme}`);
+        }
         return container.children;
     }
 

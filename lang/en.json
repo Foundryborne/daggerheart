@@ -3000,6 +3000,9 @@
                     },
                     "useResourcePips": {
                         "label": "Pip Display For Resources"
+                    },
+                    "tooltipCardTheme": {
+                        "label":"Tooltip Card Theme"
                     }
                 },
                 "fearDisplay": {

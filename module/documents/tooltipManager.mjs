@@ -132,7 +132,8 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         if (!item) return null;
 
         // If there is support for embeds, use that instead.
-        const embed = item instanceof Item ? await item.system.toEmbed() : null;
+        const cardTheme = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
+        const embed = item instanceof Item ? await item.system.toEmbed({ theme: cardTheme }) : null;
         if (item instanceof Item && embed) {
             if (embed instanceof HTMLCollection) {
                 this.tooltip.replaceChildren(...embed);

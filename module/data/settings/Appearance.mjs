@@ -84,8 +84,17 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 nullable: false,
                 initial: 'always'
             }),
-            hideAttribution: new BooleanField(),
-            showGenericStatusEffects: new BooleanField({ initial: true })
+            hideAttribution: new BooleanField({ initial: false }),
+            showGenericStatusEffects: new BooleanField({ initial: true }),
+            tooltipCardTheme: new StringField({
+                required: true,
+                nullable: false, 
+                initial: 'dark',
+                choices: {
+                    dark: 'SETTINGS.UI.FIELDS.colorScheme.choices.dark',
+                    light: 'SETTINGS.UI.FIELDS.colorScheme.choices.light'
+                }
+            })
         };
     }
 
