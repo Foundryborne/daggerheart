@@ -84,7 +84,6 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 nullable: false,
                 initial: 'always'
             }),
-            hideAttribution: new BooleanField({ initial: false }),
             showGenericStatusEffects: new BooleanField({ initial: true }),
             tooltipCardTheme: new StringField({
                 required: true,

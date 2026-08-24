@@ -2959,9 +2959,6 @@
                     "showGenericStatusEffects": {
                         "label": "Show Foundry Status Effects"
                     },
-                    "hideAttribution": {
-                        "label": "Hide Attribution"
-                    },
                     "showTokenDistance": {
                         "label": "Show Token Distance on Hover",
                         "choices": {

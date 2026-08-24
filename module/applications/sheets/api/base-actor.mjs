@@ -73,8 +73,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.appearance
         ).useResourcePips;
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
 
         // Prepare inventory data
         if (this.document.system.metadata.hasInventory) {
