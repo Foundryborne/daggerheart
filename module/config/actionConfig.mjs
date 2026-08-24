@@ -64,18 +64,27 @@ export const actionTypes = {
 export const damageOnSave = {
     none: {
         id: 'none',
-        label: 'None',
-        mod: 0
+        label: 'DAGGERHEART.CONFIG.DamageOnSave.none.name',
+        mod: 0,
+        onSuccess: true
     },
     half: {
         id: 'half',
-        label: 'Half Damage',
-        mod: 0.5
+        label: 'DAGGERHEART.CONFIG.DamageOnSave.half.name',
+        mod: 0.5,
+        onSuccess: true
     },
     full: {
         id: 'full',
-        label: 'Full damage',
-        mod: 1
+        label: 'DAGGERHEART.CONFIG.DamageOnSave.full.name',
+        mod: 1,
+        onSuccess: true
+    },
+    doubleOnFail: {
+        id: 'doubleOnFail',
+        label: 'DAGGERHEART.CONFIG.DamageOnSave.doubleOnFail.name',
+        mod: 2,
+        onSuccess: false
     }
 };
 
