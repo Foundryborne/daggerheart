@@ -89,7 +89,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             tooltipCardTheme: new StringField({
                 required: true,
                 nullable: false, 
-                initial: 'dark',
+                initial: 'light',
                 choices: {
                     dark: 'SETTINGS.UI.FIELDS.colorScheme.choices.dark',
                     light: 'SETTINGS.UI.FIELDS.colorScheme.choices.light'
