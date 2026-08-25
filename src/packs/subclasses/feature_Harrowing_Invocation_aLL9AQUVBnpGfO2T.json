@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Harrowing Invocation",
+  "folder": "hpGSiLKGH2r4vuLG",
+  "_id": "aLL9AQUVBnpGfO2T",
+  "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When an adversary targets you or an ally within Very Close range with an attack, you can <strong>spend a Favor</strong> to give them disadvantage on the roll. If the adversary fails the roll, they must also mark a Stress.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!aLL9AQUVBnpGfO2T"
+}

@@ -8,14 +8,14 @@
     "description": "<p>When you take Minor damage, you can <strong>mark 2 Stress</strong> instead of marking a Hit Point.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 27,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -24,30 +24,28 @@
       "_id": "4Lc40mNnRInTKMC5",
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-orange.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.stressDamageReduction.minor.cost",
+            "type": "override",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.stressDamageReduction.minor.cost",
-          "mode": 5,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>When you take Minor damage, you can mark 2 Stress instead of marking a Hit Point.</p>",
       "origin": null,
@@ -59,14 +57,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!S0Ww7pYOSREt8qKg.4Lc40mNnRInTKMC5"
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!S0Ww7pYOSREt8qKg"
 }

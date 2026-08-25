@@ -7,15 +7,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
-        position: { width: 660, height: 766 },
-        window: { resizable: true },
-        actions: {
-            toggleHitPoints: AdversarySheet.#toggleHitPoints,
-            toggleStress: AdversarySheet.#toggleStress,
-            reactionRoll: AdversarySheet.#reactionRoll,
-            toggleResourceDice: AdversarySheet.#toggleResourceDice,
-            handleResourceDice: AdversarySheet.#handleResourceDice
-        },
+        position: { width: 645, height: 750 },
         window: {
             resizable: true,
             controls: [
@@ -25,6 +17,14 @@ export default class AdversarySheet extends DHBaseActorSheet {
                     action: 'editAttribution'
                 }
             ]
+        },
+        actions: {
+            toggleHitPoints: AdversarySheet.#toggleHitPoints,
+            toggleStress: AdversarySheet.#toggleStress,
+            reactionRoll: AdversarySheet.#reactionRoll,
+            toggleResourceDice: AdversarySheet.#toggleResourceDice,
+            handleResourceDice: AdversarySheet.#handleResourceDice,
+            advanceResourceDie: AdversarySheet.#advanceResourceDie
         },
         dragDrop: [
             {
@@ -58,12 +58,13 @@ export default class AdversarySheet extends DHBaseActorSheet {
             template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs',
             scrollable: ['.feature-section']
         },
-        notes: {
-            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs'
-        },
         effects: {
             template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
             scrollable: ['.effects-sections']
+        },
+        notes: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs',
+            scrollable: ['.editor-content']
         }
     };
 
@@ -103,13 +104,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        const featureForms = ['passive', 'action', 'reaction'];
-        context.features = this.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        );
-
         return context;
     }
 
@@ -124,6 +118,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
                 break;
+            case 'features': 
+                await this._prepareFeaturesContext(context, options);
+                break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
                 break;
@@ -131,13 +128,27 @@ export default class AdversarySheet extends DHBaseActorSheet {
         return context;
     }
 
+    /** @inheritdoc */
+    _prepareTabs(group) {
+        const result = super._prepareTabs(group);
+        if (group === 'primary') {
+            result.notes.empty = !this.document.system.notes?.trim();
+        }
+        return result;
+    }
+
     /**@inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
+        for (const element of htmlElement.querySelectorAll('.inventory-item-resource')) {
             element.addEventListener('change', this.updateItemResource.bind(this));
             element.addEventListener('click', e => e.stopPropagation());
+        }
+
+        
+        htmlElement.querySelectorAll('.item-resource.die').forEach(element => {
+            element.addEventListener('contextmenu', this.lowerResourceDie.bind(this));
         });
     }
 
@@ -186,13 +197,53 @@ export default class AdversarySheet extends DHBaseActorSheet {
         });
     }
 
-    /** @inheritdoc */
-    async _onDragStart(event) {
-        const inventoryItem = event.currentTarget.closest('.inventory-item');
-        if (inventoryItem) {
-            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+    /**
+     * Prepare render context for the Features part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareFeaturesContext(context, _options) {
+        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
+        const featureData = this.document.system.features.sort((a, b) =>
+            a.system.featureForm !== b.system.featureForm
+                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
+                : a.sort - b.sort
+        ).map(feature => ({ feature, childFeatures: [] }));
+
+        const { evolved } = CONFIG.DH.ACTIONS.evolutionStates;
+        for (const { feature, childFeatures } of featureData) {
+            if (feature.system.featureForm === 'evolution') {
+                const evolutionActions = 
+                    feature.system.actions.filter(x => x.type === CONFIG.DH.ACTIONS.actionTypes.evolution.id);
+                for (const action of evolutionActions) {
+                    for (const [id, featureState] of Object.entries(action.evolution.evolutionFeatures)) {
+                        const evolutionFeature = featureData.find(x => x.feature.id === id);
+                        if (!evolutionFeature) continue;
+
+                        if (featureState === evolved.id) {
+                            childFeatures.push(evolutionFeature);
+                            featureData.splice(featureData.indexOf(evolutionFeature), 1);
+                        }
+                    }
+                }
+            }
         }
-        super._onDragStart(event);
+
+        context.features = [];
+        context.evolutionFeatures = [];
+        for (const { feature, childFeatures } of featureData) {
+            if (childFeatures.length) {
+                context.evolutionFeatures.push(feature);
+            } else {
+                context.features.push(feature);
+            }
+
+            for (const data of childFeatures) {
+                context.evolutionFeatures.push(data.feature);
+            }
+        }
     }
 
     /* -------------------------------------------- */
@@ -271,6 +322,26 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 acc[index] = { value: state.value, used: state.used };
                 return acc;
             }, {})
+        });
+    }
+
+    static #advanceResourceDie(_, target) {
+        this.updateResourceDie(target, true);
+    }
+
+    lowerResourceDie(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.updateResourceDie(event.target, false);
+    }
+
+    async updateResourceDie(target, advance) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const advancedValue = item.system.resource.value + (advance ? 1 : -1);
+        await item.update({
+            'system.resource.value': Math.min(advancedValue, Number(item.system.resource.dieFaces.split('d')[1]))
         });
     }
 

@@ -50,11 +50,11 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         ).showGenericStatusEffects;
         context.genericStatusEffects = useGeneric
             ? Object.keys(context.statusEffects).reduce((acc, key) => {
-                  const effect = context.statusEffects[key];
-                  if (!effect.systemEffect) acc[key] = effect;
+                const effect = context.statusEffects[key];
+                if (!effect.systemEffect) acc[key] = effect;
 
-                  return acc;
-              }, {})
+                return acc;
+            }, {})
             : null;
 
         context.hasCompanion = this.actor.system.companion;
@@ -68,11 +68,11 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         const warning =
             tokensWithoutActors.length === 1
                 ? game.i18n.format('DAGGERHEART.UI.Notifications.tokenActorMissing', {
-                      name: tokensWithoutActors[0].name
-                  })
+                    name: tokensWithoutActors[0].name
+                })
                 : game.i18n.format('DAGGERHEART.UI.Notifications.tokenActorsMissing', {
-                      names: tokensWithoutActors.map(x => x.name).join(', ')
-                  });
+                    names: tokensWithoutActors.map(x => x.name).join(', ')
+                });
 
         const tokens = canvas.tokens.controlled
             .filter(t => t.actor && !DHTokenHUD.#nonCombatTypes.includes(t.actor.type))
@@ -174,8 +174,8 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                             nonZeroIndex === sideMiddle
                                 ? 0
                                 : nonZeroIndex < sideMiddle
-                                  ? -nonZeroIndex
-                                  : nonZeroIndex - sideMiddle;
+                                    ? -nonZeroIndex
+                                    : nonZeroIndex - sideMiddle;
                         return { x: actorX - sizeX * distance, y: actorY - sizeY * distanceCoefficient };
                     } else if (index < side + inbetween) {
                         const inbetweenIndex = nonZeroIndex - side;
@@ -183,8 +183,8 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                             inbetweenIndex === inbetweenMiddle
                                 ? 0
                                 : inbetweenIndex < inbetweenMiddle
-                                  ? -inbetweenIndex
-                                  : inbetweenIndex - inbetweenMiddle;
+                                    ? -inbetweenIndex
+                                    : inbetweenIndex - inbetweenMiddle;
                         return { x: actorX + sizeX * distanceCoefficient, y: actorY + sizeY * distance };
                     } else if (index < 2 * side + inbetween) {
                         const sideIndex = nonZeroIndex - side - inbetween;
@@ -192,8 +192,8 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                             sideIndex === sideMiddle
                                 ? 0
                                 : sideIndex < sideMiddle
-                                  ? sideIndex
-                                  : -(sideIndex - sideMiddle);
+                                    ? sideIndex
+                                    : -(sideIndex - sideMiddle);
                         return { x: actorX + sizeX * distance, y: actorY + sizeY * distanceCoefficient };
                     } else {
                         const inbetweenIndex = nonZeroIndex - 2 * side - inbetween;
@@ -201,8 +201,8 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                             inbetweenIndex === inbetweenMiddle
                                 ? 0
                                 : inbetweenIndex < inbetweenMiddle
-                                  ? inbetweenIndex
-                                  : -(inbetweenIndex - inbetweenMiddle);
+                                    ? inbetweenIndex
+                                    : -(inbetweenIndex - inbetweenMiddle);
                         return { x: actorX - sizeX * distanceCoefficient, y: actorY + sizeY * distance };
                     }
                 })

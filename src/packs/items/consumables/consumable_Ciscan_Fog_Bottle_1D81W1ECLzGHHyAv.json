@@ -1,0 +1,70 @@
+{
+  "name": "Ciscan Fog Bottle",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-corked-empty.webp",
+  "system": {
+    "description": "<p>You can break this jar to fill the area within Close range with magical mist. A creature who enters the mist clears a Stress and becomes Hidden.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "3uoMUFXhffsn6XGm": {
+        "type": "effect",
+        "_id": "3uoMUFXhffsn6XGm",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Ciscan Fog Bottle",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "1D81W1ECLzGHHyAv",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Break",
+        "range": ""
+      }
+    }
+  },
+  "_id": "1D81W1ECLzGHHyAv",
+  "effects": [],
+  "folder": null,
+  "sort": 500000,
+  "flags": {},
+  "_key": "!items!1D81W1ECLzGHHyAv"
+}

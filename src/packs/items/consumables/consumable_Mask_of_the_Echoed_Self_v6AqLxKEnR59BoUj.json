@@ -1,0 +1,61 @@
+{
+  "name": "Mask of the Echoed Self",
+  "type": "consumable",
+  "img": "icons/commodities/treasure/mask-bone-white.webp",
+  "system": {
+    "description": "<p>You can wear this mask during your next level up to swap the values of any of your traits. When you do, the mask becomes your permanent face.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "PAq1qXNxaJSLhaDZ": {
+        "type": "effect",
+        "_id": "PAq1qXNxaJSLhaDZ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "v6AqLxKEnR59BoUj",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "v6AqLxKEnR59BoUj",
+  "effects": [],
+  "folder": null,
+  "sort": 10800000,
+  "flags": {},
+  "_key": "!items!v6AqLxKEnR59BoUj"
+}

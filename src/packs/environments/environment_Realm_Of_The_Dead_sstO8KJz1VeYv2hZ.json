@@ -1,0 +1,412 @@
+{
+  "type": "environment",
+  "name": "Realm Of The Dead",
+  "folder": "IKumu5HTLqONLYqb",
+  "system": {
+    "type": "traversal",
+    "description": "<p>A seemingly infinite expanse of still water without color or laughter.</p>",
+    "tier": 4,
+    "impulses": "Drown in despair, leech life, tempt into endless slumber",
+    "difficulty": 20,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {},
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Sea of Gloom",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>This realm is a boundless silver ocean blanketed in a gray gloom with no visible stars or horizon. The subtle current pulls inexorably at the PCs' legs, but it's too gentle to disturb the flat, mirrored surface of the water. Action rolls to navigate this realm have disadvantage.</p><section id=\"secret-N23TZsZyThv288xr\" class=\"secret\"><p>What dangers lie below the surface? How does one find the edge of a world without end, and what lies beyond it?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "0n459Up27okgKr7g": {
+            "type": "effect",
+            "_id": "0n459Up27okgKr7g",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "HBctc4A2WAiZ1BDq",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "bl1TbrxgkUCOWgMq",
+      "img": "icons/magic/light/projectile-halo-teal.webp",
+      "effects": [
+        {
+          "name": "Gloom",
+          "disabled": false,
+          "img": "icons/magic/light/projectile-halo-teal.webp",
+          "description": "<p>Action rolls to navigate this realm have disadvantage.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.disadvantageSources",
+                "type": "add",
+                "value": "Action rolls to navigate this realm",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.sstO8KJz1VeYv2hZ.Item.bl1TbrxgkUCOWgMq",
+          "_id": "HBctc4A2WAiZ1BDq",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!sstO8KJz1VeYv2hZ.bl1TbrxgkUCOWgMq.HBctc4A2WAiZ1BDq"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!sstO8KJz1VeYv2hZ.bl1TbrxgkUCOWgMq"
+    },
+    {
+      "name": "The Burden of Wakefulness",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>It's impossible to sleep here. When the party rests, each PC can choose only one downtime move.</p><section id=\"secret-Pvxn0QyLyH3mwo8K\" class=\"secret\"><p>What thoughts keep the PCs awake here? How can they support one another without succumbing to hopelessness themselves?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "ikYzJk9bR2zcZFZu",
+      "img": "icons/magic/perception/eye-tendrils-web-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!sstO8KJz1VeYv2hZ.ikYzJk9bR2zcZFZu"
+    },
+    {
+      "name": "Death-Touched Denizens",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>All mortal creatures eventually pass through this place on their journey to the other side, but those who linger or wander become warped and mutated by the gloom. Any adversaries the party encounters here are Faded. Describe how their time here has warped them into something worse than dead. When a PC takes damage from a Faded adversary's attack, they must also mark a Stress. If a PC is defeated here, they become a Faded adversary controlled by the GM instead of making a death move.</p><section id=\"secret-iSFjlhMjNIFiC08N\" class=\"secret\"><p>Why do these creatures refuse to move on? Is there any pattern to the forms the gloom fades them into?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "NjefAB8evT6E7Klo",
+      "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!sstO8KJz1VeYv2hZ.NjefAB8evT6E7Klo"
+    },
+    {
+      "name": "The Chill of Death",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to force a PC to make a Presence Reaction Roll as the Sea of Gloom leeches the warmth from their blood and bones. On a failure, they take <strong>4d10</strong> direct magic damage. On a success, they must mark a Stress.</p><section id=\"secret-zkpNph1L8EhK9xx8\" class=\"secret\"><p>What does it feel like to have the will to live forcibly drained from you? How do you focus through the despair?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "6kRHsGSUBnGW7yo1": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d10",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "6kRHsGSUBnGW7yo1",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "9igGCe0LCHvsNmFx",
+      "img": "icons/magic/unholy/energy-smoke-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!sstO8KJz1VeYv2hZ.9igGCe0LCHvsNmFx"
+    },
+    {
+      "name": "Abandon All Hope",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When a PC spends Hope in the Realm of the Dead, they must roll a <strong>[[/r d6]]</strong>. On an odd result, they must spend an additional Hope or lose the benefit of the Hope they already spent.</p><section id=\"secret-hlBMll2qdg3GxQEF\" class=\"secret\"><p>What regrets gnaw at the edge of your consciousness while you're here? What memories still tether you to the Mortal Realm?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "5MC0kJKB3kjymyUa",
+      "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!sstO8KJz1VeYv2hZ.5MC0kJKB3kjymyUa"
+    }
+  ],
+  "_id": "sstO8KJz1VeYv2hZ",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Realm Of The Dead",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!sstO8KJz1VeYv2hZ"
+}

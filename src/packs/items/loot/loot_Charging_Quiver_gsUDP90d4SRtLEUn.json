@@ -11,7 +11,8 @@
       "source": "Daggerheart SRD",
       "page": 58,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -20,36 +21,35 @@
       "_id": "0zebbOsyjkm9IqE6",
       "img": "icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.bonus",
-          "mode": 2,
-          "value": "@system.tier",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": "@system.tier",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": "@system.tier",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
         },
-        {
-          "key": "system.bonuses.damage.magical.bonus",
-          "mode": 2,
-          "value": "@system.tier",
-          "priority": null
-        }
-      ],
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "origin": null,
@@ -61,15 +61,14 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!gsUDP90d4SRtLEUn.0zebbOsyjkm9IqE6"
     }
   ],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!gsUDP90d4SRtLEUn"
 }

@@ -1,0 +1,665 @@
+{
+  "type": "adversary",
+  "name": "Fire Titan Warlord",
+  "folder": "7XHlANCPz18yvl5L",
+  "system": {
+    "type": "leader",
+    "description": "<p>A smoldering, battle-obsessed goliath wearing bespoke armor and wielding a massive maul.</p>",
+    "tier": 4,
+    "motivesAndTactics": "Compete against rivals, conquer the weak, craft colossal war machines",
+    "difficulty": 21,
+    "damageThresholds": {
+      "major": 33,
+      "severe": 66
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 9
+      },
+      "stress": {
+        "value": 0,
+        "max": 8
+      }
+    },
+    "attack": {
+      "name": "Maul",
+      "img": "icons/weapons/hammers/hammer-double-glowing-yellow.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "veryClose",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 6,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d10",
+            "bonus": 10,
+            "multiplier": "flat",
+            "flatMultiplier": 4,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "E9EKwdWaU5eaFoxT": {
+        "name": "Tactics",
+        "value": 4,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "huge",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Relentless (2)",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The Warlord can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "PxiD2XExe45fHIKM",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!PjkvJjlljFIg6Ae9.PxiD2XExe45fHIKM"
+    },
+    {
+      "name": "Colossus Crafter",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Countdown (6). When the Warlord enters the scene, activate the countdown. It ticks down when the Warlord is spotlighted. When it triggers, summon the Gargantuan War Machine, which appears at the edge of the battlefield and immediately takes the spotlight.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "XCZQJSvp4yPO1rCh": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Colossus Crafter",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "XCZQJSvp4yPO1rCh",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "nFtxBG44eEjAF9uk": {
+            "type": "summon",
+            "_id": "nFtxBG44eEjAF9uk",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, summon the Gargantuan War Machine, which appears at the edge of the battlefield and immediately takes the spotlight.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.iCiRtuBhVfojXOj5",
+                "count": "1"
+              }
+            ],
+            "name": "Trigger Countdown",
+            "range": "",
+            "img": "icons/weapons/artillery/trebuchet-simple.webp"
+          }
+        },
+        "granter": null
+      },
+      "_id": "y23ZdtLiSn0pN2g8",
+      "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!PjkvJjlljFIg6Ae9.y23ZdtLiSn0pN2g8"
+    },
+    {
+      "name": "Release the Hounds",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to have the Warlord summon two Demonic Hound Packs, which appear at Close range and immediately take the spotlight.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "ZBhZ4G32zHIuBELj": {
+            "type": "summon",
+            "_id": "ZBhZ4G32zHIuBELj",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.NoRZ1PqB8N5wcIw0",
+                "count": "2"
+              }
+            ],
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
+      },
+      "_id": "jxtN0zwQ0831Esty",
+      "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!PjkvJjlljFIg6Ae9.jxtN0zwQ0831Esty"
+    },
+    {
+      "name": "Spinning Strike",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range and gain a Fear.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "yofgD5CBB3bnC8UJ": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "yofgD5CBB3bnC8UJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Spinning Strike",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "tkErESgXR79emSYb",
+      "img": "icons/skills/melee/strike-slashes-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!PjkvJjlljFIg6Ae9.tkErESgXR79emSYb"
+    },
+    {
+      "name": "Ground-Breaking",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to have the Warlord crack the earth with a downward swing of their maul and make an attack against a group within Close range. Targets the attack succeeds against take <strong>4d10+10</strong> direct damage. The area becomes rough terrain, and a PC must succeed on an Agility Reaction Roll (16) to move through it.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "JEcOJzlgx0cjztWq": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d10",
+                  "bonus": 10,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "JEcOJzlgx0cjztWq",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Ground-Breaking",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
+      },
+      "_id": "vFO6Ikozm5LzM1eh",
+      "img": "icons/magic/earth/explosion-lava-stone-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!PjkvJjlljFIg6Ae9.vFO6Ikozm5LzM1eh"
+    }
+  ],
+  "_id": "PjkvJjlljFIg6Ae9",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Fire Titan Warlord",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!PjkvJjlljFIg6Ae9"
+}

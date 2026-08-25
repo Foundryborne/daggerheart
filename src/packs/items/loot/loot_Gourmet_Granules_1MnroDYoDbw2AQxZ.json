@@ -1,0 +1,22 @@
+{
+  "name": "Gourmet Granules",
+  "type": "loot",
+  "img": "icons/commodities/materials/bowl-powder-gold.webp",
+  "system": {
+    "description": "<p>This savory powder makes any food it's sprinkled on delicious and healthy, no matter how bland or rotten it is.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "1MnroDYoDbw2AQxZ",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!1MnroDYoDbw2AQxZ"
+}

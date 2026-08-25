@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "HAGbPLHwm0UozDeG",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you fail an attack, you can <strong>mark a Stress</strong> to deal weapon damage using half your Proficiency.</p>",
+    "description": "<p>When you fail an attack, you can <strong>mark a Stress</strong> to deal weapon damage using half your Proficiency.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "damage",
         "_id": "DUojhK0OtvsotiE6",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you fail an attack, you can <strong>mark a Stress</strong> to deal weapon damage using half your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -43,21 +44,30 @@
         "effects": [],
         "name": "Mark a Stress",
         "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "nCNCqSH7UgW4O3To",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!nCNCqSH7UgW4O3To"
 }

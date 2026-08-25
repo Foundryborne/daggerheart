@@ -1,0 +1,117 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Stormthread Habit",
+  "type": "armor",
+  "_id": "zU1R9WrVCvQcxJ17",
+  "img": "icons/equipment/hand/gauntlet-armored-leather-steel-blue.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "yOf6C8teHAmMhIF1": {
+        "type": "healing",
+        "chatDisplay": true,
+        "name": "Clear Armor",
+        "description": "Once per scene when you take magic damage, you can clear an Armor Slot.",
+        "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "uses": {
+          "max": "1",
+          "recovery": "scene",
+          "value": 0,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "resources": {
+            "armor": {
+              "applyTo": "armor",
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "base": false,
+              "resultBased": false,
+              "fullRestore": false,
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          },
+          "main": null
+        },
+        "_id": "yOf6C8teHAmMhIF1",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        }
+      }
+    },
+    "tier": 2,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 4
+    },
+    "baseThresholds": {
+      "major": 9,
+      "severe": 20
+    },
+    "armorFeatures": [
+      {
+        "value": "absorbing",
+        "effectIds": [],
+        "actionIds": [
+          "yOf6C8teHAmMhIF1"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!zU1R9WrVCvQcxJ17"
+}

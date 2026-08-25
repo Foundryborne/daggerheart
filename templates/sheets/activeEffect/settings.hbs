@@ -1,5 +1,5 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-    <fieldset class="one-column optional">
+    <fieldset class="one-column optional {{#if source.system.stacking}}active{{/if}}">
         <legend>
             {{localize "DAGGERHEART.ACTIVEEFFECT.Config.stacking.title"}} 
             <input type="checkbox" class="stacking-change-checkbox" {{checked source.system.stacking}} />
@@ -13,14 +13,19 @@
         {{/if}}
     </fieldset>
 
-    <fieldset class="one-column">
-        <legend>{{localize "DAGGERHEART.ACTIVEEFFECT.Config.rangeDependence.title"}}</legend>
+    <fieldset class="one-column optional {{#if source.system.rangeDependence}}active{{/if}}">
+        <legend>
+            {{localize "DAGGERHEART.ACTIVEEFFECT.Config.rangeDependence.title"}}
+            <input type="checkbox" class="range-dependence-change-checkbox" {{checked source.system.rangeDependence}} />
+        </legend>
 
-        {{formGroup systemFields.rangeDependence.fields.enabled value=source.system.rangeDependence.enabled localize=true }}
-        {{formGroup systemFields.rangeDependence.fields.type value=source.system.rangeDependence.type localize=true }}
-        {{formGroup systemFields.rangeDependence.fields.target value=source.system.rangeDependence.target localize=true }}
-        {{formGroup systemFields.rangeDependence.fields.range value=source.system.rangeDependence.range localize=true }}
+        {{#if source.system.rangeDependence}}
+            {{formGroup systemFields.rangeDependence.fields.type value=source.system.rangeDependence.type localize=true }}
+            {{formGroup systemFields.rangeDependence.fields.target value=source.system.rangeDependence.target localize=true }}
+            {{formGroup systemFields.rangeDependence.fields.range value=source.system.rangeDependence.range localize=true }}
+        {{/if}}
     </fieldset>
+
     <fieldset class="one-column">
         <legend>{{localize "EFFECT.DURATION.Label"}}</legend>
 

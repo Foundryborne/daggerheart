@@ -1,0 +1,240 @@
+{
+  "type": "feature",
+  "name": "Lunar Phases",
+  "folder": "5X2hXr3NYBA0xR4U",
+  "_id": "6HGlS2CvR9NBsVg5",
+  "img": "icons/magic/nature/moon-crescent.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>At the beginning of each session, roll a <strong>[[/r d6]]</strong> and place it on this card. You gain the matching effect until the end of session.</p><table><thead><tr><td><p>Roll</p></td><td><p>Phase</p></td><td><p>Effect</p></td></tr></thead><tbody><tr><td><p><strong>1</strong></p></td><td><p>New</p></td><td><p>Spend a Hope to negate Minor damage.</p></td></tr><tr><td><p><strong>2–3</strong></p></td><td><p>Waxing</p></td><td><p>+2 to damage rolls</p></td></tr><tr><td><p><strong>4</strong></p></td><td><p>Full</p></td><td><p>+3 to damage thresholds</p></td></tr><tr><td><p><strong>5–6</strong></p></td><td><p>Waning</p></td><td><p>+1 to Evasion</p></td></tr></tbody></table><p>Once per rest, you can <strong>spend a Hope</strong> to increase the value of this die by one. If you increase the value of a 6, it becomes a 1.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "die",
+      "value": 0,
+      "max": "",
+      "recovery": null,
+      "progression": "increasing",
+      "dieFaces": "d6",
+      "icon": ""
+    },
+    "actions": {
+      "k5KPbB12hfutbvTj": {
+        "type": "effect",
+        "_id": "k5KPbB12hfutbvTj",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "New: Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Waxing",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "K7xu1KI8zehJ8kkY",
+      "img": "icons/magic/nature/moon-crescent.webp",
+      "disabled": true,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>+2 to damage rolls</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!6HGlS2CvR9NBsVg5.K7xu1KI8zehJ8kkY"
+    },
+    {
+      "name": "Full",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "7V75lzCjChYmZaZ5",
+      "img": "icons/environment/settlement/watchtower-moonlit-blue.webp",
+      "disabled": true,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>+3 to damage thresholds</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!6HGlS2CvR9NBsVg5.7V75lzCjChYmZaZ5"
+    },
+    {
+      "name": "Waning",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "b60bHY67KMfRJOrU",
+      "img": "icons/magic/light/projectile-flare-blue.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>+1 to Evasion</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!6HGlS2CvR9NBsVg5.b60bHY67KMfRJOrU"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!6HGlS2CvR9NBsVg5"
+}

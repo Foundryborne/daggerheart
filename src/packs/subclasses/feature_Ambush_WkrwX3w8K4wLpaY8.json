@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Ambush",
+  "folder": "R7L0dQGkdfNSu2kj",
+  "_id": "WkrwX3w8K4wLpaY8",
+  "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Your \"Marked for Death\" feature uses <strong>d6s</strong> instead of d4s.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!WkrwX3w8K4wLpaY8"
+}

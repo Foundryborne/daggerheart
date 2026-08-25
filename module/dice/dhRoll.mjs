@@ -1,11 +1,13 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { triggerChatRollFx } from '../helpers/utils.mjs';
+import BaseRoll from './baseRoll.mjs';
 
-export default class DHRoll extends Roll {
+export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
         options.bonusEffects = this.bonusEffectBuilder();
+
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
@@ -23,17 +25,31 @@ export default class DHRoll extends Roll {
 
     static DefaultDialog = D20RollDialog;
 
+    /**
+     * @param {Partial<RollConfig>} config
+     * @returns {Promise<RollConfig>}
+     */
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
 
         if (config.skips?.createMessage) config.messageRoll = roll;
 
-        await this.buildEvaluate(roll, config, (message = {}));
-        await this.buildPost(roll, config, (message = {}));
+        if (config.evaluate !== false) {
+            await this.buildEvaluate(roll, config, message);
+        }
+        await this.buildPost(roll, config, message);
         return config;
     }
 
+    static createRollInstance(config) {
+        return new this(config.roll.formula, config.data, config);
+    }
+
+    /** 
+     * @param {Partial<RollConfig>} config 
+     * @returns {Promise<RollConfig>}
+     */
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
@@ -47,7 +63,7 @@ export default class DHRoll extends Roll {
 
         this.temporaryModifierBuilder(config);
 
-        let roll = new this(config.roll.formula, config.data, config);
+        let roll = this.createRollInstance(config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
@@ -64,27 +80,14 @@ export default class DHRoll extends Roll {
         return roll;
     }
 
+    /** 
+     * Evaluates the roll and assigns roll data into the config. 
+     * This is only called if config.evaluate is not set to false
+     * @protected
+     */
     static async buildEvaluate(roll, config = {}, message = {}) {
-        if (config.evaluate !== false) {
-            await roll.evaluate();
-            config.roll = this.postEvaluate(roll, config);
-        }
-    }
-
-    static async buildPost(roll, config, message) {
-        for (const hook of config.hooks) {
-            if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
-        }
-
-        if (config.skips?.createMessage) {
-            await triggerChatRollFx([roll]);
-        } else if (!config.source?.message) {
-            config.message = await this.toMessage(roll, config);
-        }
-    }
-
-    static postEvaluate(roll, config = {}) {
-        return {
+        await roll.evaluate();
+        config.roll = {
             ...roll.options.roll,
             total: roll.total,
             formula: roll.formula,
@@ -97,20 +100,48 @@ export default class DHRoll extends Roll {
         };
     }
 
+    /** 
+     * Runs any post configuration events that need to happen towards the end, such as hooks and dice so nice 
+     * @protected
+     */
+    static async buildPost(roll, config, message) {
+        for (const hook of config.hooks) {
+            if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
+        }
+
+        if (config.skips?.createMessage) {
+            await triggerChatRollFx([roll]);
+        } else if (!config.source?.message) {
+            config.message = await this.toMessage(roll, config);
+        }
+    }
+
     static async toMessage(roll, config) {
         const item = config.data.parent?.items?.get?.(config.source.item) ?? null;
-        const action = item ? item.system.actions.get(config.source.action) : null;
+        const actions = item ? [
+            ...item.system.actions,
+            ...(item.system.attack?.id === config.source.action ? [item.system.attack] : [])
+        ] : [];
+        const action = actions.find(x => x.id === config.source.action);
         let actionDescription = null;
         if (action?.chatDisplay) {
             actionDescription = action
                 ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(action.description, {
-                      relativeTo: config.data,
-                      rollData: config.data.getRollData?.() ?? {}
-                  })
+                    relativeTo: config.data,
+                    rollData: config.data.getRollData?.() ?? {}
+                })
                 : null;
             config.actionChatMessageHandled = true;
         }
 
+        const reloadSetting = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).reload;
+        const useReload = 
+            item?.system.hasReload && 
+            action?.type === 'attack' && 
+            reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
+        const reloadResult = useReload ? await action?.handleReload?.() : {};
+        
         const cls = getDocumentClass('ChatMessage'),
             msgData = {
                 type: this.messageType,
@@ -118,7 +149,11 @@ export default class DHRoll extends Roll {
                 title: roll.title,
                 speaker: cls.getSpeaker({ actor: roll.data?.parent }),
                 sound: config.mute ? null : CONFIG.sounds.dice,
-                system: { ...config, actionDescription },
+                system: { 
+                    ...foundry.utils.deepClone(config), 
+                    actionDescription,
+                    reloadCheckValue: reloadResult.rollValue 
+                },
                 rolls: [roll]
             };
 
@@ -127,7 +162,7 @@ export default class DHRoll extends Roll {
         if (roll._evaluated) {
             const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
 
-            if (roll.formula !== '' && game.modules.get('dice-so-nice')?.active) {
+            if (roll.formula !== '' && game.dice3d) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
             }
 
@@ -135,19 +170,28 @@ export default class DHRoll extends Roll {
         } else return msgData;
     }
 
+    // TODO - Possibly remove this completly if actorRoll.renderHTML implementation can take over getting the chatData prepared.
     /** @inheritDoc */
     async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false, ...options } = {}) {
         if (!this._evaluated) return;
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            targetData: chatData.hasTarget ? {
+                currentTargets: chatData._getCurrentTargets(),
+                selectedTargetsData: chatData._getSelectedTargetsData()
+            } : null,
+            action: chatData.action,
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,
-            metagamingSettings
+            appliesEffects: chatData.appliesEffects,
+            metagamingSettings,
+            automationSettings
         });
     }
 
@@ -211,18 +255,54 @@ export default class DHRoll extends Roll {
         });
     }
 
+    /**
+     * Sums the values of all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path. Only for use on ActiveEffects.change with strictly numerical values.
+     * @param {string} path The full or partial effect.change key 
+     * @returns {number}
+     */
+    getTotalBonus(path) {
+        return Object.values(this.options.bonusEffects).reduce((acc, effect) => {
+            if (!effect.selected) return acc;
+            return acc + effect.changes.reduce((acc, change) => {
+                if (!change.key.includes(path)) return acc;
+                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                    this.data,
+                    change,
+                    effect.origEffect
+                );
+                
+                return Number.isNumeric(changeValue) ? acc + changeValue : acc; 
+            }, 0);
+        }, 0);
+    }
+
+    /**
+     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path.
+     * @param {string} path The full or partial effect.change key 
+     * @param {string} label The label to give the modifiers
+     * @returns {[{ label: string, value: any} ]}
+     */
     getBonus(path, label) {
         const modifiers = [];
         for (const effect of Object.values(this.options.bonusEffects)) {
             if (!effect.selected) continue;
             for (const change of effect.changes) {
                 if (!change.key.includes(path)) continue;
+                
+                // TODO: We should handle override and all other modes. It'll have to be done in a different way
+                // as we cannot just go through each change and sum them up. We'll have to get the total value with
+                // overrides and everything considered.
+                if (!['add', 'subtract'].includes(change.type)) continue;
+
                 const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
                     this.data,
                     change,
                     effect.origEffect
                 );
-                modifiers.push({ label: label, value: changeValue });
+                const typedValue = change.type === 'add' ? changeValue : -changeValue;
+                modifiers.push({ label: label, value: typedValue });
             }
         }
 
@@ -274,7 +354,8 @@ export default class DHRoll extends Roll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                if (effect.system.changes.some(x => changeKeys.some(key => x.key?.includes(key)))) {
+                // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+                if ((effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,

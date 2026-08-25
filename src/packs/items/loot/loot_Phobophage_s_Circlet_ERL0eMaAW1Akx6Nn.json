@@ -1,0 +1,75 @@
+{
+  "name": "Phobophage’s Circlet",
+  "type": "loot",
+  "img": "icons/commodities/treasure/crown-gold-laurel-wreath.webp",
+  "system": {
+    "description": "<p>When the GM spends a Fear, roll a d4. Once per scene on a result of 4, you clear a Stress.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "2s4ofx7L65OGBX6I": {
+        "type": "attack",
+        "damage": {
+          "main": null,
+          "resources": {}
+        },
+        "_id": "2s4ofx7L65OGBX6I",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": true
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d4",
+            "compare": "equal",
+            "treshold": 4
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Roll d4",
+        "range": ""
+      }
+    }
+  },
+  "_id": "ERL0eMaAW1Akx6Nn",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ERL0eMaAW1Akx6Nn"
+}

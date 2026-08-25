@@ -1,12 +1,13 @@
-import DhAppearance from '../../data/settings/Appearance.mjs';
 import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
+ * @import DhAppearance from '../../data/settings/Appearance.mjs';
  * @import {ApplicationClickAction} from "@client/applications/_types.mjs"
  */
 
+/** Settings menu for appearance settings */
 export default class DHAppearanceSettings extends HandlebarsApplicationMixin(ApplicationV2) {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -81,7 +82,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
     /** @inheritdoc */
     _configureRenderParts(options) {
         const parts = super._configureRenderParts(options);
-        if (!game.modules.get('dice-so-nice')?.active) {
+        if (!game.dice3d) {
             delete parts.diceSoNice;
             delete parts.tabs;
         }
@@ -114,7 +115,9 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         if (partId in context.tabs) partContext.tab = partContext.tabs[partId];
         switch (partId) {
             case 'diceSoNice':
-                await this.prepareDiceSoNiceContext(partContext);
+                if (game.dice3d)
+                    await this.prepareDiceSoNiceContext(partContext);
+
                 break;
             case 'footer':
                 partContext.buttons = [

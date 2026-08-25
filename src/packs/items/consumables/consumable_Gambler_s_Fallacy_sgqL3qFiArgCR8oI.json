@@ -1,0 +1,95 @@
+{
+  "name": "Gambler’s Fallacy",
+  "type": "consumable",
+  "img": "icons/sundries/misc/piggybank.webp",
+  "system": {
+    "description": "<p>You can spend any number of handfuls of gold by placing them into this slotted ceramic jar shaped like a pig. When you throw the jar at a point within Far range, it explodes and deals 1d20 magic damage for each handful of gold spent to all creatures within Close range of that point. All gold within the jar is destroyed.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "SLZn5uUrsucH90rQ": {
+        "type": "attack",
+        "_id": "SLZn5uUrsucH90rQ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Gambler’s Fallacy",
+            "type": "placed",
+            "shape": "inFront",
+            "size": "close",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "sgqL3qFiArgCR8oI",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {}
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Throw",
+        "range": "far",
+        "img": "icons/skills/ranged/bullet-ball-pink.webp"
+      }
+    }
+  },
+  "_id": "sgqL3qFiArgCR8oI",
+  "effects": [],
+  "folder": null,
+  "sort": 10400000,
+  "flags": {},
+  "_key": "!items!sgqL3qFiArgCR8oI"
+}

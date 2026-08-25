@@ -1,0 +1,61 @@
+{
+  "name": "Glowmoss Mushroom",
+  "type": "consumable",
+  "img": "icons/consumables/mushrooms/umbontae-green.webp",
+  "system": {
+    "description": "<p>You can break this mushroom into pieces, causing it to glow bright blue until your next long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "ZRKQmLZ709uJmwME": {
+        "type": "effect",
+        "_id": "ZRKQmLZ709uJmwME",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "Qnvfa3o3EaHskRZ7",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "Qnvfa3o3EaHskRZ7",
+  "effects": [],
+  "folder": null,
+  "sort": 5000000,
+  "flags": {},
+  "_key": "!items!Qnvfa3o3EaHskRZ7"
+}

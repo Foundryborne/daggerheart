@@ -62,9 +62,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         await this.document.update({ 'system.resources.stress.value': newValue });
     }
 
-    /**
-     *
-     */
+    /** @this {DhCompanionSheet} **/
     static async #actionRoll(event) {
         const partner = this.actor.system.partner;
         const config = {
@@ -80,6 +78,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
 
         const result = await partner.diceRoll(config);
         this.consumeResource(result?.costs);
+        result?.resourceUpdates.updateResources();
     }
 
     // Remove when Action Refactor part #2 done

@@ -1,0 +1,48 @@
+{
+  "type": "subclass",
+  "name": "Pact of the Endless",
+  "folder": "LO7tzHIrpCXH2ck5",
+  "_id": "yA10Wf90HYb0DTbK",
+  "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Pact of the Endless if you want to stand strong against enemies and avoid death.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": "presence",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.LZQ2LeUg9HPjzLR6"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.pEPIud1nwUb8wxiL"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.aLL9AQUVBnpGfO2T"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.ykvPRG06i68bxV0Y"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.wx4I8MnEJbkgMmeY"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.8INvTVCRkDoCbbih"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.cgq9QzytVs6uyaBW"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!yA10Wf90HYb0DTbK"
+}

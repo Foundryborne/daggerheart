@@ -1,0 +1,70 @@
+{
+  "name": "Verglasian Seed",
+  "type": "consumable",
+  "img": "icons/commodities/gems/gem-faceted-oval-blue.webp",
+  "system": {
+    "description": "<p>You can use this ice shard to instantly freeze an area of water up to Close range.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "CXyExqbdVths6G9L": {
+        "type": "effect",
+        "_id": "CXyExqbdVths6G9L",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Verglasian Seed",
+            "type": "placed",
+            "shape": "circle",
+            "size": "close",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "302mC6Hg0w5je1AX",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "",
+        "range": ""
+      }
+    }
+  },
+  "_id": "302mC6Hg0w5je1AX",
+  "effects": [],
+  "folder": null,
+  "sort": 700000,
+  "flags": {},
+  "_key": "!items!302mC6Hg0w5je1AX"
+}

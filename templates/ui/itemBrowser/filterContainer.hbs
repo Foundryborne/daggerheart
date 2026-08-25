@@ -9,13 +9,15 @@
             </div>
         </div>
     {{else}}
-        {{#if filtered }}
-            {{formField field localize=true blank="" name=name choices=(@root.formatChoices this) valueAttr="value" dataset=(object key=key) value=value}}
-        {{else}}
-            {{#if field.label}}
-                {{formField field localize=true blank="" name=name dataset=(object key=key) value=value}}
+        {{#if field}}
+            {{#if filtered }}
+                {{formField field localize=true blank="" name=name choices=(@root.formatChoices this) valueAttr="value" dataset=(object key=key) value=value}}
             {{else}}
-                {{formField field localize=true blank="" name=name dataset=(object key=key) label=label value=value}}
+                {{#if field.label}}
+                    {{formField field localize=true blank="" name=name dataset=(object key=key) value=value}}
+                {{else}}
+                    {{formField field localize=true blank="" name=name dataset=(object key=key) label=label value=value}}
+                {{/if}}
             {{/if}}
         {{/if}}
     {{/if}}

@@ -1,0 +1,61 @@
+{
+  "name": "Mnemonic Potion",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-corked-empty.webp",
+  "system": {
+    "description": "<p>You can drink this potion to Utilize an Experience without spending a Hope.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "k5WiotZKqgqnIhA2": {
+        "type": "effect",
+        "_id": "k5WiotZKqgqnIhA2",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "0gjQYkFe4JmuEv7b",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Drink",
+        "range": ""
+      }
+    }
+  },
+  "_id": "0gjQYkFe4JmuEv7b",
+  "effects": [],
+  "folder": null,
+  "sort": 300000,
+  "flags": {},
+  "_key": "!items!0gjQYkFe4JmuEv7b"
+}

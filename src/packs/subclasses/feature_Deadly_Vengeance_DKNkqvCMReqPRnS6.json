@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Deadly Vengeance",
+  "folder": "JhZDNJa4DY2fSzje",
+  "_id": "DKNkqvCMReqPRnS6",
+  "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you mark any number of Hit Points from an attack, you can <strong>spend a Favor</strong> to roll an equal number of Patron Dice. For each result of 4 or higher, the attacker marks a Hit Point.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!DKNkqvCMReqPRnS6"
+}

@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Terrify",
+  "folder": "t8UAvoM3iPtbOVyh",
+  "system": {
+    "domain": "dread",
+    "level": 3,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, the target marks <strong>1d4</strong> Stress, and you can make the target flee one range away from you (such as Very Close to Close or Close to Far). On a success with Fear, the target also becomes temporarily <em>Vulnerable</em>.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "eoC2NFqLs9llBdxC",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!eoC2NFqLs9llBdxC"
+}

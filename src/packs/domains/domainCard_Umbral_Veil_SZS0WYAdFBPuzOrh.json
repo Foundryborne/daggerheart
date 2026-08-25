@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Umbral Veil",
+  "folder": "pO0uBPDGQi4ULPAt",
+  "system": {
+    "domain": "dread",
+    "level": 1,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest, you can <strong>mark a Stress</strong> to encase yourself in shadowy energy. When you do, place a number of tokens on this card equal to the number of Fear in the GM's pool. After an attack roll is made against you, you can spend any number of tokens to give the result a -1 penalty per token spent.</p><p>At the end of the scene, clear all unspent tokens.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "SZS0WYAdFBPuzOrh",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!SZS0WYAdFBPuzOrh"
+}

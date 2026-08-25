@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "6QGfkGkFqqzuVOOY",
         "systemPath": "actions",
-        "description": "<p>You can drink this blood to disappear from where you are and immediately reappear at a point you can see within Very Far range.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -36,7 +37,13 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/potion-tube-corked-bat-gold-red.webp",
-        "range": "veryFar"
+        "range": "veryFar",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -44,15 +51,12 @@
       "source": "Daggerheart SRD",
       "page": 61,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 9800000,
   "flags": {},
   "_key": "!items!pDGzmczoTlKGmKgd"
 }

@@ -8,14 +8,14 @@
     "description": "<p>During a rest, you can drop into a trance to choose an additional downtime move.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 28,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -24,36 +24,35 @@
       "_id": "LqQvZJJLNMnFkt1D",
       "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.rest.shortRest.shortMoves",
-          "mode": 2,
-          "value": "1",
-          "priority": null
+        "changes": [
+          {
+            "key": "system.bonuses.rest.shortRest.shortMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.rest.longRest.longMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
         },
-        {
-          "key": "system.bonuses.rest.longRest.longMoves",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>During a rest, you can drop into a trance to choose an additional downtime move.</p>",
       "origin": null,
@@ -65,14 +64,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!TfolXWFG2W2hx6sK.LqQvZJJLNMnFkt1D"
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!TfolXWFG2W2hx6sK"
 }

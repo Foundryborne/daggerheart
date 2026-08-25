@@ -16,4 +16,11 @@ class ItemLinkField extends foundry.data.fields.SchemaField {
             context
         );
     }
+
+    initialize(data) {
+        const sourceItem = data.item;
+        data = super.initialize(data);
+        data.uuid = data.item?.uuid ?? (typeof sourceItem === 'string' ? sourceItem : null);
+        return data;
+    }
 }

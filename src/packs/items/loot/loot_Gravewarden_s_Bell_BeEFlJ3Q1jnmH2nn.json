@@ -1,0 +1,22 @@
+{
+  "name": "Gravewarden’s Bell",
+  "type": "loot",
+  "img": "icons/tools/instruments/bell-silver.webp",
+  "system": {
+    "description": "<p>This bell rings when a ghost or undead creature moves within Far range of it.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "BeEFlJ3Q1jnmH2nn",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!BeEFlJ3Q1jnmH2nn"
+}

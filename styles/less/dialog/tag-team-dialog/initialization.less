@@ -88,8 +88,20 @@
             grid-template-columns: 1fr 1fr;
             gap: 8px;
 
-            &.inactive {
+            .inactive {
                 opacity: 0.4;
+            }
+
+            .initiator-cost-fields {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+                .initiator-cost-inputs {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    align-items: center;
+                }
             }
         }
 

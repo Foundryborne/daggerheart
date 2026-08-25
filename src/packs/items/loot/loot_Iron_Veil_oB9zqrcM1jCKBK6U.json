@@ -1,0 +1,22 @@
+{
+  "name": "Iron Veil",
+  "type": "loot",
+  "img": "icons/equipment/head/hood-chain-worn.webp",
+  "system": {
+    "description": "<p>This chain-link head covering renders the wearer invisible to fey creatures.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "oB9zqrcM1jCKBK6U",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!oB9zqrcM1jCKBK6U"
+}

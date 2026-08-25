@@ -191,6 +191,11 @@ export const healingTypes = {
         id: 'fear',
         label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
         abbreviation: 'DAGGERHEART.CONFIG.HealingType.fear.abbreviation'
+    },
+    weaponResource: {
+        id: 'weaponResource',
+        label: 'DAGGERHEART.CONFIG.HealingType.weaponResource.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.weaponResource.abbreviation'
     }
 };
 
@@ -728,7 +733,7 @@ export const daggerheartDiceAnimationEvents = {
     }
 };
 
-const getDiceSoNiceSFX = sfxOptions => {
+export const getDiceSoNiceSFX = sfxOptions => {
     const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
     const criticalAnimationData = diceSoNice.sfx.critical;
     if (sfxOptions.critical && criticalAnimationData.class) {
@@ -748,7 +753,7 @@ const getDiceSoNiceSFX = sfxOptions => {
     return {};
 };
 
-export const getDiceSoNicePreset = async (type, faces, sfxOptions = {}) => {
+export const getDiceSoNicePreset = async (type, faces) => {
     const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
     if (!system) {
         ui.notifications.error(
@@ -771,41 +776,13 @@ export const getDiceSoNicePreset = async (type, faces, sfxOptions = {}) => {
         appearance: {
             ...system.appearance,
             ...type
-        },
-        sfx: getDiceSoNiceSFX(sfxOptions)
-    };
-};
-
-export const getDiceSoNicePresets = async (
-    result,
-    hopeFaces,
-    fearFaces,
-    advantageFaces = 'd6',
-    disadvantageFaces = 'd6'
-) => {
-    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
-
-    const { isCritical, withHope, withFear } = result;
-
-    return {
-        hope: await getDiceSoNicePreset(diceSoNice.hope, hopeFaces, {
-            critical: isCritical,
-            higher: withHope,
-            data: diceSoNice.hope.sfx
-        }),
-        fear: await getDiceSoNicePreset(diceSoNice.fear, fearFaces, {
-            critical: isCritical,
-            higher: withFear,
-            data: diceSoNice.fear.sfx
-        }),
-        advantage: await getDiceSoNicePreset(diceSoNice.advantage, advantageFaces),
-        disadvantage: await getDiceSoNicePreset(diceSoNice.disadvantage, disadvantageFaces)
+        }
     };
 };
 
 export const refreshTypes = {
     scene: {
-        id: 'session',
+        id: 'scene',
         label: 'DAGGERHEART.GENERAL.RefreshType.scene'
     },
     session: {
@@ -825,7 +802,7 @@ export const refreshTypes = {
 export const itemAbilityCosts = {
     resource: {
         id: 'resource',
-        label: 'DAGGERHEART.GENERAL.resource',
+        label: 'DAGGERHEART.GENERAL.Resource.single',
         group: 'Global'
     },
     quantity: {
@@ -867,27 +844,27 @@ export const abilityCosts = {
 export const countdownProgressionTypes = {
     actionRoll: {
         id: 'actionRoll',
-        label: 'DAGGERHEART.CONFIG.CountdownType.actionRoll'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.actionRoll'
     },
     characterAttack: {
         id: 'characterAttack',
-        label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.characterAttack'
     },
     characterSpotlight: {
         id: 'characterSpotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.characterSpotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.characterSpotlight'
     },
     custom: {
         id: 'custom',
-        label: 'DAGGERHEART.CONFIG.CountdownType.custom'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.custom'
     },
     fear: {
         id: 'fear',
-        label: 'DAGGERHEART.CONFIG.CountdownType.fear'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.fear'
     },
     spotlight: {
         id: 'spotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownProgressType.spotlight'
     }
 };
 export const rollTypes = {
@@ -924,26 +901,18 @@ export const fearDisplay = {
     hide: { value: 'hide', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.hide' }
 };
 
-export const basicOwnershiplevels = {
-    0: { value: 0, label: 'OWNERSHIP.NONE' },
+export const fearPosition = {
+    free: { value: 'free', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.free' },
+    topCenter: { value: 'topCenter', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.topCenter' },
+    bottomCenter: { value: 'bottomCenter', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.bottomCenter' },
+    rightTop: { value: 'rightTop', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.rightTop' },
+    leftBottom: { value: 'leftBottom', label: 'DAGGERHEART.SETTINGS.Appearance.fearPosition.leftBottom' }
+};
+
+export const countdownOwnershipLevels = {
+    [-1]: { value: -1, label: 'DAGGERHEART.UI.Countdowns.inherit' },
     2: { value: 2, label: 'OWNERSHIP.OBSERVER' },
     3: { value: 3, label: 'OWNERSHIP.OWNER' }
-};
-
-export const simpleOwnershiplevels = {
-    [-1]: { value: -1, label: 'OWNERSHIP.INHERIT' },
-    ...basicOwnershiplevels
-};
-
-export const countdownBaseTypes = {
-    narrative: {
-        id: 'narrative',
-        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.narrative'
-    },
-    encounter: {
-        id: 'encounter',
-        label: 'DAGGERHEART.APPLICATIONS.Countdown.types.encounter'
-    }
 };
 
 export const countdownLoopingTypes = {
@@ -968,6 +937,27 @@ export const countdownLoopingTypes = {
 export const countdownAppMode = {
     textIcon: 'text-icon',
     iconOnly: 'icon-only'
+};
+
+export const countdownTypes = {
+    encounter: {
+        id: 'encounter', 
+        label: 'DAGGERHEART.CONFIG.CountdownType.encounter.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.encounter.shortLabel',
+        icon: 'fa-solid fa-hourglass-half'
+    },
+    narrative: {
+        id: 'narrative',
+        label: 'DAGGERHEART.CONFIG.CountdownType.narrative.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.narrative.shortLabel',
+        icon: 'fa-solid fa-hourglass-start'
+    },
+    misc: {
+        id: 'misc',
+        label: 'DAGGERHEART.CONFIG.CountdownType.misc.label',
+        shortLabel: 'DAGGERHEART.CONFIG.CountdownType.misc.shortLabel',
+        icon: 'fa-solid fa-hammer'
+    }
 };
 
 export const sceneRangeMeasurementSetting = {
@@ -997,90 +987,6 @@ export const tagTeamRollTypes = {
     damageAbility: {
         id: 'damageAbility',
         label: 'DAGGERHEART.CONFIG.TagTeamRollTypes.damageAbility'
-    }
-};
-
-export const baseActiveEffectModes = {
-    custom: {
-        id: 'custom',
-        priority: 0,
-        label: 'EFFECT.CHANGES.TYPES.custom'
-    },
-    multiply: {
-        id: 'multiply',
-        priority: 10,
-        label: 'EFFECT.CHANGES.TYPES.multiply'
-    },
-    add: {
-        id: 'add',
-        priority: 20,
-        label: 'EFFECT.CHANGES.TYPES.add'
-    },
-    subtract: {
-        id: 'subtract',
-        priority: 20,
-        label: 'EFFECT.CHANGES.TYPES.subtract'
-    },
-    downgrade: {
-        id: 'downgrade',
-        priority: 30,
-        label: 'EFFECT.CHANGES.TYPES.downgrade'
-    },
-    upgrade: {
-        id: 'upgrade',
-        priority: 40,
-        label: 'EFFECT.CHANGES.TYPES.upgrade'
-    },
-    override: {
-        id: 'override',
-        priority: 50,
-        label: 'EFFECT.CHANGES.TYPES.override'
-    }
-};
-
-export const activeEffectModes = {
-    armor: {
-        id: 'armor',
-        priority: 20,
-        label: 'TYPES.ActiveEffect.armor'
-    },
-    ...baseActiveEffectModes
-};
-
-export const activeEffectArmorInteraction = {
-    none: { id: 'none', label: 'DAGGERHEART.CONFIG.ArmorInteraction.none.label' },
-    active: { id: 'active', label: 'DAGGERHEART.CONFIG.ArmorInteraction.active.label' },
-    inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.ArmorInteraction.inactive.label' }
-};
-
-export const activeEffectDurations = {
-    temporary: {
-        id: 'temporary',
-        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.temporary'
-    },
-    act: {
-        id: 'act',
-        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.act'
-    },
-    scene: {
-        id: 'scene',
-        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.scene'
-    },
-    shortRest: {
-        id: 'shortRest',
-        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.shortRest'
-    },
-    longRest: {
-        id: 'longRest',
-        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.longRest'
-    },
-    session: {
-        id: 'session',
-        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.session'
-    },
-    custom: {
-        id: 'custom',
-        label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };
 

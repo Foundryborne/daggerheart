@@ -7,12 +7,12 @@
     .chat-log .chat-message {
         background-image: url('../assets/parchments/dh-parchment-light.png');
 
-        .message-header .message-header-metadata .message-metadata,
-        .message-header .message-header-main .message-sub-header-container {
+        .message-header .message-header-main .message-metadata,
+        .message-header .message-header-main .name {
             color: @dark;
         }
 
-        .message-header .message-header-main .message-sub-header-container h4 {
+        .message-header .message-header-main h4 {
             color: @dark-blue;
         }
 
@@ -42,27 +42,12 @@
 
             .message-header {
                 display: flex;
-                gap: 4px;
+                gap: 8px;
                 padding: 8px;
+                align-items: center;
 
-                .message-header-metadata {
-                    flex: none;
-                    display: flex;
-                    flex-direction: column;
-
-                    .message-metadata {
-                        font-family: @font-body;
-                        color: @beige;
-                    }
-                }
-
-                .message-header-main {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    flex: 1;
-                    overflow: hidden;
-
+                .portrait {
+                    flex: 0 0 auto;
                     .actor-img {
                         border-radius: 50%;
                         width: 40px;
@@ -70,20 +55,60 @@
                         object-fit: cover;
                         object-position: top center;
                     }
+                }
 
-                    .message-sub-header-container {
+                .message-header-main {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 4px;
+                    row-gap: 2px;
+                    flex: 1;
+                    overflow: hidden;
+
+                    display: grid;
+                    grid-template:
+                        "title metadata"
+                        "subtitle subtitle";
+
+                    h4 {
+                        font-size: var(--font-size-16);
+                        font-weight: bold;
+                        margin-bottom: 0;
+                        font-family: @font-subtitle;
+                        color: @golden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        flex: 1;
+                        overflow: hidden;
+                        align-self: flex-end;
+                    }
+                    
+                    .message-metadata {
+                        font-family: @font-body;
+                        color: @beige;
+                        white-space: nowrap;
+                        align-items: baseline;
+                        .message-timestamp {
+                            font-size: var(--font-size-11);
+                        }
+                    }
+                    
+                    .subtitle {
+                        grid-area: subtitle;
                         flex: 1;
                         display: flex;
-                        flex-direction: column;
                         justify-content: space-between;
                         color: @beige;
-
-                        h4 {
-                            font-size: var(--font-size-16);
-                            font-weight: bold;
-                            margin-bottom: 0;
-                            font-family: @font-subtitle;
-                            color: @golden;
+                        gap: 4px;
+                        align-items: baseline;
+                        line-height: 1;
+                        .name {
+                            flex: 1;
+                        }
+                        .whisper-to {
+                            color: @color-text-subtle;
+                            flex: 0;
+                            white-space: nowrap;
                         }
                     }
                 }

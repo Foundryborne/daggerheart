@@ -21,10 +21,10 @@
     width: 18.75rem;
     pointer-events: all;
     align-self: flex-end;
-    transition: 0.3s right ease-in-out;
-
+    transition: right 0.1s ease;
     display: flex;
     flex-direction: column;
+    right: 0;
 
     &::before {
         content: ' ';
@@ -33,7 +33,7 @@
         background: var(--background);
         border-radius: 4px;
         opacity: var(--ui-fade-opacity);
-        transition: opacity var(--ui-fade-duration);
+        transition: opacity var(--ui-fade-delay) var(--ui-fade-duration);
     }
 
     &:not(.performance-low, .noblur) {
@@ -42,9 +42,10 @@
 
     &:hover::before {
         opacity: 1;
+        transition: opacity var(--ui-fade-duration);
     }
 
-    #ui-right:has(#effects-display .effect-container) & {
+    #ui-right:has(#effects-display):has(.effect-container) & {
         right: 62px;
     }
 
@@ -65,12 +66,31 @@
         padding: 0 0.5rem;
         overflow: hidden;
         font-size: var(--font-size-13);
+        
         .window-title {
             font-family: @font-body;
-            flex: 1;
         }
-        .header-control + .header-control {
-            margin-left: 8px;
+
+
+        .header-type-toggles {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            .header-type {
+                flex: 1;
+                border: 1px solid @beige;
+                border-radius: 12px;
+                padding: 2px 4px;
+                text-align: center;
+                background-color: @dark-blue;
+                color: @beige;
+
+                &.inactive {
+                    opacity: 0.4;
+                }
+            }
         }
     }
 
@@ -78,13 +98,28 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
-        padding: 4px var(--spacer-16) var(--spacer-16) var(--spacer-16);
+        padding: 4px calc(var(--spacer-16) - var(--scrollbar-width)) var(--spacer-16) var(--spacer-16);
         overflow: auto;
         max-height: 312px;
+        scrollbar-gutter: stable;
+
+        .countdown-category-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            
+            &.hidden {
+                display: none;
+            }
+        }
 
         .countdown-container {
             display: flex;
             width: 100%;
+            border-radius: 6px;
+            background: linear-gradient(-45deg, transparent 30%, light-dark(@dark-blue-40, @golden-40) 35%, transparent 40%);
+            background-size: 300%;
+            background-position-x: 100%;
 
             &.icon-only {
                 gap: 8px;
@@ -105,6 +140,7 @@
                 display: flex;
                 align-items: center;
                 gap: 16px;
+                border-radius: 6px;
 
                 img {
                     width: 2.75rem;

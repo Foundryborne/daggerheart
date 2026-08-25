@@ -1,0 +1,579 @@
+{
+  "type": "adversary",
+  "name": "Lamia",
+  "folder": "wTI7nZkPhKxl7Wwq",
+  "system": {
+    "type": "skulk",
+    "description": "<p>A snake-tailed humanoid monster who stalks the night to absorb the life energy of sleeping people.</p>",
+    "tier": 3,
+    "motivesAndTactics": "Attack the unaware, avoid sunlight, leech life force, put to sleep, slither through tall grass",
+    "difficulty": 17,
+    "damageThresholds": {
+      "major": 18,
+      "severe": 35
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 6
+      },
+      "stress": {
+        "value": 0,
+        "max": 5
+      }
+    },
+    "attack": {
+      "name": "Curved Dagger",
+      "img": "icons/weapons/daggers/dagger-twin-curved-black.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 3,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d8",
+            "bonus": 4,
+            "multiplier": "flat",
+            "flatMultiplier": 3,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "nYFyyeD78QCPNtmc": {
+        "name": "Snaky",
+        "value": 3,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Constriction",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Mark a Stress</strong> to have the @Lookup[@name] wrap their tail around a PC within Melee range and squeeze. The target must succeed on a Finesse Reaction Roll or become Constricted until the @Lookup[@name] moves or takes Major or greater damage. While Constricted, the target is <em>Restrained</em> and must mark a Stress when the @Lookup[@name] takes the spotlight.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "nqAx27AlDh9W8WYb": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "nqAx27AlDh9W8WYb",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "d5RIO2p6SFAXz7Qp",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "finesse",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "melee"
+          }
+        },
+        "granter": null
+      },
+      "_id": "bkNqFMvqT2qnOH9E",
+      "img": "icons/magic/symbols/circle-ouroboros.webp",
+      "effects": [
+        {
+          "name": "Constricted",
+          "disabled": false,
+          "img": "icons/magic/symbols/circle-ouroboros.webp",
+          "description": "<p>You are Constricted until the Lamia moves or takes Major or greater damage.</p><p>While Constricted, the target is <em>Restrained</em> and must mark a Stress when the Lamia takes the spotlight.</p>",
+          "transfer": false,
+          "statuses": [
+            "restrained"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.pMZxHeu79iXFV9FR.Item.bkNqFMvqT2qnOH9E",
+          "_id": "d5RIO2p6SFAXz7Qp",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!pMZxHeu79iXFV9FR.bkNqFMvqT2qnOH9E.d5RIO2p6SFAXz7Qp"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!pMZxHeu79iXFV9FR.bkNqFMvqT2qnOH9E"
+    },
+    {
+      "name": "Life Leech",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Mark a Stress</strong> to force a <em>Vulnerable</em> or <em>Restrained</em> target within Melee range to mark <strong>1d4-1</strong> HP. The @Lookup[@name] then clears an equal number of HP.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "cBfwk5Lx3DR9QQy4": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "hitPoints": {
+                  "base": false,
+                  "applyTo": "hitPoints",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1d4 - 1"
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "cBfwk5Lx3DR9QQy4",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "range": "melee"
+          }
+        },
+        "granter": null
+      },
+      "_id": "NC3gWjQQFXqjCYrg",
+      "img": "icons/magic/unholy/energy-smoke-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!pMZxHeu79iXFV9FR.NC3gWjQQFXqjCYrg"
+    },
+    {
+      "name": "Sleep Toxin",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the @Lookup[@name] makes a successful standard attack against a PC, you can <strong>spend a Fear</strong> to make them <em>Vulnerable</em> until they succeed on a Instinct Roll (19).</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "JXxrnAay8HGY335Q": {
+            "type": "effect",
+            "_id": "JXxrnAay8HGY335Q",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "5unIqJr52ZzFDvbg",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "PPji2Wiib7ixf30i",
+      "img": "icons/skills/toxins/symbol-poison-drop-skull-green.webp",
+      "effects": [
+        {
+          "name": "Drowzy",
+          "disabled": false,
+          "img": "icons/magic/control/silhouette-hold-change-green.webp",
+          "description": "<p>You are <em>Vulnerable</em> until they succeed on a Instinct Roll (19).</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.pMZxHeu79iXFV9FR.Item.PPji2Wiib7ixf30i",
+          "_id": "5unIqJr52ZzFDvbg",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!pMZxHeu79iXFV9FR.PPji2Wiib7ixf30i.5unIqJr52ZzFDvbg"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!pMZxHeu79iXFV9FR.PPji2Wiib7ixf30i"
+    }
+  ],
+  "_id": "pMZxHeu79iXFV9FR",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Lamia",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!pMZxHeu79iXFV9FR"
+}

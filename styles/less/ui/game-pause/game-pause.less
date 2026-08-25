@@ -1,0 +1,35 @@
+@import '../../utils/mixin.less';
+
+#pause.dh-style {
+    animation: none;
+
+    img {
+        width: 150px;
+        height: 150px;
+        margin-top: 15px;
+    }
+    
+    figcaption {
+        --base-shadow: drop-shadow(2px 1px 2px black);
+        position: absolute;
+        margin-top: 24px;
+        animation: pause-pulse 3s ease-in-out infinite;
+        font-size: var(--font-size-30);
+        letter-spacing: 0.15em;
+        filter: var(--base-shadow);
+    }
+
+    @keyframes pause-pulse {
+        0% {
+            filter: var(--base-shadow) drop-shadow(0 0 5px @secondary-blue);    
+        }
+
+        50% {
+            filter: var(--base-shadow) drop-shadow(0 0 3px #00000099) drop-shadow(0 0 5px @golden-secondary);
+        }
+
+        100% {
+            filter: var(--base-shadow) drop-shadow(0 0 5px @secondary-blue);   
+        }
+    }
+}

@@ -1,0 +1,59 @@
+{
+  "type": "feature",
+  "name": "Brave Face",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "E7QiHAoOxQIZEVR1",
+  "img": "icons/magic/control/control-influence-rally-purple.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per session when you would be forced to mark a Stress, you can <strong>spend a Hope</strong> instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "sguCcIhnp8FjwVZd": {
+        "type": "effect",
+        "_id": "sguCcIhnp8FjwVZd",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "session",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!E7QiHAoOxQIZEVR1"
+}

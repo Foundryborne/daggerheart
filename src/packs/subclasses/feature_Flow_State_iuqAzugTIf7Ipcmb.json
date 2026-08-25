@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Flow State",
+  "folder": "oMF7y1qlFnNA6EGC",
+  "_id": "iuqAzugTIf7Ipcmb",
+  "img": "icons/magic/life/cross-beam-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You can <strong>mark a Stress</strong> instead of spending a Focus to shift into a different stance. Additionally, you can <strong>spend a Focus</strong> instead of marking a Stress to start a combo strike.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!iuqAzugTIf7Ipcmb"
+}

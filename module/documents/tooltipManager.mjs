@@ -1,202 +1,334 @@
 import { AdversaryBPPerEncounter, BaseBPPerEncounter } from '../config/encounterConfig.mjs';
+import { pick } from '../helpers/utils.mjs';
 
 export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
     #wide = false;
     #bordered = false;
 
+    /** @inheritdoc */
     async activate(element, options = {}) {
-        const { TextEditor } = foundry.applications.ux;
+        this.#wide = false;
+        this.#bordered = false;
 
-        let html = options.html;
-        if (element.dataset.tooltip?.startsWith('#battlepoints#')) {
-            this.#wide = true;
-            this.#bordered = true;
-
-            html = await this.getBattlepointHTML(element.dataset.combatId);
-            options.direction = this._determineItemTooltipDirection(element);
-            super.activate(element, { ...options, html: html });
-
-            const lockedTooltip = this.lockTooltip();
-            lockedTooltip.querySelectorAll('.battlepoint-toggle-container input').forEach(element => {
-                element.addEventListener('input', this.toggleModifier.bind(this));
-            });
-            return;
-        } else {
-            this.#wide = false;
-            this.#bordered = false;
+        const isMacro = document.getElementById('action-bar').contains(element);
+        const macro = isMacro ? game.macros.get(game.user.hotbar[Number(element.dataset.slot)] ?? null) : null;
+        const macroItemUuid = macro?.type === 'script' ? macro.command.match(/await game\.system\.api\.applications\.ui\.DhHotbar\.useItem\("([^"]+)"\);/)?.[1] : null;
+        if (macroItemUuid && await fromUuid(macroItemUuid, { strict: false })) {
+            element.dataset.tooltip = `#item#${macroItemUuid}`;
+            options.direction = this.constructor.TOOLTIP_DIRECTIONS.UP;
         }
 
-        if (element.dataset.tooltip === '#effect-display#') {
-            this.#bordered = true;
-            let effect = {};
-            if (element.dataset.uuid) {
-                const effectItem = await foundry.utils.fromUuid(element.dataset.uuid);
-                const effectData = effectItem.toObject();
+        let html = options.html;
+        const key = element.dataset.tooltip?.match(/^#([\w-]+)#/)?.[1];
+        switch (key) {
+            case 'battlepoints':
+                return this.#activateBattlepoints(element, options);
+            case 'effect-display':
+                html = await this.#activateEffectDisplay(element, options);
+                break;
+            case 'item':
+                html = await this.#activateItem(element, options);
+                break;
+            case 'attack':
+                html = await this.#activateAttack(element, options);
+                break;
+            case 'advantage':
+            case 'disadvantage':
+                html = await this.#activateAdvantageDisadvantage(element, options);
+                break;
+            // Move Choices
+            case 'shortRest':
+            case 'longRest':
+                html = await this.#activateRest(element, options);
+                break;
+            case 'deathMove':
+                html = await this.#activateDeathMove(element, options);
+                break;
+        }
 
-                effect = {
-                    ...effectData,
-                    name: game.i18n.localize(effectData.name)
+        this.noOffset = options.noOffset;
+        super.activate(element, { ...options, html });
+        if (html) this.tooltip.innerHTML = html; // foundry likes to strip certain stuff like svgs, put it back
+    }
+
+    async #activateBattlepoints(element, options) {
+        this.#wide = true;
+        this.#bordered = true;
+
+        const html = await this.getBattlepointHTML(element.dataset.combatId);
+        options.direction = this._determineItemTooltipDirection(element);
+        super.activate(element, { ...options, html: html });
+
+        const lockedTooltip = this.lockTooltip();
+        lockedTooltip.querySelectorAll('.battlepoint-toggle-container input').forEach(element => {
+            element.addEventListener('input', this.toggleModifier.bind(this));
+        });
+    }
+
+    async #activateEffectDisplay(element, options) {
+        this.#bordered = true;
+        let effect;
+        if (element.dataset.uuid) {
+            const effectItem = await foundry.utils.fromUuid(element.dataset.uuid);
+            const effectData = effectItem.toObject();
+
+            effect = {
+                ...effectData,
+                name: game.i18n.localize(effectData.name)
+            };
+
+            if (effectData.type === 'beastform') {
+                const beastformData = {
+                    features: [],
+                    advantageOn: effectData.system.advantageOn,
+                    beastformAttackData: effectItem.system.getBeastformAttackData()
                 };
 
-                if (effectData.type === 'beastform') {
-                    const beastformData = {
-                        features: [],
-                        advantageOn: effectData.system.advantageOn,
-                        beastformAttackData: game.system.api.data.items.DHBeastform.getBeastformAttackData(effectItem)
-                    };
-
-                    const features = effectItem.parent.items.filter(x => effectItem.system.featureIds.includes(x.id));
-                    for (const feature of features) {
-                        const featureData = feature.toObject();
-                        featureData.enrichedDescription = await feature.system.getEnrichedDescription();
-                        beastformData.features.push(featureData);
-                    }
-
-                    effect.description = await foundry.applications.handlebars.renderTemplate(
-                        'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
-                        {
-                            item: { system: beastformData }
-                        }
-                    );
-                } else {
-                    effect.description = game.i18n.localize(
-                        effectData.description ?? effectData.parent.system.description
-                    );
+                const features = effectItem.parent.items.filter(x => effectItem.system.featureIds.includes(x.id));
+                for (const feature of features) {
+                    const featureData = feature.toObject();
+                    featureData.enrichedDescription = await feature.system.getEnrichedDescription();
+                    beastformData.features.push(featureData);
                 }
-            } else {
-                const conditions = CONFIG.DH.GENERAL.conditions();
-                const condition = conditions[element.dataset.condition];
-                effect = {
-                    ...condition,
-                    name: game.i18n.localize(condition.name),
-                    description: game.i18n.localize(condition.description),
-                    appliedBy: element.dataset.appliedBy,
-                    isLockedCondition: true
-                };
-            }
 
-            html = await foundry.applications.handlebars.renderTemplate(
-                `systems/daggerheart/templates/ui/tooltip/effect-display.hbs`,
+                effect.description = await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
+                    {
+                        item: { system: beastformData }
+                    }
+                );
+            } else {
+                effect.description = game.i18n.localize(
+                    effectData.description ?? effectItem.parent.system.description
+                );
+            }
+        } else {
+            const conditions = CONFIG.DH.GENERAL.conditions();
+            const condition = conditions[element.dataset.condition];
+            effect = {
+                ...condition,
+                name: game.i18n.localize(condition.name),
+                description: game.i18n.localize(condition.description),
+                appliedBy: element.dataset.appliedBy,
+                isLockedCondition: true
+            };
+        }
+
+        const html = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/effect-display.hbs`,
+            {
+                effect
+            }
+        );
+
+        options.direction = this._determineItemTooltipDirection(element);
+
+        return html;
+    }
+
+    async #activateItem(element, options) {
+        const itemUuid = element.dataset.tooltip.slice(6);
+        const item = await foundry.utils.fromUuid(itemUuid);
+        if (!item) return null;
+
+        // If there is support for embeds, use that instead.
+        const cardTheme = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
+        const embed = item instanceof Item ? await item.system.toEmbed({ theme: cardTheme }) : null;
+        if (item instanceof Item && embed) {
+            if (embed instanceof HTMLCollection) {
+                this.tooltip.replaceChildren(...embed);
+            } else {
+                this.tooltip.replaceChildren(embed);
+            }
+            options.direction ??= this._determineItemTooltipDirection(element);
+            return this.tooltip.innerHTML;
+        }
+
+        await this.enrichText(item);
+
+        // Beastform special case
+        if (item.type === 'beastform') {
+            const html = await foundry.applications.handlebars.renderTemplate(
+                `systems/daggerheart/templates/ui/tooltip/beastform.hbs`,
                 {
-                    effect
+                    item,
+                    description: item.system?.enrichedDescription ?? item.enrichedDescription,
+                    config: CONFIG.DH
                 }
             );
 
             this.tooltip.innerHTML = html;
-            options.direction = this._determineItemTooltipDirection(element);
-        } else {
-            this.#bordered = false;
+            options.direction ??= this._determineItemTooltipDirection(element);
+            return html;
         }
 
-        if (element.dataset.tooltip?.startsWith('#item#')) {
-            const itemUuid = element.dataset.tooltip.slice(6);
-            const item = await foundry.utils.fromUuid(itemUuid);
-            if (item) {
-                const isAction = item instanceof game.system.api.models.actions.actionsTypes.base;
-                const isEffect = item instanceof ActiveEffect;
-                await this.enrichText(item);
-
-                const type = isAction ? 'action' : isEffect ? 'effect' : item.type;
-                html = await foundry.applications.handlebars.renderTemplate(
-                    `systems/daggerheart/templates/ui/tooltip/${type}.hbs`,
-                    {
-                        item: item,
-                        description: item.system?.enrichedDescription ?? item.enrichedDescription,
-                        config: CONFIG.DH,
-                        allDomains: CONFIG.DH.DOMAIN.allDomains()
-                    }
-                );
-
-                this.tooltip.innerHTML = html;
-                options.direction = this._determineItemTooltipDirection(element);
+        const tags = item._getTags() ?? [];
+        if (item.type === 'feature') {
+            const granter = item.actor?.items.get(item.system.granter?.id);
+            if (granter) {
+                tags.unshift(granter.name + ' ' + _loc(`TYPES.Item.${item.type}`));
             }
-        } else {
-            const attack = element.dataset.tooltip?.startsWith('#attack#');
-            if (attack) {
-                const actorUuid = element.dataset.tooltip.slice(8);
-                const actor = await foundry.utils.fromUuid(actorUuid);
-                const attack = actor.system.attack;
-
-                const description = await TextEditor.enrichHTML(attack.description);
-                html = await foundry.applications.handlebars.renderTemplate(
-                    `systems/daggerheart/templates/ui/tooltip/attack.hbs`,
-                    {
-                        attack: attack,
-                        description: description,
-                        parent: actor,
-                        config: CONFIG.DH
+        } else if (item.type === 'weapon') {
+            const type = item.system.secondary ? 'secondary' : 'primary';
+            tags.unshift(_loc(`DAGGERHEART.ITEMS.Weapon.${type}Weapon.full`));
+        }
+        if (item instanceof Item && item.system.metadata.isQuantifiable) {
+            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`)
+        }
+        if (item instanceof game.system.api.models.actions.actionsTypes.base) {
+            // todo: should these be in action._getTags()?
+            function safeEval(formula) {
+                try {
+                    if (isNaN(formula)) {
+                        const data = item.getRollData.bind(item)(),
+                            roll = new Roll(Roll.replaceFormulaData(formula, data)).evaluateSync();
+                        formula = roll.total;
                     }
-                );
-
-                this.tooltip.innerHTML = html;
-            }
-
-            const shortRest = element.dataset.tooltip?.startsWith('#shortRest#');
-            const longRest = element.dataset.tooltip?.startsWith('#longRest#');
-            if (shortRest || longRest) {
-                const key = element.dataset.tooltip.slice(shortRest ? 11 : 10);
-
-                const moves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves[
-                    element.dataset.restType
-                ].moves;
-                const move = moves[key];
-                const description = await TextEditor.enrichHTML(move.description);
-                html = await foundry.applications.handlebars.renderTemplate(
-                    `systems/daggerheart/templates/ui/tooltip/downtime.hbs`,
-                    {
-                        move: move,
-                        description: description
-                    }
-                );
-
-                this.tooltip.innerHTML = html;
-                options.direction = this._determineItemTooltipDirection(
-                    element,
-                    this.constructor.TOOLTIP_DIRECTIONS.RIGHT
-                );
-            }
-
-            const isAdvantage = element.dataset.tooltip?.startsWith('#advantage#');
-            const isDisadvantage = element.dataset.tooltip?.startsWith('#disadvantage#');
-            if (isAdvantage || isDisadvantage) {
-                const actorUuid = element.dataset.tooltip.slice(isAdvantage ? 11 : 14);
-                const actor = await foundry.utils.fromUuid(actorUuid);
-
-                if (actor) {
-                    html = await foundry.applications.handlebars.renderTemplate(
-                        `systems/daggerheart/templates/ui/tooltip/advantage.hbs`,
-                        {
-                            sources: isAdvantage ? actor.system.advantageSources : actor.system.disadvantageSources
-                        }
-                    );
-
-                    this.tooltip.innerHTML = html;
+                    return formula;
+                } catch (ex) {
+                    console.error(ex);
+                    return formula;
                 }
             }
 
-            const deathMove = element.dataset.tooltip?.startsWith('#deathMove#');
-            if (deathMove) {
-                const name = element.dataset.deathName;
-                const img = element.dataset.deathImg;
-                const description = element.dataset.deathDescription;
-
-                html = await foundry.applications.handlebars.renderTemplate(
-                    `systems/daggerheart/templates/ui/tooltip/death-move.hbs`,
-                    {
-                        move: { name: name, img: img, description: description }
+            const refreshType = CONFIG.DH.GENERAL.refreshTypes[item.uses.recovery];
+            if (item.uses.max) {
+                tags.push(...[
+                    `${_loc('DAGGERHEART.GENERAL.used')} ${item.uses.value ?? 0} / ${safeEval(item.uses.max)}`,
+                    refreshType ? `${_loc('DAGGERHEART.GENERAL.recovery')} ${_loc(refreshType.label)}` : null
+                ].filter(Boolean));
+            }
+            tags.push(
+                ...item.cost.map(cost => {
+                    const costType = CONFIG.DH.GENERAL.abilityCosts[cost.key];
+                    const baseTag = `${_loc('DAGGERHEART.GENERAL.Cost.single')} ${cost.value} ${_loc(costType?.label)}`;
+                    if (cost.scalable) {
+                        return `${baseTag} (${_loc('DAGGERHEART.GENERAL.scalable')} ${cost.step})`;
                     }
-                );
-
-                this.tooltip.innerHTML = html;
-                options.direction = this._determineItemTooltipDirection(
-                    element,
-                    this.constructor.TOOLTIP_DIRECTIONS.RIGHT
-                );
+                    return baseTag;
+                })
+            );
+            if (CONFIG.DH.GENERAL.range[item.range]) {
+                tags.push(_loc(CONFIG.DH.GENERAL.range[item.range].label));
+            }
+            const targetType = item.target?.type ? CONFIG.DH.GENERAL.targetTypes[item.target.type] : null;
+            if (targetType) {
+                tags.push([
+                    _loc('DAGGERHEART.GENERAL.Target.single'),
+                    Number.isInteger(item.target.amount) ? item.target.amount : null,
+                    targetType.id !== 'any' ? _loc(targetType.label) : null
+                ].filter(Boolean).join(' '));
+            } else {
+                tags.push(`${_loc('DAGGERHEART.GENERAL.Target.single')} ${_loc('DAGGERHEART.GENERAL.none')}`);
             }
         }
 
-        this.noOffset = options.noOffset;
-        super.activate(element, { ...options, html: html });
+        const html = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
+            {
+                ...pick(item, ['img', 'name']),
+                description: item.system?.enrichedDescription ?? item.enrichedDescription,
+                config: CONFIG.DH,
+                tags,
+                duration: item.system?.duration?.type
+            }
+        );
+
+        this.tooltip.innerHTML = html;
+        options.direction ??= this._determineItemTooltipDirection(element);
+        return html;
+    }
+
+    async #activateAttack(element, options) {
+        const actorUuid = element.dataset.tooltip.slice(8);
+        const actor = await foundry.utils.fromUuid(actorUuid);
+        const attack = actor.system.attack;
+        if (!attack) return null;
+
+        const description = await foundry.applications.ux.TextEditor.enrichHTML(attack.description);
+        const trait = CONFIG.DH.ACTOR.abilities[attack.roll?.trait];
+        const range = CONFIG.DH.GENERAL.range[attack.range];
+
+        const typeTags = Array.from(attack.damage?.main?.type ?? [])
+            .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
+            .join(' | ');
+        const typeAddendum = typeTags ? ` (${typeTags})` : ``;
+
+        const tags = [
+            trait ? `${_loc('DAGGERHEART.GENERAL.Trait.single')} ${_loc(trait.label)}` : null,
+            range ? _loc(range.label) : null,
+            `${attack.getDamageFormula()}${typeAddendum}`
+        ].filter(t => Boolean(t));
+        const html = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
+            {
+                ...pick(attack, ['img', 'name']),
+                description: description,
+                parent: actor,
+                tags
+            }
+        );
+
+        options.direction ??= this._determineItemTooltipDirection(element);
+        return html;
+    }
+
+    async #activateAdvantageDisadvantage(element, options) {
+        const isAdvantage = element.dataset.tooltip?.startsWith('#advantage#');
+        const actorUuid = element.dataset.tooltip.slice(isAdvantage ? 11 : 14);
+        const actor = await foundry.utils.fromUuid(actorUuid);
+
+        if (actor) {
+            return await foundry.applications.handlebars.renderTemplate(
+                `systems/daggerheart/templates/ui/tooltip/advantage.hbs`,
+                {
+                    sources: isAdvantage ? actor.system.advantageSources : actor.system.disadvantageSources
+                }
+            );
+        }
+        return null;
+    }
+
+    async #activateDeathMove(element, options) {
+        const name = element.dataset.deathName;
+        const img = element.dataset.deathImg;
+        const description = element.dataset.deathDescription;
+
+        const html = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
+            { name, img, description }
+        );
+
+        this.tooltip.innerHTML = html;
+        options.direction = this._determineItemTooltipDirection(
+            element,
+            this.constructor.TOOLTIP_DIRECTIONS.RIGHT
+        );
+        return html;
+    }
+
+    async #activateRest(element, options) {
+        const isShortRest = element.dataset.tooltip?.startsWith('#shortRest#');
+        const key = element.dataset.tooltip.slice(isShortRest ? 11 : 10);
+        const moves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves[
+            element.dataset.restType
+        ].moves;
+        const move = moves[key];
+        const description = await foundry.applications.ux.TextEditor.enrichHTML(move.description);
+        const html = await foundry.applications.handlebars.renderTemplate(
+            `systems/daggerheart/templates/ui/tooltip/basic.hbs`,
+            {
+                ...pick(move, ['img', 'name']),
+                description: description
+            }
+        );
+
+        this.tooltip.innerHTML = html;
+        options.direction = this._determineItemTooltipDirection(
+            element,
+            this.constructor.TOOLTIP_DIRECTIONS.RIGHT
+        );
+        return html;
     }
 
     _setAnchor(direction) {
@@ -271,6 +403,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         }
     }
 
+    /** @todo don't update the item itself witht he description, return the result instead */
     async enrichText(item) {
         const { TextEditor } = foundry.applications.ux;
 

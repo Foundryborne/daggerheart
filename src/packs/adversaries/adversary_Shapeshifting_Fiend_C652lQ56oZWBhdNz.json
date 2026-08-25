@@ -1,0 +1,758 @@
+{
+  "type": "adversary",
+  "name": "Shapeshifting Fiend",
+  "folder": "wTI7nZkPhKxl7Wwq",
+  "system": {
+    "type": "social",
+    "description": "<p>An evil entity who impersonates a trusted figure.</p>",
+    "tier": 3,
+    "motivesAndTactics": "Impersonate, sow discord, tempt betrayal",
+    "difficulty": 17,
+    "damageThresholds": {
+      "major": 20,
+      "severe": 32
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 4
+      },
+      "stress": {
+        "value": 0,
+        "max": 8
+      }
+    },
+    "attack": {
+      "name": "Hidden Blade",
+      "img": "icons/weapons/swords/sword-guard-serrated.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 3,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d8",
+            "bonus": 3,
+            "multiplier": "flat",
+            "flatMultiplier": 3,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "e06WRZ2y63qpQZkp": {
+        "name": "Manipulate",
+        "value": 3,
+        "description": ""
+      },
+      "f6dJfC2Fnv85dlpb": {
+        "name": "Mimic",
+        "value": 2,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Fiendish Nature",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The Fiend has resistance to magic damage and can't be fooled by magic illusions.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "pnMA6UWprfKjTu5m",
+      "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",
+      "effects": [
+        {
+          "name": "Fiendish Nature",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.resistance.magical.resistance",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "sPtaHnm0uxvSDpgi",
+          "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>The Fiend has resistance to magic damage and can't be fooled by magic illusions.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!C652lQ56oZWBhdNz.pnMA6UWprfKjTu5m.sPtaHnm0uxvSDpgi"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!C652lQ56oZWBhdNz.pnMA6UWprfKjTu5m"
+    },
+    {
+      "name": "Impersonate",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to have the Fiend magically transform into a humanoid they have previously interacted with. A PC who targets the Fiend while they're in the form of a person the PC cares for must succeed on an Instinct Reaction Roll or the attack fails and the PC must mark a Stress.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "0YbIsQx48hQrJM5o": {
+            "type": "effect",
+            "_id": "0YbIsQx48hQrJM5o",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "rHcoEUjYExrZuhhR",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": "self"
+          },
+          "laPYDHfBKv4hKPpe": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "laPYDHfBKv4hKPpe",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "VrUFHMjVrWUc2JHd",
+      "img": "icons/magic/life/heart-red-blue.webp",
+      "effects": [
+        {
+          "name": "Impersonating",
+          "disabled": false,
+          "img": "icons/magic/life/heart-red-blue.webp",
+          "description": "<p>The Fiend has magically transformed into a humanoid they have previously interacted with. A PC who targets the Fiend while they're in the form of a person the PC cares for must succeed on an Instinct Reaction Roll or the attack fails and the PC must mark a Stress.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.C652lQ56oZWBhdNz.Item.VrUFHMjVrWUc2JHd",
+          "_id": "rHcoEUjYExrZuhhR",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!C652lQ56oZWBhdNz.VrUFHMjVrWUc2JHd.rHcoEUjYExrZuhhR"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!C652lQ56oZWBhdNz.VrUFHMjVrWUc2JHd"
+    },
+    {
+      "name": "Turn Invisible",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Mark a Stress</strong> to make the Fiend Hidden until they make an action roll or take damage.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "dkMGDDE2ytkcF1qh": {
+            "type": "effect",
+            "_id": "dkMGDDE2ytkcF1qh",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "Sny2sOnoxiehgEeI",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": "self"
+          }
+        },
+        "granter": null
+      },
+      "_id": "MIvcup4AWUoqBMKq",
+      "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+      "effects": [
+        {
+          "name": "Invisible",
+          "disabled": false,
+          "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+          "description": "<p>The Fiend is <em>Hidden</em> until they make an action roll or take damage.</p>",
+          "transfer": false,
+          "statuses": [
+            "hidden"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.C652lQ56oZWBhdNz.Item.MIvcup4AWUoqBMKq",
+          "_id": "Sny2sOnoxiehgEeI",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!C652lQ56oZWBhdNz.MIvcup4AWUoqBMKq.Sny2sOnoxiehgEeI"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!C652lQ56oZWBhdNz.MIvcup4AWUoqBMKq"
+    },
+    {
+      "name": "Backhanded Guidance",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When a PC makes an action roll while the Fiend is in the scene, you can <strong>mark a Stress</strong> to add <strong>1d6</strong> to the result of their Fear Die.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "YDNJMyOJX70CtcuJ": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "YDNJMyOJX70CtcuJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "DH3qyIQPoi3soxdU",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!C652lQ56oZWBhdNz.DH3qyIQPoi3soxdU"
+    },
+    {
+      "name": "Exposed! (Phase Change)",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the Fiend is defeated or the PCs discover its true identity, replace the Fiend with @Lookup[@name] Revealed and immediately spotlight them.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "MymVTgMNkwdkt2Ja": {
+            "type": "transform",
+            "_id": "MymVTgMNkwdkt2Ja",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "transform": {
+              "actorUUID": "Compendium.daggerheart.adversaries.Actor.fa50qKab3hPt9gkV",
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              }
+            }
+          }
+        },
+        "granter": null
+      },
+      "_id": "KejigtjcSGCBpGh3",
+      "img": "icons/creatures/unholy/demon-fire-horned-winged-roar.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!C652lQ56oZWBhdNz.KejigtjcSGCBpGh3"
+    }
+  ],
+  "_id": "C652lQ56oZWBhdNz",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Shapeshifting Fiend",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!C652lQ56oZWBhdNz"
+}

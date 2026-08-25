@@ -8,45 +8,44 @@
     "description": "<p>When you take physical damage, you can <strong>mark an additional Armor Slot</strong> to reduce the severity.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 16,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Iron Will",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.maxArmorMarked.value",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "htEDIjCEWYtznpRV",
       "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.maxArmorMarked.value",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>When you take physical damage, you can <strong>mark an additional Armor Slot</strong> to reduce the severity.</p>",
       "origin": null,
@@ -58,14 +57,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!7AVRNyBcd1Nffjtn.htEDIjCEWYtznpRV"
     }
   ],
   "sort": 250000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!7AVRNyBcd1Nffjtn"
 }

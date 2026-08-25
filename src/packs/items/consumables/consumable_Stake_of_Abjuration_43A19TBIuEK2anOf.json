@@ -1,0 +1,61 @@
+{
+  "name": "Stake of Abjuration",
+  "type": "consumable",
+  "img": "icons/sundries/survival/stake-rough-heavy-brown.webp",
+  "system": {
+    "description": "<p>You can hammer this stake into the ground and make a proclamation. Until your next rest, a creature within Far range of the stake who transgresses that proclamation must mark a Stress. The stake lasts until your next rest, then it shatters.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "he7oP28pyrltNq7I": {
+        "type": "effect",
+        "_id": "he7oP28pyrltNq7I",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "43A19TBIuEK2anOf",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "43A19TBIuEK2anOf",
+  "effects": [],
+  "folder": null,
+  "sort": 1000000,
+  "flags": {},
+  "_key": "!items!43A19TBIuEK2anOf"
+}

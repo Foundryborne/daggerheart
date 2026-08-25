@@ -1,0 +1,453 @@
+{
+  "type": "adversary",
+  "name": "Phoenix",
+  "folder": "wTI7nZkPhKxl7Wwq",
+  "system": {
+    "type": "ranged",
+    "description": "<p>A huge eagle that's made of magical flame, impossible to kill, and hunted for its healing plumage.</p>",
+    "tier": 3,
+    "motivesAndTactics": "Flee pursuers, live brilliantly, soar through the heavens, wield light and flame",
+    "difficulty": 18,
+    "damageThresholds": {
+      "major": 19,
+      "severe": 30
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 6
+      },
+      "stress": {
+        "value": 0,
+        "max": 6
+      }
+    },
+    "attack": {
+      "name": "Fire Bolt",
+      "img": "icons/magic/fire/projectile-embers-orange.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "veryFar",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 4,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d10",
+            "bonus": 3,
+            "multiplier": "flat",
+            "flatMultiplier": 3,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "magical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "yY97ar4HsUY35kw8": {
+        "name": "Bright",
+        "value": 4,
+        "description": ""
+      },
+      "jtHEOGEL25pBvEVg": {
+        "name": "Legendary",
+        "value": 3,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "huge",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Purifying Aura",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Any PC who takes an action within the @Lookup[@name]'s Melee range can <strong>spend a Hope</strong> to purify themself in its healing warmth, clearing a HP or a Stress and all conditions.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "YOEWBnOR44OHkdQe",
+      "img": "icons/magic/life/heart-cross-strong-flame-purple-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!OmhCH4TmAEiQx9he.YOEWBnOR44OHkdQe"
+    },
+    {
+      "name": "Fireseed",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>The @Lookup[@name] bleeds magic fire. When the @Lookup[@name] marks a HP, summon one Minor Fire Elemental within Very Close range.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "s1fquzRZAhLqY7VW": {
+            "type": "summon",
+            "_id": "s1fquzRZAhLqY7VW",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.DscWkNVoHak6P4hh",
+                "count": "1"
+              }
+            ],
+            "name": "",
+            "range": "veryClose"
+          }
+        },
+        "granter": null
+      },
+      "_id": "FlcR2XWYcCedfLnM",
+      "img": "icons/magic/fire/elemental-fire-flying.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!OmhCH4TmAEiQx9he.FlcR2XWYcCedfLnM"
+    },
+    {
+      "name": "Resurrection",
+      "type": "feature",
+      "system": {
+        "featureForm": "evolution",
+        "description": "<p>When the @Lookup[@name] is defeated, it becomes a cloud of ash that blows away to reveal a Smoldering Egg. The Egg is immune to all damage and has a heat aura that deals <strong>3d4</strong> direct magic damage to anyone who touches it. The Egg hatches into a new @Lookup[@name], with all HP and Stress cleared, in 7 days.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "rUiwxAYImXPoh2rG": {
+            "type": "evolution",
+            "_id": "rUiwxAYImXPoh2rG",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "evolution": {
+              "active": false,
+              "evolutionFeatures": {},
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              },
+              "tokenOverride": {
+                "tokenImage": null,
+                "tokenScale": 1,
+                "dynamicToken": {
+                  "image": null,
+                  "scale": 1,
+                  "ring": "#cd580a",
+                  "background": null,
+                  "effects": [
+                    "RING_PULSE",
+                    "BKG_WAVE"
+                  ]
+                }
+              }
+            },
+            "effects": [
+              {
+                "_id": "xJGxzVJTPEDpzAVG",
+                "onSave": false
+              }
+            ],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "L1KzwZQAUDJzEFv0",
+      "img": "icons/magic/fire/orb-lightning-sun.webp",
+      "effects": [
+        {
+          "name": "Ressurecting",
+          "disabled": false,
+          "img": "icons/magic/fire/orb-lightning-sun.webp",
+          "description": "<p>The Egg is immune to all damage and has a heat aura that deals <strong>3d4</strong> direct magic damage to anyone who touches it. The Egg hatches into a new Phoenix, with all HP and Stress cleared, in 7 days.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.resistance.physical.immunity",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.resistance.magical.immunity",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.OmhCH4TmAEiQx9he.Item.L1KzwZQAUDJzEFv0",
+          "_id": "xJGxzVJTPEDpzAVG",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!OmhCH4TmAEiQx9he.L1KzwZQAUDJzEFv0.xJGxzVJTPEDpzAVG"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!OmhCH4TmAEiQx9he.L1KzwZQAUDJzEFv0"
+    }
+  ],
+  "_id": "OmhCH4TmAEiQx9he",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Phoenix",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!OmhCH4TmAEiQx9he"
+}

@@ -1,0 +1,573 @@
+{
+  "type": "adversary",
+  "name": "Supreme Demiurge Adonix",
+  "folder": "7XHlANCPz18yvl5L",
+  "system": {
+    "type": "solo",
+    "description": "<p>The four-faced angel from the Hallows Above who manifests in the Mortal Realm as a floating tetrahedron with numerous eyes and multiple sets of metallic feathered wings.</p>",
+    "tier": 4,
+    "motivesAndTactics": "Establish dominion, exile from reality, float above it all, speak into being",
+    "difficulty": 20,
+    "damageThresholds": {
+      "major": 35,
+      "severe": 70
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 12
+      },
+      "stress": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "attack": {
+      "name": "Wing Strike",
+      "img": "icons/commodities/biological/wing-bird-white.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "close",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 8,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d12",
+            "bonus": 10,
+            "multiplier": "flat",
+            "flatMultiplier": 4,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "jbe8bRuyUJAiArfS": {
+        "name": "Omnipotence",
+        "value": 10,
+        "description": ""
+      },
+      "UacQqnT53CuMQDo3": {
+        "name": "Be Not Afraid",
+        "value": 5,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "huge",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Relentless (4)",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Adonix can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "LqmWQ1M1OAp8CRRs",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!cARWKseJwjskn23n.LqmWQ1M1OAp8CRRs"
+    },
+    {
+      "name": "Elemental Archon",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Mark a Stress</strong> to roll a <strong>d4</strong>. Adonix activates the corresponding effect:</p><ol><li><p>Fire Beam. Adonix manifests a beam of elemental fire with a Very Close width from themself to the edge of the battlefield. Each target in the beam's path must make an Agility Reaction Roll. Targets who fail take Severe damage. Targets who succeed take Minor damage.</p></li><li><p>Thunderclap. All creatures within Far range must mark a Stress and become <em>Vulnerable</em> until they succeed on an attack roll or the Demiurge is defeated.</p></li><li><p>Lightning Bolt. Make an attack against a target within Very Far range, dealing <strong>4d8</strong> magic damage on a success. If all results are even, make the same attack against a different target, repeating the cycle until you roll an odd result or run out of targets.</p></li><li><p>Ice Storm. Each PC within Close range must succeed on a Strength Reaction Roll or mark <strong>1d4</strong> Stress and become <em>Restrained</em> until they <strong>spend a Hope</strong> to escape.</p></li></ol>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "vFcVQJIwxf5zPjeo",
+      "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!cARWKseJwjskn23n.vFcVQJIwxf5zPjeo"
+    },
+    {
+      "name": "Alpha to Omega",
+      "type": "feature",
+      "system": {
+        "featureForm": "evolution",
+        "description": "<p>When Adonix is defeated, they resurrect in Omega form with all HP and Stress cleared. Each PC within Very Far range must succeed on a Presence Reaction Roll or lose a Hope. You gain a Fear for each Hope lost in this way.</p><section id=\"secret-kaHS0tXk5Kj9qy75\" class=\"secret\"><p>Adonix gains the Forsaken and Amrageddon features.</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "bhcAz9W4hd5fky6l": {
+            "type": "evolution",
+            "_id": "bhcAz9W4hd5fky6l",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "evolution": {
+              "active": false,
+              "evolutionFeatures": {
+                "AJicsX6t4G8r6pX9": "evolved",
+                "D56q8j9zqjTlkCPy": "evolved"
+              },
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              },
+              "tokenOverride": null
+            },
+            "effects": []
+          },
+          "bYTI3aiRNSi6puZh": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "hope": {
+                  "base": false,
+                  "applyTo": "hope",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "bYTI3aiRNSi6puZh",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "RQvkIhWDLNf1nruQ",
+      "img": "icons/magic/symbols/star-inverted-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!cARWKseJwjskn23n.RQvkIhWDLNf1nruQ"
+    },
+    {
+      "name": "Forsaken",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "attribution": {},
+        "description": "<p><strong>Spend a Fear</strong> to choose a PC and activate a Forsaken Countdown (1d8) for them. It ticks down when Adonix is spotlighted. When it triggers, the PC must mark all their HP. The countdown ends if Adonix takes Severe damage. You can have only one Forsaken Countdown active at a time.</p>",
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "T5bCqspBR1tmCUVi": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Forsaken",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/light/orb-shadow-blue.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "1d8",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "T5bCqspBR1tmCUVi",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "AJicsX6t4G8r6pX9",
+      "img": "icons/magic/light/orb-shadow-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!cARWKseJwjskn23n.AJicsX6t4G8r6pX9"
+    },
+    {
+      "name": "Armageddon",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "attribution": {},
+        "description": "<p>When Adonix is defeated again, they unleash a reality storm that shakes the realms to their foundations. Roll a <strong>d6</strong>. On a result of 5–6, each PC must make a death move.</p>",
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "P2EJERCMegGEMBmz": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "P2EJERCMegGEMBmz",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": "aboveEqual",
+                "treshold": 5
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Armageddon",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "D56q8j9zqjTlkCPy",
+      "img": "icons/magic/earth/laval-stone-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!cARWKseJwjskn23n.D56q8j9zqjTlkCPy"
+    }
+  ],
+  "_id": "cARWKseJwjskn23n",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Supreme Demiurge Adonix",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!cARWKseJwjskn23n"
+}

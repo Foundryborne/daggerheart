@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Herbal Remedies",
+  "folder": "CsC3T8aq5ueUHWqs",
+  "_id": "HE0slu6jR0Io2x84",
+  "img": "icons/tools/laboratory/bowl-liquid-pink-yellow-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you or an ally in the scene clears 1 or more Hit Points or Stress as the result of using a consumable, increase the number cleared by 1.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!HE0slu6jR0Io2x84"
+}

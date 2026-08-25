@@ -1,6 +1,6 @@
-import AttachableItem from './attachableItem.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHArmor extends AttachableItem {
+export default class DHArmor extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -8,7 +8,8 @@ export default class DHArmor extends AttachableItem {
             type: 'armor',
             hasDescription: true,
             isInventoryItem: true,
-            hasActions: true
+            hasActions: true,
+            hasResource: true
         });
     }
 
@@ -52,6 +53,10 @@ export default class DHArmor extends AttachableItem {
         );
     }
 
+    get itemFeatures() {
+        return this.armorFeatures;
+    }
+
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
@@ -59,8 +64,8 @@ export default class DHArmor extends AttachableItem {
         const features = this.armorFeatures.map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/sheets/items/armor/description.hbs',
-            { item: this.parent, features }
+            'systems/daggerheart/templates/sheets/items/description.hbs',
+            { features }
         );
 
         return { prefix, value: baseDescription, suffix: null };
@@ -168,9 +173,5 @@ export default class DHArmor extends AttachableItem {
     _getLabels() {
         const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.armor.max}`];
         return labels;
-    }
-
-    get itemFeatures() {
-        return this.armorFeatures;
     }
 }

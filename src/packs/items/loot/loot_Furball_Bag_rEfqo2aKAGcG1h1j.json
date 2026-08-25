@@ -1,0 +1,51 @@
+{
+  "name": "Furball Bag",
+  "type": "loot",
+  "img": "icons/containers/bags/pouch-leather-pink.webp",
+  "system": {
+    "description": "<p>Once per rest, you can produce [[/r 2d20]] harmless, cat-sized fur creatures of indeterminate origin and species from this bag.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "bIr96Iej1iMgJ1cw": {
+        "type": "effect",
+        "_id": "bIr96Iej1iMgJ1cw",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Produce Creatures",
+        "range": ""
+      }
+    }
+  },
+  "_id": "rEfqo2aKAGcG1h1j",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!rEfqo2aKAGcG1h1j"
+}

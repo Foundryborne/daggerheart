@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "A00z8Q8B3aKApKzI",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> to unleash powerful rays of burning sunlight against all adversaries in front of you within Far range. On a success, <strong>spend any number of Hope</strong> and force that many targets you succeeded against to make a Reaction Roll (14).</p><p class=\"Body-Foundation\">Targets who succeed take <strong>3d20+3</strong> magic damage. Targets who fail take <strong>4d20+5</strong> magic damage and are temporarily <em>Stunned</em>. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> to unleash powerful rays of burning sunlight against all adversaries in front of you within Far range. On a success, <strong>spend any number of Hope</strong> and force that many targets you succeeded against to make a Reaction Roll (14).</p><p>Targets who succeed take <strong>3d20+3</strong> magic damage. Targets who fail take <strong>4d20+5</strong> magic damage and are temporarily <em>Stunned</em>. While <em>Stunned</em>, they can't use reactions and can't take any other actions until they clear this condition.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "eiUQZbHvPkEV03c1",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> to unleash powerful rays of burning sunlight against all adversaries in front of you within Far range. On a success, <strong>spend any number of Hope</strong> and force that many targets you succeeded against to make a Reaction Roll (14).</p><p class=\"Body-Foundation\">Targets who succeed take <strong>3d20+3</strong> magic damage. Targets who fail take <strong>4d20+5</strong> magic damage and are temporarily <em>Stunned</em>. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,8 @@
             "scalable": true,
             "key": "hope",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,35 +34,38 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 4,
-                "dice": "d20",
-                "bonus": 5
+          "main": {
+            "resultBased": false,
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 4,
+              "dice": "d20",
+              "bonus": 5
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "base": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -102,15 +106,21 @@
             "type": "placed",
             "shape": "inFront",
             "size": "far",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "AI8sGbUXLw4gG8mW": {
         "type": "damage",
         "_id": "AI8sGbUXLw4gG8mW",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Targets who succeed take <strong>3d20+3</strong> magic damage. </p>",
+        "description": "<p>Targets who succeed take <strong>3d20+3</strong> magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -121,35 +131,38 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 3,
-                "dice": "d20",
-                "bonus": 3
+          "main": {
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 3,
+              "dice": "d20",
+              "bonus": 3
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "base": false,
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -158,14 +171,26 @@
         "effects": [],
         "name": "Damage on Successful Save",
         "img": "icons/magic/light/beam-strike-village-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 133,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "lRHo6ZkK1zybeEoG",
@@ -179,16 +204,14 @@
       "_id": "kSLuGSI6FLhOJaGp",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -197,7 +220,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Temporarily Stunned. While Stunned, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
+      "description": "<p>Temporarily Stunned. While Stunned, they can't use reactions and can't take any other actions until they clear this condition.</p>",
       "tint": "#ffffff",
       "statuses": [
         "stun"
@@ -220,8 +243,5 @@
       "_key": "!items.effects!lRHo6ZkK1zybeEoG.kSLuGSI6FLhOJaGp"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!lRHo6ZkK1zybeEoG"
 }

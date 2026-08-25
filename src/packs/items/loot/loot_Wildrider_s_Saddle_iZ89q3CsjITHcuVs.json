@@ -1,0 +1,22 @@
+{
+  "name": "Wildrider’s Saddle",
+  "type": "loot",
+  "img": "icons/commodities/leather/leather-buckle-steel-tan.webp",
+  "system": {
+    "description": "<p>This saddle grants any animal it's strapped onto the ability to understand their rider's commands.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "iZ89q3CsjITHcuVs",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!iZ89q3CsjITHcuVs"
+}

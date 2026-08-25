@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Blighting Strike",
+  "folder": "pO0uBPDGQi4ULPAt",
+  "system": {
+    "domain": "dread",
+    "level": 1,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success:</p><ul><li><p>On a roll with Hope, deal <strong>d6+1</strong> magic damage using your Proficiency. On a roll with Fear, deal <strong>d10+1</strong> magic damage using your Proficiency.</p></li><li><p>The target's next successful attack deals half damage.</p></li></ul><p>On a failure, you must spend a Hope or mark a Stress.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "CEOM585jIX8V9PHz",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!CEOM585jIX8V9PHz"
+}

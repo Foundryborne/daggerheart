@@ -1,4 +1,3 @@
-import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
@@ -47,11 +46,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return schemaFields;
     }
 
+    get metadata() {
+        return this.constructor.metadata;
+    }
+
     /**
      * The default values to supply to schema fields when they are created in the actionConfig. Defined by implementing classes.
      */
     get defaultValues() {
         return {};
+    }
+
+    get hasDescription() {
+        return Boolean(this.description);
     }
 
     /**
@@ -110,13 +117,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return this._id;
     }
 
-    /** Returns true if the current user is the owner of the containing item */
+    /** 
+     * Returns true if the current user is the owner of the containing item.
+     * @returns {boolean}
+     */
     get isOwner() {
         return this.item?.isOwner ?? true;
     }
 
     /**
      * Return Item the action is attached too.
+     * @returns {DHItem}
      */
     get item() {
         if (!this.parent.parent && this.systemPath)
@@ -139,18 +150,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
+     * @returns {CONFIG.Actor.documentClass | null}
      */
     get actor() {
-        return this.item instanceof DhpActor
+        return this.item instanceof CONFIG.Actor.documentClass
             ? this.item
-            : this.item?.parent instanceof DhpActor
-              ? this.item.parent
-              : null;
+            : this.item?.parent instanceof CONFIG.Actor.documentClass
+                ? this.item.parent
+                : null;
     }
 
     /**
      * Returns true if the action is usable.
      * An action is usable on any actor type. For example, an adversary might have a base attack action.
+     * @returns {boolean}
      */
     get usable() {
         const actor = this.actor;
@@ -169,12 +182,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      */
     static getSourceConfig(parent) {
         const updateSource = {};
-        if (parent?.parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
+
+        const { attack, damage } = game.system.api.models.actions.actionsTypes;
+        if (this === attack || this === damage) {
             updateSource['damage'] = { includeBase: true };
-            updateSource['range'] = parent?.attack?.range;
-            updateSource['roll'] = {
-                useDefault: true
-            };
+        }
+        
+        if (this === attack) {
+            if (parent?.parent?.type === 'weapon') {
+                updateSource['range'] = parent?.attack?.range;
+                updateSource['roll'] = {
+                    useDefault: true
+                };
+            }
         } else {
             if (parent?.trait) {
                 updateSource['roll'] = {
@@ -195,7 +215,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {object}
      */
     getRollData(data = {}) {
-        const actorData = this.actor ? this.actor.getRollData(false) : {};
+        const actorData = this.item?.getRollData() ?? {};
         actorData.result = data.roll?.total ?? 1;
         actorData.scale = data.costs?.length // Right now only return the first scalable cost.
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
@@ -223,12 +243,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {object}
      */
     async use(event, configOptions = {}) {
-        if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
+        if (!this.actor) throw new Error('An Action can\'t be used outside of an Actor context.');
 
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
-        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(this.actor, this.item);
+        config.effects =
+            await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -246,7 +267,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled) await this.toChat();
+        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled)
+            await this.toChat(null, config);
 
         return config;
     }
@@ -278,7 +300,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasEffect: this.hasEffect,
             hasSave: this.hasSave,
             onSave: this.save?.damageMod,
-            isDirect: !!this.damage?.direct,
             selectedMessageMode: game.settings.get('core', 'messageMode'),
             data: this.getRollData(),
             evaluate: this.hasRoll,
@@ -296,21 +317,21 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         };
 
         if (this.damage) {
-            config.isDirect = this.damage.direct;
+            config.isDirect = !!this.damage.main?.direct;
 
-            const groupAttackTokens = this.damage.groupAttack
+            const groupAttackTokens = this.damage.main?.groupAttack
                 ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
-                      this.actor.id,
-                      this.damage.groupAttack
-                  )
+                    this.actor.id,
+                    this.damage.main.groupAttack
+                )
                 : null;
 
             config.damageOptions = {
-                groupAttack: this.damage.groupAttack
+                groupAttack: this.damage.main?.groupAttack
                     ? {
-                          numAttackers: Math.max(groupAttackTokens.length, 1),
-                          range: this.damage.groupAttack
-                      }
+                        numAttackers: Math.max(groupAttackTokens.length, 1),
+                        range: this.damage.main.groupAttack
+                    }
                     : null
             };
         }
@@ -333,27 +354,45 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /**
-     * Get the all potentially applicable effects on the actor
+     * Get the all potentially applicable effects on the actor for the action's RollDialog
      * @param {DHActor} actor The actor performing the action
      * @param {DHItem|DhActor} effectParent The parent of the effect
      * @returns {DhActiveEffect[]}
      */
-    static async getEffects(actor, effectParent) {
+    static async getActionRelevantEffects(actor, effectParent) {
         if (!actor) return [];
 
-        return Array.from(await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true })).filter(
-            effect => {
-                /* Effects on weapons only ever apply for the weapon itself */
-                if (effect.parent.type === 'weapon') {
-                    /* Unless they're secondary - then they apply only to other primary weapons */
-                    if (effect.parent.system.secondary) {
-                        if (effectParent?.type !== 'weapon' || effectParent?.system.secondary) return false;
-                    } else if (effectParent?.id !== effect.parent.id) return false;
-                }
+        // Changes on weapon effects are not typically only applicable to show in the roll dialog for the weapon itself 
+        // The exemptions to this rule are listed below
+        const weaponTransferredEffectKeys = [
+            'system.bonuses.roll.spellcast.bonus'
+        ];
 
-                return !effect.isSuppressed;
+        const results = [];
+        const applicableEffects = await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        for (const effect of [...applicableEffects].filter(e => !e.isSuppressed)) {
+            if (effect.parent.type === 'weapon') {
+                // Effects on weapons only ever apply for the weapon itself (with a few exceptions)
+                const restricted =
+                    effect.parent.system.secondary
+                        // Secondary applies only to other primary weapons
+                        ? effectParent?.type !== 'weapon' || effectParent?.system.secondary
+                        // Primary only applies to itself
+                        : effectParent?.id !== effect.parent.id;
+                if (restricted) {
+                    const sourceChanges = effect._source.system.changes;
+                    const changes = sourceChanges.filter(x => weaponTransferredEffectKeys.includes(x.key));
+                    if (changes.length) {
+                        results.push(effect.clone({ 'system.changes': changes }));
+                    }
+                    continue;
+                }
             }
-        );
+
+            results.push(effect);
+        }
+
+        return results;
     }
 
     /**
@@ -401,11 +440,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     get hasDamage() {
-        return Boolean(Object.keys(this.damage?.parts ?? {}).length) && this.type !== 'healing';
+        return this.type !== 'healing' && (Boolean(this.damage?.main) || Object.keys(this.damage?.resources ?? {}).length);
     }
 
     get hasHealing() {
-        return Boolean(Object.keys(this.damage?.parts ?? {}).length) && this.type === 'healing';
+        return this.type === 'healing' && Object.keys(this.damage?.resources ?? {}).length;
     }
 
     get hasSave() {
@@ -428,10 +467,37 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     static migrateData(source) {
         if (source.damage?.parts && Array.isArray(source.damage.parts)) {
+            let hitPointsExists = source.damage.parts.some(x => x.applyTo === 'hitPoints');
             source.damage.parts = source.damage.parts.reduce((acc, part) => {
+                if (!part.applyTo && hitPointsExists) return acc;
+
+                if (!part.applyTo) {
+                    hitPointsExists = true;
+                    part.applyTo = 'hitPoints';
+                }
+
                 acc[part.applyTo] = part;
                 return acc;
             }, {});
+        }
+
+        if (source.damage?.parts && !source.damage.resources && !source.damage.main) {
+            source.damage.main = null;
+            source.damage.resources = {};
+            for (const [partKey, part] of Object.entries(source.damage.parts)) {
+                if (partKey === 'hitPoints' && source.type !== 'healing') {
+                    source.damage.main = {
+                        ...part,
+                        includeBase: source.damage.includeBase,
+                        direct: source.damage.direct,
+                        groupAttack: source.damage.groupAttack
+                    };
+                } else {
+                    source.damage.resources[partKey] = part;
+                }
+            }
+
+            delete source.damage.parts;
         }
     }
 }
@@ -459,8 +525,7 @@ export class ResourceUpdateMap extends Map {
             } else if (!existing?.clear) {
                 this.set(resource.key, {
                     ...existing,
-                    value: existing.value + (resource.value ?? 0),
-                    total: existing.total + (resource.total ?? 0)
+                    value: existing.value + (resource.value ?? 0)
                 });
             }
         }

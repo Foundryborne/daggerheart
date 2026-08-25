@@ -1,0 +1,31 @@
+{
+  "type": "feature",
+  "name": "Favor",
+  "folder": "6ckQvoxhWONRq9XJ",
+  "_id": "OGPn7DUJoJwAXh8o",
+  "img": "icons/creatures/magical/spirit-fear-energy-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You start with 3 Favor. You can use a downtime move to show tribute to your patron. Describe how and gain Favor equal to your Spellcast trait. Additionally, when you succeed on an action roll with Hope, you can choose to gain a Favor instead of a Hope.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 3,
+      "max": "",
+      "recovery": null,
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-spaghetti-monster-flying"
+    },
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!OGPn7DUJoJwAXh8o"
+}

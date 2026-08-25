@@ -13,7 +13,8 @@
       "icon": "fa-solid fa-water",
       "recovery": "session",
       "diceStates": {},
-      "dieFaces": "d4"
+      "dieFaces": "d4",
+      "progression": "increasing"
     },
     "actions": {
       "tFlus34KotJjHfTe": {
@@ -47,24 +48,21 @@
           "amount": null
         },
         "name": "Know The Tide",
-        "range": ""
+        "range": "",
+        "areas": []
       }
     },
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 33,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "flags": {},
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "_key": "!items!07x6Qe6qMzDw2xN4"
 }

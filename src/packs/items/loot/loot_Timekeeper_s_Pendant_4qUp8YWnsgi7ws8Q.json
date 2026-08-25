@@ -1,0 +1,82 @@
+{
+  "name": "Timekeeper’s Pendant",
+  "type": "loot",
+  "img": "icons/equipment/neck/amulet-round-gold-green-blue.webp",
+  "system": {
+    "description": "<p>You can choose an additional downtime move each rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "4qUp8YWnsgi7ws8Q",
+  "effects": [
+    {
+      "name": "Timekeeper’s Pendant",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.rest.shortRest.shortMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.rest.longRest.longMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "RaFL9RF6M2Oa1Mc0",
+      "img": "icons/equipment/neck/amulet-round-gold-green-blue.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>You can choose an additional downtime move each rest.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!4qUp8YWnsgi7ws8Q.RaFL9RF6M2Oa1Mc0"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!4qUp8YWnsgi7ws8Q"
+}

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yalAnCU3SndrYImF",
   "system": {
-    "description": "<p class=\"Body\">While you are wearing armor, gain a +2 bonus to your damage thresholds.</p>",
+    "description": "<p>While you are wearing armor, gain a +2 bonus to your damage thresholds.</p>",
     "domain": "blade",
     "recallCost": 0,
     "level": 4,
@@ -13,7 +13,14 @@
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "oVa49lI107eZILZr",
@@ -23,38 +30,37 @@
       "name": "Fortified Armor",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "jx8KWAdyoPV2hV0s",
       "img": "icons/equipment/chest/breastplate-helmet-metal.webp",
-      "changes": [
-        {
-          "key": "system.damageThresholds.major",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.damageThresholds.severe",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "origin": null,
@@ -66,11 +72,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!oVa49lI107eZILZr.jx8KWAdyoPV2hV0s"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!oVa49lI107eZILZr"
 }

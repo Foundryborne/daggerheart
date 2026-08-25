@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yalAnCU3SndrYImF",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
+    "description": "<p>Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "xdNbP1ggDxpXZ1HP",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -36,14 +36,26 @@
         },
         "name": "Focus",
         "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "xxZOXC4tiZQ6kg1e",
@@ -57,32 +69,30 @@
       "_id": "TFWiAUDCfGaax5MU",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
-      "changes": [
-        {
-          "key": "system.proficiency",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
+      "description": "<p>Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -90,11 +100,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!xxZOXC4tiZQ6kg1e.TFWiAUDCfGaax5MU"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!xxZOXC4tiZQ6kg1e"
 }

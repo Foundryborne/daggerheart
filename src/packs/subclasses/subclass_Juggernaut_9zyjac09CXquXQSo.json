@@ -1,0 +1,48 @@
+{
+  "type": "subclass",
+  "name": "Juggernaut",
+  "folder": "YrzAU9sETEGR374I",
+  "_id": "9zyjac09CXquXQSo",
+  "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Juggernaut if you want to pulverize your opponents with crushing blows.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": null,
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.izu8r8Qi8Rd2D8ML"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.36POMgbO969M38Ky"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.OWh9ztIVW6P0gve0"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.mHuqYsV0a2MYnLej"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.vAZFKiSCZYHBbmtb"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.kKdC6wJ7YAF4F12p"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.0Qw2heB75eXNV4SM"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!9zyjac09CXquXQSo"
+}

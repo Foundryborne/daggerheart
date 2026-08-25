@@ -1,6 +1,5 @@
 import DHAncestry from './ancestry.mjs';
 import DHArmor from './armor.mjs';
-import DHAttachableItem from './attachableItem.mjs';
 import DHClass from './class.mjs';
 import DHCommunity from './community.mjs';
 import DHConsumable from './consumable.mjs';
@@ -10,11 +9,11 @@ import DHLoot from './loot.mjs';
 import DHSubclass from './subclass.mjs';
 import DHWeapon from './weapon.mjs';
 import DHBeastform from './beastform.mjs';
+import DHTransformation from './transformation.mjs';
 
 export {
     DHAncestry,
     DHArmor,
-    DHAttachableItem,
     DHClass,
     DHCommunity,
     DHConsumable,
@@ -23,13 +22,13 @@ export {
     DHLoot,
     DHSubclass,
     DHWeapon,
-    DHBeastform
+    DHBeastform,
+    DHTransformation
 };
 
 export const config = {
     ancestry: DHAncestry,
     armor: DHArmor,
-    attachableItem: DHAttachableItem,
     class: DHClass,
     community: DHCommunity,
     consumable: DHConsumable,
@@ -38,5 +37,6 @@ export const config = {
     loot: DHLoot,
     subclass: DHSubclass,
     weapon: DHWeapon,
-    beastform: DHBeastform
+    beastform: DHBeastform,
+    transformation: DHTransformation
 };

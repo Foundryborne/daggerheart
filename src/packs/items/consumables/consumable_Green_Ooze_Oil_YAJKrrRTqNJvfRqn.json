@@ -1,0 +1,219 @@
+{
+  "name": "Green Ooze Oil",
+  "type": "consumable",
+  "img": "icons/commodities/materials/glass-orb-marble-green.webp",
+  "system": {
+    "description": "<p>You can coat your weapon in this oil. The next successful attack you make with this weapon deals an extra 1d8 magic damage and temporarily Corrodes the target. While Corroded, the target gains a -2 penalty to their damage thresholds.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "w8gPYG7TDSU3P0tJ": {
+        "type": "effect",
+        "_id": "w8gPYG7TDSU3P0tJ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "YAJKrrRTqNJvfRqn",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "0tVi0WsfLu3YzxeE",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Coat",
+        "range": ""
+      },
+      "Dt901UQjOONozDdc": {
+        "type": "effect",
+        "_id": "Dt901UQjOONozDdc",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "X0gyRnn8BECGV6P4",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Apply Corroded",
+        "range": "",
+        "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp"
+      }
+    }
+  },
+  "_id": "YAJKrrRTqNJvfRqn",
+  "effects": [
+    {
+      "name": "Green Ooze Oil",
+      "disabled": false,
+      "img": "icons/commodities/materials/glass-orb-marble-green.webp",
+      "description": "<p>You can coat your weapon in this oil. The next successful attack you make with this weapon deals an extra 1d8 magic damage and temporarily Corrodes the target.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.damage.primaryWeapon.dice",
+            "type": "add",
+            "value": "1d8",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.secondaryWeapon.dice",
+            "type": "add",
+            "value": "1d8",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.YAJKrrRTqNJvfRqn",
+      "_id": "0tVi0WsfLu3YzxeE",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!YAJKrrRTqNJvfRqn.0tVi0WsfLu3YzxeE"
+    },
+    {
+      "name": "Corroded",
+      "disabled": false,
+      "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp",
+      "description": "<p>While Corroded, the target gains a -2 penalty to their damage thresholds.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "subtract",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "subtract",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.YAJKrrRTqNJvfRqn",
+      "_id": "X0gyRnn8BECGV6P4",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!YAJKrrRTqNJvfRqn.X0gyRnn8BECGV6P4"
+    }
+  ],
+  "folder": null,
+  "sort": 6100000,
+  "flags": {},
+  "_key": "!items!YAJKrrRTqNJvfRqn"
+}

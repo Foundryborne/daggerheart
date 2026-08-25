@@ -49,7 +49,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             })
         };
 
-        if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
+        if (this.metadata.hasDescription) {
+            schema.description = new fields.HTMLField({ required: true, nullable: true });
+            schema.gmNotes = new fields.HTMLField({ required: true, nullable: true });
+        }
 
         if (this.metadata.hasResource) {
             schema.resource = new fields.SchemaField(
@@ -106,7 +109,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Convenient access to the item's actor, if it exists.
-     * @returns {foundry.documents.Actor | null}
+     * @returns {DhpActor | null}
      */
     get actor() {
         return this.parent.actor;
@@ -121,11 +124,11 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     get itemFeatures() {
-        return [];
+        return this.actor?.items.filter(i => i.system.granterItem === this.parent) ?? [];
     }
 
     get attributionLabel() {
-        if (!this.attribution) return;
+        if (!this.attribution) return null;
 
         const { source, page } = this.attribution;
         return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
@@ -133,29 +136,51 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
-     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
-     * @returns {string}
+     * @param {ItemDescriptionConfig} [options] Options that modify the styling of the rendered template.
+     * @param {import('@client/applications/ux/text-editor.mjs').EnrichmentOptions} [config] Options for enrichHTML
+     * @returns {Promise<{ prefix: string | null; value: string | null; suffix: string | null }>}
      */
-    async getDescriptionData(_options) {
+    async getDescriptionData(options, config) {
         return { prefix: null, value: this.description, suffix: null };
     }
 
     /**
      * Gets the enriched and augmented description for the item.
-     * @param {object} [options] - Options that modify the styling of the rendered template. { headerStyle: undefined|'none'|'large' }
-     * @returns {string}
+     * @param {ItemDescriptionConfig} [config] Options that modify the styling of the rendered template.
+     * @param {import('@client/applications/ux/text-editor.mjs').EnrichmentOptions} [config] Options for enrichHTML
+     * @returns {Promise<string>}
      */
-    async getEnrichedDescription() {
+    async getEnrichedDescription(config = {}, options = {}) {
         if (!this.metadata.hasDescription) return '';
+        config.gmNotes ??= true;
+        config.type ??= 'sheet';
 
-        const { prefix, value, suffix } = await this.getDescriptionData();
-        const fullDescription = [prefix, value, suffix].filter(p => !!p).join('\n<hr>\n');
+        const { prefix, value, suffix } = await this.getDescriptionData(config, options);
+        const separator = config.type === 'tooltip' ? '\n' : '\n<hr>\n';
+        let fullDescription = [prefix, value, suffix].filter(p => !!p).join(separator);
+        if (this.gmNotes && config.gmNotes) {
+            const gmNotesElement = document.createElement('section');
+            gmNotesElement.classList.add('gm-notes-section');
+            gmNotesElement.dataset.visibility = 'gm';
+            const header = document.createElement('header');
+            header.classList.add('gm-notes');
+            header.textContent = _loc('DAGGERHEART.ITEMS.FIELDS.gmNotes.label');
+            gmNotesElement.innerHTML = header.outerHTML + this.gmNotes;
+            fullDescription += gmNotesElement.outerHTML;
+        }
 
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
-            relativeTo: this,
+            ...options,
+            relativeTo: options.relativeTo ?? this.parent,
             rollData: this.getRollData(),
-            secrets: this.parent.isOwner
+            secrets: options.secrets ?? this.parent.isOwner
         });
+    }
+
+    getLinkedItems() {
+        if (!this.actor) return [];
+
+        return this.actor.items.filter(x => x.system.granter?.id === this.parent.id);
     }
 
     /**
@@ -196,29 +221,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             this.updateSource({ actions: [action] });
         }
 
-        if (this.actor && this.actor.type === 'character' && this.features) {
-            const features = [];
-            for (let f of this.features) {
-                const fBase = f.item ?? f;
-                const feature = fBase.pack ? await foundry.utils.fromUuid(fBase.uuid) : fBase;
-                features.push(
-                    foundry.utils.mergeObject(
-                        feature.toObject(),
-                        {
-                            _stats: { compendiumSource: fBase.uuid },
-                            system: {
-                                originItemType: this.parent.type,
-                                identifier: f.item ? f.type : null,
-                                multiclassOrigin: this.isMulticlass
-                            }
-                        },
-                        { inplace: false }
-                    )
-                );
-            }
-
-            await this.actor.createEmbeddedDocuments('Item', features);
-        }
+        return super._preCreate(data, options, user);
     }
 
     async _preUpdate(changed, options, userId) {

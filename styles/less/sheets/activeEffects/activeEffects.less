@@ -33,16 +33,6 @@
         }
 
         .armor-change-container {
-            header {
-                padding: 0;
-                left: -0.25rem; // TODO: Find why this header is offset 0.25rem to the right so this can be removed.
-            }
-
-            header,
-            ol {
-                grid-template-columns: 5rem 7rem 12rem 4rem;
-            }
-
             .damage-thresholds-container {
                 width: 100%;
                 display: flex;
@@ -84,6 +74,51 @@
                         line-height: 16px;
                     }
                 }
+            }
+        }
+
+        .typed-change-container {
+            display: flex;
+            flex-direction: column;
+
+            .two-columns {
+                width: 100%;
+            }
+
+            .form-group {
+                display: block;
+            }
+
+            label {
+                line-height: normal;
+                color: inherit;
+            }
+
+            file-picker {
+                input {
+                    &:hover {
+                        outline: none;
+                        background: inherit;
+                    }
+                }
+            }
+        }
+    }
+
+    .item-info {
+        h3 {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            &[data-action]:hover::after {
+                content: '\f35d';
+                font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro"));
+                position: absolute;
+                left: 100%;
+                margin-left: 0.5rem;
+                color: var(--color-text-emphatic);
+                font-size: var(--font-size-12);
             }
         }
     }

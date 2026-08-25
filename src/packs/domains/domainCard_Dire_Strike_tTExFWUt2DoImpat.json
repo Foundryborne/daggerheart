@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Dire Strike",
+  "folder": "ZjU7pw0DklPo9XZH",
+  "system": {
+    "domain": "dread",
+    "level": 5,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When a target marks any number of Hit Points from an attack you make, you can <strong>spend a Hope</strong> to drain power from them. The GM loses a Fear.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "tTExFWUt2DoImpat",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!tTExFWUt2DoImpat"
+}

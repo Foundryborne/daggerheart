@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Fireproof",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "zmTuxjHiNDsW4VYa",
+  "img": "icons/magic/fire/flame-burning-yellow-orange.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>You are immune to damage from magical or mundane flame.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!zmTuxjHiNDsW4VYa"
+}

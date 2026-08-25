@@ -1,0 +1,111 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Ephemeral",
+  "type": "feature",
+  "_id": "ha5HN1sk0JpCG6us",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Your body wavers in and out of being corporeal. You are resistant to physical damage, take double magic damage, and can <strong>mark 2 Stress</strong> to momentarily pass through a solid object.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "pBliCoFhJ1tpOfFN": {
+        "type": "effect",
+        "_id": "pBliCoFhJ1tpOfFN",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p><strong>Mark 2 Stress</strong> to momentarily pass through a solid object.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 2,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": ""
+      }
+    },
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Ephemeral",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.resistance.physical.resistance",
+            "type": "override",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "4G5m6sQQ3npqoK77",
+      "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>Your body wavers in and out of being corporeal. You are resistant to physical damage, take double magic damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!ha5HN1sk0JpCG6us.4G5m6sQQ3npqoK77"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ha5HN1sk0JpCG6us"
+}

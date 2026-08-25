@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Voice of Dread",
+  "folder": "pO0uBPDGQi4ULPAt",
+  "system": {
+    "domain": "dread",
+    "level": 1,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You can magically speak to a creature you can see, tormenting them with your words. Make a <strong>Spellcast Roll</strong> against them. On a success, they must mark a Stress and are frozen with terror, making them temporarily <em>Restrained</em>.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 0,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "IK56Jod0jLrpHu0V",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!IK56Jod0jLrpHu0V"
+}

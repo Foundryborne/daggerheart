@@ -1,0 +1,44 @@
+{
+  "type": "subclass",
+  "name": "Poisoners Guild",
+  "folder": "pWb9BPbxzAMecprJ",
+  "_id": "4x8jiolc2hhs41dt",
+  "img": "icons/skills/toxins/cup-goblet-poisoned-spilled.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Poisoners Guild if you want to debilitate your targets with punishing afflictions.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": "knowledge",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.UNn0fdVUezD9rRJu"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.RrYxuotaN5JAjHdT"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.i4iY1IBTBWEI01QU"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.WAkxLnKbtic1O6pC"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.gpyx5lf1yWjCMVyl"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.0EFzupppM47Bl6Yw"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!4x8jiolc2hhs41dt"
+}

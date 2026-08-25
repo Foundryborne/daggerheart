@@ -5,50 +5,49 @@
   "_id": "EY7Eo6hNGppVL3dR",
   "img": "icons/magic/unholy/projectile-flame-white-purple.webp",
   "system": {
-    "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your “Shadow Stepper” feature to move within Very Far range.</p>",
+    "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your \"Shadow Stepper\" feature to move within Very Far range.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 19,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Fleeting Shadow",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "hsEwoHkNr2qVwm2H",
       "img": "icons/magic/unholy/projectile-flame-white-purple.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your “Shadow Stepper” feature to move within Very Far range.</p>",
+      "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your \"Shadow Stepper\" feature to move within Very Far range.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -58,14 +57,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!EY7Eo6hNGppVL3dR.hsEwoHkNr2qVwm2H"
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!EY7Eo6hNGppVL3dR"
 }

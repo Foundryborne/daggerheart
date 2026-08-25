@@ -1,0 +1,61 @@
+{
+  "name": "Magic-User’s Malison",
+  "type": "consumable",
+  "img": "icons/commodities/treasure/gem-framed-spiral-purple.webp",
+  "system": {
+    "description": "<p>When you release this spellcaster's trapped soul, you can cast one spell from a card in your vault as if it were in your loadout. This doesn't work for permanently vaulted cards.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "I9CPyBfAsQibn5PR": {
+        "type": "effect",
+        "_id": "I9CPyBfAsQibn5PR",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "USKNUVdtgl17llZq",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "USKNUVdtgl17llZq",
+  "effects": [],
+  "folder": null,
+  "sort": 5500000,
+  "flags": {},
+  "_key": "!items!USKNUVdtgl17llZq"
+}

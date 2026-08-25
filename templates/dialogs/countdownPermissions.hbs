@@ -1,0 +1,25 @@
+<div class="ownership-outer-container">
+    <ul class="ownership-list">
+        <li class="ownership-container default">
+            <img src="{{countdown.img}}" />
+            <span>{{localize "DAGGERHEART.APPLICATIONS.CountdownPermissions.defaultPermission"}}</span>
+            <select name="hidden" data-dtype="Boolean">
+                {{selectOptions @root.defaultOwnershipLevels selected=countdown.hidden labelAttr="label" valueAttr="value" localize=true }}
+            </select>
+        </li>
+        {{#each ownership as |player id|}}
+            <li class="ownership-container">
+                <img src="{{player.img}}" />
+                <span>{{player.name}}</span>
+                <select name="{{concat "ownership." id}}" data-dtype="Number">
+                    {{selectOptions @root.ownershipLevels selected=player.ownership  labelAttr="label" valueAttr="value" localize=true }}
+                </select>
+            </li>
+        {{else}}
+            <span class="hint">{{localize "DAGGERHEART.APPLICATIONS.CountdownPermissions.noPlayers"}}</span>
+        {{/each}}
+    </ul>
+    <footer class="flexrow">
+        <button type="submit">{{localize "Save"}}</button>
+    </footer>
+</div>

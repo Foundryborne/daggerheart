@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QpOL7jPbMBzH96qR",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make an attack with your primary weapon against a target within Melee range. On a success, you deal damage and knock them back to Close range. On a success with Hope, add a <strong>d6</strong> to your damage roll.</p><p class=\"Body-Foundation\">Additionally, you can <strong>spend a Hope</strong> to make them temporarily <em>Vulnerable</em>.</p>",
+    "description": "<p>Make an attack with your primary weapon against a target within Melee range. On a success, you deal damage and knock them back to Close range. On a success with Hope, add a <strong>d6</strong> to your damage roll.</p><p>Additionally, you can <strong>spend a Hope</strong> to make them temporarily <em>Vulnerable</em>.</p>",
     "domain": "valor",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "LT5173FgPoF81v7o",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make an attack with your primary weapon against a target within Melee range. On a success, you deal damage and knock them back to Close range. On a success with Hope, add a <strong>d6</strong> to your damage roll.</p><p>Additionally, you can <strong>spend a Hope</strong> to make them temporarily <em>Vulnerable</em>.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,13 +23,15 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -43,7 +45,13 @@
         },
         "name": "Spend Hope",
         "img": "icons/skills/melee/shield-block-bash-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": null,
@@ -52,7 +60,11 @@
       "source": "Daggerheart SRD",
       "page": 134,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "effects": [
@@ -64,16 +76,14 @@
       "_id": "95oX6QYPySdyyh2v",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -105,10 +115,6 @@
       "_key": "!items.effects!z8FFPhDh2SdFkFfS.95oX6QYPySdyyh2v"
     }
   ],
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "_id": "z8FFPhDh2SdFkFfS",
   "sort": 0,
   "_key": "!items!z8FFPhDh2SdFkFfS"

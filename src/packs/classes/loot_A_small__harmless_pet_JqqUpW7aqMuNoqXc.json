@@ -1,0 +1,18 @@
+{
+  "type": "loot",
+  "name": "A small, harmless pet",
+  "folder": "fH3jYKRK0AOYFaTx",
+  "_id": "JqqUpW7aqMuNoqXc",
+  "img": "icons/creatures/abilities/paw-print-yellow.webp",
+  "system": {
+    "attribution": {},
+    "description": "",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!JqqUpW7aqMuNoqXc"
+}

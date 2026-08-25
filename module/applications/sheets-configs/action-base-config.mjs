@@ -1,4 +1,4 @@
-import { getUnusedDamageTypes } from '../../helpers/utils.mjs';
+import { DHDamageData } from '../../data/fields/action/damageField.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -15,6 +15,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}: ${this.action.name}`;
     }
 
+    get item() {
+        return this.action?.item;
+    }
+
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'action-config', 'dialog', 'max-800'],
@@ -24,6 +28,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         },
         position: { width: 600, height: 'auto' },
         actions: {
+            copyUuid: { handler: DHActionBaseConfig.#onCopyUuid, buttons: [0, 2] },
             toggleSection: this.toggleSection,
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,
@@ -31,8 +36,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             removeElement: this.removeElement,
             removeTransformActor: this.removeTransformActor,
             editEffect: this.editEffect,
-            addDamage: this.addDamage,
-            removeDamage: this.removeDamage,
+            addDamage: this.#onAddDamage,
+            removeDamage: this.#onRemoveDamage,
+            addDamageResource: this.#onAddDamageResource,
+            removeDamageResource: this.#onRemoveDamageResource,
             editDoc: this.editDoc,
             addTrigger: this.addTrigger,
             removeTrigger: this.removeTrigger,
@@ -121,13 +128,28 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        htmlElement.querySelectorAll('.summon-count-wrapper input').forEach(element => {
-            element.addEventListener('change', this.updateSummonCount.bind(this));
-        });
+        for (const element of htmlElement.querySelectorAll('.summon-count-wrapper input'))
+            element.addEventListener('change', this.#onUpdateSummonCount.bind(this));
 
-        htmlElement.querySelectorAll('.transform-resource input').forEach(element => {
-            element.addEventListener('change', this.updateTransformResource.bind(this));
-        });
+        for (const element of htmlElement.querySelectorAll('.transform-resource input'))
+            element.addEventListener('change', this.#onUpdateTransformResource.bind(this));
+
+        for (const element of htmlElement.querySelectorAll('.evolution-state-select'))
+            element.addEventListener('change', this.#onUpdateEvolutionStateSelect.bind(this));
+
+        for (const element of htmlElement.querySelectorAll('.evolution-resource input'))
+            element.addEventListener('change', this.#onUpdateEvolutionResource.bind(this));
+    }
+
+    /** @inheritDoc */
+    _onFirstRender(context, options) {
+        super._onFirstRender(context, options);
+        this.item.apps[this.id] = this;
+    }
+
+    /** @override */
+    _onClose(_options) {
+        delete this.item.apps[this.id];
     }
 
     async _prepareContext(_options) {
@@ -153,14 +175,26 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             };
         }
 
+        if (context.source.evolution) {
+            const actorFeatures = (this.action.actor?.items ?? []).filter(x => x.type === 'feature' && x.id !== this.action.item?.id);
+            context.evolutionFeatures = actorFeatures.map(item => ({
+                id: item.id,
+                name: item.name,
+                state: context.source.evolution.evolutionFeatures[item.id] ?? ''
+            }));
+            context.evolutionStates = {
+                ['']: { id: '', label: _loc('None') },
+                ...CONFIG.DH.ACTIONS.evolutionStates
+            };
+        }
+
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
         if (this.action.damage) {
-            context.allDamageTypesUsed = !getUnusedDamageTypes(this.action.damage.parts).length;
-
-            if (this.action.damage.hasOwnProperty('includeBase') && this.action.type === 'attack')
-                context.hasBaseDamage = !!this.action.parent.attack;
+            const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
+            context.allDamageTypesUsed = allKeys.every(k => k in this.action._source.damage.resources);
+            context.hasBaseDamage = this.action.damage?.main?.hasOwnProperty('includeBase');
         }
 
         context.costOptions = this.getCostOptions();
@@ -187,6 +221,28 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             ...Object.values(settingsTiers).map(x => ({ key: x.tier, label: x.name }))
         ];
         return context;
+    }
+
+    /** @inheritDoc */
+    _getFrameButtons(options) {
+        const buttons = super._getFrameButtons(options);
+        buttons.push({
+            icon: 'fa-solid fa-passport',
+            label: 'APPLICATION.ACTIONS.CopyUuid',
+            action: 'copyUuid'
+        });
+        return buttons;
+    }
+
+    static #onCopyUuid(event, button) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.detail > 1) return;
+        const id = event.button === 2 ? this.action.id : this.action.uuid;
+        const type = event.button === 2 ? 'ID' : 'UUID';
+        const label = game.i18n.localize(this.action.metadata.label);
+        game.clipboard.copyPlainText(id);
+        ui.notifications.info(game.i18n.format('DOCUMENT.IdCopiedClipboard', { label, type, id }));
     }
 
     static toggleSection(_, button) {
@@ -217,17 +273,18 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     getRollTypeOptions() {
         const types = foundry.utils.deepClone(CONFIG.DH.GENERAL.rollTypes);
         if (!this.action.actor) return types;
-        Object.values(types).forEach(t => {
+        for (const t of Object.values(types)) {
             if (this.action.actor.type !== 'character' && t.playerOnly) delete types[t.id];
-        });
+        }
         return types;
     }
 
     disableOption(index, costOptions, choices) {
         const filtered = foundry.utils.deepClone(costOptions);
-        Object.keys(filtered).forEach(o => {
+        for (const o of Object.keys(filtered)) {
             if (choices.find((c, idx) => c.type === o && index !== idx)) filtered[o].disabled = true;
-        });
+        }
+
         return filtered;
     }
 
@@ -253,7 +310,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const submitData = this._prepareSubmitData(event, formData);
 
         const data = foundry.utils.mergeObject(this.action.toObject(), submitData);
-        this.action = await this.action.update(data);
+        this.action = (await this.action.update(data)) ?? this.action;
 
         this.sheetUpdate?.(this.action);
         this.render();
@@ -299,53 +356,70 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    static addDamage(_event) {
-        if (!this.action.damage.parts) return;
+    /** @this DHActionBaseConfig */
+    static #onAddDamage() {
+        if (!this.action.damage || this.action.damage?.main) return;
 
-        const choices = getUnusedDamageTypes(this.action._source.damage.parts);
+        const data = this.action.toObject();
+        data.damage.main = {
+            ...DHDamageData.schema.getInitialValue(),
+            applyTo: 'hitPoints',
+            type: 'physical'
+        };
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    /** @this DHActionBaseConfig */
+    static #onRemoveDamage() {
+        if (!this.action.damage?.main) return;
+        const data = this.action.toObject();
+        data.damage.main = null;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    /** @this DHActionBaseConfig */
+    static #onAddDamageResource(_event) {
+        if (!this.action.damage) return;
+
+        const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
+        const unused = allKeys.filter(k => !(k in this.action._source.damage.resources));
+        const choices = unused.map(k => ({ value: k, label: _loc(CONFIG.DH.GENERAL.healingTypes[k].label) }));
         const content = new foundry.data.fields.StringField({
-            label: game.i18n.localize('Damage Type'),
+            label: _loc('DAGGERHEART.GENERAL.Resource.single'),
             choices,
             required: true
-        }).toFormGroup(
-            {},
-            {
-                name: 'type',
-                localize: true,
-                nameAttr: 'value',
-                labelAttr: 'label'
-            }
-        ).outerHTML;
+        }).toFormGroup({}, {
+            name: 'type',
+            localize: true,
+            nameAttr: 'value',
+            labelAttr: 'label'
+        }).outerHTML;
 
         const callback = (_, button) => {
             const data = this.action.toObject();
             const type = choices[button.form.elements.type.value].value;
-            const part = this.action.schema.fields.damage.fields.parts.element.getInitialValue();
-            part.applyTo = type;
-            if (type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
-                part.type = this.action.schema.fields.damage.fields.parts.element.fields.type.element.initial;
-
-            data.damage.parts[type] = part;
+            data.damage.resources[type] = {
+                ...this.action.schema.fields.damage.fields.resources.element.getInitialValue(),
+                applyTo: type
+            };
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
         const typeDialog = new foundry.applications.api.DialogV2({
             buttons: [
-                foundry.utils.mergeObject(
-                    {
-                        action: 'ok',
-                        label: 'Confirm',
-                        icon: 'fas fa-check',
-                        default: true
-                    },
-                    { callback: callback }
-                )
+                {
+                    action: 'ok',
+                    label: 'Confirm',
+                    icon: 'fas fa-check',
+                    default: true,
+                    callback
+                }
             ],
             content: content,
             rejectClose: false,
             modal: false,
             window: {
-                title: game.i18n.localize('Add Damage')
+                title: _loc('DAGGERHEART.ACTIONS.Config.damage.addResource')
             },
             position: { width: 300 }
         });
@@ -353,12 +427,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         typeDialog.render(true);
     }
 
-    static removeDamage(_event, button) {
-        if (!this.action.damage.parts) return;
+    /** @this DHActionBaseConfig */
+    static #onRemoveDamageResource(_event, button) {
+        if (!this.action.damage?.resources) return;
         const data = this.action.toObject();
         const key = button.dataset.key;
-        delete data.damage.parts[key];
-        data.damage.parts[`${key}`] = _del;
+        data.damage.resources[key] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
@@ -431,7 +505,11 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    updateSummonCount(event) {
+    /** 
+     * Update the count of tokens to be created for a single actor type in a summon action 
+     * @param {Event} event 
+     */
+    #onUpdateSummonCount(event) {
         event.stopPropagation();
         const wrapper = event.target.closest('.summon-count-wrapper');
         const index = wrapper.dataset.index;
@@ -440,7 +518,11 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    updateTransformResource(event) {
+    /**
+     * Update the state of resource refresh on a transform action
+     * @param {Event} event 
+     */
+    #onUpdateTransformResource(event) {
         event.stopPropagation();
 
         const data = this.action.toObject();
@@ -448,10 +530,34 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
+    /** Update the state of resource refresh on an evolution action
+     * @param {Event} event 
+     */
+    #onUpdateEvolutionResource(event) {
+        event.stopPropagation();
+
+        const data = this.action.toObject();
+        data.evolution.resourceRefresh[event.target.dataset.resource] = event.target.checked;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    /** Update the evolution state on features for an evolution action.
+     *  This decides which are available before/after evolution.
+     * @param {Event} event 
+     */
+    #onUpdateEvolutionStateSelect(event) {
+        event.stopPropagation();
+
+        const value = event.target.value ? event.target.value : _del();
+        const data = this.action.toObject();
+        data.evolution.evolutionFeatures[event.target.dataset.id] = value;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
     /** Specific implementation in extending classes **/
-    static async addEffect(_event) {}
-    static removeEffect(_event, _button) {}
-    static editEffect(_event) {}
+    static async addEffect(_event) { }
+    static removeEffect(_event, _button) { }
+    static editEffect(_event) { }
 
     async close(options) {
         this.tabGroups.primary = 'base';
@@ -460,44 +566,54 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.getDragEventData(event);
-        const item = await foundry.utils.fromUuid(data.uuid);
-        if (!(item instanceof game.system.api.documents.DhpActor)) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop'));
-            return;
-        }
+        const entity = await foundry.utils.fromUuid(data.uuid);
 
         const dropZone = event.target.closest('[data-is-drop-zone]');
         if (!dropZone) return;
 
         switch (dropZone.id) {
             case 'summon-drop-zone':
-                return this.onSummonDrop(data);
+                return this.onSummonDrop(entity);
             case 'transform-drop-zone':
-                return this.onTransformDrop(data);
+                return this.onTransformDrop(entity);
         }
     }
 
-    async onSummonDrop(data) {
-        const actionData = this.action.toObject();
-        let countvalue = 1;
-        for (const entry of actionData.summon) {
-            if (entry.actorUUID === data.uuid) {
-                entry.count += 1;
-                countvalue = entry.count;
-                await this.constructor.updateForm.bind(this)(null, null, {
-                    object: foundry.utils.flattenObject(actionData)
-                });
-                return;
-            }
+    /**
+     * Handles the logic of dropped actors on summon actions
+     * @param {game.system.api.documents.DhpActor} actor 
+     */
+    async onSummonDrop(actor) {
+        if (!(actor instanceof game.system.api.documents.DhpActor)) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop'));
+            return;
         }
 
-        actionData.summon.push({ actorUUID: data.uuid, count: countvalue });
+        const actionData = this.action.toObject();
+        const existingSummon = actionData.summon.find(x => x.actorUUID === actor.uuid);
+        if (existingSummon) {
+            existingSummon.count++;
+            return await this.constructor.updateForm.bind(this)(null, null, {
+                object: foundry.utils.flattenObject(actionData)
+            });
+        }
+
+        actionData.summon.push({ actorUUID: actor.uuid, count: 1 });
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
     }
 
-    async onTransformDrop(data) {
+    /**
+     * Handles the logic of dropped actors on transform actions
+     * @param {game.system.api.documents.DhpActor} actor 
+     */
+    async onTransformDrop(actor) {
+        if (!(actor instanceof game.system.api.documents.DhpActor)) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.invalidDrop'));
+            return;
+        }
+
         const actionData = this.action.toObject();
-        actionData.transform.actorUUID = data.uuid;
+        actionData.transform.actorUUID = actor.uuid;
         await this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(actionData) });
     }
 }

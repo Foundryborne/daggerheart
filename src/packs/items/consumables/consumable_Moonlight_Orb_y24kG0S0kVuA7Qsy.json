@@ -1,0 +1,61 @@
+{
+  "name": "Moonlight Orb",
+  "type": "consumable",
+  "img": "icons/tools/laboratory/alembic-glass-ball-blue.webp",
+  "system": {
+    "description": "<p>You can shatter this orb to make the area within Very Far range appear as though it's moonlit nighttime for the next 24 hours.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "1U6wvIFjYqA34md4": {
+        "type": "effect",
+        "_id": "1U6wvIFjYqA34md4",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "y24kG0S0kVuA7Qsy",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Shatter",
+        "range": ""
+      }
+    }
+  },
+  "_id": "y24kG0S0kVuA7Qsy",
+  "effects": [],
+  "folder": null,
+  "sort": 11300000,
+  "flags": {},
+  "_key": "!items!y24kG0S0kVuA7Qsy"
+}

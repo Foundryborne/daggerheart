@@ -5,7 +5,7 @@
   "_id": "qqQlgCqhOivUFoQn",
   "img": "icons/sundries/books/book-tooled-blue-yellow.webp",
   "system": {
-    "description": "<p><em>Play the School of Knowledge if you want a keen understanding of the world around you.</em></p>",
+    "description": "<p>Play the School of Knowledge if you want a keen understanding of the world around you.</p>",
     "spellcastingTrait": "knowledge",
     "features": [
       {
@@ -40,14 +40,11 @@
       "page": 25,
       "artist": ""
     },
-    "linkedClass": "Compendium.daggerheart.classes.Item.5LwX4m8ziY3F1ZGC"
+    "linkedClass": "Compendium.daggerheart.classes.Item.5LwX4m8ziY3F1ZGC",
+    "gmNotes": ""
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!qqQlgCqhOivUFoQn"
 }

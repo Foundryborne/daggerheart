@@ -58,7 +58,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 
     getFormula() {
         if (!this.type) return;
-        let formula = '';
+        let formula;
         switch (this.type) {
             case 'diceSet':
                 const multiplier =

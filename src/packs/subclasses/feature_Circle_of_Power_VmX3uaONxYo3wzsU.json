@@ -1,0 +1,147 @@
+{
+  "type": "feature",
+  "name": "Circle of Power",
+  "folder": "5X2hXr3NYBA0xR4U",
+  "_id": "VmX3uaONxYo3wzsU",
+  "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest, mark a circle on the ground outlining a Very Close area around you, and place a number of tokens equal to your Spellcast trait on this card. While within this circle, you and your allies gain a +2 bonus to damage thresholds, attack rolls, and Evasion. Remove a token each time you or an ally within the circle makes an action roll or evades an attack. This spell lasts until the last token is removed or you exit the circle.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": null,
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-circle-dot"
+    },
+    "actions": {
+      "P3ovvIE7pazbDUOe": {
+        "type": "effect",
+        "_id": "P3ovvIE7pazbDUOe",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Circle of Power",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "hasHole": false,
+            "effects": [
+              "l3vpVeRrxmy7QgPy"
+            ]
+          }
+        ],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Circle",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Circle Of Power",
+      "disabled": false,
+      "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
+      "description": "<p>While within this circle, you and your allies gain a +2 bonus to damage thresholds, attack rolls, and Evasion. Remove a token each time you or an ally within the circle makes an action roll or evades an attack. This spell lasts until the last token is removed or you exit the circle.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.roll.attack.bonus",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": [
+          1
+        ]
+      },
+      "origin": "Compendium.daggerheart.subclasses.Item.VmX3uaONxYo3wzsU",
+      "_id": "l3vpVeRrxmy7QgPy",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!VmX3uaONxYo3wzsU.l3vpVeRrxmy7QgPy"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!VmX3uaONxYo3wzsU"
+}

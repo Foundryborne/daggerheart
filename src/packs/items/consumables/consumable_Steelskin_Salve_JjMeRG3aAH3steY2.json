@@ -1,0 +1,126 @@
+{
+  "name": "Steelskin Salve",
+  "type": "consumable",
+  "img": "icons/commodities/materials/bowl-powder-pink.webp",
+  "system": {
+    "description": "<p>You can apply this salve to your skin to gain a bonus to your damage thresholds equal to your tier until the end of the scene.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "MnlcijQlwEDHPPLW": {
+        "type": "effect",
+        "_id": "MnlcijQlwEDHPPLW",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "JjMeRG3aAH3steY2",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "5QULYy5qOtKlgCrC",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Apply",
+        "range": ""
+      }
+    }
+  },
+  "_id": "JjMeRG3aAH3steY2",
+  "effects": [
+    {
+      "name": "Steelskin",
+      "disabled": false,
+      "img": "icons/commodities/metal/mail-scale-steel.webp",
+      "description": "<p>You can apply this salve to your skin to gain a bonus to your damage thresholds equal to your tier until the end of the scene.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": "@system.tier",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": "@system.tier",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": "scene"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.JjMeRG3aAH3steY2",
+      "_id": "5QULYy5qOtKlgCrC",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!JjMeRG3aAH3steY2.5QULYy5qOtKlgCrC"
+    }
+  ],
+  "folder": null,
+  "sort": 4000000,
+  "flags": {},
+  "_key": "!items!JjMeRG3aAH3steY2"
+}

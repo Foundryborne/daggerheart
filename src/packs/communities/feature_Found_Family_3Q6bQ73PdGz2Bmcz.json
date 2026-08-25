@@ -1,0 +1,59 @@
+{
+  "type": "feature",
+  "name": "Found Family",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "3Q6bQ73PdGz2Bmcz",
+  "img": "icons/magic/life/heart-pink.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per rest, you can <strong>spend a Hope</strong> to use an ally's Experience as if it were your own. When you do so, describe how your time with that ally prepared you for this moment.</p><p>When you join a new community or rediscover your old one, you can permanently trade this card for that one instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "jt9gOu3FQLcW1TFC": {
+        "type": "effect",
+        "_id": "jt9gOu3FQLcW1TFC",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!3Q6bQ73PdGz2Bmcz"
+}

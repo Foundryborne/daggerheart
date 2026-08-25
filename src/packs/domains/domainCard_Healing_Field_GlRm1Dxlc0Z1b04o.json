@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "BJIiOIWAQUz5zuqo",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
+    "description": "<p>Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "oQ4nCYdwCXqd7NWt",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -30,10 +30,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -54,13 +56,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -91,15 +93,21 @@
             "type": "placed",
             "shape": "emanation",
             "size": "close",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "EqamWsxO86ZjY8WV": {
         "type": "healing",
         "_id": "EqamWsxO86ZjY8WV",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -123,10 +131,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -147,13 +157,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -184,9 +194,15 @@
             "type": "placed",
             "shape": "emanation",
             "size": "close",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "resource": {
@@ -195,20 +211,24 @@
       "recovery": "longRest",
       "max": "1",
       "icon": "",
-      "progression": "decreasing"
+      "progression": "decreasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 130,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "GlRm1Dxlc0Z1b04o",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!GlRm1Dxlc0Z1b04o"
 }

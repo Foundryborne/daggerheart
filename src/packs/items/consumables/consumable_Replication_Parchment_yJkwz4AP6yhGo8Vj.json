@@ -4,14 +4,14 @@
   "_id": "yJkwz4AP6yhGo8Vj",
   "img": "icons/sundries/scrolls/scroll-worn-beige.webp",
   "system": {
-    "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment’s contents. Once used, this parchment becomes mundane paper.</p>",
+    "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment's contents. Once used, this parchment becomes mundane paper.</p>",
     "quantity": 1,
     "actions": {
       "j5gIVHXvcGu7PEZZ": {
         "type": "effect",
         "_id": "j5gIVHXvcGu7PEZZ",
         "systemPath": "actions",
-        "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment’s contents. Once used, this parchment becomes mundane paper.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,16 +27,23 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "",
           "amount": null
         },
         "name": "Use",
         "img": "icons/sundries/scrolls/scroll-worn-beige.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -44,15 +51,12 @@
       "source": "Daggerheart SRD",
       "page": 61,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 11500000,
   "flags": {},
   "_key": "!items!yJkwz4AP6yhGo8Vj"
 }

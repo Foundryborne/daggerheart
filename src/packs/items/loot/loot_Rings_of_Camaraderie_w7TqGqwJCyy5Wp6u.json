@@ -1,0 +1,22 @@
+{
+  "name": "Rings of Camaraderie",
+  "type": "loot",
+  "img": "icons/equipment/finger/ring-band-copper.webp",
+  "system": {
+    "description": "<p>Two creatures can wear this pair of wooden rings. You can mark the Stress of whoever is wearing the other ring (with their permission) as if it were your own.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "w7TqGqwJCyy5Wp6u",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!w7TqGqwJCyy5Wp6u"
+}

@@ -1,0 +1,48 @@
+{
+  "type": "subclass",
+  "name": "Pact of the Wrathful",
+  "folder": "LO7tzHIrpCXH2ck5",
+  "_id": "TsJSGjecybUfKfpP",
+  "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Pact of the Wrathful if you want to destroy those who act against you.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": "presence",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.K6dQzaeZJHfRu87I"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.DKNkqvCMReqPRnS6"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.SVqDAwdpTNjUwe64"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.MEpNIeVPWz0RjEos"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.voLbSV1fvpAQdt3y"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.0ZLYqCcnlhQYd6hw"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.cgq9QzytVs6uyaBW"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!TsJSGjecybUfKfpP"
+}

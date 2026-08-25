@@ -1,0 +1,538 @@
+{
+  "type": "environment",
+  "name": "Grand Feast",
+  "folder": "GQ0VnOLrKBIHR6Us",
+  "system": {
+    "type": "social",
+    "description": "<p>A community-wide celebration featuring way too much drink, food, and fun.</p>",
+    "tier": 1,
+    "impulses": "Bring everyone together, celebrate a momentous occasion, encourage revelrous abandon",
+    "difficulty": 11,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "XVwmaoATfYXwo3B2": {
+        "label": "Adversaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.vNIbYQ4YSzNf0WPE",
+          "Compendium.daggerheart.adversaries.Actor.JRhrrEg5UroURiAD",
+          "Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy",
+          "Compendium.daggerheart.adversaries.Actor.mK3A5FTx6k8iPU3F",
+          "Compendium.daggerheart.adversaries.Actor.Al3w2CgjfdT3p9ma",
+          "Compendium.daggerheart.adversaries.Actor.wycLpvebWdUqRhpP",
+          "Compendium.daggerheart.adversaries.Actor.bgreCaQ6ap2DVpCr",
+          "Compendium.daggerheart.adversaries.Actor.8zlynOhnVA59KpKT"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Loose Lips & Fast Friends",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Everyone is here to have a good time. PCs have advantage on Presence Rolls to socialize with other revelers.</p><section id=\"secret-flXbBm0IURcfsAGo\" class=\"secret\"><p>What is everyone celebrating? Where's the party? Who's footing the bill?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "W2PUxZmvdRh0F4N7": {
+            "type": "effect",
+            "_id": "W2PUxZmvdRh0F4N7",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "RK04BnAuIB0Zsfok",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply Reveling",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "FcbTcbTe6fcl5nCe",
+      "img": "icons/consumables/drinks/alcohol-beer-stein-wooden-brown.webp",
+      "effects": [
+        {
+          "name": "Reveling",
+          "disabled": false,
+          "img": "icons/consumables/drinks/alcohol-beer-stein-wooden-brown.webp",
+          "description": "<p>PCs have advantage on Presence Rolls to socialize with other revelers.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.advantageSources",
+                "type": "add",
+                "value": "Presence Rolls to socialize with other revelers",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.9ltQfUbt4rP6m1Bn.Item.FcbTcbTe6fcl5nCe",
+          "_id": "RK04BnAuIB0Zsfok",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!9ltQfUbt4rP6m1Bn.FcbTcbTe6fcl5nCe.RK04BnAuIB0Zsfok"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!9ltQfUbt4rP6m1Bn.FcbTcbTe6fcl5nCe"
+    },
+    {
+      "name": "The Evening's Entertainment",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>The host of the feast kicks off the entertainment portion of the evening. Each PC can make an action roll to initiate a performance, competition, or other lighthearted diversion. A PC who succeeds becomes an Honored Guest. Until the feast ends, an Honored Guest can claim a gift from the host, then clear the condition.</p><section id=\"secret-FqgG5mkGr1jcz1sS\" class=\"secret\"><p>What does the host want to see or hear more than anything else? What can they offer the PCs in return?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "assRFemVFTc4qZLI": {
+            "type": "effect",
+            "_id": "assRFemVFTc4qZLI",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "TwHwZ5p93sXrw5rK",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Become Honored Guest",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "TzDUERd3fb172VxQ",
+      "img": "icons/skills/trades/music-notes-sound-blue.webp",
+      "effects": [
+        {
+          "name": "Honored Guest",
+          "disabled": false,
+          "img": "icons/commodities/treasure/brooch-crown-gold.webp",
+          "description": "<p>Until the feast ends, an Honored Guest can claim a gift from the host, then clear the condition.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.9ltQfUbt4rP6m1Bn.Item.TzDUERd3fb172VxQ",
+          "_id": "TwHwZ5p93sXrw5rK",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!9ltQfUbt4rP6m1Bn.TzDUERd3fb172VxQ.TwHwZ5p93sXrw5rK"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!9ltQfUbt4rP6m1Bn.TzDUERd3fb172VxQ"
+    },
+    {
+      "name": "\"There's Always That One…\"",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to Trap a PC in conversation with the most unpleasant person at the party until the PC succeeds on an action roll to extricate themself from this social black hole. While Trapped, a PC can't make action rolls except to try to clear this condition. When a Trapped PC fails an action roll, they must mark a Stress.</p><section id=\"secret-rMOEwoHLTaxL8x9n\" class=\"secret\"><p>What makes this dud so unpleasant? What's something the PC cares about that the dud constantly diminishes or dismisses? What boring or awful thing can the dud not shut up about?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "PvwTTVLQTPeRAvLu": {
+            "type": "effect",
+            "_id": "PvwTTVLQTPeRAvLu",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "mXAc4IdKO2ygiPaJ",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!9ltQfUbt4rP6m1Bn.mXAc4IdKO2ygiPaJ"
+    },
+    {
+      "name": "Last Call",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>After a long night, the partygoers start filtering out. When the feast concludes, all PCs who participated in the festivities clear all Stress and gain a Hope. Additionally, each Honored Guest clears all HP and gains an additional Hope, then clears the condition. Each PC who overindulged must succeed on a Strength Reaction Roll or become Hungover until their next rest. While Hungover, a PC gains a -1 penalty to action rolls.</p><section id=\"secret-tFZhnGkIAGuHB4rj\" class=\"secret\"><p>What crazy stories do the PCs share with one another as they leave the party? Who do the PCs see unexpectedly canoodling afterward?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "79TYyzRSpQrb6PwM": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "79TYyzRSpQrb6PwM",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "VRAaCBsJgvFpudss",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Hungover Roll",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "fmia9dygKxza9sdK",
+      "img": "icons/environment/settlement/watchtower-moonlit-blue.webp",
+      "effects": [
+        {
+          "name": "Hungover",
+          "disabled": false,
+          "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+          "description": "<p>You are Hungover until your next rest. While Hungover, you gain a -1 penalty to action rolls.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.roll.action.bonus",
+                "type": "subtract",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.9ltQfUbt4rP6m1Bn.Item.fmia9dygKxza9sdK",
+          "_id": "VRAaCBsJgvFpudss",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!9ltQfUbt4rP6m1Bn.fmia9dygKxza9sdK.VRAaCBsJgvFpudss"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!9ltQfUbt4rP6m1Bn.fmia9dygKxza9sdK"
+    }
+  ],
+  "_id": "9ltQfUbt4rP6m1Bn",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Grand Feast",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!9ltQfUbt4rP6m1Bn"
+}

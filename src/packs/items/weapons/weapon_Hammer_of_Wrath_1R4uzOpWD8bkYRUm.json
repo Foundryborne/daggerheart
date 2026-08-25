@@ -7,9 +7,8 @@
   "system": {
     "description": "",
     "actions": {
-      "nTogna9Phzw7VjPr": {
+      "b9Nl6rOzaIoGUX5v": {
         "type": "effect",
-        "actionType": "action",
         "chatDisplay": true,
         "name": "Devastate",
         "description": "Before you make an attack roll, you can mark a Stress to use a d20 as your damage die.",
@@ -18,17 +17,27 @@
           {
             "key": "stress",
             "value": 1,
+            "itemId": null,
             "scalable": false,
-            "step": null
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
-        "_id": "nTogna9Phzw7VjPr",
+        "_id": "b9Nl6rOzaIoGUX5v",
         "effects": [],
         "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "uses": {
           "value": null,
           "max": null,
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "target": {
           "type": "any",
@@ -36,7 +45,6 @@
         }
       }
     },
-    "attached": [],
     "tier": 3,
     "equipped": false,
     "secondary": false,
@@ -46,7 +54,7 @@
         "value": "devastating",
         "effectIds": [],
         "actionIds": [
-          "nTogna9Phzw7VjPr"
+          "b9Nl6rOzaIoGUX5v"
         ]
       }
     ],
@@ -78,35 +86,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "dice": "d10",
-              "bonus": 7,
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "type": [
-              "physical"
-            ],
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+        "main": {
+          "value": {
+            "dice": "d10",
+            "bonus": 7,
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "chatDisplay": false,
@@ -115,14 +126,20 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "rules": {
       "attack": {
@@ -135,14 +152,13 @@
       "source": "Daggerheart SRD",
       "page": 48,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_key": "!items!1R4uzOpWD8bkYRUm"
 }

@@ -1,0 +1,552 @@
+{
+  "type": "environment",
+  "name": "Volcanic Eruption",
+  "folder": "MfrIkJK12PAEfbPL",
+  "system": {
+    "type": "event",
+    "description": "<p>An explosion of heat and molten rock that leaves behind only charred desolation.</p>",
+    "tier": 3,
+    "impulses": "Create panic all around, cut off the exits, isolate, make them scramble for safety, split the party",
+    "difficulty": 16,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "sOYNTMSDlEz1swf7": {
+        "label": "Adversaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.P7h54ZePFPHpYwvB",
+          "Compendium.daggerheart.adversaries.Actor.dsfB3YhoL5SudvS2",
+          "Compendium.daggerheart.adversaries.Actor.ladm7wykhZczYzrQ"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Unstable Ground",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The ground here is uneven, prone to collapse, and constantly shifting. PCs who fail an Agility Roll to move must mark a HP and are temporarily <em>Restrained</em>.</p><section id=\"secret-av6KCfZL6ou7nyah\" class=\"secret\"><p>What strange shapes and colors do the PCs see in the cooled lava? How do the people who live nearby keep their footing on the slick, shiny surface?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "BpqxZVEaNsiLj3Pv": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "hitPoints": {
+                  "base": false,
+                  "applyTo": "hitPoints",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "BpqxZVEaNsiLj3Pv",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "Sk1gMVxRu9SGGHst",
+                "onSave": false
+              }
+            ],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "dK9JnojOxskFuS8F",
+      "img": "icons/magic/earth/barrier-stone-brown-green.webp",
+      "effects": [
+        {
+          "name": "Unstable Ground",
+          "disabled": false,
+          "img": "icons/magic/earth/barrier-stone-brown-green.webp",
+          "description": "",
+          "transfer": false,
+          "statuses": [
+            "restrained"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.tBXKfR9yQ2zypqWt.Item.dK9JnojOxskFuS8F",
+          "_id": "Sk1gMVxRu9SGGHst",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!tBXKfR9yQ2zypqWt.dK9JnojOxskFuS8F.Sk1gMVxRu9SGGHst"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!tBXKfR9yQ2zypqWt.dK9JnojOxskFuS8F"
+    },
+    {
+      "name": "Violent Eruption",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to have the ground erupt at a point of your choice, spewing lava into the air and spreading it along the ground. All targets within Very Close range of that point lose a Hope and take <strong>3d8+3</strong> physical damage. The area within Very Close range of the eruption point becomes lava until the end of the scene. A creature who moves into or through the lava takes <strong>3d8+3</strong> physical damage. Until the end of the scene, you can <strong>spend a Fear</strong> to expand the lava area by one step (such as Very Close to Close or Close to Far).</p><section id=\"secret-B3Z8LZF8AIIFYFIQ\" class=\"secret\"><p>What makes the lava seem alive? How can the PCs predict its behavior?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "7gJ5YY0GW3miiq22": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": 3,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "7gJ5YY0GW3miiq22",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Violent Eruption",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "range": ""
+          },
+          "4JghfISojCrQhliF": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": 3,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "4JghfISojCrQhliF",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lava Damage",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "LoULuL7HFWoaCloi",
+      "img": "icons/magic/earth/explosion-lava-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!tBXKfR9yQ2zypqWt.LoULuL7HFWoaCloi"
+    },
+    {
+      "name": "Vent Toxic Gas",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to open a fissure that belches out toxic gas at a point of your choice, creating a cloud that blankets everything within Far range. While inside the cloud, a PC must track their air supply with an Air Supply Countdown. Its starting value is equal to 3 + their tier, and it ticks down when they take an action. If a PC fails an action roll or rolls with Fear, you can use a GM move to tick down their countdown an additional time. If the roll is a failure with Fear, you can tick it down twice instead. Once the countdown ends, a PC must mark a Stress whenever they take an action within the gas until they escape the cloud.</p><section id=\"secret-ps6YWSpcq7r9r3ft\" class=\"secret\"><p>What signs do you see to indicate the presence of toxic gas? What taste lingers in the mouths of the PCs who inhale the gas?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "T220vtAg79qgdcHV": {
+            "type": "effect",
+            "_id": "T220vtAg79qgdcHV",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Vent Toxic Gas",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "7AJCW9GA1cSmdw4a",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Vent Gas",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "eNN5WEUXkzvDd42j",
+      "img": "icons/magic/air/fog-gas-smoke-dense-orange.webp",
+      "effects": [
+        {
+          "name": "Air Supply",
+          "disabled": false,
+          "img": "icons/magic/air/fog-gas-smoke-dense-orange.webp",
+          "description": "<p>A PC must track their air supply with an Air Supply Countdown. Its starting value is equal to 3 + their tier, and it ticks down when they take an action. If a PC fails an action roll or rolls with Fear, you can use a GM move to tick down their countdown an additional time. If the roll is a failure with Fear, you can tick it down twice instead. Once the countdown ends, a PC must mark a Stress whenever they take an action within the gas until they escape the cloud.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": {
+              "value": 3,
+              "max": null
+            },
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.tBXKfR9yQ2zypqWt.Item.eNN5WEUXkzvDd42j",
+          "_id": "7AJCW9GA1cSmdw4a",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!tBXKfR9yQ2zypqWt.eNN5WEUXkzvDd42j.7AJCW9GA1cSmdw4a"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!tBXKfR9yQ2zypqWt.eNN5WEUXkzvDd42j"
+    }
+  ],
+  "_id": "tBXKfR9yQ2zypqWt",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Volcanic Eruption",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!tBXKfR9yQ2zypqWt"
+}

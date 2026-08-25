@@ -1,0 +1,52 @@
+{
+  "type": "feature",
+  "name": "Damage Sink",
+  "folder": "hpGSiLKGH2r4vuLG",
+  "_id": "ykvPRG06i68bxV0Y",
+  "img": "icons/magic/unholy/orb-swirling-teal.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest, you can <strong>spend a Favor</strong> to halve incoming damage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "3F3GvruTdowsgQAU": {
+        "type": "effect",
+        "_id": "3F3GvruTdowsgQAU",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Favor",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ykvPRG06i68bxV0Y"
+}

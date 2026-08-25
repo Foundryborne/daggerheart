@@ -1,0 +1,51 @@
+{
+  "name": "Augur’s Relic",
+  "type": "loot",
+  "img": "icons/commodities/treasure/puzzle-triangle-gold.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can activate your Hope feature without spending Hope. You can carry only one relic.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "liWsgZGKy0Jk9BVb": {
+        "type": "effect",
+        "_id": "liWsgZGKy0Jk9BVb",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate",
+        "range": ""
+      }
+    }
+  },
+  "_id": "J8pp36Kta0WZ5n72",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!J8pp36Kta0WZ5n72"
+}

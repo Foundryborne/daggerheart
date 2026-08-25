@@ -1,0 +1,86 @@
+{
+  "folder": "h4QgrovjVZ1oee7O",
+  "name": "Scale Mail Armor",
+  "type": "armor",
+  "_id": "hfueRvwhlpTbtHmK",
+  "img": "icons/equipment/chest/breastplate-banded-steel-gold.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {},
+    "tier": 1,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 3
+    },
+    "baseThresholds": {
+      "major": 7,
+      "severe": 14
+    },
+    "armorFeatures": [
+      {
+        "value": "cumbersome",
+        "effectIds": [
+          "2wGrVqcFO8jiTuDv"
+        ],
+        "actionIds": []
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Cumbersome",
+      "description": "-1 to Finesse",
+      "img": "icons/commodities/metal/mail-plate-steel.webp",
+      "system": {
+        "changes": [
+          {
+            "key": "system.traits.finesse.value",
+            "type": "add",
+            "value": -1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "2wGrVqcFO8jiTuDv",
+      "type": "base",
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!hfueRvwhlpTbtHmK.2wGrVqcFO8jiTuDv"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!hfueRvwhlpTbtHmK"
+}

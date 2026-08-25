@@ -1,0 +1,52 @@
+{
+  "type": "feature",
+  "name": "Commune",
+  "folder": "u2NVDrSZHWjIweE8",
+  "_id": "koq6qy5n7alp7kcb",
+  "img": "icons/magic/light/orb-hands-humanoid-yellow.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per long rest during a moment of calm, you can commune with an ancestor, a deity, a spirit, or an otherworldly being. Ask them a question, then roll a number of <strong>[[/r d6]]{d6s}</strong> equal to your Spellcast trait. Choose one of the results and reference the chart below for the effect.</p><ul><li><p>1–3: You taste a flavor, smell a scent, or feel a sensation relevant to the answer.</p></li><li><p>4–5: You hear sounds or see a vision relevant to the answer.</p></li><li><p>6: You psychically experience a scene relevant to the answer as if you were there.</p></li></ul>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "3KkvH8q9Gq7Rp0mT": {
+        "type": "effect",
+        "_id": "3KkvH8q9Gq7Rp0mT",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Commune",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!koq6qy5n7alp7kcb"
+}

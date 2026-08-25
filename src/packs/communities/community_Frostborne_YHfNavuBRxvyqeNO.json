@@ -1,0 +1,22 @@
+{
+  "type": "community",
+  "name": "Frostborne",
+  "folder": null,
+  "system": {
+    "loreReference": "frostborne",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Being part of a frostborne community means you come from a place of snow and ice.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.communities.Item.z8HhzWZUZCSrbzTc"
+    ]
+  },
+  "_id": "YHfNavuBRxvyqeNO",
+  "img": "icons/magic/water/barrier-ice-crystal-wall-jagged-blue.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 300000,
+  "_key": "!items!YHfNavuBRxvyqeNO"
+}

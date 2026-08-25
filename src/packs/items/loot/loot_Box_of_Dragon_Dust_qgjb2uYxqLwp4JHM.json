@@ -1,0 +1,22 @@
+{
+  "name": "Box of Dragon Dust",
+  "type": "loot",
+  "img": "icons/containers/boxes/crate-tech-red.webp",
+  "system": {
+    "description": "<p>This snuffbox is filled with combustible powder.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "qgjb2uYxqLwp4JHM",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!qgjb2uYxqLwp4JHM"
+}

@@ -1,0 +1,117 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Bloodstone Plate Armor",
+  "type": "armor",
+  "_id": "QUNaQ3f6U2rxu21f",
+  "img": "icons/equipment/chest/breastplate-layered-steel-black.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "LoUjBJNX5nvhKyZM": {
+        "type": "healing",
+        "chatDisplay": true,
+        "name": "Clear Hitpoint",
+        "description": "When you critically succeed on a weapon attack within Melee range, clear a Hit Point.",
+        "img": "icons/skills/wounds/blood-spurt-spray-red.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "damage": {
+          "resources": {
+            "hitPoints": {
+              "applyTo": "hitPoints",
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "base": false,
+              "resultBased": false,
+              "fullRestore": false,
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          },
+          "main": null
+        },
+        "_id": "LoUjBJNX5nvhKyZM",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        }
+      }
+    },
+    "tier": 3,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 6
+    },
+    "baseThresholds": {
+      "major": 13,
+      "severe": 35
+    },
+    "armorFeatures": [
+      {
+        "value": "bloodthirsty",
+        "effectIds": [],
+        "actionIds": [
+          "LoUjBJNX5nvhKyZM"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!QUNaQ3f6U2rxu21f"
+}

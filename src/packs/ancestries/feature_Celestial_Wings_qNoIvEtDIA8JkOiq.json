@@ -1,0 +1,59 @@
+{
+  "type": "feature",
+  "name": "Celestial Wings",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "qNoIvEtDIA8JkOiq",
+  "img": "icons/creatures/abilities/wings-birdlike-blue.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>You have wings that allow you to fly. Once per scene while flying, you can <strong>spend a Hope</strong> instead of marking an Armor Slot.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "UWBrm5byhRrJpu4x": {
+        "type": "effect",
+        "_id": "UWBrm5byhRrJpu4x",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "scene",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!qNoIvEtDIA8JkOiq"
+}

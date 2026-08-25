@@ -42,11 +42,6 @@
   "flags": {},
   "_id": "oY69NN4rYxoRE4hl",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Burning Heart of the Woods",
     "displayName": 0,
@@ -144,21 +139,19 @@
       "name": "Chaos Magic Locus",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC makes a Spellcast Roll, they must roll two Fear Dice and take the higher result. </p><section id=\"secret-oR4iWlNQoOg4IXMr\" class=\"secret\"><p><em>What does it feel like to work magic in this chaostouched place? What do you fear will happen if you lose control of the spell?</em></p></section>",
+        "description": "<p>When a PC makes a Spellcast Roll, they must roll two Fear Dice and take the higher result.</p><section id=\"secret-oR4iWlNQoOg4IXMr\" class=\"secret\"><p><em>What does it feel like to work magic in this chaostouched place? What do you fear will happen if you lose control of the spell?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "hU32a8QZy62gdLGc",
       "img": "icons/magic/unholy/beams-impact-pink.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -169,21 +162,19 @@
       "name": "The Indigo Flame",
       "type": "feature",
       "system": {
-        "description": "<p>PCs who approach the central tree can make a Knowledge Roll to try to identify the magic that consumed this environment. </p><ul><li><p><strong>On a success:</strong> They learn three of the below details. On a success with Fear, they learn two. </p></li><li><p><strong>On a failure:</strong> They can mark a Stress to learn one and gain advantage on the next action roll to investigate this environment. </p></li><li><p><strong>Details:</strong> This is a result of Fallen magic. The corruption is spread through the ashen moss. It can be cleansed only by a ritual of nature magic with a Progress Countdown (8).</p></li></ul><section id=\"secret-SkDRzA8454MaIFU3\" class=\"secret\"><p><em>What Fallen cult corrupted these woods? What have they already done with the cursed wood and sap from this tree?</em></p></section>",
+        "description": "<p>PCs who approach the central tree can make a Knowledge Roll to try to identify the magic that consumed this environment.</p><ul><li><p><strong>On a success:</strong> They learn three of the below details. On a success with Fear, they learn two.</p></li><li><p><strong>On a failure:</strong> They can mark a Stress to learn one and gain advantage on the next action roll to investigate this environment.</p></li><li><p><strong>Details:</strong> This is a result of Fallen magic. The corruption is spread through the ashen moss. It can be cleansed only by a ritual of nature magic with a Progress Countdown (8).</p></li></ul><section id=\"secret-SkDRzA8454MaIFU3\" class=\"secret\"><p><em>What Fallen cult corrupted these woods? What have they already done with the cursed wood and sap from this tree?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "nrwEMjdl5F86oES9",
       "img": "icons/magic/unholy/projectile-smoke-trail-pink.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -194,7 +185,7 @@
       "name": "Grasping Vines",
       "type": "feature",
       "system": {
-        "description": "<p>Animate vines bristling with thorns whip out from the underbrush to ensnare the PCs. A target must succeed on an Agility Reaction Roll or become Restrained and Vulnerable until they break free, clearing both conditions, with a successful Finesse or Strength Roll or by dealing 10 damage to the vines. When the target makes a roll to escape, they take <strong>1d8+4</strong> physical damage and lose a Hope. </p><section id=\"secret-ysaK5Lw0DGsZsgxO\" class=\"secret\"><p><em>What painful memories do the vines bring to the surface as they pierce flesh?</em></p></section>",
+        "description": "<p>Animate vines bristling with thorns whip out from the underbrush to ensnare the PCs. A target must succeed on an Agility Reaction Roll or become Restrained and Vulnerable until they break free, clearing both conditions, with a successful Finesse or Strength Roll or by dealing 10 damage to the vines. When the target makes a roll to escape, they take <strong>1d8+4</strong> physical damage and lose a Hope.</p><section id=\"secret-ysaK5Lw0DGsZsgxO\" class=\"secret\"><p><em>What painful memories do the vines bring to the surface as they pierce flesh?</em></p></section>",
         "resource": null,
         "actions": {
           "SfUlV5CL2kWJvXQX": {
@@ -208,11 +199,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -246,12 +238,19 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "1aOeMMX0XuDtZbbB",
       "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
@@ -264,17 +263,14 @@
           "_id": "gCkqvBUljsOsYacB",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            },
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you break free with a successful Finesse or Strength Roll or by dealing 10 damage to the vines.</span></p>"
-            }
+              "description": "<p>Until you break free with a successful Finesse or Strength Roll or by dealing 10 damage to the vines.</p>"
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -309,10 +305,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -337,39 +329,43 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d12",
-                    "bonus": 3,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 3,
+                  "dice": "d12",
+                  "bonus": 3,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -405,24 +401,27 @@
                 "type": "placed",
                 "shape": "circle",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "JKFkDvwUOP35Tsr1",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -447,39 +446,42 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 4,
-                    "dice": "d6",
-                    "bonus": 5,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 4,
+                  "dice": "d6",
+                  "bonus": 5,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": true,
+                "fullRestore": false
               },
-              "includeBase": false,
-              "direct": true
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -488,7 +490,13 @@
             "effects": [],
             "name": "Damage",
             "img": "icons/magic/air/fog-gas-smoke-brown.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "3L0T97ZzTqZU6BE6": {
             "type": "countdown",
@@ -511,7 +519,6 @@
               {
                 "name": "Choking Ash",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/air/fog-gas-smoke-brown.webp",
                 "progress": {
                   "looping": "looping",
@@ -520,27 +527,28 @@
                   "startFormula": "6",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": null
               }
             ],
             "name": "Start Countdown",
             "img": "icons/magic/air/fog-gas-smoke-brown.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "kYxuTZjH7HDUGeWh",
       "img": "icons/magic/air/fog-gas-smoke-brown.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

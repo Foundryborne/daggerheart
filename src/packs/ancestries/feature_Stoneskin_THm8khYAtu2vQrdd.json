@@ -1,0 +1,92 @@
+{
+  "type": "feature",
+  "name": "Stoneskin",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "THm8khYAtu2vQrdd",
+  "img": "icons/magic/earth/strike-fist-stone-light.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Gain a permanent +1 bonus to your Armor Score and damage thresholds at character creation.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Stoneskin",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "type": "armor",
+            "phase": "initial",
+            "value": {
+              "interaction": "none",
+              "current": 0,
+              "max": "1",
+              "damageThresholds": null
+            },
+            "priority": 20
+          },
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "XVc542D7mVNeoRCb",
+      "img": "icons/magic/life/heart-cross-blue.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>Gain a permanent +1 bonus to your Armor Score and damage thresholds at character creation.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!THm8khYAtu2vQrdd.XVc542D7mVNeoRCb"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!THm8khYAtu2vQrdd"
+}

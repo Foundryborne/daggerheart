@@ -1,0 +1,22 @@
+{
+  "name": "Collapsible Pole",
+  "type": "loot",
+  "img": "icons/commodities/tech/pipe-metal.webp",
+  "system": {
+    "description": "<p>You can break down this 18-foot pole into six interlinked 3-foot segments.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "XyrBFqsVDHgrRpVk",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!XyrBFqsVDHgrRpVk"
+}

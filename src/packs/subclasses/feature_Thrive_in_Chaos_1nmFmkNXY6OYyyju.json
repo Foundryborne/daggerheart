@@ -12,7 +12,7 @@
         "type": "damage",
         "_id": "7Z9v7GWswIQFD5YH",
         "systemPath": "actions",
-        "description": "<p>When you succeed on an attack, you can <strong>mark a Stress</strong> after rolling damage to force the target to mark an additional Hit Point.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -21,7 +21,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -31,8 +32,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -41,23 +42,26 @@
         "effects": [],
         "name": "Mark Stress",
         "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 26,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!1nmFmkNXY6OYyyju"
 }

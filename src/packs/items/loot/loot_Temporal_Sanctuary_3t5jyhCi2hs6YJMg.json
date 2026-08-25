@@ -1,0 +1,82 @@
+{
+  "name": "Temporal Sanctuary",
+  "type": "loot",
+  "img": "icons/commodities/treasure/token-worn-yang-brown.webp",
+  "system": {
+    "description": "<p>A PC who takes a rest in the temporal sanctuary can choose an additional downtime move.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "3t5jyhCi2hs6YJMg",
+  "effects": [
+    {
+      "name": "Temporal Sanctuary",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.rest.shortRest.shortMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.rest.longRest.longMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "K1ZreKqxSLXvANm5",
+      "img": "icons/commodities/treasure/token-worn-yang-brown.webp",
+      "disabled": true,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>A PC who takes a rest in the temporal sanctuary can choose an additional downtime move.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!3t5jyhCi2hs6YJMg.K1ZreKqxSLXvANm5"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!3t5jyhCi2hs6YJMg"
+}

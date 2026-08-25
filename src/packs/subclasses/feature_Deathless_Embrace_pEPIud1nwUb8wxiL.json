@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Deathless Embrace",
+  "folder": "JhZDNJa4DY2fSzje",
+  "_id": "pEPIud1nwUb8wxiL",
+  "img": "icons/magic/unholy/hands-circle-light-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest, <strong>spend any number of Favor</strong> to roll an equal number of Patron Dice. For each result of 4 or higher, clear a Hit Point.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!pEPIud1nwUb8wxiL"
+}

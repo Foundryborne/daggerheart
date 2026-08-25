@@ -1,6 +1,6 @@
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
-export default function DhFateRollEnricher(match, _options) {
+export function DhFateRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[0]);
     if (!roll) return match[0];
 
@@ -49,7 +49,7 @@ export const renderFateButton = async event => {
     const fateTypeData = getFateTypeData(button.dataset?.fatetype);
 
     if (!fateTypeData) ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
-    const { value: fateType, label: fateTypeLabel } = fateTypeData;
+    const { value: fateType } = fateTypeData;
 
     await enrichedFateRoll(
         {

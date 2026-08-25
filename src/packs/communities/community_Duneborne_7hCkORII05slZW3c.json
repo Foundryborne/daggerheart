@@ -1,0 +1,22 @@
+{
+  "type": "community",
+  "name": "Duneborne",
+  "folder": null,
+  "system": {
+    "loreReference": "duneborne",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Being part of a duneborne community means you've made a home among the shifting sands and arid climate of the desert.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.communities.Item.DOrvaVrES1HYhG2u"
+    ]
+  },
+  "_id": "7hCkORII05slZW3c",
+  "img": "icons/environment/settlement/tent.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 500000,
+  "_key": "!items!7hCkORII05slZW3c"
+}

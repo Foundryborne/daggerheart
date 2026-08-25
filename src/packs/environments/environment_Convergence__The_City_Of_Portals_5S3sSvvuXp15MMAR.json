@@ -1,0 +1,542 @@
+{
+  "type": "environment",
+  "name": "Convergence, The City Of Portals",
+  "folder": "IKumu5HTLqONLYqb",
+  "system": {
+    "type": "social",
+    "description": "<p>A sprawling metropolis at the nexus of creation, where influential figures from across the realms gather.</p>",
+    "tier": 4,
+    "impulses": "Confront them with alien customs, dazzle them with infinite variety, tempt them with the impossible",
+    "difficulty": 20,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "5si048Lyh4c7sUrE": {
+        "label": "Power Players",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.WPEOIGfclNJxWb87",
+          "Compendium.daggerheart.adversaries.Actor.FeIMCgQ5ZMRRDo4d",
+          "Compendium.daggerheart.adversaries.Actor.PjkvJjlljFIg6Ae9",
+          "Compendium.daggerheart.adversaries.Actor.r1mbfSSwKWdcFdAU",
+          "Compendium.daggerheart.adversaries.Actor.yx0vK2yfNVZKWUUi",
+          "Compendium.daggerheart.adversaries.Actor.befIqd5IYKg6eUz2",
+          "Compendium.daggerheart.adversaries.Actor.TVnr955huZCjXrHM"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Impossibilities Abound",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Convergence is a nexus of gods, monsters, aliens, and all manner of dimension-hoppers. Because mortal life is generally beneath these beings' concern, PCs have disadvantage on action rolls to influence them unless they have leverage against them or know what the NPC cares about.</p><section id=\"secret-IkUNHWoZWhXKxHAt\" class=\"secret\"><p>What manner of being currently holds sway in the city? What strange customs do they practice? Which PC is most confused or off ended by them, and which PC adopts these customs as their own?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "O3LiAiXLVHbVAhiB": {
+            "type": "effect",
+            "_id": "O3LiAiXLVHbVAhiB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "Sx29pwoNC1prZcY5",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "oqZmYjmq7nHwqK7d",
+      "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",
+      "effects": [
+        {
+          "name": "Beneath Concern",
+          "disabled": false,
+          "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",
+          "description": "<p>Because mortal life is generally beneath these beings' concern, PCs have disadvantage on action rolls to influence them unless they have leverage against them or know what the NPC cares about.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.5S3sSvvuXp15MMAR.Item.oqZmYjmq7nHwqK7d",
+          "_id": "Sx29pwoNC1prZcY5",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5S3sSvvuXp15MMAR.oqZmYjmq7nHwqK7d.Sx29pwoNC1prZcY5"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!5S3sSvvuXp15MMAR.oqZmYjmq7nHwqK7d"
+    },
+    {
+      "name": "Into the Multiverse",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The city of Convergence has a portal or door to every realm of existence.</p><section id=\"secret-Tu6AYVy5cD2UXJxq\" class=\"secret\"><p>Where (or when) does the party want to go? Where is that portal located, and who controls that area?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "cVL5PXbDsM7wccZf",
+      "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!5S3sSvvuXp15MMAR.cVL5PXbDsM7wccZf"
+    },
+    {
+      "name": "Infinite Inventory",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>This city has the solution to any problem, if you can find it. A PC seeking a particular item with wondrous properties can make an Instinct or Presence Roll to find it in the city's pandimensional marketplace.</p><ul><li><p>Critical Success: The PC finds the perfect item, and the merchant who has it only wants something the PC considers inconsequential in exchange.</p></li><li><p>Success with Hope: The PC finds the perfect item and can exchange something of equal value for it.</p></li><li><p>Success with Fear: The PC finds the perfect item, but the merchant who has it will only exchange it for something the party can't give them... yet.</p></li><li><p>Any Failure: The PC must mark a Stress as they go on a wild goose chase but come up empty-handed. The PC can mark an additional Stress to change this result into a success with Fear.</p></li></ul><section id=\"secret-xYEEvbFdu4R6CC3G\" class=\"secret\"><p>Who has the item the party needs? What do they want in return?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "uYTJYPixVWPMgMjs",
+      "img": "icons/commodities/treasure/goblet-coins-gold.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!5S3sSvvuXp15MMAR.uYTJYPixVWPMgMjs"
+    },
+    {
+      "name": "Don't Make Waves",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Countdown (6). Because anything is possible in Convergence, the city maintains a labyrinthine bureaucracy that issues and enforces ordinances regarding all exchanges and interactions between the realms. When the party arrives in Convergence, activate the countdown. It ticks down when a PC does something that upsets the city's delicate political equilibrium. When it triggers, the PCs become Wanted until they clear their names with the authorities. When a Wanted PC rolls with Fear, you can summon <strong>1d4</strong> Temporal Enforcers who appear within Very Close range, immediately take the spotlight, and try to apprehend the party.</p><section id=\"secret-VoeL6dGUKdcCpqPi\" class=\"secret\"><p>What has the party done (or what do they plan to do) that draws the attention and ire of the city officials? How can they fix the problem they caused?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "ZXWbr2YnA6oEUbNA": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Don't Make Waves",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/perception/orb-eye-scrying.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "ZXWbr2YnA6oEUbNA",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>Countdown (6). Because anything is possible in Convergence, the city maintains a labyrinthine bureaucracy that issues and enforces ordinances regarding all exchanges and interactions between the realms. When the party arrives in Convergence, activate the countdown. It ticks down when a PC does something that upsets the city's delicate political equilibrium.</p><section id=\"secret-VoeL6dGUKdcCpqPi\" class=\"secret\"><p>What has the party done (or what do they plan to do) that draws the attention and ire of the city officials? How can they fix the problem they caused?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "eLGtrn1swEajhVXP": {
+            "type": "effect",
+            "_id": "eLGtrn1swEajhVXP",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, the PCs become Wanted until they clear their names with the authorities.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "mzmkBPSEjmqE7dr5",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Become Wanted",
+            "range": "",
+            "img": "icons/sundries/documents/document-symbol-skull-tan.webp"
+          },
+          "hwe4SW1rxEM7Y2ng": {
+            "type": "summon",
+            "_id": "hwe4SW1rxEM7Y2ng",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When a Wanted PC rolls with Fear, you can summon <strong>1d4</strong> Temporal Enforcers who appear within Very Close range, immediately take the spotlight, and try to apprehend the party.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.VSdS3N5Kh6uratv9",
+                "count": "1d4"
+              }
+            ],
+            "name": "",
+            "range": "veryClose",
+            "img": "icons/environment/people/infantry-armored.webp"
+          }
+        },
+        "granter": null
+      },
+      "_id": "LyaalfQw9F2uRj9Z",
+      "img": "icons/magic/perception/orb-eye-scrying.webp",
+      "effects": [
+        {
+          "name": "Wanted",
+          "disabled": false,
+          "img": "icons/sundries/documents/document-symbol-skull-tan.webp",
+          "description": "",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.5S3sSvvuXp15MMAR.Item.LyaalfQw9F2uRj9Z",
+          "_id": "mzmkBPSEjmqE7dr5",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5S3sSvvuXp15MMAR.LyaalfQw9F2uRj9Z.mzmkBPSEjmqE7dr5"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!5S3sSvvuXp15MMAR.LyaalfQw9F2uRj9Z"
+    },
+    {
+      "name": "An Offer You Can't Refuse",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>Convergence is home to a tenuous network of rival factions. <strong>Spend a Fear</strong> to have one of them present the party with an easy solution to a difficult problem in exchange for their allegiance. If the party refuses, each PC must mark a Stress, and they can't turn to that faction for help in the future.</p><section id=\"secret-CG2w7YzpHDVqXGYR\" class=\"secret\"><p>Which faction offers the party their support? Who do they want the party to act against?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "zHLj0UD0epZuNIgC": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "zHLj0UD0epZuNIgC",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "VaMnxpVawLRSYJs1",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!5S3sSvvuXp15MMAR.VaMnxpVawLRSYJs1"
+    }
+  ],
+  "_id": "5S3sSvvuXp15MMAR",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Convergence, The City Of Portals",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!5S3sSvvuXp15MMAR"
+}

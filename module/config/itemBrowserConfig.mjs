@@ -127,8 +127,8 @@ export const typeConfig = {
                     isSecondary
                         ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short'
                         : isSecondary === false
-                          ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
-                          : '-'
+                            ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
+                            : '-'
             },
             {
                 key: 'system.tier',
@@ -378,7 +378,7 @@ export const typeConfig = {
                 format: domains => {
                     const config = CONFIG.DH.DOMAIN.allDomains();
                     return domains
-                        .map(x => (x ? game.i18n.localize(config[x].label) : null))
+                        .map(x => _loc(config[x]?.label) ?? null)
                         .filter(x => x)
                         .join(', ');
                 }

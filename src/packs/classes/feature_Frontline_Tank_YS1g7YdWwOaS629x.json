@@ -12,7 +12,7 @@
         "type": "healing",
         "_id": "pRMSzC9XDSKmmLqT",
         "systemPath": "actions",
-        "description": "<p><strong>Spend 3 Hope</strong> to clear 2 Armor Slots</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,16 +20,20 @@
             "scalable": false,
             "key": "hope",
             "value": 3,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "armor": {
               "value": {
                 "custom": {
@@ -50,13 +54,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "self",
@@ -80,23 +84,26 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-orange.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 15,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!YS1g7YdWwOaS629x"
 }

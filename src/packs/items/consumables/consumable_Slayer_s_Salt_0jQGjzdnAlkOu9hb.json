@@ -1,0 +1,61 @@
+{
+  "name": "Slayer’s Salt",
+  "type": "consumable",
+  "img": "icons/commodities/materials/bowl-powder-gold.webp",
+  "system": {
+    "description": "<p>You can spread this salt in a line along windowsills or thresholds to create a magical barrier that undead creatures can't cross until the line is broken.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "3IALZdyYjIgAbgea": {
+        "type": "effect",
+        "_id": "3IALZdyYjIgAbgea",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "0jQGjzdnAlkOu9hb",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "0jQGjzdnAlkOu9hb",
+  "effects": [],
+  "folder": null,
+  "sort": 400000,
+  "flags": {},
+  "_key": "!items!0jQGjzdnAlkOu9hb"
+}

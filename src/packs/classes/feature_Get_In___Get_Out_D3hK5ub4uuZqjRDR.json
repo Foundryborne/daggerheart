@@ -1,0 +1,61 @@
+{
+  "type": "feature",
+  "name": "Get In & Get Out",
+  "folder": "SivG5XFjrC0Rnh91",
+  "_id": "D3hK5ub4uuZqjRDR",
+  "img": "icons/tools/navigation/map-chart-tan.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Spend a Hope</strong> to ask the GM for a quick or inconspicuous way into or out of a place you can see. The next roll you make that acts on this information has advantage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "hJ5WWwwlksMze0iP": {
+        "type": "effect",
+        "_id": "hJ5WWwwlksMze0iP",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!D3hK5ub4uuZqjRDR"
+}

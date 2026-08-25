@@ -1,0 +1,78 @@
+{
+  "folder": null,
+  "name": "Witch",
+  "type": "class",
+  "img": "icons/magic/light/hand-sparks-smoke-teal.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Witches are magical practitioners who commune with the forces of nature and entities from realms beyond. These spellcasters call forth power through craft, combining the tangible and ephemeral by casting spells, murmuring incantations, creating talismans, weaving illusions, and maintaining other personalized practices. They can protect their allies and harm their enemies by invoking powerful forces beyond themselves—supernatural beings such as ancestors, deities, or aspects of nature. Often, their magical knowledge is passed down from these entities or through many generations of practitioners who gather in small groups known as covens. Witches are frequently feared and misunderstood, as their methods can appear mysterious, strange, and even macabre to the uninitiated. Whichever path they walk, a witch treads the boundary between light and shadow without fear.</p>",
+    "gmNotes": "",
+    "domains": [
+      "sage",
+      "dread"
+    ],
+    "classItems": [],
+    "hitPoints": 6,
+    "evasion": 10,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.7nIDpcWOGzO8Y6gq"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.EFgQVcDiADsKxG3T"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.koq6qy5n7alp7kcb"
+      }
+    ],
+    "inventory": {
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.JqqUpW7aqMuNoqXc",
+        "Compendium.daggerheart.classes.Item.l787jY8NXcccj6GA"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 0,
+        "strength": 0,
+        "finesse": 0,
+        "instinct": 0,
+        "presence": 0,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": null,
+      "suggestedSecondaryWeapon": null,
+      "suggestedArmor": null
+    },
+    "backgroundQuestions": [
+      "Who from your community feared your magical craft? What rumor did they spread about you, and what truth did it contain?",
+      "You once used your power to help someone in a dire situation. Who were they, and why did they come to you?",
+      "Your magic once opened a door best left closed. Who or what was on the other side?"
+    ],
+    "connections": [
+      "What unique ritual or practice have I taught you that we now perform together?",
+      "I once appeared to you in a dream and shared a vision of the future. What did I tell you?",
+      "What do you typically come to me for advice about?"
+    ],
+    "isMulticlass": false
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "HHAmaNZDicgkill5",
+  "sort": 0,
+  "_key": "!items!HHAmaNZDicgkill5"
+}

@@ -1,6 +1,8 @@
 import BaseDataItem from './base.mjs';
 
 export default class DHDomainCard extends BaseDataItem {
+    static embedTemplate = 'systems/daggerheart/templates/components/card/domain.hbs';
+
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -133,5 +135,84 @@ export default class DHDomainCard extends BaseDataItem {
             });
         }
         return labels;
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        // Card styling has certain defaults designed for embedding
+        config.caption ??= false;
+        config.cite ??= false;
+        config.inline ??= true;
+
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'tooltip' });
+        const domains = CONFIG.DH.DOMAIN.allDomains();
+        const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
+            item: this.parent,
+            description,
+            domain: foundry.utils.mergeObject({ color: 'black' }, domains[this.domain] ?? {}),
+            cardType: CONFIG.DH.DOMAIN.cardTypes[this.type]
+        })
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        if (['dark', 'light'].includes(config.theme)) {
+            container.children[0].classList.add('themed', `theme-${config.theme}`);
+        }
+        return container.children;
+    }
+
+    /**
+     * Switch Domain Card vault state
+     * 
+     * @param {Event} [event] - The triggering event passed to the action handler.
+     * @param {boolean} [toVault] - The desired vault state. If omitted, toggles the current state.
+     * @param {boolean} [isRecall] - True if recall cost dialog should be performed.
+     * @returns {Promise<Document>} The promise resolving to the updated parent document,
+     * or a warning notification result when max loadout is reached and not ignored for this domain card.
+     */
+    async toggleVault(event, toVault, isRecall) {
+        const { available } = this.actor.system.loadoutSlot;
+        toVault ??= !this.inVault;
+        if (!toVault && !available && !this.loadoutIgnore) {
+            return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
+        }
+
+        if (!toVault && isRecall && !(await this.onRecallCost(event))) {
+            return;
+        }
+
+        return await this.parent.update({ 'system.inVault': toVault });
+    }
+
+    /**
+     * Processes the stress cost associated with recalling an item from the vault.
+     * 
+     * @async
+     * @param {Event} [event] - The triggering event passed to the action handler.
+     * @returns {Promise<object|void>} Resolves to true if the cost is 0 or if dialog is validated, void if dialog is closed.
+     */
+    async onRecallCost(event) {
+        if (this.recallCost == 0) {
+            return true;
+        }
+        const type = 'effect';
+        const cls = game.system.api.models.actions.actionsTypes[type];
+        const action = new cls(
+            {
+                ...cls.getSourceConfig(this),
+                type: type,
+                chatDisplay: false,
+                cost: [
+                    {
+                        key: 'stress',
+                        value: this.recallCost
+                    }
+                ]
+            },
+            { parent: this }
+        );
+        const config = await action.use(event);
+        if (config) {
+            return !!(await this.toggleVault(false));
+        }
     }
 }

@@ -5,23 +5,20 @@
   "_id": "oLO3VjGkMcK1uvB9",
   "img": "icons/magic/nature/root-vines-entwined-leaves.webp",
   "system": {
-    "description": "<p>You can target creatures within Very Close range with your “Regeneration” feature.</p>",
+    "description": "<p>You can target creatures within Very Close range with your \"Regeneration\" feature.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 11,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 200000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!oLO3VjGkMcK1uvB9"
 }

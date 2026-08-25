@@ -1,0 +1,401 @@
+{
+  "type": "environment",
+  "name": "Beach Day",
+  "folder": "XMeecO3IRvu5ck6F",
+  "system": {
+    "type": "social",
+    "description": "<p>The party takes a break from their adventure for some rest and relaxation in a seaside settlement.</p>",
+    "tier": 2,
+    "impulses": "Conjure images of sand and surf, give them a breather, prepare them for the conflict ahead",
+    "difficulty": 14,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {},
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "R&R",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The party finds themselves in a location where the concerns and conflicts of the outside world melt away. When the PCs rest here, they gain an additional downtime move, the GM doesn't gain Fear, and no long-term countdowns advance.</p><section id=\"secret-UDQmua9neWETFUfG\" class=\"secret\"><p>What's so relaxing about this place? Does it remind you of somewhere you've been before?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "32kkC16eXBpiRxkh",
+      "img": "icons/environment/wilderness/island.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!76bXzfiKjbFpIDuf.32kkC16eXBpiRxkh"
+    },
+    {
+      "name": "\"Our Story So Far…\"",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Once per scene when a PC recounts a memorable moment from the campaign in conversation with another PC, they both gain a Hope.</p><section id=\"secret-1lJPRvoXWX92DOk7\" class=\"secret\"><p>What sounds, smells, or sensations does the memory conjure in your mind? How did that moment permanently change you—or your opinion of your companion?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "fCM8L5My1fWAIJHw": {
+            "type": "healing",
+            "_id": "fCM8L5My1fWAIJHw",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "1",
+              "recovery": "scene",
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {
+                "hope": {
+                  "base": false,
+                  "applyTo": "hope",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "target": {
+              "type": "any",
+              "amount": 2
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "BizLkdzVo2YYJdr3",
+      "img": "icons/skills/trades/academics-merchant-scribe.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!76bXzfiKjbFpIDuf.BizLkdzVo2YYJdr3"
+    },
+    {
+      "name": "Local Trouble",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to interrupt a PC's respite with a minor complication, such as a gang of surly beach bums, an overly exuberant fan, or a really bad sunburn. The PC must gracefully resolve the situation or mark a Stress from the resulting embarrassment or frustration.</p><section id=\"secret-nKMroQywQ15Itz0a\" class=\"secret\"><p>Why does this PC draw their attention? What do the locals care about more than these newly arrived adventurers?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "05KoBrt1P0UxaC2t": {
+            "type": "effect",
+            "_id": "05KoBrt1P0UxaC2t",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "FRMRgSgEeAt7jT8r",
+      "img": "icons/magic/symbols/question-stone-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!76bXzfiKjbFpIDuf.FRMRgSgEeAt7jT8r"
+    },
+    {
+      "name": "Fashion Show",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the party prepares for their first day at the beach, have each player describe how their PC changes their attire to be more appropriate for the environment. The GM gives the PC with the freshest look a <strong>d6</strong> Fresh Die that can be spent to add to any action or reaction roll.</p><section id=\"secret-21Ozr0QIVF23Y6Cl\" class=\"secret\"><p>What's the fashion in this area? Where do the PCs source their new beach-themed articles and accessories?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "pCkEhFW6eAqSMXVo": {
+            "type": "effect",
+            "_id": "pCkEhFW6eAqSMXVo",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "hjeRnWtIMLCvBcuj",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Give Fresh Die",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "gJSHFvGHs6oVBQtI",
+      "img": "icons/equipment/chest/coat-leather-blue.webp",
+      "effects": [
+        {
+          "name": "Fresh",
+          "disabled": false,
+          "img": "icons/equipment/chest/coat-leather-blue.webp",
+          "description": "<p>The GM gives the PC with the freshest look a <strong>d6</strong> Fresh Die that can be spent to add to any action or reaction roll.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.76bXzfiKjbFpIDuf.Item.gJSHFvGHs6oVBQtI",
+          "_id": "hjeRnWtIMLCvBcuj",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!76bXzfiKjbFpIDuf.gJSHFvGHs6oVBQtI.hjeRnWtIMLCvBcuj"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!76bXzfiKjbFpIDuf.gJSHFvGHs6oVBQtI"
+    }
+  ],
+  "_id": "76bXzfiKjbFpIDuf",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Beach Day",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!76bXzfiKjbFpIDuf"
+}

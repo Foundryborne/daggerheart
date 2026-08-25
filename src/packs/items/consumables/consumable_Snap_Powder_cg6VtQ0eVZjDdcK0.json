@@ -11,10 +11,18 @@
         "type": "healing",
         "_id": "FVn1NAbzHHyX2lsM",
         "systemPath": "actions",
-        "description": "<p>Mark a Stress and clear a HP.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          },
           {
             "scalable": false,
             "key": "quantity",
@@ -27,10 +35,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -51,16 +61,16 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "effects": [],
@@ -81,7 +91,13 @@
         },
         "name": "Imbibe",
         "img": "icons/commodities/materials/bowl-powder-gold.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -89,15 +105,12 @@
       "source": "Daggerheart SRD",
       "page": 61,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 7300000,
   "flags": {},
   "_key": "!items!cg6VtQ0eVZjDdcK0"
 }

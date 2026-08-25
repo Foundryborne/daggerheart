@@ -1,0 +1,196 @@
+{
+  "name": "Two-Faced Aegis Brooch",
+  "type": "loot",
+  "img": "icons/commodities/currency/coin-engraved-moon-silver.webp",
+  "system": {
+    "description": "<p>Once per rest, [[/r 1d2]]{flip a coin}. On heads, you become immune to the next physical damage you take. On tails, you become immune to the next magic damage you take.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "jO0d2urVgS7Sam8O": {
+        "type": "effect",
+        "_id": "jO0d2urVgS7Sam8O",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "v4B2AXAw5ipJ3KG6",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Heads",
+        "range": "",
+        "img": "icons/commodities/currency/coin-embossed-crown-gold.webp"
+      },
+      "MFe6wYWZt1D95fIU": {
+        "type": "effect",
+        "_id": "MFe6wYWZt1D95fIU",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "pxrbpDOlTozFmTnr",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Tails",
+        "range": "",
+        "img": "icons/commodities/currency/coin-engraved-tail-gold.webp"
+      }
+    }
+  },
+  "_id": "LYiCqC7yYu60be4X",
+  "effects": [
+    {
+      "name": "Heads",
+      "disabled": false,
+      "img": "icons/commodities/currency/coin-embossed-crown-gold.webp",
+      "description": "<p>On heads, you become immune to the next physical damage you take.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.resistance.physical.immunity",
+            "type": "override",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.loot.Item.LYiCqC7yYu60be4X",
+      "_id": "v4B2AXAw5ipJ3KG6",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!LYiCqC7yYu60be4X.v4B2AXAw5ipJ3KG6"
+    },
+    {
+      "name": "Tails",
+      "disabled": false,
+      "img": "icons/commodities/currency/coin-engraved-tail-gold.webp",
+      "description": "<p>On tails, you become immune to the next magic damage you take.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.resistance.magical.immunity",
+            "type": "override",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.loot.Item.LYiCqC7yYu60be4X",
+      "_id": "pxrbpDOlTozFmTnr",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!LYiCqC7yYu60be4X.pxrbpDOlTozFmTnr"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!LYiCqC7yYu60be4X"
+}

@@ -1,0 +1,61 @@
+{
+  "name": "Cockerel Claw Tea",
+  "type": "consumable",
+  "img": "icons/consumables/drinks/coffee.webp",
+  "system": {
+    "description": "<p>You can drink this tea to refresh your features as if you had taken a long rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "DsF1KOn8OlHyio9V": {
+        "type": "effect",
+        "_id": "DsF1KOn8OlHyio9V",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "XnEWhR8OvFZM3G07",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Drink",
+        "range": ""
+      }
+    }
+  },
+  "_id": "XnEWhR8OvFZM3G07",
+  "effects": [],
+  "folder": null,
+  "sort": 6000000,
+  "flags": {},
+  "_key": "!items!XnEWhR8OvFZM3G07"
+}

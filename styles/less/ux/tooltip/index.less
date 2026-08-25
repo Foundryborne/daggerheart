@@ -1,0 +1,32 @@
+@import './tooltip.less';
+@import './card-style.less';
+@import './armorManagement.less';
+@import './battlepoints.less';
+@import './bordered-tooltip.less';
+@import './resource-management.less';
+@import './effects-display.less';
+@import './beastform.less';
+@import './basic.less';
+
+/** Make tooltip container invisible for some types, leaving everything to the child */
+#tooltip,
+.locked-tooltip {
+    &:has(.dh-card) {
+        padding: 0;
+        background: none;
+        backdrop-filter: unset;
+        box-shadow: unset;
+        border: unset;
+        overflow: visible;
+        .dh-card {
+            box-shadow: 0 0 4px #000;
+            border-color: light-dark(@dark-80, @beige-80);
+        }
+    }
+}
+aside[role='tooltip'].locked-tooltip:has(.dh-card) {
+    .dh-card {
+        box-shadow: 0 0 25px @golden-90;
+        border-color: 1px solid light-dark(@dark-blue, @golden);
+    }
+}

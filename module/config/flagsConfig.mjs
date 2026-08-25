@@ -20,11 +20,18 @@ export const compendiumBrowserLite = {
     position: 'compendium-browser-lite-position'
 };
 
-export const itemAttachmentSource = 'attachmentSource';
-
 export const userFlags = {
     welcomeMessage: 'welcome-message',
-    countdownMode: 'countdown-mode'
+    countdownMode: 'countdown-mode',
+    countdownTypeModes: 'countdown-type-modes'
 };
 
 export const combatToggle = 'combat-toggle-origin';
+
+export const folderFlags = {
+    defaultEntity: 'defaultEntity'
+}
+
+export const activeEffectFlags = {
+    evolutionMarker: 'evolutionMarker'
+};

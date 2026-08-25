@@ -1,0 +1,469 @@
+{
+  "type": "adversary",
+  "name": "Entombed Skin Beetles",
+  "folder": "OgzrmfH1ZbpljX7k",
+  "system": {
+    "type": "horde",
+    "description": "<p>Flesh-eating beetles that burrow beneath the skin.</p>",
+    "tier": 2,
+    "motivesAndTactics": "Carpet the ground, consume the living, crawl under clothing",
+    "difficulty": 14,
+    "damageThresholds": {
+      "major": 10,
+      "severe": 20
+    },
+    "hordeHp": 5,
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 5
+      },
+      "stress": {
+        "value": 0,
+        "max": 3
+      }
+    },
+    "attack": {
+      "name": "Pincers",
+      "img": "icons/commodities/biological/mouth-pincer-brown.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 0,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d8",
+            "bonus": 2,
+            "multiplier": "flat",
+            "flatMultiplier": 2,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "valueAlt": {
+            "dice": "d4",
+            "bonus": 1,
+            "multiplier": "flat",
+            "flatMultiplier": 2,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "LRc5r4uwD6K538NX": {
+        "name": "Tombs",
+        "value": 3,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Horde (2d4+1)",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>When the Beetles have marked half or more of their HP, their standard attack deals <strong>2d4+1</strong> physical damage instead.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "2yF9tTRs5Msh9WMG",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!BSLBG7hQ9K1HGlU6.2yF9tTRs5Msh9WMG"
+    },
+    {
+      "name": "Omophagous",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>Mark a HP to have 5 Beetles burrow under the skin of a PC within Melee range, forcing them to mark a Stress and Infecting them. While Infected, the target takes 6 direct physical damage every time they roll with Fear. This condition is cleared when the PC clears a HP or a Stress.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "eo6a5gAsDl7xhQyv": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "eo6a5gAsDl7xhQyv",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "hitPoints",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "8hHzmmhOU5Ku81eh",
+                "onSave": false
+              }
+            ],
+            "name": "",
+            "range": "melee"
+          }
+        },
+        "granter": null
+      },
+      "_id": "TO8FKfEWHZ29FQh8",
+      "img": "icons/creatures/invertebrates/beetle-stag-yellow-green.webp",
+      "effects": [
+        {
+          "name": "Infected",
+          "disabled": false,
+          "img": "icons/creatures/invertebrates/beetle-stag-yellow-green.webp",
+          "description": "<p>While Infected, you takes 6 direct physical damage every time you roll with Fear. This condition is cleared when you clear a HP or a Stress.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.BSLBG7hQ9K1HGlU6.Item.TO8FKfEWHZ29FQh8",
+          "_id": "8hHzmmhOU5Ku81eh",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!BSLBG7hQ9K1HGlU6.TO8FKfEWHZ29FQh8.8hHzmmhOU5Ku81eh"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!BSLBG7hQ9K1HGlU6.TO8FKfEWHZ29FQh8"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the Beetles make a successful attack against a PC, you gain a Fear.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "MyEPx0FSireKIkxb",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!BSLBG7hQ9K1HGlU6.MyEPx0FSireKIkxb"
+    }
+  ],
+  "_id": "BSLBG7hQ9K1HGlU6",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Entombed Skin Beetles",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "UWVPPUrmXszrYtdv",
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.effects!BSLBG7hQ9K1HGlU6.UWVPPUrmXszrYtdv"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!BSLBG7hQ9K1HGlU6"
+}

@@ -1,7 +1,27 @@
 import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
-    targetHook = null;
+    static #EXPAND_SECTIONS = [
+        { selector: '.roll-section [data-action="expandRoll"]', key: 'roll' },
+        { selector: '.damage-section', key: 'damage' },
+        { selector: '.description-section', key: 'desc' }
+    ];
+
+    constructor(data, options) {
+        super(data, options);
+
+        this.setupHooks();
+    }
+
+    setupHooks() {
+        if (this.system.hasTarget) {
+            this.controlTokenHook = Hooks.on('controlToken', this.onSelectToken.bind(this));
+        }
+    }
+
+    async onSelectToken() {
+        this.system.syncSelectedTokens();
+    }
 
     async renderHTML() {
         const actor = game.actors.get(this.speaker.actor);
@@ -9,9 +29,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             actor && this.isContentVisible
                 ? actor
                 : {
-                      img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
-                      name: ''
-                  };
+                    img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
+                    name: ''
+                };
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML({ actor: actorData, author: this.author });
 
@@ -28,28 +48,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     /* -------------------------------------------- */
 
     /** @inheritDoc */
-    prepareData() {
-        if (this.isAuthor && this.targetSelection === undefined) this.targetSelection = this.system.targets?.length > 0;
-        super.prepareData();
-    }
-
-    /* -------------------------------------------- */
-
-    /** @inheritDoc */
-    _onCreate(data, options, userId) {
-        super._onCreate(data, options, userId);
-        if (this.system.registerTargetHook) this.system.registerTargetHook();
-    }
-
-    /* -------------------------------------------- */
-
-    /** @inheritDoc */
-    async _preDelete(options, user) {
-        if (this.targetHook !== null) Hooks.off('targetToken', this.targetHook);
-        return super._preDelete(options, user);
-    }
-
-    /** @inheritDoc */
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
 
@@ -58,6 +56,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             setTimeout(() => {
                 ui.chat.scrollBottom();
             }, 5);
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+
+        if (this.controlTokenHook) {
+            Hooks.off('controlToken', this.controlTokenHook);
         }
     }
 
@@ -89,23 +95,26 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 }
             }
 
+            // Check registered selectors and the main item section for expanding
+            // Preserving during re-render is handled by core foundry on anything with [data-action=expandRoll]
             const autoExpandRoll = game.settings.get(
-                    CONFIG.DH.id,
-                    CONFIG.DH.SETTINGS.gameSettings.appearance
-                ).expandRollMessage,
-                rollSections = html.querySelectorAll('.roll-part'),
-                itemDesc = html.querySelector('.domain-card-move');
-            rollSections.forEach(s => {
-                if (s.classList.contains('roll-section')) {
-                    const toExpand = s.querySelector('[data-action="expandRoll"]');
-                    toExpand.classList.toggle('expanded', autoExpandRoll.roll);
-                } else if (s.classList.contains('damage-section'))
-                    s.classList.toggle('expanded', autoExpandRoll.damage);
-                else if (s.classList.contains('target-section')) s.classList.toggle('expanded', autoExpandRoll.target);
-                else if (s.classList.contains('description-section'))
-                    s.classList.toggle('expanded', autoExpandRoll.desc);
-            });
-            if (itemDesc && autoExpandRoll.desc) itemDesc.setAttribute('open', '');
+                CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).expandRollMessage;
+            for (const { selector, key } of DhpChatMessage.#EXPAND_SECTIONS) {
+                const elements = html.querySelectorAll(selector);
+                for (const element of elements) {
+                    element.classList.toggle('expanded', autoExpandRoll[key]);
+                }
+            }
+
+            // Auto expand the item description. These are not preserved by foundry during re-renders
+            const itemDesc = html.querySelector('details');
+            if (itemDesc) {
+                const existing = document.querySelector(`.chat-message[data-message-id="${this.id}"] details`);
+                if (existing?.hasAttribute('open') ?? autoExpandRoll.desc) {
+                    itemDesc.setAttribute('open', '');
+                }
+            }
         }
 
         if (!this.isAuthor && !this.speakerActor?.isOwner) {
@@ -125,14 +134,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.onApplyDamage.bind(this))
         );
 
-        html.querySelectorAll('.target-save').forEach(element =>
-            element.addEventListener('click', this.onRollSave.bind(this))
-        );
-
-        html.querySelectorAll('.roll-all-save-button').forEach(element =>
-            element.addEventListener('click', this.onRollAllSave.bind(this))
-        );
-
         html.querySelectorAll('.duality-action-effect').forEach(element =>
             element.addEventListener('click', this.onApplyEffect.bind(this))
         );
@@ -141,14 +142,30 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.onCreateAreas.bind(this));
         }
 
+        this.addTargetSectionListeners(html);
+    }
+
+    addTargetSectionListeners(html) {
+        html.querySelectorAll('.roll-all-save-button').forEach(element =>
+            element.addEventListener('click', this.onRollAllSave.bind(this))
+        );
+
+        html.querySelectorAll('.target-save').forEach(element =>
+            element.addEventListener('click', this.onRollSave.bind(this))
+        );
+
         html.querySelectorAll('.roll-target').forEach(element => {
             element.addEventListener('mouseenter', this.hoverTarget);
             element.addEventListener('mouseleave', this.unhoverTarget);
             element.addEventListener('click', this.clickTarget);
         });
 
+        html.querySelectorAll('.selected-to-targets-button').forEach(element => {
+            element.addEventListener('click', this.#onSelectedToTargets.bind(this));
+        });
+
         html.querySelectorAll('.button-target-selection').forEach(element => {
-            element.addEventListener('click', this.onTargetSelection.bind(this));
+            element.addEventListener('click', this.#onTargetSelection.bind(this));
         });
 
         html.querySelectorAll('.token-target-container').forEach(element => {
@@ -167,40 +184,40 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.action) {
             const actor = await foundry.utils.fromUuid(config.source.actor);
             const item = actor?.items.get(config.source.item) ?? null;
-            config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(actor, item);
+            config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(actor, item);
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
         }
     }
 
     async onApplyDamage(event) {
         event.stopPropagation();
-        const targets = this.filterPermTargets(this.system.hitTargets),
-            config = foundry.utils.deepClone(this.system);
+        if (this.system._getCurrentTargets().length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+
+        const targets = this.system.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
+        const config = foundry.utils.deepClone(this.system);
         config.event = event;
 
-        if (config.hasSave) {
-            const pendingingSaves = targets.filter(t => t.saved.success === null);
-            if (pendingingSaves.length) {
-                const confirm = await foundry.applications.api.DialogV2.confirm({
-                    window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
-                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
-                    `
-                });
-                if (!confirm) return;
-            }
+        if (this.system.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
         }
-
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
 
         this.consumeOnSuccess();
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
         else {
             for (const target of targets) {
-                const actor = await foundry.utils.fromUuid(target.actorId);
+                const actor = target.document.actor;
                 if (!actor) continue;
 
                 if (this.system.hasHealing) actor.takeHealing(this.system.damage);
@@ -211,8 +228,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onRollSave(event) {
         event.stopPropagation();
-        const tokenId = event.target.closest('[data-token]')?.dataset.token,
-            token = game.canvas.tokens.get(tokenId);
+        const tokenId = event.target.closest('[data-token]')?.dataset.token;
+        const token = game.canvas.tokens.get(tokenId);
+        
         if (!token?.actor || !token.isOwner) return true;
         if (this.system.source.item && this.system.source.action) {
             const action = this.system.action;
@@ -240,35 +258,37 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async onRollAllSave(event) {
         event.stopPropagation();
         if (!game.user.isGM) return;
-        const targets = this.system.hitTargets,
-            config = foundry.utils.deepClone(this.system);
+        
+        const targets = this.system.currentHitTargets;
+        const config = foundry.utils.deepClone(this.system);
         config.event = event;
         this.system.action?.workflow.get('save')?.execute(config, targets, true);
     }
 
     async onApplyEffect(event) {
         event.stopPropagation();
-        const targets = this.filterPermTargets(this.system.hitTargets),
-            config = foundry.utils.deepClone(this.system);
+        if (this.system._getCurrentTargets().length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+        
+        const targets = this.system.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
+        const config = foundry.utils.deepClone(this.system);
         config.event = event;
 
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelectedOrPerm'));
-        else if (config.hasSave) {
-            const pendingingSaves = targets.filter(t => t.saved.success === null);
-            if (pendingingSaves.length) {
-                const confirm = await foundry.applications.api.DialogV2.confirm({
-                    window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                    content: `
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
-                        <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
-                        <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
-                    `
-                });
-                if (!confirm) return;
-            }
+        if (this.system.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
         }
-
+        
         this.consumeOnSuccess();
         this.system.action?.workflow.get('effects')?.execute(config, targets, true);
     }
@@ -276,8 +296,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async onCreateAreas(event) {
         const createArea = async selectedArea => {
             const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
-            const { shape: type, size: range } = selectedArea;
-            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ type, range });
+            const { shape: shapeType, size: range, hasHole } = selectedArea;
+            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ 
+                shapeType, 
+                range, 
+                hasHole 
+            });
 
             const scene = game.scenes.get(game.user.viewedScene);
             const level = scene.levels.find(x => x.isView);
@@ -290,14 +314,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 behaviors:
                     effects.length > 0
                         ? [
-                              {
-                                  name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
-                                  type: 'applyActiveEffect',
-                                  system: {
-                                      effects: effects
-                                  }
-                              }
-                          ]
+                            {
+                                name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
+                                type: 'applyActiveEffect',
+                                system: {
+                                    effects: effects
+                                }
+                            }
+                        ]
                         : [],
                 displayMeasurements: true,
                 locked: false,
@@ -305,7 +329,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 visibility: CONST.REGION_VISIBILITY.ALWAYS
             };
             const placeRegion = data => {
-                canvas.regions.placeRegion(data, { create: true });
+                canvas.regions.placeRegion(data, { 
+                    create: true, 
+                    attachToToken: selectedArea.type === CONFIG.DH.ACTIONS.areaTypes.attached.id 
+                });
             };
 
             // Regions with effects must be placed by the GM
@@ -341,12 +368,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
     }
 
-    filterPermTargets(targets) {
-        return targets.filter(t => fromUuidSync(t.actorId)?.canUserModify(game.user, 'update'));
-    }
-
+    /**
+     * If an action with consumeOnSuccess hasn't consumed resources initially, this function will do so if there were no initial targets.
+     */
     consumeOnSuccess() {
-        if (!this.system.successConsumed && !this.targetSelection) this.system.action?.consume(this.system, true);
+        if (!this.system.successConsumed && !this.system.targets.length) this.system.action?.consume(this.system, true);
     }
 
     hoverTarget(event) {
@@ -370,9 +396,36 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         game.canvas.pan(token);
     }
 
-    onTargetSelection(event) {
+    /** Handle the user clicking the button to convert selected to targets and update the chat message */
+    async #onSelectedToTargets(event) {
         event.stopPropagation();
-        if (!event.target.classList.contains('target-selected'))
-            this.system.targetMode = Boolean(event.target.dataset.targetHit);
+        // Update the targets and ensure that we swap to the targets tab
+        if (!(await this.update({ 'system.targets': this.system._getCurrentTargets() }))) {
+            this.system.updateTargetHTML({ tab: 'targets' });
+        }
+    }
+
+    /** Handle changing tabs on the target section */
+    #onTargetSelection(event) {
+        event.stopPropagation();
+        if (!event.target.classList.contains('target-selected')) {
+            this.system.updateTargetHTML({ tab: event.target.dataset.selected ? 'select' : 'targets'});
+        }
+    }
+
+    // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+    static migrateData(source) {
+        for (let i = 0; i < (source.rolls ?? []).length; i++) {
+            const rollData = source.rolls[i];
+            const roll = typeof rollData === 'string' ? Roll.fromJSON(rollData) : rollData;
+            for (const effect of (roll.options.effects ?? [])) {
+                if (!effect.system.changes) {
+                    effect.system.changes = effect.changes ?? [];
+                    if (effect.changes) delete effect.changes;
+                    source.rolls.splice(i, 1, JSON.stringify(roll.toJSON()));
+                }
+            }
+        }
+        return source;
     }
 }

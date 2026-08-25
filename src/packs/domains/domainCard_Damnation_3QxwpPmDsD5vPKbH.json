@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Damnation",
+  "folder": "mEBydlforCvDGfDq",
+  "system": {
+    "domain": "dread",
+    "level": 9,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, <strong>mark any number of Stress</strong> to roll an equal number of <strong>d20</strong>s, dealing magic damage equal to the total result. If this attack defeats the target, all adversaries within Far range of the target must mark a Stress.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "3QxwpPmDsD5vPKbH",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!3QxwpPmDsD5vPKbH"
+}

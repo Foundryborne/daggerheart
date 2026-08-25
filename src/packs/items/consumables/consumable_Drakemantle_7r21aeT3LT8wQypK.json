@@ -1,0 +1,133 @@
+{
+  "name": "Drakemantle",
+  "type": "consumable",
+  "img": "icons/commodities/leather/scales-blue.webp",
+  "system": {
+    "description": "<p>You can use this enchanted ancient dragon hide to gain draconic characteristics until the end of the scene, when the hide falls aways in tatters. Until then, you can fly and gain a +5 bonus to your damage thresholds and a +1 bonus to your Proficiency.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "0QgmfGle8IJYkWv7": {
+        "type": "effect",
+        "_id": "0QgmfGle8IJYkWv7",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "7r21aeT3LT8wQypK",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "7z9abeZBZ0KzU4jV",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "7r21aeT3LT8wQypK",
+  "effects": [
+    {
+      "name": "Drakeform",
+      "disabled": false,
+      "img": "icons/creatures/abilities/dragon-breath-purple.webp",
+      "description": "<p>Until the end of the scene, you can fly and gain a +5 bonus to your damage thresholds and a +1 bonus to your Proficiency.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": 5,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 5,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": "scene"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.7r21aeT3LT8wQypK",
+      "_id": "7z9abeZBZ0KzU4jV",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!7r21aeT3LT8wQypK.7z9abeZBZ0KzU4jV"
+    }
+  ],
+  "folder": null,
+  "sort": 1500000,
+  "flags": {},
+  "_key": "!items!7r21aeT3LT8wQypK"
+}

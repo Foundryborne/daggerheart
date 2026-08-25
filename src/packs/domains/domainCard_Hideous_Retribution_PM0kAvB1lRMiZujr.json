@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Hideous Retribution",
+  "folder": "Px6nK9RuheaYIYI9",
+  "system": {
+    "domain": "dread",
+    "level": 2,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When an ally within Close range takes damage from a target you can see, you can make a reaction roll against the target using your Spellcast trait. On a success, <strong>mark a Stress</strong> to deal <strong>d6</strong> magic damage using your Proficiency.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "PM0kAvB1lRMiZujr",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!PM0kAvB1lRMiZujr"
+}

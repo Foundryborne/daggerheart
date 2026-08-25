@@ -4,14 +4,14 @@
   "_id": "XZavUVlHEvE2srEt",
   "img": "icons/consumables/potions/bottle-bulb-corked-labeled-blue.webp",
   "system": {
-    "description": "<p>You can drink this potion to fall asleep for a full night’s rest. You clear all Stress upon waking.</p>",
+    "description": "<p>You can drink this potion to fall asleep for a full night's rest. You clear all Stress upon waking.</p>",
     "quantity": 1,
     "actions": {
       "0cqzI66ChzO6x8WF": {
         "type": "healing",
         "_id": "0cqzI66ChzO6x8WF",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to fall asleep for a full night’s rest. You clear all Stress upon waking.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,10 +27,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -51,16 +53,16 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "effects": [],
@@ -81,7 +83,13 @@
         },
         "name": "Wake",
         "img": "icons/consumables/potions/bottle-bulb-corked-labeled-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -89,15 +97,12 @@
       "source": "Daggerheart SRD",
       "page": 62,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 5900000,
   "flags": {},
   "_key": "!items!XZavUVlHEvE2srEt"
 }

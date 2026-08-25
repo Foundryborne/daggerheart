@@ -1,0 +1,22 @@
+{
+  "type": "community",
+  "name": "Warborne",
+  "folder": null,
+  "system": {
+    "loreReference": "warborne",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Being part of a warborne community means you come from a place that is, or was, ravaged by war.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.communities.Item.E7QiHAoOxQIZEVR1"
+    ]
+  },
+  "_id": "fB2lEkodBCuyyMs1",
+  "img": "icons/environment/settlement/watchtower-lit-orange.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 0,
+  "_key": "!items!fB2lEkodBCuyyMs1"
+}

@@ -27,8 +27,10 @@ export const menu = {
 };
 
 export const gameSettings = {
+    /** @type {'Automation'} */
     Automation: 'Automation',
     Metagaming: 'Metagaming',
+    /** @type {'Homebrew'} */
     Homebrew: 'Homebrew',
     appearance: 'Appearance',
     GlobalOverrides: 'GlobalOverrides',
@@ -37,6 +39,7 @@ export const gameSettings = {
         Fear: 'ResourcesFear'
     },
     LevelTiers: 'LevelTiers',
+    /** @type {'Countdowns'} */
     Countdowns: 'Countdowns',
     LastMigrationVersion: 'LastMigrationVersion',
     SpotlightRequestQueue: 'SpotlightRequestQueue',
@@ -57,5 +60,20 @@ export const actionAutomationChoices = {
     always: {
         id: 'always',
         label: 'DAGGERHEART.CONFIG.ActionAutomationChoices.always'
+    }
+};
+
+export const reloadChoices = {
+    off: {
+        id: 'off',
+        label: 'DAGGERHEART.CONFIG.ReloadChoices.off.label'
+    },
+    manual: {
+        id: 'manual',
+        label: 'DAGGERHEART.CONFIG.ReloadChoices.manual.label'
+    },
+    auto: {
+        id: 'auto',
+        label: 'DAGGERHEART.CONFIG.ReloadChoices.auto.label'
     }
 };

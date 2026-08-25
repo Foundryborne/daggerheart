@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "LlWJaBZOKh0Ot2kD",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, after an ally attempts an action roll but before the consequences take place, you can offer assistance or words of support. When you do, your ally can reroll their dice.</p>",
+    "description": "<p>Once per rest, after an ally attempts an action roll but before the consequences take place, you can offer assistance or words of support. When you do, your ally can reroll their dice.</p>",
     "domain": "splendor",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "QZGSuYgLE6BMbFsD",
         "systemPath": "actions",
-        "description": "<p>Once per rest, after an ally attempts an action roll but before the consequences take place, you can offer assistance or words of support. When you do, your ally can reroll their dice.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -31,21 +31,30 @@
         },
         "name": "Reassure",
         "img": "icons/sundries/gaming/dice-pair-white-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 132,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "iYNVTB7uAD1FTCZu",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!iYNVTB7uAD1FTCZu"
 }

@@ -1,10 +1,12 @@
 import { getDocFromElement, itemIsIdentical } from '../../../helpers/utils.mjs';
-import DHBaseActorSettings from './actor-setting.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/** 
+ * @import DHBaseActorSettings from './actor-setting.mjs';
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
+ */
 
 /**
  * A base actor sheet extending {@link ActorSheetV2} via {@link DHApplicationMixin}
@@ -36,7 +38,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         ],
         dragDrop: [
             { dragSelector: '.inventory-item[data-type="attack"]', dropSelector: null },
-            { dragSelector: '.currency[data-currency] .drag-handle', dropSelector: null }
+            { dragSelector: '.currency[data-currency] .drag-handle', dropSelector: null },
+            // This exists in order to cancel a drag drop from happening. Implementation in _onDragStart()
+            { dragSelector: '[draggable="true"] input[type=text], [draggable="true"] input[type=number]', dropSelector: null }
         ]
     };
 
@@ -69,8 +73,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.appearance
         ).useResourcePips;
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
 
         // Prepare inventory data
         if (this.document.system.metadata.hasInventory) {
@@ -210,7 +212,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     const doc = await getDocFromElement(target),
                         action = doc?.system?.attack ?? doc;
                     const config = action.prepareConfig(event);
-                    config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(
+                    config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
                         this.document,
                         doc
                     );
@@ -377,7 +379,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 action: 'update',
                 documentName: 'Item',
                 parent: targetActor,
-                updates: [{ '_id': existing.id, 'system.quantity': existing.system.quantity + quantity }]
+                updates: [{ _id: existing.id, 'system.quantity': existing.system.quantity + quantity }]
             });
         } else {
             const itemsToCreate = [];
@@ -410,7 +412,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 action: 'update',
                 documentName: 'Item',
                 parent: originActor,
-                updates: [{ '_id': item.id, 'system.quantity': item.system.quantity - quantity }]
+                updates: [{ _id: item.id, 'system.quantity': item.system.quantity - quantity }]
             });
         }
 
@@ -422,6 +424,14 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDragStart(event) {
+        // If the target is an input element, stop the dragdrop. This may be a resource inside a draggable
+        // This relies on a dragdrop selector being registered for inputs specifically
+        if (event.target.tagName === 'INPUT' && ['number', 'text'].includes(event.target.type)) {
+            event.preventDefault();
+            event.stopPropagation();
+            return;
+        }
+
         // Handle drag/dropping currencies
         const currencyEl = event.currentTarget.closest('.currency[data-currency]');
         if (currencyEl) {
@@ -447,13 +457,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         const item = await getDocFromElement(event.target);
         if (item) {
+            const inventoryItem = event.currentTarget.closest('.inventory-item');
             const dragData = {
+                ...item.toDragData(),
                 originActor: this.document.uuid,
-                originId: item.id,
-                type: item.documentName,
-                uuid: item.uuid
+                originId: item.id
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+            if (inventoryItem) event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+            return;
         }
 
         super._onDragStart(event);

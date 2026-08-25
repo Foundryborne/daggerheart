@@ -1,0 +1,50 @@
+{
+  "type": "feature",
+  "name": "Hallowed Aura",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "k9hwCXpESBx326PC",
+  "img": "icons/magic/holy/barrier-shield-winged-cross.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per long rest when an ally within Close range rolls with Fear, you can change it into a roll with Hope instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "NBKcarcNqeWCqCHG": {
+        "type": "effect",
+        "_id": "NBKcarcNqeWCqCHG",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Fear To Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!k9hwCXpESBx326PC"
+}

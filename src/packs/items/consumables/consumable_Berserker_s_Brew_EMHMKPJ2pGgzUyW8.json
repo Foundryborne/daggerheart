@@ -1,0 +1,133 @@
+{
+  "name": "Berserker’s Brew",
+  "type": "consumable",
+  "_id": "EMHMKPJ2pGgzUyW8",
+  "img": "icons/consumables/potions/bottle-corked-red.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "description": "<p>When you drink this dram of liquid, you gain a bonus to your Strength and a penalty to your Finesse and Knowledge equal to your Instinct (minimum 1). This effect lasts until you make a death move or until your next rest.</p>",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {
+      "nwZQuJ6aY0i7EerN": {
+        "type": "effect",
+        "_id": "nwZQuJ6aY0i7EerN",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "EMHMKPJ2pGgzUyW8",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "lniOwCkDKynTi4bw",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Drink",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Berserk",
+      "disabled": false,
+      "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+      "description": "<p>When you drink this dram of liquid, you gain a bonus to your Strength and a penalty to your Finesse and Knowledge equal to your Instinct (minimum 1). This effect lasts until you make a death move or until your next rest.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.traits.strength.value",
+            "type": "add",
+            "value": "@system.traits.instinct.value",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.traits.finesse.value",
+            "type": "subtract",
+            "value": "@system.traits.instinct.value",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.traits.knowledge.value",
+            "type": "subtract",
+            "value": "@system.traits.instinct.value",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": "shortRest"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.EMHMKPJ2pGgzUyW8",
+      "_id": "lniOwCkDKynTi4bw",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!EMHMKPJ2pGgzUyW8.lniOwCkDKynTi4bw"
+    }
+  ],
+  "folder": null,
+  "sort": 2900000,
+  "flags": {},
+  "_key": "!items!EMHMKPJ2pGgzUyW8"
+}

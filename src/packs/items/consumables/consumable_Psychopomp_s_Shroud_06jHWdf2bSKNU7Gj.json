@@ -1,0 +1,61 @@
+{
+  "name": "Psychopomp’s Shroud",
+  "type": "consumable",
+  "img": "icons/commodities/cloth/cloth-patterned-teal.webp",
+  "system": {
+    "description": "<p>You can place this shroud over the corpse of a recently deceased creature. The creature's spirit enters the shroud and becomes your spectral assistant until the next sunrise, when they pass through the veil of death and take the shroud with them.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "FrzmFgaqCApbu3Km": {
+        "type": "effect",
+        "_id": "FrzmFgaqCApbu3Km",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "06jHWdf2bSKNU7Gj",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "06jHWdf2bSKNU7Gj",
+  "effects": [],
+  "folder": null,
+  "sort": 100000,
+  "flags": {},
+  "_key": "!items!06jHWdf2bSKNU7Gj"
+}

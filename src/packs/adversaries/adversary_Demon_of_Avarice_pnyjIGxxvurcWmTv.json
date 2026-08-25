@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 6,
-        "isReversed": true
+        "max": 6
       },
       "stress": {
         "value": 0,
-        "max": 5,
-        "isReversed": true
+        "max": 5
       }
     },
     "motivesAndTactics": "Consume, fuel greed, sow dissent",
@@ -44,32 +42,6 @@
         "value": 3
       }
     },
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 3,
     "description": "<p>A regal cloaked monstrosity with circular horns adorned with treasure.</p>",
     "attack": {
@@ -77,57 +49,97 @@
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
       "roll": {
         "bonus": 2,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 3,
-              "dice": "d6",
-              "bonus": 5,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "magical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 3,
+            "dice": "d6",
+            "bonus": 5,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "magical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "type": "attack",
       "range": "melee",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "F7YJnZhuv7jNQ4Gd",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 91,
       "artist": ""
     },
-    "size": "medium"
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "pnyjIGxxvurcWmTv",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Demon of Avarice",
     "displayName": 0,
@@ -138,12 +150,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +203,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,28 +229,27 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Money Talks",
       "type": "feature",
       "system": {
-        "description": "<p>Attacks against the @Lookup[@name] are made with disadvantage unless the attacker spends a handful of gold. This @Lookup[@name] starts with a number of handfuls equal to the number of PCs. When a target marks HP from the @Lookup[@name]’s standard attack, they can spend a handful of gold instead of marking HP (1 handful per HP). Add a handful of gold to the @Lookup[@name] for each handful of gold spent by PCs on this feature.</p>",
+        "description": "<p>Attacks against the @Lookup[@name] are made with disadvantage unless the attacker spends a handful of gold. This @Lookup[@name] starts with a number of handfuls equal to the number of PCs. When a target marks HP from the @Lookup[@name]'s standard attack, they can spend a handful of gold instead of marking HP (1 handful per HP). Add a handful of gold to the @Lookup[@name] for each handful of gold spent by PCs on this feature.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "qoQinutpe4Itohp0",
       "img": "icons/commodities/currency/coin-engraved-skull-gold.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -252,16 +260,22 @@
       "name": "Number Must Go Up",
       "type": "feature",
       "system": {
-        "description": "<p>Add a bonus to the @Lookup[@name]’s attack rolls equal to the number of handfuls of gold they have.</p>",
+        "description": "<p>Add a bonus to the @Lookup[@name]'s attack rolls equal to the number of handfuls of gold they have.</p>",
         "resource": {
           "type": "simple",
           "value": 0,
           "max": "",
-          "icon": "fa-solid fa-coins"
+          "icon": "fa-solid fa-coins",
+          "recovery": null,
+          "progression": "increasing",
+          "diceStates": {},
+          "dieFaces": "d4"
         },
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "ILocyy5hvyQXXjhs",
       "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
@@ -270,34 +284,32 @@
           "name": "Numbers Must Go Up",
           "type": "base",
           "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "changes": [
+              {
+                "key": "system.bonuses.roll.attack.bonus",
+                "type": "add",
+                "value": "ITEM.@system.resource.value",
+                "priority": 21,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "_id": "iLeiOlUtWvYsgbDQ",
           "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
-          "changes": [
-            {
-              "key": "system.bonuses.roll.attack.bonus",
-              "mode": 2,
-              "value": "ITEM.@system.resource.value",
-              "priority": 21
-            }
-          ],
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
-          "description": "<p>Add a bonus to the Demon’s attack rolls equal to the number of handfuls of gold they have.</p>",
+          "description": "<p>Add a bonus to the Demon's attack rolls equal to the number of handfuls of gold they have.</p>",
           "origin": null,
           "tint": "#ffffff",
           "transfer": true,
@@ -307,15 +319,14 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!pnyjIGxxvurcWmTv.ILocyy5hvyQXXjhs.iLeiOlUtWvYsgbDQ"
         }
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -329,19 +340,16 @@
         "description": "<p><strong>Spend 3 handfuls of gold (or a Fear)</strong> to spotlight [[/r 1d4+1]] allies.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "BKgv2D1IdI813R8k",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

@@ -1,0 +1,133 @@
+{
+  "type": "feature",
+  "name": "Hex",
+  "folder": "u2NVDrSZHWjIweE8",
+  "_id": "EFgQVcDiADsKxG3T",
+  "img": "icons/magic/control/voodoo-doll-pain-damage-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Mark a Stress</strong> to temporarily <em>Hex</em> a target within Far range. While <em>Hexed</em>, the target gains a penalty to their damage rolls and Difficulty equal to your tier. The maximum number of creatures you can <em>Hex</em> at one time is equal to your Spellcast trait.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "tkcohPwyQpJ2Qj7G": {
+        "type": "effect",
+        "_id": "tkcohPwyQpJ2Qj7G",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "Pl35ZLKEWDU5nlUj",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Hex",
+        "range": "far"
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Hex",
+      "disabled": false,
+      "img": "icons/magic/control/voodoo-doll-pain-damage-purple.webp",
+      "description": "<p>While <em>Hexed</em>, the target gains a penalty to their damage rolls and Difficulty equal to your tier.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.difficulty",
+            "type": "subtract",
+            "value": "ORIGIN.@tier",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.physical.bonus",
+            "type": "subtract",
+            "value": "ORIGIN.@tier",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.magical.bonus",
+            "type": "subtract",
+            "value": "ORIGIN.@tier",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": "temporary"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "Pl35ZLKEWDU5nlUj",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!EFgQVcDiADsKxG3T.Pl35ZLKEWDU5nlUj"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!EFgQVcDiADsKxG3T"
+}

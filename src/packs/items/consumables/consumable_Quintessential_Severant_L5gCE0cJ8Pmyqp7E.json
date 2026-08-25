@@ -1,0 +1,61 @@
+{
+  "name": "Quintessential Severant",
+  "type": "consumable",
+  "img": "icons/tools/cooking/knife-chef-steel-black.webp",
+  "system": {
+    "description": "<p>You can use this magic blade to cut one magical or metaphysical bond, such as an enchantment, contract, magical tether, or divine oath. When you do, the blade shatters.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "vlPzHqlUT2JLoeKz": {
+        "type": "effect",
+        "_id": "vlPzHqlUT2JLoeKz",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "L5gCE0cJ8Pmyqp7E",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
+  },
+  "_id": "L5gCE0cJ8Pmyqp7E",
+  "effects": [],
+  "folder": null,
+  "sort": 4100000,
+  "flags": {},
+  "_key": "!items!L5gCE0cJ8Pmyqp7E"
+}

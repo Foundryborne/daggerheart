@@ -1,4 +1,9 @@
 export default class DhpCombat extends Combat {
+    /** @inheritDoc */
+    get nextCombatant() {
+        return null;
+    }
+
     async startCombat() {
         this._playCombatSound('startEncounter');
         const updateData = { round: 1, turn: null };
@@ -46,7 +51,9 @@ export default class DhpCombat extends Combat {
             for (let actor of actors) {
                 await actor.createEmbeddedDocuments(
                     'ActiveEffect',
-                    effects.filter(x => x.effectTargetTypes.includes(actor.type))
+                    effects
+                        .filter(x => x.effectTargetTypes.includes(actor.type))
+                        .map(x => foundry.utils.deepClone(x))
                 );
             }
         } else {

@@ -4,6 +4,7 @@ import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../.
 const typeSettingsMap = {
     character: 'extendCharacterDescriptions',
     adversary: 'extendAdversaryDescriptions',
+    npc: 'extendAdversaryDescriptions',
     environment: 'extendEnvironmentDescriptions',
     ancestry: 'extendItemDescriptions',
     community: 'extendItemDescriptions',
@@ -138,12 +139,8 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const hideAttribution = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.appearance
-            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
@@ -161,12 +158,8 @@ export default function DHApplicationMixin(Base) {
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const hideAttribution = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.appearance
-            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
 
@@ -212,7 +205,7 @@ export default function DHApplicationMixin(Base) {
 
                 // Force valid characters while inputting
                 deltaInput.addEventListener('input', () => {
-                    deltaInput.value = /[+=\-]?\d*/.exec(deltaInput.value)?.at(0) ?? deltaInput.value;
+                    deltaInput.value = /[+=-]?\d*/.exec(deltaInput.value)?.at(0) ?? deltaInput.value;
                 });
 
                 // Recreate Keyup/Keydown support
@@ -275,9 +268,9 @@ export default function DHApplicationMixin(Base) {
 
             docs.filter(doc => doc).forEach(doc => (doc.apps[this.id] = this));
 
-            if (!!this.options.contextMenus.length) this._createContextMenus();
+            if (this.options.contextMenus.length) this._createContextMenus();
 
-            this.#autoExtendDescriptions(context);
+            this._autoExpandDescriptions(context);
         }
 
         /** @inheritDoc */
@@ -319,7 +312,7 @@ export default function DHApplicationMixin(Base) {
         _preSyncPartState(partId, newElement, priorElement, state) {
             super._preSyncPartState(partId, newElement, priorElement, state);
             for (const el of priorElement.querySelectorAll('.extensible.extended')) {
-                const { actionId, itemUuid } = el.parentElement.dataset;
+                const { actionId, itemUuid } = el.closest('[data-item-uuid], [data-action-id]').dataset;
                 const selector = `${actionId ? `[data-action-id="${actionId}"]` : `[data-item-uuid="${itemUuid}"]`} .extensible`;
                 const newExtensible = newElement.querySelector(selector);
                 newExtensible?.classList.add('extended');
@@ -376,18 +369,17 @@ export default function DHApplicationMixin(Base) {
          */
         async _onDragStart(event) {
             const inventoryItem = event.currentTarget.closest('.inventory-item');
-            if (inventoryItem) {
-                const { type, itemUuid } = inventoryItem.dataset;
-                if (type === 'effect') {
-                    const effect = await foundry.utils.fromUuid(itemUuid);
-                    const effectData = {
-                        type: 'ActiveEffect',
-                        data: { ...effect.toObject(), _id: null },
-                        fromInternal: this.document.uuid
-                    };
-                    event.dataTransfer.setData('text/plain', JSON.stringify(effectData));
-                    event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
-                }
+            if (!inventoryItem) return;
+            
+            const { type, itemUuid } = inventoryItem.dataset;
+            const effect = type === 'effect' ? await foundry.utils.fromUuid(itemUuid) : null;
+            if (effect) {
+                const effectData = {
+                    ...effect.toDragData(),
+                    fromInternal: this.document.uuid
+                };
+                event.dataTransfer.setData('text/plain', JSON.stringify(effectData));
+                event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
             }
         }
 
@@ -397,14 +389,33 @@ export default function DHApplicationMixin(Base) {
          * @protected
          */
         _onDrop(event) {
+            // Potentially handle subclasses that dont descend from actor/item sheet.
             event.stopPropagation();
-            const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-            if (data.type === 'ActiveEffect' && data.fromInternal !== this.document.uuid) {
-                this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
-            } else {
-                // Fallback to super, but note that item sheets do not have this function
-                return super._onDrop?.(event);
+            return super._onDrop?.(event);
+        }
+
+        /** @inheritdoc */
+        _onSortItem(event, item) {
+            // If we are dragging a feature past its allowed feature form, put it in the front or in the back
+            const doc = this.actor.items.get(item.id);
+            const dropTargetEl = event.target.closest('[data-item-id]');
+            const dropTarget = this.actor.items.get(dropTargetEl?.dataset.itemId);
+            if (doc?.type === 'feature' && dropTarget?.type === 'feature' && doc.system.featureForm !== dropTarget.system.featureForm) {
+                const siblings = this.actor.itemTypes.feature
+                    .filter(f => f.system.featureForm === doc.system.featureForm)
+                    .sort((a, b) => a.sort - b.sort);
+                if (siblings.length > 1) {
+                    const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
+                    const thisFeatureIdx = featureForms.indexOf(doc.system.featureForm);
+                    const targetFeatureIdx = featureForms.indexOf(dropTarget.system.featureForm);
+                    const target = targetFeatureIdx < thisFeatureIdx ? siblings[0] : siblings.at(-1);
+                    const sortUpdates = foundry.utils.performIntegerSort(doc, { target, siblings });
+                    const updateData = sortUpdates.map(u => ({ ...u.update, _id: u.target._id }));
+                    return this.actor.updateEmbeddedDocuments('Item', updateData);
+                }
             }
+
+            return super._onSortItem?.(event, item);
         }
 
         /* -------------------------------------------- */
@@ -505,16 +516,17 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-explosion',
                     visible: target => {
                         const doc = getDocFromElementSync(target);
-                        const hasDamage =
-                            !foundry.utils.isEmpty(doc?.system?.attack?.damage.parts) ||
-                            !foundry.utils.isEmpty(doc?.damage?.parts);
+                        const hasDamage = doc?.system?.attack?.damage && (
+                            doc.system.attack.damage.main || 
+                            Object.keys(doc.system.attack.damage.resources ?? {}).length
+                        );
                         return doc?.isOwner && hasDamage;
                     },
                     onClick: async (event, target) => {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
                         const config = action.prepareConfig(event);
-                        config.effects = await game.system.api.data.actions.actionsTypes.base.getEffects(
+                        config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
                             this.document,
                             doc
                         );
@@ -575,6 +587,7 @@ export default function DHApplicationMixin(Base) {
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
             context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+
             return context;
         }
 
@@ -599,7 +612,7 @@ export default function DHApplicationMixin(Base) {
                 const doc = await fromUuid(itemUuid);
 
                 //get inventory-item description element
-                const descriptionElement = el.querySelector('.invetory-description');
+                const descriptionElement = el.querySelector('.inventory-description');
                 if (!doc || !descriptionElement) continue;
 
                 // localize the description (idk if it's still necessary)
@@ -627,8 +640,9 @@ export default function DHApplicationMixin(Base) {
         /**
          * Extend inventory description when enabled in settings.
          * @returns {Promise<void>}
+         * @protected
          */
-        async #autoExtendDescriptions(context) {
+        async _autoExpandDescriptions(context) {
             const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
             for (const el of inventoryItems) {
                 // Get the doc uuid from the element
@@ -735,24 +749,28 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #onCreateDoc(event, target) {
-            const { documentClass, type, inVault, disabled } = target.dataset;
+            const { documentClass, type, inVault, disabled, featureForm } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
             const featureOnCharacter = this.document.parent?.type === 'character' && type === 'feature';
             const parent = featureOnCharacter
                 ? this.document.parent
                 : parentIsItem && documentClass === 'Item'
-                  ? type === 'action'
-                      ? this.document.system
-                      : null
-                  : this.document;
+                    ? type === 'action'
+                        ? this.document.system
+                        : null
+                    : this.document;
 
             let systemData = {};
             if (featureOnCharacter) {
                 systemData = {
-                    originItemType: this.document.type,
-                    identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                    granter: {
+                        id: this.document.id,
+                        type: this.document.type,
+                        identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                    }
                 };
             }
+            if (featureForm) systemData.featureForm = featureForm;
 
             const cls =
                 type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);

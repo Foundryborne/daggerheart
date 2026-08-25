@@ -1,0 +1,61 @@
+{
+  "name": "Staff of Reversal",
+  "type": "consumable",
+  "img": "icons/weapons/staves/staff-simple-spiral.webp",
+  "system": {
+    "description": "<p>You can break this staff against the ground to reverse one magical transformation or effect within Far range.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "TgL2lMYlKXuHxXIq": {
+        "type": "effect",
+        "_id": "TgL2lMYlKXuHxXIq",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "joHLyjtZLsG7Uwi3",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Break",
+        "range": ""
+      }
+    }
+  },
+  "_id": "joHLyjtZLsG7Uwi3",
+  "effects": [],
+  "folder": null,
+  "sort": 8800000,
+  "flags": {},
+  "_key": "!items!joHLyjtZLsG7Uwi3"
+}

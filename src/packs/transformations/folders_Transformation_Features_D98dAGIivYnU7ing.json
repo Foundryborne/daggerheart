@@ -1,0 +1,16 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Transformation Features",
+  "color": null,
+  "flags": {
+    "daggerheart": {
+      "defaultEntity": "feature"
+    }
+  },
+  "sorting": "a",
+  "_id": "D98dAGIivYnU7ing",
+  "description": "",
+  "sort": 0,
+  "_key": "!folders!D98dAGIivYnU7ing"
+}

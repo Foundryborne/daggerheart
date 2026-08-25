@@ -1,0 +1,548 @@
+{
+  "type": "environment",
+  "name": "Heist",
+  "folder": "XMeecO3IRvu5ck6F",
+  "system": {
+    "type": "event",
+    "description": "<p>The party must gain access to a hidden or well-protected location to acquire the information or items secured within.</p>",
+    "tier": 2,
+    "impulses": "Make the party prepare, split them up, throw up obstacles, trap them inside, use up their resources",
+    "difficulty": 14,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "gzQzvwR4kNa9okSB": {
+        "label": "Adversaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.mK3A5FTx6k8iPU3F",
+          "Compendium.daggerheart.adversaries.Actor.rM9qCIYeWg9I0B4l",
+          "Compendium.daggerheart.adversaries.Actor.sLAccjvCWfeedbpI",
+          "Compendium.daggerheart.adversaries.Actor.UFVGl1osOsJTneLf"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Prep Work",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Prior to the Heist, each PC has the opportunity to gather a key piece of information, surveil the location, or acquire a helpful tool or resource. Give each player the opportunity to describe one obstacle they expect to encounter and how they set themselves up to overcome it, then have them make an action roll. On a success, they get the information or asset they sought. On a success with Fear, it's less useful than they expected (for example, they discover the location of a hidden access point but learn that breaching it will likely be difficult and noisy).</p><section id=\"secret-odZZDOzWVo2JIOOr\" class=\"secret\"><p>How does the PC gain this advantage? Do they go it alone or ask for help? What unforeseen complications arise during the heist itself?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "NYEgUIaGnponoqC0",
+      "img": "icons/skills/trades/academics-merchant-scribe.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!7e8T9O0JSj6QzY9P.NYEgUIaGnponoqC0"
+    },
+    {
+      "name": "Infiltration",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Establish the goal of the Heist and start two dynamic countdowns: a Progress Countdown (12) to represent the party's work toward their goal and a Consequence Countdown (10) to represent the rising risk of discovery and capture. Advance both according to the Dynamic Countdown Advancement table as the PCs make action rolls to complete the Heist. If the Progress Countdown triggers first, spotlight this environment to use the \"Exfiltration\" feature. If the Consequence Countdown triggers first, gain <strong>1d4</strong> Fear, spotlight this environment, and use the \"Sound the Alarm\" feature.</p><section id=\"secret-ILrQAmBnbwUD2ALX\" class=\"secret\"><p>What is the party going after, and where is it located? What unexpected obstacles will they encounter? What happens if the party gets caught?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "Jj3tIOKcExSWxCUh": {
+            "type": "countdown",
+            "name": "Start Countdowns",
+            "countdown": [
+              {
+                "name": "Infiltration",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/environment/settlement/city-night-spire.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "12",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              },
+              {
+                "name": "Getting Discovered",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/environment/settlement/city-night-spire.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "10",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "Jj3tIOKcExSWxCUh",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "FF2zzZJAFkktI55f": {
+            "type": "healing",
+            "_id": "FF2zzZJAFkktI55f",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>If the Consequence Countdown triggers first, gain <strong>1d4</strong> Fear, spotlight this environment, and use the \"Sound the Alarm\" feature.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {
+                "fear": {
+                  "base": false,
+                  "applyTo": "fear",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Consequence",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "ExmDwRunlP8FBvZI",
+      "img": "icons/environment/settlement/city-night-spire.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!7e8T9O0JSj6QzY9P.ExmDwRunlP8FBvZI"
+    },
+    {
+      "name": "Saw This Coming",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Once per session, a PC can <strong>spend a Hope</strong> to explain how they prepared for the current situation and reveal a key piece of information (such as the location of a hidden passage or the password to a restricted area) or produce a helpful item (such as a cultist's uniform left unattended or a common consumable hidden in their boot).</p><section id=\"secret-bFk3Bh3FvomqguNZ\" class=\"secret\"><p>What did the PC prepare in advance? How did they know they'd need it? What did it cost them to set up, or whom do they owe a favor to?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "dDptQRFaM2lJ67AW",
+      "img": "icons/sundries/documents/document-official-capital.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!7e8T9O0JSj6QzY9P.dDptQRFaM2lJ67AW"
+    },
+    {
+      "name": "Exfiltration",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the Progress Countdown triggers, the party acquires the object of the Heist and must succeed on a group action roll to escape without capture. On a failure, each PC takes <strong>2d12</strong> direct physical damage and must mark a Stress.</p><section id=\"secret-KmJIVWWQQR4nBPRT\" class=\"secret\"><p>What makes getting out even more dangerous than getting in? What unforeseen developments stymie the party's original escape plan?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "bXTUNmKo2qCm4aTR": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d12",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "bXTUNmKo2qCm4aTR",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Poor Exfiltration",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "IILSh4X339iDm9EG",
+      "img": "icons/skills/movement/figure-running-gray.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!7e8T9O0JSj6QzY9P.IILSh4X339iDm9EG"
+    },
+    {
+      "name": "Sound the Alarm",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the Consequence Countdown triggers, the party is discovered and the location enters High Alert. Summon a number of Tier 2 adversaries equal to the number of PCs in the scene and immediately spotlight one. While this environment is on High Alert, all adversaries gain a +1 bonus to their Difficulty.</p><section id=\"secret-lP2u2z8DMh6EyRt1\" class=\"secret\"><p>What makes these adversaries uniquely suited to guard this location? What do they know about this place that gives them an edge?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "uCqBpEjOgqAg0OmK": {
+            "type": "effect",
+            "_id": "uCqBpEjOgqAg0OmK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "Tz48HR0wgfdQ8Rlt",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Boost Difficulty",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "99cGwiRuYl26WUvl",
+      "img": "icons/magic/sonic/bell-alarm-red-purple.webp",
+      "effects": [
+        {
+          "name": "Alarm Sounded",
+          "disabled": false,
+          "img": "icons/magic/sonic/bell-alarm-red-purple.webp",
+          "description": "",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.7e8T9O0JSj6QzY9P.Item.99cGwiRuYl26WUvl",
+          "_id": "Tz48HR0wgfdQ8Rlt",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!7e8T9O0JSj6QzY9P.99cGwiRuYl26WUvl.Tz48HR0wgfdQ8Rlt"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!7e8T9O0JSj6QzY9P.99cGwiRuYl26WUvl"
+    }
+  ],
+  "_id": "7e8T9O0JSj6QzY9P",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Heist",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!7e8T9O0JSj6QzY9P"
+}

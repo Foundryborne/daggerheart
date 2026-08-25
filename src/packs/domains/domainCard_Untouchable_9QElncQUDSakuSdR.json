@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "PeeIjbkBv41613yZ",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
+    "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 1,
@@ -13,7 +13,14 @@
       "source": "Daggerheart SRD",
       "page": 122,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "9QElncQUDSakuSdR",
@@ -23,34 +30,32 @@
       "name": "Untouchable",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": "ceil(@system.traits.agility.value / 2)",
+            "priority": 21,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "H8hazlQe4Wj4JFO6",
       "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
-      "changes": [
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "ceil(@system.traits.agility.value / 2)",
-          "priority": 21
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
+      "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -60,11 +65,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!9QElncQUDSakuSdR.H8hazlQe4Wj4JFO6"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!9QElncQUDSakuSdR"
 }

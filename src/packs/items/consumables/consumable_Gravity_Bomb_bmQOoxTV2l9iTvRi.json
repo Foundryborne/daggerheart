@@ -1,0 +1,70 @@
+{
+  "name": "Gravity Bomb",
+  "type": "consumable",
+  "img": "icons/commodities/metal/plate-mount-round-copper.webp",
+  "system": {
+    "description": "<p>You can throw this peach-sized mechanical orb at a point within Far range. It implodes and pulls all creatures and objects within Close range of that point into Melee range with it.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "DlpFeXegeuolZMNQ": {
+        "type": "effect",
+        "_id": "DlpFeXegeuolZMNQ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Gravity Bomb",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "close",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "bmQOoxTV2l9iTvRi",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Throw",
+        "range": "far"
+      }
+    }
+  },
+  "_id": "bmQOoxTV2l9iTvRi",
+  "effects": [],
+  "folder": null,
+  "sort": 6800000,
+  "flags": {},
+  "_key": "!items!bmQOoxTV2l9iTvRi"
+}

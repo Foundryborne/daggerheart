@@ -1,0 +1,71 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Wyrdwood Splint Armor",
+  "type": "armor",
+  "_id": "VD08FahK2W2zXoBK",
+  "img": "icons/equipment/chest/breastplate-layered-leather-studded-brown.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "ajgzKFQYH5aUzmZk": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Quick-Striding",
+        "description": "You can't be Restrained and can move up to Far range as part of an action roll.",
+        "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
+        "_id": "ajgzKFQYH5aUzmZk",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "tier": 2,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
+    "baseThresholds": {
+      "major": 10,
+      "severe": 21
+    },
+    "armorFeatures": [
+      {
+        "value": "quickStriding",
+        "effectIds": [],
+        "actionIds": [
+          "ajgzKFQYH5aUzmZk"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!VD08FahK2W2zXoBK"
+}

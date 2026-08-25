@@ -1,6 +1,6 @@
 import { parseInlineParams } from './parser.mjs';
 
-export default function DhTemplateEnricher(match, _options) {
+export function DhTemplateEnricher(match, _options) {
     const params = parseInlineParams(match[1]);
     const { type, angle = CONFIG.MeasuredTemplate.defaults.angle, inline = false } = params;
     const direction = Number(params.direction) || 0;
@@ -8,8 +8,8 @@ export default function DhTemplateEnricher(match, _options) {
     const range =
         params.range && Number.isNaN(Number(params.range))
             ? Object.values(CONFIG.DH.GENERAL.templateRanges).find(
-                  x => x.id.toLowerCase() === params.range || x.short === params.range
-              )?.id
+                x => x.id.toLowerCase() === params.range || x.short === params.range
+            )?.id
             : params.range;
 
     if (!CONFIG.DH.GENERAL.templateTypes[type] || !range) return match[0];
@@ -58,10 +58,11 @@ export const renderMeasuredTemplate = async event => {
     if (!type || !range || !game.canvas.scene) return;
 
     const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({
-        type,
+        shapeType: type,
         angle,
         range,
-        direction
+        direction,
+        hasHole: false
     });
 
     await canvas.regions.placeRegion(

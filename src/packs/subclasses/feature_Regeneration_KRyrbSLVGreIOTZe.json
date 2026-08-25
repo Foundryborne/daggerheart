@@ -12,7 +12,7 @@
         "type": "healing",
         "_id": "kD2kWWj0oR7ZxyVs",
         "systemPath": "actions",
-        "description": "<p>Touch a creature and spend 3 Hope. That creature clears 1d4 Hit Points.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,20 +20,25 @@
             "scalable": false,
             "key": "hope",
             "value": 3,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "flat",
                 "flatMultiplier": 1,
@@ -49,13 +54,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -79,23 +84,26 @@
         },
         "name": "Heal a creature",
         "img": "icons/magic/nature/beam-hand-leaves-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 11,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 300000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!KRyrbSLVGreIOTZe"
 }

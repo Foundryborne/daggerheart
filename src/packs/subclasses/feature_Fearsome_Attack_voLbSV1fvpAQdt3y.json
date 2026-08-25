@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Fearsome Attack",
+  "folder": "wl9jx5leIDw9ox3R",
+  "_id": "voLbSV1fvpAQdt3y",
+  "img": "icons/magic/unholy/hand-weapon-glow-black-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Spend a Favor</strong> to reroll any number of your damage dice. You can continue spending Favor to use this feature on the same damage roll.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!voLbSV1fvpAQdt3y"
+}

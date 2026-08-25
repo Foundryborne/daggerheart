@@ -1,0 +1,76 @@
+{
+  "type": "feature",
+  "name": "Scorpion's Poise",
+  "folder": "NysUQtRlcjGiqDHm",
+  "_id": "lg7f25bLIJWWLOcB",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You gain a +2 bonus to your Evasion against attacks made by a creature you've <em>Marked for Death</em>.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Scropion's Poise",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "uNKRX6TRyp4PS7xP",
+      "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+      "disabled": true,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>You gain a +2 bonus to your Evasion against attacks made by a creature you've <em>Marked for Death</em>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!lg7f25bLIJWWLOcB.uNKRX6TRyp4PS7xP"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!lg7f25bLIJWWLOcB"
+}

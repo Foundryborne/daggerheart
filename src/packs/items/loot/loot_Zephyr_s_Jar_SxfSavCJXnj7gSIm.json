@@ -1,0 +1,22 @@
+{
+  "name": "Zephyr’s Jar",
+  "type": "loot",
+  "img": "icons/containers/kitchenware/jug-bottle-clay-brown-gold-blue.webp",
+  "system": {
+    "description": "<p>You can open this empty jar during inclement weather to capture the storm and leave behind clear skies. The storm remains inside until unleashed by reopening the jar.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "SxfSavCJXnj7gSIm",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!SxfSavCJXnj7gSIm"
+}

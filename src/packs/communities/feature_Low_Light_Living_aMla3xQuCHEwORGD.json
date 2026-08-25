@@ -5,17 +5,17 @@
   "_id": "aMla3xQuCHEwORGD",
   "img": "icons/environment/settlement/temple-night.webp",
   "system": {
-    "description": "<p>When you’re in an area with low light or heavy shadow, you have advantage on rolls to hide, investigate, or perceive details within that area.</p>",
+    "description": "<p>When you're in an area with low light or heavy shadow, you have advantage on rolls to hide, investigate, or perceive details within that area.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 33,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -24,12 +24,6 @@
       "_id": "pCp32u7UwqxCI4WW",
       "img": "icons/environment/settlement/temple-night.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.advantageSources",
@@ -40,8 +34,12 @@
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -50,7 +48,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>When you’re in an area with low light or heavy shadow, you have advantage on rolls to hide, investigate, or perceive details within that area.</p>",
+      "description": "<p>When you're in an area with low light or heavy shadow, you have advantage on rolls to hide, investigate, or perceive details within that area.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -75,9 +73,5 @@
   ],
   "flags": {},
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "_key": "!items!aMla3xQuCHEwORGD"
 }

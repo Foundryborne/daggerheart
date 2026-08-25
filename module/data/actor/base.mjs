@@ -1,9 +1,14 @@
-import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
-import DHItem from '../../documents/item.mjs';
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
+import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
 
+/**
+ * @import DHItem from '../../documents/item.mjs';
+ * @import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
+ */
+
+/** Function to generate resistance fields for damage types */
 const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
     new fields.SchemaField({
         resistance: new fields.BooleanField({
@@ -69,6 +74,7 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
     attack: new fields.SchemaField({
         ...extendedData.attack,
         damage: new fields.SchemaField({
+            standardAttack: new fields.ArrayField(new FormulaField(), { nullable: false, initial: [] }),
             hpDamageMultiplier: new fields.NumberField({
                 required: true,
                 nullable: false,
@@ -96,6 +102,8 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
  * @property {Boolean} isNPC - This data model represents a NPC?
  * @property {typeof DHBaseActorSettings} settingSheet - The sheet class used to render the settings UI for this actor type.
  */
+
+/** Base actor type data model for all actors in Daggerheart */
 export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     /** @returns {ActorDataModelMetadata}*/
     static get metadata() {
@@ -161,7 +169,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     static DEFAULT_ICON = null;
 
     get attributionLabel() {
-        if (!this.attribution) return;
+        if (!this.attribution) return null;
 
         const { source, page } = this.attribution;
         return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');

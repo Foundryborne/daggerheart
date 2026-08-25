@@ -1,0 +1,50 @@
+{
+  "type": "feature",
+  "name": "Flicker Step",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "puDdIetm05O8andm",
+  "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per scene, you can teleport to another point you can see within Far range.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "Mm3kdZ1AOYnDY0E9": {
+        "type": "effect",
+        "_id": "Mm3kdZ1AOYnDY0E9",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "scene",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Teleport",
+        "range": "far"
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!puDdIetm05O8andm"
+}

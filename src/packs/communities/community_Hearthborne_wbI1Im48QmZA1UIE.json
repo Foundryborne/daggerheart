@@ -1,0 +1,22 @@
+{
+  "type": "community",
+  "name": "Hearthborne",
+  "folder": null,
+  "system": {
+    "loreReference": "hearthborne",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Being part of a hearthborne community means you come from humble origins, having lived in a modest village or quaint countryside.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.communities.Item.u5OSsvjcD8tvf5Gc"
+    ]
+  },
+  "_id": "wbI1Im48QmZA1UIE",
+  "img": "icons/environment/settlement/house-farmland-small.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 200000,
+  "_key": "!items!wbI1Im48QmZA1UIE"
+}

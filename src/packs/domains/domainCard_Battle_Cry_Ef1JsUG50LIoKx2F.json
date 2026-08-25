@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "me7ywrVh38j6T8Sm",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
+    "description": "<p>Once per long rest, while you're charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "jakoB9n8KSgvYVZv",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -25,7 +25,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -46,10 +47,11 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             },
             "hope": {
               "value": {
@@ -71,13 +73,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -106,14 +108,26 @@
         },
         "name": "Clear Stress & Gain Hope",
         "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Ef1JsUG50LIoKx2F",
@@ -127,12 +141,6 @@
       "_id": "s7ma4TNgAvt0ZgEW",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.advantageSources",
@@ -145,7 +153,10 @@
         "duration": {
           "type": "temporary",
           "description": "<p>Until you or an ally rolls a failure with Fear.</p>"
-        }
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -175,8 +186,5 @@
       "_key": "!items.effects!Ef1JsUG50LIoKx2F.s7ma4TNgAvt0ZgEW"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Ef1JsUG50LIoKx2F"
 }

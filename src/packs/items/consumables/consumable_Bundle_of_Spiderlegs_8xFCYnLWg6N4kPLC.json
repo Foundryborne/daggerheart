@@ -1,0 +1,111 @@
+{
+  "name": "Bundle of Spiderlegs",
+  "type": "consumable",
+  "img": "icons/containers/bags/coinpouch-simple-leather-brown.webp",
+  "system": {
+    "description": "<p>You can eat these spiderlegs to walk on walls until your next rest.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "PvaegGLkYV7DRR8F": {
+        "type": "effect",
+        "_id": "PvaegGLkYV7DRR8F",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "8xFCYnLWg6N4kPLC",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "x7FTsmzljd0t5trC",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Eat",
+        "range": ""
+      }
+    }
+  },
+  "_id": "8xFCYnLWg6N4kPLC",
+  "effects": [
+    {
+      "name": "Spiderwalking",
+      "disabled": false,
+      "img": "icons/commodities/biological/stinger-insect-brown.webp",
+      "description": "<p>You can eat these spiderlegs to walk on walls until your next rest.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": "shortRest"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.8xFCYnLWg6N4kPLC",
+      "_id": "x7FTsmzljd0t5trC",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!8xFCYnLWg6N4kPLC.x7FTsmzljd0t5trC"
+    }
+  ],
+  "folder": null,
+  "sort": 1900000,
+  "flags": {},
+  "_key": "!items!8xFCYnLWg6N4kPLC"
+}

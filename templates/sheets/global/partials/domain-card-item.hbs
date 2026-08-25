@@ -1,4 +1,4 @@
-<li class="card-item" data-item-uuid="{{item.uuid}}" data-type="domainCard">
+<li class="card-item" data-item-id="{{item.id}}" data-item-uuid="{{item.uuid}}" data-type="domainCard" draggable="true">
     <img src="{{item.img}}" data-action="useItem" class="card-img" />
     <span class="item-icon recall-cost">
         <span class="recall-value">{{item.system.recallCost}}</span>
@@ -8,7 +8,7 @@
         <div
             class="menu {{#if item.system.resource}}resource-menu{{/if}} {{#if (eq item.system.resource.type 'diceValue')}}dice-menu{{/if}}">
             {{#if item.system.resource}}
-            {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
+                {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
             {{/if}}
             <div class="controls">
                 <a data-action="toggleVault"
@@ -23,6 +23,6 @@
                 </a>
             </div>
         </div>
-        <span class="card-name" data-action="viewItem">{{item.name}}</span>
+        <a class="card-name" data-action="viewItem" data-tooltip="#item#{{item.uuid}}">{{item.name}}</a>
     </div>
 </li>

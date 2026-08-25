@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "A8wHvMnKnewQ2J3m",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to double your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Strength and a +1 bonus to your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -36,12 +37,18 @@
           }
         ],
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "name": "Drink",
         "img": "icons/consumables/potions/potion-bottle-corked-labeled-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -49,7 +56,8 @@
       "source": "Daggerheart SRD",
       "page": 62,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -65,18 +73,24 @@
             "key": "system.traits.strength.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.proficiency",
             "value": 1,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": "shortRest"
-        }
+          "type": "shortRest",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -107,11 +121,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 8200000,
   "flags": {},
   "_key": "!items!fl2f3ees8RFMze9t"
 }

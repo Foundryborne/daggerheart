@@ -1,0 +1,22 @@
+{
+  "name": "Gloves of Alacrity",
+  "type": "loot",
+  "img": "icons/equipment/hand/glove-simple-leather-brown-blue.webp",
+  "system": {
+    "description": "<p>When you would mark a Stress to reload a weapon, you don't mark it.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "meZiyR86vH97h8pJ",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!meZiyR86vH97h8pJ"
+}

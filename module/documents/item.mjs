@@ -1,10 +1,21 @@
 import ActionSelectionDialog from '../applications/dialogs/actionSelectionDialog.mjs';
+import { fromUuids, keyBy } from '../helpers/utils.mjs';
 
 /**
  * Override and extend the basic Item implementation.
  * @extends {foundry.documents.Item}
  */
 export default class DHItem extends foundry.documents.Item {
+    /** 
+     * Returns the uuid of the original item this item was derived from, 
+     * or its own uuid if its a compendium item or not derived from a source item.
+     * @returns {string}
+     */
+    get sourceUuid() {
+        const isCompendium = this._id && this.pack && !this.isEmbedded;
+        return isCompendium ? this.uuid : this._stats.compendiumSource ?? this._stats.duplicateSource ?? this.uuid;
+    }
+
     /** @inheritDoc */
     prepareEmbeddedDocuments() {
         super.prepareEmbeddedDocuments();
@@ -27,26 +38,79 @@ export default class DHItem extends foundry.documents.Item {
         }
         return doc;
     }
-
+    
     static async createDocuments(sources, operation) {
         // Ensure that items being created are valid to the actor its being added to
         const actor = operation.parent;
-        const filtered = actor ? sources.filter(s => actor.system.isItemValid(s)) : sources;
-        if (actor && filtered.length === 0 && sources.length > 0) {
-            const itemType = _loc(`TYPES.Item.${sources[0].type}`);
+        const addedType = sources[0]?.type;
+        sources = actor ? sources.filter(s => actor.system.isItemValid(s)) : sources;
+        if (actor && sources.length === 0 && addedType) {
+            const itemType = _loc(`TYPES.Item.${addedType}`);
             const actorType = _loc(`TYPES.Actor.${actor.type}`);
             ui.notifications.error('DAGGERHEART.ACTORS.Base.CannotAddType', { format: { itemType, actorType } });
         }
-        return super.createDocuments(filtered, operation);
+        
+        // Beastform already manages its features creation
+        if (addedType !== 'beastform') await this.prepareGrantedItems(actor, sources, operation);
+
+        return super.createDocuments(sources, operation);
+    }
+
+    static async prepareGrantedItems(actor, sources, operation) {
+        // If the item grants any features, include them and set the granter flags
+        // If keepId is false, set random ids and from then on switch keepId to true
+        const grantingItems = actor ? sources.filter(s => s.system?.features?.length) : [];
+        if (grantingItems.length && !operation.keepId) {
+            for (const source of sources) {
+                source._id = foundry.utils.randomID();
+            }
+            operation.keepId = true;
+        }
+
+        const getUuid = f => {
+            const item = f.item === null ? null : (f.item ?? f);
+            return typeof item === 'object' ? item.uuid : item;
+        } 
+
+        const grantedFeatures = await fromUuids(
+            grantingItems.flatMap(i => i.system.features.map(getUuid))
+        );
+        const grantedFeaturesByUuid = keyBy(grantedFeatures, f => f.uuid)
+        for (const granter of grantingItems) {
+            for (const f of granter.system.features) {
+                const itemUuid = getUuid(f);
+                if (!itemUuid) continue;
+
+                const feature = grantedFeaturesByUuid[itemUuid];
+                sources.push(
+                    foundry.utils.mergeObject(feature.toObject(), {
+                        _stats: {
+                            compendiumSource: itemUuid.startsWith('Compendium.') ? itemUuid : null,
+                            duplicateSource: !itemUuid.startsWith('Compendium.') ? itemUuid : null
+                        },
+                        system: {
+                            granter: {
+                                id: granter._id,
+                                type: granter.type,
+                                multiclass: Boolean(granter.system.isMulticlass),
+                                identifier: f.type ?? null
+                            }
+                        }
+                    })
+                );
+            }
+        }
+    }
+
+    static async deleteDocuments(ids = [], operation = {}) {
+        const allIds = operation.parent ? ids.flatMap(id => (
+            [id, ...operation.parent.items.get(id).system.getLinkedItems().map(x => x.id)]
+        )) : ids;
+
+        return super.deleteDocuments(allIds, operation);
     }
 
     /* -------------------------------------------- */
-
-    /** @inheritDoc */
-    static migrateData(source) {
-        if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
-        return super.migrateData(source);
-    }
 
     /**
      * @inheritdoc
@@ -79,8 +143,12 @@ export default class DHItem extends foundry.documents.Item {
         return !pack?.locked && this.isOwner && isValidType && hasActions;
     }
 
+    get hasDescription() {
+        return Boolean(this.system.description) || Boolean(this.system.itemFeatures?.length);
+    }
+
     /** @inheritdoc */
-    static async createDialog(data = {}, createOptions = {}, options = {}) {
+    static async createDialog(data = {}, createOptions = {}, options = {}, renderOptions) {
         const { folders, types, template, context = {}, ...dialogOptions } = options;
         dialogOptions.classes = [options.classes ?? [], 'item-create'].flat(); // handled in hook
 
@@ -98,8 +166,8 @@ export default class DHItem extends foundry.documents.Item {
                     isInventoryItem === true
                         ? 'Inventory Items' //TODO localize
                         : isInventoryItem === false
-                          ? 'Character Items' //TODO localize
-                          : 'Other'; //TODO localize
+                            ? 'Character Items' //TODO localize
+                            : 'Other'; //TODO localize
 
                 return { value: type, label, group };
             }
@@ -111,13 +179,17 @@ export default class DHItem extends foundry.documents.Item {
 
         const sortedTypes = documentTypes.sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang));
 
+        const collection = createOptions?.pack ? game.packs.get(createOptions.pack)?.folders : game.items.folders;
+        const folder = collection?.get(data.folder) ?? null;
+        dialogOptions.defaultEntity = folder?.getDefaultEntity(); // used in hook
+
         return await super.createDialog(data, createOptions, {
             folders,
             types,
             template,
             context: { types: sortedTypes, ...context },
             ...dialogOptions
-        });
+        }, renderOptions);
     }
 
     /* -------------------------------------------- */
@@ -194,10 +266,7 @@ export default class DHItem extends foundry.documents.Item {
                 tags: this._getTags()
             },
             actions: item.system.actionsList,
-            description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.system.description, {
-                relativeTo: this.parent,
-                rollData: this.parent?.getRollData() ?? {}
-            })
+            description: await this.system.getEnrichedDescription()
         };
 
         const msg = {

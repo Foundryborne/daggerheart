@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Dread-Touched",
+  "folder": "BUFGXH8Ez4ct3d4f",
+  "system": {
+    "domain": "dread",
+    "level": 7,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Dread domain, gain the following benefits:</p><ul><li><p>When you succeed with Fear, you can <strong>mark 2 Stress</strong> to prevent the GM from gaining a Fear.</p></li><li><p>Once per rest when making an action roll, you can gain a bonus to the roll equal to the number of Fear in the GM's pool.</p></li></ul>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "ability",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": 4
+  },
+  "_id": "umRWvKMoyzLPL64a",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!umRWvKMoyzLPL64a"
+}

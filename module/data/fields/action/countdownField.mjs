@@ -1,4 +1,6 @@
+import { itemAbleRollParse } from '../../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
+import { NullableBooleanField } from '../nullableBooleanField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -8,8 +10,8 @@ export default class CountdownField extends fields.ArrayField {
             ...game.system.api.data.countdowns.DhCountdown.defineSchema(),
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.countdownBaseTypes,
-                initial: CONFIG.DH.GENERAL.countdownBaseTypes.encounter.id,
+                choices: CONFIG.DH.GENERAL.countdownTypes,
+                initial: CONFIG.DH.GENERAL.countdownTypes.encounter.id,
                 label: 'DAGGERHEART.GENERAL.type'
             }),
             name: new fields.StringField({
@@ -17,12 +19,13 @@ export default class CountdownField extends fields.ArrayField {
                 initial: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
                 label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.name.label'
             }),
-            defaultOwnership: new fields.NumberField({
+            // Hidden is nullable to allow defaulting to the global setting
+            hidden: new NullableBooleanField({
                 required: true,
-                choices: CONFIG.DH.GENERAL.simpleOwnershiplevels,
-                initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT,
-                label: 'DAGGERHEART.ACTIONS.Config.countdown.defaultOwnership'
-            })
+                nullable: true,
+                initial: false,
+                label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.hidden.label'
+            }, { nullLabel: 'DAGGERHEART.APPLICATIONS.Countdown.hiddenNullLabel' })
         });
         super(element, options, context);
     }
@@ -43,9 +46,9 @@ export default class CountdownField extends fields.ArrayField {
         const countdownMessages = [];
         for (let countdown of config.countdowns) {
             let startFormula = countdown.progress.startFormula ? countdown.progress.startFormula : null;
-            let countdownStart = startFormula ?? '1';
+            let countdownStart = startFormula ? itemAbleRollParse(startFormula, this.actor, this.item) : '1';
             if (startFormula) {
-                const roll = await new Roll(startFormula).roll();
+                const roll = await new Roll(countdownStart).roll();
                 if (roll.dice.length > 0) {
                     countdownStart = roll.total;
                     const message = await roll.toMessage();
@@ -55,12 +58,10 @@ export default class CountdownField extends fields.ArrayField {
                 }
             }
 
+            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
             data.countdowns[foundry.utils.randomID()] = {
                 ...countdown,
-                ownership: game.users.reduce((acc, curr) => {
-                    if (!curr.isGM) acc[curr.id] = countdown.defaultOwnership;
-                    return acc;
-                }, {}),
+                hidden: countdown.hidden ?? setting.hideNewCountdowns,
                 progress: {
                     ...countdown.progress,
                     current: countdownStart,
@@ -70,7 +71,7 @@ export default class CountdownField extends fields.ArrayField {
             };
         }
 
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             await Promise.all(
                 countdownMessages.map(message => {
                     return game.dice3d.waitFor3DAnimationByMessageID(message.id);
@@ -87,11 +88,11 @@ export default class CountdownField extends fields.ArrayField {
                     CONFIG.DH.id,
                     CONFIG.DH.SETTINGS.gameSettings.Countdowns,
                     countdownSetting.toObject()
-                ),
-                    game.socket.emit(`system.${CONFIG.DH.id}`, {
-                        action: socketEvent.Refresh,
-                        data: { refreshType: RefreshType.Countdown }
-                    });
+                );
+                game.socket.emit(`system.${CONFIG.DH.id}`, {
+                    action: socketEvent.Refresh,
+                    data: { refreshType: RefreshType.Countdown }
+                });
                 Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
             },
             data,

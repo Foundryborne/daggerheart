@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Summon Horror",
+  "folder": "ZE7QW8vFGAScp8VG",
+  "system": {
+    "domain": "dread",
+    "level": 4,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Mark a Stress</strong> to summon an otherworldly creature that deals <strong>d8+1</strong> magic damage using your Spellcast trait to a target within Far range. If the target marks any Hit Points from this attack, they must succeed on a <strong>Reaction Roll (12)</strong> to steel themselves against the horror or mark an equal number of Stress.</p><p>After making the attack, the creature dissipates.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "UHL661KR49EgSKHR",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!UHL661KR49EgSKHR"
+}

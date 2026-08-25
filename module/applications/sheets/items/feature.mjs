@@ -7,23 +7,29 @@ export default class FeatureSheet extends DHBaseItemSheet {
         actions: {}
     };
 
-    /**@override */
+    /** @inheritdoc */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/feature/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
-        settings: { template: 'systems/daggerheart/templates/sheets/items/feature/settings.hbs' },
+        description: { 
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs',
+            scrollable: ['.description-section']
+        },
+        settings: { 
+            template: 'systems/daggerheart/templates/sheets/items/feature/settings.hbs',
+            scrollable: ['']
+        },
         actions: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
-            scrollable: ['.actions']
+            scrollable: ['']
         },
         effects: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
-            scrollable: ['.effects']
+            scrollable: ['']
         }
     };
 
-    /**@override */
+    /** @inheritdoc */
     static TABS = {
         primary: {
             tabs: [{ id: 'description' }, { id: 'settings' }, { id: 'actions' }, { id: 'effects' }],
@@ -31,11 +37,18 @@ export default class FeatureSheet extends DHBaseItemSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
-    //Might be wrong location but testing out if here is okay.
-    /**@override */
+
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.featureFormChoices = CONFIG.DH.ITEM.featureForm;
+
+        const evolutionLocked = this.document.system.actions.some(x => x.type === 'evolution');
+        context.featureFormData = {
+            value: this.document.system.featureForm,
+            disabled: evolutionLocked,
+            tooltip: evolutionLocked ? _loc('DAGGERHEART.ITEMS.Feature.evolutionLocked') : null
+        };
+        
         return context;
     }
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "BJIiOIWAQUz5zuqo",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose one of the following options:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range and choose one of the following options:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 4,
@@ -14,18 +14,19 @@
         "type": "attack",
         "_id": "wsXZCKqGKfOUHE1M",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range, and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range, and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -59,23 +60,31 @@
         },
         "name": "Pull",
         "img": "icons/magic/nature/root-vine-entangled-hand.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "x62SXSpT9bjIEP5e": {
         "type": "attack",
         "_id": "x62SXSpT9bjIEP5e",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "resultBased": false,
               "value": {
@@ -89,7 +98,6 @@
                 "bonus": null
               },
               "applyTo": "stress",
-              "type": [],
               "base": false,
               "valueAlt": {
                 "multiplier": "prof",
@@ -97,12 +105,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -136,51 +145,61 @@
         },
         "name": "Constrict",
         "img": "icons/magic/nature/root-vines-knot-brown.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "9416a3EogNFLRdUX": {
         "type": "attack",
         "_id": "9416a3EogNFLRdUX",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p>On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "reaction",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 3,
-                "dice": "d6",
-                "bonus": 2
+          "main": {
+            "resultBased": false,
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "physical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 3,
+              "dice": "d6",
+              "bonus": 2
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "base": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -221,16 +240,28 @@
             "type": "placed",
             "shape": "line",
             "size": "close",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 130,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "x0FVGE1YbfXalJiw",
@@ -244,13 +275,13 @@
       "_id": "wMXCIQxqLS9IbsEK",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
+        "changes": [],
+        "duration": {
+          "description": ""
         },
-        "changes": []
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -282,13 +313,13 @@
       "_id": "bZ0xgZ6TT2099OYp",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
+        "changes": [],
+        "duration": {
+          "description": ""
         },
-        "changes": []
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -320,13 +351,13 @@
       "_id": "Oe95zWWY41nH8y5l",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
+        "changes": [],
+        "duration": {
+          "description": ""
         },
-        "changes": []
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -351,8 +382,5 @@
       "_key": "!items.effects!x0FVGE1YbfXalJiw.Oe95zWWY41nH8y5l"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!x0FVGE1YbfXalJiw"
 }

@@ -1,0 +1,531 @@
+{
+  "type": "environment",
+  "name": "Cursed Graveyard",
+  "folder": "GQ0VnOLrKBIHR6Us",
+  "system": {
+    "type": "exploration",
+    "description": "<p>A sprawling cemetery filled with crumbling headstones, twisted trees possessed by the dead, and crypts overgrown with moss and ivy.</p>",
+    "tier": 1,
+    "impulses": "Bury them six feet deep, choke with fog, lure with promises of entombed treasure, unleash the restless dead",
+    "difficulty": 11,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "6RB1MDFDZlGQGOXa": {
+        "label": "Corrupted Spirits",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.9x2xY9zwc3xzbXo5",
+          "Compendium.daggerheart.adversaries.Actor.T2kyHFC68VKtIXir"
+        ]
+      },
+      "9nT0BYx6IU732cL0": {
+        "label": "Living Dead",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.10YIQl0lvCJXZLfX",
+          "Compendium.daggerheart.adversaries.Actor.Nf0v43rtflV56V2T",
+          "Compendium.daggerheart.adversaries.Actor.EQTOAOUrkIvS2z88"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Room for One More",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>If a PC marks their last HP while in the graveyard, they become a Specter instead of making a death move. While a Specter, a PC can communicate with the living but can't interact with the physical world, and they must stay within Close range of their corpse or cross through the veil of death. This condition is cleared when the PC clears a HP.</p><section id=\"secret-qGN79en8zBOIKQe2\" class=\"secret\"><p>What new information or experience does a PC gain from becoming a specter? How can the party reunite the PC's spirit with their flesh? What happens if their ritual goes wrong?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "jAe6q70mR0ujYqnD",
+      "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!0OPEz1scGX8gJFPi.jAe6q70mR0ujYqnD"
+    },
+    {
+      "name": "Hallowed Ground",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>At the center of the graveyard is a seemingly undisturbed chapel. On a successful Instinct Roll, a PC can discover this structure is sanctified against the cemetery's denizens. While inside the chapel, the PCs have advantage on action rolls to fight or drive off spirits and undead.</p><section id=\"secret-8lcytZzx1FbzPrVx\" class=\"secret\"><p>Who sanctified this place, and what happened to them? What holy relics can be found here?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "AOMtkIy1zWkhxi2L": {
+            "type": "effect",
+            "_id": "AOMtkIy1zWkhxi2L",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "0ECCZGKZdUeX9DBP",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply Sanctification",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "eil7GhCVyJXoc4uH",
+      "img": "icons/magic/holy/chalice-glowing-yellow-blue.webp",
+      "effects": [
+        {
+          "name": "Sanctified",
+          "disabled": false,
+          "img": "icons/magic/holy/chalice-glowing-yellow-blue.webp",
+          "description": "<p>While inside the chapel, the PCs have advantage on action rolls to fight or drive off spirits and undead.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.advantageSources",
+                "type": "add",
+                "value": "Action rolls to fight or drive off spirits and undead.",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.0OPEz1scGX8gJFPi.Item.eil7GhCVyJXoc4uH",
+          "_id": "0ECCZGKZdUeX9DBP",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!0OPEz1scGX8gJFPi.eil7GhCVyJXoc4uH.0ECCZGKZdUeX9DBP"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!0OPEz1scGX8gJFPi.eil7GhCVyJXoc4uH"
+    },
+    {
+      "name": "Misty Miasma",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to fill an area within Far range with a low-lying ectoplasmic fog that seeps up through the soggy earth. When a PC rolls with Fear while in the miasma, they must mark a Stress.</p><section id=\"secret-C7vJsPrAkoE7hjNM\" class=\"secret\"><p>What horrors do the PCs see in the fog? What disorienting smell does the miasma emit?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "QTzzIjmEReDO7Vt3": {
+            "type": "effect",
+            "_id": "QTzzIjmEReDO7Vt3",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": "far"
+          }
+        },
+        "granter": null
+      },
+      "_id": "6Xhz8IATLKk3IYZW",
+      "img": "icons/magic/air/fog-gas-smoke-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!0OPEz1scGX8gJFPi.6Xhz8IATLKk3IYZW"
+    },
+    {
+      "name": "The Dead Arise",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to have undead hands burst forth from the ground beneath a PC. The target must succeed on an Agility or Presence Reaction Roll or mark a Stress and become temporarily <em>Restrained</em> as hands grasp them.</p><section id=\"secret-8B2ArSeN4EKOWMbW\" class=\"secret\"><p>Who were these people in life? Why were they buried here? Why won't they stay dead?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "LxndzJzTJia0RRL8": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "LxndzJzTJia0RRL8",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "1LtLrNsKEwrurfqT",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "n254TZpHt6PwppCi",
+      "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
+      "effects": [
+        {
+          "name": "The Dead Arise",
+          "disabled": false,
+          "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
+          "description": "",
+          "transfer": true,
+          "statuses": [
+            "restrain"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.0OPEz1scGX8gJFPi.Item.n254TZpHt6PwppCi",
+          "_id": "1LtLrNsKEwrurfqT",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!0OPEz1scGX8gJFPi.n254TZpHt6PwppCi.1LtLrNsKEwrurfqT"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!0OPEz1scGX8gJFPi.n254TZpHt6PwppCi"
+    },
+    {
+      "name": "The Dead Don't Die Easy",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When an adversary would mark their last HP, roll a <strong>d6</strong>. On a result of 5 or 6, the adversary doesn't mark it.</p><section id=\"secret-3zJIG3Bv3IBMpn6E\" class=\"secret\"><p>Who commanded this land to reject death? How do the dead come back different here?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "FOVeu1EoSVPgSyMw": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "FOVeu1EoSVPgSyMw",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": "aboveEqual",
+                "treshold": 5
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Undying Check",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "LJoxtl56DlH4GrOu",
+      "img": "icons/magic/death/hand-dirt-undead-zombie.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!0OPEz1scGX8gJFPi.LJoxtl56DlH4GrOu"
+    }
+  ],
+  "_id": "0OPEz1scGX8gJFPi",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Cursed Graveyard",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!0OPEz1scGX8gJFPi"
+}

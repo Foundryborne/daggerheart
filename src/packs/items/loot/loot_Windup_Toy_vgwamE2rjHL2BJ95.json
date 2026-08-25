@@ -1,0 +1,22 @@
+{
+  "name": "Windup Toy",
+  "type": "loot",
+  "img": "icons/commodities/treasure/statue-carved-figurehead.webp",
+  "system": {
+    "description": "<p>This small mechanical device is shaped like a strixwolf pup and can be programmed to perform simple tricks.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "vgwamE2rjHL2BJ95",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!vgwamE2rjHL2BJ95"
+}

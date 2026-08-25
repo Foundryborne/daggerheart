@@ -71,8 +71,9 @@ export default class CostField extends fields.ArrayField {
                         target: resource.target,
                         itemId: resource.itemId
                     });
-                    return a;
                 }
+
+                return a;
             }, []);
 
         config.resourceUpdates.addResources(resources);
@@ -116,8 +117,8 @@ export default class CostField extends fields.ArrayField {
                 c.key === 'fear'
                     ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
                     : resources[c.key].isReversed
-                      ? resources[c.key].max - resources[c.key].value
-                      : resources[c.key].value;
+                        ? resources[c.key].max - resources[c.key].value
+                        : resources[c.key].value;
             if (c.scalable) c.maxStep = Math.floor((c.max - c.value) / c.step);
             return c;
         });
@@ -149,8 +150,8 @@ export default class CostField extends fields.ArrayField {
                 !resources[c.key]
                     ? a
                     : a && resources[c.key].isReversed
-                      ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
-                      : resources[c.key]?.value >= (c.total ?? c.value),
+                        ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
+                        : resources[c.key]?.value >= (c.total ?? c.value),
             true
         );
     }
@@ -197,11 +198,29 @@ export default class CostField extends fields.ArrayField {
 
     static getItemIdCostUpdate(r) {
         switch (r.key) {
-            case CONFIG.DH.GENERAL.itemAbilityCosts.resource.id:
+            case CONFIG.DH.GENERAL.itemAbilityCosts.resource.id: {
+                const resource = r.target.system.resource;
+                let max = Number(resource.max);
+                if (!Number.isFinite(max) && resource.max) {
+                    try {
+                        max = Roll.safeEval(Roll.replaceFormulaData(resource.max, r.target.getRollData()));
+                    } catch {
+                        max = null;
+                    }
+                }
+                const hasMax = Number.isFinite(max) && max > 0;
+                if (r.clear) {
+                    return {
+                        path: 'system.resource.value',
+                        value: hasMax ? max : resource.value
+                    };
+                }
+                const newValue = resource.value + r.value;
                 return {
                     path: 'system.resource.value',
-                    value: r.target.system.resource.value + r.value
+                    value: Math.max(hasMax ? Math.min(newValue, max) : newValue, 0)
                 };
+            }
             case CONFIG.DH.GENERAL.itemAbilityCosts.quantity.id:
                 return {
                     path: 'system.quantity',

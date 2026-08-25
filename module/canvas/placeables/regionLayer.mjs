@@ -96,7 +96,7 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
         return inBounds.length === 1 ? inBounds[0] : null;
     }
 
-    static getTemplateShape({ type, angle, range, direction } = {}) {
+    static getTemplateShape({ shapeType, angle, range, direction, hasHole } = {}) {
         const { line, rectangle, inFront, cone, circle, emanation } = CONFIG.DH.GENERAL.templateTypes;
 
         /* Length calculation */
@@ -112,11 +112,11 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
 
         const shapeData = {
             ...canvas.mousePosition,
-            type: type,
+            type: shapeType,
             direction: direction ?? 0
         };
 
-        switch (type) {
+        switch (shapeType) {
             case rectangle.id:
                 shapeData.width = length;
                 shapeData.height = length;
@@ -145,7 +145,8 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                     y: 0,
                     width: 1,
                     height: 1,
-                    shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1
+                    shape: game.canvas.grid.isHexagonal ? CONST.TOKEN_SHAPES.ELLIPSE_1 : CONST.TOKEN_SHAPES.RECTANGLE_1,
+                    hole: hasHole
                 };
                 break;
         }

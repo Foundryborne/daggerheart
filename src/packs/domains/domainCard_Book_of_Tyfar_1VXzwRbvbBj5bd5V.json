@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "tqhasjtHBX0F20lN",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Wild Flame:</strong></em> Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p><p class=\"Card-Feature\"><em><strong>Magic Hand:</strong></em> You conjure a magical hand with the same size and strength as your own within Far range.</p><p class=\"Card-Feature\"><em><strong>Mysterious Mist:</strong></em> Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p></p>",
+    "description": "<p><em><strong>Wild Flame:</strong></em> Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p><p><em><strong>Magic Hand:</strong></em> You conjure a magical hand with the same size and strength as your own within Far range.</p><p><em><strong>Mysterious Mist:</strong></em> Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 1,
@@ -14,43 +14,49 @@
         "type": "attack",
         "_id": "E3AnyfI7LDL0z9tT",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 2,
-                "dice": "d6",
-                "bonus": null
+          "main": {
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 2,
+              "dice": "d6",
+              "bonus": null
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "base": false,
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
             },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
+          },
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -71,13 +77,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -106,20 +112,27 @@
         },
         "name": "Wild Flame",
         "img": "icons/magic/fire/projectile-feathers-embers-gold.webp",
-        "range": "melee"
+        "range": "melee",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "MYZWoU0clYEcsYDb": {
         "type": "effect",
         "_id": "MYZWoU0clYEcsYDb",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">You conjure a magical hand with the same size and strength as your own within Far range.</p>",
+        "description": "<p>You conjure a magical hand with the same size and strength as your own within Far range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -128,24 +141,31 @@
         },
         "name": "Magic Hand",
         "img": "icons/magic/death/hand-withered-gray.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "WQ9XzpbtXl4SmVet": {
         "type": "attack",
         "_id": "WQ9XzpbtXl4SmVet",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p>@Template[type:emanation|range:vc]</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p>@Template[type:emanation|range:vc]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -174,21 +194,30 @@
         },
         "name": "Mysterious Mist",
         "img": "icons/magic/air/fog-gas-smoke-dense-gray.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 124,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "1VXzwRbvbBj5bd5V",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!1VXzwRbvbBj5bd5V"
 }

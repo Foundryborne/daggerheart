@@ -1,0 +1,61 @@
+{
+  "name": "Sunlight Orb",
+  "type": "consumable",
+  "img": "icons/commodities/gems/pearl-fire.webp",
+  "system": {
+    "description": "<p>You can shatter this orb to make the area within Very Far range appear as though it's sunlit daytime for the next 24 hours.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "oIj5dyEurCiLVWmx": {
+        "type": "effect",
+        "_id": "oIj5dyEurCiLVWmx",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "cdb3AMaxRazFahUL",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Shatter",
+        "range": ""
+      }
+    }
+  },
+  "_id": "cdb3AMaxRazFahUL",
+  "effects": [],
+  "folder": null,
+  "sort": 7100000,
+  "flags": {},
+  "_key": "!items!cdb3AMaxRazFahUL"
+}

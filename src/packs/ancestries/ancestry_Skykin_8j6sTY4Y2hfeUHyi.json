@@ -1,0 +1,29 @@
+{
+  "type": "ancestry",
+  "name": "Skykin",
+  "folder": null,
+  "system": {
+    "loreReference": "skykin",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Skykin are humanoids whose bodies are made of flesh and air.</p>",
+    "gmNotes": "",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.hgFrDlmnPjhRUxOg"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.H18ab3im0cn6gYdC"
+      }
+    ]
+  },
+  "_id": "8j6sTY4Y2hfeUHyi",
+  "img": "icons/magic/air/air-pressure-shield-blue.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 0,
+  "_key": "!items!8j6sTY4Y2hfeUHyi"
+}

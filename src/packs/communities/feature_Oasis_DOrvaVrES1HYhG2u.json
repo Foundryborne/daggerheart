@@ -1,0 +1,21 @@
+{
+  "type": "feature",
+  "name": "Oasis",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "DOrvaVrES1HYhG2u",
+  "img": "icons/magic/water/water-hand.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>During a short rest, you or an ally can reroll a die used for a downtime move and take the higher result.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!DOrvaVrES1HYhG2u"
+}

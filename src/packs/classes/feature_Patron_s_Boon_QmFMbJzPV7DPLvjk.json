@@ -1,0 +1,61 @@
+{
+  "type": "feature",
+  "name": "Patron's Boon",
+  "folder": "6ckQvoxhWONRq9XJ",
+  "_id": "QmFMbJzPV7DPLvjk",
+  "img": "icons/magic/symbols/runes-triangle-orange.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you fail a roll, you can <strong>spend 3 Hope</strong> to reroll with advantage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "zpFHqkrFkUNhB5hB": {
+        "type": "effect",
+        "_id": "zpFHqkrFkUNhB5hB",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!QmFMbJzPV7DPLvjk"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Boots of Supple Mystique",
+  "type": "loot",
+  "img": "icons/equipment/feet/shoes-rounded-pink.webp",
+  "system": {
+    "description": "<p>While wearing these boots, you don't leave tracks or footprints.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "JKh1fnnBNgse8HyG",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!JKh1fnnBNgse8HyG"
+}

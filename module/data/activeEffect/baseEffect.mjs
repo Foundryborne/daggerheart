@@ -13,13 +13,13 @@
  */
 
 import { getScrollTextData } from '../../helpers/utils.mjs';
-import { changeTypes } from './_module.mjs';
+import { changeTypes } from './changeTypes/_module.mjs'
 
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 
-        const baseChanges = Object.keys(CONFIG.DH.GENERAL.baseActiveEffectModes).reduce((r, type) => {
+        const baseChanges = Object.keys(CONST.ACTIVE_EFFECT_CHANGE_TYPES).reduce((r, type) => {
             r[type] = new fields.SchemaField({
                 key: new fields.StringField({ required: true }),
                 type: new fields.StringField({
@@ -50,18 +50,13 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             ),
             duration: new fields.SchemaField({
                 type: new fields.StringField({
-                    choices: CONFIG.DH.GENERAL.activeEffectDurations,
+                    choices: CONFIG.DH.EFFECTS.activeEffectDurations,
                     blank: true,
                     label: 'DAGGERHEART.GENERAL.type'
                 }),
                 description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' })
             }),
             rangeDependence: new fields.SchemaField({
-                enabled: new fields.BooleanField({
-                    required: true,
-                    initial: false,
-                    label: 'DAGGERHEART.GENERAL.enabled'
-                }),
                 type: new fields.StringField({
                     required: true,
                     choices: CONFIG.DH.GENERAL.rangeInclusion,
@@ -80,7 +75,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     initial: CONFIG.DH.GENERAL.range.melee.id,
                     label: 'DAGGERHEART.GENERAL.range'
                 })
-            }),
+            }, { nullable: true, initial: null }),
             stacking: new fields.SchemaField(
                 {
                     value: new fields.NumberField({
@@ -114,7 +109,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         if (!/^custom\.-?\d+$/.test(type) && !type.split('.').every(s => /^[a-z0-9]+$/i.test(s))) {
             throw new Error(
                 'A change type must either be a sequence of dot-delimited, alpha-numeric substrings or of the form' +
-                    ' "custom.{number}"'
+                ' "custom.{number}"'
             );
         }
         return true;
@@ -124,10 +119,11 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         for (const change of this.changes) {
             if (change.isSuppressed) return true;
         }
+        return false;
     }
 
     get armorChange() {
-        return this.changes.find(x => x.type === CONFIG.DH.GENERAL.activeEffectModes.armor.id);
+        return this.changes.find(x => x.type === CONFIG.DH.EFFECTS.customChangeTypes.armor.id);
     }
 
     get armorData() {
@@ -137,25 +133,22 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return armorChange.getArmorData();
     }
 
-    static getDefaultObject(options = { transfer: true }) {
-        return {
-            name: 'New Effect',
-            id: foundry.utils.randomID(),
-            disabled: false,
-            img: 'icons/magic/life/heart-cross-blue.webp',
-            description: '',
-            transfer: options.transfer,
-            statuses: [],
-            changes: [],
-            system: {
-                rangeDependence: {
-                    enabled: false,
-                    type: CONFIG.DH.GENERAL.rangeInclusion.withinRange.id,
-                    target: CONFIG.DH.GENERAL.otherTargetTypes.hostile.id,
-                    range: CONFIG.DH.GENERAL.range.melee.id
+    static getDefaultObject(options = {}) {
+        return foundry.utils.mergeObject(
+            {
+                name: 'New Effect',
+                id: foundry.utils.randomID(),
+                disabled: false,
+                img: 'icons/magic/life/heart-cross-blue.webp',
+                description: '',
+                transfer: true,
+                statuses: [],
+                system: {
+                    changes: []
                 }
-            }
-        };
+            },
+            options
+        );
     }
 
     async _preUpdate(changed, options, userId) {
@@ -184,5 +177,13 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
 
         if (this.parent.actor && options.scrollingTextData)
             this.parent.actor.queueScrollText(options.scrollingTextData);
+    }
+
+    static migrateData(source) {
+        if (source.rangeDependence?.enabled === false) {
+            source.rangeDependence = null;
+        }
+
+        return super.migrateData(source);
     }
 }

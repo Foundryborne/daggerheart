@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EiP5dLozOFZKIeWN",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Before you make an attack, you can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p><p class=\"Body-Foundation\">You can Rage Up twice per attack.</p>",
+    "description": "<p>Before you make an attack, you can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p><p>You can Rage Up twice per attack.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 6,
@@ -23,7 +23,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -44,14 +45,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/skills/wounds/injury-face-impact-orange.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "GRL0cvs96vrTDckZ",
@@ -65,12 +78,6 @@
       "_id": "bq1MhcmoP6Wo5CXF",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",
@@ -88,11 +95,15 @@
           }
         ],
         "stacking": {
-          "max": 2
+          "max": 2,
+          "value": 1
         },
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -129,26 +140,28 @@
       "_id": "t6SIjQxB6UBUJ98f",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
         "changes": [
           {
             "key": "system.bonuses.damage.magical.bonus",
             "value": "4*@system.traits.strength.value",
             "priority": 21,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
             "value": "4*@system.traits.strength.value",
             "priority": 21,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -171,8 +184,5 @@
       "_key": "!items.effects!GRL0cvs96vrTDckZ.t6SIjQxB6UBUJ98f"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!GRL0cvs96vrTDckZ"
 }

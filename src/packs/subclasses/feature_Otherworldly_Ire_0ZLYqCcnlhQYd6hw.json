@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Otherworldly Ire",
+  "folder": "wl9jx5leIDw9ox3R",
+  "_id": "0ZLYqCcnlhQYd6hw",
+  "img": "icons/magic/death/skull-energy-light-white.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest when you take damage, you can <strong>spend any number of Favor</strong> to roll that many Patron Dice and target a number of creatures within Close range equal to the highest result. Each target must mark a Hit Point.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!0ZLYqCcnlhQYd6hw"
+}

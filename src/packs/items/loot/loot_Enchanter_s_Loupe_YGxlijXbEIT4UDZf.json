@@ -1,0 +1,22 @@
+{
+  "name": "Enchanter’s Loupe",
+  "type": "loot",
+  "img": "icons/tools/scribal/magnifying-glass.webp",
+  "system": {
+    "description": "<p>You can use this loupe to see through illusions and enchantments.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "YGxlijXbEIT4UDZf",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!YGxlijXbEIT4UDZf"
+}

@@ -1,4 +1,4 @@
-import { itemAbleRollParse, triggerChatRollFx } from '../../../helpers/utils.mjs';
+import { getWorldActor, itemAbleRollParse, triggerChatRollFx } from '../../../helpers/utils.mjs';
 import FormulaField from '../formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -23,7 +23,7 @@ export default class DHSummonField extends fields.ArrayField {
         super(summonFields, options, context);
     }
 
-    static async execute() {
+    static async execute(config) {
         if (!canvas.scene) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.error'));
             return;
@@ -36,13 +36,14 @@ export default class DHSummonField extends fields.ArrayField {
 
         const rolls = [];
         const summonData = [];
+        const chatMessageData = [];
         for (const summon of this.summon) {
             const roll = new Roll(itemAbleRollParse(summon.count, this.actor, this.item));
             await roll.evaluate();
             const count = roll.total;
             if (!roll.isDeterministic) rolls.push(roll);
 
-            const actor = await DHSummonField.getWorldActor(await foundry.utils.fromUuid(summon.actorUUID));
+            const actor = await getWorldActor(await foundry.utils.fromUuid(summon.actorUUID));
             /* Extending summon data in memory so it's available in actionField.toChat. Think it's harmless, but ugly. Could maybe find a better way. */
             summon.actor = actor.toObject();
 
@@ -54,30 +55,18 @@ export default class DHSummonField extends fields.ArrayField {
                     tokenPreviewName: `${actor.prototypeToken.name}${remaining > 1 ? ` (${remaining}x)` : ''}`
                 });
             }
+
+            chatMessageData.push({
+                data: actor,
+                quantity: countNumber
+            });
         }
 
         if (rolls.length) await triggerChatRollFx(rolls);
 
         this.actor.sheet?.minimize();
-        DHSummonField.handleSummon(summonData, this.actor);
-    }
-
-    /* Check for any available instances of the actor present in the world if we're missing artwork in the compendium. If none exists, create one. */
-    static async getWorldActor(baseActor) {
-        const dataType = game.system.api.data.actors[`Dh${baseActor.type.capitalize()}`];
-        if (baseActor.inCompendium && dataType && baseActor.img === dataType.DEFAULT_ICON) {
-            const worldActorCopy = game.actors.find(x => x.name === baseActor.name);
-            if (worldActorCopy) return worldActorCopy;
-
-            return await game.system.api.documents.DhpActor.create(baseActor.toObject());
-        }
-
-        return baseActor;
-    }
-
-    static async handleSummon(summonData, actionActor) {
-        await CONFIG.ux.TokenManager.createTokensWithPreview(summonData, { elevation: actionActor.token?.elevation });
-
-        return actionActor.sheet?.maximize();
+        await CONFIG.ux.TokenManager.createTokensWithPreview(summonData, { elevation: this.actor.token?.elevation });
+        this.actor.sheet?.maximize();
+        config.summonData = chatMessageData;
     }
 }

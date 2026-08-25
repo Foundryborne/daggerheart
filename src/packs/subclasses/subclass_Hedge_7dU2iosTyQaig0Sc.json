@@ -1,0 +1,44 @@
+{
+  "type": "subclass",
+  "name": "Hedge",
+  "folder": "TLl4l5YXa1uJOgsz",
+  "_id": "7dU2iosTyQaig0Sc",
+  "img": "icons/magic/nature/root-vine-thorned-coil-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Hedge if you want to use your craft to empower yourself and your party.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": "knowledge",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.HE0slu6jR0Io2x84"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.4jnGL4ENGs2AR1p1"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.VMjYY6MPqVhyKgM7"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.h29DyM9jwY8E7AdM"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.VmX3uaONxYo3wzsU"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.HHAmaNZDicgkill5"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!7dU2iosTyQaig0Sc"
+}

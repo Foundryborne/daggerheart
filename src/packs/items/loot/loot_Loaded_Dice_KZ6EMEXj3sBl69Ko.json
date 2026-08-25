@@ -1,0 +1,22 @@
+{
+  "name": "Loaded Dice",
+  "type": "loot",
+  "img": "icons/sundries/gaming/dice-runed-brown.webp",
+  "system": {
+    "description": "<p>You can choose what result this set of weighted dice rolls with a successful Finesse Roll (14). If you roll with Fear, anyone watching knows the dice are loaded.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "KZ6EMEXj3sBl69Ko",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!KZ6EMEXj3sBl69Ko"
+}

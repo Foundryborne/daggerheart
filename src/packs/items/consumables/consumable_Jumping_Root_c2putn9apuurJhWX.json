@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "TT4jzve7o2ykPcQO",
         "systemPath": "actions",
-        "description": "<p>Eat this root to leap up to Far range once without needing to roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,16 +27,23 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "",
           "amount": null
         },
         "name": "Eat",
         "img": "icons/consumables/plants/dried-bundle-wrapped-stems-sticks-brown.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -44,15 +51,12 @@
       "source": "Daggerheart SRD",
       "page": 61,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 6900000,
   "flags": {},
   "_key": "!items!c2putn9apuurJhWX"
 }

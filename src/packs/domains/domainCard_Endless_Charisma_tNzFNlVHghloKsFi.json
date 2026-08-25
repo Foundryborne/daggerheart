@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
-    "description": "<p class=\"Body-Foundation\">After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
+    "description": "<p>After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "EPhd2d8lHEnBd1pO",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -22,13 +22,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,21 +40,30 @@
         },
         "name": "Spend Hope to Reroll",
         "img": "icons/sundries/gaming/dice-runed-tan.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 127,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "tNzFNlVHghloKsFi",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!tNzFNlVHghloKsFi"
 }

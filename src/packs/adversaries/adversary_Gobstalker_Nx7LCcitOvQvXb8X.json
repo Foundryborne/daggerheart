@@ -1,0 +1,367 @@
+{
+  "type": "adversary",
+  "name": "Gobstalker",
+  "folder": "OgzrmfH1ZbpljX7k",
+  "system": {
+    "type": "solo",
+    "description": "<p>A fleshy, floating ball of teeth that has numerous eyes and a bundle of questing mouth tentacles that shoot magic beams.</p>",
+    "tier": 2,
+    "motivesAndTactics": "Ambush rivals, seek riches, shoot beams",
+    "difficulty": 15,
+    "damageThresholds": {
+      "major": 10,
+      "severe": 20
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 8
+      },
+      "stress": {
+        "value": 0,
+        "max": 6
+      }
+    },
+    "attack": {
+      "name": "Mouth Tentacles",
+      "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "veryClose",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 2,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d6",
+            "bonus": 3,
+            "multiplier": "flat",
+            "flatMultiplier": 2,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "physical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "0SbryESWnyQWpyCY": {
+        "name": "Magic",
+        "value": 3,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "large",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Relentless (3)",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "x8vX7KBX4mAztG9v",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!Nx7LCcitOvQvXb8X.x8vX7KBX4mAztG9v"
+    },
+    {
+      "name": "Anti-Mystica-Halitosis",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The @Lookup[@name]'s rancid breath creates an invisible, magic-negating miasma. An attack, an ability, or a spell that deals magic damage or creates a magic effect fails automatically if used within Close range of the @Lookup[@name].</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "ySPOyBNB8UeYrRLy",
+      "img": "icons/magic/unholy/orb-colllecting-energy-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!Nx7LCcitOvQvXb8X.ySPOyBNB8UeYrRLy"
+    },
+    {
+      "name": "Tentacle Rays",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Mark a Stress</strong> to attack a target within Far range. On a success, roll a <strong>d8</strong> for a random beam attack or <strong>spend a Fear</strong> to choose instead:</p><ol><li><p>Beguile. The @Lookup[@name] Beguiles the target. While Beguiled, the target sees the @Lookup[@name] as a friend and can't attack it. Additionally, when a PC rolls with Fear, a Beguiled PC must mark a Stress or attack a target chosen by the @Lookup[@name]. A Beguiled PC must succeed on an Instinct Roll (16) to clear the condition.</p></li><li><p>Corrode. The target takes <strong>2d8</strong> magic damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can't, double the damage.</p></li><li><p>Doom. The target must mark all HP, but they can <strong>spend any number of Hope</strong> to reduce the number of HP marked this way by an equal amount.</p></li><li><p>Hypnosis. The target falls into a Deep Trance and can't act except to try to wake up. This condition lasts until the target takes damage or wakes up with a successful Presence Roll (16).</p></li><li><p>Paralyze. The target freezes in place, becoming <em>Vulnerable</em> and <em>Restrained</em> until they mark 2 Stress.</p></li><li><p>Sear. The target takes <strong>2d8</strong> direct magic damage.</p></li><li><p>Scare. The target is Scared. While Scared, the target can't take actions other than fleeing the battle or trying to shake off their terror. Additionally, the target must mark a Stress whenever you <strong>spend a Fear</strong>. The target can clear the condition with a successful Presence Roll (16).</p></li><li><p>Slow. The target becomes <em>Vulnerable</em> and must mark a Stress to move until they <strong>spend 2 Hope</strong>.</p></li></ol>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "nKENFMC5m8D9eJDr",
+      "img": "icons/magic/unholy/beam-impact-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!Nx7LCcitOvQvXb8X.nKENFMC5m8D9eJDr"
+    },
+    {
+      "name": "Leech Lick",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>On a successful standard attack, you can <strong>spend a Fear</strong> to clear a number of Stress equal to the number of HP the target marked.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "SsVfjYLxVvu69zkJ": {
+            "type": "effect",
+            "_id": "SsVfjYLxVvu69zkJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": "self"
+          }
+        },
+        "granter": null
+      },
+      "_id": "HmMc6W0fwO6slIVG",
+      "img": "icons/commodities/biological/tongue-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!Nx7LCcitOvQvXb8X.HmMc6W0fwO6slIVG"
+    }
+  ],
+  "_id": "Nx7LCcitOvQvXb8X",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Gobstalker",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!Nx7LCcitOvQvXb8X"
+}

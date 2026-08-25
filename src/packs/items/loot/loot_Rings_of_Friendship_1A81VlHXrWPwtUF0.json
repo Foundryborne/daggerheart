@@ -1,0 +1,22 @@
+{
+  "name": "Rings of Friendship",
+  "type": "loot",
+  "img": "icons/equipment/finger/ring-fish-silver.webp",
+  "system": {
+    "description": "<p>Two creatures can wear this pair of rings shaped like coiled snakes. You can spend the Hope of whoever is wearing the other ring (with their permission) as if it were your own.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "1A81VlHXrWPwtUF0",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!1A81VlHXrWPwtUF0"
+}

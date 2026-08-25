@@ -4,7 +4,7 @@
   "type": "subclass",
   "img": "icons/tools/scribal/ink-quill-red.webp",
   "system": {
-    "description": "<p>You wish to use clever wordplay and captivate crowds.</p>",
+    "description": "<p>Play the Wordsmith if you want to use clever wordplay and captivate crowds.</p>",
     "spellcastingTrait": "presence",
     "features": [
       {
@@ -31,13 +31,10 @@
       "page": 9,
       "artist": ""
     },
-    "linkedClass": "Compendium.daggerheart.classes.Item.vegl3bFOq3pcFTWT"
+    "linkedClass": "Compendium.daggerheart.classes.Item.vegl3bFOq3pcFTWT",
+    "gmNotes": ""
   },
   "effects": [],
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_id": "XTSODVM8st75Os8M",
   "sort": 200000,

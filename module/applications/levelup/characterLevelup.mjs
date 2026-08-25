@@ -87,7 +87,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                 }
 
                 context.domainCards = [];
-                for (var key of allDomainCardKeys) {
+                for (const key of allDomainCardKeys) {
                     const domainCard = allDomainCards[key];
                     if (domainCard.level > this.levelup.endLevel) continue;
 
@@ -132,7 +132,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                         return acc;
                     }, 0);
 
-                    for (var subclass of possibleSubclasses) {
+                    for (const subclass of possibleSubclasses) {
                         const choice =
                             advancementChoices.subclass.find(x => x.data[0] === subclass.uuid) ??
                             advancementChoices.subclass.find(x => x.data.length === 0);
@@ -193,14 +193,14 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                 let achivementProficiency = 0;
                 const achievementCards = [];
                 let achievementExperiences = [];
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
                     achivementProficiency += level.achievements.proficiency ?? 0;
                     const cards = level.achievements.domainCards ? Object.values(level.achievements.domainCards) : null;
                     if (cards) {
-                        for (var card of cards) {
+                        for (const card of cards) {
                             const itemCard = await foundry.utils.fromUuid(card.uuid);
                             achievementCards.push(itemCard);
                         }
@@ -208,9 +208,9 @@ export default class DhCharacterLevelUp extends LevelUpBase {
 
                     achievementExperiences = level.achievements.experiences
                         ? Object.values(level.achievements.experiences).reduce((acc, experience) => {
-                              if (experience.name) acc.push(experience);
-                              return acc;
-                          }, [])
+                            if (experience.name) acc.push(experience);
+                            return acc;
+                        }, [])
                         : [];
                 }
 
@@ -246,13 +246,13 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                 };
 
                 const advancement = {};
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
-                    for (var choiceKey of Object.keys(level.choices)) {
+                    for (const choiceKey of Object.keys(level.choices)) {
                         const choice = level.choices[choiceKey];
-                        for (var checkbox of Object.values(choice)) {
+                        for (const checkbox of Object.values(choice)) {
                             switch (choiceKey) {
                                 case 'proficiency':
                                 case 'hitPoint':
@@ -264,7 +264,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                     break;
                                 case 'trait':
                                     if (!advancement[choiceKey]) advancement[choiceKey] = {};
-                                    for (var traitKey of checkbox.data) {
+                                    for (const traitKey of checkbox.data) {
                                         if (!advancement[choiceKey][traitKey]) advancement[choiceKey][traitKey] = 0;
                                         advancement[choiceKey][traitKey] += 1;
                                     }
@@ -313,15 +313,15 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                         : null;
                                     advancement[choiceKey] = multiclassItem
                                         ? {
-                                              ...multiclassItem.toObject(),
-                                              domain: checkbox.secondaryData.domain
-                                                  ? game.i18n.localize(
-                                                        CONFIG.DH.DOMAIN.allDomains()[checkbox.secondaryData.domain]
-                                                            .label
-                                                    )
-                                                  : null,
-                                              subclass: subclass ? subclass.name : null
-                                          }
+                                            ...multiclassItem.toObject(),
+                                            domain: checkbox.secondaryData.domain
+                                                ? game.i18n.localize(
+                                                    CONFIG.DH.DOMAIN.allDomains()[checkbox.secondaryData.domain]
+                                                        .label
+                                                )
+                                                : null,
+                                            subclass: subclass ? subclass.name : null
+                                        }
                                         : {};
                                     break;
                             }

@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "TL1fJitAJmDzrnHT",
         "systemPath": "actions",
-        "description": "<p>You can eat this meal to clear all HP and Stress and gain 1d4 Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,10 +27,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -51,10 +53,11 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             },
             "stress": {
               "value": {
@@ -76,15 +79,17 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             },
             "hope": {
               "value": {
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "flat",
                 "flatMultiplier": 1,
@@ -100,16 +105,16 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "effects": [],
@@ -130,7 +135,13 @@
         },
         "name": "Eat",
         "img": "icons/consumables/food/bowl-stew-tofu-potato-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -138,15 +149,12 @@
       "source": "Daggerheart SRD",
       "page": 62,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 6400000,
   "flags": {},
   "_key": "!items!aX6NyxkNzu0LcJpt"
 }

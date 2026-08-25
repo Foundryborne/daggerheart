@@ -1,0 +1,18 @@
+{
+  "type": "loot",
+  "name": "Rusted blade inscribed with an insignia",
+  "folder": "p3XtGHebvpmIvChA",
+  "_id": "x9H46Uwlq85bqRaU",
+  "img": "icons/weapons/daggers/dagger-ritual-black.webp",
+  "system": {
+    "attribution": {},
+    "description": "",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!x9H46Uwlq85bqRaU"
+}

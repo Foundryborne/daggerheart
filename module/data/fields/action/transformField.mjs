@@ -1,4 +1,10 @@
+import { getWorldActor } from '../../../helpers/utils.mjs';
+
 const fields = foundry.data.fields;
+
+/**
+ * @import DHSummonAction from '../../action/summonAction.mjs'
+ */
 
 export default class DHSummonField extends fields.SchemaField {
     /**
@@ -20,6 +26,11 @@ export default class DHSummonField extends fields.SchemaField {
         super(transformFields, options, context);
     }
 
+    /**
+     * Runs the execute. This is run on behalf of DHSummonAction.
+     * @todo move this function to be on the summon action.
+     * @this DHSummonAction
+     */
     static async execute() {
         if (!this.transform.actorUUID) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.noTransformActor'));
@@ -37,26 +48,37 @@ export default class DHSummonField extends fields.SchemaField {
             return false;
         }
 
-        if (this.actor.prototypeToken.actorLink) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.actorLinkError'));
+        const activeTokens = this.actor.getActiveTokens(false, true);
+        const controlledMatchingTokens = canvas.tokens.controlled
+            .filter(x => x.actor && x.actor.uuid === this.actor.uuid)
+            .map(x => x.document);
+        /** @type {typeof game.system.api.documents.DhToken | null} */
+        const token = this.actor.token ?? (
+            activeTokens.length === 1 ? activeTokens[0] :
+                (controlledMatchingTokens.length === 1 ? controlledMatchingTokens[0] : null)
+        );
+
+        if (!this.actor.token && !token) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.linkedSelectedError'));
             return false;
         }
 
-        if (!this.actor.token) {
+        if (!token) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.prototypeError'));
             return false;
         }
 
-        const actor = await DHSummonField.getWorldActor(baseActor);
+        const actor = await getWorldActor(baseActor);
         const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
-        await this.actor.token.update(
-            { ...actor.prototypeToken.toJSON(), actorId: actor.id, width: tokenSize, height: tokenSize },
-            { diff: false, recursive: false, noHook: true }
+        // Update token. Avoid using recursive: false, since that prevents animations
+        await token.update(
+            { ...actor.prototypeToken.toObject(), actorId: actor.id, width: tokenSize, height: tokenSize },
+            { diff: false, noHook: true }
         );
 
-        if (this.actor.token.combatant) {
+        if (token.combatant) {
             this.actor.token.combatant.update({ actorId: actor.id, img: actor.prototypeToken.texture.src });
         }
 
@@ -64,17 +86,17 @@ export default class DHSummonField extends fields.SchemaField {
         if (!this.transform.resourceRefresh.hitPoints) {
             marks.hitPoints = Math.min(
                 this.actor.system.resources.hitPoints.value,
-                this.actor.token.actor.system.resources.hitPoints.max - 1
+                token.actor.system.resources.hitPoints.max - 1
             );
         }
         if (!this.transform.resourceRefresh.stress) {
             marks.stress = Math.min(
                 this.actor.system.resources.stress.value,
-                this.actor.token.actor.system.resources.stress.max - 1
+                token.actor.system.resources.stress.max - 1
             );
         }
         if (marks.hitPoints || marks.stress) {
-            this.actor.token.actor.update({
+            token.actor.update({
                 'system.resources': {
                     hitPoints: { value: marks.hitPoints },
                     stress: { value: marks.stress }
@@ -84,20 +106,9 @@ export default class DHSummonField extends fields.SchemaField {
 
         const prevPosition = { ...this.actor.sheet.position };
         this.actor.sheet.close();
-        this.actor.token.actor.sheet.render({ force: true, position: prevPosition });
-    }
-
-    /* Check for any available instances of the actor present in the world, or create a world actor based on compendium */
-    static async getWorldActor(baseActor) {
-        if (!baseActor.inCompendium) return baseActor;
-
-        const dataType = game.system.api.data.actors[`Dh${baseActor.type.capitalize()}`];
-        if (dataType && baseActor.img === dataType.DEFAULT_ICON) {
-            const worldActorCopy = game.actors.find(x => x.name === baseActor.name);
-            if (worldActorCopy) return worldActorCopy;
+        token.actor.sheet.render({ force: true, position: prevPosition });
+        if (token.object.controlled) {
+            ui.effectsDisplay.refresh();
         }
-
-        const worldActor = await game.system.api.documents.DhpActor.create(baseActor.toObject());
-        return worldActor;
     }
 }

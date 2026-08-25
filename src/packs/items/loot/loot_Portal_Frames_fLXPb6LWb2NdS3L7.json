@@ -1,0 +1,22 @@
+{
+  "name": "Portal Frames",
+  "type": "loot",
+  "img": "icons/commodities/treasure/gem-framed-spiral-purple.webp",
+  "system": {
+    "description": "<p>This pair of small ornate frames, one red and one blue, are connected. Anything that passes into one exits from the other.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "fLXPb6LWb2NdS3L7",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!fLXPb6LWb2NdS3L7"
+}

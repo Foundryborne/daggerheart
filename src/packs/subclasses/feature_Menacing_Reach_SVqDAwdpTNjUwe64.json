@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Menacing Reach",
+  "folder": "hpGSiLKGH2r4vuLG",
+  "_id": "SVqDAwdpTNjUwe64",
+  "img": "icons/magic/symbols/runes-etched-steel-blade.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Spend a Favor</strong> to increase the range of your primary weapon by one step (such as Melee to Very Close or Very Close to Close) to a maximum of Very Far range. This effect ends when you make a successful attack with that weapon.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!SVqDAwdpTNjUwe64"
+}

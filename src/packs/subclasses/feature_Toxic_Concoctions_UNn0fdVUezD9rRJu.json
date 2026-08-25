@@ -1,0 +1,210 @@
+{
+  "type": "feature",
+  "name": "Toxic Concoctions",
+  "folder": "R7L0dQGkdfNSu2kj",
+  "_id": "UNn0fdVUezD9rRJu",
+  "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Mark a Stress</strong> to place <strong>1d4+1</strong> tokens on this card. When you make a successful weapon attack, you can spend a token to afflict the target with a poison. You know these poisons:</p><ul><li><p><strong>Ghost Petal:</strong> The target becomes temporarily <em>Vulnerable</em>.</p></li><li><p><strong>Grave Spore:</strong> The target must also mark a Stress.</p></li><li><p><strong>Leech Weed:</strong> You deal an extra <strong>1d6</strong> damage on this attack.</p></li></ul><p>When you take a long rest, clear all unspent tokens.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": "longRest",
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-bottle-droplet"
+    },
+    "actions": {
+      "IcOClhbFlKZmXwd1": {
+        "type": "effect",
+        "_id": "IcOClhbFlKZmXwd1",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p><strong>Mark a Stress</strong> to place <strong>1d4+1</strong> tokens on this card.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": ""
+      },
+      "RStmr0d20BrcSQpu": {
+        "type": "effect",
+        "_id": "RStmr0d20BrcSQpu",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>The target becomes temporarily <em>Vulnerable</em>.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "RfTbHfc8vxmGMjBq",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Ghost Petal",
+        "range": "",
+        "img": "icons/magic/nature/plant-undersea-orb-purple.webp"
+      },
+      "2cu2lGBt48HOvb3Q": {
+        "type": "damage",
+        "damage": {
+          "main": null,
+          "resources": {
+            "stress": {
+              "base": false,
+              "applyTo": "stress",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "_id": "2cu2lGBt48HOvb3Q",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>The target must also mark a Stress.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Grave Spore",
+        "range": "",
+        "img": "icons/commodities/flowers/flower-grey-orange.webp"
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Ghost Petal",
+      "disabled": false,
+      "img": "icons/magic/nature/plant-undersea-orb-purple.webp",
+      "description": "<p>The target becomes temporarily <em>Vulnerable</em>.</p>",
+      "transfer": false,
+      "statuses": [
+        "vulnerable"
+      ],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.subclasses.Item.UNn0fdVUezD9rRJu",
+      "_id": "RfTbHfc8vxmGMjBq",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!UNn0fdVUezD9rRJu.RfTbHfc8vxmGMjBq"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!UNn0fdVUezD9rRJu"
+}

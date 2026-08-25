@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "First Strike",
+  "folder": "R7L0dQGkdfNSu2kj",
+  "_id": "CapfuUdLhzqer78i",
+  "img": "icons/weapons/daggers/dagger-crooked-ice-blue.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>The first time in a scene you succeed on an attack, you deal double damage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!CapfuUdLhzqer78i"
+}

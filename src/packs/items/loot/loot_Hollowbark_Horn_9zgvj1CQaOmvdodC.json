@@ -1,0 +1,22 @@
+{
+  "name": "Hollowbark Horn",
+  "type": "loot",
+  "img": "icons/commodities/treasure/horn-carved-banded.webp",
+  "system": {
+    "description": "<p>You can blow this horn to summon a small woodland creature to perform a simple task.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "9zgvj1CQaOmvdodC",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!9zgvj1CQaOmvdodC"
+}

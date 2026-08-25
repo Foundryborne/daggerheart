@@ -1,0 +1,377 @@
+{
+  "type": "environment",
+  "name": "Local Festival",
+  "folder": "GQ0VnOLrKBIHR6Us",
+  "system": {
+    "type": "social",
+    "description": "<p>Commoners and nobles alike gather from the surrounding area for a weeklong celebration.</p>",
+    "tier": 1,
+    "impulses": "Express local culture and history, forge new relationships, reinforce community",
+    "difficulty": 11,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "LTxP8vZW7KiVkU7l": {
+        "label": "Festival Security",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy",
+          "Compendium.daggerheart.adversaries.Actor.mK3A5FTx6k8iPU3F"
+        ]
+      },
+      "DPTWl7saE8CkcAA1": {
+        "label": "Local Luminaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.Al3w2CgjfdT3p9ma",
+          "Compendium.daggerheart.adversaries.Actor.wycLpvebWdUqRhpP"
+        ]
+      },
+      "43YbBAN8zHvuBnPi": {
+        "label": "Sundru Ne'er-Do-Wells",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.5Lh1T0zaT8Pkr2U2",
+          "Compendium.daggerheart.adversaries.Actor.C0OMQqV7pN6t7ouR"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Remember, Remember",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>This time of year marks an important anniversary or astronomical event, such as the founding of the town or the summer solstice. On a successful Knowledge Roll, a PC can answer one of the questions below (or two, if they critically succeed). On a failure, they answer one question, but you decide which part of their answer is inaccurate and gain a Fear.</p><ul><li><p>The festival celebrates a crop or export that is critical to the economy here. What is it?</p></li><li><p>Why didn't the festival happen last year?</p></li><li><p>This festival is similar to another one held in a neighboring region.</p></li></ul><section id=\"secret-FvJMGWjMRAlkm12t\" class=\"secret\"><p>What makes them different? What are the locals celebrating? What is the festival famous for? How did the PCs first hear about it?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "4o45XcMZbTJYJmMH",
+      "img": "icons/skills/trades/academics-astronomy-navigation-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ChrSSjjTPmzCWGrZ.4o45XcMZbTJYJmMH"
+    },
+    {
+      "name": "Political Machinations",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>While everyone is gathered in one place, the locals take the opportunity to quash feuds, drum up new business, and navigate local politics. A PC can stick their nose in the goings-on by making a Presence Roll. On a success, they make a connection to a local luminary who can give them a job, share important information, or make useful introductions. On a failure, they must mark a Stress.</p><section id=\"secret-gbt1gd18PRoAoy4v\" class=\"secret\"><p>What new crisis is on everyone's lips? Why can't this community solve the problem on its own? What reward can they offer the PCs in exchange for their aid?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "ml0hetjckq8NkK7P",
+      "img": "icons/sundries/documents/blueprint-magical.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ChrSSjjTPmzCWGrZ.ml0hetjckq8NkK7P"
+    },
+    {
+      "name": "\"Let the Games Begin!\"",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>One of the festival's signature events is a sporting competition or series of games. If one or more PCs throw their hat into the ring, introduce rival competitors for them to face off against. To claim victory, the PCs must complete a Progress Countdown (5) to win events or score points before their rivals complete a Consequence Countdown (5).</p><section id=\"secret-FhbOBBEMcN44Q1nL\" class=\"secret\"><p>What skills or abilities does this competition test? What does the victor win? Why is failure not an option for the PCs or their rivals?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "LTzzLhiHJsXvIJrR": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Win The Competitions!",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/control/buff-strength-muscle-damage.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "5",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              },
+              {
+                "name": "Rival Competitors!",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/control/buff-strength-muscle-damage.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "5",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "LTzzLhiHJsXvIJrR",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "RuasHmyv0xhIZyyd",
+      "img": "icons/magic/control/buff-strength-muscle-damage.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ChrSSjjTPmzCWGrZ.RuasHmyv0xhIZyyd"
+    },
+    {
+      "name": "Legendary Local",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>The festival culminates in the arrival of a figure from local folklore who performs special duties for the local community, such as giving treats to children, heckling the gentry, or blessing next year's crops. If the PCs show this figure the proper deference and respect, they gain an appropriate blessing, such as a cryptic prophecy or a magical trinket, and gain <strong>[[/r d4]] </strong>Hope to distribute among the party. If they insult the figure, they take <strong>[[/r 1d6+2]]</strong> magic damage as the figure curses them, and you gain a Fear.</p><section id=\"secret-ZKKvt9MLfAw4gxgH\" class=\"secret\"><p>Is this a singular entity or a mantle passed from person to person? What distinctive form do they possess? What is the source of their power to grant boons and banes?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "s51HEF5OCNml4qQY": {
+            "type": "effect",
+            "_id": "s51HEF5OCNml4qQY",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>If the PCs show this figure the proper deference and respect, they gain an appropriate blessing, such as a cryptic prophecy or a magical trinket, and gain <strong>[[/r d4]] </strong>Hope to distribute among the party</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Gain Hope",
+            "range": ""
+          },
+          "azmh4bn7ERauB0sK": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "azmh4bn7ERauB0sK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Insult Reprisal",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "UkKVWILpbLEpDfpN",
+      "img": "icons/magic/holy/saint-glass-portrait-halo.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ChrSSjjTPmzCWGrZ.UkKVWILpbLEpDfpN"
+    }
+  ],
+  "_id": "ChrSSjjTPmzCWGrZ",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Local Festival",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!ChrSSjjTPmzCWGrZ"
+}

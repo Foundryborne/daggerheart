@@ -1,0 +1,22 @@
+{
+  "name": "Ghoulskin Gloves",
+  "type": "loot",
+  "img": "icons/equipment/hand/glove-cuffed-leather-purple.webp",
+  "system": {
+    "description": "<p>When you attack with a physical weapon while wearing these gloves, the damage is considered both physical and magic.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "80vWRBNeMZ7JXa9F",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!80vWRBNeMZ7JXa9F"
+}

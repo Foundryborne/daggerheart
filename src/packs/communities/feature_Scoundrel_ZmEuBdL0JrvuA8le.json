@@ -8,14 +8,14 @@
     "description": "<p>You have advantage on rolls to negotiate with criminals, detect lies, or find a safe place to hide.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 33,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -24,44 +24,45 @@
       "_id": "snkYmZ22Q8HHLY9M",
       "img": "icons/equipment/head/hood-cloth-teal-gold.webp",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Negotiate with criminals",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Detect lies",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Find a safe place to hide",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
-      "changes": [
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Negotiate with criminals",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Detect lies",
-          "priority": null
-        },
-        {
-          "key": "system.advantageSources",
-          "mode": 2,
-          "value": "Find a safe place to hide",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
+      "description": "<p>You have advantage on rolls to negotiate with criminals, detect lies, or find a safe place to hide.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -71,14 +72,20 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!ZmEuBdL0JrvuA8le.snkYmZ22Q8HHLY9M"
     }
   ],
   "flags": {},
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "_key": "!items!ZmEuBdL0JrvuA8le"
 }

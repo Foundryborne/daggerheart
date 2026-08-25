@@ -1,0 +1,22 @@
+{
+  "name": "Brooch",
+  "type": "loot",
+  "img": "icons/commodities/treasure/brooch-jewel-gold-blue.webp",
+  "system": {
+    "description": "<p>On a successful weapon attack, you can knock your target back up to Close range from their location.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "hNCCPH0wV2GLFKT6",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!hNCCPH0wV2GLFKT6"
+}

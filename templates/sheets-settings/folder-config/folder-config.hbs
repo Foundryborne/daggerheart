@@ -1,0 +1,26 @@
+<div class="standard-form">
+    <input type="hidden" name="type" value="{{source.type}}">
+    <input type="hidden" name="folder" value="{{source.folder}}">
+    {{formGroup fields.name value=name placeholder=namePlaceholder rootId=rootId autofocus=(not name)}}
+    {{formGroup fields.color value=source.color placeholder="#000000" rootId=rootId}}
+    {{#if usesDefaultEntity}}
+        <div class="form-group">
+            <label>{{localize "DAGGERHEART.APPLICATIONS.FolderConfig.defaultEntity" entity=entityTypeName}}</label>
+            <div class="form-fields">
+                <select name="flags.daggerheart.defaultEntity">
+                    {{selectOptions defaultEntityOptions selected=defaultEntity labelAttr="label" valueAttr="value" blank="" localize=true}}
+                </select>
+            </div>
+        </div>
+    {{/if}}
+
+    <div class="form-group">
+        <label>{{localize "FOLDER.FIELDS.sorting.label"}}</label>
+        <div class="form-fields">
+            <label class="checkbox"><input type="radio" name="sorting" value="a"
+                {{checked (eq source.sorting "a")}}>{{localize "FOLDER.SortAlphabetical"}}</label>
+            <label class="checkbox"><input type="radio" name="sorting" value="m"
+                {{checked (eq source.sorting "m")}}>{{localize "FOLDER.SortManual"}}</label>
+        </div>
+    </div>
+</div>

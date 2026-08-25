@@ -1,6 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
-import { setDiceSoNiceForHopeFateRoll, setDiceSoNiceForFearFateRoll } from '../helpers/utils.mjs';
 
 export default class FateRoll extends D20Roll {
     constructor(formula, data = {}, options = {}) {
@@ -75,25 +74,13 @@ export default class FateRoll extends D20Roll {
         this.terms[0] = new foundry.dice.terms.Die({ faces: 12 });
     }
 
+    /** @inheritdoc */
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
-
-        if (roll.fateDie === 'Hope') {
-            await setDiceSoNiceForHopeFateRoll(roll, config.roll.fate.dice);
-        } else {
-            await setDiceSoNiceForFearFateRoll(roll, config.roll.fate.dice);
-        }
-    }
-
-    static postEvaluate(roll, config = {}) {
-        const data = super.postEvaluate(roll, config);
-
-        data.fate = {
+        config.roll.fate = {
             dice: roll.fateDie === 'Hope' ? roll.dHope.denomination : roll.dFear.denomination,
             value: roll.fateDie === 'Hope' ? roll.dHope.total : roll.dFear.total,
             fateDie: roll.fateDie
         };
-
-        return data;
     }
 }

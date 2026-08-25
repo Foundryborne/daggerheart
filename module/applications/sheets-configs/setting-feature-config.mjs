@@ -101,6 +101,8 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
     }
 
     async selectActionType() {
+        const types = CONFIG.DH.ACTIONS.actionTypes;
+
         return (
             (await foundry.applications.api.DialogV2.input({
                 window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
@@ -108,7 +110,7 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                 classes: ['daggerheart', 'dh-style'],
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                    { types: CONFIG.DH.ACTIONS.actionTypes }
+                    { types: types }
                 ),
                 ok: {
                     label: game.i18n.format('DOCUMENT.Create', {
@@ -168,8 +170,8 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
                     updatedEffects = deleteEffect
                         ? currentEffects.filter(x => x.id !== effectData.id)
                         : existingEffectIndex === -1
-                          ? [...currentEffects, effectData]
-                          : currentEffects.with(existingEffectIndex, effectData);
+                            ? [...currentEffects, effectData]
+                            : currentEffects.with(existingEffectIndex, effectData);
                     await this.updateMove({
                         [`${this.movePath}.effects`]: updatedEffects
                     });
@@ -235,9 +237,9 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
         return this.hasEffects
             ? tabs
             : Object.keys(tabs).reduce((acc, key) => {
-                  if (key !== 'effects') acc[key] = tabs[key];
-                  return acc;
-              }, {});
+                if (key !== 'effects') acc[key] = tabs[key];
+                return acc;
+            }, {});
     }
 
     /** @override */

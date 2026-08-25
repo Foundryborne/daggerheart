@@ -1,0 +1,76 @@
+{
+  "type": "feature",
+  "name": "Rugged",
+  "folder": "RXqga54T8e59bXN3",
+  "_id": "izu8r8Qi8Rd2D8ML",
+  "img": "icons/skills/melee/shield-block-gray-orange.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Gain a permanent +3 bonus to your Severe damage threshold.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Rugged",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "SbSlCmhpgMii1NNL",
+      "img": "icons/skills/melee/shield-block-gray-orange.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>Gain a permanent +3 bonus to your Severe damage threshold.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!izu8r8Qi8Rd2D8ML.SbSlCmhpgMii1NNL"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!izu8r8Qi8Rd2D8ML"
+}

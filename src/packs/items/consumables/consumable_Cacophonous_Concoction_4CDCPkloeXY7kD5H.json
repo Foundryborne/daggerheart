@@ -1,0 +1,111 @@
+{
+  "name": "Cacophonous Concoction",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-bulb-corked-purple.webp",
+  "system": {
+    "description": "<p>When you drink this potion, anything you say or do in the next hour becomes impossible for a witness to recount. Any attempts they make to communicate what they saw, heard, or otherwise sensed comes out garbled or nonsensical.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "YTku2CwfIvhaO74n": {
+        "type": "effect",
+        "_id": "YTku2CwfIvhaO74n",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "4CDCPkloeXY7kD5H",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "Z1WDQBtKdwfOqrGH",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Drink",
+        "range": ""
+      }
+    }
+  },
+  "_id": "4CDCPkloeXY7kD5H",
+  "effects": [
+    {
+      "name": "Cacophonous",
+      "disabled": false,
+      "img": "icons/consumables/potions/bottle-bulb-corked-purple.webp",
+      "description": "<p>When you drink this potion, anything you say or do in the next hour becomes impossible for a witness to recount. Any attempts they make to communicate what they saw, heard, or otherwise sensed comes out garbled or nonsensical.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "<p>An hour</p>",
+          "type": "temporary"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.4CDCPkloeXY7kD5H",
+      "_id": "Z1WDQBtKdwfOqrGH",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!4CDCPkloeXY7kD5H.Z1WDQBtKdwfOqrGH"
+    }
+  ],
+  "folder": null,
+  "sort": 1100000,
+  "flags": {},
+  "_key": "!items!4CDCPkloeXY7kD5H"
+}

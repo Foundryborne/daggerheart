@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "ifj42z5FhfMVyyd1",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to choose one additional downtime move.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -36,12 +37,18 @@
           }
         ],
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "name": "Drink",
         "img": "icons/consumables/potions/bottle-conical-corked-labeled-shell-cyan.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -49,7 +56,8 @@
       "source": "Daggerheart SRD",
       "page": 60,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -59,30 +67,36 @@
       "transfer": false,
       "_id": "PjjGC4TpzjSz9z8s",
       "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.bonuses.rest.shortRest.shortMoves",
-          "mode": 2,
-          "value": "1",
-          "priority": null
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.rest.shortRest.shortMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.rest.longRest.longMoves",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
         },
-        {
-          "key": "system.bonuses.rest.longRest.longMoves",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -92,15 +106,14 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!dvL8oaxpEF6jKvYN.PjjGC4TpzjSz9z8s"
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 7400000,
   "flags": {},
   "_key": "!items!dvL8oaxpEF6jKvYN"
 }

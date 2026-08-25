@@ -1,0 +1,80 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Darkweave Shroud",
+  "type": "armor",
+  "_id": "HLAgfHHCJjdqnYPC",
+  "img": "icons/equipment/chest/breastplate-layered-leather-black.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "5Hq0OZmmnGykxe6H": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Ghostwalker",
+        "description": "Once per rest, mark a Stress to move up to Close range through solid objects.",
+        "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+        "uses": {
+          "max": "1",
+          "recovery": "shortRest",
+          "value": 0,
+          "consumeOnSuccess": false
+        },
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "_id": "5Hq0OZmmnGykxe6H",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "tier": 4,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 5
+    },
+    "baseThresholds": {
+      "major": 13,
+      "severe": 36
+    },
+    "armorFeatures": [
+      {
+        "value": "ghostwalker",
+        "effectIds": [],
+        "actionIds": [
+          "5Hq0OZmmnGykxe6H"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!HLAgfHHCJjdqnYPC"
+}

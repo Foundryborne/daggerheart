@@ -103,7 +103,7 @@
     {{/if}}
 
     <button type="button" class="control-icon" data-action="togglePalette" data-palette="movementActions"
-            aria-label="{{ localize "HUD.SelectMovementAction" }}" data-tooltip>
+            data-tooltip aria-label="{{ localize "HUD.SelectMovementAction" }}">
         {{#with movementActionsConfig}}
         {{#if img}}
         <img src="{{ img }}" alt="{{ localize "HUD.SelectMovementAction" }}">
@@ -112,9 +112,9 @@
         {{/if}}
         {{/with}}
     </button>
-    <div class="palette movement-actions" data-palette="movementActions">
+    <div class="palette palette-list" data-palette="movementActions">
         {{#each movementActions as |action|}}
-        <a class="movement-action-control {{action.cssClass}}" data-action="movementAction" data-movement-action="{{action.id}}">
+        <a class="palette-list-entry {{action.cssClass}}" data-action="movementAction" data-movement-action="{{action.id}}">
             <span>
                 {{#if action.img}}
                 <img src="{{ action.img }}" alt="{{ action.label }}">

@@ -1,0 +1,22 @@
+{
+  "name": "Mandragorian Torch",
+  "type": "loot",
+  "img": "icons/sundries/lights/torch-brown.webp",
+  "system": {
+    "description": "<p>This torch gives off light only the bearer can see.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "kE0lB97shhgr3DuE",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!kE0lB97shhgr3DuE"
+}

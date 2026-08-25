@@ -1,0 +1,22 @@
+{
+  "name": "Collar of Ascendancy",
+  "type": "loot",
+  "img": "icons/sundries/misc/pet-collar-red.webp",
+  "system": {
+    "description": "<p>An animal who wears this collar gains the ability to speak and understand common speech.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "XrpNqMnZBOFPBhc4",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!XrpNqMnZBOFPBhc4"
+}

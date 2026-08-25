@@ -19,13 +19,16 @@
             "scalable": false,
             "key": "hope",
             "value": 4,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": 1,
-          "recovery": "session"
+          "max": "1",
+          "recovery": "session",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -34,22 +37,25 @@
         },
         "name": "Use",
         "img": "icons/equipment/finger/ring-faceted-gold-teal.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 60,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!kn71qCQY0DnjmQBJ"
 }

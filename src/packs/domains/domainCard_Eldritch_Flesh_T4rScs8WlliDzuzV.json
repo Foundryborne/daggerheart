@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Eldritch Flesh",
+  "folder": "QNE7zqvTh3VRHt1e",
+  "system": {
+    "domain": "dread",
+    "level": 8,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Gain a +1 bonus to your damage thresholds for each Stress you have marked.</p><p>Additionally, when you roll with Fear, you can <strong>spend 2 Hope</strong> to clear an Armor Slot.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "T4rScs8WlliDzuzV",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!T4rScs8WlliDzuzV"
+}

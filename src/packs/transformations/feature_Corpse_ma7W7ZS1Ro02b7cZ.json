@@ -1,0 +1,20 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Corpse",
+  "type": "feature",
+  "_id": "ma7W7ZS1Ro02b7cZ",
+  "img": "icons/commodities/biological/hand-clawed-tan.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>During a rest, you can clear Hit Points only if you have access to remains from a recently deceased creature. Describe how you use these materials to maintain your corpse.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ma7W7ZS1Ro02b7cZ"
+}

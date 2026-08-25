@@ -1,0 +1,51 @@
+{
+  "name": "Kingfisher’s Net",
+  "type": "loot",
+  "img": "icons/tools/fishing/net-gold.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can use this net to scoop one live fish out of any amount of water, no matter how unlikely it is for that water to have fish in it.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "bLeDvOOUk8fk3npE": {
+        "type": "effect",
+        "_id": "bLeDvOOUk8fk3npE",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "",
+        "range": ""
+      }
+    }
+  },
+  "_id": "6TfnwNWZJTiR0194",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!6TfnwNWZJTiR0194"
+}

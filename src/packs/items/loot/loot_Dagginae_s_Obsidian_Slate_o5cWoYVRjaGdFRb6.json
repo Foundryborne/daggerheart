@@ -1,0 +1,22 @@
+{
+  "name": "Dagginae’s Obsidian Slate",
+  "type": "loot",
+  "img": "icons/sundries/documents/document-worn-symbol-brown.webp",
+  "system": {
+    "description": "<p>This wafer-thin sheet of volcanic glass is used by archivists to keep notes. Any information etched onto its surface disappears but can be recalled via a command you set.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "o5cWoYVRjaGdFRb6",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!o5cWoYVRjaGdFRb6"
+}

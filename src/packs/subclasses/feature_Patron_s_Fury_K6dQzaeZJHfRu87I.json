@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Patron's Fury",
+  "folder": "JhZDNJa4DY2fSzje",
+  "_id": "K6dQzaeZJHfRu87I",
+  "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Spend a Favor</strong> to imbue your attacks with your Patron's power until you deal Severe damage or the scene ends. When you roll damage while this effect is active, you also roll a number of Patron Dice equal to your tier and add their total to the damage dealt.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!K6dQzaeZJHfRu87I"
+}

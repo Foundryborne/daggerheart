@@ -1,0 +1,537 @@
+{
+  "type": "environment",
+  "name": "Dragon's Lair",
+  "folder": "MfrIkJK12PAEfbPL",
+  "system": {
+    "type": "exploration",
+    "description": "<p>A collection of gold, jewels, and artifacts in the heart of an active volcano.</p>",
+    "tier": 3,
+    "impulses": "Lure into the levels below, make escape impossible, tempt with treasure, wake the dragon",
+    "difficulty": 16,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "qy2gXfJmTL0CFppe": {
+        "label": "The Dragon's Minions",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.VQjfu6GFyNlFSMgH",
+          "Compendium.daggerheart.adversaries.Actor.h5SPwKivPFqMgOrW"
+        ]
+      },
+      "o1qnuycew667nPOW": {
+        "label": "Adversaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.qe2bhZCyVou4lTO5"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "The Dragon Wakes",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Consequence Countdown (8). The dragon that amassed this treasure lies sleeping somewhere on, under, or near the hoard. When the PCs enter the lair, activate the countdown. When it triggers, the dragon awakens and each PC must succeed on a Presence Reaction Roll or mark a Stress. You gain a Fear for each Stress marked this way.</p><section id=\"secret-TVAoo3QGrYFefBrN\" class=\"secret\"><p>Where does this dragon slumber? What does it dream about?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "etwUv30ZO9B3fhtB": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "The Dragon Wakes",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/creatures/reptiles/lizard-mouth-glowing-red.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "8",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "etwUv30ZO9B3fhtB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>Consequence Countdown (8). The dragon that amassed this treasure lies sleeping somewhere on, under, or near the hoard. When the PCs enter the lair, activate the countdown.</p><section id=\"secret-TVAoo3QGrYFefBrN\" class=\"secret\"><p>Where does this dragon slumber? What does it dream about?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "CFE0Nn3ZAH5WOiUm": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "CFE0Nn3ZAH5WOiUm",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, the dragon awakens and each PC must succeed on a Presence Reaction Roll or mark a Stress. You gain a Fear for each Stress marked this way.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "pegaB8CRjmGWv9nS",
+      "img": "icons/creatures/reptiles/lizard-mouth-glowing-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ta028s8hP4kvKTaw.pegaB8CRjmGWv9nS"
+    },
+    {
+      "name": "Treasure Hoard",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>At the heart of the lair sits a mountain of treasure. If the party wishes to locate the treasure, they must complete a Progress Countdown (12). When it triggers, the party can tick down the Consequence Countdown to search through the treasure mound by rolling a number of <strong>d12s</strong> equal to 1 + their tier on the Item or Consumable table (their choice).</p><section id=\"secret-c5rDaRnGOqpV651U\" class=\"secret\"><p>How did the party learn of this collection? What do they hope to find here?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "fivZUD41F3co7mpU": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Treasure Hoard",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/commodities/currency/coins-crown-stack-gold.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "12",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "fivZUD41F3co7mpU",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>At the heart of the lair sits a mountain of treasure. If the party wishes to locate the treasure, they must complete a Progress Countdown (12).</p><section id=\"secret-c5rDaRnGOqpV651U\" class=\"secret\"><p>How did the party learn of this collection? What do they hope to find here?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "Sg5WFWjGBdagExNU": {
+            "type": "effect",
+            "_id": "Sg5WFWjGBdagExNU",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, the party can tick down the Consequence Countdown to search through the treasure mound by rolling a number of <strong>d12s</strong> equal to 1 + their tier on the Item or Consumable table (their choice).</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "fIMQKSHm44QnzH4J",
+      "img": "icons/commodities/currency/coins-crown-stack-gold.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ta028s8hP4kvKTaw.fIMQKSHm44QnzH4J"
+    },
+    {
+      "name": "Volcanic Activity",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to trigger a volcanic eruption. Each character must make an Agility Reaction Roll. Targets who fail are burned by gouts of lava and flame as the earth breaks around them and take <strong>3d8+5</strong> physical damage. Targets who succeed take half damage.</p><section id=\"secret-wK4jwXYwQ8B99vnM\" class=\"secret\"><p>What paths of egress are blocked by the volcano's shifting configuration? How do the PCs protect themselves from the stifling heat?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "ggDE54OjCFGY16GG": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": 5,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "ggDE54OjCFGY16GG",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "JHXmz0CTLW0hPNE3",
+      "img": "icons/magic/earth/explosion-lava-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ta028s8hP4kvKTaw.JHXmz0CTLW0hPNE3"
+    },
+    {
+      "name": "Watchdogs",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When a PC fails a roll to navigate the lair, you can <strong>spend a Fear</strong> to summon <strong>1d6</strong> Drakes and up to two Wyverns, who appear within Close range of a PC and are immediately spotlighted.</p><section id=\"secret-djhS7HsAdx5uu4m7\" class=\"secret\"><p>Why do these creatures serve the slumbering dragon? What signs does the party find that foreshadow their presence?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "v3Hdh64vMs80IxnO": {
+            "type": "summon",
+            "_id": "v3Hdh64vMs80IxnO",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.VQjfu6GFyNlFSMgH",
+                "count": "1d6"
+              },
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.h5SPwKivPFqMgOrW",
+                "count": "2"
+              }
+            ],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "xx3KQQfdNcgfXKsT",
+      "img": "icons/creatures/reptiles/dragon-horned-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!ta028s8hP4kvKTaw.xx3KQQfdNcgfXKsT"
+    }
+  ],
+  "_id": "ta028s8hP4kvKTaw",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Dragon's Lair",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!ta028s8hP4kvKTaw"
+}

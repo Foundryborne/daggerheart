@@ -20,6 +20,12 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs',
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/item-tags.hbs',
+        'systems/daggerheart/templates/components/card/_attribution.hbs',
+        'systems/daggerheart/templates/components/card/ancestry.hbs',
+        'systems/daggerheart/templates/components/card/community.hbs',
+        'systems/daggerheart/templates/components/card/domain.hbs',
+        'systems/daggerheart/templates/components/card/subclass.hbs',
+        'systems/daggerheart/templates/components/card-banner.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs',
@@ -37,10 +43,10 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/actionTypes/countdown.hbs',
         'systems/daggerheart/templates/actionTypes/summon.hbs',
         'systems/daggerheart/templates/actionTypes/transform.hbs',
+        'systems/daggerheart/templates/actionTypes/evolution.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs',
-        'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs',
         'systems/daggerheart/templates/dialogs/downtime/activities.hbs',
         'systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs',
         'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs',
@@ -50,9 +56,12 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/ui/chat/parts/target-part.hbs',
         'systems/daggerheart/templates/ui/chat/parts/button-part.hbs',
         'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
+        'systems/daggerheart/templates/ui/countdowns/parts/countdowns.hbs',
         'systems/daggerheart/templates/scene/dh-config.hbs',
         'systems/daggerheart/templates/settings/appearance-settings/diceSoNiceTab.hbs',
         'systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs',
-        'systems/daggerheart/templates/dialogs/levelupOptionsDialog/parts/tier.hbs'
+        'systems/daggerheart/templates/dialogs/levelupOptionsDialog/parts/tier.hbs',
+        'systems/daggerheart/templates/sheets/activeEffect/typeChanges/standardAttack.hbs',
+        'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs'
     ]);
 };

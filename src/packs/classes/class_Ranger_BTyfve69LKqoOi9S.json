@@ -4,7 +4,7 @@
   "_id": "BTyfve69LKqoOi9S",
   "img": "icons/weapons/bows/shortbow-recurve-yellow-blue.webp",
   "system": {
-    "description": "<p>Rangers are highly skilled hunters who, despite their martial abilities, rarely lend their skills to an army. Through mastery of the body and a deep understanding of the wilderness, rangers become sly tacticians, pursuing their quarry with cunning and patience. Many rangers track and fight alongside an animal companion with whom they’ve forged a powerful spiritual bond. By honing their skills in the wild, rangers become expert trackers, as likely to ensnare their foes in a trap as they are to assail them head-on.</p>",
+    "description": "<p>Rangers are highly skilled hunters who, despite their martial abilities, rarely lend their skills to an army. Through mastery of the body and a deep understanding of the wilderness, rangers become sly tacticians, pursuing their quarry with cunning and patience. Many rangers track and fight alongside an animal companion with whom they've forged a powerful spiritual bond. By honing their skills in the wild, rangers become expert trackers, as likely to ensnare their foes in a trap as they are to assail them head-on.</p>",
     "domains": [
       "bone",
       "sage"
@@ -21,10 +21,6 @@
         "type": "class",
         "item": "Compendium.daggerheart.classes.Item.ncLx2P8BOUtrAD38"
       }
-    ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.TIUsIlTS1WkK5vr2",
-      "Compendium.daggerheart.subclasses.Item.zsUglcU4NgZ8tNgZ"
     ],
     "inventory": {
       "take": [
@@ -69,15 +65,12 @@
       "What friendly competition do we have?",
       "Why do you act differently when we’re alone than when others are around?",
       "What threat have you asked me to watch for, and why are you worried about it?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
   "sort": 712500,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!BTyfve69LKqoOi9S"
 }

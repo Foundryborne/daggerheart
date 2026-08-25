@@ -1,0 +1,22 @@
+{
+  "name": "Ball Bearings",
+  "type": "loot",
+  "img": "icons/containers/bags/sack-cloth-heavy-brown.webp",
+  "system": {
+    "description": "<p>This pouch contains perfectly smooth metal spheres.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "nQ0dhnzdqm8pz9Fp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!nQ0dhnzdqm8pz9Fp"
+}

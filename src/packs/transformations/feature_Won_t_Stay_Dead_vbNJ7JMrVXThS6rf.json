@@ -1,0 +1,20 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Won't Stay Dead",
+  "type": "feature",
+  "_id": "vbNJ7JMrVXThS6rf",
+  "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>When you choose the Risk It All death move and fail, you can <strong>permanently mark a Hit Point</strong> to succeed instead. When you do, you still use the Hope Die's value to clear Hit Points and Stress. When you permanently mark your last Hit Point, you pass through the veil of death.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!vbNJ7JMrVXThS6rf"
+}

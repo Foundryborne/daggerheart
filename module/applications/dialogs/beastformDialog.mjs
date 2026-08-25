@@ -298,7 +298,10 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
             app.addEventListener(
                 'close',
                 async () => {
-                    const selected = app.selected.toObject();
+                    if (!app.selected) {
+                        return resolve({ selected: null })
+                    }
+                    let selected = app.selected.toObject();
                     const evolved = app.evolved.form ? app.evolved.form.toObject() : null;
                     const data = await game.system.api.data.items.DHBeastform.getWildcardImage(
                         app.configData.data.parent,
@@ -315,15 +318,15 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
 
                     const beastformEffect = selected.effects.find(x => x.type === 'beastform');
                     for (const traitBonus of app.modifications.traitBonuses) {
-                        const existingChange = beastformEffect.changes.find(
+                        const existingChange = beastformEffect.system.changes.find(
                             x => x.key === `system.traits.${traitBonus.trait}.value`
                         );
                         if (existingChange) {
                             existingChange.value = Number.parseInt(existingChange.value) + traitBonus.bonus;
                         } else {
-                            beastformEffect.changes.push({
+                            beastformEffect.system.changes.push({
                                 key: `system.traits.${traitBonus.trait}.value`,
-                                mode: 2,
+                                type: 'add',
                                 priority: null,
                                 value: traitBonus.bonus
                             });

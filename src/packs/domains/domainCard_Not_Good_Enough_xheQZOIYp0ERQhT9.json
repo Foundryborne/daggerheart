@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "9Xc6KzNyjDtTGZkp",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you roll your damage dice, you can reroll any 1s or 2s.</p></p>",
+    "description": "<p>When you roll your damage dice, you can reroll any 1s or 2s.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 1,
@@ -13,14 +13,18 @@
       "source": "Daggerheart SRD",
       "page": 121,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "xheQZOIYp0ERQhT9",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!xheQZOIYp0ERQhT9"
 }

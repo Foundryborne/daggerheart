@@ -1,0 +1,78 @@
+{
+  "folder": null,
+  "name": "Warlock",
+  "type": "class",
+  "img": "icons/magic/unholy/orb-hands-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Those who've traded their lives—or perhaps even their souls—to an otherworldly patron in exchange for incredible power are known as warlocks. Often, these mortals have reached a point of desperation that leads them to make this sacrifice: they hope to protect themselves or a loved one, aid their community, seek vengeance, increase their status, or otherwise further their ambitions. The powerful entities they entreat are as varied as the warlocks themselves: gods, spirits, demons, or other beings unknown to even the mortal who makes the pact. The entities each have their own sphere of influence that defines their otherworldly power, and those that collect souls are rarely known for their benevolence. Thus, a warlock's power is defined by the relationship they maintain with their benefactor. Despite their terrifying magic, warlocks might find that someone or something else is pulling their strings.</p>",
+    "gmNotes": "",
+    "domains": [
+      "dread",
+      "grace"
+    ],
+    "classItems": [],
+    "hitPoints": 5,
+    "evasion": 11,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.QmFMbJzPV7DPLvjk"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.IOWBzweDFPoAHtQW"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.OGPn7DUJoJwAXh8o"
+      }
+    ],
+    "inventory": {
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.c1jomE48GRyNeXMY",
+        "Compendium.daggerheart.classes.Item.KGnwxeMYR4V7LJVi"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 0,
+        "strength": 0,
+        "finesse": 0,
+        "instinct": 0,
+        "presence": 0,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": null,
+      "suggestedSecondaryWeapon": null,
+      "suggestedArmor": null
+    },
+    "backgroundQuestions": [
+      "Who from your community shunned you after you made a pact with your patron?",
+      "What desperate situation led you to pledge your life to your patron?",
+      "Your patron has given you one task you must accomplish above all else. What is it, and why does it worry you?"
+    ],
+    "connections": [
+      "Why do you think I confide in you about what my patron says and does?",
+      "Our relationship has changed since you saw me show tribute to my patron. What did you see, and how has it affected you?",
+      "I once did something very foolish, and you’ve never let me live it down. What was it?"
+    ],
+    "isMulticlass": false
+  },
+  "effects": [],
+  "flags": {},
+  "_id": "cgq9QzytVs6uyaBW",
+  "sort": 0,
+  "_key": "!items!cgq9QzytVs6uyaBW"
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Namer’s Oracle",
+  "type": "loot",
+  "img": "icons/sundries/gaming/dice-runed-tan.webp",
+  "system": {
+    "description": "<p>Once per session, you can roll this set of runic dice to reveal the full name of the last person you touched.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "M3YbDPW9w7rIXZG1": {
+        "type": "effect",
+        "_id": "M3YbDPW9w7rIXZG1",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "session",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Roll Dice",
+        "range": ""
+      }
+    }
+  },
+  "_id": "OhdOU8yLpq6Wj4jl",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!OhdOU8yLpq6Wj4jl"
+}

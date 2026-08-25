@@ -28,14 +28,11 @@
       "page": 24,
       "artist": ""
     },
-    "linkedClass": "Compendium.daggerheart.classes.Item.xCUWwJz4WSthvLfy"
+    "linkedClass": "Compendium.daggerheart.classes.Item.xCUWwJz4WSthvLfy",
+    "gmNotes": ""
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!bcNe5qP3o6CKadhK"
 }

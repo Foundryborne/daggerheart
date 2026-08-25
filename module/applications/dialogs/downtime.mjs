@@ -196,9 +196,6 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             .filter(x => x.testUserPermission(game.user, 'LIMITED'))
             .filter(x => x.uuid !== this.actor.uuid);
 
-        const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .expandRollMessage?.desc;
-
         const cls = getDocumentClass('ChatMessage');
         const msg = {
             user: game.user.id,
@@ -219,8 +216,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                     actor: { name: this.actor.name, img: this.actor.img },
                     moves: moves,
                     characters: characters,
-                    selfId: this.actor.uuid,
-                    open: autoExpandDescription ? 'open' : ''
+                    selfId: this.actor.uuid
                 }
             ),
             flags: {
@@ -247,22 +243,22 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             this.nrChoices.shortRest.taken >= this.nrChoices.shortRest.max &&
             this.nrChoices.longRest.taken >= this.nrChoices.longRest.max
         ) {
-            for (var data of this.refreshables.actionItems) {
+            for (const data of this.refreshables.actionItems) {
                 const action = await foundry.utils.fromUuid(data.uuid);
                 await action.parent.parent.update({ [`system.actions.${action.id}.uses.value`]: 0 });
             }
 
-            for (var data of this.refreshables.resourceItems) {
+            for (const data of this.refreshables.resourceItems) {
                 const feature = await foundry.utils.fromUuid(data.uuid);
                 const increasing =
                     feature.system.resource.progression === CONFIG.DH.ITEM.itemResourceProgression.increasing.id;
                 const resetValue = increasing
                     ? 0
                     : feature.system.resource.max
-                      ? new Roll(
+                        ? new Roll(
                             Roll.replaceFormulaData(feature.system.resource.max, this.actor.getRollData())
                         ).evaluateSync().total
-                      : 0;
+                        : 0;
 
                 await feature.update({ 'system.resource.value': resetValue });
             }

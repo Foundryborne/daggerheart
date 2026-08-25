@@ -1,0 +1,50 @@
+{
+  "type": "feature",
+  "name": "Unbound",
+  "folder": "KA1VSGslxkbvVeMp",
+  "_id": "OyzEkHdHYwmoofQx",
+  "img": "icons/magic/control/buff-flight-wings-runes-blue-white.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Once per session when you roll with Fear, you can change it into a roll with Hope instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "L03g0jA9msxRiuXL": {
+        "type": "effect",
+        "_id": "L03g0jA9msxRiuXL",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "session",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Fear To Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!OyzEkHdHYwmoofQx"
+}

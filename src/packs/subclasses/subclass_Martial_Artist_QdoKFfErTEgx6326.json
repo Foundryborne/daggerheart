@@ -1,0 +1,44 @@
+{
+  "type": "subclass",
+  "name": "Martial Artist",
+  "folder": "YrzAU9sETEGR374I",
+  "_id": "QdoKFfErTEgx6326",
+  "img": "icons/magic/holy/meditation-chi-focus-blue.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Martial Artist if you want to use a variety of fighting styles to eliminate your foes.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": null,
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.EVEP9G6lNF8nR5f3"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.pv1hw4kJ1Q28xSiG"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.fMiu9xPbBVDizZEB"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.zrBAilBZuk9e4R1C"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.iuqAzugTIf7Ipcmb"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.0Qw2heB75eXNV4SM"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!QdoKFfErTEgx6326"
+}

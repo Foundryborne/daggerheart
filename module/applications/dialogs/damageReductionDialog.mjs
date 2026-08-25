@@ -138,13 +138,13 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         const stressReductionStress = this.availableStressReductions
             ? stressReductions.reduce((acc, red) => acc + red.cost, 0)
             : 0;
+        const stress = this.actor.system.resources.stress;
         context.stress =
             selectedStressMarks.length > 0 || this.availableStressReductions
                 ? {
-                      value:
-                          this.actor.system.resources.stress.value + selectedStressMarks.length + stressReductionStress,
-                      max: this.actor.system.resources.stress.max
-                  }
+                    value: stress.value + selectedStressMarks.length + stressReductionStress,
+                    max: stress.max
+                }
                 : null;
 
         context.maxArmorUsed = maxArmorUsed;
@@ -176,7 +176,6 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static updateData(event, _, formData) {
-        const form = foundry.utils.expandObject(formData.object);
         this.render(true);
     }
 
@@ -271,7 +270,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     updateStressArmor(armorMarkId, select) {
-        let stressMarkKey = null;
+        let stressMarkKey;
         if (select) {
             stressMarkKey = Object.keys(this.marks.stress).find(
                 key => this.marks.stress[key].selected && !this.marks.stress[key].armorMarkId
@@ -351,9 +350,10 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static async armorSlotQuery({ actorId, damage, type }) {
-        return new Promise(async (resolve, reject) => {
-            const actor = await fromUuid(actorId);
-            if (!actor || !actor?.isOwner) reject();
+        const actor = await fromUuid(actorId);
+        if (!actor?.isOwner) throw new Error(`Actor [${actorId}] is not owned by the queried user.`);
+
+        return new Promise((resolve, reject) => {
             new DamageReductionDialog(resolve, reject, actor, damage, type).render({ force: true });
         });
     }

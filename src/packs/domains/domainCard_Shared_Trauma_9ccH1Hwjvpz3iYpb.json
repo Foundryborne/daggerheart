@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Shared Trauma",
+  "folder": "t8UAvoM3iPtbOVyh",
+  "system": {
+    "domain": "dread",
+    "level": 3,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You can transfer suffering from one creature to another. Once per rest, mark any number of Hit Points on a willing creature within Melee range to clear an equal number of Hit Points on another willing creature within Melee range.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "9ccH1Hwjvpz3iYpb",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!9ccH1Hwjvpz3iYpb"
+}

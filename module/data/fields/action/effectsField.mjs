@@ -28,10 +28,13 @@ export default class EffectsField extends fields.ArrayField {
         if (!message && !config.skips.createMessage) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
+            // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
+            config.mute = true;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (EffectsField.getAutomation() || force) {
-            targets ??= (message.system?.targets ?? config.targets).filter(t => !config.hasRoll || t.hit);
+            targets ??= 
+                (config.targets ?? message.system?.targets ?? []).filter(t => !config.hasRoll || t.hitResult?.success);
             EffectsField.applyEffects.call(this, targets);
         }
     }
@@ -47,9 +50,11 @@ export default class EffectsField extends fields.ArrayField {
         const conditions = CONFIG.DH.GENERAL.conditions();
         let effects = this.effects;
         const messageTargets = [];
-        targets.forEach(async baseToken => {
-            if (this.hasSave && baseToken.saved.success === true) effects = this.effects.filter(e => e.onSave === true);
-            if (!effects.length) return;
+        for (const baseToken of targets) {
+            if (this.hasSave && baseToken.saveResult?.success === true) 
+                effects = this.effects.filter(e => e.onSave === true);
+            
+            if (!effects.length) continue;
 
             const token =
                 canvas.tokens.get(baseToken.id) ?? foundry.utils.fromUuidSync(baseToken.actorId).prototypeToken;
@@ -61,20 +66,21 @@ export default class EffectsField extends fields.ArrayField {
                 token: messageToken,
                 conditionImmunities: Object.values(conditionImmunities).some(x => x)
                     ? game.i18n.format('DAGGERHEART.UI.Chat.effectSummary.immunityTo', {
-                          immunities: Object.keys(conditionImmunities)
-                              .filter(x => conditionImmunities[x])
-                              .map(x => game.i18n.localize(conditions[x].name))
-                              .join(', ')
-                      })
+                        immunities: Object.keys(conditionImmunities)
+                            .filter(x => conditionImmunities[x])
+                            .map(x => game.i18n.localize(conditions[x].name))
+                            .join(', ')
+                    })
                     : null
             });
 
-            effects.forEach(async e => {
+            for (const e of effects) {
                 const effect = (this.item.applyEffects ?? this.item.effects).get(e._id);
-                if (!token.actor || !effect) return;
-                await EffectsField.applyEffect(effect, token.actor);
-            });
-        });
+                if (token.actor && effect) {
+                    await EffectsField.applyEffect(effect, token.actor);
+                }
+            }
+        }
 
         if (messageTargets.length === 0) return;
 
@@ -88,7 +94,7 @@ export default class EffectsField extends fields.ArrayField {
         const msg = {
             type: 'systemMessage',
             user: game.user.id,
-            speaker: cls.getSpeaker(),
+            speaker: cls.getSpeaker({ actor: this.actor }),
             title: game.i18n.localize('DAGGERHEART.UI.Chat.effectSummary.title'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/effectSummary.hbs',

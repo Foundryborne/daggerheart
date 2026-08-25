@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Savor the Anguish",
+  "folder": "mEBydlforCvDGfDq",
+  "system": {
+    "domain": "dread",
+    "level": 9,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When an adversary within Close range takes Severe damage, you can clear a Stress.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "ZPTdjTT7JAq6R4qw",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ZPTdjTT7JAq6R4qw"
+}

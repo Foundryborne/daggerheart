@@ -10,7 +10,9 @@
     "tokenSize": {
       "height": null,
       "width": null,
-      "size": "gargantuan"
+      "size": "gargantuan",
+      "scale": 1,
+      "depth": null
     },
     "mainTrait": "agility",
     "advantageOn": {
@@ -32,7 +34,10 @@
       "Compendium.daggerheart.beastforms.Item.vEAQ4cfsoPmOv2Gg"
     ],
     "evolved": {
-      "mainTraitBonus": 0
+      "mainTraitBonus": 0,
+      "damageBonus": 0,
+      "evasionBonus": 0,
+      "increaseDamageDice": 0
     },
     "hybrid": {
       "beastformOptions": 2,
@@ -56,53 +61,61 @@
         "characterTokenData": {
           "tokenImg": null,
           "tokenRingImg": "icons/svg/mystery-man.svg",
-          "tokenSize": {}
+          "tokenSize": {
+            "height": 1,
+            "width": 1,
+            "scale": 1
+          },
+          "usesDynamicToken": false
         },
-        "advantageOn": [],
+        "advantageOn": {},
         "featureIds": [],
-        "effectIds": []
+        "effectIds": [],
+        "changes": [
+          {
+            "key": "system.traits.agility.value",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.evasion",
+            "type": "add",
+            "value": 3,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "type": "standardAttack",
+            "phase": "initial",
+            "value": {
+              "name": "DAGGERHEART.ITEMS.Beastform.attackName",
+              "damageTypes": [
+                "physical"
+              ],
+              "attackRange": "melee",
+              "trait": "agility",
+              "damageFormula": "@profd10 + 10",
+              "img": "icons/creatures/fish/squid-kraken-orange.webp"
+            },
+            "priority": 0
+          }
+        ],
+        "duration": {
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
-      "changes": [
-        {
-          "key": "system.traits.agility.value",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.evasion",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.damage.diceIndex",
-          "mode": 5,
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.damage.bonus",
-          "mode": 5,
-          "value": "10",
-          "priority": null
-        },
-        {
-          "key": "system.rules.attack.roll.trait",
-          "mode": 5,
-          "value": "agility",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "origin": null,
@@ -114,14 +127,20 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!wT4xbF99I55yjKZV.zYUexUr2e3k4kzhw"
     }
   ],
   "folder": "UQEr5SAm2Z1Aih1S",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "wT4xbF99I55yjKZV",
   "sort": 0,

@@ -1,0 +1,61 @@
+{
+  "type": "feature",
+  "name": "Witch's Charm",
+  "folder": "u2NVDrSZHWjIweE8",
+  "_id": "7nIDpcWOGzO8Y6gq",
+  "img": "icons/magic/control/debuff-energy-hold-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you or an ally within Far range fails an action roll, you can <strong>spend 3 Hope</strong> to change it into a success with Fear instead.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "iQwgbgc04oIW6h8p": {
+        "type": "effect",
+        "_id": "iQwgbgc04oIW6h8p",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": "far"
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!7nIDpcWOGzO8Y6gq"
+}

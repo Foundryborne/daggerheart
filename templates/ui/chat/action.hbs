@@ -16,10 +16,10 @@
                     {{#each action.summon}}
                         <div class="summon-container">
                             <div class="summon-label-container">
-                                <img src="{{this.actor.img}}" />
-                                <label>{{this.actor.name}}</label>
+                                <img src="{{this.data.img}}" />
+                                <label>{{this.data.name}}</label>
                             </div>
-                            <span># {{this.rolledCount}}</span>
+                            <span># {{this.quantity}}</span>
                         </div>
                     {{/each}}
                 </div>

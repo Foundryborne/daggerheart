@@ -1,0 +1,31 @@
+{
+  "type": "feature",
+  "name": "Stance Fighter",
+  "folder": "RXqga54T8e59bXN3",
+  "_id": "EVEP9G6lNF8nR5f3",
+  "img": "icons/magic/holy/yin-yang-balance-symbol.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You can channel your inner resolve to shift into martial stances that grant you special benefits in combat.</p><p>Take the Martial Stances sheet and choose two martial stances from Tier 1. Each time you level up your character, choose an additional stance from your tier or lower.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": null,
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-yin-yang"
+    },
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!EVEP9G6lNF8nR5f3"
+}

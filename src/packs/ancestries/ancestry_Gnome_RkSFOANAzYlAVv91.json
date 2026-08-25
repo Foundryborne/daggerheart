@@ -1,0 +1,29 @@
+{
+  "type": "ancestry",
+  "name": "Gnome",
+  "folder": null,
+  "system": {
+    "loreReference": "gnome",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Gnomes are typically small humanoids with conical heads and the ability to teleport short distances.</p>",
+    "gmNotes": "",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.tsX9rZ2JRkzgF8DR"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.puDdIetm05O8andm"
+      }
+    ]
+  },
+  "_id": "RkSFOANAzYlAVv91",
+  "img": "icons/magic/movement/trail-streak-zigzag-teal.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 0,
+  "_key": "!items!RkSFOANAzYlAVv91"
+}

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "UIVnvI726LJnlK86",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your Agility until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -36,12 +37,18 @@
           }
         ],
         "target": {
-          "type": "self",
+          "type": "",
           "amount": null
         },
         "name": "Drink",
         "img": "icons/consumables/potions/potion-jar-capped-teal.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
@@ -49,7 +56,8 @@
       "source": "Daggerheart SRD",
       "page": 61,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
@@ -65,12 +73,17 @@
             "key": "system.traits.agility.value",
             "value": 1,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": "shortRest"
-        }
+          "type": "shortRest",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -101,11 +114,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 11600000,
   "flags": {},
   "_key": "!items!yK6eEDUrsPbZA8G0"
 }

@@ -1,0 +1,22 @@
+{
+  "type": "community",
+  "name": "Reborne",
+  "folder": null,
+  "system": {
+    "loreReference": "reborne",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You were once a member of a different community that you're no longer part of.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.communities.Item.3Q6bQ73PdGz2Bmcz"
+    ]
+  },
+  "_id": "Mv4TfmbbgKyOj1rt",
+  "img": "icons/environment/settlement/hut.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 0,
+  "_key": "!items!Mv4TfmbbgKyOj1rt"
+}

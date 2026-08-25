@@ -1,0 +1,52 @@
+{
+  "type": "feature",
+  "name": "Dark Aegis",
+  "folder": "wl9jx5leIDw9ox3R",
+  "_id": "wx4I8MnEJbkgMmeY",
+  "img": "icons/magic/unholy/orb-stone-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per long rest when you would take damage, you can <strong>spend a Favor</strong> instead of marking Hit Points.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "2mZaz1jTPjAQK6ZM": {
+        "type": "effect",
+        "_id": "2mZaz1jTPjAQK6ZM",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Favor",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!wx4I8MnEJbkgMmeY"
+}

@@ -1,0 +1,61 @@
+{
+  "name": "Snakeskin Spirit",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-round-label-cork-purple.webp",
+  "system": {
+    "description": "<p>You can drink this potion to slough off your outer layer of skin and heal a scar.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "773SxjjdjRsxoroZ": {
+        "type": "effect",
+        "_id": "773SxjjdjRsxoroZ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "QQjaWV5yQVjxEKdG",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Drink",
+        "range": ""
+      }
+    }
+  },
+  "_id": "QQjaWV5yQVjxEKdG",
+  "effects": [],
+  "folder": null,
+  "sort": 4900000,
+  "flags": {},
+  "_key": "!items!QQjaWV5yQVjxEKdG"
+}

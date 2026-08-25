@@ -6,6 +6,7 @@ import * as documents from './module/documents/_module.mjs';
 import { macros } from './module/_module.mjs';
 import * as collections from './module/documents/collections/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
+import * as die from './module/dice/die/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
@@ -23,6 +24,7 @@ import TokenManager from './module/documents/tokenManager.mjs';
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
+globalThis.Roll = BaseRoll;
 CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
 CONFIG.Dice.daggerheart = {
     DHRoll: DHRoll,
@@ -38,6 +40,10 @@ CONFIG.RegionBehavior.dataModels = {
 };
 
 Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
+CONFIG.Dice.terms.d = die.BaseDie;
+CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
+
+CONFIG.Folder.documentClass = documents.DhFolder;
 
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
@@ -77,6 +83,20 @@ CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenCon
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
 CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
+CONFIG.Token.barConfig = {
+    bar1: {
+        colors: {
+            full: Color.fromRGB([1, 0, 0]),
+            empty: Color.fromRGB([0, 0, 0])
+        }
+    },
+    bar2: {
+        colors: {
+            full: Color.fromString('#0032b1'),
+            empty: Color.fromRGB([0, 0, 0])
+        }
+    }
+};
 
 CONFIG.ui.combat = applications.ui.DhCombatTracker;
 CONFIG.ui.nav = applications.ui.DhSceneNavigation;
@@ -88,6 +108,7 @@ CONFIG.ui.actors = applications.sidebar.DhActorDirectory;
 CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
+CONFIG.ui.pause = applications.ui.DhGamePause;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
@@ -111,6 +132,9 @@ Hooks.once('init', () => {
     DocumentSheetConfig.registerSheet(TokenDocument, SYSTEM.id, applications.sheetConfigs.DhTokenConfig, {
         makeDefault: true
     });
+
+    DocumentSheetConfig.unregisterSheet(foundry.documents.Folder, 'core', foundry.applications.sheets.FolderConfig);
+    DocumentSheetConfig.registerSheet(foundry.documents.Folder, SYSTEM.id, applications.sheetConfigs.DhFolderConfig);
 
     const sheetLabel = typePath => () =>
         game.i18n.format('DAGGERHEART.GENERAL.typeSheet', {
@@ -173,6 +197,11 @@ Hooks.once('init', () => {
         types: ['beastform'],
         makeDefault: true,
         label: sheetLabel('TYPES.Item.beastform')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Transformation, {
+        types: ['transformation'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.transformation')
     });
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
@@ -252,6 +281,10 @@ Hooks.on('i18nInit', () => {
 });
 
 Hooks.on('setup', () => {
+    if (game.user.isGM) {
+        document.body.dataset.gm = true;
+    }
+
     CONFIG.statusEffects = [
         ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
         ...Object.values(SYSTEM.GENERAL.conditions()).map(x => ({
@@ -366,6 +399,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
     }
 });
 
+Hooks.on(CONFIG.DH.HOOKS.hooksConfig.downtimeTrigger, applications.sheets.actors.Party.downtimeMoveQuery);
+
 const updateActorsRangeDependentEffects = async token => {
     if (!token) return;
 
@@ -375,7 +410,7 @@ const updateActorsRangeDependentEffects = async token => {
     ).rangeMeasurement;
 
     for (let effect of token.actor?.allApplicableEffects() ?? []) {
-        if (!effect.system.rangeDependence?.enabled) continue;
+        if (!effect.system.rangeDependence) continue;
         const { target, range, type } = effect.system.rangeDependence;
 
         // If there are no targets, assume false. Otherwise, start with the effect enabled.
@@ -448,13 +483,13 @@ Hooks.on('canvasReady', canas => {
 });
 
 /** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */
-Hooks.on('renderDialogV2', (_dialog, html) => {
+Hooks.on('renderDialogV2', (dialog, html) => {
     if (!html.classList.contains('dialog')) return;
     const cls = html.classList.contains('item-create')
         ? documents.DHItem.implementation
         : html.classList.contains('actor-create')
-          ? documents.DhpActor.implementation
-          : null;
+            ? documents.DhpActor.implementation
+            : null;
     if (!cls) return;
 
     const form = html.querySelector('form');
@@ -463,16 +498,21 @@ Hooks.on('renderDialogV2', (_dialog, html) => {
     const nameInput = html.querySelector('input[name=name]');
     if (!form || !select || !submit || !nameInput) return;
 
-    nameInput.placeholder = cls.defaultName({});
-    const emptyOption = document.createElement('option');
-    emptyOption.value = '';
-    emptyOption.selected = true;
-    select.required = true;
-    select.prepend(emptyOption);
-    submit.addEventListener('click', event => {
-        if (!form.reportValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    });
+    const defaultEntity = dialog.options.defaultEntity;
+    if (!defaultEntity) {
+        nameInput.placeholder = cls.defaultName({});
+        const emptyOption = document.createElement('option');
+        emptyOption.value = defaultEntity;
+        emptyOption.selected = true;
+        select.required = true;
+        select.prepend(emptyOption);
+        submit.addEventListener('click', event => {
+            if (!form.reportValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+    } else {
+        select.querySelector(`option[value=${defaultEntity}]`).selected = true;
+    }
 });

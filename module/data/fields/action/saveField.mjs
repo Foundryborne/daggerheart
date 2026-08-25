@@ -41,11 +41,21 @@ export default class SaveField extends fields.SchemaField {
         if (!message && !config.skips.createMessage) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
+            // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
+            config.mute = true;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
-            targets ??= config.targets.filter(t => !config.hasRoll || t.hit);
+            targets ??= config.targets.filter(t => !config.hasRoll || t.hitResult?.success);
             await SaveField.rollAllSave.call(this, targets, config.event, message);
+            
+            /* Update config with the saveRoll results, could probably be done in a neater way */
+            for (const target of config.targets) {
+                const saveData = message.system.targetSaves[target.id];
+                const saveSuccessfull = saveData === undefined ? false : 
+                    saveData.isCritical || (saveData.value >= (this.save.difficulty ?? this.actor?.system.difficulty));
+                target.saveResult = { success: saveSuccessfull };
+            }
         } else return;
     }
 
@@ -62,18 +72,21 @@ export default class SaveField extends fields.SchemaField {
             const aPromise = [];
             targets.forEach(target => {
                 aPromise.push(
+                    // Preserved deliberately: rejections are swallowed here so that one failing
+                    // target cannot abort the saves still in flight for the other targets.
+                    // eslint-disable-next-line no-async-promise-executor
                     new Promise(async subResolve => {
                         const actor = fromUuidSync(target.actorId);
                         if (actor) {
                             const rollSave =
-                                game.user === actor.owner
+                                game.user.id === actor.owner.id
                                     ? SaveField.rollSave.call(this, actor, event)
                                     : actor.owner.query('reactionRoll', {
-                                          actionId: this.uuid,
-                                          actorId: actor.uuid,
-                                          event,
-                                          message
-                                      });
+                                        actionId: this.uuid,
+                                        actorId: actor.uuid,
+                                        event,
+                                        message
+                                    });
                             const result = await rollSave;
                             await SaveField.updateSaveMessage.call(this, result, message, target.id);
                             subResolve();
@@ -97,8 +110,8 @@ export default class SaveField extends fields.SchemaField {
         const title = actor.isNPC
                 ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
                 : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                      ability: game.i18n.localize(abilities[this.save.trait]?.label)
-                  }),
+                    ability: game.i18n.localize(abilities[this.save.trait]?.label)
+                }),
             rollConfig = {
                 event,
                 title,
@@ -125,20 +138,10 @@ export default class SaveField extends fields.SchemaField {
     static async updateSaveMessage(result, message, targetId) {
         if (!result) return;
 
-        const chatMessage = ui.chat.collection.get(message._id),
-            changes = {
-                flags: {
-                    [game.system.id]: {
-                        reactionRolls: {
-                            [targetId]: {
-                                result: result.roll.total,
-                                success: result.roll.success
-                            }
-                        }
-                    }
-                }
-            };
-        await chatMessage.update(changes);
+        const chatMessage = ui.chat.collection.get(message._id);
+        await chatMessage.update({
+            [`system.targetSaves.${targetId}`]: { value: result.roll.total, isCritical: result.roll.isCritical }
+        });
     }
 
     /**
@@ -163,12 +166,11 @@ export default class SaveField extends fields.SchemaField {
      * @param {ChatMessage} param0.message     Chat Message to update
      * @returns
      */
-    static rollSaveQuery({ actionId, actorId, event, message }) {
-        return new Promise(async (resolve, reject) => {
-            const actor = await fromUuid(actorId),
-                action = await fromUuid(actionId);
-            if (!actor || !actor?.isOwner) reject();
-            SaveField.rollSave.call(action, actor, event, message).then(result => resolve(result));
-        });
+    static async rollSaveQuery({ actionId, actorId, event, message }) {
+        const actor = await fromUuid(actorId),
+            action = await fromUuid(actionId);
+        if (!actor?.isOwner) throw new Error(`Actor [${actorId}] is not owned by the queried user.`);
+
+        return SaveField.rollSave.call(action, actor, event, message);
     }
 }

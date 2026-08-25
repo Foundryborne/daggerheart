@@ -1,0 +1,22 @@
+{
+  "name": "Reliquary of the Sightless Saint",
+  "type": "loot",
+  "img": "icons/commodities/treasure/totem-wood-face-brown.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Hope Die when you make the Risk It All death move.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "PAZL4sEq7UB5sLsA",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!PAZL4sEq7UB5sLsA"
+}

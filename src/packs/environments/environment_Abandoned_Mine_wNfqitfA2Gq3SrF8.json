@@ -1,0 +1,470 @@
+{
+  "type": "environment",
+  "name": "Abandoned Mine",
+  "folder": "GQ0VnOLrKBIHR6Us",
+  "system": {
+    "type": "traversal",
+    "description": "<p>A twisting warren of disused tunnels carved out of the bedrock by a doomed mining outfit.</p>",
+    "tier": 1,
+    "impulses": "Poison the party with deadly gasses, rumble and collapse, split the party, turn them around",
+    "difficulty": 11,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "vGJG6PfuucD4WEsB": {
+        "label": "Darkweave Spiders",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.Z16fYvCNRlD4XZij",
+          "Compendium.daggerheart.adversaries.Actor.YdGTyYI6bBXh5lgV",
+          "Compendium.daggerheart.adversaries.Actor.ADiUlCE0woMcvnzv"
+        ]
+      },
+      "pYwK3J4SaqK0Yiw6": {
+        "label": "Miner Ghosts",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.ytj3VDog4hrC4TkO",
+          "Compendium.daggerheart.adversaries.Actor.XuGDFgTjn1vFQhyA"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Pitch Black",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>There is no light, natural or otherwise, in these underground mining tunnels. Ask the PCs what they use for light or how they otherwise find their way in the dark. PCs without a reliable source of light make action and reaction rolls with disadvantage.</p><section id=\"secret-2iWVOxm7ZUdQwhZE\" class=\"secret\"><p>What fuel does the party's light source use, and how long will it last? What unwanted attention does the light attract?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "rK7ZkEUsaqM8gLI5",
+      "img": "icons/sundries/lights/lantern-steel.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!wNfqitfA2Gq3SrF8.rK7ZkEUsaqM8gLI5"
+    },
+    {
+      "name": "Labyrinth",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The party must complete a Progress Countdown (4) to find their way through the mines. Each time a PC rolls with Hope while finding their way through, they discover one of the curiosities below.</p><ul><li><p>An unmined vein of precious metals or gemstones</p></li><li><p>Various mining tools, including a broken (but mendable) mine cart made of adamantine</p></li><li><p>Psychic echoes of the miners' tragic end</p></li><li><p>The desiccated corpses of miners who lost their way in the tunnels</p></li><li><p>Tattered remnants of darkweave spider silk</p></li></ul><section id=\"secret-xz0zpURL7LpP6Y6n\" class=\"secret\"><p>What did miners previously extract here? Who in the party knows how to navigate below ground? What are the PCs most afraid might happen to them down here?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "O96PUar3HP8DcW2n": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Labyrinth",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/environment/wilderness/mine-exterior-entrance.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "4",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "O96PUar3HP8DcW2n",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "HfkkL2BpHbNy9wnn",
+      "img": "icons/environment/wilderness/mine-exterior-entrance.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!wNfqitfA2Gq3SrF8.HfkkL2BpHbNy9wnn"
+    },
+    {
+      "name": "Into the Spider's Web",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to summon a Darkweave Queen inside her gossamer-strewn lair. She drops from the ceiling within Close range of a PC and immediately takes the spotlight.</p><section id=\"secret-i9sSpmMkF7CLcuS9\" class=\"secret\"><p>How does the Darkweave Queen use her lair to her advantage? What remnants of her past meals can the party find here?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "WiVP4FuFxZTwTQMt": {
+            "type": "summon",
+            "_id": "WiVP4FuFxZTwTQMt",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.PcBt4ggimibM7DCp",
+                "count": "1"
+              }
+            ],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "M2Iudy8tNp2tR4rO",
+      "img": "icons/creatures/invertebrates/spider-web-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!wNfqitfA2Gq3SrF8.M2Iudy8tNp2tR4rO"
+    },
+    {
+      "name": "Impending Collapse",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>Countdown (2). The first time the PCs roll with Fear, describe how the ground subtly vibrates as rocks shift overhead and activate the countdown. It ticks down when a PC rolls with Fear. When it triggers, each PC must succeed on an Agility Reaction Roll or take <strong>1d8+3</strong> physical damage and become temporarily <em>Restrained</em> by the rubble.</p><section id=\"secret-HE1rGi9t3pctLs3I\" class=\"secret\"><p>What other signs of instability does the mine offer the party? What new dangers does the tunnel system's new configuration expose the party to?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "mofXrAijYoeUrStc": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Impending Collapse",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/earth/projectile-stone-landslide.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "fear",
+                  "startFormula": "2",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "mofXrAijYoeUrStc",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "FyWRM3ORf4E3ahy9": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d8",
+                  "bonus": 3,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "FyWRM3ORf4E3ahy9",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, each PC must succeed on an Agility Reaction Roll or take <strong>1d8+3</strong> physical damage and become temporarily <em>Restrained</em> by the rubble.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "ItgXjrMhAXce4x6D",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "FtJmHvPMK3l2dhhO",
+      "img": "icons/magic/earth/projectile-stone-landslide.webp",
+      "effects": [
+        {
+          "name": "Rubble",
+          "disabled": false,
+          "img": "icons/magic/earth/projectile-stone-landslide.webp",
+          "description": "",
+          "transfer": false,
+          "statuses": [
+            "restrained"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.wNfqitfA2Gq3SrF8.Item.FtJmHvPMK3l2dhhO",
+          "_id": "ItgXjrMhAXce4x6D",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!wNfqitfA2Gq3SrF8.FtJmHvPMK3l2dhhO.ItgXjrMhAXce4x6D"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!wNfqitfA2Gq3SrF8.FtJmHvPMK3l2dhhO"
+    }
+  ],
+  "_id": "wNfqitfA2Gq3SrF8",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Abandoned Mine",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!wNfqitfA2Gq3SrF8"
+}

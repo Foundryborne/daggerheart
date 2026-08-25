@@ -1,0 +1,61 @@
+{
+  "name": "Godling’s Pomelo",
+  "type": "consumable",
+  "img": "icons/consumables/fruit/plum-ripe-yellow.webp",
+  "system": {
+    "description": "<p>You can eat this citrus fruit to clear all Hit Points and Stress.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 59,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "lLwr1Rru0C1t2cYy": {
+        "type": "effect",
+        "_id": "lLwr1Rru0C1t2cYy",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "QowgtRfI0AmzGroZ",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Eat",
+        "range": ""
+      }
+    }
+  },
+  "_id": "QowgtRfI0AmzGroZ",
+  "effects": [],
+  "folder": null,
+  "sort": 5100000,
+  "flags": {},
+  "_key": "!items!QowgtRfI0AmzGroZ"
+}

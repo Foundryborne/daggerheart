@@ -1,0 +1,110 @@
+{
+  "name": "Nighthawker’s Ring",
+  "type": "loot",
+  "img": "icons/equipment/finger/ring-band-thin-silver-teal.webp",
+  "system": {
+    "description": "<p>Spend a Hope to activate the gemstone in this ring until the end of the scene. While active, the gemstone changes color to indicate the wearer's proximity to hidden treasure: warm colors for near, cool colors for far.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "dZni6lym19ljT67O": {
+        "type": "effect",
+        "_id": "dZni6lym19ljT67O",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "EUPb3chDFCISikV4",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    }
+  },
+  "_id": "E7iVLwAEHiTccm3A",
+  "effects": [
+    {
+      "name": "Nighthawker's Ring",
+      "disabled": false,
+      "img": "icons/equipment/finger/ring-band-thin-silver-teal.webp",
+      "description": "<p>While active, the gemstone changes color to indicate the wearer's proximity to hidden treasure: warm colors for near, cool colors for far.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": "scene"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.loot.Item.E7iVLwAEHiTccm3A",
+      "_id": "EUPb3chDFCISikV4",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!E7iVLwAEHiTccm3A.EUPb3chDFCISikV4"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!E7iVLwAEHiTccm3A"
+}

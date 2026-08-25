@@ -1,8 +1,11 @@
 @import '../utils/colors.less';
 @import '../utils/fonts.less';
+@import '../utils/mixin.less';
 
 .application.daggerheart {
     prose-mirror {
+        --menu-padding: 4px 0px;
+        --menu-height: calc(var(--menu-button-height) + 8px);
         height: 100% !important;
         width: 100%;
 
@@ -10,37 +13,9 @@
             background-color: transparent;
         }
         .editor-content {
-            h1 {
-                font-size: var(--font-size-32);
-            }
-            h2 {
-                font-size: var(--font-size-28);
-                font-weight: 600;
-            }
-            h3 {
-                font-size: var(--font-size-20);
-                font-weight: 600;
-            }
-            h4 {
-                font-size: var(--font-size-16);
-                color: light-dark(@dark, @beige);
-                font-weight: 600;
-            }
-
-            ul,
-            ol {
-                margin: 1rem 0;
-                padding: 0 0 0 1.25rem;
-
-                li {
-                    margin-bottom: 0.25rem;
-                }
-            }
-
-            ul {
-                list-style: disc;
-            }
-        }       
+            .with-scroll-shadows();
+            .typography();
+        }
         // Fixes centering and makes it not render over scrollbar
         &:hover button.toggle:enabled {
             display: flex;

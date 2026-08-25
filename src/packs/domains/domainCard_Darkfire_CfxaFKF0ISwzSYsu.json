@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Darkfire",
+  "folder": "6PuOmwrnOkbs8EW5",
+  "system": {
+    "domain": "dread",
+    "level": 6,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p><strong>Spend any number of Hope</strong> to target an equal number of adversaries within Close range. Each target makes a <strong>Reaction Roll (15)</strong>. Targets who fail take <strong>d8+6</strong> magic damage using your Spellcast trait as they are engulfed in dark fire. Targets who succeed take half damage.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "CfxaFKF0ISwzSYsu",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!CfxaFKF0ISwzSYsu"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Thief’s Compass",
+  "type": "loot",
+  "img": "icons/tools/navigation/compass-worn-copper.webp",
+  "system": {
+    "description": "<p>This compass points the way toward the nearest exit while indoors and the closest entrance while outdoors.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "hhdFEfPzAcTGL8QR",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!hhdFEfPzAcTGL8QR"
+}

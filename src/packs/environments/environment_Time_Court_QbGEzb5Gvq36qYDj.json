@@ -1,0 +1,416 @@
+{
+  "type": "environment",
+  "name": "Time Court",
+  "folder": "IKumu5HTLqONLYqb",
+  "system": {
+    "type": "event",
+    "description": "<p>One or more PCs are forcibly plucked from the timeline and put on trial for crimes against continuity.</p>",
+    "tier": 4,
+    "impulses": "Find the truth, mete out justice, nullify their powers",
+    "difficulty": 20,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "Dh1UipXuHjMyzcbU": {
+        "label": "Adversaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.yx0vK2yfNVZKWUUi",
+          "Compendium.daggerheart.adversaries.Actor.68xDUa9Ls48O825Z",
+          "Compendium.daggerheart.adversaries.Actor.VSdS3N5Kh6uratv9"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Out of Time",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The trial takes place in a pocket dimension that exists beyond the influence of the other realms. While here, PCs can't use their features and abilities. Each player must put their Domain cards in their vault.</p><section id=\"secret-ImJWy36uInJMMu1x\" class=\"secret\"><p>What besides the courtroom resides in this pocket dimension? What powers maintain the universal barrier protecting this place?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "6sk40GwZcO84aRBT": {
+            "type": "effect",
+            "_id": "6sk40GwZcO84aRBT",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "mHoqQT10ANKnO3oT",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "FOUXRDD4q9YAIe65",
+      "img": "icons/magic/time/hourglass-yellow-green.webp",
+      "effects": [
+        {
+          "name": "Out Of Time",
+          "disabled": false,
+          "img": "icons/magic/time/hourglass-yellow-green.webp",
+          "description": "<p>While here, PCs can't use their features and abilities. Each player must put their Domain cards in their vault.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.QbGEzb5Gvq36qYDj.Item.FOUXRDD4q9YAIe65",
+          "_id": "mHoqQT10ANKnO3oT",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!QbGEzb5Gvq36qYDj.FOUXRDD4q9YAIe65.mHoqQT10ANKnO3oT"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!QbGEzb5Gvq36qYDj.FOUXRDD4q9YAIe65"
+    },
+    {
+      "name": "Trial by Jury",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>At the end of the proceedings, a jury votes whether to acquit or convict the party. When the court is called to order, have the prosecution present its case against the PCs and start a Countdown (9). It ticks down when a PC makes an action roll. When it triggers, the PCs and GM roll their Judgment Dice. If the party's total result meets or exceeds the GM's, the jury acquits them.</p><section id=\"secret-SR95wc6Tpalzj7Sw\" class=\"secret\"><p>Which PCs are put on trial? What are they accused of? What potential penalties would a guilty verdict bring?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "OuwNR2lTMCWW9xAm": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Trial by Jury",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "9",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "OuwNR2lTMCWW9xAm",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>At the end of the proceedings, a jury votes whether to acquit or convict the party. When the court is called to order, have the prosecution present its case against the PCs and start a Countdown (9). It ticks down when a PC makes an action roll.</p><section id=\"secret-SR95wc6Tpalzj7Sw\" class=\"secret\"><p>Which PCs are put on trial? What are they accused of? What potential penalties would a guilty verdict bring?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "W0PQ3KJk0784W3gB": {
+            "type": "effect",
+            "_id": "W0PQ3KJk0784W3gB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, the PCs and GM roll their Judgment Dice. If the party's total result meets or exceeds the GM's, the jury acquits them.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "Qc1Mm8cdNfb0fcDg",
+      "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!QbGEzb5Gvq36qYDj.Qc1Mm8cdNfb0fcDg"
+    },
+    {
+      "name": "Counsel for the Defense",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>A PC can make an action roll to argue for their innocence (such as a Knowledge Roll to interpret the letter of the law, a Presence Roll to play on the jury's emotions, or an Instinct Roll to point out holes in the prosecution's case). On a success, the party gains a <strong>d6</strong> Judgment Die. On a critical success, they gain two. On a failure, the prosecution rebuts the PC's argument, and you gain a <strong>d6</strong> Judgment Die.</p><section id=\"secret-cESowB70gMt9UBRX\" class=\"secret\"><p>What is the weakest part of the prosecution's case? What is the strongest part of the party's defense?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "5dfMCpOvnNNeUpNV",
+      "img": "icons/magic/perception/hand-eye-fire-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!QbGEzb5Gvq36qYDj.5dfMCpOvnNNeUpNV"
+    },
+    {
+      "name": "Counsel for the Prosecution",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>The prosecution introduces a damning piece of evidence (such as an eyewitness testimony, test results, or a physical exhibit taken from the scene of the crime), and you gain a <strong>d6</strong> Judgment Die. A PC can mark a Stress to attempt a rebuttal of the evidence with a Knowledge, Instinct, or Presence Reaction Roll. On a success, the party gains the Judgment Die instead of you. On a failure, you gain an additional <strong>d6</strong> Judgment Die.</p><section id=\"secret-PKxc7LWA63hG6Dj0\" class=\"secret\"><p>Who leads the prosecution, and what is their relationship to the Time Council? What magic or technology does this court rely on to present and record evidence?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "X91s1yNbX9BFGthV",
+      "img": "icons/magic/perception/hand-eye-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!QbGEzb5Gvq36qYDj.X91s1yNbX9BFGthV"
+    },
+    {
+      "name": "\"Order in the Court!\"",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>When the PCs attempt to escape or end the trial through force, summon a number of Temporal Enforcers equal to the number of PCs in the scene within Close range and immediately spotlight one.</p><section id=\"secret-dy2SSipjq5tsKais\" class=\"secret\"><p>Is this court's authority worthy of respect? What besides the might of the Time Council and its enforcers justifies their control over the timeline?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "8d02AoeZJD2fOlXe": {
+            "type": "summon",
+            "_id": "8d02AoeZJD2fOlXe",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.VSdS3N5Kh6uratv9",
+                "count": "@partySize"
+              }
+            ]
+          }
+        },
+        "granter": null
+      },
+      "_id": "W6PaWbLiErDCv25u",
+      "img": "icons/magic/perception/eye-ringed-glow-angry-teal.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!QbGEzb5Gvq36qYDj.W6PaWbLiErDCv25u"
+    }
+  ],
+  "_id": "QbGEzb5Gvq36qYDj",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Time Court",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!QbGEzb5Gvq36qYDj"
+}

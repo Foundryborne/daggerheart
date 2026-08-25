@@ -18,6 +18,7 @@
         margin-top: -2rem;
         z-index: 1;
         input.item-name[type='text'] {
+            --dh-input-color-border: @color-border;
             backdrop-filter: none;
             border: none;
             color: @color-text-emphatic;
@@ -31,11 +32,6 @@
             transition: all 0.3s ease;
             width: calc(100% - 40px);
             height: 2.625rem;
-
-            &:hover[type='text'],
-            &:focus[type='text'] {
-                outline: 2px solid @color-border;
-            }
         }
 
         .label {

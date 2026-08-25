@@ -1,0 +1,264 @@
+{
+  "type": "environment",
+  "name": "Masquerade Ball",
+  "folder": "XMeecO3IRvu5ck6F",
+  "system": {
+    "type": "social",
+    "description": "<p>A high society gala where masked revelers trade secrets and favors.</p>",
+    "tier": 2,
+    "impulses": "Dance the night away, eat and be merry, make secret deals, trade valuable information",
+    "difficulty": 14,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "XrsOn1uflDlwE4EM": {
+        "label": "Operatives",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.niBpVU7yeo5ccskE",
+          "Compendium.daggerheart.adversaries.Actor.dNta0cUzr96xcFhf",
+          "Compendium.daggerheart.adversaries.Actor.8zlynOhnVA59KpKT"
+        ]
+      },
+      "vLC92lDxsxj3rHvi": {
+        "label": "Revelers",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.ZxWaWPdzFIUPNC62",
+          "Compendium.daggerheart.adversaries.Actor.Vy02IhGhkJLuezu4",
+          "Compendium.daggerheart.adversaries.Actor.EtLJiTsilPPZvLUX"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Costumes Required",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Everyone at the ball is expected to arrive in costume. PCs have advantage on Presence Rolls to convince others they are someone—or something—they're not.</p><section id=\"secret-AG9eLROeP0oeQwD9\" class=\"secret\"><p>What do the PCs come dressed as? What do their costumes reveal about their true selves?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "BrmEXZ6Nowpg7LRS",
+      "img": "icons/equipment/chest/robe-collared-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!2LTMLwpFCDE9Ih88.BrmEXZ6Nowpg7LRS"
+    },
+    {
+      "name": "\"Care to Dance?\"",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>While dancing, a PC can make an Agility Roll instead of a Presence Roll to influence others.</p><section id=\"secret-Xi3GbKgbKvxZGUmM\" class=\"secret\"><p>What's notable or unique about the dances that are in fashion here? Where did the PCs learn how to perform them?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "AkVcdbmlKOIBAkp6",
+      "img": "icons/skills/social/diplomacy-handshake.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!2LTMLwpFCDE9Ih88.AkVcdbmlKOIBAkp6"
+    },
+    {
+      "name": "Mistaken Identity",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>A very important person confuses a PC with an even more important person. The target can play into the misunderstanding with a Presence Reaction Roll. On a success, the PC can ask the VIP to perform a favor, relay a key piece of information, or make an introduction. On a failure, the PC marks a Stress as their true identity is discovered, and they are threatened with ejection from the party.</p><section id=\"secret-VRYpjv4zFDNsoP5e\" class=\"secret\"><p>Who does the VIP mistake them for? What doors does their mistake open? What dangers does it bring?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "4yP8POf2j4QjnB1I",
+      "img": "icons/magic/control/fear-fright-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!2LTMLwpFCDE9Ih88.4yP8POf2j4QjnB1I"
+    },
+    {
+      "name": "Cloak and Dagger",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to have an operative try to steal something valuable or assassinate someone important. A PC can make an Instinct Roll to try to notice them before they achieve their objective. On a success, the PC gains the opportunity to intervene. On a failure with Fear, the PC is erroneously implicated in the crime.</p><section id=\"secret-jFoSujZKwaVESokx\" class=\"secret\"><p>Who does the operative work for? Why did they send them to the masquerade?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "zcgNYuHJjWV4Tl1a": {
+            "type": "effect",
+            "_id": "zcgNYuHJjWV4Tl1a",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "r2uqWKreHwK2Yo16",
+      "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!2LTMLwpFCDE9Ih88.r2uqWKreHwK2Yo16"
+    }
+  ],
+  "_id": "2LTMLwpFCDE9Ih88",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Masquerade Ball",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!2LTMLwpFCDE9Ih88"
+}

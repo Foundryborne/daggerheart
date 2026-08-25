@@ -1,0 +1,204 @@
+{
+  "name": "Red Ooze Oil",
+  "type": "consumable",
+  "img": "icons/consumables/potions/bottle-bulb-corked-glowing-red.webp",
+  "system": {
+    "description": "<p>You can coat your weapon in this oil. The next successful attack you make with this weapon deals an extra 1d8 magic damage and temporarily Ignites the target. While Ignited, the target takes 1d4 magic damage when they take the spotlight.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 57,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "eqXBNr0DbYAIVGS9": {
+        "type": "effect",
+        "_id": "eqXBNr0DbYAIVGS9",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "3vr1v9tKLW2huI3H",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "x3sGgfLR0gkXxw5f",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Apply",
+        "range": ""
+      },
+      "jD3LZE5YeVjfTAtU": {
+        "type": "effect",
+        "_id": "jD3LZE5YeVjfTAtU",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>While Ignited, the target takes 1d4 magic damage when they take the spotlight.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "f7f3BWAGe5vkkruK",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Ignite",
+        "range": "",
+        "img": "icons/magic/fire/barrier-wall-flame-ring-yellow.webp"
+      }
+    }
+  },
+  "_id": "3vr1v9tKLW2huI3H",
+  "effects": [
+    {
+      "name": "Red Ooze Oil",
+      "disabled": false,
+      "img": "icons/consumables/potions/bottle-bulb-corked-glowing-red.webp",
+      "description": "<p>You can coat your weapon in this oil. The next successful attack you make with this weapon deals an extra 1d8 magic damage and temporarily Ignites the target.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.roll.primaryWeapon.dice",
+            "type": "add",
+            "value": "1d8",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.secondaryWeapon.dice",
+            "type": "add",
+            "value": "1d8",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.3vr1v9tKLW2huI3H",
+      "_id": "x3sGgfLR0gkXxw5f",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!3vr1v9tKLW2huI3H.x3sGgfLR0gkXxw5f"
+    },
+    {
+      "name": "Ignited",
+      "disabled": false,
+      "img": "icons/magic/fire/barrier-wall-flame-ring-yellow.webp",
+      "description": "<p>While Ignited, the target takes 1d4 magic damage when they take the spotlight.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.consumables.Item.3vr1v9tKLW2huI3H",
+      "_id": "f7f3BWAGe5vkkruK",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!3vr1v9tKLW2huI3H.f7f3BWAGe5vkkruK"
+    }
+  ],
+  "folder": null,
+  "sort": 900000,
+  "flags": {},
+  "_key": "!items!3vr1v9tKLW2huI3H"
+}

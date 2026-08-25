@@ -1,0 +1,22 @@
+{
+  "name": "Map of Revelation",
+  "type": "loot",
+  "img": "icons/tools/navigation/map-marked-black.webp",
+  "system": {
+    "description": "<p>You can attune this map to one creature at a time. The map always shows the attuned creature's location.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "fVhsN8pSVE9t7wjP",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!fVhsN8pSVE9t7wjP"
+}

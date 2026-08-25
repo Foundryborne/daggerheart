@@ -1,0 +1,60 @@
+{
+  "name": "Warp Pendant",
+  "type": "loot",
+  "img": "icons/equipment/neck/pendant-runed-hagalz-blue.webp",
+  "system": {
+    "description": "<p>Once per rest, mark a Stress to teleport to a location you can clearly see.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 56,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "B1xcdTjpaoK4TxI5": {
+        "type": "effect",
+        "_id": "B1xcdTjpaoK4TxI5",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": ""
+      }
+    }
+  },
+  "_id": "C2lZrVCqXZ09t7U5",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!C2lZrVCqXZ09t7U5"
+}

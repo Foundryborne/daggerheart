@@ -35,7 +35,7 @@ export default class D20Roll extends DHRoll {
     }
 
     get isCritical() {
-        if (!this.d20._evaluated) return;
+        if (!this.d20._evaluated) return false;
 
         const criticalThreshold = this.options.actionType === 'reaction' ? 20 : this.data.criticalThreshold;
         return this.d20.total >= criticalThreshold;
@@ -53,7 +53,7 @@ export default class D20Roll extends DHRoll {
 
     static applyKeybindings(config) {
         let keys = {
-            normal: true,
+            normal: false,
             advantage: false,
             disadvantage: false
         };
@@ -100,16 +100,19 @@ export default class D20Roll extends DHRoll {
 
         this.options.roll.modifiers = this.applyBaseBonus();
 
-        const actorExperiences = this.options.roll.companionRoll
-            ? (this.options.data?.companion?.system.experiences ?? {})
-            : (this.options.data.system?.experiences ?? {});
-        this.options.experiences?.forEach(m => {
-            if (actorExperiences[m])
-                this.options.roll.modifiers.push({
-                    label: actorExperiences[m].name,
-                    value: actorExperiences[m].value
-                });
-        });
+        let actorExperiences = this.options.data.system?.experiences ?? {};
+        if (this.options.roll.companionRoll) {
+            const companion = typeof this.options.data.companion === 'string' ? 
+                foundry.utils.fromUuidSync(this.options.data.companion) :
+                this.options.data.companion;
+            actorExperiences = companion?.system?.experiences ?? {};
+        }
+        for (const m of this.options.experiences?.filter(m => !!actorExperiences[m]) ?? []) {
+            this.options.roll.modifiers.push({
+                label: actorExperiences[m].name,
+                value: actorExperiences[m].value
+            });
+        }
 
         this.addModifiers();
         if (this.options.extraFormula) {
@@ -182,8 +185,10 @@ export default class D20Roll extends DHRoll {
         return changeKeys;
     }
 
-    static postEvaluate(roll, config = {}) {
-        const data = super.postEvaluate(roll, config);
+    static async buildEvaluate(roll, config = {}, message = {}) {
+        await super.buildEvaluate(roll, config, message);
+
+        const data = config.roll;
         data.type = config.actionType;
         data.difficulty = config.roll.difficulty;
         if (config.targets?.length) {
@@ -219,7 +224,6 @@ export default class D20Roll extends DHRoll {
                 };
             });
         data.modifierTotal = roll.modifierTotal;
-        return data;
     }
 
     resetFormula() {

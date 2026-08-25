@@ -1,0 +1,22 @@
+{
+  "name": "Whisperstep Anklet",
+  "type": "loot",
+  "img": "icons/equipment/finger/ring-cabochon-spiral-gold-green.webp",
+  "system": {
+    "description": "<p>This anklet makes your steps silent as long as you don't move faster than walking speed.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "0e8FMOaUGOJHdalZ",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!0e8FMOaUGOJHdalZ"
+}

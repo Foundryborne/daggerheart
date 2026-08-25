@@ -1,0 +1,66 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Feed",
+  "type": "feature",
+  "_id": "zVXqx9HWIIhwky6I",
+  "img": "icons/skills/wounds/blood-spurt-spray-red.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>On a successful \"Fangs\" attack against a creature that can bleed, you can <strong>mark a Stress</strong> to feed. Place a number of tokens on this card equal to the number of Hit Points the target marks. You can hold up to 6 tokens at a time. Before you make an action roll, you can spend a token to make your Fear Die a <strong>d20</strong>. When you take a long rest, remove a token. While there are no tokens on this card, you make action and reaction rolls with disadvantage.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "6",
+      "recovery": null,
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-droplet"
+    },
+    "actions": {
+      "aIjaPMtGneklpOgS": {
+        "type": "effect",
+        "_id": "aIjaPMtGneklpOgS",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>On a successful \"Fangs\" attack against a creature that can bleed, you can <strong>mark a Stress</strong> to feed. Place a number of tokens on this card equal to the number of Hit Points the target marks.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": ""
+      }
+    },
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!zVXqx9HWIIhwky6I"
+}

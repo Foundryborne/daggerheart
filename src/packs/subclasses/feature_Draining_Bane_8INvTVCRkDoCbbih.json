@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Draining Bane",
+  "folder": "wl9jx5leIDw9ox3R",
+  "_id": "8INvTVCRkDoCbbih",
+  "img": "icons/magic/unholy/orb-contained-pink.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When an adversary targets you or an ally within Very Close range with an attack, you can <strong>spend a Favor</strong> to <em>Drain</em> them. When you do, they must mark a Stress, and you can clear a Stress. While <em>Drained</em>, the target uses a <strong>d12</strong> instead of a d20 for attack rolls (including for advantage or disadvantage) until they fail a roll.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!8INvTVCRkDoCbbih"
+}

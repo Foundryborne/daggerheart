@@ -39,6 +39,7 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
         const homebrewKey = CONFIG.DH.SETTINGS.gameSettings.Homebrew;
         const currencySetting = game.settings.get(CONFIG.DH.id, homebrewKey).currency?.[currency] ?? null;
         const max = item?.system.quantity ?? originActor.system.gold[currency] ?? 0;
+        const isQuantifiable = targetActor.system.metadata.quantifiable?.includes(item?.type);
 
         return {
             originActor,
@@ -46,7 +47,7 @@ export default class ItemTransferDialog extends HandlebarsApplicationMixin(Appli
             itemImage: item?.img,
             currencyIcon: currencySetting?.icon,
             max,
-            initial: targetActor.system.metadata.quantifiable?.includes(item.type) ? max : 1,
+            initial: isQuantifiable || !!currencySetting ? max : 1,
             title: item?.name ?? currencySetting?.label
         };
     }

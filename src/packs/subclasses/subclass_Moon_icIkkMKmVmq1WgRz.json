@@ -1,0 +1,40 @@
+{
+  "type": "subclass",
+  "name": "Moon",
+  "folder": "TLl4l5YXa1uJOgsz",
+  "_id": "icIkkMKmVmq1WgRz",
+  "img": "icons/magic/nature/moon-crescent.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Moon if you want to embody celestial power to amplify your magic.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": "instinct",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.YlKPNBkoSOCLm1Yo"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.KtkCySTmYjN2uXF4"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.A8VBqkOtH8gEJCvv"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.6HGlS2CvR9NBsVg5"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.HHAmaNZDicgkill5"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!icIkkMKmVmq1WgRz"
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Traveler’s Bell",
+  "type": "loot",
+  "img": "icons/tools/instruments/bell-brass-brown.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can ring this bell to magically open the shortest safe path through rough terrain for 1 hour.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "U3U0FAL95FouCQ8P": {
+        "type": "effect",
+        "_id": "U3U0FAL95FouCQ8P",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Ring Bell",
+        "range": ""
+      }
+    }
+  },
+  "_id": "FXwxp9lScDnjA1Yl",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!FXwxp9lScDnjA1Yl"
+}

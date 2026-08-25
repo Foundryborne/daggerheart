@@ -1,0 +1,29 @@
+{
+  "type": "ancestry",
+  "name": "Emberkin",
+  "folder": null,
+  "system": {
+    "loreReference": "emberkin",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Emberkin are humanoids whose bodies are made of flesh and fire.</p>",
+    "gmNotes": "",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.zmTuxjHiNDsW4VYa"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.FaHu2yAthY6ZvM2d"
+      }
+    ]
+  },
+  "_id": "moNuI4qFehGE1ZgV",
+  "img": "icons/magic/fire/elemental-fire-humanoid.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 0,
+  "_key": "!items!moNuI4qFehGE1ZgV"
+}

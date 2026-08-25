@@ -29,16 +29,6 @@ export default function ItemAttachmentSheet(Base) {
             }
         };
 
-        async _preparePartContext(partId, context) {
-            await super._preparePartContext(partId, context);
-
-            if (partId === 'attachments') {
-                context.attachedItems = await prepareAttachmentContext(this.document);
-            }
-
-            return context;
-        }
-
         async _onDrop(event) {
             const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 

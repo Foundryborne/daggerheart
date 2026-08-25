@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "lX5FtnuXaKOdRlLF",
         "systemPath": "actions",
-        "description": "<p><strong>Spend 3 Hope</strong> to force an adversary within Far range to reroll an attack or damage roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -21,7 +21,8 @@
             "key": "hope",
             "value": 3,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -37,23 +38,26 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 25,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!h3VE0jhcM5xHKBs4"
 }

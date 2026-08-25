@@ -1,7 +1,7 @@
-import AttachableItem from './attachableItem.mjs';
 import { ActionField } from '../fields/actionField.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHWeapon extends AttachableItem {
+export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -9,7 +9,8 @@ export default class DHWeapon extends AttachableItem {
             type: 'weapon',
             hasDescription: true,
             isInventoryItem: true,
-            hasActions: true
+            hasActions: true,
+            hasResource: true
         });
     }
 
@@ -66,13 +67,11 @@ export default class DHWeapon extends AttachableItem {
                         type: 'attack'
                     },
                     damage: {
-                        parts: {
-                            hitPoints: {
-                                type: ['physical'],
-                                value: {
-                                    multiplier: 'prof',
-                                    dice: 'd8'
-                                }
+                        main: {
+                            type: ['physical'],
+                            value: {
+                                multiplier: 'prof',
+                                dice: 'd8'
                             }
                         }
                     }
@@ -113,6 +112,18 @@ export default class DHWeapon extends AttachableItem {
         );
     }
 
+    get itemFeatures() {
+        return this.weaponFeatures;
+    }
+
+    get hasReload() {
+        return Boolean(this.weaponFeatures.find(x => x.value === 'reloading'));
+    }
+
+    get needsReload() {
+        return this.hasReload && this.resource.value === 0;
+    }
+
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
@@ -121,18 +132,11 @@ export default class DHWeapon extends AttachableItem {
         const features = this.weaponFeatures.map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/sheets/items/weapon/description.hbs',
-            {
-                item: this,
-                features
-            }
+            'systems/daggerheart/templates/sheets/items/description.hbs',
+            { features }
         );
 
         return { prefix, value: baseDescription, suffix: null };
-    }
-
-    prepareDerivedData() {
-        this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
     }
 
     async _preUpdate(changes, options, user) {
@@ -225,11 +229,12 @@ export default class DHWeapon extends AttachableItem {
             game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`)
         ];
 
-        for (const { value, type } of attack.damage.parts) {
+        if (attack.damage.main) {
+            const { value, type } = attack.damage.main;
             const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
             if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
-            if (type.size > 0) {
+            if (type?.size) {
                 const typeTags = Array.from(type)
                     .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
                     .join(' | ');
@@ -238,7 +243,7 @@ export default class DHWeapon extends AttachableItem {
 
             tags.push(parts.join(''));
         }
-
+        
         return tags;
     }
 
@@ -253,10 +258,10 @@ export default class DHWeapon extends AttachableItem {
         if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
-        for (const { value, type } of damage.parts) {
+        for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
             const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
 
-            const icons = Array.from(type)
+            const icons = Array.from(type ?? [])
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)
                 .filter(Boolean);
 
@@ -268,9 +273,5 @@ export default class DHWeapon extends AttachableItem {
         }
 
         return labels;
-    }
-
-    get itemFeatures() {
-        return this.weaponFeatures;
     }
 }

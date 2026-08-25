@@ -1,0 +1,540 @@
+{
+  "type": "environment",
+  "name": "Megastorm",
+  "folder": "MfrIkJK12PAEfbPL",
+  "system": {
+    "type": "event",
+    "description": "<p>An extreme weather event suddenly manifests, forcing the party to balance their own survival against the safety of others.</p>",
+    "tier": 3,
+    "impulses": "Blow hurricane winds, choke with mudslides, crumble structures, flood, throw debris, light up the sky",
+    "difficulty": 16,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "hEkx10JrH1v3FFzG": {
+        "label": "Adversaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV",
+          "Compendium.daggerheart.adversaries.Actor.tLHNONmalytgnngv"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Stormfront",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Countdown (8). When the storm arrives, activate the countdown. It ticks down when a PC rolls with Hope. When it triggers, the storm disperses or moves on to a different area.</p><section id=\"secret-Z7vvQy3iuOU8tvR3\" class=\"secret\"><p>Where is the safest place to weather the storm? What are the people here willing to risk their lives for?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "uzEK3NqCE3R3xE0P": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Stormfront",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/air/wind-tornado-funnel-damage-blue.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "8",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "uzEK3NqCE3R3xE0P",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "KudBK6FBt61ZuaCf",
+      "img": "icons/magic/air/wind-tornado-funnel-damage-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!E6xf7TTN2GeWyfv3.KudBK6FBt61ZuaCf"
+    },
+    {
+      "name": "Hazardous Conditions",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The Megastorm's extreme wind, fog, and cloud cover make navigating the entire area difficult. PCs can't move as part of an action roll without succeeding on an Agility Reaction Roll.</p><section id=\"secret-cxNkS9iRa73BLTIc\" class=\"secret\"><p>Who else lost in the gyre? How can you lead them out?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "z8NTM8n3Hc1z8VyS": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "z8NTM8n3Hc1z8VyS",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "QvkOrklI6GjzD96R",
+      "img": "icons/magic/air/wind-tornado-wall-blue.webp",
+      "effects": [
+        {
+          "name": "Hazardous Conditions",
+          "disabled": false,
+          "img": "icons/magic/air/wind-tornado-wall-blue.webp",
+          "description": "<p>PCs can't move as part of an action roll without succeeding on an Agility Reaction Roll.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.E6xf7TTN2GeWyfv3.Item.QvkOrklI6GjzD96R",
+          "_id": "St1oj5HlmKYKFYM4",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!E6xf7TTN2GeWyfv3.QvkOrklI6GjzD96R.St1oj5HlmKYKFYM4"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!E6xf7TTN2GeWyfv3.QvkOrklI6GjzD96R"
+    },
+    {
+      "name": "Bomb Cyclone",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to summon an extreme weather event, such as a thunderstorm or tornado, at a point of your choice. Each target within Close range of that point must succeed on a reaction roll using a trait you choose to avoid being pummeled by hail, thrown into the air, blasted by lightning, or a similar effect. Targets who fail take <strong>2d10+2</strong> damage of a type you choose.</p><section id=\"secret-X3Vc104ppCM1lXyl\" class=\"secret\"><p>Is this the worst weather any of the PCs have experienced? What in the immediate area can the PCs use to protect themselves?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "6ObCFnx4xbCP6VDb": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "6ObCFnx4xbCP6VDb",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Bomb Cyclone",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "YbTId6KRLXisM3sB",
+      "img": "icons/magic/air/wind-tornado-funnel-blue-grey.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!E6xf7TTN2GeWyfv3.YbTId6KRLXisM3sB"
+    },
+    {
+      "name": "Stormheart",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to reveal the living battery of the Megastorm. Summon a Storm Giant or Greater Water Elemental within Far range of a PC, then immediately spotlight them. Until this adversary is defeated, the \"Stormfront\" countdown doesn't tick down. When this adversary is defeated, the Megastorm ends.</p><section id=\"secret-SlWRKU8Q6x4AItts\" class=\"secret\"><p>Did this creature conjure the storm for their own purposes, or do they serve an even greater entity? Why did they designate this place for destruction?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "NrpLBc8WNJvCP8CM": {
+            "type": "summon",
+            "_id": "NrpLBc8WNJvCP8CM",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p><strong>Spend a Fear</strong> to reveal the living battery of the Megastorm. Summon a Storm Giant within Far range of a PC, then immediately spotlight them. Until this adversary is defeated, the \"Stormfront\" countdown doesn't tick down. When this adversary is defeated, the Megastorm ends.</p><section id=\"secret-SlWRKU8Q6x4AItts\" class=\"secret\"><p>Did this creature conjure the storm for their own purposes, or do they serve an even greater entity? Why did they designate this place for destruction?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.tLHNONmalytgnngv",
+                "count": "1"
+              }
+            ],
+            "name": "Storm Giant",
+            "range": ""
+          },
+          "g3oU6TuFtE3izvOJ": {
+            "type": "summon",
+            "_id": "g3oU6TuFtE3izvOJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p><strong>Spend a Fear</strong> to reveal the living battery of the Megastorm. Summon a Greater Water Elemental within Far range of a PC, then immediately spotlight them. Until this adversary is defeated, the \"Stormfront\" countdown doesn't tick down. When this adversary is defeated, the Megastorm ends.</p><section id=\"secret-SlWRKU8Q6x4AItts\" class=\"secret\"><p>Did this creature conjure the storm for their own purposes, or do they serve an even greater entity? Why did they designate this place for destruction?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV",
+                "count": "1"
+              }
+            ],
+            "name": "Greater Water Elemental",
+            "range": "",
+            "img": "icons/magic/water/pseudopod-swirl-blue.webp"
+          }
+        },
+        "granter": null
+      },
+      "_id": "TlX8yI5OWVmOK3cF",
+      "img": "icons/magic/lightning/orb-ball-spiral-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!E6xf7TTN2GeWyfv3.TlX8yI5OWVmOK3cF"
+    },
+    {
+      "name": "Panic in the Streets",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>The Megastorm is sowing fear and chaos among the locals. Describe how the storm puts an NPC in danger. If the PC who next takes the spotlight doesn't use their action to rescue the endangered NPC, you gain a Fear.</p><section id=\"secret-rq0SEXuKwlNrk9xG\" class=\"secret\"><p>Who's taking advantage of the situation? Who's supposed to be in charge here, and what happened to them?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "0pdHjCFHlKIvNU23",
+      "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!E6xf7TTN2GeWyfv3.0pdHjCFHlKIvNU23"
+    }
+  ],
+  "_id": "E6xf7TTN2GeWyfv3",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Megastorm",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!E6xf7TTN2GeWyfv3"
+}

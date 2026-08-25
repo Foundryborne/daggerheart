@@ -1,0 +1,29 @@
+{
+  "type": "ancestry",
+  "name": "Aetheris",
+  "folder": null,
+  "system": {
+    "loreReference": "aetheris",
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Aetheris are humanoids most easily recognized by their wings and sacred markings.</p>",
+    "gmNotes": "",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.k9hwCXpESBx326PC"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.qNoIvEtDIA8JkOiq"
+      }
+    ]
+  },
+  "_id": "MOe9Lf4CeK3FKNyL",
+  "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
+  "effects": [],
+  "flags": {},
+  "sort": 1800000,
+  "_key": "!items!MOe9Lf4CeK3FKNyL"
+}

@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Dark Army",
+  "folder": "QNE7zqvTh3VRHt1e",
+  "system": {
+    "domain": "dread",
+    "level": 8,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you can summon fiends that surround and move with you. Place 8 tokens on this card. When you deal damage to a target within Very Close range, you can spend any number of tokens to add <strong>1d8</strong> for each token spent to your damage roll. Additionally, when you take damage, you can spend any number of tokens to reduce the damage by <strong>1d8</strong> for each token spent. Each time you spend a token, a fiend acts on your behalf, then disappears.</p><p>When you take a rest, clear all unspent tokens.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "MxgSUsmCxZkMp37U",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!MxgSUsmCxZkMp37U"
+}

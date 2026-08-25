@@ -1,0 +1,59 @@
+{
+  "type": "feature",
+  "name": "Gale Force",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "hgFrDlmnPjhRUxOg",
+  "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p><strong>Mark a Stress</strong> to conjure a gust of wind that carries you or a Very Close ally up to Very Far range. Additionally, you can always control the speed at which you fall.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "3WRpmFBVS5HvCcOG": {
+        "type": "effect",
+        "_id": "3WRpmFBVS5HvCcOG",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!hgFrDlmnPjhRUxOg"
+}

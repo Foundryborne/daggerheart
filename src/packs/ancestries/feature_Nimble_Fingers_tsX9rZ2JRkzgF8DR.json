@@ -1,0 +1,59 @@
+{
+  "type": "feature",
+  "name": "Nimble Fingers",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "tsX9rZ2JRkzgF8DR",
+  "img": "icons/skills/social/peace-luck-insult.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>When you make a Finesse Roll, you can <strong>spend 2 Hope</strong> to reroll your Hope Die.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "eIaosYhBPLBmFMSr": {
+        "type": "effect",
+        "_id": "eIaosYhBPLBmFMSr",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!tsX9rZ2JRkzgF8DR"
+}

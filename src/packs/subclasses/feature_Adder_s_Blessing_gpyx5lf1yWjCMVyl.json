@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Adder's Blessing",
+  "folder": "EsyV5lospiAwVQeq",
+  "_id": "gpyx5lf1yWjCMVyl",
+  "img": "icons/creatures/reptiles/serpent-horned-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You are immune to poisons and other toxins.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!gpyx5lf1yWjCMVyl"
+}

@@ -1,0 +1,69 @@
+{
+  "type": "feature",
+  "name": "Enchanted Talisman",
+  "folder": "CsC3T8aq5ueUHWqs",
+  "_id": "4jnGL4ENGs2AR1p1",
+  "img": "icons/commodities/treasure/brooch-gold-eye-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Once per rest, you can imbue a small item with your protective essence. <strong>Spend any number of Hope</strong> to place an equal number of tokens on this card. When the person holding the talisman takes damage, spend a token to reduce the number of Hit Points they mark by one. Clear all tokens from this card when you take a rest.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": "shortRest",
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-book"
+    },
+    "actions": {
+      "oQlkWHxCs4c567Nl": {
+        "type": "effect",
+        "_id": "oQlkWHxCs4c567Nl",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!4jnGL4ENGs2AR1p1"
+}

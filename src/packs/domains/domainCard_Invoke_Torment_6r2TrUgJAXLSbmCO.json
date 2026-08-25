@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Invoke Torment",
+  "folder": "zZSPtyWjYqruXtbs",
+  "system": {
+    "domain": "dread",
+    "level": 10,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You deal double damage to targets that have all their Stress marked.</p><p>Additionally, when an adversary within Close range is defeated with all its Stress marked, you gain a Hope.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 2,
+    "type": "ability",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "6r2TrUgJAXLSbmCO",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!6r2TrUgJAXLSbmCO"
+}

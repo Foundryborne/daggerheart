@@ -1,0 +1,548 @@
+{
+  "type": "adversary",
+  "name": "Redcap Candlemaker",
+  "folder": "sxvlEwi25uAoB2C5",
+  "system": {
+    "type": "leader",
+    "description": "<p>A pale, gaunt cult leader wearing a conical red cap sealed on their head with candle wax. They wield a long rod with a candle atop it made from a hanged criminal's hand.</p>",
+    "tier": 1,
+    "motivesAndTactics": "Cast long shadows, keep out of the fray, show them the light",
+    "difficulty": 13,
+    "damageThresholds": {
+      "major": 7,
+      "severe": 13
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 6
+      },
+      "stress": {
+        "value": 0,
+        "max": 3
+      }
+    },
+    "attack": {
+      "name": "Burning Candlestick",
+      "img": "icons/sundries/lights/candle-pillar-lit-yellow.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "veryClose",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 3,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d10",
+            "bonus": 2,
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "magical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "includeBase": false,
+          "direct": false
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "DoppsDXPM1PCUXUe": {
+        "name": "Vigilance",
+        "value": 3,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "small",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "hordeHp": 1,
+    "criticalThreshold": 20
+  },
+  "items": [
+    {
+      "name": "Hand of Glory",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>When the Candlemaker appears, place 5 tokens on this stat block. Remove a token whenever the Candlemaker marks a HP. While this stat block has 1 or more tokens on it, the Candlemaker is Hidden.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": {
+          "type": "simple",
+          "value": 5,
+          "max": "5",
+          "recovery": null,
+          "progression": "decreasing",
+          "dieFaces": "d4",
+          "icon": "fa-solid fa-fire-flame-simple",
+          "diceStates": {}
+        },
+        "actions": {},
+        "granter": null
+      },
+      "_id": "ogvPI7cMbJiw9fOp",
+      "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+      "effects": [
+        {
+          "name": "Hand Of Glory",
+          "type": "base",
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "ROVFeyrE1kkZ4Vou",
+          "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>While this stat block has 1 or more tokens on it, the Candlemaker is Hidden.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [
+            "hidden"
+          ],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!YDgorr8UO4uxptAC.ogvPI7cMbJiw9fOp.ROVFeyrE1kkZ4Vou"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!YDgorr8UO4uxptAC.ogvPI7cMbJiw9fOp"
+    },
+    {
+      "name": "Torchbearer",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The light of the Candlemaker's Hand of Glory inspires bloodlust in their allies. While this stat block has 1 or more tokens on it, each Redcap adversary within Close range gains a +1 bonus to their damage rolls.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "yeQnELsceYe7UrOI": {
+            "type": "effect",
+            "_id": "yeQnELsceYe7UrOI",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Torchbearer",
+                "type": "attached",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": [
+                  "FRS0L5U1v6w72yju"
+                ]
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Activate",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "oAQweBSYwOqJ3fEx",
+      "img": "icons/magic/light/explosion-star-glow-yellow.webp",
+      "effects": [
+        {
+          "name": "Torchbearer",
+          "disabled": false,
+          "img": "icons/magic/light/explosion-star-glow-yellow.webp",
+          "description": "<p>While this stat block has 1 or more tokens on it, each Redcap adversary within Close range gains a +1 bonus to their damage rolls.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.damage.physical.bonus",
+                "type": "add",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.damage.magical.bonus",
+                "type": "add",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": [
+              -1
+            ]
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.YDgorr8UO4uxptAC.Item.oAQweBSYwOqJ3fEx",
+          "_id": "FRS0L5U1v6w72yju",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!YDgorr8UO4uxptAC.oAQweBSYwOqJ3fEx.FRS0L5U1v6w72yju"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!YDgorr8UO4uxptAC.oAQweBSYwOqJ3fEx"
+    },
+    {
+      "name": "Dance in the Flames",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>Spend a token from this stat block. The Candlemaker conjures a ball of fire on a group of PCs within Far range. Each target must make an Agility Reaction Roll. Targets who fail take <strong>2d10</strong> magic damage. Targets who succeed take half damage.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "Tjld37xVSKIL6n0Q": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "Tjld37xVSKIL6n0Q",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Reaction Roll",
+            "range": "far"
+          }
+        },
+        "granter": null
+      },
+      "_id": "tNNiTGb8aRB511zm",
+      "img": "icons/magic/fire/projectile-fireball-smoke-strong-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!YDgorr8UO4uxptAC.tNNiTGb8aRB511zm"
+    }
+  ],
+  "_id": "YDgorr8UO4uxptAC",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Redcap Candlemaker",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!YDgorr8UO4uxptAC"
+}

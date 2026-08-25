@@ -9,7 +9,6 @@ import { itemAbleRollParse } from '../../helpers/utils.mjs';
 export class ActionCollection extends Collection {
     constructor(model, entries) {
         super();
-        this.#model = model;
         for (const [key, value] of entries) {
             if (!(value instanceof game.system.api.models.actions.actionsTypes.base)) continue;
             this.set(key, value);
@@ -18,14 +17,6 @@ export class ActionCollection extends Collection {
 
     /* -------------------------------------------- */
     /*  Properties                                  */
-    /* -------------------------------------------- */
-
-    /**
-     * The parent DataModel to which this ActionCollection belongs.
-     * @type {DataModel}
-     */
-    #model;
-
     /* -------------------------------------------- */
 
     /* -------------------------------------------- */
@@ -190,6 +181,8 @@ export function ActionMixin(Base) {
             const { parent, renderSheet } = operation;
             let { type } = data;
             if (!type || !game.system.api.models.actions.actionsTypes[type]) {
+                const types = CONFIG.DH.ACTIONS.actionTypes;
+
                 ({ type } =
                     (await foundry.applications.api.DialogV2.input({
                         window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
@@ -198,7 +191,7 @@ export function ActionMixin(Base) {
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',
                             {
-                                types: CONFIG.DH.ACTIONS.actionTypes,
+                                types: types,
                                 itemName: parent.parent?.name
                             }
                         ),
@@ -232,12 +225,13 @@ export function ActionMixin(Base) {
             const isSetting = !this.parent.parent;
             const basePath = isSetting ? this.systemPath : `system.${this.systemPath}`;
             const path = this.inCollection ? `${basePath}.${this.id}` : basePath;
-            let result = null;
+            let result;
             if (isSetting) {
                 await this.parent.updateSource({ [path]: updates }, options);
                 result = this.parent;
             } else {
                 result = await this.item.update({ [path]: updates }, options);
+                if (!result) return result;
             }
 
             return this.inCollection
@@ -269,10 +263,7 @@ export function ActionMixin(Base) {
             return this.delete();
         }
 
-        async toChat(origin) {
-            const autoExpandDescription = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-                .expandRollMessage?.desc;
-
+        async toChat(origin, config) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
@@ -282,7 +273,7 @@ export function ActionMixin(Base) {
                     img: this.baseAction ? this.parent.parent.img : this.img,
                     tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'],
                     areas: this.areas,
-                    summon: this.summon
+                    summon: config?.summonData
                 },
                 source: {
                     actor: this.actor.uuid,
@@ -307,7 +298,7 @@ export function ActionMixin(Base) {
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/ui/chat/action.hbs',
-                    { ...systemData, open: autoExpandDescription ? 'open' : '' }
+                    systemData
                 ),
                 flags: {
                     daggerheart: {

@@ -1,0 +1,562 @@
+{
+  "type": "environment",
+  "name": "Corrupted Swamp",
+  "folder": "GQ0VnOLrKBIHR6Us",
+  "system": {
+    "type": "traversal",
+    "description": "<p>A wretched stretch of slimy water, toxic creatures, and decay.</p>",
+    "tier": 1,
+    "impulses": "Corrupt, emphasize putrescence, reveal the twisted and unnatural, sicken",
+    "difficulty": 11,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {},
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Swamp Sickness",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>At the end of a long rest, each PC must succeed on a Strength Reaction Roll or gain a <strong>d4</strong> Sickened Die, starting with the 1 value facing up. If a PC fails this roll and already has a Sickened Die, they increase the value by 1, to a maximum value of 4. A PC with a Sickened Die gains a penalty to their action rolls equal to its value. When a PC with a Sickened Die would clear a HP, they can decrease the value of their Sickened Die by 1 instead. When the die's value would fall to 0, remove it.</p><section id=\"secret-0rEh56Q5yIPEezl9\" class=\"secret\"><p>Is the swamp teeming with life, filled with decay, or both? What force blighted this swamp, and what signs of its origins remain?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "jRYlc0HNaTK08pPA": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "jRYlc0HNaTK08pPA",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "9OrnpwDvVwqKJ7ET",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "jntVV9Ceu7BuoE3D",
+      "img": "icons/skills/wounds/blood-cells-disease-green.webp",
+      "effects": [
+        {
+          "name": "Sickened",
+          "disabled": false,
+          "img": "icons/skills/wounds/blood-cells-disease-green.webp",
+          "description": "<p>A PC with a Sickened Die gains a penalty to their action rolls equal to its value. When a PC with a Sickened Die would clear a HP, they can decrease the value of their Sickened Die by 1 instead. When the die's value would fall to 0, remove it.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.roll.action.bonus",
+                "type": "add",
+                "value": "@stacks",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": {
+              "value": 1,
+              "max": 4
+            },
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.dOlH1waNE5Jb5ZEj.Item.jntVV9Ceu7BuoE3D",
+          "_id": "9OrnpwDvVwqKJ7ET",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!dOlH1waNE5Jb5ZEj.jntVV9Ceu7BuoE3D.9OrnpwDvVwqKJ7ET"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!dOlH1waNE5Jb5ZEj.jntVV9Ceu7BuoE3D"
+    },
+    {
+      "name": "Soggy and Slogging It",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>When a PC moves as part of an action, they can only move up to Very Close range. Action rolls made to move farther than Very Close range have disadvantage. Before rolling, a PC can mark a Stress to remove this disadvantage.</p><section id=\"secret-AYuhCKsgUawC3y2Z\" class=\"secret\"><p>What creatures, living or otherwise, lurk beneath the water's murky surface? Where or how do the PCs find relief from the stinking water?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "mzDcuIaFMB3b5sQp": {
+            "type": "effect",
+            "_id": "mzDcuIaFMB3b5sQp",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "f2j8t8ARlxNArOHL",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply Soggy",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "qRNnIdS36yJxR2qN",
+      "img": "icons/magic/water/water-drop-swirl-blue.webp",
+      "effects": [
+        {
+          "name": "Soggy",
+          "disabled": false,
+          "img": "icons/magic/water/water-drop-swirl-blue.webp",
+          "description": "<p>When a PC moves as part of an action, they can only move up to Very Close range. Action rolls made to move farther than Very Close range have disadvantage. Before rolling, a PC can mark a Stress to remove this disadvantage.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.disadvantageSources",
+                "type": "add",
+                "value": "Action rolls made to move farther than Very Close range",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.dOlH1waNE5Jb5ZEj.Item.qRNnIdS36yJxR2qN",
+          "_id": "f2j8t8ARlxNArOHL",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!dOlH1waNE5Jb5ZEj.qRNnIdS36yJxR2qN.f2j8t8ARlxNArOHL"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!dOlH1waNE5Jb5ZEj.qRNnIdS36yJxR2qN"
+    },
+    {
+      "name": "Rotbloom",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p><strong>Spend a Fear</strong> to dust an area within Far range in noxious pollen. Each target in that area must succeed on a Strength or Instinct Reaction Roll or take <strong>1d6+3</strong> magic damage and become <em>Vulnerable</em> until the end of the scene.</p><section id=\"secret-j3dV4Lf89omLh4Y8\" class=\"secret\"><p>How can you tell the plants that emit this pollen are carnivorous? What nightmares or dreamscapes does the pollen's scent conjure?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "thFnRvx9r3I9jFc9": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "thFnRvx9r3I9jFc9",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "bmOIoONPXehkUJeH",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "far"
+          }
+        },
+        "granter": null
+      },
+      "_id": "JakHh4vcOL94tVgk",
+      "img": "icons/magic/nature/plant-sprout-snow-green.webp",
+      "effects": [
+        {
+          "name": "Rotbloom",
+          "disabled": false,
+          "img": "icons/magic/nature/plant-sprout-snow-green.webp",
+          "description": "<p>You are <em>Vulnerable</em> until the end of the scene.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": "scene"
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.dOlH1waNE5Jb5ZEj.Item.JakHh4vcOL94tVgk",
+          "_id": "bmOIoONPXehkUJeH",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!dOlH1waNE5Jb5ZEj.JakHh4vcOL94tVgk.bmOIoONPXehkUJeH"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!dOlH1waNE5Jb5ZEj.JakHh4vcOL94tVgk"
+    },
+    {
+      "name": "Dancing Lights",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>At the start of a rest, you can <strong>spend a Fear</strong> to have floating orbs enthrall the weary and lure a PC deeper into the swamp. A different PC can use a downtime move to make an action roll to search for them. On a success, both PCs return to camp and can choose downtime moves as normal. On a failure—or if no one searches for them—the lost PC returns hours later, covered in mud and worse, and can't choose downtime moves until their next rest.</p><section id=\"secret-okd5IeEliPFRKJ0j\" class=\"secret\"><p>What does the lost PC see in the lights that draws them into the darkness? What other glimpses of surprising beauty do the PCs encounter here?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "AMgAmJMcmpeb3DVm": {
+            "type": "effect",
+            "_id": "AMgAmJMcmpeb3DVm",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "d1MwntqkY2eED0jm",
+      "img": "icons/magic/light/projectile-smoke-blue-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!dOlH1waNE5Jb5ZEj.d1MwntqkY2eED0jm"
+    }
+  ],
+  "_id": "dOlH1waNE5Jb5ZEj",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Corrupted Swamp",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!dOlH1waNE5Jb5ZEj"
+}

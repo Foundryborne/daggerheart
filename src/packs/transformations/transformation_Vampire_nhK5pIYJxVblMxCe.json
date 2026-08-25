@@ -1,0 +1,25 @@
+{
+  "name": "Vampire",
+  "type": "transformation",
+  "_id": "nhK5pIYJxVblMxCe",
+  "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "<p>Vampires are undead creatures with sharp fangs who feed on the blood of the living. They aren't born, but created—sired by another vampire through a bite and exchange of blood, transformed through an occult ritual, or changed through other mysterious methods. Because those who become vampires die and come back as supernatural entities, they must consume the blood—the life essence—of others to survive.</p><p>At first glance, many vampires are indistinguishable from typical members of their ancestry. Beyond their telltale fangs, they can be affected by their vampirism in myriad subtle or conspicuous ways, displaying traits such as sallow skin, visible veins, eyes that shine in the dark, or, in some cases, enhanced beauty. Depending on the nature of their vampiric origin, individuals may stop aging at the time of their transformation and remain vibrant and powerful long after their cohorts have succumbed to the ravages of time. No matter their appearance, all vampires possess enhanced abilities that can result in a terrifying end for their targets.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.transformations.Item.ohtlJOWsGtPumnt3",
+      "Compendium.daggerheart.transformations.Item.zVXqx9HWIIhwky6I"
+    ],
+    "questions": "<ul><li><p>Who did you have to leave behind when you became a vampire, and why was it so hard to let them go?</p></li><li><p>You once killed an innocent for their blood. What characteristic of theirs do you notice most in others?</p></li><li><p>What does your vampirisim make you particularly vulnerable to?</p></li><li><p>Who were you able to save using your vampiric power? What happened, and how do they feel about you now?</p></li><li><p>How does your hunger for blood change you?</p></li><li><p>The vampire who sired you still has a hold over you. What’s their name, and what do they want you to do for them?</p></li></ul>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!nhK5pIYJxVblMxCe"
+}

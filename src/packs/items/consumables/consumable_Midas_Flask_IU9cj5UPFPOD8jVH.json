@@ -1,0 +1,61 @@
+{
+  "name": "Midas Flask",
+  "type": "consumable",
+  "img": "icons/consumables/potions/flask-corked-yellow-glow.webp",
+  "system": {
+    "description": "<p>You can pour this small flask of alchemical liquid over a mundane item to instantly transmute it into a handful of gold.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 58,
+      "artist": ""
+    },
+    "consumeOnUse": true,
+    "gmNotes": "",
+    "actions": {
+      "x95WATbyPt8gmmHT": {
+        "type": "effect",
+        "_id": "x95WATbyPt8gmmHT",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "IU9cj5UPFPOD8jVH",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Pour",
+        "range": ""
+      }
+    }
+  },
+  "_id": "IU9cj5UPFPOD8jVH",
+  "effects": [],
+  "folder": null,
+  "sort": 3800000,
+  "flags": {},
+  "_key": "!items!IU9cj5UPFPOD8jVH"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Blackwing Quill",
+  "type": "loot",
+  "img": "icons/tools/scribal/ink-quill-pink.webp",
+  "system": {
+    "description": "<p>This writing quill never runs out of ink or needs to be sharpened.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "TjB0iNuD9IDZhCOu",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!TjB0iNuD9IDZhCOu"
+}

@@ -22,12 +22,12 @@ export class DhCompanionLevelup extends foundry.abstract.DataModel {
                     const initialAchievements = i === tier.levels.start ? tier.initialAchievements : {};
                     const experiences = initialAchievements.experience
                         ? [...Array(initialAchievements.experience.nr).keys()].reduce((acc, _) => {
-                              acc[foundry.utils.randomID()] = {
-                                  name: '',
-                                  modifier: initialAchievements.experience.modifier
-                              };
-                              return acc;
-                          }, {})
+                            acc[foundry.utils.randomID()] = {
+                                name: '',
+                                modifier: initialAchievements.experience.modifier
+                            };
+                            return acc;
+                        }, {})
                         : {};
 
                     const currentChoices = pcLevelData.levelups[i]?.selections?.length;
@@ -302,9 +302,9 @@ export class DhLevelupLevel extends foundry.abstract.DataModel {
                 experiences: levelData.achievements?.experiences ?? achievements.experiences ?? {},
                 domainCards: levelData.achievements?.domainCards
                     ? levelData.achievements.domainCards.reduce((acc, card, index) => {
-                          acc[index] = { ...card };
-                          return acc;
-                      }, {})
+                        acc[index] = { ...card };
+                        return acc;
+                    }, {})
                     : (achievements.domainCards ?? {}),
                 proficiency: levelData.achievements?.proficiency ?? achievements.proficiency ?? null
             },

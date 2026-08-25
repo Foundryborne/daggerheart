@@ -1,0 +1,22 @@
+{
+  "name": "Silee’s Folding Knife",
+  "type": "loot",
+  "img": "icons/weapons/daggers/knife-engraved-black.webp",
+  "system": {
+    "description": "<p>This 3-inch blade has an edge that easily cuts through anything except the handle it's stored in.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "xwZiqqwNYUJMiWjZ",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!xwZiqqwNYUJMiWjZ"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Self-Tying Rope",
+  "type": "loot",
+  "img": "icons/sundries/survival/rope-wrapped-purple.webp",
+  "system": {
+    "description": "<p>You can command this rope to tie or untie itself.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "7xDQMVBapm45BrcP",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!7xDQMVBapm45BrcP"
+}

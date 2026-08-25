@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Backstab",
+  "folder": "EsyV5lospiAwVQeq",
+  "_id": "1x1EBrNOPdlWhIAZ",
+  "img": "icons/magic/death/weapon-scythe-rune-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Your \"Marked for Death\" feature uses <strong>d8s</strong> instead of d6s.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!1x1EBrNOPdlWhIAZ"
+}

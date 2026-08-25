@@ -9,12 +9,13 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
  * @extends ApplicationV2
  * @mixes HandlebarsApplication
  */
-
 export default class DhCountdowns extends HandlebarsApplicationMixin(ApplicationV2) {
+    previousCountdownData = null;
+
     constructor(options = {}) {
         super(options);
-
-        this.setupHooks();
+        this.previousCountdownData = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns).countdowns;
     }
 
     /** @inheritDoc */
@@ -32,6 +33,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleViewMode: DhCountdowns.#onToggleViewMode,
+            toggleCountdownTypes: DhCountdowns.#onToggleCountdownTypes,
             editCountdowns: DhCountdowns.#onEditCountdowns,
             loopCountdown: DhCountdowns.#onLoopCountdown,
             decreaseCountdown: (_, target) => this.editCountdown(false, target),
@@ -48,11 +50,21 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     static PARTS = {
         resources: {
             root: true,
-            template: 'systems/daggerheart/templates/ui/countdowns.hbs'
+            template: 'systems/daggerheart/templates/ui/countdowns/countdowns-view.hbs',
+            scrollable: ['.countdowns-container']
         }
     };
 
-    /**@inheritdoc */
+    /** 
+     * Returns all visible countdown types
+     * @returns {string[]}
+     */
+    get visibleCountdownTypes() {
+        const { encounter, narrative, misc } = CONFIG.DH.GENERAL.countdownTypes;
+        return game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes) 
+            ?? [encounter.id, narrative.id, misc];
+    }
+
     async _renderFrame(options) {
         const frame = await super._renderFrame(options);
 
@@ -65,15 +77,110 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return frame;
     }
 
+    /** @inheritdoc */
+    async _onFirstRender(context, options) {
+        await super._onFirstRender(context, options);
+        this._createContextMenu(this._getCountdownContextOptions, '.countdown-container[data-countdown]', {
+            parentClassHooks: false, fixed: true
+        });
+    }
+    
+    /** @inheritdoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        /* Handle rendering/hiding/positioning of the countdown UI */
+        this.element.hidden = !game.user.isGM && this.#getCountdowns().length === 0;
+        if (options?.force) {
+            document.getElementById('ui-right-column-1')?.appendChild(this.element);
+        }
+
+        this.previousCountdownData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
+            .countdowns;
+
+        /* Handle animations to draw attention to countdown values changing */
+        const typesToAnimate = new Set();
+        for (const countdownKey of options.animate ?? []) {
+            const shimmerAnimation = [
+                { backgroundPositionX: '98%' },
+                { backgroundPositionX: '0%' }
+            ];
+            const shimmerTiming = {
+                duration: 1000,
+                iterations: 1
+            };
+
+            const element = this.element.querySelector(`.countdown-container[data-countdown="${countdownKey}"]`);
+            element?.animate(shimmerAnimation, shimmerTiming);
+
+            const countdown = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns)
+                .countdowns[countdownKey];
+            if (!this.visibleCountdownTypes.includes(countdown?.type)) 
+                typesToAnimate.add(countdown.type);
+        }
+
+        for (const type of typesToAnimate) {
+            const pulseAnimation = [
+                { boxShadow: '0 0 1px 1px var(--golden)' },
+                { boxShadow: '0 0 2px 2px var(--golden)' }
+            ];
+            const pulseTiming = {
+                duration: 1000,
+                iterations: 3
+            };
+
+            const element = this.element.querySelector(`.header-type-toggles .header-type[data-type="${type}"]`);
+            element?.animate(pulseAnimation, pulseTiming);
+        }
+    }
+
     /** Returns countdown data filtered by ownership */
     #getCountdowns() {
         const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const values = Object.entries(setting.countdowns).map(([key, countdown]) => ({
             key,
             countdown,
-            ownership: DhCountdowns.#getPlayerOwnership(game.user, setting, countdown)
+            ownership: countdown.getUserLevel(game.user),
+            hidden: countdown.hidden,
+            visible: countdown.visible
         }));
-        return values.filter(v => v.ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE);
+        return values.filter(v => v.visible);
+    }
+
+    #prepareCountdownData() {
+        return this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
+            const countdownEditable = game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+            const isLooping = countdown.progress.looping !== CONFIG.DH.GENERAL.countdownLoopingTypes.noLooping;
+            const loopTooltip = isLooping
+                ? countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
+                    ? 'DAGGERHEART.UI.Countdowns.increasingLoop'
+                    : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
+                        ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
+                        : 'DAGGERHEART.UI.Countdowns.loop'
+                : null;
+            const loopDisabled =
+                !countdownEditable ||
+                (isLooping && (countdown.progress.current > 0 || countdown.progress.start === '0'));
+
+            const playersCountdownIsVisibleTo = game.users.filter(x => 
+                !x.isGM && (!countdown.hidden || countdown.ownership[x.id] > CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE));
+            const visiblePlayersText = playersCountdownIsVisibleTo.length
+                ? game.i18n.getListFormatter({ style: 'narrow' }).format(playersCountdownIsVisibleTo.map(u => u.name))
+                : null;
+
+            acc[countdown.type][key] = {
+                ...countdown,
+                editable: countdownEditable,
+                visiblePlayersText,
+                shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.start > 0,
+                loopDisabled: isLooping ? loopDisabled : null,
+                loopTooltip: isLooping && game.i18n.localize(loopTooltip)
+            };
+            return acc;
+        }, Object.keys(CONFIG.DH.GENERAL.countdownTypes).reduce((acc, key) => {
+            acc[key] = {};
+            return acc;
+        }, {}));
     }
 
     /** @override */
@@ -82,58 +189,30 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         context.isGM = game.user.isGM;
 
         context.iconOnly =
-            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) ===
-            CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
-        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-        context.countdowns = this.#getCountdowns().reduce((acc, { key, countdown, ownership }) => {
-            const playersWithAccess = game.users.reduce((acc, user) => {
-                const ownership = DhCountdowns.#getPlayerOwnership(user, setting, countdown);
-                if (!user.isGM && ownership && ownership !== CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
-                    acc.push(user);
-                }
-                return acc;
-            }, []);
-            const nonGmPlayers = game.users.filter(x => !x.isGM);
+            game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode) 
+            === CONFIG.DH.GENERAL.countdownAppMode.iconOnly;
 
-            const countdownEditable = game.user.isGM || ownership === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
-            const isLooping = countdown.progress.looping !== CONFIG.DH.GENERAL.countdownLoopingTypes.noLooping;
-            const loopTooltip = isLooping
-                ? countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
-                    ? 'DAGGERHEART.UI.Countdowns.increasingLoop'
-                    : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                      ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
-                      : 'DAGGERHEART.UI.Countdowns.loop'
-                : null;
-            const loopDisabled =
-                !countdownEditable ||
-                (isLooping && (countdown.progress.current > 0 || countdown.progress.start === '0'));
+        context.userCountdownTypes = this.visibleCountdownTypes;
 
-            acc[key] = {
-                ...countdown,
-                editable: countdownEditable,
-                noPlayerAccess: nonGmPlayers.length && playersWithAccess.length === 0,
-                shouldLoop: isLooping && countdown.progress.current === 0 && countdown.progress.start > 0,
-                loopDisabled: isLooping ? loopDisabled : null,
-                loopTooltip: isLooping && game.i18n.localize(loopTooltip)
-            };
+        context.typeToggles = Object.values(CONFIG.DH.GENERAL.countdownTypes).map(type => ({
+            type: type.id,
+            label: _loc(type.label),
+            shortLabel: _loc(type.shortLabel),
+            icon: type.icon,
+            active: context.userCountdownTypes.includes(type.id)
+        }));
+
+        context.countdowns = this.#prepareCountdownData();
+        context.countdownTypesWithVisibleEntries = this.#getCountdowns().reduce((acc, data) => {
+            if (context.userCountdownTypes.includes(data.countdown.type) && !acc.includes(data.countdown.type)) 
+                acc.push(data.countdown.type);
+
             return acc;
-        }, {});
+        }, []);
+        
 
         return context;
     }
-
-    static #getPlayerOwnership(user, setting, countdown) {
-        if (user.isGM) return CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
-
-        const playerOwnership = countdown.ownership[user.id];
-        return playerOwnership === undefined || playerOwnership === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
-            ? setting.defaultOwnership
-            : playerOwnership;
-    }
-
-    cooldownRefresh = ({ refreshType }) => {
-        if (refreshType === RefreshType.Countdown) this.render();
-    };
 
     static canPerformEdit() {
         if (game.user.isGM) return true;
@@ -147,6 +226,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         return true;
     }
 
+    /** @this {DhCountdowns} */
     static async #onToggleViewMode() {
         const currentMode = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownMode);
         const appMode = CONFIG.DH.GENERAL.countdownAppMode;
@@ -158,10 +238,24 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
+    /** @this {DhCountdowns} */
+    static async #onToggleCountdownTypes(event, target) {
+        const currentTypes = this.visibleCountdownTypes;
+        const { type } = target.dataset;
+        const newTypes = event.shiftKey ? 
+            [type] : 
+            currentTypes.includes(type) ? currentTypes.filter(x => x !== type) : [...currentTypes, type];
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.countdownTypeModes, newTypes);
+
+        this.render();
+    }
+
+    /** @this {DhCountdowns} */
     static async #onEditCountdowns() {
         new game.system.api.applications.ui.CountdownEdit().render(true);
     }
 
+    /** @this {DhCountdowns} */
     static async #onLoopCountdown(_, target) {
         if (!DhCountdowns.canPerformEdit()) return;
 
@@ -181,8 +275,8 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
             countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
                 ? Number(progressMax) + 1
                 : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                  ? Math.max(Number(progressMax) - 1, 0)
-                  : progressMax;
+                    ? Math.max(Number(progressMax) - 1, 0)
+                    : progressMax;
 
         await waitForDiceSoNice(message);
         await settings.updateSource({
@@ -212,23 +306,17 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
     }
 
     static async gmSetSetting(data) {
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data),
-            game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: { refreshType: RefreshType.Countdown }
-            });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
-    }
-
-    setupHooks() {
-        Hooks.on(socketEvent.Refresh, this.cooldownRefresh.bind());
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: { refreshType: RefreshType.Countdown }
+        });
     }
 
     async close(options) {
         /* Opt out of Foundry's standard behavior of closing all application windows marked as UI when Escape is pressed */
         if (options.closeKey) return;
 
-        Hooks.off(socketEvent.Refresh, this.cooldownRefresh);
         return super.close(options);
     }
 
@@ -236,29 +324,31 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      * Sends updates of the countdowns to the GM player. Since this is asynchronous, be sure to
      * update all the countdowns at the same time.
      *
-     * @param  {...any} progressTypes Countdowns to be updated
+     * @param  {...(string | { type: string; undo?: boolean })} progressTypes Countdowns to be updated
      */
     static async updateCountdowns(...progressTypes) {
+        progressTypes = progressTypes.map(p => typeof p === 'string' ? { type: p } : p);
         const { countdownAutomation } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
         if (!countdownAutomation) return;
 
         const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         const updatedCountdowns = Object.keys(countdownSetting.countdowns).reduce((acc, key) => {
             const countdown = countdownSetting.countdowns[key];
-            if (progressTypes.indexOf(countdown.progress.type) !== -1 && countdown.progress.current > 0) {
-                acc.push(key);
+            const progressData = progressTypes.find(x => x.type === countdown.progress.type);
+            if (progressData && countdown.progress.current > 0) {
+                acc[key] = { value: progressData.undo ? 1 : -1 };
             }
 
             return acc;
-        }, []);
+        }, {});
 
         const countdownData = countdownSetting.toObject();
         const settings = {
             ...countdownData,
             countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
                 const countdown = foundry.utils.deepClone(countdownData.countdowns[key]);
-                if (updatedCountdowns.includes(key)) {
-                    countdown.progress.current -= 1;
+                if (updatedCountdowns[key]) {
+                    countdown.progress.current += updatedCountdowns[key].value;
                 }
 
                 acc[key] = countdown;
@@ -270,11 +360,49 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
         });
     }
 
-    async _onRender(context, options) {
-        await super._onRender(context, options);
-        this.element.hidden = !game.user.isGM && this.#getCountdowns().length === 0;
-        if (options?.force) {
-            document.getElementById('ui-right-column-1')?.appendChild(this.element);
+    /**
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]}
+     */
+    _getCountdownContextOptions() {
+        /** @param {HTMLElement} element */
+        const getCountdownFromElement = element => {
+            const id = element.closest('[data-countdown]').dataset.countdown;
+            if (!id) return null;
+            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+            return setting.countdowns[id ?? ''];
         }
+
+        return [
+            {
+                label: 'DAGGERHEART.UI.Countdowns.reveal',
+                icon: 'fa-solid fa-eye',
+                visible: element => {
+                    return game.user.isGM && getCountdownFromElement(element).hidden
+                },
+                onClick: (_, target) => {
+                    getCountdownFromElement(target)?.toggleVisibility();
+                }
+            },
+            {
+                label: 'DAGGERHEART.UI.Countdowns.hide',
+                icon: 'fa-solid fa-eye-slash',
+                visible: element => {
+                    return game.user.isGM && !getCountdownFromElement(element).hidden
+                },
+                onClick: (_, target) => {
+                    getCountdownFromElement(target)?.toggleVisibility();
+                }
+            },
+            {
+                label: 'CONTROLS.CommonDelete',
+                icon: 'fa-solid fa-trash',
+                visible: element => {
+                    return getCountdownFromElement(element)?.isOwner;
+                },
+                onClick: (_, target) => {
+                    getCountdownFromElement(target)?.delete();
+                }
+            }
+        ];
     }
 }

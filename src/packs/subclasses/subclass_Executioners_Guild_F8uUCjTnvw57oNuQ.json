@@ -1,0 +1,48 @@
+{
+  "type": "subclass",
+  "name": "Executioners Guild",
+  "folder": "pWb9BPbxzAMecprJ",
+  "_id": "F8uUCjTnvw57oNuQ",
+  "img": "icons/skills/melee/strike-dagger-blood-red.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>Play the Executioners Guild if you want to strike down your targets with lethal precision.</p>",
+    "gmNotes": "",
+    "spellcastingTrait": "agility",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.CapfuUdLhzqer78i"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.WkrwX3w8K4wLpaY8"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.hdy7nz7hnYkN0tGF"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.lg7f25bLIJWWLOcB"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.D0Kno09So9aRO2Lf"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.1x1EBrNOPdlWhIAZ"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false,
+    "linkedClass": "Compendium.daggerheart.classes.Item.0EFzupppM47Bl6Yw"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!F8uUCjTnvw57oNuQ"
+}

@@ -67,19 +67,19 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 break;
             case 'summary':
                 const levelKeys = Object.keys(this.levelup.levels);
-                const actorDamageDice = this.actor.system.attack.damage.parts.hitPoints.value.dice;
+                const actorDamageDice = this.actor.system.attack.damage.main.value.dice;
                 const actorRange = this.actor.system.attack.range;
 
                 let achievementExperiences = [];
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
                     achievementExperiences = level.achievements.experiences
                         ? Object.values(level.achievements.experiences).reduce((acc, experience) => {
-                              if (experience.name) acc.push(experience);
-                              return acc;
-                          }, [])
+                            if (experience.name) acc.push(experience);
+                            return acc;
+                        }, [])
                         : [];
                 }
                 context.achievements = {
@@ -92,13 +92,13 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 context.achievements = context.achievements.experiences.shown ? context.achievements : undefined;
 
                 const advancement = {};
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
-                    for (var choiceKey of Object.keys(level.choices)) {
+                    for (const choiceKey of Object.keys(level.choices)) {
                         const choice = level.choices[choiceKey];
-                        for (var checkbox of Object.values(choice)) {
+                        for (const checkbox of Object.values(choice)) {
                             switch (choiceKey) {
                                 case 'stress':
                                 case 'evasion':
@@ -127,6 +127,7 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                                         : actorKey;
                                     advancement[choiceKey][checkbox.data[0]] =
                                         options[keys[Math.min(currentIndex + 1, keys.length - 1)]];
+                                    break;
                                 default:
                                     if (!advancement.simple) advancement.simple = {};
                                     advancement.simple[choiceKey] = game.i18n.localize(
@@ -155,15 +156,15 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                     vicious: {
                         damage: advancement.vicious?.damage
                             ? {
-                                  old: actorDamageDice,
-                                  new: advancement.vicious.damage
-                              }
+                                old: actorDamageDice,
+                                new: advancement.vicious.damage
+                            }
                             : null,
                         range: advancement.vicious?.range
                             ? {
-                                  old: game.i18n.localize(`DAGGERHEART.CONFIG.Range.${actorRange}.name`),
-                                  new: game.i18n.localize(advancement.vicious.range.label)
-                              }
+                                old: game.i18n.localize(`DAGGERHEART.CONFIG.Range.${actorRange}.name`),
+                                new: game.i18n.localize(advancement.vicious.range.label)
+                            }
                             : null
                     },
                     simple: advancement.simple ?? {}

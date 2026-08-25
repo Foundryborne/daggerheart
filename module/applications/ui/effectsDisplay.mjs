@@ -39,6 +39,12 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         }
     };
 
+    /**
+     * Debounce and slightly delayed request to re-render this panel. Necessary for situations where it is not possible
+     * to properly wait for promises to resolve before refreshing the UI.
+     */
+    refresh = foundry.utils.debounce(this.render.bind(this), 50);
+
     get element() {
         return document.body.querySelector('.daggerheart.dh-style.effects-display');
     }
@@ -64,13 +70,14 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
     }
 
     static getTokenEffects = token => {
+        const controlledTokens = canvas.tokens?.controlled ?? [];
         const actor = token
             ? token.actor
-            : canvas.tokens.controlled.length === 0
-              ? !game.user.isGM
-                  ? game.user.character
-                  : null
-              : canvas.tokens.controlled[0].actor;
+            : controlledTokens.length === 0
+                ? !game.user.isGM
+                    ? game.user.character
+                    : null
+                : controlledTokens[0]?.actor;
         return getIconVisibleActiveEffects(actor?.getActiveEffects() ?? []);
     };
 
@@ -124,5 +131,7 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         if (options?.force) {
             document.getElementById('ui-right-column-1')?.appendChild(this.element);
         }
+
+        ui.resources.handleOffset();
     }
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "kj3gwg5bmCqwFYze",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
+    "description": "<p>When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "h9odg7Tk94O0M5l1",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,17 +23,19 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -62,14 +64,26 @@
         },
         "name": "Roll d6",
         "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 134,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "JwfhtgmmuRxg4zhI",
@@ -79,34 +93,32 @@
       "name": "Shrug It Off",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.stressDamageReduction.any.cost",
+            "type": "override",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "5DTQDVU8Jy5Nnp5V",
       "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
-      "changes": [
-        {
-          "key": "system.rules.damageReduction.stressDamageReduction.any.cost",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
+      "description": "<p>When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -116,11 +128,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JwfhtgmmuRxg4zhI.5DTQDVU8Jy5Nnp5V"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!JwfhtgmmuRxg4zhI"
 }

@@ -11,9 +11,10 @@
             <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
         </div>
         <div class="nest-inputs">
-            {{formField ../fields.type value=area.type name=(concat "areas." index ".type") localize=true}}
-            {{formField ../fields.shape value=area.shape name=(concat "areas." index ".shape") localize=true}}
-            {{formField ../fields.size value=area.size name=(concat "areas." index ".size") localize=true}}
+            {{formField ../fields.type value=area.type name=(concat "areas." index ".type") localize=true blank=false}}
+            {{formField ../fields.shape value=area.shape name=(concat "areas." index ".shape") localize=true blank=false}}
+            {{formField ../fields.size value=area.size name=(concat "areas." index ".size") localize=true blank=false}}
+            {{formField ../fields.hasHole value=area.hasHole name=(concat "areas." index ".hasHole") localize=true classes="auto-sized" }}
         </div>
 
         <div class="sub-section-header">

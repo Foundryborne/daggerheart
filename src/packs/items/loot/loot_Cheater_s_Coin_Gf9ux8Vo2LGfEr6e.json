@@ -1,0 +1,60 @@
+{
+  "name": "Cheater’s Coin",
+  "type": "loot",
+  "img": "icons/commodities/currency/coin-inset-swirl-gold.webp",
+  "system": {
+    "description": "<p>When you flip this coin, you can spend a Hope to determine which side it lands on.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 55,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {
+      "UlWs1OJaoBtyhF2b": {
+        "type": "effect",
+        "_id": "UlWs1OJaoBtyhF2b",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Cheat",
+        "range": ""
+      }
+    }
+  },
+  "_id": "Gf9ux8Vo2LGfEr6e",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!Gf9ux8Vo2LGfEr6e"
+}

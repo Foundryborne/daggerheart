@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Patron's Pact",
+  "folder": "6ckQvoxhWONRq9XJ",
+  "_id": "IOWBzweDFPoAHtQW",
+  "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>You have committed yourself to a supernatural entity —such as a god, fae, or demon—in exchange for power. Write their name on your character sheet, then work with your GM to determine their sphere of influence (such as Nature, Chaos, Wisdom, Mischief, Love, War, Justice, or Death). Before making an action roll that relates to your patron's sphere of influence, you can <strong>spend a Favor</strong> to call upon their aid, rolling your Patron Die and adding its result to the total. Your Patron Die starts at a <strong>[[/r d6]]</strong> and increases to a <strong>[[/r d8]]</strong> at level 5.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!IOWBzweDFPoAHtQW"
+}

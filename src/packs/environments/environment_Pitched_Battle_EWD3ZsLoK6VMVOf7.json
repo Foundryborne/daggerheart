@@ -39,11 +39,6 @@
   "flags": {},
   "_id": "EWD3ZsLoK6VMVOf7",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Pitched Battle",
     "displayName": 0,
@@ -141,21 +136,19 @@
       "name": "Pitched Battle",
       "type": "feature",
       "system": {
-        "description": "<p>Traversing a battlefield during an active combat is extremely dangerous. A PC must succeed on an Agility Roll to move at all, and can only go up to Close range on a success. If an adversary is within Melee range of them, they must mark a Stress to make an Agility Roll to move. </p><section id=\"secret-c0pwA8OrITyfhrCX\" class=\"secret\"><p><em>Do the combatants mistake you for the enemy or consider you interlopers? Can you tell the diff erence between friend and foe in the fray?</em></p></section>",
+        "description": "<p>Traversing a battlefield during an active combat is extremely dangerous. A PC must succeed on an Agility Roll to move at all, and can only go up to Close range on a success. If an adversary is within Melee range of them, they must mark a Stress to make an Agility Roll to move.</p><section id=\"secret-c0pwA8OrITyfhrCX\" class=\"secret\"><p><em>Do the combatants mistake you for the enemy or consider you interlopers? Can you tell the diff erence between friend and foe in the fray?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "HG9GwIZoCDcqOEOc",
       "img": "icons/skills/melee/weapons-crossed-swords-pink.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -166,22 +159,19 @@
       "name": "Raze and Pillage",
       "type": "feature",
       "system": {
-        "description": "<p>The attacking force raises the stakes by lighting a fire, stealing a valuable asset, kidnapping an important person, or killing the populace. </p><section id=\"secret-5JBRdq8QJcmurvLp\" class=\"secret\"><p><em>What is valuable here? Who is most vulnerable?</em></p></section>",
+        "description": "<p>The attacking force raises the stakes by lighting a fire, stealing a valuable asset, kidnapping an important person, or killing the populace.</p><section id=\"secret-5JBRdq8QJcmurvLp\" class=\"secret\"><p><em>What is valuable here? Who is most vulnerable?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "fnvOiHKsd34EaLqG",
       "img": "icons/magic/fire/flame-burning-building.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -199,7 +189,7 @@
             "type": "attack",
             "_id": "1giAFbu3tGqXwi8g",
             "systemPath": "actions",
-            "description": "<p><strong>Spend a Fear</strong> as a mage from one side uses large-scale destructive magic. Pick a point on the battlefield within Very Far range of the mage. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>3d12+8</strong> magic damage and must mark a Stress.</p><section id=\"secret-jbI9lwrzP59CTRUt\" class=\"secret\"><p><em>What form does the attack take—fireball raining acid a storm of blades? What tactical objective is this attack meant to accomplish and what comes next?</em></p></section>",
+            "description": "",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -207,45 +197,51 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d12",
-                    "bonus": 8,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 3,
+                  "dice": "d12",
+                  "bonus": 8,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "magical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -281,24 +277,27 @@
                 "type": "placed",
                 "shape": "circle",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "r9kkodHghWm01mje",
       "img": "icons/magic/fire/explosion-flame-lightning-strike.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -309,22 +308,19 @@
       "name": "Reinforcements",
       "type": "feature",
       "system": {
-        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight. </p><section id=\"secret-ZNhg3daBKekzABSQ\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
+        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight.</p><section id=\"secret-ZNhg3daBKekzABSQ\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "ZAIvH5CfhehW48EY",
       "img": "icons/environment/people/charge.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

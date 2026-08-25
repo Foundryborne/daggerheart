@@ -1,0 +1,417 @@
+{
+  "type": "environment",
+  "name": "Witch's Hut",
+  "folder": "XMeecO3IRvu5ck6F",
+  "system": {
+    "type": "exploration",
+    "description": "<p>A rustic, windowless hut sitting atop two huge chicken legs.</p>",
+    "tier": 2,
+    "impulses": "Creep them out, delay them until the witch's return, lock them inside, move to a different location, tempt them with magical oddities",
+    "difficulty": 14,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "potentialAdversaries": {
+      "nwm0MT2J8z6il7m9": {
+        "label": "Adversaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.pOtg2aQs8iI3GzMV",
+          "Compendium.daggerheart.adversaries.Actor.Xq00qigdsoB2b3gJ"
+        ]
+      },
+      "FZjcBiiElTEYtYKO": {
+        "label": "Enchanted Defenses",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.Nj9E7DLb7UakiKz6",
+          "Compendium.daggerheart.adversaries.Actor.lOIaoJscG3he5thc"
+        ]
+      },
+      "5KYOTYpoLTxkwK4u": {
+        "label": "The Witch's Victims",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.qhMbIUVeD7BWuRKJ",
+          "Compendium.daggerheart.adversaries.Actor.NWhnMXGWzAVUyelj"
+        ]
+      }
+    },
+    "notes": ""
+  },
+  "items": [
+    {
+      "name": "Bigger on the Inside",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Though the hut's exterior is a rustic single-room cottage, the interior is an ever-shifting estate of haunting splendor replete with numerous bedrooms, libraries, and indoor gardens, among other mysterious installations.</p><section id=\"secret-AuLFdOj4EBR4QBZk\" class=\"secret\"><p>Is there any pattern to the way the hut rearranges itself? What is the most surprising location the PCs could find here?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null
+      },
+      "_id": "bukvnYnF0f1Q3tfQ",
+      "img": "icons/magic/perception/eye-ringed-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!HnJrh1GLJfu2nBbY.bukvnYnF0f1Q3tfQ"
+    },
+    {
+      "name": "Creepy Doll Collection",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Countdown (5). Throughout the hut, the PCs can see many, many porcelain or wooden dolls with strangely lifelike eyes. When the party first enters a doll's line of sight, activate the countdown. It ticks down when a PC fails a roll or rolls with Fear. When it triggers, the dolls come to life and attack. Summon a number of living dolls (Redcap Biters) equal to twice the number of PCs.</p><section id=\"secret-kX6Wcczg4Dy60u1v\" class=\"secret\"><p>Who were these dolls before? Is there any way to free them from their imprisonment?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "6SZsaHkhQM9kp8B8": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Creepy Doll Collection",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/commodities/treasure/doll-mummy.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "5",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "6SZsaHkhQM9kp8B8",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>Countdown (5). Throughout the hut, the PCs can see many, many porcelain or wooden dolls with strangely lifelike eyes. When the party first enters a doll's line of sight, activate the countdown. It ticks down when a PC fails a roll or rolls with Fear.</p><section id=\"secret-kX6Wcczg4Dy60u1v\" class=\"secret\"><p>Who were these dolls before? Is there any way to free them from their imprisonment?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "OmV75YrfYz42hYVQ": {
+            "type": "summon",
+            "_id": "OmV75YrfYz42hYVQ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, the dolls come to life and attack. Summon a number of living dolls (Redcap Biters) equal to twice the number of PCs.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.NWhnMXGWzAVUyelj",
+                "count": "@partySize * 2"
+              }
+            ],
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "unL0gUNjgkunmigs",
+      "img": "icons/commodities/treasure/doll-mummy.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!HnJrh1GLJfu2nBbY.unL0gUNjgkunmigs"
+    },
+    {
+      "name": "Witches' Brew",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>The hut contains a workshop with every tool or component a witch could need, including a large iron cauldron set atop a smoldering fire. A PC who wants to use the workshop can make a Spellcast Roll to craft a magic potion or poison from the Consumables table.</p><ul><li><p>Any Failure: The experiment blows up in their face—literally. The PC takes <strong>2d10+2</strong> magic damage.</p></li><li><p>Any Success: The PC rolls a number of <strong>d12s</strong> equal to 1 + their tier, adds the results together, and gains the consumable that matches that value on the Consumables table. If they critically succeeded, they can reroll any <strong>d12s</strong> showing a result of 1.</p></li></ul><section id=\"secret-hqZsOVuaBLkBtNfE\" class=\"secret\"><p>What sorts of concoctions does the witch who owns this hut specialize in? What would the witch do if they found the PCs using their things?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "Mln9yYYOi5mgvgr9": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "Mln9yYYOi5mgvgr9",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "YEV1VlqmDZZaGekL",
+      "img": "icons/skills/toxins/cauldron-pot-bubbles-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!HnJrh1GLJfu2nBbY.YEV1VlqmDZZaGekL"
+    },
+    {
+      "name": "Dislocated",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "description": "<p>Time moves differently inside the Witch's Hut. When the door to the hut is closed, roll a <strong>d6</strong>. On a result of 4 or higher, the hut moves to a different—often impossibly far–location that's only revealed to the PCs when they open the hut's door again.</p><section id=\"secret-jtpKo8ZEjpN47XcJ\" class=\"secret\"><p>Why does the hut move so often? Where does it wish to bring the PCs? Is there any way to aim it at a specific location?</p></section>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "gCmwtury4k16cjhP": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "gCmwtury4k16cjhP",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": "aboveEqual",
+                "treshold": 4
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "_id": "pboCL4a49bWsrxLD",
+      "img": "icons/skills/movement/arrow-upward-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!HnJrh1GLJfu2nBbY.pboCL4a49bWsrxLD"
+    }
+  ],
+  "_id": "HnJrh1GLJfu2nBbY",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+  "prototypeToken": {
+    "name": "Witch's Hut",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!HnJrh1GLJfu2nBbY"
+}

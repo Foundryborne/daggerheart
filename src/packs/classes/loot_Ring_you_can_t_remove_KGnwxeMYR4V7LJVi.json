@@ -1,0 +1,18 @@
+{
+  "type": "loot",
+  "name": "Ring you can't remove",
+  "folder": "Vl6GJVat2bYF3bAB",
+  "_id": "KGnwxeMYR4V7LJVi",
+  "img": "icons/equipment/finger/ring-crown-gold-pink.webp",
+  "system": {
+    "attribution": {},
+    "description": "",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!KGnwxeMYR4V7LJVi"
+}

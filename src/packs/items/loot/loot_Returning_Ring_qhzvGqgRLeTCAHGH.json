@@ -1,0 +1,22 @@
+{
+  "name": "Returning Ring",
+  "type": "loot",
+  "img": "icons/equipment/finger/ring-band-engraved-teal.webp",
+  "system": {
+    "description": "<p>When you throw your primary weapon while wearing this ring, the weapon appears in your hand immediately after the attack.</p>",
+    "quantity": 1,
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": 54,
+      "artist": ""
+    },
+    "gmNotes": "",
+    "actions": {}
+  },
+  "_id": "qhzvGqgRLeTCAHGH",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!qhzvGqgRLeTCAHGH"
+}

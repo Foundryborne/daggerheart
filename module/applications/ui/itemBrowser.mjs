@@ -249,16 +249,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
         );
-        const promises = [];
-
-        game.packs.forEach(pack => {
-            promises.push(
-                new Promise(async resolve => {
-                    const items = await pack.getDocuments({ type__in: this.selectedMenu?.data?.type });
-                    resolve(items);
-                })
-            );
-        });
+        const promises = game.packs.map(pack => pack.getDocuments({ type__in: this.selectedMenu?.data?.type }));
 
         Promise.all(promises).then(async result => {
             this.items = ItemBrowser.sortBy(

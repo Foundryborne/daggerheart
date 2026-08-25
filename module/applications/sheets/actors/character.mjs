@@ -3,7 +3,7 @@ import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getArmorSources, getDocFromElement, getDocFromElementSync, sortBy } from '../../../helpers/utils.mjs';
+import { getArmorSources, getDocFromElement, getDocFromElementSync, itemAbleRollParse, sortBy } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -29,6 +29,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
             advanceResourceDie: CharacterSheet.#advanceResourceDie,
+            toggleItemReload: CharacterSheet.#onToggleItemReload,
             cancelBeastform: CharacterSheet.#cancelBeastform,
             toggleResourceManagement: CharacterSheet.#toggleResourceManagement,
             useDowntime: this.useDowntime,
@@ -356,7 +357,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             const levelups = Object.values(actor.system.levelData?.levelups) ?? [];
             const uuid = item.uuid;
-            const sourceUuid = item._stats.compendiumSource; // on older characters this may be missing
+            const sourceUuid = item.sourceUuid; // on older characters this may be missing
             return levelups.some(data => {
                 if (item.type === 'subclass') {
                     const selectedSubclasses = data.selections.map(s => s.secondaryData?.subclass).filter(s => !!s);
@@ -404,11 +405,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && doc.system.inVault;
                 },
-                onClick: async (_, target) => {
+                onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    const actorLoadout = doc.actor.system.loadoutSlot;
-                    if (actorLoadout.available) return doc.update({ 'system.inVault': false });
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+                    await doc.system.toggleVault(event, false);
                 }
             },
             {
@@ -420,34 +419,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    const actorLoadout = doc.actor.system.loadoutSlot;
-                    if (!actorLoadout.available) {
-                        ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
-                        return;
-                    }
-                    if (doc.system.recallCost == 0) {
-                        return doc.update({ 'system.inVault': false });
-                    }
-                    const type = 'effect';
-                    const cls = game.system.api.models.actions.actionsTypes[type];
-                    const action = new cls(
-                        {
-                            ...cls.getSourceConfig(doc.system),
-                            type: type,
-                            chatDisplay: false,
-                            cost: [
-                                {
-                                    key: 'stress',
-                                    value: doc.system.recallCost
-                                }
-                            ]
-                        },
-                        { parent: doc.system }
-                    );
-                    const config = await action.use(event);
-                    if (config) {
-                        return doc.update({ 'system.inVault': false });
-                    }
+                    await doc.system.toggleVault(event, false, true);
                 }
             },
             {
@@ -457,7 +429,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && !doc.system.inVault;
                 },
-                onClick: async (_, target) => (await getDocFromElement(target)).update({ 'system.inVault': true })
+                onClick: async (event, target) => {
+                    const doc = await getDocFromElement(target);
+                    await doc.system.toggleVault(event, true);
+                }
             }
         ].map(option => ({
             ...option,
@@ -785,11 +760,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
             filter:
                 key === 'subclasses'
                     ? {
-                          'system.linkedClass.uuid': {
-                              key: 'system.linkedClass.uuid',
-                              value: this.document.system.class.value?._stats.compendiumSource
-                          }
-                      }
+                        'system.linkedClass.uuid': {
+                            key: 'system.linkedClass.uuid',
+                            value: this.document.system.class.value?._stats.compendiumSource
+                        }
+                    }
                     : undefined,
             render: {
                 noFolder: true
@@ -803,13 +778,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Rolls an attribute check based on the clicked button's dataset attribute.
      * @type {ApplicationClickAction}
      */
-    static async #rollAttribute(_event, button) {
-        const result = await this.document.rollTrait(button.dataset.attribute);
+    static async #rollAttribute(event, button) {
+        const result = await this.document.rollTrait(button.dataset.attribute, { event });
         if (!result) return;
 
         /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
         const costResources =
-            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value, total: -cost.total })) ||
+            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value })) ||
             {};
         result.resourceUpdates.addResources(costResources);
         await result.resourceUpdates.updateResources();
@@ -910,14 +885,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Toggles whether an item is stored in the vault.
      * @type {ApplicationClickAction}
      */
-    static async #toggleVault(_event, button) {
+    static async #toggleVault(event, button) {
         const doc = await getDocFromElement(button);
-        const { available } = this.document.system.loadoutSlot;
-        if (doc.system.inVault && !available && !doc.system.loadoutIgnore) {
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
-        }
-
-        await doc?.update({ 'system.inVault': !doc.system.inVault });
+        if (!doc) return;
+        return await doc.system.toggleVault(event);
     }
 
     /**
@@ -954,9 +925,19 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    /** */
     static #advanceResourceDie(_, target) {
         this.updateResourceDie(target, true);
+    }
+
+    static async #onToggleItemReload(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item || !item.system.resource?.max) 
+            return;
+
+        await item.update({ 
+            'system.resource.value': item.system.needsReload ? 
+                itemAbleRollParse(item.system.resource.max, this.document, item) : 0
+        })
     }
 
     lowerResourceDie(event) {
@@ -1057,7 +1038,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             direction: 'DOWN'
         });
 
-        html.querySelectorAll('.armor-slot').forEach(element => {
+        html.querySelectorAll('.armor .slot').forEach(element => {
             element.addEventListener('click', CharacterSheet.armorSourcePipUpdate);
         });
     }
@@ -1072,12 +1053,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /** Update specific armor source */
     static async armorSourcePipUpdate(event) {
-        const target = event.target.closest('.armor-slot');
+        const target = event.target.closest('.slot');
         const { uuid, value } = target.dataset;
         const document = await foundry.utils.fromUuid(uuid);
 
         let inputValue = Number.parseInt(value);
-        let decreasing = false;
+        let decreasing;
         let newCurrent = 0;
 
         if (document.type === 'armor') {
@@ -1100,7 +1081,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
 
         const container = target.closest('.slot-bar');
-        for (const armorSlot of container.querySelectorAll('.armor-slot i')) {
+        for (const armorSlot of container.querySelectorAll('.armor .slot i')) {
             const index = Number.parseInt(armorSlot.dataset.index);
             if (decreasing && index >= newCurrent) {
                 armorSlot.classList.remove('fa-shield');
@@ -1193,15 +1174,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    /** @inheritdoc */
-    async _onDragStart(event) {
-        const inventoryItem = event.currentTarget.closest('.inventory-item');
-        if (inventoryItem) {
-            event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
-        }
-        super._onDragStart(event);
-    }
-
     async _onDropItem(event, item) {
         const setupCriticalItemTypes = ['class', 'subclass', 'ancestry', 'community'];
         if (this.document.system.needsCharacterSetup && setupCriticalItemTypes.includes(item.type)) {
@@ -1215,10 +1187,22 @@ export default class CharacterSheet extends DHBaseActorSheet {
             if (!confirmed) return;
         }
 
-        if (this.document.uuid === item.parent?.uuid) {
+        // Check for same actor drag/drop attempts
+        const isSameActor = this.document.uuid === item.parent?.uuid;
+        const loadoutFieldset = event.target.closest('[data-in-vault]');
+        const vaulting = loadoutFieldset?.dataset.inVault === 'true';
+        if (isSameActor && loadoutFieldset && item.type === 'domainCard' && vaulting !== item.system.inVault) {
+            // This is likely an attempt to vault or unvault an item
+            const { available } = this.document.system.loadoutSlot;
+            if (!vaulting && !available && !item.system.loadoutIgnore) {
+                return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
+            }
+            return item.update({ 'system.inVault': vaulting });
+        } else if (isSameActor) {
             return super._onDropItem(event, item);
         }
 
+        // Handle beastforms
         if (item.type === 'beastform') {
             if (this.document.effects.find(x => x.type === 'beastform')) {
                 return ui.notifications.warn(
@@ -1228,13 +1212,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             const itemData = item.toObject();
             const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
-            if (!data?.selectedImage) {
-                return;
-            } else if (data) {
+            if (data?.selectedImage) {
                 if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
                 else itemData.system.tokenImg = data.selectedImage;
-                return await this._onDropItemCreate(itemData);
             }
+            return await this._onDropItemCreate(itemData);
         }
 
         // If this is a type that gets deleted, delete it first (but still defer to super)

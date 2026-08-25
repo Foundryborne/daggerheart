@@ -1,0 +1,71 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Hawkguard's Mantle",
+  "type": "armor",
+  "_id": "ZZfLZ0uTzROddFoj",
+  "img": "icons/equipment/chest/breastplate-layered-gold.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart H&F",
+      "page": null,
+      "artist": ""
+    },
+    "description": "",
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1,
+    "actions": {
+      "DlCbxmVa5udw4wLA": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Gliding",
+        "description": "You can glide up to Far range and are immune to damage from falling.",
+        "img": "icons/skills/movement/arrow-upward-yellow.webp",
+        "_id": "DlCbxmVa5udw4wLA",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "tier": 2,
+    "equipped": false,
+    "armor": {
+      "current": 0,
+      "max": 4
+    },
+    "baseThresholds": {
+      "major": 9,
+      "severe": 20
+    },
+    "armorFeatures": [
+      {
+        "value": "gliding",
+        "effectIds": [],
+        "actionIds": [
+          "DlCbxmVa5udw4wLA"
+        ]
+      }
+    ]
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!ZZfLZ0uTzROddFoj"
+}

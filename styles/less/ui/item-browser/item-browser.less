@@ -256,7 +256,12 @@
             }
             .item-list-img {
                 width: 40px;
+                height: 40px;
                 flex: unset;
+                object-fit: cover;
+                // Cards use center center, however they're often wider than tall, so center/top is the same
+                // Adversaries and all other item types prefer center top
+                object-position: center top;
             }
             .item-list-name {
                 flex-grow: 3;
@@ -309,6 +314,7 @@
                 padding: 0 0 0 50px;
                 display: flex;
                 flex-direction: column;
+                .typography();
 
                 .item-description-outer-container:has(div, p) {
                     margin-top: 8px;
@@ -317,37 +323,6 @@
                 /* Some items don't include an outer container, so we attempt a catch-all */
                 > *:last-child {
                     padding-bottom: 6px;
-                }
-
-                h1 {
-                    font-size: var(--font-size-32);
-                }
-                h2 {
-                    font-size: var(--font-size-28);
-                    font-weight: 600;
-                }
-                h3 {
-                    font-size: var(--font-size-20);
-                    font-weight: 600;
-                }
-                h4 {
-                    font-size: var(--font-size-16);
-                    color: @beige;
-                    font-weight: 600;
-                }
-
-                ul,
-                ol {
-                    margin: 1rem 0;
-                    padding: 0 0 0 1.25rem;
-
-                    li {
-                        margin-bottom: 0.25rem;
-                    }
-                }
-
-                ul {
-                    list-style: disc;
                 }
             }
 

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "ZZHIbaynhzVArA1p",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card. When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within Melee range of the attacker, deal that amount of damage back to them.</p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p>",
+    "description": "<p>Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card. When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you're within Melee range of the attacker, deal that amount of damage back to them.</p><p>When you take a rest, clear all unspent tokens.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "vGgUNZMcchMsQoYb",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card.</p>",
+        "description": "<p>Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -22,13 +22,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,13 +40,19 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/nature/thorns-hand-glow-green.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "IVAyyVf8gqFWB7bP": {
         "type": "effect",
         "_id": "IVAyyVf8gqFWB7bP",
         "systemPath": "actions",
-        "description": "<p>When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within Melee range of the attacker, deal that amount of damage back to them.</p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p>",
+        "description": "<p>When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you're within Melee range of the attacker, deal that amount of damage back to them.</p><p>When you take a rest, clear all unspent tokens.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -59,7 +68,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -68,7 +78,13 @@
         },
         "name": "Use Tokens",
         "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
@@ -77,13 +93,20 @@
       "recovery": "shortRest",
       "max": "@cast",
       "icon": "",
-      "dieFaces": "d6"
+      "dieFaces": "d6",
+      "progression": "increasing",
+      "diceStates": {}
     },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": 130,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "oUipGK84E2KjoKqh",
@@ -97,23 +120,20 @@
       "_id": "KPA1okccsR7AQH0x",
       "type": "base",
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
-      "changes": [],
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -123,11 +143,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!oUipGK84E2KjoKqh.KPA1okccsR7AQH0x"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!oUipGK84E2KjoKqh"
 }

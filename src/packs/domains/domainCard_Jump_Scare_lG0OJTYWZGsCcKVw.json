@@ -1,0 +1,28 @@
+{
+  "type": "domainCard",
+  "name": "Jump Scare",
+  "folder": "6PuOmwrnOkbs8EW5",
+  "system": {
+    "domain": "dread",
+    "level": 6,
+    "attribution": {
+      "source": "Daggerheart H&F"
+    },
+    "description": "<p>When you deal magic damage to a target, you can <strong>mark a Stress</strong> to teleport into Melee range with them. When you do, they are <em>Vulnerable</em> until they mark 1 or more Hit Points.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "lG0OJTYWZGsCcKVw",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!lG0OJTYWZGsCcKVw"
+}

@@ -11,7 +11,6 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.data = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         this.editingCountdowns = new Set();
         this.currentEditCountdown = null;
-        this.hideNewCountdowns = false;
     }
 
     static DEFAULT_OPTIONS = {
@@ -23,19 +22,19 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             icon: 'fa-solid fa-clock-rotate-left'
         },
         actions: {
-            addCountdown: CountdownEdit.#addCountdown,
-            toggleCountdownEdit: CountdownEdit.#toggleCountdownEdit,
-            editCountdownImage: CountdownEdit.#editCountdownImage,
-            editCountdownOwnership: CountdownEdit.#editCountdownOwnership,
-            randomiseCountdownStart: CountdownEdit.#randomiseCountdownStart,
-            removeCountdown: CountdownEdit.#removeCountdown
+            addCountdown: CountdownEdit.#onAddCountdown,
+            toggleCountdownEdit: CountdownEdit.#onToggleCountdownEdit,
+            editCountdownImage: CountdownEdit.#onEditCountdownImage,
+            editCountdownOwnership: CountdownEdit.#onEditCountdownOwnership,
+            randomiseCountdownStart: CountdownEdit.#onRandomiseCountdownStart,
+            removeCountdown: CountdownEdit.#onRemoveCountdown
         },
         form: { handler: this.updateData, submitOnChange: true }
     };
 
     static PARTS = {
         countdowns: {
-            template: 'systems/daggerheart/templates/ui/countdown-edit.hbs',
+            template: 'systems/daggerheart/templates/ui/countdowns/countdown-edit.hbs',
             scrollable: ['.expanded-view', '.edit-content']
         }
     };
@@ -43,12 +42,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.isGM = game.user.isGM;
-        context.ownershipDefaultOptions = CONFIG.DH.GENERAL.basicOwnershiplevels;
         context.defaultOwnership = this.data.defaultOwnership;
-        context.countdownBaseTypes = CONFIG.DH.GENERAL.countdownBaseTypes;
+        context.hideNewCountdowns = this.data.hideNewCountdowns;
+        context.countdownTypes = CONFIG.DH.GENERAL.countdownTypes;
         context.countdownProgressionTypes = CONFIG.DH.GENERAL.countdownProgressionTypes;
         context.countdownLoopingTypes = CONFIG.DH.GENERAL.countdownLoopingTypes;
-        context.hideNewCountdowns = this.hideNewCountdowns;
         context.countdowns = Object.keys(this.data.countdowns).reduce((acc, key) => {
             const countdown = this.data.countdowns[key];
             const isLooping = countdown.progress.looping !== CONFIG.DH.GENERAL.countdownLoopingTypes.noLooping;
@@ -56,13 +54,13 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                 ? countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.increasing.id
                     ? 'DAGGERHEART.UI.Countdowns.increasingLoop'
                     : countdown.progress.looping === CONFIG.DH.GENERAL.countdownLoopingTypes.decreasing.id
-                      ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
-                      : 'DAGGERHEART.UI.Countdowns.loop'
+                        ? 'DAGGERHEART.UI.Countdowns.decreasingLoop'
+                        : 'DAGGERHEART.UI.Countdowns.loop'
                 : null;
             const randomizeValid = !new Roll(countdown.progress.startFormula ?? '').isDeterministic;
             acc[key] = {
                 ...countdown,
-                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownBaseTypes[countdown.type].label),
+                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownTypes[countdown.type].label),
                 progress: {
                     ...countdown.progress,
                     typeName: game.i18n.localize(
@@ -122,7 +120,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async updateData(_event, _, formData) {
-        const { hideNewCountdowns, ...settingsData } = foundry.utils.expandObject(formData.object);
+        const settingsData = foundry.utils.expandObject(formData.object);
 
         // Sync current and max if max is changing and they were equal before
         for (const [id, countdown] of Object.entries(settingsData.countdowns ?? {})) {
@@ -134,7 +132,6 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             );
         }
 
-        this.hideNewCountdowns = hideNewCountdowns;
         this.updateSetting(settingsData);
     }
 
@@ -148,24 +145,31 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
     }
 
     async gmSetSetting(data) {
-        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data),
-            game.socket.emit(`system.${CONFIG.DH.id}`, {
-                action: socketEvent.Refresh,
-                data: { refreshType: RefreshType.Countdown }
-            });
-        Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data);
+        game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.Refresh,
+            data: { refreshType: RefreshType.Countdown }
+        });
     }
 
-    static #addCountdown() {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static #onAddCountdown() {
         const id = foundry.utils.randomID();
         this.editingCountdowns.add(id);
         this.currentEditCountdown = id;
         this.updateSetting({
-            [`countdowns.${id}`]: DhCountdown.defaultCountdown(null, this.hideNewCountdowns)
+            [`countdowns.${id}`]: DhCountdown.defaultCountdown(null, this.data.hideNewCountdowns)
         });
     }
 
-    static #editCountdownImage(_, target) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static #onEditCountdownImage(_, target) {
         const countdown = this.data.countdowns[target.id];
         const fp = new foundry.applications.apps.FilePicker.implementation({
             current: countdown.img,
@@ -177,7 +181,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         return fp.browse();
     }
 
-    static #toggleCountdownEdit(_, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static #onToggleCountdownEdit(_, button) {
         const { countdownId } = button.dataset;
 
         const isEditing = this.editingCountdowns.has(countdownId);
@@ -190,19 +198,21 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
-    static async #editCountdownOwnership(_, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static async #onEditCountdownOwnership(_, button) {
         const countdown = this.data.countdowns[button.dataset.countdownId];
-        const data = await game.system.api.applications.dialogs.OwnershipSelection.configure(
-            countdown.name,
-            countdown.ownership,
-            this.data.defaultOwnership
-        );
-        if (!data) return;
-
-        this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: data });
+        const updateData = await game.system.api.applications.dialogs.CountdownPermissionsDialog.configure(countdown);
+        if (updateData) this.updateSetting({ [`countdowns.${button.dataset.countdownId}`]: updateData });
     }
 
-    static async #randomiseCountdownStart(_, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static async #onRandomiseCountdownStart(_, button) {
         const countdown = this.data.countdowns[button.dataset.countdownId];
         const roll = await new Roll(countdown.progress.startFormula).roll();
         const message = await roll.toMessage({ title: 'Countdown' });
@@ -217,7 +227,11 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
-    static async #removeCountdown(event, button) {
+    /** 
+     * @this CountdownEdit
+     * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
+     */
+    static async #onRemoveCountdown(event, button) {
         const { countdownId } = button.dataset;
 
         if (!event.shiftKey) {
