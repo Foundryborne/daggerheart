@@ -3539,9 +3539,6 @@
                     "showGenericStatusEffects": {
                         "label": "Show Foundry Status Effects"
                     },
-                    "hideAttribution": {
-                        "label": "Hide Attribution"
-                    },
                     "showTokenDistance": {
                         "label": "Show Token Distance on Hover",
                         "choices": {
@@ -3580,6 +3577,9 @@
                     },
                     "useResourcePips": {
                         "label": "Pip Display For Resources"
+                    },
+                    "tooltipCardTheme": {
+                        "label":"Tooltip Card Theme"
                     }
                 },
                 "fearDisplay": {

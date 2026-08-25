@@ -51,7 +51,7 @@
     }
 
     .recall-cost {
-        --border-size: max(2px, calc(var(--width) * 0.066));
+        --border-size: max(1px, calc(var(--width) * 0.066));
         
         position: absolute;
         top: 8px;
@@ -94,8 +94,8 @@
  * things that may differ on use like font size, scrolling, and padding.
  */
 .dh-card-description {
-    .dh-typography();
-    .dh-card-typography();
+    .typography();
+    .card-typography();
     --font-body: @font-description;
     font-family: @font-description;
     letter-spacing: -4%;
@@ -185,24 +185,25 @@
         flex: 1;
         display: flex;
         flex-direction: column;
+        gap: calc(8px * var(--scale));
         max-height: calc(var(--height) * 0.75);
         > header.name {
             text-align: center;
             text-transform: uppercase;
             font: 900 calc(16px * var(--scale))/1 @font-description;
             letter-spacing: -1%;
-            padding-top: calc(8px * var(--scale));
             margin-bottom: -0.125em; // 2px less
         }
         > section.description {
             font-size: calc(13px * var(--scale));
             flex: 1;
             overflow: auto;
-            padding: 0.5em calc(10px * var(--scale));
+            padding: 0 calc(10px * var(--scale));
             .with-scroll-shadows();
         }
         .attribution {
-            padding: 5px 8px;
+            padding: calc(4px * var(--scale)) calc(8px * var(--scale));
+            padding-top: 0;
             font: calc(9px * var(--scale))/1 @font-description;
             letter-spacing: -3.5%;
             font-style: italic;

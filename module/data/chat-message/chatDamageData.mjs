@@ -1,6 +1,4 @@
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
-import { MemberData } from '../tagTeamData.mjs';
-import DHActorRoll from './actorRoll.mjs';
 
 export class ChatDamageData extends foundry.abstract.DataModel {
     constructor(data = {}, options = {}) {
@@ -10,10 +8,13 @@ export class ChatDamageData extends foundry.abstract.DataModel {
     }
 
     get isCritical() {
-        if (this.parent && this.parent instanceof MemberData) {
+        if (this.parent && this.parent instanceof game.system.api.data.MemberData) {
             return this.parent.roll.isCritical;
         }
-        if (this.parent && this.parent instanceof DHActorRoll && this.parent.parent) {
+        if (this.parent
+            && this.parent instanceof game.system.api.data.chatMessages.config.damageRoll
+            && this.parent.parent
+        ) {
             return Roll.fromJSON(this.parent.parent._source.rolls[0]).isCritical;
         }
 

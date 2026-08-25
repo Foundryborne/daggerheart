@@ -69,15 +69,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
 
     /**@inheritdoc */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
-
-        return context;
-    }
-
-    /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
         await super._preparePartContext(partId, context, options);
         const TextEditor = foundry.applications.ux.TextEditor.implementation;

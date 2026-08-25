@@ -47,157 +47,6 @@
     align-items: center;
 }
 
-/**
- * Apply default typography styles. This handles the text in most prosemirror elements.
- */
-.dh-typography() {
-    --font-body: @font-body;
-    font-family: @font-body;
-
-    h1 {
-        --dh-input-color-text: @color-text-emphatic;
-        font-family: @font-title;
-        margin: 0;
-        border: none;
-        font-weight: normal;
-    }
-
-    h2,
-    h3 {
-        font-family: @font-subtitle;
-        margin: 0;
-        border: none;
-        font-weight: normal;
-    }
-
-    h4 {
-        font-family: var(--font-body);
-        font-size: var(--font-size-14);
-        border: none;
-        font-weight: 700;
-        margin: 0;
-        text-shadow: none;
-        font-weight: normal;
-    }
-
-    h5 {
-        font-family: var(--font-body);
-        font-size: var(--font-size-14);
-        margin: 0;
-        font-weight: normal;
-    }
-
-    // todo: determine if we can remove these or replace with font-family: inherit
-    multi-select .tags .tag,
-    table,
-    .tagify__dropdown {
-        font-family: var(--font-body);
-    }
-
-    textarea {
-        font-family: inherit;
-    }
-
-    button span {
-        font-weight: bold;
-    }
-
-    small {
-        font-family: var(--font-body);
-        opacity: 0.8;
-    }
-
-    nav a {
-        font-family: var(--font-body);
-    }
-
-    hr {
-        --off-color: color-mix(in srgb, @color-text-subtle, transparent 50%);
-        --hr-gradient: linear-gradient(to right, var(--off-color), @color-text-subtle, var(--off-color));
-        height: 1px;
-        margin: 0.5rem 0;
-    }
-
-    .item-description-inner-container {
-        > p:first-of-type {
-            display: inline;
-        }
-    }
-
-    secret-block {
-        display: block;
-
-        /** A buffer to make the hover behavior work a bit better. The bottom in the button needs to compensate */
-        @buffer: 8px;
-        margin-top: -@buffer;
-        padding-top: @buffer;
-
-        button.reveal {
-            --button-size: 1rem;
-            height: var(--button-size);
-            position: absolute;
-            margin: auto;
-            left: 0;
-            right: 0;
-            width: min-content;
-            padding: 1px 8px 0 8px;
-            bottom: calc(100% - 0.4375rem - 1px);
-            
-            background-color: var(--dh-window-button-color-bg); // todo: find a better var name
-            border-color: var(--color-secret-border);
-            color: var(--dh-window-button-color-text);
-            font-size: var(--font-size-10);
-            user-select: none;
-            text-transform: uppercase;
-            white-space: nowrap;
-
-            visibility: hidden;
-        }
-
-        &:hover button.reveal {
-            visibility: visible;
-        }
-    }
-
-    /** 
-     * The element inside a secret-block. 
-     * This is separate since during prosemirror editing, the secret-block container does not exist.
-     */
-    section.secret {
-        --color-secret-bg: @red-10;
-        --color-revealed-bg: @green-10;
-        position: relative;
-        padding: 0;
-        p {
-            margin: 0.5rem 0;
-        }
-    }
-}
-
-/** More card like typography styles, minus font. Some of these may become part of dh-typography later */
-.dh-card-typography() {
-    p {
-        margin: 0.5em 0;
-        &:first-child {
-            margin-top: 0;
-        }
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-    ul, ol {
-        margin: 0.5em 0;
-        padding-left: 0.60em;
-        ::marker {
-            content: "• ";
-            font-weight: 700;
-        }
-    }
-    li p {
-        margin: 0;
-    }
-}
-
 // A simple ease-out mask
 .smooth-gradient-ease-out(@param, @to, @destination, @length) {
     @{param}+: linear-gradient(
@@ -292,7 +141,7 @@
     .with-scroll-shadows();
 }
 
-/** Typography stylings for most longform text, usually item descriptions */
+/** Typography stylings for most longform text, usually item descriptions and prosemirror blocks */
 .typography() {
     h1 {
         font-size: var(--font-size-32);
@@ -311,17 +160,108 @@
         font-weight: 600;
     }
 
+    p {
+        margin: 0.5em 0;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
     ul,
     ol {
-        margin: 0.5rem 0;
+        margin: 0.5em 0;
         padding: 0 0 0 1.25rem;
 
         li {
             margin-bottom: 0.25rem;
+            p {
+                margin: 0;
+            }
         }
     }
 
     ul {
         list-style: disc;
+    }
+
+    hr {
+        --off-color: color-mix(in srgb, @color-text-subtle, transparent 50%);
+        --hr-gradient: linear-gradient(to right, var(--off-color), @color-text-subtle, var(--off-color));
+        height: 1px;
+        margin: 0.5rem 0;
+    }
+
+    .item-description-inner-container {
+        > p:first-of-type {
+            display: inline;
+        }
+    }
+
+    secret-block {
+        display: block;
+
+        /** A buffer to make the hover behavior work a bit better. The bottom in the button needs to compensate */
+        @buffer: 8px;
+        margin-top: -@buffer;
+        padding-top: @buffer;
+
+        button.reveal {
+            --button-size: 1rem;
+            height: var(--button-size);
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            width: min-content;
+            padding: 1px 8px 0 8px;
+            bottom: calc(100% - 0.4375rem - 1px);
+            
+            background-color: var(--dh-window-button-color-bg); // todo: find a better var name
+            border-color: var(--color-secret-border);
+            color: var(--dh-window-button-color-text);
+            font-size: var(--font-size-10);
+            user-select: none;
+            text-transform: uppercase;
+            white-space: nowrap;
+
+            visibility: hidden;
+        }
+
+        &:hover button.reveal {
+            visibility: visible;
+        }
+    }
+
+    /** 
+     * The element inside a secret-block. 
+     * This is separate since during prosemirror editing, the secret-block container does not exist.
+     */
+    section.secret {
+        --color-secret-bg: @red-10;
+        --color-revealed-bg: @green-10;
+        position: relative;
+        padding: 0;
+        p {
+            margin: 0.5rem 0;
+        }
+    }
+    
+    .features .feature {
+        margin-top: 0.5em;
+    }
+}
+
+/** More card like typography styles, minus font. Some of these may become part of dh-typography later */
+.card-typography() {
+    ul, ol {
+        margin: 0.5em 0;
+        padding-left: 0.60em;
+        ::marker {
+            content: "• ";
+            font-weight: 700;
+        }
     }
 }

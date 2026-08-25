@@ -8,6 +8,8 @@ import { parseInlineParams } from './parser.mjs';
  * - @EmbedTable[path:path.to.something]
  * - @EmbedTable[rollTable:uuid]
  * For all of them, type:itemType restricts the item type and handles the empty item case.
+ * All uses support the following parameters:
+ * - classes: a comma separate list of css class names to append
  * The rollTable format also the following additional params:
  * - min: and max: params control what range is displayed
  * - digits: adds 0 padding to the roll result. If omitted, it figures it out from the highest number
@@ -24,38 +26,51 @@ export async function DhEmbedTableEnricher(match) {
     }
 
     // Fetch items and check that all the types are the same and its valid
-    const uuids = rollTable?.results.contents.map(c => c.documentUuid) 
+    const uuids = rollTable?.results.contents.map(c => c.documentUuid)
         ?? [...(fromPath ?? []), ...(params.uuids?.split(' ') ?? [])];
     const items = (await fromUuids(uuids)).filter(i => !!i);
     const itemType = params.type ?? items[0]?.type;
-    const definition = rowsByItemType[itemType];
+    const definition = foundry.utils.deepClone(rowsByItemType[itemType]);
     if (!itemType) return createErrorMessage('No items available and no item type to define');
     if (items.some(d => d.type !== itemType)) return createErrorMessage('Not all items match the item type');
     if (!definition) return createErrorMessage('Invalid item type for embed table');
     
+    // If this is a roltable, inject a roll column
+    if (rollTable) {
+        definition.cells.unshift({
+            label: 'DAGGERHEART.GENERAL.roll',
+            cssClass: 'roll',
+            value: (item, runData) => {
+                const numDigits = runData.numDigits ?? 1;
+                return [...new Set(runData.range.map(r => String(r).padStart(numDigits, '0')))].join('-');
+            }
+        });
+    }
+    
     // Create basic table structure
     const element = document.createElement('table');
     element.classList.add('embed-item-table', `${itemType}-table`);
+    if (params.classes) {
+        const classes = params.classes.split(',').map(c => c.trim());
+        element.classList.add(...classes);
+    }
     const head = document.createElement('thead');
     const body = document.createElement('tbody');
     element.append(head, body);
 
-    // Create header using the definition. If its a rolltable, inject a column
+    // Create header using the definition.
     const headerRow = document.createElement('tr');
     head.appendChild(headerRow);
-    if (rollTable) {
-        const text = _loc('DAGGERHEART.GENERAL.roll');
-        headerRow.append(createHtmlElement('th', { text, className: 'roll' }));
-    }
     for (const cell of definition.cells) {
-        headerRow.append(createHtmlElement('th', { text: _loc(cell.label), className: cell.cssClass }));
+        const className = cell.cssClass;
+        headerRow.append(createHtmlElement('th', { text: _loc(cell.label), className, attributes: { scope: 'col' } }));
     }
 
-    const runData = definition.init?.();
+    const runData = definition.init?.() ?? {};
     if (rollTable) {
         const min = params.min ? Number(params.min) : 0;
         const max = params.max ? Number(params.max) : Infinity;
-        const numDigits = params.digits ? Number(params.digits) : calculateRollTableDigits(rollTable)
+        runData.numDigits = params.digits ? Number(params.digits) : calculateRollTableDigits(rollTable);
         const itemsByUuid = items.reduce((r, i) => {
             r[i.uuid] = i;
             return r;
@@ -65,9 +80,8 @@ export async function DhEmbedTableEnricher(match) {
             const item = itemsByUuid[result.documentUuid];
             if (!item || result.range[0] > max || result.range[1] < min) continue;
 
+            runData.range = result.range;
             const row = body.appendChild(document.createElement('tr'));
-            const roll = [...new Set(result.range.map(r => String(r).padStart(numDigits, '0')))].join('-');
-            row.append(createHtmlElement('td', { text: roll, className: 'roll' }))
             for (const cellDef of definition.cells) {
                 const element = createHtmlElement('td', { 
                     [cellDef.html ? 'html' : 'text']: await cellDef.value(item, runData), 
@@ -88,7 +102,6 @@ export async function DhEmbedTableEnricher(match) {
             }
         }
     }
-
 
     return element;
 }
@@ -212,11 +225,14 @@ const rowsByItemType = {
  * @param {*} param1 
  * @returns 
  */
-function createHtmlElement(tagName, { text = null, html = null, className = null }) {
+function createHtmlElement(tagName, { text = null, html = null, className = null, attributes }) {
     const tag = document.createElement(tagName);
     if (text) tag.textContent = text;
     if (html) tag.innerHTML = html;
     if (className) tag.classList.add(className);
+    for (const [key, value] of Object.entries(attributes ?? {})) {
+        tag.setAttribute(key, value);
+    }
     return tag;
 }
 

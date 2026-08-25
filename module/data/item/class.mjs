@@ -182,6 +182,11 @@ export default class DHClass extends BaseDataItem {
         updateLinkedItemApps(options, this.parent.sheet);
     }
 
+    prepareDerivedData() {
+        super.prepareDerivedData();
+        this.subclassItem = this.actor?.items.find(i => i.type === 'subclass' && i.system.linkedClass === this.parent.sourceUuid);
+    }
+
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;

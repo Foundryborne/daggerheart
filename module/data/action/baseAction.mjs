@@ -1,4 +1,3 @@
-import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
@@ -151,12 +150,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
-     * @returns {DhpActor | null}
+     * @returns {CONFIG.Actor.documentClass | null}
      */
     get actor() {
-        return this.item instanceof DhpActor
+        return this.item instanceof CONFIG.Actor.documentClass
             ? this.item
-            : this.item?.parent instanceof DhpActor
+            : this.item?.parent instanceof CONFIG.Actor.documentClass
                 ? this.item.parent
                 : null;
     }

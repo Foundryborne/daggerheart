@@ -11,6 +11,68 @@
     font-family: @font-body;
 }
 
+.dh-style {
+    --font-body: @font-body;
+    font-family: @font-body;
+
+    h1 {
+        --dh-input-color-text: @color-text-emphatic;
+        font-family: @font-title;
+        margin: 0;
+        border: none;
+        font-weight: normal;
+    }
+
+    h2,
+    h3 {
+        font-family: @font-subtitle;
+        margin: 0;
+        border: none;
+        font-weight: normal;
+    }
+
+    h4 {
+        font-family: var(--font-body);
+        font-size: var(--font-size-14);
+        border: none;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: none;
+        font-weight: normal;
+    }
+
+    h5 {
+        font-family: var(--font-body);
+        font-size: var(--font-size-14);
+        margin: 0;
+        font-weight: normal;
+    }
+
+    // todo: determine if we can remove these or replace with font-family: inherit
+    multi-select .tags .tag,
+    table,
+    .tagify__dropdown {
+        font-family: var(--font-body);
+    }
+
+    textarea {
+        font-family: inherit;
+    }
+
+    button span {
+        font-weight: bold;
+    }
+
+    small {
+        font-family: var(--font-body);
+        opacity: 0.8;
+    }
+
+    nav a {
+        font-family: var(--font-body);
+    }
+}
+
 .daggerheart.dh-style {
     /** Not an actual scrollbar width (it can't be configured on all browsers) but actually a compensation value for scrollbar gutter purposes */
     --scrollbar-width: 10px;
@@ -71,6 +133,7 @@
 
             .item-links {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 4px;
             }
         }

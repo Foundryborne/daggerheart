@@ -48,6 +48,11 @@ export default class DHFeature extends BaseDataItem {
         this.inactive = false; // May be set by other features
     }
 
+    prepareDerivedData() {
+        super.prepareDerivedData();
+        this.granterItem = this.actor?.items.get(this.granter?.id);
+    }
+
     /** @inheritdoc */
     _preCreate(data, options, user) {
         // Ensure granter is purged if this is being created as a world item
