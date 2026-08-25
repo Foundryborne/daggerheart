@@ -6,7 +6,8 @@
   "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Once per rest, mark a circle on the ground outlining a Very Close area around you, and place a number of tokens equal to your Spellcast trait on this card. While within this circle, you and your allies gain a +2 bonus to damage thresholds, attack rolls, and Evasion. Remove a token each time you or an ally within the circle makes an action roll or evades an attack. This spell lasts until the last token is removed or you exit the circle.</p>",
     "gmNotes": "",

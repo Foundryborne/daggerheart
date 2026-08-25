@@ -6,7 +6,8 @@
   "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Play the Pact of the Wrathful if you want to destroy those who act against you.</p>",
     "gmNotes": "",

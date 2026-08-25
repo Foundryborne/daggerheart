@@ -6,7 +6,8 @@
   "img": "icons/magic/light/projectile-halo-teal.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Once per session, you can conjure a column of moonlight that illuminates the area within Close range until the end of the scene. While bathed in this moonlight, you and your allies gain a +1 bonus to <strong>Spellcast Roll</strong>s and can see through illusions.</p>",
     "gmNotes": "",

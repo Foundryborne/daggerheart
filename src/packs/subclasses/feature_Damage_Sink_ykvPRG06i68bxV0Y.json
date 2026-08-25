@@ -6,7 +6,8 @@
   "img": "icons/magic/unholy/orb-swirling-teal.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Once per rest, you can <strong>spend a Favor</strong> to halve incoming damage.</p>",
     "gmNotes": "",

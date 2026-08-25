@@ -6,8 +6,8 @@
     "description": "<p>This dust causes anything it covers to become lighter than air. One packet contains enough dust to cover the contents of a picnic basket, and the effects last for an hour.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

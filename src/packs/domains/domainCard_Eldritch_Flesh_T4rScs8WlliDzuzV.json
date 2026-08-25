@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 8,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Gain a +1 bonus to your damage thresholds for each Stress you have marked.</p><p>Additionally, when you roll with Fear, you can <strong>spend 2 Hope</strong> to clear an Armor Slot.</p>",
     "gmNotes": "",

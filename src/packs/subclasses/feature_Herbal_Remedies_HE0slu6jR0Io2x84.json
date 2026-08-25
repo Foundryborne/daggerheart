@@ -6,7 +6,8 @@
   "img": "icons/tools/laboratory/bowl-liquid-pink-yellow-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>When you or an ally in the scene clears 1 or more Hit Points or Stress as the result of using a consumable, increase the number cleared by 1.</p>",
     "gmNotes": "",

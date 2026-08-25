@@ -6,8 +6,8 @@
     "description": "<p>You can drink this tonic to gain a +1 bonus to your Proficiency until you roll with Fear.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 59,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

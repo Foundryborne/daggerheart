@@ -6,7 +6,8 @@
   "img": "icons/skills/melee/strike-dagger-poison-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>When you afflict a target <em>Marked for Death</em> with a poison you know, you can spend an additional token to also inflict the effect of a second poison you know.</p>",
     "gmNotes": "",

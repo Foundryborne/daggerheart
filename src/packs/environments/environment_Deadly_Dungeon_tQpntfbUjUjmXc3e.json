@@ -9,7 +9,8 @@
     "impulses": "Devour the party's resources, spring the trap, tempt them with treasure, throw monsters at them, turn them around",
     "difficulty": 14,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "potentialAdversaries": {
       "sGbzbXsgB4qjaZbz": {

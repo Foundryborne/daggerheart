@@ -6,7 +6,8 @@
   "img": "icons/magic/life/cross-beam-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>You can <strong>mark a Stress</strong> instead of spending a Focus to shift into a different stance. Additionally, you can <strong>spend a Focus</strong> instead of marking a Stress to start a combo strike.</p>",
     "gmNotes": "",

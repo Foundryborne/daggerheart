@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 4,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p><strong>Mark 2 Stress</strong> to temporarily <em>Chain</em> a target within Close range. When a <em>Chained</em> creature deals damage, the target of their attack marks one fewer Hit Point than they normally would. You can't have more than one creature <em>Chained</em> at a time.</p>",
     "gmNotes": "",

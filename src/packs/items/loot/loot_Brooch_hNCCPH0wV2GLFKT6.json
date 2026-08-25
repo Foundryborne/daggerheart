@@ -6,8 +6,8 @@
     "description": "<p>On a successful weapon attack, you can knock your target back up to Close range from their location.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 55,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

@@ -6,7 +6,8 @@
   "img": "icons/skills/melee/shield-block-gray-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Gain a permanent +3 bonus to your Severe damage threshold.</p>",
     "gmNotes": "",

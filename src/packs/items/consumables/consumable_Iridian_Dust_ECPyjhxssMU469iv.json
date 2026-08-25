@@ -6,8 +6,8 @@
     "description": "<p>This multicolored powder sticks to everything and prevents creatures covered in it from becoming Hidden.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

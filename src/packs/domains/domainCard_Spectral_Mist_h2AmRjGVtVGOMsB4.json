@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 5,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p><strong>Spend 2 Hope</strong> to conjure an eerie mist that turns you and allies of your choice within Close range momentarily incorporeal. While a creature is incorporeal, they can move through solid objects and are immune to physical damage. They become corporeal again after they pass through a solid object or make an action roll. Otherwise, this effect lasts until the end of the scene.</p>",
     "gmNotes": "",

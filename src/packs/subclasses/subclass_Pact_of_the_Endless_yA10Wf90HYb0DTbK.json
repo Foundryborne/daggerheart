@@ -6,7 +6,8 @@
   "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Play the Pact of the Endless if you want to stand strong against enemies and avoid death.</p>",
     "gmNotes": "",

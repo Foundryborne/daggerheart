@@ -6,7 +6,8 @@
   "img": "icons/magic/nature/root-vine-thorned-coil-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Play the Hedge if you want to use your craft to empower yourself and your party.</p>",
     "gmNotes": "",

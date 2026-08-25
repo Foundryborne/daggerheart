@@ -6,8 +6,8 @@
     "description": "<p>You can apply this salve to your skin to make yourself immune to heat until your next rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 58,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

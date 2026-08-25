@@ -6,8 +6,8 @@
     "description": "<p>You can drink this potion to sprout small wings from your ankles that give you a bonus to your Evasion equal to your tier until your next rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 59,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

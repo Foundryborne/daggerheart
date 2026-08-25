@@ -6,8 +6,8 @@
     "description": "<p>You can break this jar to fill the area within Close range with magical mist. A creature who enters the mist clears a Stress and becomes Hidden.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

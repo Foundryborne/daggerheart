@@ -6,8 +6,8 @@
     "description": "<p>You can break this staff against the ground to reverse one magical transformation or effect within Far range.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 58,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

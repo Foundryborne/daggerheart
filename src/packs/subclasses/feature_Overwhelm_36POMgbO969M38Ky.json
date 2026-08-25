@@ -6,7 +6,8 @@
   "img": "icons/magic/movement/trail-streak-impact-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>When you succeed on an attack against a target, you can <strong>spend a Hope</strong> to throw the target within Close range or to force them to mark a Stress.</p>",
     "gmNotes": "",

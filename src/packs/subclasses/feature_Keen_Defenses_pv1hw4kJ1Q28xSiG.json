@@ -6,7 +6,8 @@
   "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>When you're targeted by an attack, you can <strong>spend a Focus</strong> to gain a bonus to your Evasion equal to your tier against the attack.</p>",
     "gmNotes": "",

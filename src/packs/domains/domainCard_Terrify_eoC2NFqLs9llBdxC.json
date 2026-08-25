@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 3,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, the target marks <strong>1d4</strong> Stress, and you can make the target flee one range away from you (such as Very Close to Close or Close to Far). On a success with Fear, the target also becomes temporarily <em>Vulnerable</em>.</p>",
     "gmNotes": "",

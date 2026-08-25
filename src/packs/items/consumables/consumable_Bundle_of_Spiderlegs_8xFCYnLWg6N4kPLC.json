@@ -6,8 +6,8 @@
     "description": "<p>You can eat these spiderlegs to walk on walls until your next rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

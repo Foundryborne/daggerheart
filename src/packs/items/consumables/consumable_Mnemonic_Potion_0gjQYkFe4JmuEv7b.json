@@ -6,8 +6,8 @@
     "description": "<p>You can drink this potion to Utilize an Experience without spending a Hope.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 58,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

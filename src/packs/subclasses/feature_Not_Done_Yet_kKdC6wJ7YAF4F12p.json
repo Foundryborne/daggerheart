@@ -6,7 +6,8 @@
   "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>When you take Severe damage, you can gain a Hope or clear a Stress.</p>",
     "gmNotes": "",

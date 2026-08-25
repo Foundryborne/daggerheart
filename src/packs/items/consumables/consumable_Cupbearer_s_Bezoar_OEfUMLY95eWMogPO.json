@@ -6,8 +6,8 @@
     "description": "<p>You can swallow this bezoar to become immune to poisons until your next long rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

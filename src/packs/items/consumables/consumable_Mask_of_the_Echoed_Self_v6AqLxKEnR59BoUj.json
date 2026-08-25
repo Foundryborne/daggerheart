@@ -6,8 +6,8 @@
     "description": "<p>You can wear this mask during your next level up to swap the values of any of your traits. When you do, the mask becomes your permanent face.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 59,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

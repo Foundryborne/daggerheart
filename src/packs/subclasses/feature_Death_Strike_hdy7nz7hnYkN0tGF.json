@@ -6,7 +6,8 @@
   "img": "icons/weapons/swords/greatsword-evil-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>When you deal Severe damage to a creature, you can <strong>mark a Stress</strong> to force them to mark an additional Hit Point.</p>",
     "gmNotes": "",

@@ -6,7 +6,8 @@
   "img": "icons/magic/unholy/orb-stone-pink.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Once per long rest when you would take damage, you can <strong>spend a Favor</strong> instead of marking Hit Points.</p>",
     "gmNotes": "",

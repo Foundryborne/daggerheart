@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 10,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>You deal double damage to targets that have all their Stress marked.</p><p>Additionally, when an adversary within Close range is defeated with all its Stress marked, you gain a Hope.</p>",
     "gmNotes": "",

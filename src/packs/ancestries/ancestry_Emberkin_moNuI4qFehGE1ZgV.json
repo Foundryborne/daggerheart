@@ -5,7 +5,8 @@
   "system": {
     "loreReference": "emberkin",
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Emberkin are humanoids whose bodies are made of flesh and fire.</p>",
     "gmNotes": "",

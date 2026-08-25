@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 2,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>When an ally within Close range takes damage from a target you can see, you can make a reaction roll against the target using your Spellcast trait. On a success, <strong>mark a Stress</strong> to deal <strong>d6</strong> magic damage using your Proficiency.</p>",
     "gmNotes": "",

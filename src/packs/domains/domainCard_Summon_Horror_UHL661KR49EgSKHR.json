@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 4,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p><strong>Mark a Stress</strong> to summon an otherworldly creature that deals <strong>d8+1</strong> magic damage using your Spellcast trait to a target within Far range. If the target marks any Hit Points from this attack, they must succeed on a <strong>Reaction Roll (12)</strong> to steel themselves against the horror or mark an equal number of Stress.</p><p>After making the attack, the creature dissipates.</p>",
     "gmNotes": "",

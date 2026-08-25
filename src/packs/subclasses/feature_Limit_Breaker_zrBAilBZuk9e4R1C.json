@@ -6,7 +6,8 @@
   "img": "icons/magic/life/heart-cross-strong-flame-purple-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Once per rest, you can perform an unbelievable feat of athletic prowess, such as running across water, leaping between distant rooftops, or scaling a building without needing to roll. When you do, gain a Hope and clear a Stress.</p>",
     "gmNotes": "",

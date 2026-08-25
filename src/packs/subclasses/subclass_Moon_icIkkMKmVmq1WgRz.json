@@ -6,7 +6,8 @@
   "img": "icons/magic/nature/moon-crescent.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Play the Moon if you want to embody celestial power to amplify your magic.</p>",
     "gmNotes": "",

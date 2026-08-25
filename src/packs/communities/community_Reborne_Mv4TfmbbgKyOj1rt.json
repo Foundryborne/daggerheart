@@ -5,7 +5,8 @@
   "system": {
     "loreReference": "reborne",
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>You were once a member of a different community that you're no longer part of.</p>",
     "gmNotes": "",

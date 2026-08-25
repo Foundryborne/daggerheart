@@ -5,7 +5,8 @@
   "system": {
     "loreReference": "frostborne",
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>Being part of a frostborne community means you come from a place of snow and ice.</p>",
     "gmNotes": "",

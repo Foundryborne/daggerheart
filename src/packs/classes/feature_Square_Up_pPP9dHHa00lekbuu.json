@@ -6,7 +6,8 @@
   "img": "icons/magic/control/silhouette-hold-change-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p><strong>Spend 3 Hope</strong> to intimidate a target within Close range, making them temporarily <em>Vulnerable</em>.</p>",
     "gmNotes": "",

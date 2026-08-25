@@ -6,7 +6,8 @@
     "domain": "dread",
     "level": 1,
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>You can magically speak to a creature you can see, tormenting them with your words. Make a <strong>Spellcast Roll</strong> against them. On a success, they must mark a Stress and are frozen with terror, making them temporarily <em>Restrained</em>.</p>",
     "gmNotes": "",

@@ -6,8 +6,8 @@
     "description": "<p>You can break this mushroom into pieces, causing it to glow bright blue until your next long rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

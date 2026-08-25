@@ -6,8 +6,8 @@
     "description": "<p>You can use this ice shard to instantly freeze an area of water up to Close range.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

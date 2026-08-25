@@ -6,8 +6,8 @@
     "description": "<p>You can drink this tea to perfectly blend into natural environments until your next rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,

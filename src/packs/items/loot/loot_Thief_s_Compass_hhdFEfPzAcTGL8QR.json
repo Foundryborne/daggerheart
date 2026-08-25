@@ -6,8 +6,8 @@
     "description": "<p>This compass points the way toward the nearest exit while indoors and the closest entrance while outdoors.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 54,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

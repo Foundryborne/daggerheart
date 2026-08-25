@@ -5,8 +5,8 @@
   "img": "icons/consumables/potions/potion-vial-corked-labeled-purple.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 58,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "description": "<p>You can drink this draught to gain a +1 bonus to your Proficiency for your next successful attack roll.</p>",

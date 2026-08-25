@@ -6,8 +6,8 @@
     "description": "<p>Once per rest, [[/r 1d2]]{flip a coin.} On heads, you gain a +1 bonus to attack rolls until your next successful attack. On tails, you gain +1 to your Evasion until an attack fails against you.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 55,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

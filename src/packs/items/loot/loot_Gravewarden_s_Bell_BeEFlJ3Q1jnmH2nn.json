@@ -6,8 +6,8 @@
     "description": "<p>This bell rings when a ghost or undead creature moves within Far range of it.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 55,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

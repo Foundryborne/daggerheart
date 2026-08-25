@@ -6,7 +6,8 @@
   "img": "icons/skills/toxins/poison-skull-herbs-bottle-pink.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart H&F"
+      "source": "Daggerheart SRD",
+      "page": null
     },
     "description": "<p>You also know these poisons:</p><ul><li><p><strong>Midnight Vine:</strong> The target has disadvantage on attack rolls until it marks a Stress to clear this condition.</p></li><li><p><strong>Gorgon Root:</strong> The target becomes temporarily <em>Restrained</em>.</p></li></ul>",
     "gmNotes": "",

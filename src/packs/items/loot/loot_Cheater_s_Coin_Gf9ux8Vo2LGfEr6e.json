@@ -6,8 +6,8 @@
     "description": "<p>When you flip this coin, you can spend a Hope to determine which side it lands on.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 55,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

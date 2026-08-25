@@ -6,8 +6,8 @@
     "description": "<p>You can apply this saliva to a weapon that deals physical damage to change its damage type to magic until your next rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart H&F",
-      "page": 57,
+      "source": "Daggerheart SRD",
+      "page": null,
       "artist": ""
     },
     "consumeOnUse": true,
