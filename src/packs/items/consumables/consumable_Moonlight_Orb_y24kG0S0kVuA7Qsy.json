@@ -12,7 +12,45 @@
     },
     "consumeOnUse": true,
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "1U6wvIFjYqA34md4": {
+        "type": "effect",
+        "_id": "1U6wvIFjYqA34md4",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "y24kG0S0kVuA7Qsy",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Shatter",
+        "range": ""
+      }
+    }
   },
   "_id": "y24kG0S0kVuA7Qsy",
   "effects": [],

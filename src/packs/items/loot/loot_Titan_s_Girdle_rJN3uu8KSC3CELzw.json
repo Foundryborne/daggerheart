@@ -11,10 +11,97 @@
       "artist": ""
     },
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "bdJqnWHYKhzkQg7j": {
+        "type": "effect",
+        "_id": "bdJqnWHYKhzkQg7j",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "scene",
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "YQFUsFB2APojHKbh",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate Girdle",
+        "range": ""
+      }
+    }
   },
   "_id": "rJN3uu8KSC3CELzw",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Active Girdle",
+      "disabled": false,
+      "img": "icons/equipment/waist/belt-thick-bossed.webp",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">+1 bonus to your Proficiency for your next attack.</span></p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "origin": "Compendium.daggerheart.loot.Item.rJN3uu8KSC3CELzw",
+      "_id": "YQFUsFB2APojHKbh",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!rJN3uu8KSC3CELzw.YQFUsFB2APojHKbh"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {},

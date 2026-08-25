@@ -29,13 +29,22 @@
           {
             "name": "Gambler’s Fallacy",
             "type": "placed",
-            "shape": "circle",
+            "shape": "inFront",
             "size": "close",
             "hasHole": false,
             "effects": []
           }
         ],
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "sgqL3qFiArgCR8oI",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -43,37 +52,7 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "main": {
-            "base": false,
-            "applyTo": "hitPoints",
-            "resultBased": false,
-            "fullRestore": false,
-            "value": {
-              "multiplier": "scale",
-              "flatMultiplier": 1,
-              "dice": "d20",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
-            "includeBase": false,
-            "direct": false,
-            "type": [
-              "magical"
-            ]
-          },
+          "main": null,
           "resources": {}
         },
         "target": {

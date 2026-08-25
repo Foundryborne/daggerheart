@@ -11,7 +11,36 @@
       "artist": ""
     },
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "bLeDvOOUk8fk3npE": {
+        "type": "effect",
+        "_id": "bLeDvOOUk8fk3npE",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "",
+        "range": ""
+      }
+    }
   },
   "_id": "6TfnwNWZJTiR0194",
   "effects": [],

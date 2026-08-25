@@ -11,7 +11,45 @@
       "artist": ""
     },
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "UlWs1OJaoBtyhF2b": {
+        "type": "effect",
+        "_id": "UlWs1OJaoBtyhF2b",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Cheat",
+        "range": ""
+      }
+    }
   },
   "_id": "Gf9ux8Vo2LGfEr6e",
   "effects": [],

@@ -11,7 +11,45 @@
       "artist": ""
     },
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "pOrtB09wEkZiihkg": {
+        "type": "effect",
+        "_id": "pOrtB09wEkZiihkg",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "3",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    }
   },
   "_id": "2kv7bVMaveULmJIE",
   "effects": [],
