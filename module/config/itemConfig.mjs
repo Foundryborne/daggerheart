@@ -563,13 +563,14 @@ export const armorFeatures = {
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.magnificent.effects.magnificent.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.magnificent.effects.magnificent.description',
                 img: 'icons/magic/holy/barrier-shield-winged-blue.webp',
-                transfer: false,
                 system: {
                     changes: [
                         {
-                            key: 'system.armor.max',
-                            type: 'add',
-                            value: '@system.traits.presence.value'
+                            type: 'armor',
+                            value: {
+                                interaction: 'active',
+                                max: '@system.traits.presence.value'
+                            }
                         }
                     ]
                 }
