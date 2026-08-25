@@ -14,7 +14,36 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "EIwNjlroQWthm07Q": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Invigorate",
+        "description": "On a successful attack, roll a d4. On a result of 4, clear a Stress.",
+        "img": "icons/magic/life/heart-cross-green.webp",
+        "_id": "EIwNjlroQWthm07Q",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 2,
     "equipped": false,
     "secondary": false,

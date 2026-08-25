@@ -14,7 +14,50 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "iTv5QVsZaJ6KYEv3": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Vitreous",
+        "description": "When you would take Severe or greater damage, you can mark 2 Armor Slots to negate that damage. If you do, you gain a -5 penalty to your damage thresholds until you choose to repair your armor as a downtime move.",
+        "img": "icons/magic/defensive/armor-stone-skin.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "key": "armor",
+            "value": 2,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "effects": [
+          {
+            "_id": "dzGZkBgtJjQh3JH1",
+            "onSave": false
+          }
+        ],
+        "_id": "iTv5QVsZaJ6KYEv3",
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        }
+      }
+    },
     "tier": 4,
     "equipped": false,
     "armor": {

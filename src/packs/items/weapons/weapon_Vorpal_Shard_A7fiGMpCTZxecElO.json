@@ -14,7 +14,36 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "lwtLR9xWsREAonue": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Targeted",
+        "description": "When you fail a weapon attack, you can spend a Hope to succeed on your next weapon attack.",
+        "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
+        "_id": "lwtLR9xWsREAonue",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 3,
     "equipped": false,
     "secondary": true,

@@ -14,7 +14,50 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "TkHF6grGo3mzktTj": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Follow-Up",
+        "description": "On a successful attack with your primary weapon within Melee range, you can mark a Stress to gain a +1 bonus to your Proficiency for this attack.",
+        "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "effects": [
+          {
+            "_id": "8ro1grZebS5lvFGN",
+            "onSave": false
+          }
+        ],
+        "_id": "TkHF6grGo3mzktTj",
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        }
+      }
+    },
     "tier": 1,
     "equipped": false,
     "secondary": true,

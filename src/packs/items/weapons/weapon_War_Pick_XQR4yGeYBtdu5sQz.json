@@ -14,7 +14,36 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "cLnI9hFkRUgW3VlN": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Deadly",
+        "description": "When you deal Severe damage, the target must mark an additional HP.",
+        "img": "icons/skills/melee/strike-sword-dagger-runes-red.webp",
+        "_id": "cLnI9hFkRUgW3VlN",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 2,
     "equipped": false,
     "secondary": false,

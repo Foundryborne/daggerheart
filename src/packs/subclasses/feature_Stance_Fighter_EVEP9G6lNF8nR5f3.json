@@ -20,8 +20,9 @@
       "icon": "fa-solid fa-yin-yang"
     },
     "actions": {},
-    "featureForm": "passive",
-    "granter": null
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

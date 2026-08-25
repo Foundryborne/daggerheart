@@ -14,7 +14,50 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "LjPhjSJcvj8FJT0z": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Deflect",
+        "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack.",
+        "img": "icons/skills/melee/hand-grip-sword-strike-orange.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "value": 1,
+            "key": "hope",
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "effects": [
+          {
+            "_id": "BG2nxQOjWOvhTIKn",
+            "onSave": false
+          }
+        ],
+        "_id": "LjPhjSJcvj8FJT0z",
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        }
+      }
+    },
     "tier": 2,
     "equipped": false,
     "secondary": true,

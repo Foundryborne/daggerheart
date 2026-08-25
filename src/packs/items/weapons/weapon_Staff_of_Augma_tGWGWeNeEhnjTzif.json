@@ -14,7 +14,41 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "fdXtuFA7Sy6r2GOw": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Catalytic",
+        "description": "On a successful attack, you can mark a Stress to give an ally within Close range a +3 bonus to their next attack roll.",
+        "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+        "effects": [
+          {
+            "_id": "Nqr49MytiiDO6mRq",
+            "onSave": false
+          }
+        ],
+        "_id": "fdXtuFA7Sy6r2GOw",
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 3,
     "equipped": false,
     "secondary": false,

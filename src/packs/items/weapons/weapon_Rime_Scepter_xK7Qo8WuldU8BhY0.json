@@ -14,7 +14,41 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "LYqVHYFcuJlf6omC": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Freezing",
+        "description": "When an attack from this weapon causes a target to mark 2 or more HP, they become temporarily Restrained.",
+        "img": "icons/magic/water/barrier-ice-crystal-wall-faceted.webp",
+        "effects": [
+          {
+            "_id": "2iYaP8XdKTfwBw6A",
+            "onSave": false
+          }
+        ],
+        "_id": "LYqVHYFcuJlf6omC",
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 3,
     "equipped": false,
     "secondary": false,

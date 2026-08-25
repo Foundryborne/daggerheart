@@ -10,8 +10,9 @@
     "gmNotes": "",
     "resource": null,
     "actions": {},
-    "featureForm": "passive",
-    "granter": null
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

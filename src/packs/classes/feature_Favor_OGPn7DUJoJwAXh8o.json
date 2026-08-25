@@ -20,8 +20,9 @@
       "icon": "fa-solid fa-spaghetti-monster-flying"
     },
     "actions": {},
-    "featureForm": "passive",
-    "granter": null
+    "originItemType": null,
+    "multiclassOrigin": false,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,

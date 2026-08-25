@@ -14,7 +14,45 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "WbMKifYfcRQpDiP8": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Bounce",
+        "description": "Mark 1 or more Stress to hit that many targets in range of the attack.",
+        "img": "icons/skills/movement/ball-spinning-blue.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "scalable": true,
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "_id": "WbMKifYfcRQpDiP8",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 3,
     "equipped": false,
     "secondary": false,

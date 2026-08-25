@@ -14,7 +14,76 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "pkg1z8LU5URZsQIe": {
+        "type": "damage",
+        "chatDisplay": true,
+        "name": "Incendiary",
+        "description": "On a successful attack, all creatures within Very Close range of the target must mark a Hit Point.",
+        "img": "icons/magic/fire/explosion-fireball-large-orange.webp",
+        "areas": [
+          {
+            "name": "DAGGERHEART.CONFIG.WeaponFeature.incendiary.name",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "damage": {
+          "resources": {
+            "hitPoints": {
+              "applyTo": "hitPoints",
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "base": false,
+              "resultBased": false,
+              "fullRestore": false,
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          },
+          "main": null
+        },
+        "_id": "pkg1z8LU5URZsQIe",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 4,
     "equipped": false,
     "secondary": false,

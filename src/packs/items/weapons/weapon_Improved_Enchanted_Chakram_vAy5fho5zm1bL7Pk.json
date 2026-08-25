@@ -14,7 +14,45 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "63LHxPGiZnKndZ6C": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Ricochet",
+        "description": "When you make an attack, you can mark a Stress to target another creature within Very Close range of the first target with that attack.",
+        "img": "icons/magic/light/beam-impact-deflect-teal.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "_id": "63LHxPGiZnKndZ6C",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 2,
     "equipped": false,
     "secondary": false,
