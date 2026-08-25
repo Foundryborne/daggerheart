@@ -867,6 +867,14 @@ export default class DhCharacter extends DhCreature {
             isReversed: true
         };
 
+        /* Add convience <dice>Faces properties for all dice */
+        const { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex } = this.rules.roll;
+        const dice = { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex };
+        for (const dieKey of Object.keys(dice)) {
+            const diceBaseKey = dieKey.replace('Index', '');
+            this.rules.roll[`${diceBaseKey}Faces`] = CONFIG.DH.GENERAL.dieFaces[dice[dieKey]];
+        }
+
         // Clamp resources (must be done last to ensure all updates occur)
         this.resources.clamp();
     }

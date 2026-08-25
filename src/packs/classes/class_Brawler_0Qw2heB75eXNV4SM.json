@@ -68,7 +68,36 @@
       "What do I rely on you for during our travels? How do you feel about it?",
       "I still haven’t forgiven you for something you said to me. What was it, and why did you say it?"
     ],
-    "isMulticlass": false
+    "isMulticlass": false,
+    "levelupOptionTiers": {
+      "2": {
+        "UXJXoQH2UH12UaWS": {
+          "label": "Permanently increase your Combo Die by one step (d4 to d6, d6 to d8, etc.).",
+          "type": "dice",
+          "checkboxSelections": 1,
+          "minCost": 1,
+          "subType": "comboDieIndex"
+        }
+      },
+      "3": {
+        "NqAjwgJaorwhlxfp": {
+          "label": "Permanently increase your Combo Die by one step (d4 to d6, d6 to d8, etc.).",
+          "type": "dice",
+          "checkboxSelections": 1,
+          "minCost": 1,
+          "subType": "comboDieIndex"
+        }
+      },
+      "4": {
+        "kX18xCR6KbTS3iTP": {
+          "label": "Permanently increase your Combo Die by one step (d4 to d6, d6 to d8, etc.).",
+          "type": "dice",
+          "checkboxSelections": 1,
+          "minCost": 1,
+          "subType": "comboDieIndex"
+        }
+      }
+    }
   },
   "effects": [],
   "flags": {},

@@ -27,7 +27,7 @@
               "bonus": null,
               "custom": {
                 "enabled": true,
-                "formula": "2d4c"
+                "formula": "2d(@system.rules.roll.comboDieFaces)c"
               }
             },
             "valueAlt": {
