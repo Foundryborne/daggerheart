@@ -12,7 +12,45 @@
     },
     "consumeOnUse": true,
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "x95WATbyPt8gmmHT": {
+        "type": "effect",
+        "_id": "x95WATbyPt8gmmHT",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "IU9cj5UPFPOD8jVH",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Pour",
+        "range": ""
+      }
+    }
   },
   "_id": "IU9cj5UPFPOD8jVH",
   "effects": [],

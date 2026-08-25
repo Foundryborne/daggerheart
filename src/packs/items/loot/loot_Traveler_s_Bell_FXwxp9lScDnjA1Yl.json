@@ -11,7 +11,36 @@
       "artist": ""
     },
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "U3U0FAL95FouCQ8P": {
+        "type": "effect",
+        "_id": "U3U0FAL95FouCQ8P",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Ring Bell",
+        "range": ""
+      }
+    }
   },
   "_id": "FXwxp9lScDnjA1Yl",
   "effects": [],

@@ -12,7 +12,45 @@
     },
     "consumeOnUse": true,
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "I9CPyBfAsQibn5PR": {
+        "type": "effect",
+        "_id": "I9CPyBfAsQibn5PR",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "USKNUVdtgl17llZq",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "range": ""
+      }
+    }
   },
   "_id": "USKNUVdtgl17llZq",
   "effects": [],

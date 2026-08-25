@@ -12,7 +12,45 @@
     },
     "consumeOnUse": true,
     "gmNotes": "",
-    "actions": {}
+    "actions": {
+      "dCR3Zm361WUZz4Zf": {
+        "type": "effect",
+        "_id": "dCR3Zm361WUZz4Zf",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "quantity",
+            "value": 1,
+            "itemId": "OGnTVWBqgNJDrOeK",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Sprinkle",
+        "range": ""
+      }
+    }
   },
   "_id": "OGnTVWBqgNJDrOeK",
   "effects": [],

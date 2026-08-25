@@ -14,7 +14,60 @@
     "actions": {}
   },
   "_id": "RcYICit5t9dnMhzi",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Grapnel",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Action rolls to climb sheer surfaces",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "GdW5jIrTba4dr4Rv",
+      "img": "icons/weapons/thrown/shuriken-triple-purple.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>You gain advantage on action rolls to climb sheer surfaces.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!RcYICit5t9dnMhzi.GdW5jIrTba4dr4Rv"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {},
