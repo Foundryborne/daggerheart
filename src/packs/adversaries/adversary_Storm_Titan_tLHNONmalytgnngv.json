@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "f5itMkOcwhmlKs27",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -169,8 +168,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "8FnteoJxCdSzjqiU",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
@@ -192,9 +190,100 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "0ygDf9v05hVcLnyu": {
+            "type": "effect",
+            "_id": "0ygDf9v05hVcLnyu",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          },
+          "WoUKdIPiaC8jJZAB": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "WoUKdIPiaC8jJZAB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "1GB6i2sPEdjhf4SE",
       "img": "icons/magic/lightning/orb-ball-blue.webp",
@@ -216,13 +305,157 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "oRvHmC1znZF2SbzK": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 3,
+                  "dice": "d12",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "oRvHmC1znZF2SbzK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Storm Bringer",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "PaMLDVYPQIdZKMvr",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "eAHzRE18UJknHhzj",
       "img": "icons/magic/lightning/bolt-strike-forked-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Storm Bringer",
+          "disabled": false,
+          "img": "icons/magic/lightning/bolt-strike-forked-blue.webp",
+          "description": "<p>You are <em>Vulnerable</em> until you are spotlighted.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": "act"
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.tLHNONmalytgnngv.Item.eAHzRE18UJknHhzj",
+          "_id": "PaMLDVYPQIdZKMvr",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!tLHNONmalytgnngv.eAHzRE18UJknHhzj.PaMLDVYPQIdZKMvr"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -240,13 +473,144 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "kUZI7iNvCW5YR51i": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "kUZI7iNvCW5YR51i",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 3
+            },
+            "effects": [
+              {
+                "_id": "KcxGJ33ynRLyZKJC",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "wYagPWvyGOrwkc4s",
       "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Clapped",
+          "disabled": false,
+          "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
+          "description": "<p>You are <em>Vulnerable</em> until you roll with Hope.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.tLHNONmalytgnngv.Item.wYagPWvyGOrwkc4s",
+          "_id": "KcxGJ33ynRLyZKJC",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!tLHNONmalytgnngv.wYagPWvyGOrwkc4s.KcxGJ33ynRLyZKJC"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

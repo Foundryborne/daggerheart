@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "JWxL57vzZ3m1ZTol",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -168,13 +167,155 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "BRa8Urat5JwUGcet": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d4",
+                  "bonus": 4,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "BRa8Urat5JwUGcet",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "EcfoVtIMihFMRo0a",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "melee"
+          }
+        },
+        "granter": null
       },
       "_id": "6pSw0TNcqS5hRJz3",
       "img": "icons/creatures/abilities/fang-tooth-poison-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Poisoned",
+          "disabled": false,
+          "img": "icons/creatures/abilities/fang-tooth-poison-green.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You are Poisoned until you succeed on a Strength Roll (20). </span></p><p>While Poisoned, you must roll a <strong>d6</strong> before you make an action roll. On a result of 4 or lower, you must mark a Stress.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.wZA5KQUjIRhnUFrl.Item.6pSw0TNcqS5hRJz3",
+          "_id": "EcfoVtIMihFMRo0a",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!wZA5KQUjIRhnUFrl.6pSw0TNcqS5hRJz3.EcfoVtIMihFMRo0a"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -192,9 +333,101 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "3u2uiXYRufuM5Kmr": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": "close"
+              },
+              "resources": {}
+            },
+            "_id": "3u2uiXYRufuM5Kmr",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "consumeOnSuccess": false,
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "8sEbqLIwwCPYj6Oo",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

@@ -149,9 +149,72 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "q2bat3jLmcpt1wKC": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d12",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "q2bat3jLmcpt1wKC",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "WxeMh4vOkER8kCLr",
       "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
@@ -173,9 +236,61 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "6Jfk9gDwaNsRgcWC": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "6Jfk9gDwaNsRgcWC",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": 10,
+              "damageMod": "none"
+            },
+            "name": "Flee Check",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "ku7SWV1AXQ1d50sN",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",

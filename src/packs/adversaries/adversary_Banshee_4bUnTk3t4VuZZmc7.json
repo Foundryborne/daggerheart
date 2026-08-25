@@ -149,13 +149,103 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "jE4mvZJSlHTfFzll": {
+            "type": "effect",
+            "_id": "jE4mvZJSlHTfFzll",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p><strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "4fRTRNsvtEP7ifYR",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Base",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.resistance.physical.resistance",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "YbDS67HyQ76TX0Bn",
+          "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>Resistance to physical damage.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!4bUnTk3t4VuZZmc7.4fRTRNsvtEP7ifYR.YbDS67HyQ76TX0Bn"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -173,9 +263,77 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "rtkOGDXcnNhUZxZ1": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "hope": {
+                  "base": false,
+                  "applyTo": "hope",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "rtkOGDXcnNhUZxZ1",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Terrifying",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "dZ1bV7M6RckcT8Tr",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -197,9 +355,68 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "UgN1W593CzVy6sQB": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "UgN1W593CzVy6sQB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "3",
+              "recovery": "scene",
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "",
+            "range": "veryFar"
+          }
+        },
+        "granter": null
       },
       "_id": "eQiILqNE3mL82W3Z",
       "img": "icons/magic/death/undead-ghost-strike-white.webp",
@@ -221,9 +438,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "L8CnVkNm7GAshy1U": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d12",
+                  "bonus": 1,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "L8CnVkNm7GAshy1U",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Wail of Despair",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "doubleOnFail"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "CSrzB2SNFXb3Y5b6",
       "img": "icons/magic/death/skeleton-skull-soul-blue.webp",

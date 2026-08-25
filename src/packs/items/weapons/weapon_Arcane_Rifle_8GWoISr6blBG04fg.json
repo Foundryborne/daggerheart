@@ -14,45 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "0BlWvjZi8EgnT6ln": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Aimed",
-        "description": "Your attack has disadvantage if the target is within Very Close range of you or within Melee range of one of your allies. You can mark a Stress to ignore this penalty.",
-        "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "itemId": null,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "_id": "0BlWvjZi8EgnT6ln",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 1,
     "equipped": false,
     "secondary": false,

@@ -144,9 +144,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "KDHanmfdvmbKciyT": {
+            "type": "effect",
+            "_id": "KDHanmfdvmbKciyT",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": "veryFar"
+          }
+        },
+        "granter": null
       },
       "_id": "3OcaZ6mn5hJSqb4g",
       "img": "icons/magic/symbols/runes-star-magenta.webp",
@@ -168,9 +205,135 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "rkWDWLYON59jcdkw": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "rkWDWLYON59jcdkw",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d8",
+                "compare": "equal",
+                "treshold": 8
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Portal Flight",
+            "range": ""
+          },
+          "x8HNi7N3q3JtKkTu": {
+            "type": "healing",
+            "_id": "x8HNi7N3q3JtKkTu",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {
+                "fear": {
+                  "base": false,
+                  "applyTo": "fear",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "8Jbhoixqt3Bw1i2H",
       "img": "icons/magic/symbols/rune-sigil-white-pink.webp",

@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "YBQ9BpaOeef4iBms",
       "img": "icons/magic/perception/third-eye-blue-red.webp",
@@ -174,8 +173,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "q10WSdhUvw2GY2cy",
       "img": "icons/magic/symbols/triangle-glow-purple.webp",
@@ -197,13 +195,132 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "ckfu1ssFzdZqoggv": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "ckfu1ssFzdZqoggv",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 3
+            },
+            "effects": [
+              {
+                "_id": "i3PqojBeBweHCumM",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "9nSzgCYB4d3gbvIj",
       "img": "icons/magic/lightning/projectile-tendrils-red.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Desynced",
+          "disabled": false,
+          "img": "icons/magic/lightning/projectile-tendrils-red.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You have disadvantage on Instinct Rolls until you use a downtime move to ground your psyches in the now.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.disadvantageSources",
+                "type": "add",
+                "value": "Instinct Rolls",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.RIrQcvhlSmXTqFxr.Item.9nSzgCYB4d3gbvIj",
+          "_id": "i3PqojBeBweHCumM",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!RIrQcvhlSmXTqFxr.9nSzgCYB4d3gbvIj.i3PqojBeBweHCumM"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -221,13 +338,115 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "8pvEC8dqsmKmFo1o": {
+            "type": "effect",
+            "_id": "8pvEC8dqsmKmFo1o",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "TlHq918re4n0awjW",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "k4M4bnm9yPPLqOfn",
       "img": "icons/magic/acid/dissolve-arm-flesh.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "New Effect",
+          "disabled": false,
+          "img": "icons/magic/acid/dissolve-arm-flesh.webp",
+          "description": "<p>You have a <span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">-2 penalty to your damage thresholds until you use a downtime move to repair your armor.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.damageThresholds.major",
+                "type": "subtract",
+                "value": 2,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.damageThresholds.severe",
+                "type": "subtract",
+                "value": 2,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.RIrQcvhlSmXTqFxr.Item.k4M4bnm9yPPLqOfn",
+          "_id": "TlHq918re4n0awjW",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!RIrQcvhlSmXTqFxr.k4M4bnm9yPPLqOfn.TlHq918re4n0awjW"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

@@ -14,36 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "DlCbxmVa5udw4wLA": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Gliding",
-        "description": "You can glide up to Far range and are immune to damage from falling.",
-        "img": "icons/skills/movement/arrow-upward-yellow.webp",
-        "_id": "DlCbxmVa5udw4wLA",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 2,
     "equipped": false,
     "armor": {

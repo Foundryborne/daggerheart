@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "RWMgJTJU5adTtpXS",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -163,18 +162,117 @@
       "name": "Stolen Armor",
       "type": "feature",
       "system": {
-        "featureForm": "passive",
+        "featureForm": "evolution",
         "description": "<p><em>Countdown</em>. When combat begins, activate a countdown with a value equal to the number of PCs. When the Troll takes damage, reduce the severity by one threshold, then tick down the countdown. When it triggers, the Troll evolves (see \"Enraged @Lookup[@name]\").</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "CxueuYXnhqT4EP7l": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Stolen Armor",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/equipment/chest/breastplate-banded-steel-grey.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "@partySize",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "CxueuYXnhqT4EP7l",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "3xBKHT3vHPmXoIDH",
       "img": "icons/equipment/chest/breastplate-banded-steel-grey.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Stolen Armor",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.rules.damageReduction.reduceSeverity.magical",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.rules.damageReduction.reduceSeverity.physical",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "IeHRd0HSjeDWmMkB",
+          "img": "icons/equipment/chest/breastplate-banded-steel-grey.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When the Troll takes damage, reduce the severity by one threshold.</span></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!iwhTb5AUvNFV3dU5.3xBKHT3vHPmXoIDH.IeHRd0HSjeDWmMkB"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -192,9 +290,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "E6AvUf6zPcTow6ah": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d8",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "E6AvUf6zPcTow6ah",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Flail Swipe",
+                "type": "placed",
+                "shape": "inFront",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "W0YS8rMhgEQQMFRF",
       "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
@@ -216,13 +415,121 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "iIsMQLVWUFmpdZWb": {
+            "type": "evolution",
+            "_id": "iIsMQLVWUFmpdZWb",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "evolution": {
+              "active": false,
+              "evolutionFeatures": {
+                "3xBKHT3vHPmXoIDH": "unevolved",
+                "W0YS8rMhgEQQMFRF": "unevolved",
+                "tOz9yigrsPXyrPiK": "evolved"
+              },
+              "resourceRefresh": {
+                "hitPoints": false,
+                "stress": false
+              },
+              "tokenOverride": null
+            },
+            "effects": [
+              {
+                "_id": "7D0zNvZQ6H8srwEo",
+                "onSave": false
+              }
+            ]
+          }
+        },
+        "granter": null
       },
       "_id": "c89I2BlpU2nQyWji",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Enraged",
+          "disabled": false,
+          "img": "icons/creatures/magical/construct-face-stone-pink.webp",
+          "description": "<p>The Troll loses their \"Stolen Armor\" and \"Flail Swipe\" features, then gains a +1 bonus to their Difficulty. Additionally, they gain the \"Double Swipe\" feature and replace \"Skull Flail\" with the following standard attack: Claw Swipe: Very Close | <strong>1d10+3</strong> phy.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "type": "standardAttack",
+                "phase": "initial",
+                "value": {
+                  "name": "Claw Swipe",
+                  "damageTypes": [
+                    "physical"
+                  ],
+                  "attackRange": "veryClose",
+                  "trait": null,
+                  "damageFormula": "1d10+3",
+                  "img": "icons/creatures/claws/claw-talons-yellow-red.webp"
+                },
+                "priority": 0
+              },
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.iwhTb5AUvNFV3dU5.Item.c89I2BlpU2nQyWji",
+          "_id": "7D0zNvZQ6H8srwEo",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!iwhTb5AUvNFV3dU5.c89I2BlpU2nQyWji.7D0zNvZQ6H8srwEo"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -240,9 +547,46 @@
         "description": "<p><strong>Spend a Fear</strong> to move up to Close range and make two standard attacks against a target within Melee range. If both attacks succeed, combine the damage, and the target loses a Hope.</p>",
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "1BeKyLFvU7Dv77Cx": {
+            "type": "effect",
+            "_id": "1BeKyLFvU7Dv77Cx",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "tOz9yigrsPXyrPiK",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",

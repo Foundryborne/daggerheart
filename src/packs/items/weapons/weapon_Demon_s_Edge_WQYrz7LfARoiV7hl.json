@@ -14,67 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "HZfWsLRQkSlCt8iV": {
-        "type": "damage",
-        "chatDisplay": true,
-        "name": "Disturbing",
-        "description": "When you defeat a creature with this weapon, all adversaries within Close range must mark a Stress.",
-        "img": "icons/magic/death/skull-energy-light-white.webp",
-        "damage": {
-          "resources": {
-            "stress": {
-              "applyTo": "stress",
-              "value": {
-                "multiplier": "flat",
-                "flatMultiplier": 0,
-                "dice": "d6",
-                "bonus": 1,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "base": false,
-              "resultBased": false,
-              "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
-            }
-          },
-          "main": null
-        },
-        "_id": "HZfWsLRQkSlCt8iV",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": false,

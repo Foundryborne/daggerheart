@@ -144,13 +144,126 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "nqAx27AlDh9W8WYb": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "nqAx27AlDh9W8WYb",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "d5RIO2p6SFAXz7Qp",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "finesse",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "melee"
+          }
+        },
+        "granter": null
       },
       "_id": "bkNqFMvqT2qnOH9E",
       "img": "icons/magic/symbols/circle-ouroboros.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Constricted",
+          "disabled": false,
+          "img": "icons/magic/symbols/circle-ouroboros.webp",
+          "description": "<p>You are <span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Constricted until the Lamia moves or takes Major or greater damage. </span></p><p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While Constricted, the target</span> is <em>Restrained</em> <span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">and must mark a Stress when the Lamia takes the spotlight.</span></p>",
+          "transfer": false,
+          "statuses": [
+            "restrained"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.pMZxHeu79iXFV9FR.Item.bkNqFMvqT2qnOH9E",
+          "_id": "d5RIO2p6SFAXz7Qp",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!pMZxHeu79iXFV9FR.bkNqFMvqT2qnOH9E.d5RIO2p6SFAXz7Qp"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -168,9 +281,77 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "cBfwk5Lx3DR9QQy4": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "hitPoints": {
+                  "base": false,
+                  "applyTo": "hitPoints",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1d4 - 1"
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "cBfwk5Lx3DR9QQy4",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "range": "melee"
+          }
+        },
+        "granter": null
       },
       "_id": "NC3gWjQQFXqjCYrg",
       "img": "icons/magic/unholy/energy-smoke-pink.webp",
@@ -192,13 +373,102 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "JXxrnAay8HGY335Q": {
+            "type": "effect",
+            "_id": "JXxrnAay8HGY335Q",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "5unIqJr52ZzFDvbg",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "PPji2Wiib7ixf30i",
       "img": "icons/skills/toxins/symbol-poison-drop-skull-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Drowzy",
+          "disabled": false,
+          "img": "icons/magic/control/silhouette-hold-change-green.webp",
+          "description": "<p>You are <em>Vulnerable</em> until they succeed on a Instinct Roll (19).</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.pMZxHeu79iXFV9FR.Item.PPji2Wiib7ixf30i",
+          "_id": "5unIqJr52ZzFDvbg",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!pMZxHeu79iXFV9FR.PPji2Wiib7ixf30i.5unIqJr52ZzFDvbg"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

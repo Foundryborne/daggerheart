@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "6h3DlaZmdtcikM4H",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -173,9 +172,137 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "A5jRCVOuw9Wfvfwk": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "A5jRCVOuw9Wfvfwk",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Many Mouths",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "consumeOnSuccess": false,
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "LW4JURcTsZzpC5Ay",
       "img": "icons/creatures/abilities/mouth-teeth-misshapen-pink.webp",
@@ -197,9 +324,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "rSdl6SV58g5WGgN5": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "rSdl6SV58g5WGgN5",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Frenzied Feeding",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "consumeOnSuccess": false,
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "qkWS8NduN1NUBsg9",
       "img": "icons/skills/wounds/injury-triple-slash-bleed.webp",
@@ -221,13 +449,162 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "km5CfvdRMj6VVC8C": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": null,
+                    "dice": "d6",
+                    "bonus": 2,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "km5CfvdRMj6VVC8C",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Quaking Footfalls",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "SNVqNrA4gZDN2Loj",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "UGMAHKqr6KGuKx0o",
       "img": "icons/magic/earth/explosion-lava-stone-yellow.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Quaking Footfalls",
+          "disabled": false,
+          "img": "icons/magic/earth/explosion-lava-stone-yellow.webp",
+          "description": "<p>You are <em>Vulnerable</em> until you take damage</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.HFpYk4dxDMx9emHs.Item.UGMAHKqr6KGuKx0o",
+          "_id": "SNVqNrA4gZDN2Loj",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!HFpYk4dxDMx9emHs.UGMAHKqr6KGuKx0o.SNVqNrA4gZDN2Loj"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -245,13 +622,102 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "vkJPyvxuhVINY5iD": {
+            "type": "effect",
+            "_id": "vkJPyvxuhVINY5iD",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Lifeblooded",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "GUWndnEab5P150OH",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "a4e7n4uzB7hHlVyW",
       "img": "icons/magic/life/heart-cross-strong-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Overgrown",
+          "disabled": false,
+          "img": "icons/magic/nature/root-vine-entangled-humanoid.webp",
+          "description": "",
+          "transfer": true,
+          "statuses": [
+            "restrain"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.HFpYk4dxDMx9emHs.Item.a4e7n4uzB7hHlVyW",
+          "_id": "GUWndnEab5P150OH",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!HFpYk4dxDMx9emHs.a4e7n4uzB7hHlVyW.GUWndnEab5P150OH"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -270,8 +736,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "FvBoTWCmTlYjRRJU",
       "img": "icons/magic/nature/plant-bamboo-green.webp",

@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "0nFNX2rIm6gAnqJY",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
@@ -167,14 +166,150 @@
         "description": "<p>Countdown (Loop 3). The Choir's divine song builds on itself with each refrain. When the Choir first appears, activate the countdown. It ticks down when a PC gains a Hope. When it triggers, place a token on this stat block. The Choir gains a bonus to its damage rolls equal to the number of tokens on this stat block.</p>",
         "attribution": {},
         "gmNotes": "",
-        "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "",
+          "recovery": null,
+          "progression": "increasing",
+          "dieFaces": "d4",
+          "icon": "fa-solid fa-music",
+          "diceStates": {}
+        },
+        "actions": {
+          "TqM6TJH5SOvsh2yf": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Celestial Coda",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/skills/trades/music-notes-sound-blue.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "custom",
+                  "startFormula": "3",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "TqM6TJH5SOvsh2yf",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "bZlfk7RkpgKFKAnx": {
+            "type": "effect",
+            "_id": "bZlfk7RkpgKFKAnx",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, place a token on this stat block. The Choir gains a bonus to its damage rolls equal to the number of tokens on this stat block.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "5oqRLicTNnITxlwx",
       "img": "icons/skills/trades/music-notes-sound-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Celestial Coda",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.damage.physical.bonus",
+                "type": "add",
+                "value": "ITEM.@system.resource.value",
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.damage.magical.bonus",
+                "type": "add",
+                "value": "ITEM.@system.resource.value",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "L8RlbKHHXbb5w318",
+          "img": "icons/skills/trades/music-notes-sound-blue.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">The Choir gains a bonus to its damage rolls equal to the number of tokens on this stat block.</span></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!68xDUa9Ls48O825Z.5oqRLicTNnITxlwx.L8RlbKHHXbb5w318"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -193,8 +328,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "cOwcBvzgs3GYGxKE",
       "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
@@ -302,7 +436,51 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "effects": [],
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "W7YfP6nmraj7jgG9",
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.effects!68xDUa9Ls48O825Z.W7YfP6nmraj7jgG9"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!actors!68xDUa9Ls48O825Z"

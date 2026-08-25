@@ -140,13 +140,41 @@
       "type": "feature",
       "system": {
         "featureForm": "action",
-        "description": "<p>Once per scene, summon <strong>2d4</strong> Tier 2 Hordes, which appear at Far range. You gain a Fear for each Horde summoned in this way.</p>",
+        "description": "<p>Once per scene, summon <strong>[[/r 2d4]]</strong> Tier 2 Hordes, which appear at Far range. You gain a Fear for each Horde summoned in this way.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "r6cIIiBlorTe28Ol": {
+            "type": "effect",
+            "_id": "r6cIIiBlorTe28Ol",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "1",
+              "recovery": "scene",
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Summon",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "UHgt0y5mAjYNFkKj",
       "img": "icons/magic/unholy/silhouette-light-fire-blue.webp",
@@ -168,9 +196,70 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "7GZJ2tyBWej0am16": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "7GZJ2tyBWej0am16",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "far"
+          }
+        },
+        "granter": null
       },
       "_id": "AhT2ysWH9VJvvoZF",
       "img": "icons/magic/unholy/hand-claw-fire-blue.webp",
@@ -192,9 +281,70 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "orcsdJDjVJqY3lmI": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "orcsdJDjVJqY3lmI",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "consumeOnSuccess": false,
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "p4Uo22O2XtQULFI3",
       "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
@@ -216,9 +366,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "UKM1orlTG9com6sW": {
+            "type": "effect",
+            "_id": "UKM1orlTG9com6sW",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "dunAJ7TjJSBEyJHg",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",

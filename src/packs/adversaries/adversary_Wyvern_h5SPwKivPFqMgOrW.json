@@ -144,9 +144,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "FEcYj312fU0AFZ7G": {
+            "type": "effect",
+            "_id": "FEcYj312fU0AFZ7G",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "6FmuJDEwZ1Yq6Krt",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -168,13 +205,109 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "eF4xOnEEnpVQZIQu": {
+            "type": "effect",
+            "_id": "eF4xOnEEnpVQZIQu",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Terrifying Shriek",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "PpDXBf2b5FirQfjI",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "3yZ5cnA8C3zknz1A",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Terrified",
+          "disabled": false,
+          "img": "icons/magic/death/skull-energy-light-purple.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You are Terrified until you succeed on a Presence Roll (18) to clear the condition or the Wyvern is defeated. While Terrified, you do not gain a Hope when you roll with Hope.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.h5SPwKivPFqMgOrW.Item.3yZ5cnA8C3zknz1A",
+          "_id": "PpDXBf2b5FirQfjI",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!h5SPwKivPFqMgOrW.3yZ5cnA8C3zknz1A.PpDXBf2b5FirQfjI"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -192,13 +325,108 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "Cl5dsNGTOVsU7d5F": {
+            "type": "effect",
+            "_id": "Cl5dsNGTOVsU7d5F",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "IRN9xFgqn91fgjag",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "ERw6SnOIhJA2wWdH",
       "img": "icons/creatures/claws/claw-talons-glowing-orange.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Clutched",
+          "disabled": false,
+          "img": "icons/creatures/claws/claw-talons-glowing-orange.webp",
+          "description": "<p>You are <em>Restrained</em> in the Wyvern's claws until you succeed on a Strength Roll (18) or the Wyvern takes Major or greater damage.</p><p>While Restrained in this way, you have disadvantage on attack rolls.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.disadvantageSources",
+                "type": "add",
+                "value": "Attack Rolls",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.h5SPwKivPFqMgOrW.Item.ERw6SnOIhJA2wWdH",
+          "_id": "IRN9xFgqn91fgjag",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!h5SPwKivPFqMgOrW.ERw6SnOIhJA2wWdH.IRN9xFgqn91fgjag"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

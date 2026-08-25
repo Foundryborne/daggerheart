@@ -14,36 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "NO0cfOXGO0Z3vTwd": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Double Up",
-        "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
-        "img": "icons/skills/melee/strike-slashes-orange.webp",
-        "_id": "NO0cfOXGO0Z3vTwd",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": true,

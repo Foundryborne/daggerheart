@@ -150,12 +150,64 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "EpstVVvQLVDgLxt1",
       "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Libre",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.rules.conditionImmunities.restrained",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "rMrvfUZtgo911vkv",
+          "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>The Masque Muerte can't be <em>Restrained</em>.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!DtpTGuzeLlcZ43ID.EpstVVvQLVDgLxt1.rMrvfUZtgo911vkv"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -173,13 +225,153 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "1hKw91twBrueiMur": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "1hKw91twBrueiMur",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "1811deazqsyZEfSn",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "6o1xTsu1ujGrfABq",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Taunted",
+          "disabled": false,
+          "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+          "description": "",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.DtpTGuzeLlcZ43ID.Item.6o1xTsu1ujGrfABq",
+          "_id": "1811deazqsyZEfSn",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!DtpTGuzeLlcZ43ID.6o1xTsu1ujGrfABq.1811deazqsyZEfSn"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -197,9 +389,81 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "ohqoKm9BMxQaMMBK": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d10",
+                  "bonus": 6,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "ohqoKm9BMxQaMMBK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "lPJq72e93dc2ODK3",
       "img": "icons/skills/movement/arrow-down-pink.webp",
@@ -221,9 +485,106 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "aeMK4h1D7u7g7C4Z": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "aeMK4h1D7u7g7C4Z",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Unmasking Death",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "NPoRVKRQzuLUw0mM",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -245,13 +606,102 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "XEMbSiuz6HZFDY3F": {
+            "type": "effect",
+            "_id": "XEMbSiuz6HZFDY3F",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "g1W6cRSGVSteu99P",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "pR9baknxxTOr3Vbb",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Pinned",
+          "disabled": false,
+          "img": "icons/skills/movement/arrow-down-pink.webp",
+          "description": "<p>You are Pinned until you escape with a successful Strength Roll. While Pinned, you are <em>Restrained</em> and take an extra <strong>1d12</strong> magic damage from the Masque Muerte's attacks.</p>",
+          "transfer": false,
+          "statuses": [
+            "restrained"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.DtpTGuzeLlcZ43ID.Item.pR9baknxxTOr3Vbb",
+          "_id": "g1W6cRSGVSteu99P",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!DtpTGuzeLlcZ43ID.pR9baknxxTOr3Vbb.g1W6cRSGVSteu99P"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

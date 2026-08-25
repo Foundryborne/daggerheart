@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "MMbIERlxi7DsVlXx",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -168,9 +167,48 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "1Z0OyqCIS705TEIr": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Time Looper",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/time/hourglass-tilted-glowing-gold.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "custom",
+                  "startFormula": "2d6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "1Z0OyqCIS705TEIr",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "wBfRwWNwBkJALC5s",
       "img": "icons/magic/time/hourglass-tilted-glowing-gold.webp",
@@ -192,9 +230,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "HgV00O2iDEOZYZDe": {
+            "type": "effect",
+            "_id": "HgV00O2iDEOZYZDe",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": "veryFar"
+          }
+        },
+        "granter": null
       },
       "_id": "SZKbrbzW9ITQuELW",
       "img": "icons/magic/movement/trail-streak-zigzag-teal.webp",
@@ -216,9 +291,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "AZMtZ5kqFTcXBZ2N": {
+            "type": "effect",
+            "_id": "AZMtZ5kqFTcXBZ2N",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "TubY8u9hJy8MbDEK",
       "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
@@ -240,9 +352,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "aDM9B189dj0PFVhK": {
+            "type": "effect",
+            "_id": "aDM9B189dj0PFVhK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "3",
+              "recovery": "scene",
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "VUmRd6qE30M7wy7v",
       "img": "icons/magic/time/arrows-circling-pink.webp",

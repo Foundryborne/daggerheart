@@ -149,13 +149,133 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "4CzUo4eCgBxLoTSm": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "4CzUo4eCgBxLoTSm",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Neurotoxic Spore Cloud",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "6z7PQnXHCw3ceCBz",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "raqERxpdxTa2On8F",
       "img": "icons/magic/air/fog-gas-smoke-dense-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Poisoned",
+          "disabled": false,
+          "img": "icons/magic/air/fog-gas-smoke-dense-green.webp",
+          "description": "<p>You are Poisoned until you <strong>spend a Hope</strong> to clear the condition. </p><p>While Poisoned, you must roll a d6 before you make an action roll. On a result of 4 or lower, you must mark a Stress.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.5BKK7pDRjRAgN3Nm.Item.raqERxpdxTa2On8F",
+          "_id": "6z7PQnXHCw3ceCBz",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5BKK7pDRjRAgN3Nm.raqERxpdxTa2On8F.6z7PQnXHCw3ceCBz"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -173,13 +293,119 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "X0mMXXT7jsDQuPt8": {
+            "type": "healing",
+            "_id": "X0mMXXT7jsDQuPt8",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "THgK0K21X6Qm25Wz",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Spend Fear",
+            "range": "veryClose"
+          }
+        },
+        "granter": null
       },
       "_id": "Ff7a0Meknufbkby8",
       "img": "icons/magic/life/cross-beam-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Reanimated Corpse",
+          "disabled": false,
+          "img": "icons/magic/death/skeleton-worn-skull-tan.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When the Sporophore is spotlighted, you can also spotlight all corpses it controls.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.5BKK7pDRjRAgN3Nm.Item.Ff7a0Meknufbkby8",
+          "_id": "THgK0K21X6Qm25Wz",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5BKK7pDRjRAgN3Nm.Ff7a0Meknufbkby8.THgK0K21X6Qm25Wz"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -193,13 +419,50 @@
       "type": "feature",
       "system": {
         "featureForm": "action",
-        "description": "<p>Mark any number of Stress to have the Sporophore summon an equal number of Fungispunj Sporelings within Close range.</p>",
+        "description": "<p>Mark any number of Stress to have the Sporophore summon an equal number of @UUID[Compendium.daggerheart.adversaries.Actor.55oYzFQRmrXCqNxn]{Fungispunj Sporelings} within Close range.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "jPc8q0SPDQeBL7fx": {
+            "type": "effect",
+            "_id": "jPc8q0SPDQeBL7fx",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": true,
+                "key": "stress",
+                "value": 1,
+                "step": 1,
+                "itemId": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "CqMQsFGQ1GR6Auii",
       "img": "icons/magic/nature/mushrooms-fire-glow-blue.webp",
@@ -222,8 +485,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "HazO7wNFjep1jAUz",
       "img": "icons/magic/perception/third-eye-blue-red.webp",

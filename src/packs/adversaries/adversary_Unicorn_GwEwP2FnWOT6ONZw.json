@@ -150,12 +150,64 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "MuXns55VF2VDcx3W",
       "img": "icons/skills/melee/strike-weapon-polearm-ice-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Celestial Lance",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.rules.attack.damage.hpDamageMultiplier",
+                "type": "override",
+                "value": 2,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "ffN8wagEXv5fbCK1",
+          "img": "icons/skills/melee/strike-weapon-polearm-ice-blue.webp",
+          "disabled": true,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">The </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(243, 194, 103) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Unicorn</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">'s standard attack deals double damage to a creature that has dealt damage to it.</span></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!GwEwP2FnWOT6ONZw.MuXns55VF2VDcx3W.ffN8wagEXv5fbCK1"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -173,9 +225,92 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "oZlQsrEu9UOpXiLd": {
+            "type": "healing",
+            "_id": "oZlQsrEu9UOpXiLd",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": true,
+                "key": "stress",
+                "value": 1,
+                "step": 1,
+                "itemId": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {
+                "hitPoints": {
+                  "base": false,
+                  "applyTo": "hitPoints",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": true,
+                      "formula": "@scale"
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Mark Stress",
+            "range": "melee"
+          }
+        },
+        "granter": null
       },
       "_id": "gMTKOvA2dNM5OAqG",
       "img": "icons/magic/life/heart-cross-strong-purple-orange.webp",
@@ -197,13 +332,100 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "Yl897q9AAa6EjqW7": {
+            "type": "effect",
+            "_id": "Yl897q9AAa6EjqW7",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Protective Aura",
+                "type": "attached",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": [
+                  "YheawLsPcTD4FvSC"
+                ]
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "Tzwuda3jxU2ueezY",
       "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-orange.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Protective Aura",
+          "disabled": false,
+          "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-orange.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While the aura is in effect, attack rolls made against the Unicorn or an ally within Very Close range are made with disadvantage. This effect lasts until the Unicorn takes damage.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": [
+              1,
+              0
+            ]
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.GwEwP2FnWOT6ONZw.Item.Tzwuda3jxU2ueezY",
+          "_id": "YheawLsPcTD4FvSC",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!GwEwP2FnWOT6ONZw.Tzwuda3jxU2ueezY.YheawLsPcTD4FvSC"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -221,9 +443,55 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "dRxQIedYwFddDdgo": {
+            "type": "effect",
+            "_id": "dRxQIedYwFddDdgo",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Teleport",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": "veryFar"
+          }
+        },
+        "granter": null
       },
       "_id": "IUcJ08ZA1Jb5QEGS",
       "img": "icons/magic/symbols/runes-star-pentagon-orange.webp",

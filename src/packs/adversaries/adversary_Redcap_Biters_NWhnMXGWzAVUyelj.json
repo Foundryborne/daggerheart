@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "f0Ln9gu04NjQKiGf",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
@@ -169,8 +168,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "m1iwZJ8vLcN7LPei",
       "img": "icons/commodities/metal/fragments-steel-ring.webp",

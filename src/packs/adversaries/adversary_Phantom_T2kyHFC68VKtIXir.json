@@ -145,12 +145,64 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "8X2Jv3VVwXPkt73H",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Incorporeal",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.resistance.physical.resistance",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "u1wlbCuZ56HTJrIZ",
+          "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>The Phantom has resistance to physical damage and can move through solid objects.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!T2kyHFC68VKtIXir.8X2Jv3VVwXPkt73H.u1wlbCuZ56HTJrIZ"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -168,9 +220,125 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "YG80PvHf03ODXzDA": {
+            "type": "effect",
+            "_id": "YG80PvHf03ODXzDA",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Fear Aura",
+                "type": "attached",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Activate Aura",
+            "range": "self"
+          },
+          "TPaOLiW7sZpQAdDp": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "TPaOLiW7sZpQAdDp",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": 10,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "M8DGdeEjEqjiwhfs",
       "img": "icons/magic/death/undead-ghosts-trio-blue.webp",
@@ -192,9 +360,57 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "J60ZNcqyhHc3dFX6": {
+            "type": "countdown",
+            "name": "Spend Fear",
+            "countdown": [
+              {
+                "name": "Lingering Haunt",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "fear",
+                  "startFormula": "1d6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "J60ZNcqyhHc3dFX6",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "fjvRO8QadG5kFWV7",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",

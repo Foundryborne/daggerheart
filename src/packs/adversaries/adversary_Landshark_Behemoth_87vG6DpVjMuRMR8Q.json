@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "suP10DxENd9ZLfss",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -174,12 +173,71 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "2tZhGrctXW7d3Wn5",
       "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Deep Diver",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.resistance.physical.immunity",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.resistance.magical.immunity",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "uHZW0M3vlRNFppzI",
+          "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
+          "disabled": true,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While underground, the Behemoth is immune to damage but can't attack.</span></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!87vG6DpVjMuRMR8Q.2tZhGrctXW7d3Wn5.uHZW0M3vlRNFppzI"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -198,12 +256,71 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "mv1UXfyCZ1inA58c",
       "img": "icons/commodities/metal/mail-scale-steel.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Steel Skinned",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.rules.damageReduction.reduceSeverity.magical",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.rules.damageReduction.reduceSeverity.physical",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "pMlW6q8CzYzTDBls",
+          "img": "icons/commodities/metal/mail-scale-steel.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>All damage dealt to the Behemoth is reduced by one threshold.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!87vG6DpVjMuRMR8Q.mv1UXfyCZ1inA58c.pMlW6q8CzYzTDBls"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -221,13 +338,126 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "JT0PNpmAqv2Sy0ej": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "JT0PNpmAqv2Sy0ej",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Forceful Eruption",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "qc2utRaB2sLvGCv0",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "j1mUnngeA5NKBgnZ",
       "img": "icons/magic/earth/barrier-stone-brown-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Knocked Over",
+          "disabled": false,
+          "img": "icons/skills/movement/arrow-down-pink.webp",
+          "description": "<p>You are <em>Vulnerable</em> until you make an action roll</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.87vG6DpVjMuRMR8Q.Item.j1mUnngeA5NKBgnZ",
+          "_id": "qc2utRaB2sLvGCv0",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!87vG6DpVjMuRMR8Q.j1mUnngeA5NKBgnZ.qc2utRaB2sLvGCv0"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

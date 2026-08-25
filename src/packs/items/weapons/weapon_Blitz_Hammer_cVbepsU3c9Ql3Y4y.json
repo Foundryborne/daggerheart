@@ -14,50 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "1KG5ZPmXmH5X7GVe": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Accelerator",
-        "description": "Once per scene, mark a Stress to move to Far range then make an attack. Gain a +1 bonus to your Proficiency on this attack.",
-        "img": "icons/magic/movement/trail-streak-impact-blue.webp",
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "itemId": null,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "uses": {
-          "max": "1",
-          "recovery": "scene",
-          "value": 0,
-          "consumeOnSuccess": false
-        },
-        "effects": [
-          {
-            "_id": "pAY6jFShsLHNjnRg",
-            "onSave": false
-          }
-        ],
-        "_id": "1KG5ZPmXmH5X7GVe",
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": []
-      }
-    },
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "secondary": false,

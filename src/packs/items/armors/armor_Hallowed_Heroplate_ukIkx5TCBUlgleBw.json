@@ -14,36 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "BI0HMrVMByFTti3u": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Blessed",
-        "description": "Once per long rest, you can spend any number of Hope before you make the Risk It All death move. You gain a bonus to the result of your Hope Die equal to the number of Hope spent.",
-        "img": "icons/magic/holy/barrier-shield-winged-cross.webp",
-        "uses": {
-          "max": "1",
-          "recovery": "longRest",
-          "value": 0,
-          "consumeOnSuccess": false
-        },
-        "_id": "BI0HMrVMByFTti3u",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "armor": {

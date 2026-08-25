@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "PxiD2XExe45fHIKM",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -168,9 +167,78 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "XCZQJSvp4yPO1rCh": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Colossus Crafter",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "XCZQJSvp4yPO1rCh",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "nFtxBG44eEjAF9uk": {
+            "type": "summon",
+            "_id": "nFtxBG44eEjAF9uk",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, summon the Gargantuan War Machine, which appears at the edge of the battlefield and immediately takes the spotlight.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.iCiRtuBhVfojXOj5",
+                "count": "1"
+              }
+            ],
+            "name": "Trigger Countdown",
+            "range": "",
+            "img": "icons/weapons/artillery/trebuchet-simple.webp"
+          }
+        },
+        "granter": null
       },
       "_id": "y23ZdtLiSn0pN2g8",
       "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
@@ -192,9 +260,47 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "ZBhZ4G32zHIuBELj": {
+            "type": "summon",
+            "_id": "ZBhZ4G32zHIuBELj",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.NoRZ1PqB8N5wcIw0",
+                "count": "2"
+              }
+            ],
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "jxtN0zwQ0831Esty",
       "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
@@ -216,9 +322,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "yofgD5CBB3bnC8UJ": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "yofgD5CBB3bnC8UJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Spinning Strike",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "tkErESgXR79emSYb",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -240,9 +447,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "JEcOJzlgx0cjztWq": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d10",
+                  "bonus": 10,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "JEcOJzlgx0cjztWq",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Ground-Breaking",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "vFO6Ikozm5LzM1eh",
       "img": "icons/magic/earth/explosion-lava-stone-yellow.webp",

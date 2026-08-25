@@ -14,45 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "xd2N3IRFkGcy9byh": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Concuss",
-        "description": "On a successful attack, you can spend a Hope to knock the target back to Far range.",
-        "img": "icons/skills/melee/shield-block-bash-yellow.webp",
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "cost": [
-          {
-            "key": "hope",
-            "value": 1,
-            "itemId": null,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "_id": "xd2N3IRFkGcy9byh",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        }
-      }
-    },
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "secondary": false,

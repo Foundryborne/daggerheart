@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "UXBY3dxa5s9PHD4Z",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -168,9 +167,101 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "TldCgFZ8RIXPPDLM": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d20",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "TldCgFZ8RIXPPDLM",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 3
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Mark Stress",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "F7DSVj7HDXsWPq16",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -192,13 +283,312 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "FrkTuhvEV7Sg2wMm": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "FrkTuhvEV7Sg2wMm",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "far"
+          },
+          "LBSEOVIyuStEJlfB": {
+            "type": "effect",
+            "_id": "LBSEOVIyuStEJlfB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target immediately moves into Melee range of Berzug and is Vulnerable and <em>Restrained</em> until they clear the condition with a successful Instinct Roll.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "kY9zYQanRZO0Jkln",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mesmerized",
+            "range": "",
+            "img": "icons/magic/control/hypnosis-mesmerism-pendulum.webp"
+          },
+          "LI0rDbkjO3thrpBH": {
+            "type": "effect",
+            "_id": "LI0rDbkjO3thrpBH",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target must mark a Stress each time they make an action roll until they clear the condition with a successful Knowledge Roll.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "YoGAtHgxihJkiZw6",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Confused",
+            "range": "",
+            "img": "icons/magic/control/fear-fright-white.webp"
+          },
+          "ngwMiJqut6MZ4yZK": {
+            "type": "effect",
+            "_id": "ngwMiJqut6MZ4yZK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>Until the PC makes a successful Presence Roll to clear the condition, you can spotlight them during a GM turn as if they were an adversary. When you do so, choose a target within Close range of the Enthralled PC. The Enthralled PC moves into Melee range of the target and makes a weapon attack against them using a <strong>d20</strong> instead of Duality Dice.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "pbI31xlzS7TkVReu",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Enthralled",
+            "range": "",
+            "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp"
+          }
+        },
+        "granter": null
       },
       "_id": "0INmBdLaQgZu5Q0V",
       "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Mesmerized",
+          "disabled": false,
+          "img": "icons/magic/control/hypnosis-mesmerism-pendulum.webp",
+          "description": "<p>You are <em>Vulnerable</em> and <em>Restrained</em> until you clear the condition with a successful Instinct Roll.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable",
+            "restrain"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.FeIMCgQ5ZMRRDo4d.Item.0INmBdLaQgZu5Q0V",
+          "_id": "kY9zYQanRZO0Jkln",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!FeIMCgQ5ZMRRDo4d.0INmBdLaQgZu5Q0V.kY9zYQanRZO0Jkln"
+        },
+        {
+          "name": "New Effect",
+          "disabled": false,
+          "img": "icons/magic/control/fear-fright-white.webp",
+          "description": "<p>The target must mark a Stress each time they make an action roll until they clear the condition with a successful Knowledge Roll.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.FeIMCgQ5ZMRRDo4d.Item.0INmBdLaQgZu5Q0V",
+          "_id": "YoGAtHgxihJkiZw6",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!FeIMCgQ5ZMRRDo4d.0INmBdLaQgZu5Q0V.YoGAtHgxihJkiZw6"
+        },
+        {
+          "name": "New Effect",
+          "disabled": false,
+          "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
+          "description": "<p>Until the PC makes a successful Presence Roll to clear the condition, you can spotlight them during a GM turn as if they were an adversary. When you do so, choose a target within Close range of the Enthralled PC. The Enthralled PC moves into Melee range of the target and makes a weapon attack against them using a <strong>d20</strong> instead of Duality Dice.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.FeIMCgQ5ZMRRDo4d.Item.0INmBdLaQgZu5Q0V",
+          "_id": "pbI31xlzS7TkVReu",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!FeIMCgQ5ZMRRDo4d.0INmBdLaQgZu5Q0V.pbI31xlzS7TkVReu"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -216,9 +606,92 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "16Vhvr264lTkHt09": {
+            "type": "healing",
+            "_id": "16Vhvr264lTkHt09",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {
+                "fear": {
+                  "base": false,
+                  "applyTo": "fear",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Mark Stress",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "0POrjNdggcbqg4qD",
       "img": "icons/magic/earth/explosion-lava-stone-red.webp",
@@ -240,9 +713,83 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "XdJrRAm58l3BYuTq": {
+            "type": "healing",
+            "_id": "XdJrRAm58l3BYuTq",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {
+                "fear": {
+                  "base": false,
+                  "applyTo": "fear",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "Vt6yrotrzvjXcHUi",
       "img": "icons/magic/death/skull-energy-light-purple.webp",

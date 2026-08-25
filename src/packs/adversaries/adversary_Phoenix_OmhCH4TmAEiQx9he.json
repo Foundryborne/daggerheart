@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "YOEWBnOR44OHkdQe",
       "img": "icons/magic/life/heart-cross-strong-flame-purple-orange.webp",
@@ -173,9 +172,38 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "s1fquzRZAhLqY7VW": {
+            "type": "summon",
+            "_id": "s1fquzRZAhLqY7VW",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.DscWkNVoHak6P4hh",
+                "count": "1"
+              }
+            ],
+            "name": "",
+            "range": "veryClose"
+          }
+        },
+        "granter": null
       },
       "_id": "FlcR2XWYcCedfLnM",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
@@ -197,13 +225,124 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "rUiwxAYImXPoh2rG": {
+            "type": "evolution",
+            "_id": "rUiwxAYImXPoh2rG",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "evolution": {
+              "active": false,
+              "evolutionFeatures": {},
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              },
+              "tokenOverride": {
+                "tokenImage": null,
+                "tokenScale": 1,
+                "dynamicToken": {
+                  "image": null,
+                  "scale": 1,
+                  "ring": "#cd580a",
+                  "background": null,
+                  "effects": [
+                    "RING_PULSE",
+                    "BKG_WAVE"
+                  ]
+                }
+              }
+            },
+            "effects": [
+              {
+                "_id": "xJGxzVJTPEDpzAVG",
+                "onSave": false
+              }
+            ],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "L1KzwZQAUDJzEFv0",
       "img": "icons/magic/fire/orb-lightning-sun.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Ressurecting",
+          "disabled": false,
+          "img": "icons/magic/fire/orb-lightning-sun.webp",
+          "description": "<p>The Egg is immune to all damage and has a heat aura that deals <strong>3d4</strong> direct magic damage to anyone who touches it. The Egg hatches into a new Phoenix, with all HP and Stress cleared, in 7 days.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.resistance.physical.immunity",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.resistance.magical.immunity",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.OmhCH4TmAEiQx9he.Item.L1KzwZQAUDJzEFv0",
+          "_id": "xJGxzVJTPEDpzAVG",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!OmhCH4TmAEiQx9he.L1KzwZQAUDJzEFv0.xJGxzVJTPEDpzAVG"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

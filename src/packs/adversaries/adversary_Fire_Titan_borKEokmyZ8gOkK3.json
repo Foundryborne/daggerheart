@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "YlCbUXn7uh8hmVQs",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -173,13 +172,145 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "OF01PgCtbYidpp9i": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Masterwork Armor",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/equipment/chest/breastplate-layered-steel-black.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "3",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "OF01PgCtbYidpp9i",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "wjxg7DKqkTMMZQG6": {
+            "type": "effect",
+            "_id": "wjxg7DKqkTMMZQG6",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.753); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">When it triggers, the Titan gains a +1 bonus to their Difficulty and attack rolls.</span></p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "HTFoLFgErxndgm3a",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Trigger Countdown",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "YUMQEamNAhygXnBu",
       "img": "icons/equipment/chest/breastplate-layered-steel-black.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Broken Armor",
+          "disabled": false,
+          "img": "icons/skills/melee/shield-damaged-broken-gold.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">The Titan gains a +1 bonus to their Difficulty and attack rolls.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.roll.attack.bonus",
+                "type": "add",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.borKEokmyZ8gOkK3.Item.YUMQEamNAhygXnBu",
+          "_id": "HTFoLFgErxndgm3a",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!borKEokmyZ8gOkK3.YUMQEamNAhygXnBu.HTFoLFgErxndgm3a"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -198,8 +329,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "aHGHtfEbItbHHGXa",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
@@ -221,9 +351,101 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "gnx8dPKyobSiokfc": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 3,
+                  "dice": "d12",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "gnx8dPKyobSiokfc",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Hurl Rock",
+                "type": "placed",
+                "shape": "line",
+                "size": "far",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "JtCBTVjwPIpVg5dO",
       "img": "icons/magic/earth/projectile-boulder-debris.webp",
@@ -244,10 +466,148 @@
         "description": "<p><strong>Mark a Stress</strong> to place a token on this stat block. The next time the Titan is spotlighted, you must spend the token from this stat block and make an attack against a PC within Close range. On a success, deal <strong>3d20+5</strong> direct physical damage. On a failure, the target marks a Stress.</p>",
         "attribution": {},
         "gmNotes": "",
-        "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "1",
+          "recovery": null,
+          "progression": "increasing",
+          "dieFaces": "d4",
+          "icon": "fa-solid fa-hand-back-fist",
+          "diceStates": {}
+        },
+        "actions": {
+          "lFJ1GoUNMyGWg9pd": {
+            "type": "effect",
+            "_id": "lFJ1GoUNMyGWg9pd",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": ""
+          },
+          "Fy3CLnChxJEjGNoK": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 3,
+                  "dice": "d20",
+                  "bonus": 5,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "Fy3CLnChxJEjGNoK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The next time the Titan is spotlighted, you must spend the token from this stat block and make an attack against a PC within Close range. On a success, deal <strong>3d20+5</strong> direct physical damage. On a failure, the target marks a Stress.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "resource",
+                "value": 1,
+                "itemId": "JU15za0bgkRuliRN",
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "",
+            "range": "close"
+          }
+        },
+        "granter": null
       },
       "_id": "JU15za0bgkRuliRN",
       "img": "icons/skills/melee/strike-sword-dagger-runes-red.webp",
@@ -269,9 +629,100 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "C0ZOi3wElD7zOGfx": {
+            "type": "healing",
+            "_id": "C0ZOi3wElD7zOGfx",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": true,
+                "key": "stress",
+                "value": 1,
+                "step": 1,
+                "itemId": null,
+                "consumeOnSuccess": false
+              },
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "damage": {
+              "main": null,
+              "resources": {
+                "hitPoints": {
+                  "base": false,
+                  "applyTo": "hitPoints",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": true,
+                      "formula": "@scale"
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Heal",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "HtRxbtqEC5NhueTi",
       "img": "icons/magic/fire/elemental-fire-humanoid.webp",

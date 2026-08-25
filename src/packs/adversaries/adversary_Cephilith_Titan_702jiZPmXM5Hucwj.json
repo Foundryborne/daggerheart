@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "Ku1IguoeLopi1W50",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -173,9 +172,77 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "QoeNuj825yKVQqbN": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "hope": {
+                  "base": false,
+                  "applyTo": "hope",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "QoeNuj825yKVQqbN",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Terrifying",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "YqANVDSnjcVCK5vm",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -198,12 +265,71 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "f5nHfI6lZtudtZ3j",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Merely a Projection",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.resistance.physical.immunity",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.resistance.magical.resistance",
+                "type": "override",
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "Kk4cbk8xFxBIobxI",
+          "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>The Titan appears in the Mortal Realm as a psychic projection approximating its true form. They have immunity to physical damage and resistance to magic damage.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!702jiZPmXM5Hucwj.f5nHfI6lZtudtZ3j.Kk4cbk8xFxBIobxI"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -221,9 +347,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "yzrcBjVgD4PxIUpy": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d12",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "yzrcBjVgD4PxIUpy",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Psychic Scream",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": 22,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "MXC78VtfVHw6pQ5e",
       "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
@@ -245,9 +472,47 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "g74MjOlwJaJiYvcn": {
+            "type": "summon",
+            "_id": "g74MjOlwJaJiYvcn",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof",
+                "count": "1d4"
+              }
+            ],
+            "name": "Spend Fear",
+            "range": "far"
+          }
+        },
+        "granter": null
       },
       "_id": "DKl9G56DwWpLVblv",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
@@ -269,13 +534,96 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "Y2qht1TORFJFgqx8": {
+            "type": "evolution",
+            "_id": "Y2qht1TORFJFgqx8",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "evolution": {
+              "active": false,
+              "evolutionFeatures": {
+                "f5nHfI6lZtudtZ3j": "unevolved"
+              },
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": false
+              },
+              "tokenOverride": null
+            },
+            "effects": [
+              {
+                "_id": "thBjAMP3WaNYxyJp",
+                "onSave": false
+              }
+            ]
+          }
+        },
+        "granter": null
       },
       "_id": "SGaUcNeQ3Y7F0Tlf",
       "img": "icons/creatures/magical/spirit-poison-smoke-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "It's Here…",
+          "disabled": false,
+          "img": "icons/creatures/magical/spirit-poison-smoke-green.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While the Titan is in this form, a creature who marks HP from the Titan's standard attack must mark an additional HP.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.702jiZPmXM5Hucwj.Item.SGaUcNeQ3Y7F0Tlf",
+          "_id": "thBjAMP3WaNYxyJp",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!702jiZPmXM5Hucwj.SGaUcNeQ3Y7F0Tlf.thBjAMP3WaNYxyJp"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

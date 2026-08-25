@@ -14,36 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "0JzAOuMyJDSdEpy3": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Fortune-Favored",
-        "description": "Once per scene, you can change a failure with Hope into a success with Fear.",
-        "img": "icons/magic/control/buff-luck-fortune-green-gold.webp",
-        "uses": {
-          "max": "1",
-          "recovery": "scene",
-          "value": 0,
-          "consumeOnSuccess": false
-        },
-        "_id": "0JzAOuMyJDSdEpy3",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "armor": {

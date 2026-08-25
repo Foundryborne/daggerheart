@@ -14,45 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "hsPKe9xRQlcMwR9v": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Devastate",
-        "description": "Before you make an attack roll, you can mark a Stress to use a d20 as your damage die.",
-        "img": "icons/skills/melee/strike-flail-destructive-yellow.webp",
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "itemId": null,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "_id": "hsPKe9xRQlcMwR9v",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": false,

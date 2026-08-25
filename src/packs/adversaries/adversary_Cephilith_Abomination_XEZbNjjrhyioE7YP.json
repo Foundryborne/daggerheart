@@ -144,9 +144,61 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "6AQOfcmdac8LuV6u": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "6AQOfcmdac8LuV6u",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": "belowEqual",
+                "treshold": 3
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Contact",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "MFkY0BD2EhKp9lTo",
       "img": "icons/magic/acid/dissolve-arm-flesh.webp",
@@ -168,13 +220,158 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "uAd7ujcTtX7H4qZ3": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "uAd7ujcTtX7H4qZ3",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "consumeOnSuccess": false,
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "2PJ338qQ7O8uDiW4",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "melee"
+          }
+        },
+        "granter": null
       },
       "_id": "bSG0fOnMCgOFVdpP",
-      "img": "icons/commodities/metal/chain-silver.webp",
-      "effects": [],
+      "img": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
+      "effects": [
+        {
+          "name": "Bear Hug",
+          "disabled": false,
+          "img": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
+          "description": "<p>You are Grappled until you escape with a successful Strength Roll. </p><p>While Grappled, the target is <em>Vulnerable</em> and <em>Restrained</em>.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable",
+            "restrained"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.XEZbNjjrhyioE7YP.Item.bSG0fOnMCgOFVdpP",
+          "_id": "2PJ338qQ7O8uDiW4",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!XEZbNjjrhyioE7YP.bSG0fOnMCgOFVdpP.2PJ338qQ7O8uDiW4"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -192,9 +389,81 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "4viMPxjTK2hUyXpk": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d12",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "4viMPxjTK2hUyXpk",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "eNlJcvDxqoyCPtW6",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
@@ -216,9 +485,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "ZiKxwdm8EyBvVOid": {
+            "type": "effect",
+            "_id": "ZiKxwdm8EyBvVOid",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "name": "Spend Fear",
+            "range": "far"
+          }
+        },
+        "granter": null
       },
       "_id": "7DSC9gbRVC7j7nKh",
       "img": "icons/commodities/biological/tongue-violet.webp",
@@ -236,17 +542,131 @@
       "type": "feature",
       "system": {
         "featureForm": "reaction",
-        "description": "<p>When the Abomination takes Major or greater damage, their skin erupts in an explosion of subcutaneous wrigglers. Each PC within Close range must make an Agility Reaction Roll. Targets who fail are covered in <strong>2d4</strong> leechpoles, which burrow under their skin. Until the leechpoles are dug out with a successful Finesse Roll (21), any damage the target takes gains a +1 bonus for each leechpole under their skin.</p>",
+        "description": "<p>When the Abomination takes Major or greater damage, their skin erupts in an explosion of subcutaneous wrigglers. Each PC within Close range must make an Agility Reaction Roll. Targets who fail are covered in <strong>[[/r 2d4]]</strong> leechpoles, which burrow under their skin. Until the leechpoles are dug out with a successful Finesse Roll (21), any damage the target takes gains a +1 bonus for each leechpole under their skin.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "SGk7b2M6GYzVA1KC": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "SGk7b2M6GYzVA1KC",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Burrowing Leechpoles",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "XRFLX5qMJco6vnLG",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "EzVuIjxfpU0ySdyq",
       "img": "icons/creatures/invertebrates/leech-attack-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Leechpoles",
+          "disabled": false,
+          "img": "icons/creatures/invertebrates/leech-attack-green.webp",
+          "description": "<p>Until the leechpoles are dug out with a successful Finesse Roll (21), any damage the target takes gains a +1 bonus for each leechpole under their skin.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": {
+              "value": 2,
+              "max": null
+            },
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.XEZbNjjrhyioE7YP.Item.EzVuIjxfpU0ySdyq",
+          "_id": "XRFLX5qMJco6vnLG",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!XEZbNjjrhyioE7YP.EzVuIjxfpU0ySdyq.XRFLX5qMJco6vnLG"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},

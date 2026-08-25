@@ -14,36 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "SqJwukvzZAPDgCJy": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Mnemonic",
-        "description": "Once per scene, you can recall a domain card from your vault without paying its Recall Cost.",
-        "img": "icons/magic/symbols/circle-ouroboros.webp",
-        "uses": {
-          "max": "1",
-          "recovery": "scene",
-          "value": 0,
-          "consumeOnSuccess": false
-        },
-        "_id": "SqJwukvzZAPDgCJy",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 2,
     "equipped": false,
     "armor": {

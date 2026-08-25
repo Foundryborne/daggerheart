@@ -149,13 +149,122 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "t9xXl4LL3AZi9jwd": {
+            "type": "effect",
+            "_id": "t9xXl4LL3AZi9jwd",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "Y2srAAKUrL5NN0Qx",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "Yrqv87f6puOCxm10",
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Unleash the Beast",
+          "disabled": false,
+          "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While in this form, they gain a bonus to attack and damage rolls equal to the number of Stress they have marked. Additionally, they can move up to Far range instead of Close range before taking an action.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.roll.attack.bonus",
+                "type": "add",
+                "value": "@system.resources.stress.value",
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.damage.physical.bonus",
+                "type": "add",
+                "value": "@system.resources.stress.value",
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.damage.magical.bonus",
+                "type": "add",
+                "value": "@system.resources.stress.value",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.9K39Wga6Lj5y0g8M.Item.Yrqv87f6puOCxm10",
+          "_id": "Y2srAAKUrL5NN0Qx",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!9K39Wga6Lj5y0g8M.Yrqv87f6puOCxm10.Y2srAAKUrL5NN0Qx"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -173,9 +282,47 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "RdekCPAM3sRbM7Vv": {
+            "type": "summon",
+            "_id": "RdekCPAM3sRbM7Vv",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.PV0FTOWQWLw3PDlY",
+                "count": "2d4"
+              }
+            ],
+            "name": "Spend Fear",
+            "range": "veryClose"
+          }
+        },
+        "granter": null
       },
       "_id": "caJPsyCr135shtxb",
       "img": "icons/magic/light/orbs-firefly-hand-yellow.webp",
@@ -197,9 +344,55 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "p73h76x2G0lGMJpV": {
+            "type": "effect",
+            "_id": "p73h76x2G0lGMJpV",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Rage of Spirits",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "veryClose",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "7cdY7q2H3EknbG3A",
       "img": "icons/magic/death/undead-ghosts-trio-blue.webp",
@@ -221,9 +414,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "2AUWa9djQNaz85fL": {
+            "type": "effect",
+            "_id": "2AUWa9djQNaz85fL",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": "veryClose"
+          }
+        },
+        "granter": null
       },
       "_id": "IXX7AivO001xb0DP",
       "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",

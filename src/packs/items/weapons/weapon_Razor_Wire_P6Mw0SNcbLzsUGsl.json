@@ -14,50 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "WEj9asBFTeuvpcgu": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Entangling",
-        "description": "On a successful attack with your primary weapon against a target within Very Close range, you can spend a Hope to make the target temporarily Vulnerable.",
-        "img": "icons/magic/nature/root-vine-entangle-foot-green.webp",
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "cost": [
-          {
-            "value": 1,
-            "key": "hope",
-            "itemId": null,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "effects": [
-          {
-            "_id": "HzbHFY6UixXLRSNu",
-            "onSave": false
-          }
-        ],
-        "_id": "WEj9asBFTeuvpcgu",
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        }
-      }
-    },
+    "actions": {},
     "tier": 2,
     "equipped": false,
     "secondary": true,

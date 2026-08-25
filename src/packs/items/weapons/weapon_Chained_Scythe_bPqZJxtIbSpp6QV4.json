@@ -14,45 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "oS1KZo6N8KzUMxgt": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Quick",
-        "description": "When you make an attack, you can mark a Stress to target another creature within range.",
-        "img": "icons/skills/movement/arrow-upward-yellow.webp",
-        "cost": [
-          {
-            "key": "stress",
-            "value": 1,
-            "itemId": null,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "_id": "oS1KZo6N8KzUMxgt",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      }
-    },
+    "actions": {},
     "tier": 3,
     "equipped": false,
     "secondary": false,

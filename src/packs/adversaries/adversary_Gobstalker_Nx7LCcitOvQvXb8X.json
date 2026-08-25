@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "x8vX7KBX4mAztG9v",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -169,8 +168,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "ySPOyBNB8UeYrRLy",
       "img": "icons/magic/unholy/orb-colllecting-energy-green.webp",
@@ -193,8 +191,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "nKENFMC5m8D9eJDr",
       "img": "icons/magic/unholy/beam-impact-green.webp",
@@ -216,9 +213,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "SsVfjYLxVvu69zkJ": {
+            "type": "effect",
+            "_id": "SsVfjYLxVvu69zkJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "HmMc6W0fwO6slIVG",
       "img": "icons/commodities/biological/tongue-pink.webp",

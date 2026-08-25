@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "eQxHqyIAxS8YL4on",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -165,30 +164,6 @@
       "_key": "!actors.items!2dmAOdPMFN6e4BV6.eQxHqyIAxS8YL4on"
     },
     {
-      "name": "Mount",
-      "type": "feature",
-      "system": {
-        "featureForm": "passive",
-        "description": "<p>While the Harbinger is on their mount, they gain a +2 bonus to their Difficulty. When the Harbinger takes Severe damage, they're knocked from their mount. If the Harbinger is unhorsed, their mount disappears until you mark a Stress to summon it again.</p>",
-        "attribution": {},
-        "gmNotes": "",
-        "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
-      },
-      "_id": "e8ZWoevsbann46Be",
-      "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!2dmAOdPMFN6e4BV6.e8ZWoevsbann46Be"
-    },
-    {
       "name": "Hunger Pangs",
       "type": "feature",
       "system": {
@@ -197,15 +172,172 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "bGu2SoZLSdOKsAjm": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Hunger Pangs",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/consumables/food/plate-fish-bowl-bones-brown.webp",
+                "progress": {
+                  "looping": "decreasing",
+                  "type": "custom",
+                  "startFormula": "6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "bGu2SoZLSdOKsAjm",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "Phr1b8nJrEXZlnjS": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "Phr1b8nJrEXZlnjS",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Hunger Pangs",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "9C4akRxkv1i1yrUT",
+                "onSave": false
+              }
+            ],
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "jALBcE8dCmRLWsfW",
       "img": "icons/consumables/food/plate-fish-bowl-bones-brown.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Ravenous",
+          "disabled": false,
+          "img": "icons/consumables/food/plate-fish-bowl-bones-brown.webp",
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While Ravenous, a PC can't spend Hope until they clear the condition with a successful Instinct Roll.</span></p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.2dmAOdPMFN6e4BV6.Item.jALBcE8dCmRLWsfW",
+          "_id": "9C4akRxkv1i1yrUT",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!2dmAOdPMFN6e4BV6.jALBcE8dCmRLWsfW.9C4akRxkv1i1yrUT"
+        }
+      ],
       "folder": null,
-      "sort": 0,
+      "sort": 200000,
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -221,9 +353,81 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "batSgpaGtySlWx5H": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "batSgpaGtySlWx5H",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 3
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "4skXuiYVQGCEGyfP",
       "img": "icons/magic/unholy/projectile-bolts-salvo-pink.webp",
@@ -245,13 +449,157 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "eZUzkDgdSJWwlO3F": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "eZUzkDgdSJWwlO3F",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "WbmZALTNxPQ45n6d",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "melee"
+          }
+        },
+        "granter": null
       },
       "_id": "0BirBknShzjOvSdz",
       "img": "icons/creatures/abilities/mouth-teeth-misshapen-pink.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Grasped",
+          "disabled": false,
+          "img": "icons/creatures/abilities/mouth-teeth-misshapen-pink.webp",
+          "description": "<p>You are <em>Restrained</em> until you break free with a successful Strength Roll.</p>",
+          "transfer": false,
+          "statuses": [
+            "restrained"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.2dmAOdPMFN6e4BV6.Item.0BirBknShzjOvSdz",
+          "_id": "WbmZALTNxPQ45n6d",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!2dmAOdPMFN6e4BV6.0BirBknShzjOvSdz.WbmZALTNxPQ45n6d"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -265,13 +613,81 @@
       "type": "feature",
       "system": {
         "featureForm": "action",
-        "description": "<p><strong>Spend a Fear</strong> to have the Harbinger caress the face of a <em>Restrained</em> PC within Melee range. The target marks 2 Stress and either loses a Hope or marks <strong>1d4</strong> HP.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to have the Harbinger caress the face of a <em>Restrained</em> PC within Melee range. The target marks 2 Stress and either loses a Hope or marks <strong>[[/r 1d4]]</strong> HP.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "hWpjEQlwOjx9Tvel": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 2,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "hWpjEQlwOjx9Tvel",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "range": "melee"
+          }
+        },
+        "granter": null
       },
       "_id": "lbwK2we0LKpFP7mx",
       "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
@@ -283,6 +699,120 @@
         "compendiumSource": null
       },
       "_key": "!actors.items!2dmAOdPMFN6e4BV6.lbwK2we0LKpFP7mx"
+    },
+    {
+      "name": "Mount",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>While the Harbinger is on their mount, they gain a +2 bonus to their Difficulty. When the Harbinger takes Severe damage, they're knocked from their mount. If the Harbinger is unhorsed, their mount disappears until you mark a Stress to summon it again.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "Qa6H0mZULkyHuQ63": {
+            "type": "effect",
+            "_id": "Qa6H0mZULkyHuQ63",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When the Harbinger takes Severe damage, they're knocked from their mount. If the Harbinger is unhorsed, their mount disappears until you mark a Stress to summon it again.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Resummon Mount",
+            "range": ""
+          }
+        },
+        "granter": null
+      },
+      "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
+      "effects": [
+        {
+          "name": "Mounted",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": 2,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "lykN2B07hwfFQz3U",
+          "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While the Harbinger is on their mount, they gain a +2 bonus to their Difficulty.</span></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!2dmAOdPMFN6e4BV6.9xewwwqEe0SRH5zR.lykN2B07hwfFQz3U"
+        }
+      ],
+      "folder": null,
+      "sort": 100000,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.daggerheart.adversaries.Actor.unuX3PZSkhlNUdVF.Item.vI14KIZ1C0GnyQpR"
+      },
+      "_id": "9xewwwqEe0SRH5zR",
+      "_key": "!actors.items!2dmAOdPMFN6e4BV6.9xewwwqEe0SRH5zR"
     }
   ],
   "_id": "2dmAOdPMFN6e4BV6",

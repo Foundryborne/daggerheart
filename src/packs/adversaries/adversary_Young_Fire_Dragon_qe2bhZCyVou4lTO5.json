@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "CCjwbRFO8lPwUz56",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -169,8 +168,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "AyOAvxE5ruRgzuTn",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -193,8 +191,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "XkdQ0bpcZvVAobY7",
       "img": "icons/creatures/abilities/dragon-fire-breath-orange.webp",
@@ -217,8 +214,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "AETDJMLedUcefdNe",
       "img": "icons/magic/earth/explosion-lava-stone-red.webp",
@@ -241,8 +237,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "9mHaYwq5ZmXqnA1Z",
       "img": "icons/creatures/reptiles/lizard-mouth-glowing-red.webp",
@@ -265,8 +260,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "0NBluEfJGwQWmYTo",
       "img": "icons/magic/fire/flame-burning-embers-yellow.webp",

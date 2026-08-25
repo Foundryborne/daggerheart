@@ -140,13 +140,12 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>When combat begins, place a duplicate within Close range of the @Lookup[@name]. The @Lookup[@name] occupies both its place and its duplicate's. The duplicate can move when the @Lookup[@name] is spotlighted, and the @Lookup[@name] can target enemies with attacks as if it were in its duplicate's place. When the @Lookup[@name] or duplicate is attacked, the attacker rolls a <strong>d6</strong>. On an even result, they target the @Lookup[@name]. On an odd result, they target the duplicate, and the attack fails. If an attack succeeds against the @Lookup[@name], the duplicate is dispelled until you <strong>spend a Fear</strong> to conjure it again.</p>",
+        "description": "<p>When combat begins, place a duplicate within Close range of the @Lookup[@name]. The @Lookup[@name] occupies both its place and its duplicate's. The duplicate can move when the @Lookup[@name] is spotlighted, and the @Lookup[@name] can target enemies with attacks as if it were in its duplicate's place. When the @Lookup[@name] or duplicate is attacked, the attacker rolls a <strong>[[/r d6]]</strong>. On an even result, they target the @Lookup[@name]. On an odd result, they target the duplicate, and the attack fails. If an attack succeeds against the @Lookup[@name], the duplicate is dispelled until you <strong>spend a Fear</strong> to conjure it again.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "HXfGSMFGXKcoizPW",
       "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
@@ -168,9 +167,70 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "UpDVDPrzGFoJy1TT": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "UpDVDPrzGFoJy1TT",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "O350tAtfEGyy1X4d",
       "img": "icons/skills/melee/strike-slashes-orange.webp",

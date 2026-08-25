@@ -145,7 +145,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "src": "icons/magic/nature/leaf-juggle-humanoid-green.webp",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "fit": "contain",
@@ -214,7 +214,7 @@
       "effects": 1,
       "subject": {
         "scale": 1,
-        "texture": null
+        "texture": "icons/creatures/magical/humanoid-silhouette-green.webp"
       }
     },
     "turnMarker": {

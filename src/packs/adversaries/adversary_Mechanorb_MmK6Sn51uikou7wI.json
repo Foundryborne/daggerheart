@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "nGj2O5gEwfZWJyYi",
       "img": "icons/commodities/tech/electronics-tech-sensor-steel-blue.webp",
@@ -169,8 +168,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "r2jnaUwHvPBQKDmg",
       "img": "icons/commodities/tech/levers-colored.webp",

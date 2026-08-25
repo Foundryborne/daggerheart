@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "LqmWQ1M1OAp8CRRs",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -174,8 +173,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "vFcVQJIwxf5zPjeo",
       "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
@@ -197,9 +195,122 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "bhcAz9W4hd5fky6l": {
+            "type": "evolution",
+            "_id": "bhcAz9W4hd5fky6l",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": null,
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "evolution": {
+              "active": false,
+              "evolutionFeatures": {
+                "AJicsX6t4G8r6pX9": "evolved",
+                "D56q8j9zqjTlkCPy": "evolved"
+              },
+              "resourceRefresh": {
+                "hitPoints": true,
+                "stress": true
+              },
+              "tokenOverride": null
+            },
+            "effects": []
+          },
+          "bYTI3aiRNSi6puZh": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {
+                "hope": {
+                  "base": false,
+                  "applyTo": "hope",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "bYTI3aiRNSi6puZh",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "RQvkIhWDLNf1nruQ",
       "img": "icons/magic/symbols/star-inverted-yellow.webp",
@@ -221,9 +332,57 @@
         "description": "<p><strong>Spend a Fear</strong> to choose a PC and activate a Forsaken Countdown (1d8) for them. It ticks down when Adonix is spotlighted. When it triggers, the PC must mark all their HP. The countdown ends if Adonix takes Severe damage. You can have only one Forsaken Countdown active at a time.</p>",
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "T5bCqspBR1tmCUVi": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Forsaken",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/light/orb-shadow-blue.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "1d8",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "T5bCqspBR1tmCUVi",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "AJicsX6t4G8r6pX9",
       "img": "icons/magic/light/orb-shadow-blue.webp",
@@ -245,9 +404,61 @@
         "description": "<p>When Adonix is defeated again, they unleash a reality storm that shakes the realms to their foundations. Roll a <strong>d6</strong>. On a result of 5–6, each PC must make a death move.</p>",
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "P2EJERCMegGEMBmz": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "P2EJERCMegGEMBmz",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": "aboveEqual",
+                "treshold": 5
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Armageddon",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "D56q8j9zqjTlkCPy",
       "img": "icons/magic/earth/laval-stone-orange.webp",

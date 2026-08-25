@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "ptauqaFcMVrpE1wi",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -164,13 +163,21 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>When the @Lookup[@name] appears, they conjure six discs of magical energy that orbit around them. Place a <strong>d6</strong> Aegis Die on this stat block with the 6 value facing up. When a PC makes a successful attack against the @Lookup[@name], roll a <strong>d6</strong>. If the result is equal to or less than the value of the Aegis Die, tick the Aegis Die down and ignore the damage. A PC can make a Knowledge Roll to tick down the Aegis Die by 1 on a success or by 2 on a success with Hope.</p>",
+        "description": "<p>When the @Lookup[@name] appears, they conjure six discs of magical energy that orbit around them. Place a <strong>d6</strong> Aegis Die on this stat block with the 6 value facing up. When a PC makes a successful attack against the @Lookup[@name], roll a <strong>[[/r d6]]</strong>. </p><p>If the result is equal to or less than the value of the Aegis Die, tick the Aegis Die down and ignore the damage. A PC can make a Knowledge Roll to tick down the Aegis Die by 1 on a success or by 2 on a success with Hope.</p>",
         "attribution": {},
         "gmNotes": "",
-        "resource": null,
+        "resource": {
+          "type": "die",
+          "value": 6,
+          "max": "",
+          "recovery": null,
+          "progression": "increasing",
+          "dieFaces": "d6",
+          "icon": "",
+          "diceStates": {}
+        },
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "rlMfV12Qu1yzBxxe",
       "img": "icons/magic/light/projectile-stars-blue.webp",
@@ -192,9 +199,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "jelFlcnlLnzydTae": {
+            "type": "effect",
+            "_id": "jelFlcnlLnzydTae",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": true,
+                "key": "fear",
+                "value": 1,
+                "step": 1,
+                "itemId": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": "far"
+          }
+        },
+        "granter": null
       },
       "_id": "fz0G4in4qWFOpncD",
       "img": "icons/magic/light/projectiles-pink-purple.webp",
@@ -216,9 +260,101 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "dyGb0CQpxamvikPl": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 4,
+                  "dice": "d10",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "dyGb0CQpxamvikPl",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": true,
+                "key": "stress",
+                "value": 1,
+                "step": 1,
+                "itemId": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "range": "far"
+          }
+        },
+        "granter": null
       },
       "_id": "r6du8H8vxnW0WDfb",
       "img": "icons/magic/fire/projectile-fireball-orange-yellow.webp",
@@ -239,10 +375,80 @@
         "description": "<p>When a PC succeeds on a Spellcast Roll, you can <strong>spend a Fear</strong> to have the @Lookup[@name] make a reaction roll with a Difficulty equal to the Spellcast Roll's result. On a success, the PC's Spellcast Roll fails instead, and you place a token on this stat block. Using this feature again costs additional Fear equal to the number of tokens on this stat block. You can't Counterspell a critical success.</p>",
         "attribution": {},
         "gmNotes": "",
-        "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "",
+          "recovery": null,
+          "progression": "increasing",
+          "dieFaces": "d4",
+          "icon": "fa-solid fa-hand-sparkles",
+          "diceStates": {}
+        },
+        "actions": {
+          "rPmzn5W55IPDDutC": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "rPmzn5W55IPDDutC",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": "self"
+          }
+        },
+        "granter": null
       },
       "_id": "1RWw0lwrq0Qpf8jH",
       "img": "icons/magic/control/energy-stream-link-large-blue.webp",

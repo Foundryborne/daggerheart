@@ -14,50 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "zFv8Ncp86Qs9Kpje": {
-        "type": "effect",
-        "chatDisplay": true,
-        "name": "Ethereal",
-        "description": "You must mark a Stress to conjure this weapon. It lasts until the end of the scene.",
-        "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
-        "target": {
-          "type": "self",
-          "amount": null
-        },
-        "cost": [
-          {
-            "value": 1,
-            "key": "hope",
-            "itemId": null,
-            "scalable": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
-        "effects": [
-          {
-            "_id": "WJZUeJOe7HMzhfXe",
-            "onSave": false
-          }
-        ],
-        "_id": "zFv8Ncp86Qs9Kpje",
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        }
-      }
-    },
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": false,

@@ -145,8 +145,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "L3m1nCmX1G4FU64P",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -167,14 +166,75 @@
         "description": "<p>When the Octopus first appears, place a <strong>d8</strong> on this stat block with the 8 value facing up. When the Octopus makes a successful standard attack against a PC, you can add the die's value to the damage dealt. After you add its value to a roll, decrease the die's value by 1.</p>",
         "attribution": {},
         "gmNotes": "",
-        "resource": null,
+        "resource": {
+          "type": "die",
+          "value": 8,
+          "max": "",
+          "recovery": null,
+          "progression": "increasing",
+          "dieFaces": "d8",
+          "icon": "",
+          "diceStates": {}
+        },
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "1TPFCJEgXEpXti7l",
       "img": "icons/commodities/biological/tentacle-purple-white.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Armed And Dangerous",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.damage.physical.bonus",
+                "type": "add",
+                "value": "ITEM.@system.resource.value",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "9nzj5ORCAjHBF9rS",
+          "img": "icons/commodities/biological/tentacle-purple-white.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>When the Octopus first appears, place a <strong>d8</strong> on this stat block with the 8 value facing up. When the Octopus makes a successful standard attack against a PC, you can add the die's value to the damage dealt. After you add its value to a roll, decrease the die's value by 1.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!TqL5DLSbGFI8RsLd.1TPFCJEgXEpXti7l.9nzj5ORCAjHBF9rS"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -192,13 +252,103 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "jPORgfoit1Dysm11": {
+            "type": "effect",
+            "_id": "jPORgfoit1Dysm11",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "RKroGrvQgGYygBzh",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "7Eiy4PoehsyoMQU2",
       "img": "icons/commodities/biological/tentacle-pink.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Grappled",
+          "disabled": false,
+          "img": "icons/commodities/biological/tentacle-pink.webp",
+          "description": "<p>While Grappled, you are <em>Restrained</em> and <em>Vulnerable</em> until you break free with a successful Strength or Finesse Roll.</p>",
+          "transfer": false,
+          "statuses": [
+            "restrain",
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.adversaries.Actor.TqL5DLSbGFI8RsLd.Item.7Eiy4PoehsyoMQU2",
+          "_id": "RKroGrvQgGYygBzh",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!TqL5DLSbGFI8RsLd.7Eiy4PoehsyoMQU2.RKroGrvQgGYygBzh"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -216,9 +366,81 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "cqRJPvzRXrMgpyAs": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "cqRJPvzRXrMgpyAs",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "nfRNTiPwhuAq7J0J",
       "img": "icons/skills/wounds/bone-broken-marrow-red.webp",

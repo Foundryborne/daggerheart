@@ -23,7 +23,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
             toggleStress: AdversarySheet.#toggleStress,
             reactionRoll: AdversarySheet.#reactionRoll,
             toggleResourceDice: AdversarySheet.#toggleResourceDice,
-            handleResourceDice: AdversarySheet.#handleResourceDice
+            handleResourceDice: AdversarySheet.#handleResourceDice,
+            advanceResourceDie: AdversarySheet.#advanceResourceDie
         },
         dragDrop: [
             {
@@ -144,6 +145,11 @@ export default class AdversarySheet extends DHBaseActorSheet {
             element.addEventListener('change', this.updateItemResource.bind(this));
             element.addEventListener('click', e => e.stopPropagation());
         }
+
+        
+        htmlElement.querySelectorAll('.item-resource.die').forEach(element => {
+            element.addEventListener('contextmenu', this.lowerResourceDie.bind(this));
+        });
     }
 
     /**
@@ -316,6 +322,26 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 acc[index] = { value: state.value, used: state.used };
                 return acc;
             }, {})
+        });
+    }
+
+    static #advanceResourceDie(_, target) {
+        this.updateResourceDie(target, true);
+    }
+
+    lowerResourceDie(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.updateResourceDie(event.target, false);
+    }
+
+    async updateResourceDie(target, advance) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const advancedValue = item.system.resource.value + (advance ? 1 : -1);
+        await item.update({
+            'system.resource.value': Math.min(advancedValue, Number(item.system.resource.dieFaces.split('d')[1]))
         });
     }
 

@@ -14,68 +14,7 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "actions": {
-      "bWNQYdjog9uNuNfL": {
-        "type": "damage",
-        "chatDisplay": true,
-        "name": "Destruction",
-        "description": "On a successful attack, all adversaries within Very Close range must mark a Stress.",
-        "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
-        "range": "veryClose",
-        "target": {
-          "type": "hostile",
-          "amount": null
-        },
-        "damage": {
-          "main": null,
-          "resources": {
-            "stress": {
-              "applyTo": "stress",
-              "value": {
-                "custom": {
-                  "enabled": true,
-                  "formula": "1"
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null
-              },
-              "base": false,
-              "resultBased": false,
-              "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
-            }
-          }
-        },
-        "_id": "bWNQYdjog9uNuNfL",
-        "effects": [],
-        "systemPath": "actions",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "actionType": "action",
-        "triggers": [],
-        "areas": [],
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null,
-          "consumeOnSuccess": false
-        }
-      }
-    },
+    "actions": {},
     "tier": 4,
     "equipped": false,
     "secondary": false,

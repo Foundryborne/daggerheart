@@ -150,8 +150,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "y5zfcEnGcTaBtOcF",
       "img": "icons/creatures/birds/raptor-hawk-flying.webp",
@@ -169,13 +168,12 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>Inside the @Lookup[@name] is a stone that foretells good or ill fortune, depending on its color. A PC who searches the @Lookup[@name]'s remains finds the stone and makes a fate roll. On an even result, the PC gains Hope equal to half the result, which they can distribute among the PCs however they wish. On an odd result, you gain Fear equal to half the result.</p>",
+        "description": "<p>Inside the @Lookup[@name] is a stone that foretells good or ill fortune, depending on its color. A PC who searches the @Lookup[@name]'s remains finds the stone and makes a fate roll. On an even result, the PC gains Hope equal to half the result, which they can distribute among the PCs however they wish. On an odd result, you gain Fear equal to half the result.</p><p>[[/fr]]</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "46qqHZuEI7P7ZXt8",
       "img": "icons/magic/symbols/runes-carved-stone-green.webp",
@@ -197,9 +195,70 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "I5Zk1KDeIh7DWLzR": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "I5Zk1KDeIh7DWLzR",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "lkBmArrMEvBpaKYQ",
       "img": "icons/magic/air/wind-tornado-spiral-blue-gray.webp",

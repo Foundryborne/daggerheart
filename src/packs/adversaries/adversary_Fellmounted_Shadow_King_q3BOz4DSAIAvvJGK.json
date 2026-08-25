@@ -145,12 +145,64 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "qGCf81nK10Og7mpt",
       "img": "icons/creatures/fish/fish-bioluminous-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Mounted",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.difficulty",
+                "type": "add",
+                "value": 2,
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "aVCtG2x7n86Y2cmb",
+          "img": "icons/creatures/fish/fish-bioluminous-blue.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While the Shadow King is on his mount, he gains a +2 bonus to his Difficulty. When the Shadow King takes Severe damage, he's knocked from his mount. If the Shadow King is unmounted, his mount disappears until you mark a Stress to summon it again.</span></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!q3BOz4DSAIAvvJGK.qGCf81nK10Og7mpt.aVCtG2x7n86Y2cmb"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -169,12 +221,71 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "biHR6taBVH4KDrRg",
       "img": "icons/magic/light/explosion-star-small-blue-yellow.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Light and Shadow",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.advantageSources",
+                "type": "add",
+                "value": "Attack rolls while in shadow or darkness",
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.disadvantageSources",
+                "type": "add",
+                "value": "Attack rolls while in bright light",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "9tji04kVH0ktx3tN",
+          "img": "icons/magic/light/explosion-star-small-blue-yellow.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">The Shadow King has advantage on attack rolls while in shadow or darkness and disadvantage on attack rolls while in bright light.</span></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!q3BOz4DSAIAvvJGK.biHR6taBVH4KDrRg.9tji04kVH0ktx3tN"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -193,12 +304,64 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "XovVA3ukIIrcNraP",
       "img": "icons/commodities/treasure/stone-cracked-lightning-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Relic Hunter",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.advantageSources",
+                "type": "add",
+                "value": "Attack rolls against PCs who have magic weapons or armor equipped.",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "7EgiE8lojmXYeFky",
+          "img": "icons/commodities/treasure/stone-cracked-lightning-blue.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>The Shadow King has advantage on attack rolls against PCs who have magic weapons or armor equipped.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!q3BOz4DSAIAvvJGK.XovVA3ukIIrcNraP.7EgiE8lojmXYeFky"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -216,9 +379,79 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "FVfVrQa9IcADzRIN": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "FVfVrQa9IcADzRIN",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Hellsong",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "far",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 2,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": 18,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "c5tmMQ8XqlbWxg1E",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -240,9 +473,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "WMA7N0kjuno2Qwp5": {
+            "type": "effect",
+            "_id": "WMA7N0kjuno2Qwp5",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "3",
+              "recovery": "scene",
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "I8yfiFN4YPX03wtX",
       "img": "icons/weapons/polearms/spear-flared-silver-pink.webp",
