@@ -8,6 +8,8 @@ import { parseInlineParams } from './parser.mjs';
  * - @EmbedTable[path:path.to.something]
  * - @EmbedTable[rollTable:uuid]
  * For all of them, type:itemType restricts the item type and handles the empty item case.
+ * All uses support the following parameters:
+ * - classes: a comma separate list of css class names to append
  * The rollTable format also the following additional params:
  * - min: and max: params control what range is displayed
  * - digits: adds 0 padding to the roll result. If omitted, it figures it out from the highest number
@@ -36,6 +38,10 @@ export async function DhEmbedTableEnricher(match) {
     // Create basic table structure
     const element = document.createElement('table');
     element.classList.add('embed-item-table', `${itemType}-table`);
+    if (params.classes) {
+        const classes = params.classes.split(',').map(c => c.trim());
+        element.classList.add(...classes);
+    }
     const head = document.createElement('thead');
     const body = document.createElement('tbody');
     element.append(head, body);
@@ -88,7 +94,6 @@ export async function DhEmbedTableEnricher(match) {
             }
         }
     }
-
 
     return element;
 }
