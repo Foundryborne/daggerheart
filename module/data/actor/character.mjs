@@ -271,9 +271,6 @@ export default class DhCharacter extends DhCreature {
                         })
                     }
                 }),
-                burden: new fields.SchemaField({
-                    ignore: new fields.BooleanField({ label: 'DAGGERHEART.ACTORS.Character.burden.ignore.label' })
-                }),
                 dualityRoll: new fields.SchemaField({
                     defaultHopeDice: new fields.NumberField({
                         nullable: false,
@@ -291,6 +288,9 @@ export default class DhCharacter extends DhCreature {
                         initial: 12,
                         label: 'DAGGERHEART.ACTORS.Character.defaultFearDice'
                     })
+                }),
+                burden: new fields.SchemaField({
+                    ignore: new fields.BooleanField({ label: 'DAGGERHEART.ACTORS.Character.burden.ignore.label' })
                 }),
                 roll: new fields.SchemaField({
                     guaranteedCritical: new fields.BooleanField({
