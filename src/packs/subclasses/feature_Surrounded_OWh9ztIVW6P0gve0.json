@@ -11,7 +11,45 @@
     "description": "<p>When you make an attack with a Melee weapon, you can <strong>spend any number of Hope</strong> to target an equal number of additional creatures within Melee range.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "fqSsmnCw9JyQ2Zcb": {
+        "type": "effect",
+        "_id": "fqSsmnCw9JyQ2Zcb",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": ""
+      }
+    },
     "originItemType": null,
     "multiclassOrigin": false,
     "featureForm": "passive"
