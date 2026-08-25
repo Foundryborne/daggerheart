@@ -465,13 +465,18 @@ export default class DhCharacter extends DhCreature {
 
     get levelupTiers() {
         const tierData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers);
-        for (const tierKey of Object.keys(this.class?.value?.system.levelupOptionTiers ?? {})) {
-            const tier = this.class.value.system.levelupOptionTiers[tierKey];
-            for (const optionKey of Object.keys(tier)) {
-                const option = tier[optionKey];
-                tierData.tiers[tierKey].options[optionKey] = option;
+        const setTierData = levelupOptionTiers => {
+            for (const tierKey of Object.keys(levelupOptionTiers ?? {})) {
+                const tier = levelupOptionTiers[tierKey];
+                for (const optionKey of Object.keys(tier)) {
+                    const option = tier[optionKey];
+                    tierData.tiers[tierKey].options[optionKey] = option;
+                }
             }
         }
+
+        setTierData(this.class?.value?.system.levelupOptionTiers);
+        setTierData(this.multiclass?.value?.system.levelupOptionTiers);
 
         return tierData;
     }
