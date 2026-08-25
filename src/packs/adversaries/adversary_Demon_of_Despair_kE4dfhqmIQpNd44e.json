@@ -380,7 +380,7 @@
             "changes": [
               {
                 "key": "system.rules.dualityRoll.defaultHopeDice",
-                "value": "d8",
+                "value": "8",
                 "priority": null,
                 "type": "override",
                 "phase": "initial"

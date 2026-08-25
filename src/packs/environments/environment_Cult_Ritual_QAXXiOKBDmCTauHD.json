@@ -184,7 +184,7 @@
               {
                 "key": "system.rules.dualityRoll.defaultHopeDice",
                 "type": "override",
-                "value": "d10",
+                "value": "10",
                 "priority": null,
                 "phase": "initial"
               }

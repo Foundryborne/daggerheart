@@ -334,7 +334,7 @@
             "changes": [
               {
                 "key": "system.rules.dualityRoll.defaultFearDice",
-                "value": "d20",
+                "value": "20",
                 "priority": null,
                 "type": "override",
                 "phase": "initial"
