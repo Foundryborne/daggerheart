@@ -32,9 +32,48 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "uzEK3NqCE3R3xE0P": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Stormfront",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/air/wind-tornado-funnel-damage-blue.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "8",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "uzEK3NqCE3R3xE0P",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "KudBK6FBt61ZuaCf",
       "img": "icons/magic/air/wind-tornado-funnel-damage-blue.webp",
@@ -56,13 +95,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "z8NTM8n3Hc1z8VyS": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "z8NTM8n3Hc1z8VyS",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Reaction Roll",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "QvkOrklI6GjzD96R",
       "img": "icons/magic/air/wind-tornado-wall-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Hazardous Conditions",
+          "disabled": false,
+          "img": "icons/magic/air/wind-tornado-wall-blue.webp",
+          "description": "<p>PCs can't move as part of an action roll without succeeding on an Agility Reaction Roll.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.E6xf7TTN2GeWyfv3.Item.QvkOrklI6GjzD96R",
+          "_id": "St1oj5HlmKYKFYM4",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!E6xf7TTN2GeWyfv3.QvkOrklI6GjzD96R.St1oj5HlmKYKFYM4"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -80,9 +216,110 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "6ObCFnx4xbCP6VDb": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "6ObCFnx4xbCP6VDb",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Bomb Cyclone",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "YbTId6KRLXisM3sB",
       "img": "icons/magic/air/wind-tornado-funnel-blue-grey.webp",
@@ -104,9 +341,68 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "NrpLBc8WNJvCP8CM": {
+            "type": "summon",
+            "_id": "NrpLBc8WNJvCP8CM",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p><strong>Spend a Fear</strong> to reveal the living battery of the Megastorm. Summon a Storm Giant within Far range of a PC, then immediately spotlight them. Until this adversary is defeated, the \"Stormfront\" countdown doesn't tick down. When this adversary is defeated, the Megastorm ends.</p><section id=\"secret-SlWRKU8Q6x4AItts\" class=\"secret\"><p>Did this creature conjure the storm for their own purposes, or do they serve an even greater entity? Why did they designate this place for destruction?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.tLHNONmalytgnngv",
+                "count": "1"
+              }
+            ],
+            "name": "Storm Giant",
+            "range": ""
+          },
+          "g3oU6TuFtE3izvOJ": {
+            "type": "summon",
+            "_id": "g3oU6TuFtE3izvOJ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p><strong>Spend a Fear</strong> to reveal the living battery of the Megastorm. Summon a Greater Water Elemental within Far range of a PC, then immediately spotlight them. Until this adversary is defeated, the \"Stormfront\" countdown doesn't tick down. When this adversary is defeated, the Megastorm ends.</p><section id=\"secret-SlWRKU8Q6x4AItts\" class=\"secret\"><p>Did this creature conjure the storm for their own purposes, or do they serve an even greater entity? Why did they designate this place for destruction?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV",
+                "count": "1"
+              }
+            ],
+            "name": "Greater Water Elemental",
+            "range": "",
+            "img": "icons/magic/water/pseudopod-swirl-blue.webp"
+          }
+        },
+        "granter": null
       },
       "_id": "TlX8yI5OWVmOK3cF",
       "img": "icons/magic/lightning/orb-ball-spiral-blue.webp",
@@ -129,8 +425,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "0pdHjCFHlKIvNU23",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",

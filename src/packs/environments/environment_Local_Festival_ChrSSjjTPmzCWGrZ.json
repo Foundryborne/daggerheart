@@ -47,8 +47,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "4o45XcMZbTJYJmMH",
       "img": "icons/skills/trades/academics-astronomy-navigation-blue.webp",
@@ -71,8 +70,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "ml0hetjckq8NkK7P",
       "img": "icons/sundries/documents/blueprint-magical.webp",
@@ -94,9 +92,62 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "LTzzLhiHJsXvIJrR": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Win The Competitions!",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/control/buff-strength-muscle-damage.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "5",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              },
+              {
+                "name": "Rival Competitors!",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/control/buff-strength-muscle-damage.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "5",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "LTzzLhiHJsXvIJrR",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "RuasHmyv0xhIZyyd",
       "img": "icons/magic/control/buff-strength-muscle-damage.webp",
@@ -114,13 +165,104 @@
       "type": "feature",
       "system": {
         "featureForm": "action",
-        "description": "<p>The festival culminates in the arrival of a figure from local folklore who performs special duties for the local community, such as giving treats to children, heckling the gentry, or blessing next year's crops. If the PCs show this figure the proper deference and respect, they gain an appropriate blessing, such as a cryptic prophecy or a magical trinket, and gain <strong>1d4</strong> Hope to distribute among the party. If they insult the figure, they take <strong>1d6+2</strong> magic damage as the figure curses them, and you gain a Fear.</p><section id=\"secret-ZKKvt9MLfAw4gxgH\" class=\"secret\"><p>Is this a singular entity or a mantle passed from person to person? What distinctive form do they possess? What is the source of their power to grant boons and banes?</p></section>",
+        "description": "<p>The festival culminates in the arrival of a figure from local folklore who performs special duties for the local community, such as giving treats to children, heckling the gentry, or blessing next year's crops. If the PCs show this figure the proper deference and respect, they gain an appropriate blessing, such as a cryptic prophecy or a magical trinket, and gain <strong>[[/r d4]] </strong>Hope to distribute among the party. If they insult the figure, they take <strong>[[/r 1d6+2]]</strong> magic damage as the figure curses them, and you gain a Fear.</p><section id=\"secret-ZKKvt9MLfAw4gxgH\" class=\"secret\"><p>Is this a singular entity or a mantle passed from person to person? What distinctive form do they possess? What is the source of their power to grant boons and banes?</p></section>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "s51HEF5OCNml4qQY": {
+            "type": "effect",
+            "_id": "s51HEF5OCNml4qQY",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>If the PCs show this figure the proper deference and respect, they gain an appropriate blessing, such as a cryptic prophecy or a magical trinket, and gain <strong>[[/r d4]] </strong>Hope to distribute among the party</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Gain Hope",
+            "range": ""
+          },
+          "azmh4bn7ERauB0sK": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "azmh4bn7ERauB0sK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Insult Reprisal",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "UkKVWILpbLEpDfpN",
       "img": "icons/magic/holy/saint-glass-portrait-halo.webp",

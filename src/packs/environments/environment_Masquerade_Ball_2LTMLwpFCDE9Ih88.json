@@ -42,8 +42,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "BrmEXZ6Nowpg7LRS",
       "img": "icons/equipment/chest/robe-collared-pink.webp",
@@ -66,8 +65,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "AkVcdbmlKOIBAkp6",
       "img": "icons/skills/social/diplomacy-handshake.webp",
@@ -90,8 +88,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "4yP8POf2j4QjnB1I",
       "img": "icons/magic/control/fear-fright-white.webp",
@@ -113,9 +110,46 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "zcgNYuHJjWV4Tl1a": {
+            "type": "effect",
+            "_id": "zcgNYuHJjWV4Tl1a",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "r2uqWKreHwK2Yo16",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",

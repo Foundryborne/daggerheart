@@ -42,9 +42,48 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "DrDWYorQQD7Z6uwt": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Twists and Turns",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/environment/wilderness/cave-entrance.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "DrDWYorQQD7Z6uwt",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "G6rUp9taBiyUIQvy",
       "img": "icons/environment/wilderness/cave-entrance.webp",
@@ -62,13 +101,12 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>Once per rest, the PCs can find a cache of treasure inside the dungeon, either on the corpses of previous delvers or behind hidden doors. On a successful roll to navigate the dungeon, a PC can spend up to 5 Hope to roll that number of <strong>d6s</strong>. Each result rolled gains the party the following loot or equipment:</p><ol><li><p>Loose gemstones, jewelry, baubles, or coins equal to a handful of gold</p></li><li><p>A common item or consumable</p></li><li><p>An uncommon item or consumable</p></li><li><p>A rare item or consumable</p></li><li><p>A legendary item or consumable</p></li><li><p>A weapon or an armor from the party's tier</p></li></ol><section id=\"secret-pijQnwy6NtYYhveZ\" class=\"secret\"><p>What were the previous owners like? How do the PCs plan to get their purloined items out of the dungeon?</p></section>",
+        "description": "<p>Once per rest, the PCs can find a cache of treasure inside the dungeon, either on the corpses of previous delvers or behind hidden doors. On a successful roll to navigate the dungeon, a PC can spend up to 5 Hope to roll that number of <strong>[[/r d6]]{d6s}</strong>. Each result rolled gains the party the following loot or equipment:</p><ol><li><p>Loose gemstones, jewelry, baubles, or coins equal to a handful of gold</p></li><li><p>A common item or consumable</p></li><li><p>An uncommon item or consumable</p></li><li><p>A rare item or consumable</p></li><li><p>A legendary item or consumable</p></li><li><p>A weapon or an armor from the party's tier</p></li></ol><section id=\"secret-pijQnwy6NtYYhveZ\" class=\"secret\"><p>What were the previous owners like? How do the PCs plan to get their purloined items out of the dungeon?</p></section>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "Y8BCsSqUBRNVycHf",
       "img": "icons/commodities/currency/coins-leather-pouch-stone.webp",
@@ -86,13 +124,50 @@
       "type": "feature",
       "system": {
         "featureForm": "reaction",
-        "description": "<p>When the party enters a new area of the dungeon, you can <strong>spend a Fear</strong> to summon <strong>1d4</strong> adversaries at or below the party's tier within Far range and roll a <strong>d6</strong>. On a result of 1 or 2, the PCs notice warning signs and can prepare for the encounter; the first PC to make an action roll gains advantage on it. On a result of 3 or 4, the combat occurs as usual. On a result of 5 or 6, the adversaries get the drop on the PCs and immediately take the spotlight, and you gain a Fear.</p><section id=\"secret-mX9aXZNDuTk77Dln\" class=\"secret\"><p>How did these creatures come to be here? What were they doing when the PCs encountered them?</p></section>",
+        "description": "<p>When the party enters a new area of the dungeon, you can <strong>spend a Fear</strong> to summon <strong>1d4</strong> adversaries at or below the party's tier within Far range and roll a <strong>[[/r d6]]</strong>. On a result of 1 or 2, the PCs notice warning signs and can prepare for the encounter; the first PC to make an action roll gains advantage on it. On a result of 3 or 4, the combat occurs as usual. On a result of 5 or 6, the adversaries get the drop on the PCs and immediately take the spotlight, and you gain a Fear.</p><section id=\"secret-mX9aXZNDuTk77Dln\" class=\"secret\"><p>How did these creatures come to be here? What were they doing when the PCs encountered them?</p></section>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "V8hmLE2BCeGj8hJo": {
+            "type": "effect",
+            "_id": "V8hmLE2BCeGj8hJo",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "1onLVsttc9m0tcfW",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
@@ -114,9 +189,72 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "idS8gqd1oM93HCuQ": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d6",
+                  "bonus": 3,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "idS8gqd1oM93HCuQ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "PMiyh1YfhcMCnEre",
       "img": "icons/environment/traps/trap-jaw-steel.webp",

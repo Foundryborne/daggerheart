@@ -44,7 +44,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "src": "icons/environment/wilderness/cave-entrance-rocky.webp",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "fit": "contain",
@@ -113,7 +113,7 @@
       "effects": 0,
       "subject": {
         "scale": 1,
-        "texture": null
+        "texture": "icons/environment/wilderness/cave-entrance-vulcano.webp"
       }
     },
     "turnMarker": {

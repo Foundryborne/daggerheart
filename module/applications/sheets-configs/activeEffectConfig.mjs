@@ -180,7 +180,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         switch (partId) {
             case 'header':
                 const originItem = this.document?.item && this.document?.transfer ? this.document.item
-                    : fromUuidSync(this.document.origin);
+                    : await fromUuid(this.document.origin);
                 if (originItem) partContext.originItem = originItem.item ?? originItem;
                 break;
             case 'details':

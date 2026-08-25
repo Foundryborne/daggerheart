@@ -37,13 +37,91 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "O3LiAiXLVHbVAhiB": {
+            "type": "effect",
+            "_id": "O3LiAiXLVHbVAhiB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "Sx29pwoNC1prZcY5",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "oqZmYjmq7nHwqK7d",
       "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Beneath Concern",
+          "disabled": false,
+          "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",
+          "description": "<p>Because mortal life is generally beneath these beings' concern, PCs have disadvantage on action rolls to influence them unless they have leverage against them or know what the NPC cares about.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.5S3sSvvuXp15MMAR.Item.oqZmYjmq7nHwqK7d",
+          "_id": "Sx29pwoNC1prZcY5",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5S3sSvvuXp15MMAR.oqZmYjmq7nHwqK7d.Sx29pwoNC1prZcY5"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -62,8 +140,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "cVL5PXbDsM7wccZf",
       "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
@@ -86,8 +163,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "uYTJYPixVWPMgMjs",
       "img": "icons/commodities/treasure/goblet-coins-gold.webp",
@@ -109,13 +185,161 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "ZXWbr2YnA6oEUbNA": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Don't Make Waves",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/perception/orb-eye-scrying.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "6",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "ZXWbr2YnA6oEUbNA",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>Countdown (6). Because anything is possible in Convergence, the city maintains a labyrinthine bureaucracy that issues and enforces ordinances regarding all exchanges and interactions between the realms. When the party arrives in Convergence, activate the countdown. It ticks down when a PC does something that upsets the city's delicate political equilibrium. </p><section id=\"secret-VoeL6dGUKdcCpqPi\" class=\"secret\"><p>What has the party done (or what do they plan to do) that draws the attention and ire of the city officials? How can they fix the problem they caused?</p></section>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "eLGtrn1swEajhVXP": {
+            "type": "effect",
+            "_id": "eLGtrn1swEajhVXP",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, the PCs become Wanted until they clear their names with the authorities. </p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "mzmkBPSEjmqE7dr5",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Become Wanted",
+            "range": "",
+            "img": "icons/sundries/documents/document-symbol-skull-tan.webp"
+          },
+          "hwe4SW1rxEM7Y2ng": {
+            "type": "summon",
+            "_id": "hwe4SW1rxEM7Y2ng",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When a Wanted PC rolls with Fear, you can summon <strong>1d4</strong> Temporal Enforcers who appear within Very Close range, immediately take the spotlight, and try to apprehend the party.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.VSdS3N5Kh6uratv9",
+                "count": "1d4"
+              }
+            ],
+            "name": "",
+            "range": "veryClose",
+            "img": "icons/environment/people/infantry-armored.webp"
+          }
+        },
+        "granter": null
       },
       "_id": "LyaalfQw9F2uRj9Z",
       "img": "icons/magic/perception/orb-eye-scrying.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Wanted",
+          "disabled": false,
+          "img": "icons/sundries/documents/document-symbol-skull-tan.webp",
+          "description": "",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "origin": "Compendium.daggerheart.environments.Actor.5S3sSvvuXp15MMAR.Item.LyaalfQw9F2uRj9Z",
+          "_id": "mzmkBPSEjmqE7dr5",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5S3sSvvuXp15MMAR.LyaalfQw9F2uRj9Z.mzmkBPSEjmqE7dr5"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -133,9 +357,77 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "zHLj0UD0epZuNIgC": {
+            "type": "damage",
+            "damage": {
+              "main": null,
+              "resources": {
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "zHLj0UD0epZuNIgC",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "VaMnxpVawLRSYJs1",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",

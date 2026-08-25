@@ -33,9 +33,48 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "EzwbQmf6YhLowCd6": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Underwater Environment",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/magic/water/wave-water-teal.webp",
+                "progress": {
+                  "looping": "noLooping",
+                  "type": "custom",
+                  "startFormula": "3",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "EzwbQmf6YhLowCd6",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "qzroOipCsq0bUcY2",
       "img": "icons/magic/water/wave-water-teal.webp",
@@ -58,8 +97,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "99n3FQmcE0rszkrT",
       "img": "icons/magic/water/orb-water-bubbles-teal.webp",
@@ -82,8 +120,7 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "3RsgTnVijii6AMbF",
       "img": "icons/commodities/tech/metal-blue.webp",
@@ -105,9 +142,51 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "actions": {
+          "YiQHwLpUo8BW9Lkv": {
+            "type": "summon",
+            "_id": "YiQHwLpUo8BW9Lkv",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "summon": [
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.Wy9Dx05ulqeybn4h",
+                "count": "2"
+              },
+              {
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.vw7PTv0hdDRCXhus",
+                "count": "1d6"
+              }
+            ],
+            "name": "Spend Fear",
+            "range": ""
+          }
+        },
+        "granter": null
       },
       "_id": "ThEcedErJouy7fwK",
       "img": "icons/creatures/fish/deepsea-creature-glowing-blue.webp",
