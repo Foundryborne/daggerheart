@@ -431,7 +431,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>While Guilty, you don’t gain Hope on a result with Hope.</p>",
+          "description": "<p>While Guilty, you don't gain Hope on a result with Hope.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,

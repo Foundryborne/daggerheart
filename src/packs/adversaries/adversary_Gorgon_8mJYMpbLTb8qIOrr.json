@@ -377,7 +377,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>You Glow until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against you have advantage.</p>",
+          "description": "<p>You Glow until the end of the scene and can't become <em>Hidden</em>. Attack rolls made against you have advantage.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,

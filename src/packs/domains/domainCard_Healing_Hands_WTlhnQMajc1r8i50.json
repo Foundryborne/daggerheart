@@ -444,7 +444,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Can’t be healed again with Healing Hands by the caster of the Healing Hands until a long rest.</p>",
+      "description": "<p>Can't be healed again with Healing Hands by the caster of the Healing Hands until a long rest.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

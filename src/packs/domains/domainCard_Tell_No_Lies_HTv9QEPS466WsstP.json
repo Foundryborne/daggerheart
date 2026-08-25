@@ -128,7 +128,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Can’t lie to you while they remain within Close range, but they are not compelled to speak. If you ask them a question and they refuse to answer, they must mark a Stress and the effect ends. The target is typically unaware this spell has been cast on them until it causes them to utter the truth.</p>",
+      "description": "<p>Can't lie to you while they remain within Close range, but they are not compelled to speak. If you ask them a question and they refuse to answer, they must mark a Stress and the effect ends. The target is typically unaware this spell has been cast on them until it causes them to utter the truth.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

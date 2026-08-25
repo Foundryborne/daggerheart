@@ -38,7 +38,7 @@
   "effects": [
     {
       "name": "Bulky",
-      "description": "−1 to Evasion; when you take Severe damage, you must mark a Stress.",
+      "description": "-1 to Evasion; when you take Severe damage, you must mark a Stress.",
       "img": "icons/commodities/metal/ingot-stamped-steel.webp",
       "system": {
         "changes": [

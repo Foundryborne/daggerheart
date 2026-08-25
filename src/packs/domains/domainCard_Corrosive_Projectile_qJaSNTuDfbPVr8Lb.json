@@ -186,7 +186,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While a target is Corroded, they gain a −1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
+      "description": "<p>While a target is Corroded, they gain a -1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
       "tint": "#ffffff",
       "statuses": [
         "corrode"

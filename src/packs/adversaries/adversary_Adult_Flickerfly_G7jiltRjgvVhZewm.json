@@ -370,7 +370,7 @@
             "expired": false
           },
           "disabled": false,
-          "description": "<p>When the Flickerfly makes an attack, the target’s Evasion is halved against the attack.</p>",
+          "description": "<p>When the Flickerfly makes an attack, the target's Evasion is halved against the attack.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,

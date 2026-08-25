@@ -538,7 +538,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>Become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to fi nd them.</p>",
+          "description": "<p>Become Hidden until the Soldier's next attack or a PC succeeds on an Instinct Roll (14) to fi nd them.</p>",
           "tint": "#ffffff",
           "statuses": [
             "hidden"

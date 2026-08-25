@@ -291,7 +291,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p><em>Restrained</em> lasts until you’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>",
+          "description": "<p><em>Restrained</em> lasts until you're freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>",
           "tint": "#ffffff",
           "statuses": [
             "restrained"

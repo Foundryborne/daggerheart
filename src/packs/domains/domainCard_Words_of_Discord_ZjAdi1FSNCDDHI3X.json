@@ -135,7 +135,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>The target must make an attack against another adversary instead of against you or your allies. Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</p>",
+      "description": "<p>The target must make an attack against another adversary instead of against you or your allies. Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a -5 penalty to the Spellcast Roll.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

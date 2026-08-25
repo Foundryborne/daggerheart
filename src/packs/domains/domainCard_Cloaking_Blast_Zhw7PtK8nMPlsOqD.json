@@ -94,7 +94,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While <em>Cloaked</em>, you remain unseen if you are stationary when an adversary moves to where they would normally see you. When you move into or within an adversary’s line of sight or make an attack, you are no longer <em>Cloaked</em>.</p>",
+      "description": "<p>While <em>Cloaked</em>, you remain unseen if you are stationary when an adversary moves to where they would normally see you. When you move into or within an adversary's line of sight or make an attack, you are no longer <em>Cloaked</em>.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

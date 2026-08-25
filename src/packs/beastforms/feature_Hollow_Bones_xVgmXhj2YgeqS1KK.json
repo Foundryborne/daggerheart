@@ -52,7 +52,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>You gain a −2 penalty to your damage thresholds.</p>",
+      "description": "<p>You gain a -2 penalty to your damage thresholds.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

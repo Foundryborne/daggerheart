@@ -135,7 +135,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+      "description": "<p>While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can't perform other actions without leaving this form.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

@@ -220,7 +220,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Temporarily Stunned. While Stunned, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
+      "description": "<p>Temporarily Stunned. While Stunned, they can't use reactions and can't take any other actions until they clear this condition.</p>",
       "tint": "#ffffff",
       "statuses": [
         "stun"

@@ -456,7 +456,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>While Entranced, you can’t act and are <em>Vulnerable</em>.</p>",
+          "description": "<p>While Entranced, you can't act and are <em>Vulnerable</em>.</p>",
           "tint": "#ffffff",
           "statuses": [
             "vulnerable"

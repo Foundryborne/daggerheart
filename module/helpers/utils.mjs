@@ -378,7 +378,7 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
 export function updateLinkedItemApps(options, sheet) {
     for (const featureUuid of [...(options.toUnlink ?? []), ...(options.toLink ?? [])]) {
         const doc = foundry.utils.fromUuidSync(featureUuid);
-        if (doc) doc.apps[sheet.id] = sheet;
+        if (doc?.apps) doc.apps[sheet.id] = sheet;
     }
 }
 

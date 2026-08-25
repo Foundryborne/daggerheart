@@ -93,7 +93,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>When you next successfully attack with a weapon, double the result of your damage roll. This attack deals magic damage regardless of the weapon’s damage type.</p>",
+      "description": "<p>When you next successfully attack with a weapon, double the result of your damage roll. This attack deals magic damage regardless of the weapon's damage type.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

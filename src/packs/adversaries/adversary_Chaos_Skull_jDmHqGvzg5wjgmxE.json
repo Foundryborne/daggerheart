@@ -271,7 +271,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>The Skull levitates several feet off the ground and can’t be <em>Restrained</em>.</p>",
+          "description": "<p>The Skull levitates several feet off the ground and can't be <em>Restrained</em>.</p>",
           "origin": null,
           "tint": "#ffffff",
           "transfer": true,

@@ -421,7 +421,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+          "description": "<p>Become <em>Hidden</em> until after the Shadow's next attack. Attacks made while Hidden from this feature have advantage.</p>",
           "tint": "#ffffff",
           "statuses": [
             "hidden"

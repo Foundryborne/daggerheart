@@ -47,7 +47,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your “Shadow Stepper” feature to move within Very Far range.</p>",
+      "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your \"Shadow Stepper\" feature to move within Very Far range.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

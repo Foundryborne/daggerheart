@@ -101,7 +101,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can’t move.</p>",
+      "description": "<p>While in your shell, you have resistance to physical damage, you have disadvantage on action rolls, and you can't move.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

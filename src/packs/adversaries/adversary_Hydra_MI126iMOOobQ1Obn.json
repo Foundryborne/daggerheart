@@ -565,7 +565,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>While Dazed, they can’t use their Regeneration action but are immune to magic damage.</p>",
+          "description": "<p>While Dazed, they can't use their Regeneration action but are immune to magic damage.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,

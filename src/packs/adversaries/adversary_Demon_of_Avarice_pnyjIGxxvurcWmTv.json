@@ -309,7 +309,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>Add a bonus to the Demon’s attack rolls equal to the number of handfuls of gold they have.</p>",
+          "description": "<p>Add a bonus to the Demon's attack rolls equal to the number of handfuls of gold they have.</p>",
           "origin": null,
           "tint": "#ffffff",
           "transfer": true,

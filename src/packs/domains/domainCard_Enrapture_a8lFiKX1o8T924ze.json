@@ -178,7 +178,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
+      "description": "<p>While <em>Enraptured</em>, a target's attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

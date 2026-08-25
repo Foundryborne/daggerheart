@@ -387,7 +387,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Targets can’t move against the wind.</p>",
+      "description": "<p>Targets can't move against the wind.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

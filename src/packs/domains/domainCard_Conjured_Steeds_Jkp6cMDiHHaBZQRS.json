@@ -115,7 +115,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Creatures riding a steed gain a −2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
+      "description": "<p>Creatures riding a steed gain a -2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

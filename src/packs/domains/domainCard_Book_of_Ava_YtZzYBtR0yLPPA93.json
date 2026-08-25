@@ -325,7 +325,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>+1 bonus to your Armor Score until your next rest, or the caster cast's Tava’s Armor again.</p>",
+      "description": "<p>+1 bonus to your Armor Score until your next rest, or the caster cast's Tava's Armor again.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

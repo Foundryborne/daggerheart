@@ -151,7 +151,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
+      "description": "<p>While you're in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

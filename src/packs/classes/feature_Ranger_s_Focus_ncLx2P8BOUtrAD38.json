@@ -85,7 +85,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Until this feature ends or the ranger makes a different creature their Focus, they gain the following benefits against this adversary:</p><ul><li><p>They know precisely what direction they are in.</p></li><li><p>When they deal damage to them, the adverasry must mark a Stress.</p></li><li><p>When they fail an attack against them, they can end their Ranger’s Focus feature to reroll their Duality Dice.</p></li></ul>",
+      "description": "<p>Until this feature ends or the ranger makes a different creature their Focus, they gain the following benefits against this adversary:</p><ul><li><p>They know precisely what direction they are in.</p></li><li><p>When they deal damage to them, the adverasry must mark a Stress.</p></li><li><p>When they fail an attack against them, they can end their Ranger's Focus feature to reroll their Duality Dice.</p></li></ul>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

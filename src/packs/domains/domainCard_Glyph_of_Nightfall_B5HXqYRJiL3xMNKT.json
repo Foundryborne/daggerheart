@@ -134,7 +134,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Conjure a dark glyph upon their body that exposes their weak points, temporarily reducing the target’s Difficulty by a value equal to your Knowledge (minimum 1).</p>",
+      "description": "<p>Conjure a dark glyph upon their body that exposes their weak points, temporarily reducing the target's Difficulty by a value equal to your Knowledge (minimum 1).</p>",
       "tint": "#ffffff",
       "statuses": [],
       "showIcon": 1,

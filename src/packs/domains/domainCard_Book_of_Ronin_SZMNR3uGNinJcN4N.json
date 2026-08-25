@@ -202,7 +202,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Permanently <em>Vulnerable</em>. They can’t clear this condition by any means.</p>",
+      "description": "<p>Permanently <em>Vulnerable</em>. They can't clear this condition by any means.</p>",
       "tint": "#ffffff",
       "statuses": [
         "vulnerable"

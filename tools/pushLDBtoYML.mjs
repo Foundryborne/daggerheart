@@ -51,6 +51,7 @@ function transformDocument(entry) {
     const stats = entry._stats;
     entry._stats = stats ? { compendiumSource: stats.compendiumSource } : stats;
     delete entry.ownership;
+    entry.description = removeSpecialCharacters(entry.description);
     if (entry?.system) {
         entry.system.description = removeSpecialCharacters(entry.system.description);
         for (const action of Object.values(entry.system.actions ?? {})) {

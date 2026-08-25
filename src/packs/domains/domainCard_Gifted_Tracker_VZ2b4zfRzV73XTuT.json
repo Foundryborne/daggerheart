@@ -101,7 +101,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>When you encounter creatures you’ve tracked in this way, gain a +1 bonus to your Evasion against them.</p>",
+      "description": "<p>When you encounter creatures you've tracked in this way, gain a +1 bonus to your Evasion against them.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

@@ -126,7 +126,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>An Invisible creature can’t be seen except through magical means and attack rolls against them are made with disadvantage. Place a number of tokens on this card equal to your Spellcast trait. When the Invisible creature takes an action, spend a token from this card. After the action that spends the last token is resolved, the effect ends.</p>",
+      "description": "<p>An Invisible creature can't be seen except through magical means and attack rolls against them are made with disadvantage. Place a number of tokens on this card equal to your Spellcast trait. When the Invisible creature takes an action, spend a token from this card. After the action that spends the last token is resolved, the effect ends.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

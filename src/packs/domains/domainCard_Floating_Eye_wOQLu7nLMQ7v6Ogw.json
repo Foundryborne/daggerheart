@@ -84,7 +84,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While this spell is active, you can see through the orb as though you’re looking out from its position. You can transition between using your own senses and seeing through the orb freely. If the orb takes damage or moves out of range, the spell ends.</p>",
+      "description": "<p>While this spell is active, you can see through the orb as though you're looking out from its position. You can transition between using your own senses and seeing through the orb freely. If the orb takes damage or moves out of range, the spell ends.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
