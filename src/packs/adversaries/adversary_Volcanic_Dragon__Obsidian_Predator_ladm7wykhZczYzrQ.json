@@ -564,7 +564,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p> <em>Vulnerable</em> until your next roll with Hope.</p>",
+          "description": "<p><em>Vulnerable</em> until your next roll with Hope.</p>",
           "tint": "#ffffff",
           "statuses": [
             "vulnerable"

@@ -62,7 +62,7 @@
       "name": "Molepaw Mittens",
       "disabled": false,
       "img": "icons/equipment/hand/glove-armored-leather-worn-brown.webp",
-      "description": "<p>You can <span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">swim through earth as if it were water for the next 10 minutes.</span></p>",
+      "description": "<p>You can swim through earth as if it were water for the next 10 minutes.</p>",
       "transfer": false,
       "statuses": [],
       "system": {

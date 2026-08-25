@@ -237,7 +237,7 @@
             "_id": "WXxNVW4vIPdICvzC",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.753); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">On a failure, the target becomes Stiff . If the target is already Stiff , they become Petrified.</span></p>",
+            "description": "<p>On a failure, the target becomes Stiff. If the target is already Stiff, they become Petrified.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -275,7 +275,7 @@
           "name": "Stiff",
           "disabled": false,
           "img": "icons/magic/earth/strike-body-stone-crumble.webp",
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While Stiff , the PC must mark a Stress each time they act until they take a rest or the Basilisk is defeated.</span></p>",
+          "description": "<p>While Stiff, the PC must mark a Stress each time they act until they take a rest or the Basilisk is defeated.</p>",
           "transfer": false,
           "statuses": [],
           "system": {
@@ -319,7 +319,7 @@
           "name": "Petrified",
           "disabled": false,
           "img": "icons/magic/earth/strike-fist-stone-gray.webp",
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While Petrified, the PC can't act. The Petrified condition can be cleared only by applying </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(243, 194, 103) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Basilisk</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> saliva to the target.</span></p>",
+          "description": "<p>While Petrified, the PC can't act. The Petrified condition can be cleared only by applying Basilisk saliva to the target.</p>",
           "transfer": false,
           "statuses": [],
           "system": {

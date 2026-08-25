@@ -136,14 +136,14 @@
       "name": "Dangerous Crossing",
       "type": "feature",
       "system": {
-        "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-l7tHfgFFOGdvlnll\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-VF0r7nXxQlmuwMpj\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+        "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-l7tHfgFFOGdvlnll\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><section class=\"secret\" id=\"secret-VF0r7nXxQlmuwMpj\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
         "resource": null,
         "actions": {
           "91HPIEEcVKPQ5qqn": {
             "type": "countdown",
             "_id": "91HPIEEcVKPQ5qqn",
             "systemPath": "actions",
-            "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-aKJuTbAZaPUFxoiE\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-GSYTFIq8J3k2a4Ww\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+            "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-aKJuTbAZaPUFxoiE\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><section class=\"secret\" id=\"secret-GSYTFIq8J3k2a4Ww\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

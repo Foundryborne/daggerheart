@@ -140,7 +140,7 @@
       "name": "What's the Talk of the Town?",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can ask the bartender, staff , or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.</p><ul><li><p>A fascinating rumor with a connection to a PC's background</p></li><li><p>A promising job for the party involving a nearby threat or situation</p></li><li><p>Local folklore that relates to something they've seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
+        "description": "<p>A PC can ask the bartender, staff, or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.</p><ul><li><p>A fascinating rumor with a connection to a PC's background</p></li><li><p>A promising job for the party involving a nearby threat or situation</p></li><li><p>Local folklore that relates to something they've seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
         "resource": null,
         "actions": {},
         "attribution": {},
@@ -186,7 +186,7 @@
       "name": "Mysterious Stranger",
       "type": "feature",
       "system": {
-        "description": "<p> Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What's their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
+        "description": "<p>Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What's their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
         "resource": null,
         "actions": {},
         "featureForm": "action",

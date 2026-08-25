@@ -61,7 +61,7 @@
             "_id": "etwUv30ZO9B3fhtB",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p>Consequence Countdown (8). The dragon that amassed this treasure lies sleeping somewhere on, under, or near the hoard. When the PCs enter the lair, activate the countdown. </p><section id=\"secret-TVAoo3QGrYFefBrN\" class=\"secret\"><p>Where does this dragon slumber? What does it dream about?</p></section>",
+            "description": "<p>Consequence Countdown (8). The dragon that amassed this treasure lies sleeping somewhere on, under, or near the hoard. When the PCs enter the lair, activate the countdown.</p><section id=\"secret-TVAoo3QGrYFefBrN\" class=\"secret\"><p>Where does this dragon slumber? What does it dream about?</p></section>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

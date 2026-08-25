@@ -585,7 +585,7 @@
           "name": "Paranoid",
           "disabled": false,
           "img": "icons/magic/perception/orb-eye-scrying.webp",
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While Paranoid, you are suspicious of other PCs and can't Help an Ally or take part in Tag Team Rolls. To clear this condition, you must succeed on an Insight Roll (16) or participate in the Prepare downtime move with one or more members your party during a rest.</span></p>",
+          "description": "<p>While Paranoid, you are suspicious of other PCs and can't Help an Ally or take part in Tag Team Rolls. To clear this condition, you must succeed on an Insight Roll (16) or participate in the Prepare downtime move with one or more members your party during a rest.</p>",
           "transfer": false,
           "statuses": [],
           "system": {

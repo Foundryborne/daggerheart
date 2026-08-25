@@ -82,7 +82,7 @@
           "name": "Reveling",
           "disabled": false,
           "img": "icons/consumables/drinks/alcohol-beer-stein-wooden-brown.webp",
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">PCs have advantage on Presence Rolls to socialize with other revelers.</span></p>",
+          "description": "<p>PCs have advantage on Presence Rolls to socialize with other revelers.</p>",
           "transfer": false,
           "statuses": [],
           "system": {
@@ -192,7 +192,7 @@
           "name": "Honored Guest",
           "disabled": false,
           "img": "icons/commodities/treasure/brooch-crown-gold.webp",
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Until the feast ends, an Honored Guest can claim a gift from the host, then clear the condition.</span></p>",
+          "description": "<p>Until the feast ends, an Honored Guest can claim a gift from the host, then clear the condition.</p>",
           "transfer": false,
           "statuses": [],
           "system": {

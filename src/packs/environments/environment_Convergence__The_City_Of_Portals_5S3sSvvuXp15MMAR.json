@@ -208,7 +208,7 @@
             "_id": "ZXWbr2YnA6oEUbNA",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p>Countdown (6). Because anything is possible in Convergence, the city maintains a labyrinthine bureaucracy that issues and enforces ordinances regarding all exchanges and interactions between the realms. When the party arrives in Convergence, activate the countdown. It ticks down when a PC does something that upsets the city's delicate political equilibrium. </p><section id=\"secret-VoeL6dGUKdcCpqPi\" class=\"secret\"><p>What has the party done (or what do they plan to do) that draws the attention and ire of the city officials? How can they fix the problem they caused?</p></section>",
+            "description": "<p>Countdown (6). Because anything is possible in Convergence, the city maintains a labyrinthine bureaucracy that issues and enforces ordinances regarding all exchanges and interactions between the realms. When the party arrives in Convergence, activate the countdown. It ticks down when a PC does something that upsets the city's delicate political equilibrium.</p><section id=\"secret-VoeL6dGUKdcCpqPi\" class=\"secret\"><p>What has the party done (or what do they plan to do) that draws the attention and ire of the city officials? How can they fix the problem they caused?</p></section>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -230,7 +230,7 @@
             "_id": "eLGtrn1swEajhVXP",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p>When it triggers, the PCs become Wanted until they clear their names with the authorities. </p>",
+            "description": "<p>When it triggers, the PCs become Wanted until they clear their names with the authorities.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

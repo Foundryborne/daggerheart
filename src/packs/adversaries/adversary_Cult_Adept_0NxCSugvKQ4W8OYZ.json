@@ -636,7 +636,7 @@
       "name": "Fear Is Fuel",
       "type": "feature",
       "system": {
-        "description": "<p> Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
+        "description": "<p>Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
         "resource": null,
         "actions": {
           "3tibqB97ooJesxf0": {

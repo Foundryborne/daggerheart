@@ -272,7 +272,7 @@
           "name": "Desynced",
           "disabled": false,
           "img": "icons/magic/lightning/projectile-tendrils-red.webp",
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You have disadvantage on Instinct Rolls until you use a downtime move to ground your psyches in the now.</span></p>",
+          "description": "<p>You have disadvantage on Instinct Rolls until you use a downtime move to ground your psyches in the now.</p>",
           "transfer": false,
           "statuses": [],
           "system": {
@@ -391,7 +391,7 @@
           "name": "New Effect",
           "disabled": false,
           "img": "icons/magic/acid/dissolve-arm-flesh.webp",
-          "description": "<p>You have a <span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">-2 penalty to your damage thresholds until you use a downtime move to repair your armor.</span></p>",
+          "description": "<p>You have a -2 penalty to your damage thresholds until you use a downtime move to repair your armor.</p>",
           "transfer": false,
           "statuses": [],
           "system": {

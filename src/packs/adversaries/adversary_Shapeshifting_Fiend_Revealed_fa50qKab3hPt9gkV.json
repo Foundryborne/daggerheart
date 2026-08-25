@@ -456,7 +456,7 @@
           "name": "Duplicate",
           "disabled": false,
           "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
-          "description": "<p>W<span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">hen the Fiend is targeted by an attack, they gain a bonus to their Difficulty equal to the countdown die's current value. The countdown ticks down when a PC fails an attack against the Fiend. When it triggers, the duplicates vanish.</span></p>",
+          "description": "<p>When the Fiend is targeted by an attack, they gain a bonus to their Difficulty equal to the countdown die's current value. The countdown ticks down when a PC fails an attack against the Fiend. When it triggers, the duplicates vanish.</p>",
           "transfer": false,
           "statuses": [],
           "system": {

@@ -30,7 +30,7 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>The workshop's shelves, cupboards, and tables are cluttered with macabre bric-a-brac, including body parts in jars of formaldehyde and bloody surgical implements. Once per scene, a PC can make an Instinct Roll to look for something useful in the chaos. </p><section id=\"secret-Fs21TFNgkDCks2NO\" class=\"secret\"><p>What was the alchemist studying? What smell overwhelms you as you shuffl e through their things?</p></section>",
+        "description": "<p>The workshop's shelves, cupboards, and tables are cluttered with macabre bric-a-brac, including body parts in jars of formaldehyde and bloody surgical implements. Once per scene, a PC can make an Instinct Roll to look for something useful in the chaos.</p><section id=\"secret-Fs21TFNgkDCks2NO\" class=\"secret\"><p>What was the alchemist studying? What smell overwhelms you as you shuffl e through their things?</p></section>",
         "attribution": {},
         "gmNotes": "",
         "resource": {
@@ -62,7 +62,7 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>The workshop contains numerous pieces of bizarre technology and scientific instrumentation. A PC can make a Knowledge Roll to try to figure out how it works. On a success, they can get it running. On a failure, they break something and take <strong>1d8+4</strong> direct magic damage as they're shocked by electricity and doused in caustic chemicals. </p><section id=\"secret-dF1kdMeoqmVLM020\" class=\"secret\"><p>What do these machines do? What do these instruments measure?</p></section>",
+        "description": "<p>The workshop contains numerous pieces of bizarre technology and scientific instrumentation. A PC can make a Knowledge Roll to try to figure out how it works. On a success, they can get it running. On a failure, they break something and take <strong>1d8+4</strong> direct magic damage as they're shocked by electricity and doused in caustic chemicals.</p><section id=\"secret-dF1kdMeoqmVLM020\" class=\"secret\"><p>What do these machines do? What do these instruments measure?</p></section>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
@@ -176,7 +176,7 @@
             "_id": "hgQUaAWG1vgxEUUQ",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p>Consequence Countdown (6). A thunderstorm gathers overhead, threatening to jolt the lightning rod assembly installed atop the workshop. Activate the countdown and narrate how the storm's power increases each time it ticks down when a PC makes an action roll. </p>",
+            "description": "<p>Consequence Countdown (6). A thunderstorm gathers overhead, threatening to jolt the lightning rod assembly installed atop the workshop. Activate the countdown and narrate how the storm's power increases each time it ticks down when a PC makes an action roll.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"

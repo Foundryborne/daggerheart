@@ -163,7 +163,7 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>When the @Lookup[@name] appears, they conjure six discs of magical energy that orbit around them. Place a <strong>d6</strong> Aegis Die on this stat block with the 6 value facing up. When a PC makes a successful attack against the @Lookup[@name], roll a <strong>[[/r d6]]</strong>. </p><p>If the result is equal to or less than the value of the Aegis Die, tick the Aegis Die down and ignore the damage. A PC can make a Knowledge Roll to tick down the Aegis Die by 1 on a success or by 2 on a success with Hope.</p>",
+        "description": "<p>When the @Lookup[@name] appears, they conjure six discs of magical energy that orbit around them. Place a <strong>d6</strong> Aegis Die on this stat block with the 6 value facing up. When a PC makes a successful attack against the @Lookup[@name], roll a <strong>[[/r d6]]</strong>.</p><p>If the result is equal to or less than the value of the Aegis Die, tick the Aegis Die down and ignore the damage. A PC can make a Knowledge Roll to tick down the Aegis Die by 1 on a success or by 2 on a success with Hope.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": {

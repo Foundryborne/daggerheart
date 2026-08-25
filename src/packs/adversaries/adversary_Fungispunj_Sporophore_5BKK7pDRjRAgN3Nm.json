@@ -235,7 +235,7 @@
           "name": "Poisoned",
           "disabled": false,
           "img": "icons/magic/air/fog-gas-smoke-dense-green.webp",
-          "description": "<p>You are Poisoned until you <strong>spend a Hope</strong> to clear the condition. </p><p>While Poisoned, you must roll a d6 before you make an action roll. On a result of 4 or lower, you must mark a Stress.</p>",
+          "description": "<p>You are Poisoned until you <strong>spend a Hope</strong> to clear the condition.</p><p>While Poisoned, you must roll a d6 before you make an action roll. On a result of 4 or lower, you must mark a Stress.</p>",
           "transfer": false,
           "statuses": [],
           "system": {
@@ -365,7 +365,7 @@
           "name": "Reanimated Corpse",
           "disabled": false,
           "img": "icons/magic/death/skeleton-worn-skull-tan.webp",
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When the Sporophore is spotlighted, you can also spotlight all corpses it controls.</span></p>",
+          "description": "<p>When the Sporophore is spotlighted, you can also spotlight all corpses it controls.</p>",
           "transfer": false,
           "statuses": [],
           "system": {

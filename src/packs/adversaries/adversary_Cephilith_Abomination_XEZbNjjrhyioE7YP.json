@@ -328,7 +328,7 @@
           "name": "Bear Hug",
           "disabled": false,
           "img": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
-          "description": "<p>You are Grappled until you escape with a successful Strength Roll. </p><p>While Grappled, the target is <em>Vulnerable</em> and <em>Restrained</em>.</p>",
+          "description": "<p>You are Grappled until you escape with a successful Strength Roll.</p><p>While Grappled, the target is <em>Vulnerable</em> and <em>Restrained</em>.</p>",
           "transfer": false,
           "statuses": [
             "vulnerable",
