@@ -274,46 +274,44 @@ export default class DhCharacter extends DhCreature {
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField({ label: 'DAGGERHEART.ACTORS.Character.burden.ignore.label' })
                 }),
+                dualityRoll: new fields.SchemaField({
+                    defaultHopeDice: new fields.NumberField({
+                        nullable: false,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: 12,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultHopeDice'
+                    }),
+                    defaultFearDice: new fields.NumberField({
+                        nullable: false,
+                        required: true,
+                        integer: true,
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: 12,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultFearDice'
+                    })
+                }),
                 roll: new fields.SchemaField({
                     guaranteedCritical: new fields.BooleanField({
                         label: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.label',
                         hint: 'DAGGERHEART.ACTORS.Character.roll.guaranteedCritical.hint'
                     }),
-                    hopeIndex: new fields.NumberField({
+                    defaultAdvantageDice: new fields.NumberField({
+                        nullable: true,
                         required: true,
                         integer: true,
-                        min: 0,
-                        max: 5,
-                        initial: 4,
-                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.hope.label',
-                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.hope.hint'
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultAdvantageDice'
                     }),
-                    fearIndex: new fields.NumberField({
+                    defaultDisadvantageDice: new fields.NumberField({
+                        nullable: true,
                         required: true,
                         integer: true,
-                        min: 0,
-                        max: 5,
-                        initial: 4,
-                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.fear.label',
-                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.fear.hint'
-                    }),
-                    advantageIndex: new fields.NumberField({
-                        required: true,
-                        integer: true,
-                        min: 0,
-                        max: 5,
-                        initial: 1,
-                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.label',
-                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.advantage.hint'
-                    }),
-                    disadvantageIndex: new fields.NumberField({
-                        required: true,
-                        integer: true,
-                        min: 0,
-                        max: 5,
-                        initial: 1,
-                        label: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.label',
-                        hint: 'DAGGERHEART.ACTORS.Creature.rules.roll.disadvantage.hint'
+                        choices: CONFIG.DH.GENERAL.dieFaces,
+                        initial: null,
+                        label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
                     }),
                     comboDieIndex: new fields.NumberField({
                         integer: true,
@@ -867,9 +865,9 @@ export default class DhCharacter extends DhCreature {
             isReversed: true
         };
 
-        /* Add convience <dice>Faces properties for all dice */
-        const { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex } = this.rules.roll;
-        const dice = { hopeIndex, fearIndex, advantageIndex, disadvantageIndex, comboDieIndex };
+        /* Add convience <dice>Faces properties for all diceIndexes */
+        const { comboDieIndex } = this.rules.roll;
+        const dice = { comboDieIndex };
         for (const dieKey of Object.keys(dice)) {
             const diceBaseKey = dieKey.replace('Index', '');
             this.rules.roll[`${diceBaseKey}Faces`] = CONFIG.DH.GENERAL.dieFaces[dice[dieKey]];

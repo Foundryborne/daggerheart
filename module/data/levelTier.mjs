@@ -193,10 +193,7 @@ export const LevelOptionType = {
         id: 'dice',
         label: 'Increase Dice Size',
         subTypes: {
-            hopeIndex: { key: 'hopeIndex', label: 'DAGGERHEART.GENERAL.hope' },
-            fearIndex: { key: 'fearIndex', label: 'DAGGERHEART.GENERAL.fear' },
-            advantageIndex: { key: 'advantageIndex', label: 'DAGGERHEART.GENERAL.Advantage.full' },
-            comboDieIndex: { key: 'comboDieIndex', label: 'Combo Die' } // Translation pending actual useage
+            comboDieIndex: { key: 'comboDieIndex', label: 'Permanently increase your Combo Die by one step (d4 to d6, d6 to d8, etc.).' }
         }
     },
     ...CompanionLevelOptionType

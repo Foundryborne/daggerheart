@@ -379,8 +379,8 @@
           "system": {
             "changes": [
               {
-                "key": "system.rules.roll.hopeIndex",
-                "value": 2,
+                "key": "system.rules.dualityRoll.defaultHopeDice",
+                "value": "d8",
                 "priority": null,
                 "type": "override",
                 "phase": "initial"

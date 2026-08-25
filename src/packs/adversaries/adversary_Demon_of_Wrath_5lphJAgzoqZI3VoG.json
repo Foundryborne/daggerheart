@@ -333,8 +333,8 @@
           "system": {
             "changes": [
               {
-                "key": "system.rules.roll.fearIndex",
-                "value": 5,
+                "key": "system.rules.dualityRoll.defaultFearDice",
+                "value": "d20",
                 "priority": null,
                 "type": "override",
                 "phase": "initial"
