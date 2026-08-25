@@ -458,7 +458,8 @@
           "recovery": null,
           "progression": "increasing",
           "dieFaces": "d4",
-          "icon": "fa-solid fa-radiation"
+          "icon": "fa-solid fa-radiation",
+          "diceStates": {}
         },
         "actions": {
           "KgXA5nm4a7K1WHcD": {

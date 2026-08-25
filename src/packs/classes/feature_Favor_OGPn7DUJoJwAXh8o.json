@@ -17,12 +17,12 @@
       "recovery": null,
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-spaghetti-monster-flying"
+      "icon": "fa-solid fa-spaghetti-monster-flying",
+      "diceStates": {}
     },
     "actions": {},
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [],
   "sort": 0,

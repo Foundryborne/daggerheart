@@ -17,7 +17,8 @@
       "recovery": "shortRest",
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-book"
+      "icon": "fa-solid fa-book",
+      "diceStates": {}
     },
     "actions": {
       "oQlkWHxCs4c567Nl": {
@@ -58,9 +59,8 @@
         "range": ""
       }
     },
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [],
   "sort": 0,

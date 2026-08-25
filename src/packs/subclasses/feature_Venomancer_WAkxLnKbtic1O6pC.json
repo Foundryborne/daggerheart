@@ -81,9 +81,8 @@
         "img": "icons/magic/nature/root-vines-silhouette-teal.webp"
       }
     },
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [
     {

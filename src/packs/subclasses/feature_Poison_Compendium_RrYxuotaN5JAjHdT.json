@@ -81,9 +81,8 @@
         "img": "icons/commodities/flowers/dandelion-pod-blue.webp"
       }
     },
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [
     {

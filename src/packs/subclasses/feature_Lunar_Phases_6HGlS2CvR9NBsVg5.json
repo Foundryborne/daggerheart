@@ -17,7 +17,8 @@
       "recovery": null,
       "progression": "increasing",
       "dieFaces": "d6",
-      "icon": ""
+      "icon": "",
+      "diceStates": {}
     },
     "actions": {
       "k5KPbB12hfutbvTj": {
@@ -58,9 +59,8 @@
         "range": ""
       }
     },
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [
     {

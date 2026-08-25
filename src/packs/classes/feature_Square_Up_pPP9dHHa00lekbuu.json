@@ -55,9 +55,8 @@
         "range": "close"
       }
     },
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [
     {

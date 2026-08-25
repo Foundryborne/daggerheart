@@ -17,7 +17,8 @@
       "recovery": null,
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-circle-dot"
+      "icon": "fa-solid fa-circle-dot",
+      "diceStates": {}
     },
     "actions": {
       "P3ovvIE7pazbDUOe": {
@@ -60,9 +61,8 @@
         "range": ""
       }
     },
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [
     {

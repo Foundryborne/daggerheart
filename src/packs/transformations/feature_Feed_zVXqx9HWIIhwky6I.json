@@ -15,7 +15,8 @@
       "recovery": null,
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-droplet"
+      "icon": "fa-solid fa-droplet",
+      "diceStates": {}
     },
     "actions": {
       "aIjaPMtGneklpOgS": {

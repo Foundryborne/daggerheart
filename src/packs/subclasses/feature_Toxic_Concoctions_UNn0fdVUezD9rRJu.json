@@ -17,7 +17,8 @@
       "recovery": "longRest",
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-bottle-droplet"
+      "icon": "fa-solid fa-bottle-droplet",
+      "diceStates": {}
     },
     "actions": {
       "IcOClhbFlKZmXwd1": {
@@ -152,9 +153,8 @@
         "img": "icons/commodities/flowers/flower-grey-orange.webp"
       }
     },
-    "originItemType": null,
-    "multiclassOrigin": false,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "granter": null
   },
   "effects": [
     {
