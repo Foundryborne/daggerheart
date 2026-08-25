@@ -105,7 +105,8 @@ export default class DhpActor extends Actor {
     static migrateData(source) {
         if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
 
-        if (source.type === 'character') {
+        // Migrate feature granter stuff. source.items usually only exists the first time, not on subsequent updates
+        if (source.type === 'character' && source.items) {
             for (const feature of source.items.filter(x => x.type === 'feature' && x.system.originItemType)) {
                 if (feature.system.granter?.id) continue;
 

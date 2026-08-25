@@ -728,7 +728,7 @@ export function getArmorSources(actor) {
         // Get the origin item. Since the actor is already loaded, it should already be cached
         // Consider the relative function versions if this causes an issue
         const origin = doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc;
-        const useParentName = doc.parent && !(doc.parent instanceof Actor);
+        const useParentName = doc.parent && !(doc.parent instanceof Actor) && doc.parent.type !== 'armor';
         const name = doc.origin || !useParentName ? doc.name : doc.parent.name;
 
         return {
