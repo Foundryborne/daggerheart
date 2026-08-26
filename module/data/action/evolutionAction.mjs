@@ -124,8 +124,8 @@ export default class DHEvolutionAction extends DHBaseAction {
         const update = {
             texture: { 
                 src: protoData.texture.src, 
-                scaleX: protoData.texture.scale,
-                scaleY: protoData.texture.scale 
+                scaleX: protoData.texture.scaleX,
+                scaleY: protoData.texture.scaleY 
             },
             ring: {  
                 subject: { 
