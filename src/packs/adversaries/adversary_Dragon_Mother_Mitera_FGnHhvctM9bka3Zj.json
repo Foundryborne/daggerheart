@@ -411,7 +411,7 @@
             "_id": "iFtNtbVLnJD4t0FQ",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p><strong>Mark a Stress</strong> to have Mitera unleash elemental energy from one head of your choice:</p><ol><li><p>Fire</p></li><li><p>Lightning</p></li><li><p>Acid</p></li><li><p>Poison</p></li><li><p>Ice</p></li><li><p>Darkness</p></li><li><p>Light</p></li></ol>",
+            "description": "",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
