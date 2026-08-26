@@ -3,10 +3,10 @@ import { MigrationHandlerBase } from './base.mjs';
 /** Replace in world actors and items that still have their original descriptions with their new ones */
 export class Migration_2_8_0_hotfix extends MigrationHandlerBase {
     /** @inheritdoc */
-    version = '2.8.1';
+    version = '2.8.0-hotfix';
 
     async updateItemSource(item) {
-        if (!['ancestry'].includes(item.type)) return;
+        if (!['ancestry', 'community'].includes(item.type)) return;
 
         const originalDescription = PREVIOUS_DESCRIPTIONS[item._stats?.compendiumSource];
         if (!originalDescription) return;
