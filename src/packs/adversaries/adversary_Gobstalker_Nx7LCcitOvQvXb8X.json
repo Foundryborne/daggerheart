@@ -191,12 +191,817 @@
         "attribution": {},
         "gmNotes": "",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "bB9OQCo3txQVGMx1": {
+            "type": "grouped",
+            "_id": "bB9OQCo3txQVGMx1",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "grouped": {
+              "selectionType": "randomized",
+              "groupedActions": [
+                "xbIrVGcxJ5oV8GtB",
+                "ZyxIPJy3JgSO5YIO",
+                "wbuNKs16501PjbL3",
+                "YDZos8t1JHP3cNrI",
+                "Dp2L5no3WC9tyBMD",
+                "hoHrbWAxlH3eViNQ",
+                "NCA81X9nYbkhqLUV",
+                "fypEGxOvd0kj8VxM"
+              ]
+            },
+            "name": "Mark Stress",
+            "range": ""
+          },
+          "xbIrVGcxJ5oV8GtB": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "xbIrVGcxJ5oV8GtB",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The @Lookup[@name] Beguiles the target. While Beguiled, the target sees the @Lookup[@name] as a friend and can't attack it. Additionally, when a PC rolls with Fear, a Beguiled PC must mark a Stress or attack a target chosen by the @Lookup[@name]. A Beguiled PC must succeed on an Instinct Roll (16) to clear the condition.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "3Kz1CuNxwOTo1rZE",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Beguile",
+            "range": "far",
+            "img": "icons/magic/control/hypnosis-mesmerism-eye.webp"
+          },
+          "ZyxIPJy3JgSO5YIO": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d8",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {
+                "armor": {
+                  "base": false,
+                  "applyTo": "armor",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
+            "_id": "ZyxIPJy3JgSO5YIO",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target takes <strong>2d8</strong> magic damage and must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can't, double the damage.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Corrode",
+            "range": "far",
+            "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp"
+          },
+          "wbuNKs16501PjbL3": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "wbuNKs16501PjbL3",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target must mark all HP, but they can <strong>spend any number of Hope</strong> to reduce the number of HP marked this way by an equal amount.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Doom",
+            "range": "far",
+            "img": "icons/magic/unholy/strike-body-explode-disintegrate.webp"
+          },
+          "YDZos8t1JHP3cNrI": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "YDZos8t1JHP3cNrI",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target falls into a Deep Trance and can't act except to try to wake up. This condition lasts until the target takes damage or wakes up with a successful Presence Roll (16).</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "MkcUQhU0Gw5YRC0q",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Hypnosis",
+            "range": "far",
+            "img": "icons/magic/control/hypnosis-mesmerism-pendulum.webp"
+          },
+          "Dp2L5no3WC9tyBMD": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "Dp2L5no3WC9tyBMD",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target freezes in place, becoming <em>Vulnerable</em> and <em>Restrained</em> until they mark 2 Stress.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "d5Dc2646UO6CnCY9",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Paralyze",
+            "range": "far",
+            "img": "icons/magic/control/silhouette-hold-change-green.webp"
+          },
+          "hoHrbWAxlH3eViNQ": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d8",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "hoHrbWAxlH3eViNQ",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target takes <strong>2d8</strong> direct magic damage.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Sear",
+            "range": "far",
+            "img": "icons/magic/fire/beam-strike-whip-red.webp"
+          },
+          "NCA81X9nYbkhqLUV": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "NCA81X9nYbkhqLUV",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target is Scared. While Scared, the target can't take actions other than fleeing the battle or trying to shake off their terror. Additionally, the target must mark a Stress whenever you <strong>spend a Fear</strong>. The target can clear the condition with a successful Presence Roll (16).</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "QAiWdt8vIL0DDYVl",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Scare",
+            "range": "far",
+            "img": "icons/magic/death/skull-energy-light-white.webp"
+          },
+          "fypEGxOvd0kj8VxM": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "fypEGxOvd0kj8VxM",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The target becomes <em>Vulnerable</em> and must mark a Stress to move until they <strong>spend 2 Hope</strong>.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "Z1hjSf52Pl2HhjnC",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Slow",
+            "range": "far",
+            "img": "icons/magic/control/debuff-chains-shackles-movement-blue.webp"
+          }
+        },
         "granter": null
       },
       "_id": "nKENFMC5m8D9eJDr",
       "img": "icons/magic/unholy/beam-impact-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Beguiled",
+          "disabled": false,
+          "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+          "description": "<p>While Beguiled, the target sees the @Lookup[@name] as a friend and can't attack it. Additionally, when a PC rolls with Fear, a Beguiled PC must mark a Stress or attack a target chosen by the @Lookup[@name]. A Beguiled PC must succeed on an Instinct Roll (16) to clear the condition.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "3Kz1CuNxwOTo1rZE",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!Nx7LCcitOvQvXb8X.nKENFMC5m8D9eJDr.3Kz1CuNxwOTo1rZE"
+        },
+        {
+          "name": "Deep Trance",
+          "disabled": false,
+          "img": "icons/magic/control/hypnosis-mesmerism-pendulum.webp",
+          "description": "<p>The target falls into a Deep Trance and can't act except to try to wake up. This condition lasts until the target takes damage or wakes up with a successful Presence Roll (16).</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "MkcUQhU0Gw5YRC0q",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!Nx7LCcitOvQvXb8X.nKENFMC5m8D9eJDr.MkcUQhU0Gw5YRC0q"
+        },
+        {
+          "name": "Paralyzed",
+          "disabled": false,
+          "img": "icons/magic/control/silhouette-hold-change-green.webp",
+          "description": "<p>The target freezes in place, becoming <em>Vulnerable</em> and <em>Restrained</em> until they mark 2 Stress.</p>",
+          "transfer": false,
+          "statuses": [
+            "restrained",
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "d5Dc2646UO6CnCY9",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!Nx7LCcitOvQvXb8X.nKENFMC5m8D9eJDr.d5Dc2646UO6CnCY9"
+        },
+        {
+          "name": "Scared",
+          "disabled": false,
+          "img": "icons/magic/death/skull-energy-light-white.webp",
+          "description": "<p>While Scared, the target can't take actions other than fleeing the battle or trying to shake off their terror. Additionally, the target must mark a Stress whenever you <strong>spend a Fear</strong>. The target can clear the condition with a successful Presence Roll (16).</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "QAiWdt8vIL0DDYVl",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!Nx7LCcitOvQvXb8X.nKENFMC5m8D9eJDr.QAiWdt8vIL0DDYVl"
+        },
+        {
+          "name": "Slowed",
+          "disabled": false,
+          "img": "icons/magic/control/debuff-chains-shackles-movement-blue.webp",
+          "description": "<p>The target becomes <em>Vulnerable</em> and must mark a Stress to move until they <strong>spend 2 Hope</strong>.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "Z1hjSf52Pl2HhjnC",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!Nx7LCcitOvQvXb8X.nKENFMC5m8D9eJDr.Z1hjSf52Pl2HhjnC"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
