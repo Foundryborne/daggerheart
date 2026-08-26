@@ -49,15 +49,15 @@
     "characterGuide": {
       "suggestedTraits": {
         "agility": 0,
-        "strength": 0,
+        "strength": -1,
         "finesse": 0,
-        "instinct": 0,
-        "presence": 0,
-        "knowledge": 0
+        "instinct": 2,
+        "presence": 1,
+        "knowledge": 1
       },
-      "suggestedPrimaryWeapon": null,
-      "suggestedSecondaryWeapon": null,
-      "suggestedArmor": null
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.eCEf5ysz8Eq0ma9u",
+      "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.nuTwQsR2XTOsVfbR",
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.rWDk8ovwnBrBwWRR"
     },
     "backgroundQuestions": [
       "Who from your community feared your magical craft? What rumor did they spread about you, and what truth did it contain?",

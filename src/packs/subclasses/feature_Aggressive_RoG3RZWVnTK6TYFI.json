@@ -1,0 +1,106 @@
+{
+  "folder": "K1Zh9uNgiR5UlOOE",
+  "name": "Aggressive",
+  "type": "feature",
+  "_id": "RoG3RZWVnTK6TYFI",
+  "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Gain a -1 penalty to your Evasion. On a successful attack, roll an additional damage die and discard the lowest result.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "9AsdA0xwYlajciA0": {
+        "type": "effect",
+        "_id": "9AsdA0xwYlajciA0",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "SbL1r4YtyDX6eYLe",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Enter Stance",
+        "range": "self"
+      }
+    },
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Stance: Aggressive",
+      "disabled": false,
+      "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
+      "description": "<p>Gain a -1 penalty to your Evasion. On a successful attack, roll an additional damage die and discard the lowest result.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.evasion",
+            "type": "subtract",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": "scene"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "SbL1r4YtyDX6eYLe",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!RoG3RZWVnTK6TYFI.SbL1r4YtyDX6eYLe"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!RoG3RZWVnTK6TYFI"
+}

@@ -48,16 +48,16 @@
     },
     "characterGuide": {
       "suggestedTraits": {
-        "agility": 0,
-        "strength": 0,
+        "agility": 1,
+        "strength": 1,
         "finesse": 0,
-        "instinct": 0,
+        "instinct": 2,
         "presence": 0,
-        "knowledge": 0
+        "knowledge": -1
       },
       "suggestedPrimaryWeapon": null,
       "suggestedSecondaryWeapon": null,
-      "suggestedArmor": null
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.uL6AvEhXGaFlzjjS"
     },
     "backgroundQuestions": [
       "Where did you spend time during your formative years that taught you, directly or indirectly, how to fight in the style you use?",

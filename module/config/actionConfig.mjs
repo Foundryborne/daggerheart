@@ -5,41 +5,23 @@ export const actionTypes = {
         icon: 'fa-hand-fist',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.attack.tooltip'
     },
-    countdown: {
-        id: 'countdown',
-        name: 'DAGGERHEART.ACTIONS.TYPES.countdown.name',
-        icon: 'fa-hourglass-half',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.countdown.tooltip'
-    },
-    healing: {
-        id: 'healing',
-        name: 'DAGGERHEART.ACTIONS.TYPES.healing.name',
-        icon: 'fa-kit-medical',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.healing.tooltip'
-    },
-    damage: {
-        id: 'damage',
-        name: 'DAGGERHEART.ACTIONS.TYPES.damage.name',
-        icon: 'fa-heart-crack',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.damage.tooltip'
-    },
     beastform: {
         id: 'beastform',
         name: 'DAGGERHEART.ACTIONS.TYPES.beastform.name',
         icon: 'fa-paw',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.beastform.tooltip'
     },
-    summon: {
-        id: 'summon',
-        name: 'DAGGERHEART.ACTIONS.TYPES.summon.name',
-        icon: 'fa-ghost',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.summon.tooltip'
+    countdown: {
+        id: 'countdown',
+        name: 'DAGGERHEART.ACTIONS.TYPES.countdown.name',
+        icon: 'fa-hourglass-half',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.countdown.tooltip'
     },
-    transform: {
-        id: 'transform',
-        name: 'DAGGERHEART.ACTIONS.TYPES.transform.name',
-        icon: 'fa-dragon',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.transform.tooltip'
+    damage: {
+        id: 'damage',
+        name: 'DAGGERHEART.ACTIONS.TYPES.damage.name',
+        icon: 'fa-heart-crack',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.damage.tooltip'
     },
     evolution: {
         id: 'evolution',
@@ -53,17 +35,35 @@ export const actionTypes = {
         icon: 'fa-person-rays',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.effect.tooltip'
     },
+    grouped: {
+        id: 'grouped',
+        name: 'DAGGERHEART.ACTIONS.TYPES.grouped.name',
+        icon: 'fa-table-list',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.grouped.tooltip'
+    },
+    healing: {
+        id: 'healing',
+        name: 'DAGGERHEART.ACTIONS.TYPES.healing.name',
+        icon: 'fa-kit-medical',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.healing.tooltip'
+    },
     macro: {
         id: 'macro',
         name: 'DAGGERHEART.ACTIONS.TYPES.macro.name',
         icon: 'fa-scroll',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.macro.tooltip'
     },
-    grouped: {
-        id: 'grouped',
-        name: 'DAGGERHEART.ACTIONS.TYPES.grouped.name',
-        icon: 'fa-table-list',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.grouped.tooltip'
+    summon: {
+        id: 'summon',
+        name: 'DAGGERHEART.ACTIONS.TYPES.summon.name',
+        icon: 'fa-ghost',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.summon.tooltip'
+    },
+    transform: {
+        id: 'transform',
+        name: 'DAGGERHEART.ACTIONS.TYPES.transform.name',
+        icon: 'fa-dragon',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.transform.tooltip'
     }
 };
 
