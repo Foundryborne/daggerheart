@@ -49,16 +49,16 @@
     },
     "characterGuide": {
       "suggestedTraits": {
-        "agility": 0,
-        "strength": 0,
-        "finesse": 0,
+        "agility": 2,
+        "strength": -1,
+        "finesse": 1,
         "instinct": 0,
         "presence": 0,
-        "knowledge": 0
+        "knowledge": 1
       },
-      "suggestedPrimaryWeapon": null,
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.ykuXSEA6GLjrApt3",
       "suggestedSecondaryWeapon": null,
-      "suggestedArmor": null
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.uL6AvEhXGaFlzjjS"
     },
     "backgroundQuestions": [
       "You once killed someone you were close to. What happened, and how did it change you?",

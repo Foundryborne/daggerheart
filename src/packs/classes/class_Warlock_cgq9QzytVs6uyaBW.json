@@ -48,16 +48,16 @@
     },
     "characterGuide": {
       "suggestedTraits": {
-        "agility": 0,
-        "strength": 0,
+        "agility": 1,
+        "strength": -1,
         "finesse": 0,
-        "instinct": 0,
-        "presence": 0,
+        "instinct": 1,
+        "presence": 2,
         "knowledge": 0
       },
-      "suggestedPrimaryWeapon": null,
-      "suggestedSecondaryWeapon": null,
-      "suggestedArmor": null
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.813nH6tqOjBEvJMV",
+      "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.A3kISypsGh9MNndo",
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.rWDk8ovwnBrBwWRR"
     },
     "backgroundQuestions": [
       "Who from your community shunned you after you made a pact with your patron?",
