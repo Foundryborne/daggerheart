@@ -1,5 +1,5 @@
 {
-  "name": "Stonemason’s Fortune",
+  "name": "Stonemason's Fortune",
   "type": "consumable",
   "img": "icons/commodities/stone/masonry-bricks-brown.webp",
   "system": {
@@ -27,7 +27,7 @@
         "triggers": [],
         "areas": [
           {
-            "name": "Stonemason’s Fortune",
+            "name": "Stonemason's Fortune",
             "type": "placed",
             "shape": "line",
             "size": "veryClose",

@@ -1,5 +1,5 @@
 {
-  "name": "Gambler’s Fallacy",
+  "name": "Gambler's Fallacy",
   "type": "consumable",
   "img": "icons/sundries/misc/piggybank.webp",
   "system": {
@@ -27,7 +27,7 @@
         "triggers": [],
         "areas": [
           {
-            "name": "Gambler’s Fallacy",
+            "name": "Gambler's Fallacy",
             "type": "placed",
             "shape": "inFront",
             "size": "close",

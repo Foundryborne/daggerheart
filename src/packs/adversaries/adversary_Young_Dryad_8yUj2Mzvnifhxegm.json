@@ -389,7 +389,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p>Until they’re freed with a successful Strength Roll.</p>"
+              "description": "<p>Until they're freed with a successful Strength Roll.</p>"
             },
             "rangeDependence": null,
             "stacking": null,

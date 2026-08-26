@@ -1,5 +1,5 @@
 {
-  "name": "Hero’s Helm",
+  "name": "Hero's Helm",
   "type": "loot",
   "img": "icons/equipment/head/helm-barbute-brass-steel.webp",
   "system": {
@@ -26,7 +26,7 @@
         "triggers": [],
         "areas": [
           {
-            "name": "Hero’s Helm",
+            "name": "Hero's Helm",
             "type": "placed",
             "shape": "emanation",
             "size": "close",

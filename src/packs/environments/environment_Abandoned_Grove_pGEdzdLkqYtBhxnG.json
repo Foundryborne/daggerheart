@@ -278,7 +278,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p>Until you’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>"
+              "description": "<p>Until you're freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>"
             },
             "rangeDependence": null,
             "stacking": null,

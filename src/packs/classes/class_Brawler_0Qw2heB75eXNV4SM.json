@@ -62,12 +62,12 @@
     "backgroundQuestions": [
       "Where did you spend time during your formative years that taught you, directly or indirectly, how to fight in the style you use?",
       "What organization has vowed to kill you on sight, and what did you do to invoke their ire?",
-      "Who did you recently lose a fight to that you’re desperate for a rematch against?"
+      "Who did you recently lose a fight to that you're desperate for a rematch against?"
     ],
     "connections": [
-      "What is one thing we’re both afraid of?",
+      "What is one thing we're both afraid of?",
       "What do I rely on you for during our travels? How do you feel about it?",
-      "I still haven’t forgiven you for something you said to me. What was it, and why did you say it?"
+      "I still haven't forgiven you for something you said to me. What was it, and why did you say it?"
     ],
     "isMulticlass": false,
     "levelupOptionTiers": {

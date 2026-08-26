@@ -1,6 +1,6 @@
 {
   "folder": "fJQhss1obELmJ7cK",
-  "name": "Warden’s Protection",
+  "name": "Warden's Protection",
   "type": "feature",
   "_id": "2F1bUFY80oce97C9",
   "img": "icons/magic/nature/barrier-shield-wood-vines.webp",
@@ -78,7 +78,7 @@
         "range": "",
         "areas": [
           {
-            "name": "Warden’s Protection",
+            "name": "Warden's Protection",
             "type": "placed",
             "shape": "emanation",
             "size": "close",

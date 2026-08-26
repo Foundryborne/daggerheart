@@ -1,5 +1,5 @@
 {
-  "name": "Necromancer’s Ossuary",
+  "name": "Necromancer's Ossuary",
   "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "IKumu5HTLqONLYqb",
@@ -29,7 +29,7 @@
   "_id": "h3KyRL7AshhLAmcH",
   "sort": 3400000,
   "prototypeToken": {
-    "name": "Necromancer’s Ossuary",
+    "name": "Necromancer's Ossuary",
     "displayName": 0,
     "actorLink": false,
     "width": 1,

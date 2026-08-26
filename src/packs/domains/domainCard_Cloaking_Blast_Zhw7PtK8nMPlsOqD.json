@@ -81,7 +81,7 @@
         "changes": [],
         "duration": {
           "type": "temporary",
-          "description": "<p>When you move into or within an adversary’s line of sight or make an attack, you are no longer Cloaked.</p>"
+          "description": "<p>When you move into or within an adversary's line of sight or make an attack, you are no longer Cloaked.</p>"
         },
         "rangeDependence": null,
         "stacking": null,

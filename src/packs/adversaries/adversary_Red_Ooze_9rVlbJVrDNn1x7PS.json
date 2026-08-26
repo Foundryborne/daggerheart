@@ -434,7 +434,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p>Until they’re extinguished with a successful Finesse Roll (14)</p>"
+              "description": "<p>Until they're extinguished with a successful Finesse Roll (14)</p>"
             },
             "rangeDependence": null,
             "stacking": null,
