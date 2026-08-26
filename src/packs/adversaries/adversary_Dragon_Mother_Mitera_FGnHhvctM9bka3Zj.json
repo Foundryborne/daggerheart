@@ -436,7 +436,7 @@
               "consumeOnSuccess": false
             },
             "grouped": {
-              "selectionType": "randomized",
+              "selectionType": "selected",
               "groupedActions": [
                 "kwp7I9dNj43EU8Qx",
                 "2vMuQV24hmve5EnE",
@@ -490,7 +490,7 @@
             "_id": "kwp7I9dNj43EU8Qx",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p>Deal <strong>4d12</strong> magic damage to [[/r <strong>1d4+1]]</strong> targets within Close range. Targets who take damage must mark an Armor Slot or 2 additional HP.</p>",
+            "description": "<p>Deal <strong>4d12</strong> magic damage to <strong>[[/r 1d4+1]]</strong> targets within Close range. Targets who take damage must mark an Armor Slot or 2 additional HP.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -563,7 +563,7 @@
             "_id": "2vMuQV24hmve5EnE",
             "systemPath": "actions",
             "baseAction": false,
-            "description": "<p>Deal <strong>4d12</strong> magic damage to [[/r <strong>1d6]]</strong> targets within Far range, so long as each target beyond the first is within Close range of the previous target.</p>",
+            "description": "<p>Deal <strong>4d12</strong> magic damage to <strong>[[/r 1d6]]</strong> targets within Far range, so long as each target beyond the first is within Close range of the previous target.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
