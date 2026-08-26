@@ -24,7 +24,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         actions: {
             openSettings: DHBaseActorSheet.#openSettings,
             sendExpToChat: DHBaseActorSheet.#sendExpToChat,
-            increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true)
+            increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true),
+            groupActionSelect: DHBaseActorSheet.#groupActionSelect
         },
         contextMenus: [
             {
@@ -298,6 +299,11 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         const newValue = (action.uses.value ?? 0) + (increase ? 1 : -1);
         await action.update({ 'uses.value': Math.min(Math.max(newValue, 0), action.uses.max ?? 0) });
+    }
+
+    static async #groupActionSelect(event, button) {
+        const action = await fromUuid(button.dataset.itemUuid);
+        action.use(event, { groupAction: { forceSelect: true }});
     }
 
     /* -------------------------------------------- */

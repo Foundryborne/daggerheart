@@ -33,7 +33,15 @@ export default class DHGroupedField extends fields.SchemaField {
         }
 
         let selectedAction;
-        if (this.grouped.selectionType === CONFIG.DH.ACTIONS.groupActionSelectionType.randomized.id) {
+        if (
+            this.grouped.selectionType === CONFIG.DH.ACTIONS.groupActionSelectionType.selected.id ||
+            config.groupAction?.forceSelect
+        ) {
+            selectedAction = await game.system.api.applications.dialogs.MultiActionSelectionDialog.create(
+                this.item.name,
+                groupedActions    
+            );
+        } else {
             const roll = await (new Roll(`1d${groupedActions.length}`)).evaluate();
 
             const cls = getDocumentClass('ChatMessage');
@@ -51,11 +59,6 @@ export default class DHGroupedField extends fields.SchemaField {
             }
 
             selectedAction = groupedActions[roll.total - 1];
-        } else {
-            selectedAction = await game.system.api.applications.dialogs.MultiActionSelectionDialog.create(
-                this.item.name,
-                groupedActions    
-            );
         }
 
         if (!selectedAction) return false;

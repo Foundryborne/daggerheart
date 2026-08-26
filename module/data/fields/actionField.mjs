@@ -143,7 +143,9 @@ export function ActionMixin(Base) {
         //Getter for icons
         get typeIcon() {
             const config = CONFIG.DH.ACTIONS.actionTypes[this.type];
-            return config?.icon || 'fa-question'; // Fallback icon just in case
+            if (!config) return 'fa-question';
+
+            return typeof config.icon === 'function' ? config.icon(this) : config.icon; 
         }
 
         get relativeUUID() {

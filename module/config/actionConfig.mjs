@@ -38,7 +38,7 @@ export const actionTypes = {
     grouped: {
         id: 'grouped',
         name: 'DAGGERHEART.ACTIONS.TYPES.grouped.name',
-        icon: 'fa-table-list',
+        icon: action => action?.grouped?.selectionType === groupActionSelectionType.randomized.id ? 'fa-dice' : 'fa-table-list',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.grouped.tooltip'
     },
     healing: {
