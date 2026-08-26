@@ -23,17 +23,17 @@ export const actionTypes = {
         icon: 'fa-heart-crack',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.damage.tooltip'
     },
-    effect: {
-        id: 'effect',
-        name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
-        icon: 'fa-person-rays',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.effect.tooltip'
-    },
     evolution: {
         id: 'evolution',
         name: 'DAGGERHEART.ACTIONS.TYPES.evolution.name',
         icon: 'fa-vial',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.evolution.tooltip'
+    },
+    effect: {
+        id: 'effect',
+        name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
+        icon: 'fa-person-rays',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.effect.tooltip'
     },
     healing: {
         id: 'healing',
