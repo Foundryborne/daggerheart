@@ -263,8 +263,7 @@
                   "ring": "#cd580a",
                   "background": null,
                   "effects": [
-                    "RING_PULSE",
-                    "BKG_WAVE"
+                    "RING_PULSE"
                   ]
                 }
               }

@@ -213,7 +213,7 @@
             "cost": [],
             "uses": {
               "value": null,
-              "max": null,
+              "max": "",
               "recovery": null,
               "consumeOnSuccess": false
             },
@@ -227,9 +227,23 @@
                 "hitPoints": true,
                 "stress": true
               },
-              "tokenOverride": null
+              "tokenOverride": {
+                "tokenImage": null,
+                "tokenScale": 1,
+                "dynamicToken": {
+                  "image": null,
+                  "scale": 1,
+                  "ring": "#c7a600",
+                  "background": null,
+                  "effects": [
+                    "RING_PULSE"
+                  ]
+                }
+              }
             },
-            "effects": []
+            "effects": [],
+            "name": "",
+            "range": ""
           },
           "bYTI3aiRNSi6puZh": {
             "type": "attack",

@@ -579,7 +579,7 @@
                 "dynamicToken": {
                   "image": null,
                   "scale": 1,
-                  "ring": null,
+                  "ring": "#c11010",
                   "background": null,
                   "effects": [
                     "RING_PULSE",
