@@ -32,7 +32,8 @@ export const domains = {
         id: 'dread',
         label: 'DAGGERHEART.GENERAL.Domain.dread.label',
         src: 'systems/daggerheart/assets/icons/domains/dread.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.dread.description'
+        description: 'DAGGERHEART.GENERAL.Domain.dread.description',
+        color: '#2f2862'
     },
     grace: {
         id: 'grace',
