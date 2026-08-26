@@ -5,17 +5,17 @@ export const actionTypes = {
         icon: 'fa-hand-fist',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.attack.tooltip'
     },
+    beastform: {
+        id: 'beastform',
+        name: 'DAGGERHEART.ACTIONS.TYPES.beastform.name',
+        icon: 'fa-paw',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.beastform.tooltip'
+    },
     countdown: {
         id: 'countdown',
         name: 'DAGGERHEART.ACTIONS.TYPES.countdown.name',
         icon: 'fa-hourglass-half',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.countdown.tooltip'
-    },
-    healing: {
-        id: 'healing',
-        name: 'DAGGERHEART.ACTIONS.TYPES.healing.name',
-        icon: 'fa-kit-medical',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.healing.tooltip'
     },
     damage: {
         id: 'damage',
@@ -23,11 +23,29 @@ export const actionTypes = {
         icon: 'fa-heart-crack',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.damage.tooltip'
     },
-    beastform: {
-        id: 'beastform',
-        name: 'DAGGERHEART.ACTIONS.TYPES.beastform.name',
-        icon: 'fa-paw',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.beastform.tooltip'
+    effect: {
+        id: 'effect',
+        name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
+        icon: 'fa-person-rays',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.effect.tooltip'
+    },
+    evolution: {
+        id: 'evolution',
+        name: 'DAGGERHEART.ACTIONS.TYPES.evolution.name',
+        icon: 'fa-vial',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.evolution.tooltip'
+    },
+    healing: {
+        id: 'healing',
+        name: 'DAGGERHEART.ACTIONS.TYPES.healing.name',
+        icon: 'fa-kit-medical',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.healing.tooltip'
+    },
+    macro: {
+        id: 'macro',
+        name: 'DAGGERHEART.ACTIONS.TYPES.macro.name',
+        icon: 'fa-scroll',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.macro.tooltip'
     },
     summon: {
         id: 'summon',
@@ -40,24 +58,6 @@ export const actionTypes = {
         name: 'DAGGERHEART.ACTIONS.TYPES.transform.name',
         icon: 'fa-dragon',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.transform.tooltip'
-    },
-    evolution: {
-        id: 'evolution',
-        name: 'DAGGERHEART.ACTIONS.TYPES.evolution.name',
-        icon: 'fa-vial',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.evolution.tooltip'
-    },
-    effect: {
-        id: 'effect',
-        name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
-        icon: 'fa-person-rays',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.effect.tooltip'
-    },
-    macro: {
-        id: 'macro',
-        name: 'DAGGERHEART.ACTIONS.TYPES.macro.name',
-        icon: 'fa-scroll',
-        tooltip: 'DAGGERHEART.ACTIONS.TYPES.macro.tooltip'
     }
 };
 
