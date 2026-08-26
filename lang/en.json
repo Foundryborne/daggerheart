@@ -104,8 +104,8 @@
                     "deevolveConfirmationText": "Are you sure you want to remove the evolution?"
                 },
                 "grouped": {
-                    "name": "Grouped",
-                    "tooltip": "An action grouping many others",
+                    "name": "Group",
+                    "tooltip": "Groups many actions under one button. Individual actions either selected or randomized.",
                     "selectionType": { "label": "Action Selection Type" }, 
                     "groupedActions": { "label": "Grouped Actions" }
                 }
