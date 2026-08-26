@@ -73,8 +73,8 @@ export const domains = {
 };
 
 export const allDomains = () => ({
-    ...domains,
-    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains
+    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains,
+    ...domains
 });
 
 export const orderedDomains = () => {
