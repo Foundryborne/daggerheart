@@ -1,6 +1,10 @@
 import { MigrationHandlerBase } from './base.mjs';
 
-/** Replace in world actors and items that still have their original descriptions with their new ones */
+/** 
+ * Replace in world actors and items that still have their original descriptions with their new ones.
+ * This is a fix of a previous migration 2.8.0, that went out in 2.7.4, causing a version desync.
+ * This attempts to be newer than 2.8.0 but wihout advancing to 2.8.1
+ */
 export class Migration_2_8_0_hotfix extends MigrationHandlerBase {
     /** @inheritdoc */
     version = '2.8.0-hotfix';
