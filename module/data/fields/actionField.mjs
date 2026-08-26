@@ -186,7 +186,7 @@ export function ActionMixin(Base) {
                 ({ type } =
                     (await foundry.applications.api.DialogV2.input({
                         window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
-                        position: { width: 300 },
+                        position: { width: 380 },
                         classes: ['daggerheart', 'dh-style'],
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',

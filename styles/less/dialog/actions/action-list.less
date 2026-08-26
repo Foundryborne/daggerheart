@@ -9,7 +9,6 @@
         }
     }
 
-    .actions-list,
     .action-buttons-list {
         display: flex;
         flex-direction: column;
@@ -21,8 +20,17 @@
         }
     }
 
-    .action-buttons-list {
+    .actions-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         button {
             flex: 1;
             display: flex;
