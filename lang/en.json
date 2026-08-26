@@ -105,7 +105,9 @@
                 },
                 "grouped": {
                     "name": "Grouped",
-                    "tooltip": "An action grouping many others"
+                    "tooltip": "An action grouping many others",
+                    "selectionType": { "label": "Action Selection Type" }, 
+                    "groupedActions": { "label": "Grouped Actions" }
                 }
             },
             "Config": {

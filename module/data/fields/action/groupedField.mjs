@@ -13,11 +13,14 @@ export default class DHGroupedField extends fields.SchemaField {
     constructor(options = {}, context = {}) {
         const groupedFields = {
             selectionType: new fields.StringField({ 
+                label: 'DAGGERHEART.ACTIONS.TYPES.grouped.selectionType.label',
                 required: true, nullable: false, 
                 choices: CONFIG.DH.ACTIONS.groupActionSelectionType, 
                 initial: CONFIG.DH.ACTIONS.groupActionSelectionType.selected.id
             }),
-            groupedActions: new fields.SetField(new fields.StringField({ required: true, nullable: false }))
+            groupedActions: new fields.SetField(new fields.StringField({ required: true, nullable: false }), {
+                label: 'DAGGERHEART.ACTIONS.TYPES.grouped.groupedActions.label'
+            })
         };
         super(groupedFields, options, context);
     }

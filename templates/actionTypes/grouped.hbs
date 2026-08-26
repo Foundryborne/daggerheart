@@ -1,9 +1,9 @@
-<fieldset>
-    <legend>{{localize "Actions"}}</legend>
-    <div class="one-column">
-        {{formField fields.selectionType value=source.selectionType name="grouped.selectionType" localize=true blank=false}}
-        <autocomplete-tags name="grouped.groupedActions">
-            {{selectOptions @root.groupedActionOptions selected=source.groupedActions valueAttr="id" labelAttr="label"}}
-        </autocomplete-tags>
+<div class="one-column">
+    {{formGroup fields.selectionType value=source.selectionType name="grouped.selectionType" localize=true blank=false}}
+    <div class="form-group">
+        <label>{{localize "DAGGERHEART.ACTIONS.TYPES.grouped.groupedActions.label"}}</label>
+        <div class="form-fields">
+            <input type="text" class="grouped-actions-input" value={{source.groupedActions}} />
+        </div>
     </div>
-</fieldset>
+</div>

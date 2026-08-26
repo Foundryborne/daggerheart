@@ -1,4 +1,5 @@
 import { DHDamageData } from '../../data/fields/action/damageField.mjs';
+import { tagifyElement } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -139,6 +140,15 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         for (const element of htmlElement.querySelectorAll('.evolution-resource input'))
             element.addEventListener('change', this.#onUpdateEvolutionResource.bind(this));
+
+        for (const element of htmlElement.querySelectorAll('.grouped-actions-input')) {
+            const groupedActionOptions = this.action.parent.actions.filter(x => x.id !== this.action.id).map(x => ({
+                id: x.id,
+                label: x.name
+            }));     
+
+            tagifyElement(element, groupedActionOptions, this.#onUpdateGroupedActions.bind(this));
+        }
     }
 
     /** @inheritDoc */
@@ -186,13 +196,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
                 ['']: { id: '', label: _loc('None') },
                 ...CONFIG.DH.ACTIONS.evolutionStates
             };
-        }
-
-        if (context.source.grouped) {
-            context.groupedActionOptions = this.action.parent.actions.filter(x => x.id !== this.action.id).map(x => ({
-                id: x.id,
-                label: x.name
-            }));
         }
 
         context.openSection = this.openSection;
@@ -545,6 +548,15 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
         const data = this.action.toObject();
         data.evolution.resourceRefresh[event.target.dataset.resource] = event.target.checked;
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    /** Update the groupedActions of a GroupedAction in a tagify input
+     * @param {TagifyData} options 
+     */
+    #onUpdateGroupedActions(options) {
+        const data = this.action.toObject();
+        data.grouped.groupedActions = options.map(x => x.value);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
