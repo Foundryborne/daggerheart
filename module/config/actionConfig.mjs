@@ -58,6 +58,12 @@ export const actionTypes = {
         name: 'DAGGERHEART.ACTIONS.TYPES.macro.name',
         icon: 'fa-scroll',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.macro.tooltip'
+    },
+    grouped: {
+        id: 'grouped',
+        name: 'DAGGERHEART.ACTIONS.TYPES.grouped.name',
+        icon: 'fa-table-list',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.grouped.tooltip'
     }
 };
 
@@ -180,3 +186,14 @@ export const dynamicEffects = {
         value: 0x20
     }
 }
+
+export const groupActionSelectionType = {
+    selected: {
+        id: 'selected',
+        label: 'DAGGERHEART.CONFIG.GroupActionSelectionType.selected'
+    },
+    randomized: {
+        id: 'randomized',
+        label: 'DAGGERHEART.CONFIG.GroupActionSelectionType.randomized'
+    }
+};

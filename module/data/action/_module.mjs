@@ -9,6 +9,7 @@ import MacroAction from './macroAction.mjs';
 import SummonAction from './summonAction.mjs';
 import TransformAction from './transformAction.mjs';
 import EvolutionAction from './evolutionAction.mjs';
+import GroupedAction from './groupedAction.mjs';
 
 export const actionsTypes = {
     base: BaseAction,
@@ -21,5 +22,6 @@ export const actionsTypes = {
     macro: MacroAction,
     beastform: BeastformAction,
     transform: TransformAction,
-    evolution: EvolutionAction
+    evolution: EvolutionAction,
+    grouped: GroupedAction
 };

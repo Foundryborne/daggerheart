@@ -108,6 +108,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         /* Fallback to feature description */
         this.description = this.description || this.parent?.description;
+
+        this.isGrouped = false; // Wether a MultiAction has removed it from being an available action button.
     }
 
     /**

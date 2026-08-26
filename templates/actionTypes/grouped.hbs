@@ -1,0 +1,9 @@
+<fieldset>
+    <legend>{{localize "Actions"}}</legend>
+    <div class="one-column">
+        {{formField fields.selectionType value=source.selectionType name="grouped.selectionType" localize=true blank=false}}
+        <autocomplete-tags name="grouped.groupedActions">
+            {{selectOptions @root.groupedActionOptions selected=source.groupedActions valueAttr="id" labelAttr="label"}}
+        </autocomplete-tags>
+    </div>
+</fieldset>

@@ -188,6 +188,13 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             };
         }
 
+        if (context.source.grouped) {
+            context.groupedActionOptions = this.action.parent.actions.filter(x => x.id !== this.action.id).map(x => ({
+                id: x.id,
+                label: x.name
+            }));
+        }
+
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;

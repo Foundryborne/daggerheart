@@ -51,6 +51,14 @@ export default class DHFeature extends BaseDataItem {
     prepareDerivedData() {
         super.prepareDerivedData();
         this.granterItem = this.actor?.items.get(this.granter?.id);
+
+        // Grouped actions may set other actions as inactive
+        for (const groupedAction of this.actions.filter(x => x.type === 'grouped')) {
+            for (const id of groupedAction.grouped.groupedActions) {
+                const action = this.actions.get(id);
+                action.isGrouped = true;
+            }
+        }
     }
 
     /** @inheritdoc */
