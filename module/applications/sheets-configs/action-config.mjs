@@ -24,12 +24,9 @@ export default class DHActionConfig extends DHActionBaseConfig {
         const { areaIndex } = event.target.dataset;
         if (!this.action.effects) return;
         const data = this.action.toObject();
-        const effectData = game.system.api.data.activeEffects.BaseEffect.getDefaultObject(
-            {
-                transfer: false,
-                origin: this.item.uuid
-            }
-        );
+        const effectData = game.system.api.data.activeEffects.BaseEffect.getDefaultObject({
+            transfer: false
+        });
 
         const [created] = await this.item.createEmbeddedDocuments('ActiveEffect', [effectData]);
 
