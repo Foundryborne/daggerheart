@@ -12,7 +12,51 @@
     "description": "<p><strong>Mark a Stress</strong> to transform into a creature fueled by fear. While in this form, you gain a <strong>1d6</strong> bonus to your damage rolls for each Fear in the GM's pool. Additionally, you gain a Hope when the GM spends a Fear to spotlight an adversary within Very Close range.</p><p>Before you make an action roll, you must spend a Hope. If you can't, you revert to your normal form.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "4ypEFJVq5grqKg5q": {
+        "type": "effect",
+        "_id": "4ypEFJVq5grqKg5q",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "dn84Mz9qZxt25RXv",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": "self",
+        "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp"
+      }
+    },
     "recallCost": 2,
     "type": "ability",
     "inVault": false,
@@ -22,7 +66,66 @@
   },
   "_id": "r6NekgZkMcHz2OUq",
   "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Avatar Of Terror",
+      "disabled": false,
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "description": "<p>While in this form, you gain a <strong>1d6</strong> bonus to your damage rolls for each Fear in the GM's pool. Additionally, you gain a Hope when the GM spends a Fear to spotlight an adversary within Very Close range.</p><p>Before you make an action roll, you must spend a Hope. If you can't, you revert to your normal form.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.bonuses.damage.physical.dice",
+            "type": "add",
+            "value": "(@fear)d6",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.magical.dice",
+            "type": "add",
+            "value": "(@fear)d6",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "dn84Mz9qZxt25RXv",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!r6NekgZkMcHz2OUq.dn84Mz9qZxt25RXv"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!r6NekgZkMcHz2OUq"

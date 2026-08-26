@@ -12,7 +12,166 @@
     "description": "<p>Make a <strong>Spellcast Roll (10).</strong> On a success, you can spend a Hope to create a visible wall of writhing necrotic energy between two points within Far range. The wall lasts until you mark a Hit Point or cast this spell again. A creature inside the wall when it appears or that passes through it must mark 2 Stress.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "J0gVHF0IqvuwsTtt": {
+        "type": "attack",
+        "damage": {
+          "main": null,
+          "resources": {
+            "stress": {
+              "base": false,
+              "applyTo": "stress",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 2,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "_id": "J0gVHF0IqvuwsTtt",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Wall of Hunger",
+            "type": "placed",
+            "shape": "line",
+            "size": "far",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": false,
+            "key": "hope",
+            "value": 1,
+            "itemId": null,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 10,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spellcast Roll",
+        "range": "",
+        "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp"
+      },
+      "kleemC4p5DTs3YTp": {
+        "type": "damage",
+        "damage": {
+          "main": null,
+          "resources": {
+            "stress": {
+              "base": false,
+              "applyTo": "stress",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 2,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "_id": "kleemC4p5DTs3YTp",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>A creature inside the wall when it appears or that passes through it must mark 2 Stress.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Wall Damage",
+        "range": "",
+        "img": "icons/magic/unholy/hand-fire-skeleton-pink.webp"
+      }
+    },
     "recallCost": 2,
     "type": "spell",
     "inVault": false,

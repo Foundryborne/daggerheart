@@ -12,7 +12,100 @@
     "description": "<p><strong>Spend any number of Hope</strong> to target an equal number of adversaries within Close range. Each target makes a <strong>Reaction Roll (15)</strong>. Targets who fail take <strong>d8+6</strong> magic damage using your Spellcast trait as they are engulfed in dark fire. Targets who succeed take half damage.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "5mPAuTVUlzVS4MmN": {
+        "type": "attack",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "cast",
+              "flatMultiplier": 1,
+              "dice": "d8",
+              "bonus": 6,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "magical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "5mPAuTVUlzVS4MmN",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": "agility",
+          "difficulty": 15,
+          "damageMod": "half"
+        },
+        "name": "Spend Hope",
+        "range": "close",
+        "img": "icons/magic/fire/projectile-embers-orange.webp"
+      }
+    },
     "recallCost": 2,
     "type": "spell",
     "inVault": false,

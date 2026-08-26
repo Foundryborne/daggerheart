@@ -12,7 +12,100 @@
     "description": "<p><strong>Mark a Stress</strong> to summon an otherworldly creature that deals <strong>d8+1</strong> magic damage using your Spellcast trait to a target within Far range. If the target marks any Hit Points from this attack, they must succeed on a <strong>Reaction Roll (12)</strong> to steel themselves against the horror or mark an equal number of Stress.</p><p>After making the attack, the creature dissipates.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "7ymu0WU0EHsyeIDi": {
+        "type": "attack",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "cast",
+              "flatMultiplier": 1,
+              "dice": "d8",
+              "bonus": 1,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "magical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "7ymu0WU0EHsyeIDi",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": "agility",
+          "difficulty": 12,
+          "damageMod": "none"
+        },
+        "name": "Mark Stress",
+        "range": "far",
+        "img": "icons/creatures/magical/spirit-fear-energy-pink.webp"
+      }
+    },
     "recallCost": 2,
     "type": "spell",
     "inVault": false,

@@ -12,7 +12,51 @@
     "description": "<p><strong>Mark 2 Stress</strong> to temporarily <em>Chain</em> a target within Close range. When a <em>Chained</em> creature deals damage, the target of their attack marks one fewer Hit Point than they normally would. You can't have more than one creature <em>Chained</em> at a time.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "8eeHL6FEqPe5pito": {
+        "type": "effect",
+        "_id": "8eeHL6FEqPe5pito",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 2,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "5J5DEvhTssJF9Flg",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "name": "Mark Stress",
+        "range": "close",
+        "img": "icons/magic/unholy/orb-contained-pink.webp"
+      }
+    },
     "recallCost": 2,
     "type": "spell",
     "inVault": false,
@@ -22,7 +66,51 @@
   },
   "_id": "2hIpGAAbwDZ9MA95",
   "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Chained",
+      "disabled": false,
+      "img": "icons/magic/unholy/orb-contained-pink.webp",
+      "description": "<p>When a <em>Chained</em> creature deals damage, the target of their attack marks one fewer Hit Point than they normally would. You can't have more than one creature <em>Chained</em> at a time.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "5J5DEvhTssJF9Flg",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!2hIpGAAbwDZ9MA95.5J5DEvhTssJF9Flg"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!2hIpGAAbwDZ9MA95"

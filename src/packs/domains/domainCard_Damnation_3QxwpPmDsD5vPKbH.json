@@ -12,7 +12,169 @@
     "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, <strong>mark any number of Stress</strong> to roll an equal number of <strong>d20</strong>s, dealing magic damage equal to the total result. If this attack defeats the target, all adversaries within Far range of the target must mark a Stress.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "oKoNtypnM5rie0rx": {
+        "type": "attack",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": true,
+                "formula": "@scaled20"
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "magical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "oKoNtypnM5rie0rx",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": true,
+            "key": "stress",
+            "value": 1,
+            "step": 1,
+            "itemId": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spellcast Roll",
+        "range": "far",
+        "img": "icons/magic/unholy/beam-impact-purple.webp"
+      },
+      "84fdyQS28Xi3Kvhi": {
+        "type": "damage",
+        "damage": {
+          "main": null,
+          "resources": {
+            "stress": {
+              "base": false,
+              "applyTo": "stress",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "_id": "84fdyQS28Xi3Kvhi",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>If this attack defeats the target, all adversaries within Far range of the target must mark a Stress.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Damnation",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "far",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Stress Damage",
+        "range": "",
+        "img": "icons/magic/death/skull-flames-white-blue.webp"
+      }
+    },
     "recallCost": 2,
     "type": "spell",
     "inVault": false,

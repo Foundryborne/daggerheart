@@ -12,7 +12,100 @@
     "description": "<p>When an ally within Close range takes damage from a target you can see, you can make a reaction roll against the target using your Spellcast trait. On a success, <strong>mark a Stress</strong> to deal <strong>d6</strong> magic damage using your Proficiency.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "9pclL7t5Tq5XQAGO": {
+        "type": "attack",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "cast",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "magical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "9pclL7t5Tq5XQAGO",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Reaction Roll",
+        "range": "close",
+        "img": "icons/magic/unholy/hand-claw-glow-orange.webp"
+      }
+    },
     "recallCost": 2,
     "type": "spell",
     "inVault": false,

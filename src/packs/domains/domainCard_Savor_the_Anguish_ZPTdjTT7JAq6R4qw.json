@@ -12,7 +12,83 @@
     "description": "<p>When an adversary within Close range takes Severe damage, you can clear a Stress.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "rUzJRn673vfn5VY1": {
+        "type": "healing",
+        "_id": "rUzJRn673vfn5VY1",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {
+            "stress": {
+              "base": false,
+              "applyTo": "stress",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Clear Stress",
+        "range": "self",
+        "img": "icons/magic/life/cross-embers-glow-yellow-purple.webp"
+      }
+    },
     "recallCost": 1,
     "type": "spell",
     "inVault": false,

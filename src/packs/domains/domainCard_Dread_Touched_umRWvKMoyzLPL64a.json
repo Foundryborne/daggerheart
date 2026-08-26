@@ -12,7 +12,75 @@
     "description": "<p>When 4 or more of the domain cards in your loadout are from the Dread domain, gain the following benefits:</p><ul><li><p>When you succeed with Fear, you can <strong>mark 2 Stress</strong> to prevent the GM from gaining a Fear.</p></li><li><p>Once per rest when making an action roll, you can gain a bonus to the roll equal to the number of Fear in the GM's pool.</p></li></ul>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "6F4onMsQxuwdimYh": {
+        "type": "effect",
+        "_id": "6F4onMsQxuwdimYh",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 2,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": "",
+        "img": "icons/magic/unholy/orb-hands-pink.webp"
+      },
+      "nxnoXhs5CFtxOD8L": {
+        "type": "effect",
+        "_id": "nxnoXhs5CFtxOD8L",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Gain Bonus",
+        "range": "",
+        "img": "icons/magic/unholy/hand-light-pink.webp"
+      }
+    },
     "recallCost": 2,
     "type": "ability",
     "inVault": false,

@@ -11,8 +11,142 @@
     },
     "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you can summon fiends that surround and move with you. Place 8 tokens on this card. When you deal damage to a target within Very Close range, you can spend any number of tokens to add <strong>1d8</strong> for each token spent to your damage roll. Additionally, when you take damage, you can spend any number of tokens to reduce the damage by <strong>1d8</strong> for each token spent. Each time you spend a token, a fiend acts on your behalf, then disappears.</p><p>When you take a rest, clear all unspent tokens.</p>",
     "gmNotes": "",
-    "resource": null,
-    "actions": {},
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "8",
+      "recovery": "shortRest",
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-skull"
+    },
+    "actions": {
+      "040T1iKcp84YM2mp": {
+        "type": "attack",
+        "damage": {
+          "main": null,
+          "resources": {}
+        },
+        "_id": "040T1iKcp84YM2mp",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you can summon fiends that surround and move with you. Place 8 tokens on this card. When you deal damage to a target within Very Close range, you can spend any number of tokens to add <strong>1d8</strong> for each token spent to your damage roll. Additionally, when you take damage, you can spend any number of tokens to reduce the damage by <strong>1d8</strong> for each token spent. Each time you spend a token, a fiend acts on your behalf, then disappears.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": true
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 14,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spellcast Roll",
+        "range": "",
+        "img": "icons/magic/death/skull-trio-badge-purple.webp"
+      },
+      "XljvfpVuTZgMGviJ": {
+        "type": "damage",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": true,
+                "formula": "@scaled8"
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "physical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "XljvfpVuTZgMGviJ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "resource",
+            "value": 1,
+            "step": 1,
+            "itemId": "MxgSUsmCxZkMp37U",
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Deal Damage",
+        "range": "",
+        "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp"
+      }
+    },
     "recallCost": 2,
     "type": "spell",
     "inVault": false,

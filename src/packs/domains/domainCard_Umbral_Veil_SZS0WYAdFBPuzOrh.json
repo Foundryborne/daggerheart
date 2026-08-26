@@ -11,8 +11,55 @@
     },
     "description": "<p>Once per rest, you can <strong>mark a Stress</strong> to encase yourself in shadowy energy. When you do, place a number of tokens on this card equal to the number of Fear in the GM's pool. After an attack roll is made against you, you can spend any number of tokens to give the result a -1 penalty per token spent.</p><p>At the end of the scene, clear all unspent tokens.</p>",
     "gmNotes": "",
-    "resource": null,
-    "actions": {},
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": "scene",
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-skull"
+    },
+    "actions": {
+      "ikciPDte9vyVJ6Kb": {
+        "type": "effect",
+        "_id": "ikciPDte9vyVJ6Kb",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": "self",
+        "img": "icons/magic/unholy/barrier-fire-pink.webp"
+      }
+    },
     "recallCost": 1,
     "type": "spell",
     "inVault": false,

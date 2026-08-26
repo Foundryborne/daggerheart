@@ -12,7 +12,83 @@
     "description": "<p>You deal double damage to targets that have all their Stress marked.</p><p>Additionally, when an adversary within Close range is defeated with all its Stress marked, you gain a Hope.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "3fABewYlBBP80OiK": {
+        "type": "healing",
+        "_id": "3fABewYlBBP80OiK",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>When an adversary within Close range is defeated with all its Stress marked, you gain a Hope.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {
+            "hope": {
+              "base": false,
+              "applyTo": "hope",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Gain Hope",
+        "range": "close",
+        "img": "icons/magic/unholy/hand-light-green.webp"
+      }
+    },
     "recallCost": 2,
     "type": "ability",
     "inVault": false,
@@ -22,7 +98,59 @@
   },
   "_id": "6r2TrUgJAXLSbmCO",
   "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Invoke Torment",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.rules.attack.damage.hpDamageMultiplier",
+            "type": "override",
+            "value": 2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "bGNhmCLMfn7MRJiE",
+      "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+      "disabled": true,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>You deal double damage to targets that have all their Stress marked.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!6r2TrUgJAXLSbmCO.bGNhmCLMfn7MRJiE"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!6r2TrUgJAXLSbmCO"

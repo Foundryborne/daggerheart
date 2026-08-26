@@ -12,7 +12,51 @@
     "description": "<p>When you deal magic damage to a target, you can <strong>mark a Stress</strong> to teleport into Melee range with them. When you do, they are <em>Vulnerable</em> until they mark 1 or more Hit Points.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "PxEbi94Hv9SoVxbY": {
+        "type": "effect",
+        "_id": "PxEbi94Hv9SoVxbY",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "NYO02QXmpMVj5YkV",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "range": "",
+        "img": "icons/magic/death/skull-energy-light-purple.webp"
+      }
+    },
     "recallCost": 1,
     "type": "spell",
     "inVault": false,
@@ -22,7 +66,53 @@
   },
   "_id": "lG0OJTYWZGsCcKVw",
   "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Scared",
+      "disabled": false,
+      "img": "icons/magic/death/skull-energy-light-purple.webp",
+      "description": "<p>They are <em>Vulnerable</em> until they mark 1 or more Hit Points.</p>",
+      "transfer": false,
+      "statuses": [
+        "vulnerable"
+      ],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "NYO02QXmpMVj5YkV",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!lG0OJTYWZGsCcKVw.NYO02QXmpMVj5YkV"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!lG0OJTYWZGsCcKVw"

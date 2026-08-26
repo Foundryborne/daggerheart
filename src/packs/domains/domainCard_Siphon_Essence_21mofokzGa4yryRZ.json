@@ -12,7 +12,154 @@
     "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Very Close range. Once per long rest on a success, the target takes <strong>d12+4</strong> magic damage using your Proficiency. On a success with Fear, you gain a +1 bonus to your Proficiency for this attack.</p><p>You clear a number of Hit Points equal to the number of Hit Points the target marked from this attack.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "atYHfdIRwhIVLVt3": {
+        "type": "attack",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d12",
+              "bonus": 4,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "magical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "atYHfdIRwhIVLVt3",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": true
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spellcast Roll",
+        "range": "veryClose",
+        "img": "icons/magic/unholy/energy-smoke-pink.webp"
+      },
+      "2WSDK7psPlgjOnSG": {
+        "type": "damage",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": true,
+                "formula": "(@prof+1)d12 + 4"
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "magical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "2WSDK7psPlgjOnSG",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>On a success with Fear, you gain a +1 bonus to your Proficiency for this attack.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "With Fear",
+        "range": "",
+        "img": "icons/magic/unholy/orb-hands-pink.webp"
+      }
+    },
     "recallCost": 1,
     "type": "spell",
     "inVault": false,
