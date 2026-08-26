@@ -69,11 +69,13 @@ export class MigrationHandlerBase {
         const updateItem = async item => {
             const itemUpdate = await this.updateItemSource(item);
             if (itemUpdate) {
-                batch.push({
+                const itemAction = {
                     action: 'update',
                     documentName: 'Item',
                     updates: [itemUpdate]
-                });
+                };
+                if (item.isEmbedded) itemAction.parent = item.actor;
+                batch.push(itemAction);
             }
 
             const effectUpdates = [];
