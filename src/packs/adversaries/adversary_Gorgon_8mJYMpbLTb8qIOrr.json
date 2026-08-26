@@ -348,7 +348,6 @@
         {
           "name": "Glowing",
           "img": "icons/magic/light/explosion-star-glow-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.8mJYMpbLTb8qIOrr.Item.NepVGKOo1lHYjA1F",
           "transfer": false,
           "_id": "bYBrgiSwHwYfQyjn",
           "type": "base",

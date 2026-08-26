@@ -220,7 +220,6 @@
             "expired": false
           },
           "description": "<p>The Legion is immune to physical damage and takes double magic damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -484,7 +483,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],

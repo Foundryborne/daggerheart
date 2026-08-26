@@ -56,7 +56,6 @@
         "expired": false
       },
       "description": "<p>When you have 2 or fewer Hit Points unmarked, you don't take Minor damage.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

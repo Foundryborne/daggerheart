@@ -160,7 +160,6 @@
     {
       "name": "Parallela",
       "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
-      "origin": "Compendium.daggerheart.domains.Item.eq8VNqYMRHhF9xw9",
       "transfer": false,
       "_id": "klUaU5KeQCu7KCBI",
       "type": "base",
@@ -196,7 +195,6 @@
     {
       "name": "Adjust Appearance",
       "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
-      "origin": "Compendium.daggerheart.domains.Item.eq8VNqYMRHhF9xw9",
       "transfer": false,
       "_id": "wnrHSvvB6pydTVcC",
       "type": "base",

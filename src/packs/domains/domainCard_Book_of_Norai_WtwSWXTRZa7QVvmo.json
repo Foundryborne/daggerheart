@@ -260,7 +260,6 @@
     {
       "name": "Mystic Tether",
       "img": "icons/magic/control/energy-stream-link-white.webp",
-      "origin": "Compendium.daggerheart.domains.Item.WtwSWXTRZa7QVvmo",
       "transfer": false,
       "_id": "iPnT02apql16Zhjf",
       "type": "base",

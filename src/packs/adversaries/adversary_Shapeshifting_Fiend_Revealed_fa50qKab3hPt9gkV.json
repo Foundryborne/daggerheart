@@ -218,7 +218,6 @@
             "expired": false
           },
           "description": "<p>The Fiend has resistance to magic damage and can't be fooled by magic illusions.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -481,7 +480,6 @@
             },
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.fa50qKab3hPt9gkV.Item.vavYse3YdfnpjxaD",
           "_id": "asSNhJ7zBYh20Kbq",
           "type": "base",
           "start": {

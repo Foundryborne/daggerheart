@@ -326,7 +326,6 @@
         {
           "name": "Battle Lust",
           "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.5lphJAgzoqZI3VoG.Item.a33PW8UkziliowlR",
           "transfer": false,
           "_id": "gFeHLGgeRoDdd3VG",
           "type": "base",

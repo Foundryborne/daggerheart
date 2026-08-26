@@ -63,7 +63,6 @@
     {
       "name": "Major Charm Potion",
       "img": "icons/consumables/potions/potion-bottle-corked-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.IJLAUlQymbSjzsri",
       "transfer": false,
       "_id": "3iXv9QiuLGOfDCi2",
       "type": "base",

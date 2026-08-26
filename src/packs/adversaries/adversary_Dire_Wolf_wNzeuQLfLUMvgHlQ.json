@@ -452,7 +452,6 @@
         {
           "name": "Hobbling Strike",
           "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.wNzeuQLfLUMvgHlQ.Item.85XrqDvLP30YOO43",
           "transfer": false,
           "_id": "YNKHEFQ4ucGr4Rmc",
           "type": "base",

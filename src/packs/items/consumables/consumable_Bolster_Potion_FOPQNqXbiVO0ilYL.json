@@ -63,7 +63,6 @@
     {
       "name": "Bolster Potion",
       "img": "icons/consumables/potions/potion-vial-tube-yellow.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.FOPQNqXbiVO0ilYL",
       "transfer": false,
       "_id": "HVCJp9Tkhr1i4Oc1",
       "type": "base",

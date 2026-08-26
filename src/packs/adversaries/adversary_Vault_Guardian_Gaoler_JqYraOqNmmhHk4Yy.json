@@ -336,7 +336,6 @@
         {
           "name": "Lock Up",
           "img": "icons/environment/traps/cage-grey-steel.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.JqYraOqNmmhHk4Yy.Item.VlHp8RjHy7MK8rqC",
           "transfer": false,
           "_id": "6TZlstmWJPbeoL7i",
           "type": "base",

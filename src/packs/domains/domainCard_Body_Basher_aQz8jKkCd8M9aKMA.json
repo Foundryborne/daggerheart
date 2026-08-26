@@ -65,7 +65,6 @@
         "expired": false
       },
       "description": "<p>On a successful attack using a weapon with a Melee range, gain a bonus to your damage roll equal to your Strength.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -202,7 +202,6 @@
             "expired": false
           },
           "description": "<p>While underground, the Landshark has resistance to all damage but can't attack.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

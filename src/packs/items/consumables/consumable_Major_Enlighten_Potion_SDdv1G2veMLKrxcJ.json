@@ -63,7 +63,6 @@
     {
       "name": "Major Enlighten Potion",
       "img": "icons/consumables/potions/bottle-corked-empty.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.SDdv1G2veMLKrxcJ",
       "transfer": false,
       "_id": "Ul5brgnx88npVGNj",
       "type": "base",

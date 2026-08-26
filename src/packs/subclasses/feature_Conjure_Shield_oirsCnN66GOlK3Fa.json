@@ -48,7 +48,6 @@
         "expired": false
       },
       "description": "<p>While you have at least 2 Hope, you add your Proficiency to your Evasion.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

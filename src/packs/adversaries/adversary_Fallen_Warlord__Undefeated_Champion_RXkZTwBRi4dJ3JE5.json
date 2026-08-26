@@ -702,7 +702,6 @@
             "expiry": null,
             "expired": false
           },
-          "origin": null,
           "tint": "#ffffff",
           "showIcon": 1,
           "folder": null,

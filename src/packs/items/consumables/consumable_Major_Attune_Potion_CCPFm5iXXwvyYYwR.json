@@ -63,7 +63,6 @@
     {
       "name": "Major Attune Potion",
       "img": "icons/consumables/potions/bottle-round-corked-pink.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.CCPFm5iXXwvyYYwR",
       "transfer": false,
       "_id": "v2EXGXbJaewaMxFC",
       "type": "base",

@@ -344,7 +344,6 @@
         {
           "name": "Taunted",
           "img": "icons/skills/melee/strike-sword-dagger-runes-gold.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.ZNbQ2jg35LG4t9eH.Item.tyGgOqQzDSIypoMz",
           "transfer": false,
           "_id": "j2jYmYbtWXvq32yX",
           "type": "base",

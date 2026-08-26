@@ -195,7 +195,6 @@
             "expired": false
           },
           "description": "<p>The Gargoyle has resistance to magic damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

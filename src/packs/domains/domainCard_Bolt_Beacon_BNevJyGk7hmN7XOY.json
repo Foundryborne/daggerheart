@@ -125,7 +125,6 @@
     {
       "name": "Vulnerable",
       "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-      "origin": "Compendium.daggerheart.domains.Item.BNevJyGk7hmN7XOY",
       "transfer": false,
       "_id": "veZpnhnF8NRRhKG4",
       "type": "base",

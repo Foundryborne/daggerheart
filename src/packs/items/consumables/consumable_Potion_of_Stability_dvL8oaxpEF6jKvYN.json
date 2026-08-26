@@ -63,7 +63,6 @@
     {
       "name": "Potion of Stability",
       "img": "icons/consumables/potions/bottle-conical-corked-labeled-shell-cyan.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.dvL8oaxpEF6jKvYN",
       "transfer": false,
       "_id": "PjjGC4TpzjSz9z8s",
       "type": "base",

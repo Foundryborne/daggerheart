@@ -63,7 +63,6 @@
     {
       "name": "Mythic Dust",
       "img": "icons/commodities/materials/bowl-powder-grey.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.Zsh2AvZr8EkGtLyw",
       "transfer": false,
       "_id": "L68lFhuWdS3ppDxR",
       "type": "base",

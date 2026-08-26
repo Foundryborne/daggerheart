@@ -195,7 +195,6 @@
             "expired": false
           },
           "description": "<p>The Masque Muerte can't be <em>Restrained</em>.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -345,7 +344,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.DtpTGuzeLlcZ43ID.Item.6o1xTsu1ujGrfABq",
           "_id": "1811deazqsyZEfSn",
           "type": "base",
           "start": {
@@ -675,7 +673,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.DtpTGuzeLlcZ43ID.Item.pR9baknxxTOr3Vbb",
           "_id": "g1W6cRSGVSteu99P",
           "type": "base",
           "start": {

@@ -377,7 +377,6 @@
         {
           "name": "Bite",
           "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.71qKDLKO3CsrNkdy.Item.zgR0MEqyobKp2yXr",
           "transfer": false,
           "_id": "U50Ccm9emMqAxma6",
           "type": "base",

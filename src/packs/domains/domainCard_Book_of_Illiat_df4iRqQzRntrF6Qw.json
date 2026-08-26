@@ -201,7 +201,6 @@
     {
       "name": "Telepathy",
       "img": "icons/magic/perception/third-eye-blue-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.df4iRqQzRntrF6Qw",
       "transfer": false,
       "_id": "zAEaETYSOE2fmcyB",
       "type": "base",
@@ -245,7 +244,6 @@
     {
       "name": "Slumber",
       "img": "icons/magic/control/sleep-bubble-purple.webp",
-      "origin": "Compendium.daggerheart.domains.Item.df4iRqQzRntrF6Qw",
       "transfer": false,
       "_id": "gfZTHSgwYSDKsePW",
       "type": "base",

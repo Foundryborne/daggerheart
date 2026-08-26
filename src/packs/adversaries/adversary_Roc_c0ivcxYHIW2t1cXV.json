@@ -498,7 +498,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.c0ivcxYHIW2t1cXV.Item.uYDndZAjve1MmeIh",
           "_id": "OYFU3hLG9WbIEwHc",
           "type": "base",
           "start": {
@@ -675,7 +674,6 @@
             "expired": false
           },
           "description": "<p>The Roc gains a +2 bonus to its Difficulty and a bonus to damage rolls equal to the number of Stress it has marked.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -811,7 +809,6 @@
             "expired": false
           },
           "description": "<p>The Roc has resistance to magic damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

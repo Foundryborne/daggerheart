@@ -182,7 +182,6 @@
             "expired": false
           },
           "description": "<p>The Merfolk is <em>Vulnerable</em> out of the water.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [
@@ -260,7 +259,6 @@
             "expired": false
           },
           "description": "<p>The Merfolk gains a +2 bonus to attack rolls against targets within Melee range of one or more allies.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

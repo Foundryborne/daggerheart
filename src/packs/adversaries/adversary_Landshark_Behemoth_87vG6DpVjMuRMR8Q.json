@@ -225,7 +225,6 @@
             "expired": false
           },
           "description": "<p>While underground, the Behemoth is immune to damage but can't attack.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -308,7 +307,6 @@
             "expired": false
           },
           "description": "<p>All damage dealt to the Behemoth is reduced by one threshold.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -431,7 +429,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.87vG6DpVjMuRMR8Q.Item.j1mUnngeA5NKBgnZ",
           "_id": "qc2utRaB2sLvGCv0",
           "type": "base",
           "start": {

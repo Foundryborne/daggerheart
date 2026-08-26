@@ -63,7 +63,6 @@
     {
       "name": "Enlighten Potion",
       "img": "icons/consumables/potions/vial-cork-empty.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.aWHSO2AqDufi7nL4",
       "transfer": false,
       "_id": "QNzVrDW73jF1d5wE",
       "type": "base",

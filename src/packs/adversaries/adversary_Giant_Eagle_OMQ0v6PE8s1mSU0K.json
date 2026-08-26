@@ -270,7 +270,6 @@
             "expired": false
           },
           "description": "<p>While flying, the Eagle gains a +3 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -409,7 +408,6 @@
         {
           "name": "Deadly Dive",
           "img": "icons/skills/melee/strike-slashes-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.DnJ5ViDkhhCsr0cC.Item.MabIQE1Kjn60j08J",
           "transfer": false,
           "_id": "m6qqQZxukDPVcGdQ",
           "type": "base",
@@ -568,7 +566,6 @@
         {
           "name": "Take Off",
           "img": "icons/skills/movement/arrow-upward-yellow.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.DnJ5ViDkhhCsr0cC.Item.NEOQ0E9AGSSIDm4v",
           "transfer": false,
           "_id": "Sd34xywRqiF5w9sX",
           "type": "base",

@@ -195,7 +195,6 @@
             "expired": false
           },
           "description": "<p>While flying, gain a +3 bonus to Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

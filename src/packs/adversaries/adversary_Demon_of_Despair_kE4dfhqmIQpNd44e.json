@@ -278,7 +278,6 @@
             "expired": false
           },
           "description": "<p>The Demon of Despair deals double damage to PCs with 0 Hope.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -372,7 +371,6 @@
         {
           "name": "Your Struggle is Pointless",
           "img": "icons/magic/death/skull-flames-white-blue.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.kE4dfhqmIQpNd44e.Item.FC8PIf4BVkhmoJX8",
           "transfer": false,
           "_id": "6WSx03mFbpbPWnOI",
           "type": "base",

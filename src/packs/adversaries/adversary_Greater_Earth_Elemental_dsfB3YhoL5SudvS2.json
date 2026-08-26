@@ -388,7 +388,6 @@
             "expired": false
           },
           "description": "<p>When the Elemental takes physical damage, reduce it by 7.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -537,7 +536,6 @@
         {
           "name": "Rockslide",
           "img": "icons/magic/earth/barrier-stone-brown-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.dsfB3YhoL5SudvS2.Item.q45DiEFlXqcXZ5hv",
           "transfer": false,
           "_id": "38MUzfbH64EMLVse",
           "type": "base",

@@ -469,7 +469,6 @@
         {
           "name": "Perfect Strike",
           "img": "icons/skills/melee/strike-axe-energy-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.CP6iRfHdyFWniTHY.Item.CKy2r6FguyTSO9Fm",
           "transfer": false,
           "_id": "Q5eeh0B6qaXFS1Ck",
           "type": "base",

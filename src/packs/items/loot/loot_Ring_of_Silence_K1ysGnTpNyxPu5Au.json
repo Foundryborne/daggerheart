@@ -62,7 +62,6 @@
     {
       "name": "Ring of Silence",
       "img": "icons/equipment/finger/ring-ball-purple.webp",
-      "origin": "Compendium.daggerheart.loot.Item.K1ysGnTpNyxPu5Au",
       "transfer": false,
       "_id": "9JSLRu7amQ4iuIO7",
       "type": "base",

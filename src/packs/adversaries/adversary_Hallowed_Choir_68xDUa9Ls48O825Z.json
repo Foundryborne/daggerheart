@@ -297,7 +297,6 @@
             "expired": false
           },
           "description": "<p>The Choir gains a bonus to its damage rolls equal to the number of tokens on this stat block.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -468,7 +467,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],

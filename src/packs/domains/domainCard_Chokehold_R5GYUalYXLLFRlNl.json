@@ -115,7 +115,6 @@
     {
       "name": "Chokehold",
       "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-      "origin": "Compendium.daggerheart.domains.Item.R5GYUalYXLLFRlNl",
       "transfer": false,
       "_id": "yzGem7IfViJdAv1H",
       "type": "base",

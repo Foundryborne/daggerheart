@@ -64,7 +64,6 @@
     {
       "name": "Deadly Focus",
       "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
-      "origin": "Compendium.daggerheart.domains.Item.xxZOXC4tiZQ6kg1e",
       "transfer": false,
       "_id": "TFWiAUDCfGaax5MU",
       "type": "base",

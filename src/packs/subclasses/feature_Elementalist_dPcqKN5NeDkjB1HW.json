@@ -108,7 +108,6 @@
     {
       "name": "Bonus to Roll",
       "img": "icons/magic/fire/flame-burning-hand-white.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
       "transfer": false,
       "_id": "EY87mY6ULfIt3XC8",
       "type": "base",
@@ -152,7 +151,6 @@
     {
       "name": "Bonus to Damage",
       "img": "icons/magic/fire/flame-burning-hand-white.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
       "transfer": false,
       "_id": "WwibpgaO6Kkks7aZ",
       "type": "base",

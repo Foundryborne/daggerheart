@@ -412,7 +412,6 @@
         {
           "name": "Nightmare Tableau",
           "img": "icons/magic/death/skull-energy-light-white.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.PELRry1vqjBzSAlr.Item.ecp9o8t1dQFXGsse",
           "transfer": false,
           "_id": "Q99saHj6NOY2PSXf",
           "type": "base",
@@ -621,7 +620,6 @@
         {
           "name": "Shackles of Guilt",
           "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.PELRry1vqjBzSAlr.Item.gwSgBhkcekCGvXxz",
           "transfer": false,
           "_id": "pWDg0MADoohKu40O",
           "type": "base",

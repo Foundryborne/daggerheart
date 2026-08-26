@@ -135,7 +135,6 @@
     {
       "name": "Magic Immunity",
       "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
-      "origin": "Compendium.daggerheart.domains.Item.J1ovx2FpNDvPq1o6",
       "transfer": false,
       "_id": "HWJYhSegVLeAa3dE",
       "type": "base",

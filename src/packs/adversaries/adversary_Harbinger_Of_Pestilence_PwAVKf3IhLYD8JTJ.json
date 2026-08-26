@@ -247,7 +247,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.PwAVKf3IhLYD8JTJ.Item.JIjSpCGXzAyayyGP",
           "_id": "WYScx3su3JfFwfWq",
           "type": "base",
           "start": {
@@ -656,7 +655,6 @@
             "expired": false
           },
           "description": "<p>While the Harbinger is on their mount, they gain a +2 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

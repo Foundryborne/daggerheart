@@ -270,7 +270,6 @@
         {
           "name": "Barbed Vines",
           "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.pGEdzdLkqYtBhxnG.Item.maK5OyfrOxcjCoPt",
           "transfer": false,
           "_id": "LSeftEwgBbXXkLw3",
           "type": "base",

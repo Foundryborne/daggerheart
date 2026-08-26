@@ -309,7 +309,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.2dmAOdPMFN6e4BV6.Item.jALBcE8dCmRLWsfW",
           "_id": "9C4akRxkv1i1yrUT",
           "type": "base",
           "start": {
@@ -573,7 +572,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.2dmAOdPMFN6e4BV6.Item.0BirBknShzjOvSdz",
           "_id": "WbmZALTNxPQ45n6d",
           "type": "base",
           "start": {
@@ -792,7 +790,6 @@
             "expired": false
           },
           "description": "<p>While the Harbinger is on their mount, they gain a +2 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

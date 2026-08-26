@@ -286,7 +286,6 @@
         {
           "name": "Grindletooth Venom",
           "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.h5RuhzGL17dW5FBT.Item.Fz2lnUEeBxsDpx0G",
           "transfer": false,
           "_id": "2iBVUGHtGW3I9VIj",
           "type": "base",
@@ -383,7 +382,6 @@
             "expired": false
           },
           "description": "<p>The Assassin has advantage on attacks if they are <em>Hidden.</em></p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -468,7 +466,6 @@
         {
           "name": "Dizzy",
           "img": "icons/magic/control/silhouette-hold-change-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.h5RuhzGL17dW5FBT.Item.lAmiK8wVxjyHwKlp",
           "transfer": false,
           "_id": "yP4ot8VqS56RnxnE",
           "type": "base",

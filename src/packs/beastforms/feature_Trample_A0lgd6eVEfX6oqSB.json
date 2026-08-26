@@ -124,7 +124,6 @@
     {
       "name": "Trampled",
       "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-      "origin": "Item.7GMu72UEQ1LIIJAN",
       "transfer": false,
       "_id": "LkekG4IngVW9rFjI",
       "type": "base",

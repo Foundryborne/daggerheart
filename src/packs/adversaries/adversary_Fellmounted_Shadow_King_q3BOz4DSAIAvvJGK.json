@@ -190,7 +190,6 @@
             "expired": false
           },
           "description": "<p>While the Shadow King is on his mount, he gains a +2 bonus to his Difficulty. When the Shadow King takes Severe damage, he's knocked from his mount. If the Shadow King is unmounted, his mount disappears until you mark a Stress to summon it again.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -273,7 +272,6 @@
             "expired": false
           },
           "description": "<p>The Shadow King has advantage on attack rolls while in shadow or darkness and disadvantage on attack rolls while in bright light.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -349,7 +347,6 @@
             "expired": false
           },
           "description": "<p>The Shadow King has advantage on attack rolls against PCs who have magic weapons or armor equipped.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

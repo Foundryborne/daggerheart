@@ -61,7 +61,6 @@
         "expired": false
       },
       "description": "<p>You can choose an additional downtime move each rest.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

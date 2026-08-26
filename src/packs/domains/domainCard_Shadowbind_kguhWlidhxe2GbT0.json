@@ -97,7 +97,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.kguhWlidhxe2GbT0",
       "transfer": false,
       "_id": "RFB4V0V4bDJ6vCL2",
       "type": "base",

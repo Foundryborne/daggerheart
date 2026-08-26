@@ -63,7 +63,6 @@
     {
       "name": "Snapping Strike",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
-      "origin": "Item.tTr76uJeCU2AJqMT",
       "transfer": false,
       "_id": "y3EsJuInxE7juNXT",
       "type": "base",

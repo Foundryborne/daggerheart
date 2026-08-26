@@ -278,7 +278,6 @@
             "expired": false
           },
           "description": "<p>While flying, the Bat gains a +3 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

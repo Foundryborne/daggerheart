@@ -63,7 +63,6 @@
     {
       "name": "Wingsprout",
       "img": "icons/consumables/plants/leaf-broad-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.n10vozlmosVR6lo4",
       "transfer": false,
       "_id": "80F8gAn7ejhhNL7R",
       "type": "base",

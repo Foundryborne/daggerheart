@@ -164,7 +164,6 @@
     {
       "name": "Familiar Damage",
       "img": "icons/sundries/gaming/dice-pair-white-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.Tag303LoRNC5zGgl",
       "transfer": false,
       "_id": "0BumAWKw2aK4A5al",
       "type": "base",

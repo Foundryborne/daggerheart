@@ -457,7 +457,6 @@
         {
           "name": "Poisoned",
           "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.fmfntuJ8mHRCAktP.Item.lANiDkxxth2sGacT",
           "transfer": false,
           "_id": "oILkLJlGNZl7KI1R",
           "type": "base",

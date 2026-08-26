@@ -103,7 +103,6 @@
         "expired": false
       },
       "description": "<p>To transform into this creature, <strong>mark an additional Stress</strong>. Choose any two Beastform options from Tiers 1–2. Choose a total of four advantages and two features from those options.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

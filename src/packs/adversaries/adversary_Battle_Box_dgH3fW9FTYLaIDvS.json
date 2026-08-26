@@ -722,7 +722,6 @@
         {
           "name": "TRampled",
           "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.dgH3fW9FTYLaIDvS.Item.XtnByqUr9AuYU9Ip",
           "transfer": false,
           "_id": "9NQcCXMhjyBReJRd",
           "type": "base",
@@ -973,7 +972,6 @@
         {
           "name": "Stunned",
           "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.dgH3fW9FTYLaIDvS.Item.ijIaKjroxq3xZd9Z",
           "transfer": false,
           "_id": "S7kJlhnV8Nexzi8l",
           "type": "base",

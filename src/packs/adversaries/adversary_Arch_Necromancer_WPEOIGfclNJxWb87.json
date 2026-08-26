@@ -525,7 +525,6 @@
         {
           "name": "Beam Of Decay",
           "img": "icons/magic/unholy/projectile-missile-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.WPEOIGfclNJxWb87.Item.4EECsXzHFG0RoIg0",
           "transfer": false,
           "_id": "KGdf2eqcXkdigg0u",
           "type": "base",

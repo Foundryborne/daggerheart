@@ -73,7 +73,6 @@
     {
       "name": "Deft Maneuvers",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
-      "origin": "Compendium.daggerheart.domains.Item.dc4rAXlv95srZUct",
       "transfer": true,
       "_id": "gEDGcbsgWY2D2nOo",
       "type": "base",

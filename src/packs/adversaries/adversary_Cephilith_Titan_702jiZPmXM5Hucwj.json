@@ -317,7 +317,6 @@
             "expired": false
           },
           "description": "<p>The Titan appears in the Mortal Realm as a psychic projection approximating its true form. They have immunity to physical damage and resistance to magic damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -597,7 +596,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.702jiZPmXM5Hucwj.Item.SGaUcNeQ3Y7F0Tlf",
           "_id": "thBjAMP3WaNYxyJp",
           "type": "base",
           "start": {

@@ -124,7 +124,6 @@
     {
       "name": "Stunned",
       "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
-      "origin": "Compendium.daggerheart.domains.Item.2ZeuCGVatQdPOVC6",
       "transfer": false,
       "_id": "xAG75UWUz3aDZH3m",
       "type": "base",

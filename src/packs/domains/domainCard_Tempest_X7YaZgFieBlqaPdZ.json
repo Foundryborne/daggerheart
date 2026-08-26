@@ -321,7 +321,6 @@
     {
       "name": "Vulnerable",
       "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-      "origin": "Compendium.daggerheart.domains.Item.X7YaZgFieBlqaPdZ",
       "transfer": false,
       "_id": "oqPY3I9oO9J6l5Aj",
       "type": "base",
@@ -367,7 +366,6 @@
     {
       "name": "Wind",
       "img": "icons/magic/air/wind-tornado-cyclone-purple-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.X7YaZgFieBlqaPdZ",
       "transfer": false,
       "_id": "tB7AyDy0pbE9q5hM",
       "type": "base",
@@ -403,7 +401,6 @@
     {
       "name": "Sand",
       "img": "icons/magic/air/air-wave-gust-smoke-yellow.webp",
-      "origin": "Compendium.daggerheart.domains.Item.X7YaZgFieBlqaPdZ",
       "transfer": false,
       "_id": "S4Vpgf3FMmq8MGrb",
       "type": "base",

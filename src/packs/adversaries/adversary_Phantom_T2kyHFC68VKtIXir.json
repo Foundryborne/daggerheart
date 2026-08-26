@@ -190,7 +190,6 @@
             "expired": false
           },
           "description": "<p>The Phantom has resistance to physical damage and can move through solid objects.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

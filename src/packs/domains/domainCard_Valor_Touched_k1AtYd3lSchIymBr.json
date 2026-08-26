@@ -136,7 +136,6 @@
         "expired": false
       },
       "description": "<ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Armor Score</p></li><li class=\"vertical-card-list-found\"><p>When you mark 1 or more Hit Points without marking an Armor Slot, clear an Armor Slot.</p></li></ul>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

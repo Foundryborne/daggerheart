@@ -266,7 +266,6 @@
             },
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.lKmBNV3Sgpq9sTtp.Item.jC4ngCoNcUSTuJv9",
           "_id": "jsSpZ9WaB1NdAhO4",
           "type": "base",
           "start": {
@@ -428,7 +427,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],

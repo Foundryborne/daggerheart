@@ -56,7 +56,6 @@
         "expired": false
       },
       "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

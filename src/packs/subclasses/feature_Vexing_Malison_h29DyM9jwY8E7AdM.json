@@ -56,7 +56,6 @@
         "expired": false
       },
       "description": "<p>You have advantage on attacks against Hexed creatures.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

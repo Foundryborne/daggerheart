@@ -526,7 +526,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.iCiRtuBhVfojXOj5.Item.z780aZ858HHSiTLz",
           "_id": "Xi4s4prmnTN0cLMK",
           "type": "base",
           "start": {
@@ -672,7 +671,6 @@
             "expired": false
           },
           "description": "<p>For each token on this stat block, the Machine gains a +1 bonus to Difficulty and attack rolls, and its standard attack deals an extra <strong>1d12</strong> damage. Remove a token when the Machine takes Severe damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

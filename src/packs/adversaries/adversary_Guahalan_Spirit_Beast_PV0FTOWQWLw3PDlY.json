@@ -207,7 +207,6 @@
             "expired": false
           },
           "description": "<p>The Spirit Beast has resistance to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

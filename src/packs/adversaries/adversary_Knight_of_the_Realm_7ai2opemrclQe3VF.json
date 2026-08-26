@@ -288,7 +288,6 @@
             "expired": false
           },
           "description": "<p>While the Knight is on a mount, they gain a +2 bonus to their Difficulty</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -356,7 +355,6 @@
             "expired": false
           },
           "description": "<p>When the Knight takes physical damage, reduce it by 3.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

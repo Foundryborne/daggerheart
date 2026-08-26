@@ -55,7 +55,6 @@
         "expired": false
       },
       "description": "<p>During a rest, you can drop into a trance to choose an additional downtime move.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

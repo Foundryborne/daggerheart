@@ -54,7 +54,6 @@
         "expired": false
       },
       "description": "<p>You gain advantage on action rolls to climb sheer surfaces.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

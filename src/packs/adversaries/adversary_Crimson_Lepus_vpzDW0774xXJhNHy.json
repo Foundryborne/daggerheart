@@ -258,7 +258,6 @@
             "expired": false
           },
           "description": "<p>A PC must succeed on an Instinct Reaction Roll (20). Clear the Too Cute condition if a PC deals damage to the Lepus or if the Lepus attacks a PC.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -504,7 +503,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.vpzDW0774xXJhNHy.Item.vF19a5N2S1OP9Tsr",
           "_id": "PdLwIohVpnC6phKD",
           "type": "base",
           "start": {

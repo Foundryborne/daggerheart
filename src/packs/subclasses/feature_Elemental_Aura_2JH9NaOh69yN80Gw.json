@@ -243,7 +243,6 @@
     {
       "name": "Elemental Aura (Water)",
       "img": "icons/magic/water/vortex-water-whirlpool.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.2JH9NaOh69yN80Gw",
       "transfer": false,
       "_id": "H7W52ps5d3UGmaFr",
       "type": "base",
@@ -279,7 +278,6 @@
     {
       "name": "Elemental Aura (Fire)",
       "img": "icons/magic/fire/barrier-wall-explosion-orange.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.2JH9NaOh69yN80Gw",
       "transfer": false,
       "_id": "WX5AMEpmUAutB9Hm",
       "type": "base",
@@ -355,7 +353,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "showIcon": 1,
       "folder": null,
@@ -401,7 +398,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "showIcon": 1,
       "folder": null,

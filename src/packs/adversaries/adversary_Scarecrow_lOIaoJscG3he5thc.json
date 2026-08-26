@@ -195,7 +195,6 @@
             "expired": false
           },
           "description": "<p>The Scarecrow has resistance to physical damage but takes double damage from fire.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -329,7 +328,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.lOIaoJscG3he5thc.Item.26hUFK6A4zYMUO0y",
           "_id": "55zNbUczLoRcpwN7",
           "type": "base",
           "start": {

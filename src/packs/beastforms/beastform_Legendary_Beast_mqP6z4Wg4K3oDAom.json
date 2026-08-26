@@ -73,7 +73,6 @@
         "expired": false
       },
       "description": "<p>Pick a Tier 1 Beastform option and become a larger, more powerful version of that creature. While you're in this form, you retain all traits and features from the original form and gain the following bonuses:</p><ul><li><p>A +6 bonus to the damage rolls</p></li><li><p>A +1 bonus to the trait used by this form</p></li><li><p>A +2 bonus to evasion</p></li></ul>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

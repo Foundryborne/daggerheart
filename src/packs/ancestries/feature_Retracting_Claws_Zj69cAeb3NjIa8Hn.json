@@ -80,7 +80,6 @@
     {
       "name": "Retractable Claws",
       "img": "icons/creatures/claws/claw-straight-orange.webp",
-      "origin": "Compendium.daggerheart.ancestries.Item.Zj69cAeb3NjIa8Hn",
       "transfer": false,
       "_id": "pO76svFkmWmZ6LjC",
       "type": "base",

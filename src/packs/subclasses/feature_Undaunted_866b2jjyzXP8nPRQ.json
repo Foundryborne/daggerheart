@@ -55,7 +55,6 @@
         "expired": false
       },
       "description": "<p>Gain a permanent +3 bonus to your damage thresholds.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

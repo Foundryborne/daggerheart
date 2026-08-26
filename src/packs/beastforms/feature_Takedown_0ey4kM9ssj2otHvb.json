@@ -19,7 +19,6 @@
     {
       "name": "Takedown",
       "img": "icons/creatures/abilities/paw-print-orange.webp",
-      "origin": "Item.okjlLUwEdNOKeUk3",
       "transfer": true,
       "_id": "hE6ciIusvKEtUQ8U",
       "type": "base",

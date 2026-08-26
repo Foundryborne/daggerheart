@@ -110,7 +110,6 @@
         "expired": false
       },
       "description": "<p>+2 to damage rolls</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -169,7 +168,6 @@
         "expired": false
       },
       "description": "<p>+3 to damage thresholds</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -221,7 +219,6 @@
         "expired": false
       },
       "description": "<p>+1 to Evasion</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

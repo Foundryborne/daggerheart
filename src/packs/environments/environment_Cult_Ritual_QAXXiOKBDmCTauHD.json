@@ -175,7 +175,6 @@
         {
           "name": "Desecrated Ground",
           "img": "icons/magic/unholy/orb-contained-pink.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.iiHjguQG2aBn9g8i",
           "transfer": false,
           "_id": "8yNIw8Y7rfMdOqWC",
           "type": "base",
@@ -282,7 +281,6 @@
         {
           "name": "Blashemous Might",
           "img": "icons/magic/unholy/orb-swirling-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.0Rgqw1kUPeJ11ldd",
           "transfer": false,
           "_id": "dYQBQq1xIysM0qLo",
           "type": "base",
@@ -318,7 +316,6 @@
         {
           "name": "Blashemous Might - Damage",
           "img": "icons/magic/unholy/orb-swirling-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.0Rgqw1kUPeJ11ldd",
           "transfer": false,
           "_id": "Hxw5lXE77bGzuaOu",
           "type": "base",

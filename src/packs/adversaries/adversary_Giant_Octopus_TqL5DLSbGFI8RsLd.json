@@ -222,7 +222,6 @@
             "expired": false
           },
           "description": "<p>When the Octopus first appears, place a <strong>d8</strong> on this stat block with the 8 value facing up. When the Octopus makes a successful standard attack against a PC, you can add the die's value to the damage dealt. After you add its value to a roll, decrease the die's value by 1.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -322,7 +321,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.TqL5DLSbGFI8RsLd.Item.7Eiy4PoehsyoMQU2",
           "_id": "RKroGrvQgGYygBzh",
           "type": "base",
           "start": {

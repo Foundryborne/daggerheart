@@ -21,7 +21,6 @@
     {
       "name": "Sneak Attack",
       "img": "icons/skills/melee/strike-dagger-skull-white.webp",
-      "origin": "Compendium.daggerheart.classes.Item.5QqpEwmwkPfZHpMW",
       "transfer": true,
       "_id": "380jFzw756qSy5ae",
       "type": "base",

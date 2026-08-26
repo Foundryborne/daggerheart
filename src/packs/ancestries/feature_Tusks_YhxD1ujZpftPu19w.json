@@ -126,7 +126,6 @@
         "expired": false
       },
       "description": "<p>You gore the target with your tusks, dealing an extra 1d6 damage on this attack.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -73,7 +73,6 @@
     {
       "name": "Rage Up",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",
-      "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
       "transfer": false,
       "_id": "bq1MhcmoP6Wo5CXF",
       "type": "base",
@@ -135,7 +134,6 @@
     {
       "name": "Rage Up (2)",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
-      "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
       "transfer": false,
       "_id": "t6SIjQxB6UBUJ98f",
       "type": "base",

@@ -65,7 +65,6 @@
     {
       "name": "Rogue's Dodge",
       "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
-      "origin": "Compendium.daggerheart.classes.Item.hVaaPIjxoextIgSL",
       "transfer": false,
       "_id": "hhVjBro2osGDTT5g",
       "type": "base",

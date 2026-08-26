@@ -154,7 +154,6 @@
     {
       "name": "Corroded",
       "img": "icons/magic/acid/dissolve-bone-white.webp",
-      "origin": "Compendium.daggerheart.domains.Item.qJaSNTuDfbPVr8Lb",
       "transfer": false,
       "_id": "zB95bjSSdVlApQnR",
       "type": "base",

@@ -55,7 +55,6 @@
         "expired": false
       },
       "description": "<p>Gain a bonus to your damage thresholds equal to your Proficiency.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

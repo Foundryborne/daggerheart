@@ -124,7 +124,6 @@
     {
       "name": "Demolished",
       "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-      "origin": "Item.PkLs4PFO0HiCNVRH",
       "transfer": false,
       "_id": "FXdFgEgqVl5gIWJS",
       "type": "base",

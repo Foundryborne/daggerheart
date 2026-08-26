@@ -56,7 +56,6 @@
         "expired": false
       },
       "description": "<ul><li class=\"vertical-card-list\"><p>+3 bonus to your Severe damage threshold</p></li><li class=\"vertical-card-list\"><p>Once per long rest, when incoming damage would require you to mark a number of Hit Points, you can choose to mark that much Stress or spend that much Hope instead.</p></li></ul>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

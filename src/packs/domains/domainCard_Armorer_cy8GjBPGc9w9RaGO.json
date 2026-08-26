@@ -136,7 +136,6 @@
         "expired": false
       },
       "description": "<p>While you're wearing armor, gain a +1 bonus to your Armor Score.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

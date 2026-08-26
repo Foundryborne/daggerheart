@@ -56,7 +56,6 @@
         "expired": false
       },
       "description": "<p>When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

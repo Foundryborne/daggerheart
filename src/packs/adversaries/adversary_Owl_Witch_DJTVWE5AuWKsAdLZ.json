@@ -218,7 +218,6 @@
             "expired": false
           },
           "description": "<p>The Owl Witch has resistance to magic damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -424,7 +423,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.DJTVWE5AuWKsAdLZ.Item.JQ0bdv1Gnb0VD4Gm",
           "_id": "0tULtmVqDsZR60oh",
           "type": "base",
           "start": {

@@ -272,7 +272,6 @@
             "expired": false
           },
           "description": "<p>When two or more adversaries are within Very Close range of a creature, all damage the Skeleton Archer deals to that creature is doubled.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

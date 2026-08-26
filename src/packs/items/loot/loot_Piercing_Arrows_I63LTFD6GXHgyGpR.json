@@ -82,7 +82,6 @@
         "expired": false
       },
       "description": "<p>Add your Proficiency to the damage roll of this attack.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

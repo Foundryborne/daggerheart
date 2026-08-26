@@ -71,7 +71,6 @@
         "expired": false
       },
       "description": "<p>Your barehanded attacks are as strong as any blade. You have a primary weapon called Brawler's Strike equipped while you have no other Active Weapons. It uses a trait of your choice, has Melee range, and deals <strong>d8+d6</strong> physical damage using your Proficiency (both the <strong>d8</strong> and <strong>d6</strong> scale off your Proficiency). While this weapon is active, you gain a +1 bonus to your Evasion.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

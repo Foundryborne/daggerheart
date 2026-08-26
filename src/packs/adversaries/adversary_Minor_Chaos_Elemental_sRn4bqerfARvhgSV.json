@@ -272,7 +272,6 @@
             "expired": false
           },
           "description": "<p>The Elemental is resistant to magic damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -397,7 +396,6 @@
         {
           "name": "Sickening Flux",
           "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.sRn4bqerfARvhgSV.Item.oAxhAawgcK7DAdpa",
           "transfer": false,
           "_id": "KIyV2eXDmmymXY5y",
           "type": "base",

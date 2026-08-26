@@ -321,7 +321,6 @@
         {
           "name": "Marked",
           "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.c5hGdvY5UnSjlHws.Item.uwAr6wR4k7ppI2cW",
           "transfer": false,
           "_id": "yQ85C0JHRG1pwu8a",
           "type": "base",

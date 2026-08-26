@@ -401,7 +401,6 @@
         {
           "name": "Godslayer",
           "img": "icons/magic/unholy/hand-light-pink.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.4DLYez7VbMCFDAuZ.Item.CL3wPZNOtw6m5WVT",
           "transfer": false,
           "_id": "znFFS76Nopwb8Yi7",
           "type": "base",
@@ -437,7 +436,6 @@
         {
           "name": "Godslayer",
           "img": "icons/magic/unholy/hand-light-pink.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.4DLYez7VbMCFDAuZ.Item.CL3wPZNOtw6m5WVT",
           "transfer": false,
           "_id": "i3KYskkA9D4GHbXi",
           "type": "base",

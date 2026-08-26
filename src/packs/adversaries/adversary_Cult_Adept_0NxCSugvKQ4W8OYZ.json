@@ -444,7 +444,6 @@
         {
           "name": "Shroud of the Fallen",
           "img": "icons/magic/unholy/orb-contained-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.IHWDn097sRgjlZXO",
           "transfer": false,
           "_id": "U9lWz1LgeAiK5L85",
           "type": "base",
@@ -580,7 +579,6 @@
         {
           "name": "Shadow Shackles",
           "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.JpSrduK3vjd9h098",
           "transfer": false,
           "_id": "lNH6srSPyEprXZ4o",
           "type": "base",

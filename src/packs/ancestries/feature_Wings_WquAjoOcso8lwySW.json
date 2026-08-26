@@ -87,7 +87,6 @@
         "expired": false
       },
       "description": "<p>You to gain a +2 bonus to your Evasion against the Adversary's attack.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

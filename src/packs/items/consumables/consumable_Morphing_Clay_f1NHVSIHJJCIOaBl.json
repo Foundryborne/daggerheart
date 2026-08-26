@@ -63,7 +63,6 @@
     {
       "name": "Morphing Clay",
       "img": "icons/commodities/stone/ore-chunk-brown.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.f1NHVSIHJJCIOaBl",
       "transfer": false,
       "_id": "rMno0zO5Cbwlu4zn",
       "type": "base",

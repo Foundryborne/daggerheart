@@ -327,7 +327,6 @@
         {
           "name": "Disorienting Presence",
           "img": "icons/magic/perception/eye-slit-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.CoWjh12FkhDGYIie",
           "transfer": false,
           "_id": "rpkjVdlJYI5dB99B",
           "type": "base",
@@ -463,7 +462,6 @@
         {
           "name": "Unstuck From Reality",
           "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.K3MQO1I42nmfM2F2",
           "transfer": false,
           "_id": "edEZER9ImWicMwRb",
           "type": "base",

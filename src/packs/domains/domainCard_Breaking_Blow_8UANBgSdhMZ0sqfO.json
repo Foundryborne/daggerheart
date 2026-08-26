@@ -73,7 +73,6 @@
     {
       "name": "Breaking Blow",
       "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
-      "origin": "Compendium.daggerheart.domains.Item.8UANBgSdhMZ0sqfO",
       "transfer": false,
       "_id": "ETIeXRAib3DFBHpX",
       "type": "base",

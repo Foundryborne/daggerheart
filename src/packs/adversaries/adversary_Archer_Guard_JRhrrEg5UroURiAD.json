@@ -340,7 +340,6 @@
         {
           "name": "Hobbling Shot",
           "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.JRhrrEg5UroURiAD.Item.DMtd1EXQPlPaoRmV",
           "transfer": false,
           "_id": "wGuxOLokMqdxVSOo",
           "type": "base",

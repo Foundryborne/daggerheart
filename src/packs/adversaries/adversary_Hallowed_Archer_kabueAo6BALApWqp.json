@@ -272,7 +272,6 @@
             "expired": false
           },
           "description": "<p>The Hallowed Archer deals double damage to targets marked Guilty by a High Seraph.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

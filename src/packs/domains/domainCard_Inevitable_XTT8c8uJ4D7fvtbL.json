@@ -56,7 +56,6 @@
         "expired": false
       },
       "description": "<p>When you fail an action roll, your next action roll has advantage.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

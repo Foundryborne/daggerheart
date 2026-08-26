@@ -45,7 +45,6 @@
         "expired": false
       },
       "description": "<p>You gain a +1 bonus to your Instinct.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

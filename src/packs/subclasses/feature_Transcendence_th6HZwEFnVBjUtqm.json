@@ -88,7 +88,6 @@
         "expired": false
       },
       "description": "<p>+4 bonus to your Severe threshold</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -131,7 +130,6 @@
         "expired": false
       },
       "description": "<p>+1 bonus to a character trait of your choice</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -175,7 +173,6 @@
         "expired": false
       },
       "description": "<p>+1 bonus to your Proficiency</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -211,7 +208,6 @@
         "expired": false
       },
       "description": "<p>+2 bonus to your Evasion</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

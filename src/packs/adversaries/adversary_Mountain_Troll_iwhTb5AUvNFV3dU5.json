@@ -260,7 +260,6 @@
             "expired": false
           },
           "description": "<p>When the Troll takes damage, reduce the severity by one threshold.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -503,7 +502,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.iwhTb5AUvNFV3dU5.Item.c89I2BlpU2nQyWji",
           "_id": "7D0zNvZQ6H8srwEo",
           "type": "base",
           "start": {

@@ -167,7 +167,6 @@
     {
       "name": "Elemental Dominion (Fire)",
       "img": "icons/magic/fire/flame-burning-fist-strike.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "FoBFRSXRfGa1zkiX",
       "type": "base",
@@ -211,7 +210,6 @@
     {
       "name": "Elemental Dominion (Water)",
       "img": "icons/magic/water/heart-ice-freeze.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "bGwFZZT4juuaIRmZ",
       "type": "base",
@@ -257,7 +255,6 @@
     {
       "name": "Elemental Dominion (Air)",
       "img": "icons/magic/air/air-smoke-casting.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "edF2zvvlcGf54r2n",
       "type": "base",
@@ -301,7 +298,6 @@
     {
       "name": "Elemental Dominion (Earth)",
       "img": "icons/magic/earth/strike-fist-stone.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "p5FoUb4JKQFP405d",
       "type": "base",

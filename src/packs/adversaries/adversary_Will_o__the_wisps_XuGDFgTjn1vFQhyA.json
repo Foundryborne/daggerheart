@@ -235,7 +235,6 @@
               1
             ]
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.XuGDFgTjn1vFQhyA.Item.lKtZDU4j2FDWtF38",
           "_id": "m85gM6jedURrqbFJ",
           "type": "base",
           "start": {
@@ -518,7 +517,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],

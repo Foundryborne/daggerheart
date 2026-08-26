@@ -77,7 +77,6 @@
         "stacking": null,
         "targetDispositions": []
       },
-      "origin": "Compendium.daggerheart.classes.Item.XxS0Li1P6SqIho7T",
       "_id": "JLvo5LKRfs0mMHAj",
       "type": "base",
       "start": {
@@ -150,7 +149,6 @@
         "expired": false
       },
       "description": "<p>When you deal damage to a target you've <em>Marked for Death</em>, add a number of <strong>d4s</strong> equal to your tier to the damage roll.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

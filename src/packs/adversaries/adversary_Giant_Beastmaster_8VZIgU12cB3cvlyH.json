@@ -373,7 +373,6 @@
         {
           "name": "Pinning Strike",
           "img": "icons/skills/ranged/arrow-flying-broadhead-metal.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.8VZIgU12cB3cvlyH.Item.6ZrDjgnWufJohkp1",
           "transfer": false,
           "_id": "vb1sZCOLwDNLsr3j",
           "type": "base",

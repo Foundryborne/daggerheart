@@ -48,7 +48,6 @@
         "expired": false
       },
       "description": "<p>Choose an additional level-up option for your companion.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

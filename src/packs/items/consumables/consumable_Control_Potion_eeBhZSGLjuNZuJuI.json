@@ -63,7 +63,6 @@
     {
       "name": "Control Potion",
       "img": "icons/consumables/potions/flask-corked-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.eeBhZSGLjuNZuJuI",
       "transfer": false,
       "_id": "1VAQYZ1YYc9ew9UR",
       "type": "base",

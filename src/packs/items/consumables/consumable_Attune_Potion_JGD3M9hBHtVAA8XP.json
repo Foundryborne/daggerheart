@@ -63,7 +63,6 @@
     {
       "name": "Attune Potion",
       "img": "icons/consumables/potions/bottle-conical-corked-purple.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.JGD3M9hBHtVAA8XP",
       "transfer": false,
       "_id": "I5vgALTNDVApxy9d",
       "type": "base",

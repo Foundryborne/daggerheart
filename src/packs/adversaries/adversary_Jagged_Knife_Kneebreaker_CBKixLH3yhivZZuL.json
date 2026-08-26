@@ -338,7 +338,6 @@
         {
           "name": "Hold Them Down",
           "img": "icons/skills/melee/unarmed-punch-fist.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.CBKixLH3yhivZZuL.Item.Sa4Nt0eoDjirBKGf",
           "transfer": false,
           "_id": "d7sB1Qa1kJMnglqu",
           "type": "base",

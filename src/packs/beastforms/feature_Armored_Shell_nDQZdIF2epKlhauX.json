@@ -90,7 +90,6 @@
         "expired": false
       },
       "description": "<p>Your hardened exterior gives you resistance to physical damage.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -107,7 +106,6 @@
     {
       "name": "Retracted",
       "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-      "origin": "Item.WqNiQYeaRVGPWpm0",
       "transfer": false,
       "_id": "OY3lEB3vuDKNLzxv",
       "type": "base",

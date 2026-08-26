@@ -146,7 +146,6 @@
     {
       "name": "Transform",
       "img": "icons/containers/barrels/barrel-reinforced-cherry-brown.webp",
-      "origin": "Compendium.daggerheart.domains.Item.SZMNR3uGNinJcN4N",
       "transfer": false,
       "_id": "ntQfpTcXyEL76vCK",
       "type": "base",
@@ -182,7 +181,6 @@
     {
       "name": "Eternal Enervation",
       "img": "icons/magic/unholy/hand-light-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.SZMNR3uGNinJcN4N",
       "transfer": false,
       "_id": "y44r3c91m06WKSiq",
       "type": "base",

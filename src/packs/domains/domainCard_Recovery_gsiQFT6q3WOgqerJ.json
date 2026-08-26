@@ -64,7 +64,6 @@
     {
       "name": "Recovery (Ally)",
       "img": "icons/magic/life/cross-beam-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.gsiQFT6q3WOgqerJ",
       "transfer": false,
       "_id": "smTjINqIldErFD3q",
       "type": "base",
@@ -149,7 +148,6 @@
         "expired": false
       },
       "description": "<p>During a short rest, you can choose a long rest downtime move instead.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

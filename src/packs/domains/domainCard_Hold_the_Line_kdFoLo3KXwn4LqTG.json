@@ -107,7 +107,6 @@
     {
       "name": "Hold the Line",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.kdFoLo3KXwn4LqTG",
       "transfer": false,
       "_id": "y82y3nUStyL8DIJL",
       "type": "base",
@@ -143,7 +142,6 @@
     {
       "name": "Hold the Line",
       "img": "icons/skills/melee/shield-block-bash-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.kdFoLo3KXwn4LqTG",
       "transfer": false,
       "_id": "WTYg0b8nE1XbnMiA",
       "type": "base",

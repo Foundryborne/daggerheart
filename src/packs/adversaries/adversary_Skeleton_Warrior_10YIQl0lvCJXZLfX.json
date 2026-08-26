@@ -272,7 +272,6 @@
             "expired": false
           },
           "description": "<p>The Warrior is resistant to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

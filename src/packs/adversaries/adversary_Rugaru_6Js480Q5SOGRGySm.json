@@ -213,7 +213,6 @@
             "expired": false
           },
           "description": "<p>While in moonlight, gain a +2 bonus to Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -298,7 +297,6 @@
             "expired": false
           },
           "description": "<p>The Rugaru gains a bonus to attack rolls equal to the number of tokens on this stat block. Clear all tokens when the Rugaru takes Severe damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -457,7 +455,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.6Js480Q5SOGRGySm.Item.459aNwv1u6Z96MA8",
           "_id": "xSq3CQhtc9Zd40ED",
           "type": "base",
           "start": {

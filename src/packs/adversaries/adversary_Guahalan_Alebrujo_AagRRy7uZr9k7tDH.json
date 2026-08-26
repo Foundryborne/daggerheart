@@ -202,7 +202,6 @@
             "expired": false
           },
           "description": "<p>The Alebrujo gains a bonus to damage rolls equal to the number of Fear you have.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -524,7 +523,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.AagRRy7uZr9k7tDH.Item.UYKbaPpVUFhcuZRw",
           "_id": "liVCcuiypQEGVVQG",
           "type": "base",
           "start": {

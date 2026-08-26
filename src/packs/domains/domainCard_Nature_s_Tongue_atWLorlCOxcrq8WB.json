@@ -126,7 +126,6 @@
     {
       "name": "Bonus to Spellcast",
       "img": "icons/magic/nature/beam-hand-leaves-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.atWLorlCOxcrq8WB",
       "transfer": false,
       "_id": "0JYDk5CQ66bHGQO0",
       "type": "base",

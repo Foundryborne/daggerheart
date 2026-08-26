@@ -63,7 +63,6 @@
     {
       "name": "Major Stride Potion",
       "img": "icons/consumables/potions/potion-jar-capped-teal.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.yK6eEDUrsPbZA8G0",
       "transfer": false,
       "_id": "L9dAw8pws1o02XkE",
       "type": "base",

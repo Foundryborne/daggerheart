@@ -135,7 +135,6 @@
     {
       "name": "Flying",
       "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
-      "origin": "Compendium.daggerheart.domains.Item.54GUjNuBEy7xdzMz",
       "transfer": false,
       "_id": "gd8crfrvMGWXLWGP",
       "type": "base",

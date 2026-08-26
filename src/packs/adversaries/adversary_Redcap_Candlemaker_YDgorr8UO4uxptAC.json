@@ -191,7 +191,6 @@
             "expired": false
           },
           "description": "<p>While this stat block has 1 or more tokens on it, the Candlemaker is Hidden.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [
@@ -304,7 +303,6 @@
               -1
             ]
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.YDgorr8UO4uxptAC.Item.oAQweBSYwOqJ3fEx",
           "_id": "FRS0L5U1v6w72yju",
           "type": "base",
           "start": {

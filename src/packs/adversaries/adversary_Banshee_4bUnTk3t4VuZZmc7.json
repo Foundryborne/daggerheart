@@ -233,7 +233,6 @@
             "expired": false
           },
           "description": "<p>Resistance to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

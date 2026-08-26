@@ -400,7 +400,6 @@
             "expired": false
           },
           "description": "<p>While flying, the Ashen Tyrant gains a +1 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -897,7 +896,6 @@
         {
           "name": "Apocalyptic Thrasing",
           "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb.Item.uWiyaJPXcoW06pOM",
           "transfer": false,
           "_id": "YUjdwrEZ4zn7WR9X",
           "type": "base",

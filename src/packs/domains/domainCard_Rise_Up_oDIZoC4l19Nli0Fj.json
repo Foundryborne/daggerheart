@@ -132,7 +132,6 @@
         "expired": false
       },
       "description": "<p>Gain a bonus to your Severe threshold equal to your Proficiency.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

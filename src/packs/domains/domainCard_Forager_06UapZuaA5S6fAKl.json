@@ -289,7 +289,6 @@
     {
       "name": "Arcane Rune",
       "img": "icons/magic/symbols/runes-carved-stone-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.06UapZuaA5S6fAKl",
       "transfer": false,
       "_id": "cTf5gEem5Gt4fLS4",
       "type": "base",

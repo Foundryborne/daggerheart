@@ -72,7 +72,6 @@
     {
       "name": "Vitality (HP)",
       "img": "icons/magic/life/heart-cross-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.sWUlSPOJEaXyQLCj",
       "transfer": true,
       "_id": "1jtgIyFvDpTb0asZ",
       "type": "base",
@@ -116,7 +115,6 @@
     {
       "name": "Vitality (Stress)",
       "img": "icons/magic/life/heart-cross-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.sWUlSPOJEaXyQLCj",
       "transfer": true,
       "_id": "vj9rm1tLqqsSFOXF",
       "type": "base",
@@ -160,7 +158,6 @@
     {
       "name": "Vitality (Thresholds)",
       "img": "icons/magic/life/heart-cross-purple-orange.webp",
-      "origin": "Compendium.daggerheart.domains.Item.sWUlSPOJEaXyQLCj",
       "transfer": true,
       "_id": "BcqCG9yF6l1LRYqm",
       "type": "base",

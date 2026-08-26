@@ -278,7 +278,6 @@
             "expired": false
           },
           "description": "<p>The Experiment is resistant to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -346,7 +345,6 @@
             "expired": false
           },
           "description": "<p>When a target the Failed Experiment attacks has other adversaries within Very Close range, the Failed Experiment deals double damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

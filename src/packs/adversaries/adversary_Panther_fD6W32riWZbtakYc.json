@@ -195,7 +195,6 @@
             "expired": false
           },
           "description": "<p>While Hidden, gain a +2 bonus to attack rolls.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

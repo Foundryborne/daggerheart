@@ -70,7 +70,6 @@
         "expired": false
       },
       "description": "<p>You have a base Armor Score of 3 + your Strength.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

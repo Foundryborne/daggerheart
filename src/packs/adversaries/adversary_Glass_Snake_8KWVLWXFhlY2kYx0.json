@@ -643,7 +643,6 @@
         {
           "name": "Spitter Die",
           "img": "icons/magic/acid/projectile-needles-salvo-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0.Item.LR5XHauNtWcl18CY",
           "transfer": false,
           "_id": "Mchd23xNQ4nSWw9X",
           "type": "base",

@@ -63,7 +63,6 @@
     {
       "name": "Redthorn Saliva",
       "img": "icons/commodities/materials/slime-thick-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.s2Exl2XFuoOhtIov",
       "transfer": false,
       "_id": "tWf00ezdpxQQLuZ1",
       "type": "base",

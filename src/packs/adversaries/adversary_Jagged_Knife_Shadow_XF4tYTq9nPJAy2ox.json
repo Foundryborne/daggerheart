@@ -393,7 +393,6 @@
         {
           "name": "Cloaked",
           "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.XF4tYTq9nPJAy2ox.Item.ILIogeKbYioPutRw",
           "transfer": false,
           "_id": "w5VTwlHmUjl8XCQ4",
           "type": "base",

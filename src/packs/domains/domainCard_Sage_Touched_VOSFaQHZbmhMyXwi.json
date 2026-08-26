@@ -152,7 +152,6 @@
         "expired": false
       },
       "description": "<p>While you're in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -169,7 +168,6 @@
     {
       "name": "Double Agility",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-      "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
       "transfer": true,
       "_id": "Mmax64mlLPYxJPB7",
       "type": "base",
@@ -213,7 +211,6 @@
     {
       "name": "Double Instinct",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-      "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
       "transfer": true,
       "_id": "p03IjcyigL4b2WD1",
       "type": "base",

@@ -228,7 +228,6 @@
             "expired": false
           },
           "description": "<p>The Poltergeist has resistance to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -325,7 +324,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.ytj3VDog4hrC4TkO.Item.UugDye75RdeNZw37",
           "_id": "qX9bmAPqLAU7jhN6",
           "type": "base",
           "start": {

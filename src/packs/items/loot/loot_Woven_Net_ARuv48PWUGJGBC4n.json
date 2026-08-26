@@ -77,7 +77,6 @@
     {
       "name": "Woven Net",
       "img": "icons/tools/fishing/net-tan.webp",
-      "origin": "Compendium.daggerheart.loot.Item.ARuv48PWUGJGBC4n",
       "transfer": false,
       "_id": "KjAianGutrQuJNs3",
       "type": "base",
@@ -113,7 +112,6 @@
     {
       "name": "Woven Net",
       "img": "icons/tools/fishing/net-tan.webp",
-      "origin": "Compendium.daggerheart.loot.Item.ARuv48PWUGJGBC4n",
       "transfer": false,
       "_id": "nY2UFMPZdoSUr6Ps",
       "type": "base",

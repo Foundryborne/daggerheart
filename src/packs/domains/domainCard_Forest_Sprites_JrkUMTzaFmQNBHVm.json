@@ -97,7 +97,6 @@
     {
       "name": "Sprite",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-      "origin": "Compendium.daggerheart.domains.Item.JrkUMTzaFmQNBHVm",
       "transfer": false,
       "_id": "SuiUFAPyB37Qr6sO",
       "type": "base",

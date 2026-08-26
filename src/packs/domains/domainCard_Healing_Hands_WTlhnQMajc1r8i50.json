@@ -424,7 +424,6 @@
     {
       "name": "Healed by Healing Hands",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
-      "origin": "Compendium.daggerheart.domains.Item.WTlhnQMajc1r8i50",
       "transfer": false,
       "_id": "sd5liP4ZcVeTMAoW",
       "type": "base",

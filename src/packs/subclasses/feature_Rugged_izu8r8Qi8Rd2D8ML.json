@@ -56,7 +56,6 @@
         "expired": false
       },
       "description": "<p>Gain a permanent +3 bonus to your Severe damage threshold.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

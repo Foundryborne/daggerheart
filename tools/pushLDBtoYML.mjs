@@ -60,6 +60,11 @@ function transformDocument(entry) {
                 action.description = '';
             }
         }
+
+        // Remove any origin flags that accidentally got in there. Effect origins are meant for in-world use
+        if ('changes' in entry.system && 'origin' in entry) {
+            delete entry.origin;
+        }
     }
     
     for (const effect of entry.effects ?? []) {

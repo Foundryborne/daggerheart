@@ -63,7 +63,6 @@
     {
       "name": "Shrinking Potion",
       "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.HGixKenQwhyRAYNk",
       "transfer": false,
       "_id": "yaRLd7eHWYm2MHRM",
       "type": "base",

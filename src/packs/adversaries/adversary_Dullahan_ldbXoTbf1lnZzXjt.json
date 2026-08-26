@@ -228,7 +228,6 @@
             "expired": false
           },
           "description": "<p>The Dullahan has resistance to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -296,7 +295,6 @@
             "expired": false
           },
           "description": "<p>The Dullahan is <em>Vulnerable</em> while not on their horse.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [
@@ -452,7 +450,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.ldbXoTbf1lnZzXjt.Item.iQ4jwH7KU0BDLFqL",
           "_id": "gwhl5PxjMpsumSxT",
           "type": "base",
           "start": {

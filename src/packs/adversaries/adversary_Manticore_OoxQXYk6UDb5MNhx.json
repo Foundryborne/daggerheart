@@ -248,7 +248,6 @@
             "expired": false
           },
           "description": "<p>While airborne, the Manticore gains a +2 bonus to their Difficulty and attack rolls.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -408,7 +407,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.OoxQXYk6UDb5MNhx.Item.DtEHBkdcv6z3q7x9",
           "_id": "Y51fFtW8cqVu0uM1",
           "type": "base",
           "start": {
@@ -576,7 +574,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.OoxQXYk6UDb5MNhx.Item.JkAUCfodIaav6mp2",
           "_id": "wxgYIxwQHUMCaU1E",
           "type": "base",
           "start": {
@@ -690,7 +687,6 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.OoxQXYk6UDb5MNhx.Item.jKieOD0PkBx38aQS",
           "_id": "wCyKJfNQTx2a62Di",
           "type": "base",
           "start": {

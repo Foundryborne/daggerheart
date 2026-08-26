@@ -63,7 +63,6 @@
     {
       "name": "Featherbone",
       "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.DpxEMpwfasEBpORU",
       "transfer": false,
       "_id": "VfJIJBW96e45xQHY",
       "type": "base",

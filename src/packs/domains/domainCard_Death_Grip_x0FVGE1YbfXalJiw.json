@@ -270,7 +270,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
       "transfer": false,
       "_id": "wMXCIQxqLS9IbsEK",
       "type": "base",
@@ -308,7 +307,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
       "transfer": false,
       "_id": "bZ0xgZ6TT2099OYp",
       "type": "base",
@@ -346,7 +344,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
       "transfer": false,
       "_id": "Oe95zWWY41nH8y5l",
       "type": "base",

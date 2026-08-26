@@ -48,7 +48,6 @@
         "expired": false
       },
       "description": "<p>Gain an additional Hit Point slot at character creation.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

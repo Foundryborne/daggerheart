@@ -338,7 +338,6 @@
             "expired": false
           },
           "description": "<p>While flying, the Obsidian Predator gains a +3 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -406,7 +405,6 @@
             "expired": false
           },
           "description": "<p>The Obsidian Predator is resistant to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -544,7 +542,6 @@
         {
           "name": "Avalanche Tail",
           "img": "icons/creatures/abilities/tail-swipe-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.ladm7wykhZczYzrQ.Item.8bMOItTuL7PfAYcJ",
           "transfer": false,
           "_id": "qtIaAZDW8QsjILgb",
           "type": "base",

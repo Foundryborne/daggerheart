@@ -48,7 +48,6 @@
         "expired": false
       },
       "description": "<p>When you would take Severe damage, you can mark a Stress to mark 1 fewer Hit Points.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

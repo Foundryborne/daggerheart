@@ -73,7 +73,6 @@
     {
       "name": "Riding",
       "img": "icons/creatures/mammals/goat-horned-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.Jkp6cMDiHHaBZQRS",
       "transfer": false,
       "_id": "cNSlGBGPKKBNnlH8",
       "type": "base",

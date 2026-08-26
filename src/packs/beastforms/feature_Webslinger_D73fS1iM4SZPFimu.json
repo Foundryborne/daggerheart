@@ -78,7 +78,6 @@
     {
       "name": "Webslinger",
       "img": "icons/creatures/webs/webthin-blue.webp",
-      "origin": "Item.6SkEDPsHvLHQmNts",
       "transfer": false,
       "_id": "cBJueH89gNvvDKfQ",
       "type": "base",

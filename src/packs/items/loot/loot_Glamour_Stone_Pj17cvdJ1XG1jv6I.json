@@ -62,7 +62,6 @@
     {
       "name": "Glamour Stone",
       "img": "icons/commodities/treasure/token-engraved-purple-glowing.webp",
-      "origin": "Compendium.daggerheart.loot.Item.Pj17cvdJ1XG1jv6I",
       "transfer": false,
       "_id": "K5SB6tfuDkdVaQYe",
       "type": "base",

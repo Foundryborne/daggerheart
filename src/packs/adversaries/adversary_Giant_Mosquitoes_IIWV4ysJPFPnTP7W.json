@@ -301,7 +301,6 @@
             "expired": false
           },
           "description": "<p>While flying, the Mosquitoes have a +2 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -410,7 +409,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],

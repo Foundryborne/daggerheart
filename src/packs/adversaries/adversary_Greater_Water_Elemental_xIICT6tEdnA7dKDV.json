@@ -343,7 +343,6 @@
         {
           "name": "Water Jet",
           "img": "icons/magic/water/projectile-icecicle-glowing.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.B8ZrtRCZrwwwWJOE",
           "transfer": false,
           "_id": "WYqjt1tVqPEdVV5l",
           "type": "base",
@@ -488,7 +487,6 @@
         {
           "name": "Drowning Embrace",
           "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.bcwFQeuU6ZfIGjau",
           "transfer": true,
           "_id": "X8NF2OB23mSpDvlx",
           "type": "base",

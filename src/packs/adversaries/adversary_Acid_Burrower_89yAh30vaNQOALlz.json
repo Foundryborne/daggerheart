@@ -388,7 +388,6 @@
         {
           "name": "Earth Eruption",
           "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.aKVLLjMb35om4QbJ.Item.ctXYwil2D1zfsekT",
           "transfer": false,
           "_id": "9PsnogEPsp1OOK64",
           "type": "base",

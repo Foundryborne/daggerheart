@@ -54,7 +54,6 @@
     {
       "name": "Poisoned",
       "img": "icons/creatures/abilities/fang-tooth-poison-green.webp",
-      "origin": "Item.O4IphLKL9ICiNwQR",
       "transfer": false,
       "_id": "TTyAKKoUCoYXSMs4",
       "type": "base",

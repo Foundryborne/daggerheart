@@ -161,7 +161,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "Xh0wrgRUuYpwChBU",
       "type": "base",
@@ -207,7 +206,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "2xzOqTaPJQzGqFJv",
       "type": "base",

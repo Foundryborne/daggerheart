@@ -63,7 +63,6 @@
     {
       "name": "Vial of Moondrip",
       "img": "icons/consumables/potions/bottle-ornate-bat-teal.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.VqEX5YwK5oL3r1t6",
       "transfer": false,
       "_id": "548KAUPcSbQLsivh",
       "type": "base",

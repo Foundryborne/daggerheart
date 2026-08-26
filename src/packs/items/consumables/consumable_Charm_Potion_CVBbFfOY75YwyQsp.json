@@ -63,7 +63,6 @@
     {
       "name": "Charm Potion",
       "img": "icons/consumables/potions/potion-tube-corked-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.CVBbFfOY75YwyQsp",
       "transfer": false,
       "_id": "COrKb7gBin4Ro6r6",
       "type": "base",

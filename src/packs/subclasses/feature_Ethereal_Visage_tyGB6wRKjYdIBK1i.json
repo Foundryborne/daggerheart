@@ -48,7 +48,6 @@
         "expired": false
       },
       "description": "<p>While flying, you have advantage on Presence Rolls.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -63,7 +63,6 @@
     {
       "name": "Stride Potion",
       "img": "icons/consumables/potions/potion-flask-corked-cyan.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.lNtcrkgFGOJNaroE",
       "transfer": false,
       "_id": "xQ0xPDxskzZH4jeK",
       "type": "base",

@@ -251,7 +251,6 @@
             "expired": false
           },
           "description": "<p>While the Harbinger is on their mount, they gain a +2 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],

@@ -61,7 +61,6 @@
         "expired": false
       },
       "description": "<p>A PC who takes a rest in the temporal sanctuary can choose an additional downtime move.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

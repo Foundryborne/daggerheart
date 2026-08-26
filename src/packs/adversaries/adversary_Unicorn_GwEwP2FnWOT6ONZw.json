@@ -195,7 +195,6 @@
             "expired": false
           },
           "description": "<p>The Unicorn's standard attack deals double damage to a creature that has dealt damage to it.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -399,7 +398,6 @@
               0
             ]
           },
-          "origin": "Compendium.daggerheart.adversaries.Actor.GwEwP2FnWOT6ONZw.Item.Tzwuda3jxU2ueezY",
           "_id": "YheawLsPcTD4FvSC",
           "type": "base",
           "start": {

@@ -236,7 +236,6 @@
     {
       "name": "Reduced Damage",
       "img": "icons/magic/defensive/shield-barrier-flaming-diamond-acid.webp",
-      "origin": "Compendium.daggerheart.domains.Item.rZPH0BY8Sznc9sFG",
       "transfer": false,
       "_id": "dImnF8ZT2rVybiIP",
       "type": "base",

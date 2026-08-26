@@ -55,7 +55,6 @@
         "expired": false
       },
       "description": "<p>When you take a short rest, you can choose a long rest move instead of a short rest move.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
