@@ -1,3 +1,4 @@
+import autocomplete from 'autocompleter';
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
@@ -109,6 +110,37 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         for (const effect of this.item.effects) {
             const list = effect.active ? context.effects.actives : context.effects.inactives;
             list.push(effect);
+        }
+    }
+
+    /** @inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        // If the item supports lore references, add autocomplete
+        const loreRefElement = htmlElement.querySelector('input[name="system.loreReference"]');
+        const choiceKeys = Object.keys(CONFIG.DH.lore[this.item.type] ?? {});
+        if (loreRefElement && choiceKeys) {
+            const choices = choiceKeys.map(k => ({ value: k, label: k }));
+            autocomplete({
+                input: loreRefElement,
+                fetch: function (text, update) {
+                    if (!text) {
+                        update(choices);
+                    } else {
+                        text = text.toLowerCase();
+                        update(choices.filter(n => n.label.toLowerCase().includes(text)));
+                    }
+                },
+                onSelect: item => {
+                    this.item.update({ 'system.loreReference': String(item.value) });
+                },
+                click: e => e.fetch(),
+                customize: function (_input, _inputRect, container) {
+                    container.style.zIndex = foundry.applications.api.ApplicationV2._maxZ;
+                },
+                minLength: 0
+            })
         }
     }
 

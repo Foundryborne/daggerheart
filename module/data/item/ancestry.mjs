@@ -21,7 +21,7 @@ export default class DHAncestry extends BaseDataItem {
         return {
             ...super.defineSchema(),
             features: new ItemLinkFields(),
-            /** An id or path to the journal page that has information for this community */
+            /** An id or path to the journal page that has the full description for this ancestry */
             loreReference: new fields.StringField({ required: true, blank: false, nullable: true })
         };
     }
@@ -51,10 +51,6 @@ export default class DHAncestry extends BaseDataItem {
 
     /** @inheritdoc */
     async getDescriptionData(options) {
-        // Preload all ancestry features for acquisition from the cache
-        // todo: make feature acquisition async and replace feature helpers for methods
-        await fromUuids(this._source.features.map(f => f.item));
-
         const showReferenceInline = options.type === 'sheet';
         const reference = (CONFIG.DH.lore.ancestry[this.loreReference] ?? this.loreReference ?? '').replace(/\[\]/g, '');
         const label = _loc('DAGGERHEART.ITEMS.Base.viewReference');
@@ -62,7 +58,7 @@ export default class DHAncestry extends BaseDataItem {
             ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
-        const features = await getFeaturesHTMLData(this.features);
+        const features = await getFeaturesHTMLData(await fromUuids(this._source.features.map(f => f.item)));
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(

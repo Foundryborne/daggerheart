@@ -3,6 +3,11 @@
     data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'
 >
+    <fieldset class="two-columns" spellcheck="false">
+        <legend>{{localize "DAGGERHEART.GENERAL.Tabs.settings"}}</legend>
+        <span data-tooltip="{{systemFields.loreReference.hint}}">{{systemFields.loreReference.label}}</span>
+        {{formInput systemFields.loreReference value=(coalesce source.system.loreReference "")}}
+    </fieldset>
     {{> 'daggerheart.inventory-items'
         title='DAGGERHEART.GENERAL.features'
         type='feature'

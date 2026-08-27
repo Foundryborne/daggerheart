@@ -88,6 +88,14 @@ export const SYSTEM = {
             hearthborne: '',
             reborne: '',
             warborne: ''
+        },
+        transformation: {
+            demigod: '',
+            ghost: '',
+            reanimated: '',
+            shapeshifter: '',
+            vampire: '',
+            werewolf: ''
         }
     }
 };

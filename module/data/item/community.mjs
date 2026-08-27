@@ -33,10 +33,6 @@ export default class DHCommunity extends BaseDataItem {
 
     /** @inheritdoc */
     async getDescriptionData(options = {}) {
-        // Preload all community features for acquisition from the cache
-        // todo: make feature acquisition async and replace feature helpers for methods
-        await fromUuids(this._source.features);
-
         const showReferenceInline = options.type === 'sheet';
         const reference = (CONFIG.DH.lore.community[this.loreReference] ?? this.loreReference ?? '').replace(/\[\]/g, '');
         const label = _loc('DAGGERHEART.ITEMS.Base.viewReference');
@@ -44,7 +40,7 @@ export default class DHCommunity extends BaseDataItem {
             ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
-        const features = await getFeaturesHTMLData(this.features);
+        const features = await getFeaturesHTMLData(await fromUuids(this._source.features));
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(

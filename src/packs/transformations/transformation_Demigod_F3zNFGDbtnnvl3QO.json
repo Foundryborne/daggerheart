@@ -9,13 +9,14 @@
       "page": null,
       "artist": ""
     },
-    "description": "<p>Demigods are mortal creatures whose veins flow with the blood of the gods. They typically gain their power from divine parentage, accomplishing an incredible feat, or receiving a gift from a god. Many demigods appear as a typical member of their mortal ancestry, but all possess a subtle luminosity and a gleam in their eyes. They're also known to have pearlescent or metallic skin, and they might grow in size or gain physical features related to their power when it reveals itself. Because they share the blood of a Faint Divinity, a Forgotten God, a New God, or any other deity, no two demigods look the same.</p><p>Demigods are bestowed with a fragment of deific power, but not everything a demigod inherits is a blessing. Though they often excel at tasks they're well suited for, the expectations set upon them are often difficult and costly to live up to.</p>",
+    "description": "<p>Demigods are mortal creatures whose veins flow with the blood of the gods.</p>",
     "gmNotes": "",
     "features": [
       "Compendium.daggerheart.transformations.Item.mVRmsFUyoULPH3Ku",
       "Compendium.daggerheart.transformations.Item.S03wpIyK6S6qENlu"
     ],
-    "questions": "<ul><li><p>Your divinity has affected an aspect of your appearance. In what way do you look different from others?</p></li><li><p>Who bestowed demigod status upon you, and what trial did you complete to earn this gift?</p></li><li><p>You were made fun of as a child for your divine parentage. Why?</p></li><li><p>Why was the knowledge that you are a demigod kept from you for many years? Who kept this secret?</p></li><li><p>You have an obligation you must fulfill due to the immortal blood that runs in your veins. What is this duty?</p></li><li><p>In what way did your divinity initially manifest? Why did it surprise you?</p></li></ul>"
+    "questions": "<ul><li><p>Your divinity has affected an aspect of your appearance. In what way do you look different from others?</p></li><li><p>Who bestowed demigod status upon you, and what trial did you complete to earn this gift?</p></li><li><p>You were made fun of as a child for your divine parentage. Why?</p></li><li><p>Why was the knowledge that you are a demigod kept from you for many years? Who kept this secret?</p></li><li><p>You have an obligation you must fulfill due to the immortal blood that runs in your veins. What is this duty?</p></li><li><p>In what way did your divinity initially manifest? Why did it surprise you?</p></li></ul>",
+    "loreReference": "demigod"
   },
   "effects": [],
   "folder": null,

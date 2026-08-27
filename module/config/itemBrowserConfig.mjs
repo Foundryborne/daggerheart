@@ -483,15 +483,21 @@ export const typeConfig = {
                 field: 'system.api.models.items.DHBeastform.schema.fields.mainTrait'
             }
         ]
+    },
+    transformations: {
+        columns: [],
+        filters: []
     }
 };
 
 export const compendiumConfig = {
+    // actors
     characters: {
         id: 'characters',
         keys: ['characters'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.characters',
-        type: ['character']
+        type: ['character'],
+        documentName: 'Actor'
         // listType: 'characters'
     },
     adversaries: {
@@ -499,21 +505,25 @@ export const compendiumConfig = {
         keys: ['adversaries'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.adversaries',
         type: ['adversary'],
-        listType: 'adversaries'
+        listType: 'adversaries',
+        documentName: 'Actor'
     },
+    environments: {
+        id: 'environments',
+        keys: ['environments'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.environments',
+        type: ['environment'],
+        listType: 'environments',
+        documentName: 'Actor'
+    },
+
+    // items
     ancestries: {
         id: 'ancestries',
         keys: ['ancestries'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.ancestries',
-        type: ['ancestry']
-        /* folders: {
-            features: {
-                id: 'features',
-                keys: ['ancestries'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-                type: ['feature']
-            }
-        } */
+        type: ['ancestry'],
+        documentName: 'Item'
     },
     equipments: {
         id: 'equipments',
@@ -548,7 +558,8 @@ export const compendiumConfig = {
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.loots',
                 type: ['loot']
             }
-        }
+        },
+        documentName: 'Item'
     },
     classes: {
         id: 'classes',
@@ -570,62 +581,52 @@ export const compendiumConfig = {
                 listType: 'items'
             }
         }, */
-        listType: 'classes'
+        listType: 'classes',
+        documentName: 'Item'
     },
     subclasses: {
         id: 'subclasses',
         keys: ['subclasses'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.subclasses',
         type: ['subclass'],
-        listType: 'subclasses'
+        listType: 'subclasses',
+        documentName: 'Item'
     },
     domains: {
         id: 'domains',
         keys: ['domains'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.domainCards',
         type: ['domainCard'],
-        listType: 'cards'
+        listType: 'cards',
+        documentName: 'Item'
     },
     communities: {
         id: 'communities',
         keys: ['communities'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.communities',
-        type: ['community']
-        /* folders: {
-            features: {
-                id: 'features',
-                keys: ['communities'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-                type: ['feature']
-            }
-        } */
-    },
-    environments: {
-        id: 'environments',
-        keys: ['environments'],
-        label: 'DAGGERHEART.UI.ItemBrowser.folders.environments',
-        type: ['environment'],
-        listType: 'environments'
+        type: ['community'],
+        documentName: 'Item'
     },
     beastforms: {
         id: 'beastforms',
         keys: ['beastforms'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.beastforms',
         type: ['beastform'],
-        listType: 'beastforms'
-        /* folders: {
-            features: {
-                id: 'features',
-                keys: ['beastforms'],
-                label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-                type: ['feature']
-            }
-        } */
+        listType: 'beastforms',
+        documentName: 'Item'
     },
     features: {
         id: 'features',
         keys: ['features'],
         label: 'DAGGERHEART.UI.ItemBrowser.folders.features',
-        type: ['feature']
+        type: ['feature'],
+        documentName: 'Item'
+    },
+    transformations: {
+        id: 'transformations',
+        keys: ['transformations'],
+        label: 'DAGGERHEART.UI.ItemBrowser.folders.transformations',
+        type: ['transformation'],
+        documentName: 'Item'
     }
 };

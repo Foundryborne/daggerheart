@@ -3,6 +3,8 @@ import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DHTransformation extends BaseDataItem {
+    static embedTemplate = 'systems/daggerheart/templates/components/card/transformation.hbs';
+
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -18,7 +20,9 @@ export default class DHTransformation extends BaseDataItem {
         return {
             ...super.defineSchema(),
             features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
-            questions: new fields.HTMLField()
+            questions: new fields.HTMLField(),
+            /** An id or path to the journal page that has the full description for this ancestry */
+            loreReference: new fields.StringField({ required: true, blank: false, nullable: true })
         };
     }
 
@@ -30,18 +34,35 @@ export default class DHTransformation extends BaseDataItem {
     /* -------------------------------------------- */
 
     /** @inheritdoc */
-    async getDescriptionData(options) {
-        // Preload all transformation features for acquisition from the cache
-        // todo: make feature acquisition async and replace feature helpers for methods
-        await fromUuids(this._source.features.map(f => f.item));
-        const features = await getFeaturesHTMLData(this.features);
-
+    async getDescriptionData() {
+        const features = await getFeaturesHTMLData(await fromUuids(this._source.features));
         if (!features.length) return { prefix: null, value: this.description, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
-            { label: 'DAGGERHEART.ITEMS.Transformation.featuresLabel', features }
+            { features }
         );
 
         return { prefix: null, value: this.description, suffix };
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        // Card styling has certain defaults designed for embedding
+        config.caption ??= false;
+        config.cite ??= false;
+        config.inline ??= true;
+
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'tooltip' });
+        const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
+            item: this.parent,
+            description,
+            type: _loc('TYPES.Item.transformation')
+        })
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        if (['dark', 'light'].includes(config.theme)) {
+            container.children[0].classList.add('themed', `theme-${config.theme}`);
+        }
+        return container.children;
     }
 }
