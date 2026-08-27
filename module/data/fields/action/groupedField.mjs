@@ -33,10 +33,8 @@ export default class DHGroupedField extends fields.SchemaField {
         }
 
         let selectedAction;
-        if (
-            this.grouped.selectionType === CONFIG.DH.ACTIONS.groupActionSelectionType.selected.id ||
-            config.groupAction?.forceSelect
-        ) {
+        const isSelected = this.grouped.selectionType === CONFIG.DH.ACTIONS.groupActionSelectionType.selected.id;
+        if (isSelected || config.groupAction?.forceSelect) {
             selectedAction = await game.system.api.applications.dialogs.MultiActionSelectionDialog.create(
                 this.item.name,
                 groupedActions    
@@ -45,14 +43,13 @@ export default class DHGroupedField extends fields.SchemaField {
             const roll = await (new Roll(`1d${groupedActions.length}`)).evaluate();
 
             const cls = getDocumentClass('ChatMessage');
-            const msg = {
+            const message = await cls.create({
                 user: game.user.id,
                 rolls: [roll],
                 title: this.item.name,
                 speaker: cls.getSpeaker(),
                 flags: { daggerheart: { noButtons: true } }
-            };
-            const message = await cls.create(msg);
+            });
 
             if (game.dice3d) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
