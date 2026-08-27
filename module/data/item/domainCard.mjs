@@ -144,7 +144,7 @@ export default class DHDomainCard extends BaseDataItem {
         config.cite ??= false;
         config.inline ??= true;
 
-        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'embed' });
+        const description = await this.getEnrichedDescription({ gmNotes: false, type: 'embed' }, options);
         const domains = CONFIG.DH.DOMAIN.allDomains();
         const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
             item: this.parent,
