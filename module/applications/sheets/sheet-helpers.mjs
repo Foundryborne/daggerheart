@@ -49,35 +49,6 @@ export function prepareFeatureContext(actor) {
 }
 
 /**
- * Prepares data for feature embeds, which are a variant of sheet helpers.
- * @param {DhpActor} actor 
- * @param {object} [options] 
- * @returns {Promise<object[][]}>}
- */
-export async function prepareFeatureEmbedContext(actor, options = {}) {
-    if (!actor.system.features) return {};
-
-    const { TextEditor } = foundry.applications.ux;
-    const context = await prepareFeatureContext(actor);
-    const sections = [];
-    for (const prop of ['features', 'evolutionFeatures']) {
-        if (!context[prop]?.length) continue;
-        const value = await Promise.all(context[prop].map(async f => ({
-            name: f.name,
-            featureForm: _loc(CONFIG.DH.ITEM.featureForm[f.system.featureForm]),
-            description: await TextEditor.implementation.enrichHTML(simplifyDescriptionForEmbed(f.system.description), {
-                secrets: true,
-                relativeTo: actor,
-                rollData: f.getRollData(),
-                ...options
-            })
-        })));
-        sections.push(value);
-    }
-    return sections;
-}
-
-/**
  * Does certain pre enrich replacements for embed uses.
  * @param {string} value the pre-enrich string to simplify 
  * @returns {string} the simplified string
