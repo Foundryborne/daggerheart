@@ -14,14 +14,17 @@
                 <strong>{{localize "DAGGERHEART.GENERAL.difficulty"}}:</strong>
                 {{actor.system.difficulty}}
             </div>
+            <div class="divider"></div>
             <div class="thresholds">
                 <strong>{{localize "DAGGERHEART.ACTORS.Adversary.Embed.thresholds"}}:</strong>
                 {{actor.system.damageThresholds.major}}/{{actor.system.damageThresholds.severe}}
             </div>
+            <div class="divider"></div>
             <div class="hp">
                 <strong>{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}:</strong>
                 {{actor.system.resources.hitPoints.max}}
             </div>
+            <div class="divider"></div>
             <div class="stress">
                 <strong>{{localize "DAGGERHEART.GENERAL.stress"}}:</strong>
                 {{actor.system.resources.stress.max}}
@@ -32,10 +35,12 @@
                 <strong>{{localize "DAGGERHEART.ACTORS.Adversary.Embed.attack"}}:</strong>
                 {{attack.bonus}}
             </div>
+            <div class="divider"></div>
             <div class="name-and-range">
                 <strong>{{attack.name}}:</strong>
                 {{attack.range}}
             </div>
+            <div class="divider"></div>
             <div class="damage">{{attack.damage}}</div>
         </div>
         {{#if experiences.length}}
