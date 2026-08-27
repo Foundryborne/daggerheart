@@ -51,6 +51,7 @@
 
     // Secrets are often used by environments for flavor text
     section.secret {
+        // once compat improves, swap to display: contents
         --color-secret-bg: none;
         --color-revealed-bg: none;
         --color-secret-border: none;
@@ -65,13 +66,17 @@
     .features > header {
         font-size: 1.25em;
         font-weight: bold;
+        text-transform: uppercase;
     }
     
     .feature {
         .typography();
+        margin-top: 0.5em;
+        padding-left: 1ch;
 
         > strong.name {
             font-style: italic;
+            margin-left: -1ch;
         }
         > p:first-of-type {
             display: inline;
