@@ -218,8 +218,8 @@
     }
 }
 
-/** Firefox cannot handle division or multiplication of values with units. This is relaxed in nightly. Remove later */
-@-moz-document url-prefix() {
+/** Older Firefox cannot handle division or multiplication of values with units. We force a static size when this happens */
+body.dh-old-firefox-cards {
     .dh-card,
     .dh-card * {
         --card-width: 292px;

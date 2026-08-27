@@ -272,8 +272,18 @@ Hooks.once('init', () => {
 
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
-
-    return handlebarsRegistration();
+    handlebarsRegistration();
+    
+    // Firefox can't handle mixed unit calcs until the nightly (156)
+    // Until then, they must be fixed size
+    const userAgent = navigator.userAgent ?? '';
+    const firefoxVersionMatch = userAgent.match(/\bFirefox\/(\d+\.\d+)\b/);
+    if (firefoxVersionMatch) {
+        const version = Number(firefoxVersionMatch[1]);
+        if (version < 156) {
+            document.body.classList.add('dh-old-firefox-cards');
+        }
+    }
 });
 
 Hooks.on('i18nInit', () => {
