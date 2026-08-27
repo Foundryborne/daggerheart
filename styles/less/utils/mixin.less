@@ -200,7 +200,7 @@
         }
     }
 
-    secret-block {
+    secret-block:not(.embed secret-block) {
         display: block;
 
         /** A buffer to make the hover behavior work a bit better. The bottom in the button needs to compensate */
@@ -239,7 +239,7 @@
      * The element inside a secret-block. 
      * This is separate since during prosemirror editing, the secret-block container does not exist.
      */
-    section.secret {
+    section.secret:not(.embed section.secret) {
         --color-secret-bg: @red-10;
         --color-revealed-bg: @green-10;
         position: relative;

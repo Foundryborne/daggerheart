@@ -302,6 +302,11 @@
                         "label": "Type"
                     }
                 },
+                "Embed": {
+                    "attack": "ATK",
+                    "potentialAdversaries": "Potential Adversaries",
+                    "thresholds": "Thresholds"
+                },
                 "hordeDamage": "Horde Damage",
                 "horderHp": "Horde/HP",
                 "adversaryReactionRoll": {
@@ -415,6 +420,9 @@
                     }
                 },
                 "noPartner": "No Partner selected"
+            },
+            "Embed": {
+
             },
             "Environment": {
                 "FIELDS": {
@@ -3130,6 +3138,7 @@
             },
             "Tiers": {
                 "singular": "Tier",
+                "typed": "Tier {tier} {type}",
                 "1": "Tier 1",
                 "2": "Tier 2",
                 "3": "Tier 3",

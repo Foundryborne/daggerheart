@@ -1,3 +1,4 @@
+import { prepareFeatureEmbedContext } from '../../applications/sheets/actors/sheet-helpers.mjs';
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -251,5 +252,41 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         super._onUpdate(changes, options, userId);
 
         if (options.scrollingTextData) this.parent.queueScrollText(options.scrollingTextData);
+    }
+
+    /**
+     * Internal method to create a context for toEmbed(), which is passed to the template.
+     * @param {object} [options] enrichment options
+     * @returns {Promise<object>}
+     * @protected
+     */
+    async _prepareEmbedContext(options = {}) {
+        const { TextEditor } = foundry.applications.ux;
+        const description = await TextEditor.implementation.enrichHTML(this.description, {
+            secrets: true,
+            relativeTo: this.parent,
+            ...options
+        });
+
+        return {
+            actor: this.parent,
+            description,
+            featureGroups: await prepareFeatureEmbedContext(this.parent)
+        };
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        const template = this.constructor.embedTemplate;
+        if (!template) return null;
+
+        const context = await this._prepareEmbedContext(options);
+        const content = await foundry.applications.handlebars.renderTemplate(template, context);
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        if (['dark', 'light'].includes(config.theme)) {
+            container.children[0].classList.add('themed', `theme-${config.theme}`);
+        }
+        return container.children;
     }
 }
