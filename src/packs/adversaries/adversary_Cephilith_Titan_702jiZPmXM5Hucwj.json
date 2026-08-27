@@ -468,7 +468,7 @@
       "type": "feature",
       "system": {
         "featureForm": "action",
-        "description": "<p><strong>Spend a Fear</strong> to summon <strong>1d4</strong> Outer Realms Abominations, which appear within Far range, then choose one to immediately spotlight.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to summon <strong>1d4</strong> Cephilith Abominations, which appear within Far range, then choose one to immediately spotlight.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,
@@ -504,7 +504,7 @@
             },
             "summon": [
               {
-                "actorUUID": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof",
+                "actorUUID": "Compendium.daggerheart.adversaries.Actor.XEZbNjjrhyioE7YP",
                 "count": "1d4"
               }
             ],
