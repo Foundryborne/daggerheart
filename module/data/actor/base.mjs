@@ -1,4 +1,4 @@
-import { prepareFeatureContext, prepareFeatureEmbedContext, simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
+import { prepareFeatureContext, simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -292,7 +292,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         return {
             actor: this.parent,
             description,
-            featureGroups: await prepareFeatureEmbedContext(this.parent)
+            featureGroups
         };
     }
 
