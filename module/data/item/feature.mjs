@@ -1,3 +1,4 @@
+import { imageIconField } from '../settings/Homebrew.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHFeature extends BaseDataItem {
@@ -39,7 +40,27 @@ export default class DHFeature extends BaseDataItem {
                 initial: 'passive',
                 choices: CONFIG.DH.ITEM.featureForm,
                 label: 'DAGGERHEART.CONFIG.FeatureForm.label'
-            })
+            }),
+            actorResources: new fields.TypedObjectField(new fields.SchemaField({
+                value: new fields.NumberField({
+                    required: true,
+                    integer: true,
+                    initial: 0,
+                    min: 0,
+                    label: 'DAGGERHEART.GENERAL.value'
+                }),
+                max: new fields.NumberField({
+                    nullable: true,
+                    initial: null,
+                    min: 0,
+                    label: 'DAGGERHEART.GENERAL.max'
+                }),
+                label: new fields.StringField({ label: 'DAGGERHEART.GENERAL.label' }),
+                images: new fields.SchemaField({
+                    full: imageIconField('fa solid fa-circle'),
+                    empty: imageIconField('fa-regular fa-circle')
+                })
+            }))
         };
     }
     

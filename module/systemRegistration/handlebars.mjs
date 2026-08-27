@@ -13,6 +13,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/gold.hbs',
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/item-resource.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/custom-resource/custom-resource.hbs',
         'systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs',
         'systems/daggerheart/templates/sheets/global/partials/resource-section/simple.hbs',
         'systems/daggerheart/templates/sheets/global/partials/resource-section/dice-value.hbs',

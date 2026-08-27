@@ -282,7 +282,7 @@ export class Resource extends foundry.abstract.DataModel {
     };
 }
 
-const imageIconField = defaultValue =>
+export const imageIconField = defaultValue =>
     new foundry.data.fields.SchemaField(
         {
             value: new foundry.data.fields.StringField({

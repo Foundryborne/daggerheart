@@ -12,4 +12,15 @@
     </fieldset>
 
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}
+
+    <fieldset>
+        <legend>
+            {{localize "Actor Resources"}}
+            <a><i class="fa-solid fa-plus"></i></a>
+        </legend>
+
+        {{#each actorResources as |resource key|}}
+            {{> "systems/daggerheart/templates/sheets/global/partials/custom-resource/custom-resource.hbs" resource field=document.system.schema.fields.actorResources.element.fields basePath="system.actorResources.{{key}}." }}
+        {{/each}}
+    </fieldset>
 </section>

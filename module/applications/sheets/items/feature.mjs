@@ -4,7 +4,9 @@ export default class FeatureSheet extends DHBaseItemSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['feature'],
-        actions: {}
+        actions: {
+            addActorResource: FeatureSheet.#onAddActorSheet
+        }
     };
 
     /** @inheritdoc */
@@ -50,5 +52,9 @@ export default class FeatureSheet extends DHBaseItemSheet {
         };
         
         return context;
+    }
+
+    static async #onAddActorSheet() {
+        this.document.update({})
     }
 }

@@ -27,6 +27,16 @@ export default class DhCreature extends BaseDataActor {
         return !vulnerableAppliedByOther;
     }
 
+    get availableResources() {
+        const excemptKeys = ['armor'];
+        return Object.entries(this.resources).reduce((acc, [key, data]) => {
+            if (!excemptKeys.includes(key))
+                acc[key] = data;
+            
+            return acc;
+        }, foundry.utils.deepClone(CONFIG.DH.RESOURCE.character.all));
+    }
+
     async _preUpdate(changes, options, userId) {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;
@@ -57,6 +67,17 @@ export default class DhCreature extends BaseDataActor {
                     'ActiveEffect',
                     autoEffects.map(x => x.id)
                 );
+            }
+        }
+    }
+
+    prepareDerivedData() {
+        for (const feature of this.parent.items.filter(x => x.type === 'feature')) {
+            for (const [key, data] of Object.entries(feature.system.actorResources)) {
+                this.resources[key] = {
+                    ...data,
+                    featureParentId: feature.id
+                }
             }
         }
     }
