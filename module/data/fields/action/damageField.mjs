@@ -320,7 +320,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
 
         const dice = `${multiplier ?? 1}${this.dice}`;
         const sign = this.bonus < 0 ? ' - ' : ' + ';
-        return this.bonus ? `${dice} ${sign} ${Math.abs(this.bonus)}` : dice;
+        return this.bonus ? `${dice}${sign}${Math.abs(this.bonus)}` : dice;
     }
 }
 

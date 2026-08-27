@@ -7,6 +7,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
+import { simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
 import {
     addLinkedItemsDiff,
     getScrollTextData,
@@ -156,7 +157,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         config.type ??= 'sheet';
 
         const { prefix, value, suffix } = await this.getDescriptionData(config, options);
-        const separator = config.type === 'tooltip' ? '\n' : '\n<hr>\n';
+        const separator = config.type === 'embed' ? '\n' : '\n<hr>\n';
         let fullDescription = [prefix, value, suffix].filter(p => !!p).join(separator);
         if (this.gmNotes && config.gmNotes) {
             const gmNotesElement = document.createElement('section');
@@ -168,7 +169,9 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             gmNotesElement.innerHTML = header.outerHTML + this.gmNotes;
             fullDescription += gmNotesElement.outerHTML;
         }
-
+        if (config.type === 'embed') {
+            fullDescription = simplifyDescriptionForEmbed(fullDescription);
+        }
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
             ...options,
             relativeTo: options.relativeTo ?? this.parent,

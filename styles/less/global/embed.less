@@ -1,0 +1,62 @@
+.embed.actor {
+    background: var(--dh-embed-bg);
+    color: var(--dh-embed-color-text);
+    border: 2px solid var(--dh-embed-color-border);
+    padding: 4px;
+
+    header.name {
+        font-size: 1.5em;
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    .tier {
+        font-size: 1.125em;
+        font-style: italic;
+        font-weight: 600;
+    }
+
+    .description {
+        font-style: italic;
+    }
+
+    .stats {
+        background-color: var(--dh-embed-stats-bg);
+        border-top: 1px solid var(--dh-embed-color-border);
+        border-bottom: 1px solid var(--dh-embed-color-border);
+    }
+
+    .row {
+        display: flex;
+        align-items: baseline;
+    }
+
+    // Secrets are often used by environments for flavor text
+    section.secret {
+        --color-secret-bg: none;
+        --color-revealed-bg: none;
+        --color-secret-border: none;
+        padding: unset;
+        border-width: unset;
+        font-style: italic;
+        button.reveal { 
+            display: none;
+        }
+    }
+
+    .features > header {
+        font-size: 1.25em;
+        font-weight: bold;
+    }
+    
+    .feature {
+        .typography();
+
+        > strong.name {
+            font-style: italic;
+        }
+        > p:first-of-type {
+            display: inline;
+        }
+    }
+}

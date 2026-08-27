@@ -9,7 +9,7 @@
       "source": "Daggerheart SRD",
       "page": null
     },
-    "description": "<p><strong>Spend any number of Hope</strong> to target an equal number of adversaries within Close range. Each target makes a <strong>Reaction Roll (15)</strong>. Targets who fail take <strong>d8+6</strong> magic damage using your Spellcast trait as they are engulfed in dark fire. Targets who succeed take half damage.</p>",
+    "description": "<p>Once per scene, <strong>spend any number of Hope</strong> to target an equal number of adversaries within Close range. Each target makes a <strong>Reaction Roll (15)</strong>. Targets who fail take <strong>d8+6</strong> magic damage using your Spellcast trait as they are engulfed in dark fire. Targets who succeed take half damage.</p>",
     "gmNotes": "",
     "resource": null,
     "actions": {
@@ -71,9 +71,9 @@
           }
         ],
         "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null,
+          "value": 0,
+          "max": "1",
+          "recovery": "scene",
           "consumeOnSuccess": false
         },
         "target": {

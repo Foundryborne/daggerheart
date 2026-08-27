@@ -32,7 +32,8 @@ export const domains = {
         id: 'dread',
         label: 'DAGGERHEART.GENERAL.Domain.dread.label',
         src: 'systems/daggerheart/assets/icons/domains/dread.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.dread.description'
+        description: 'DAGGERHEART.GENERAL.Domain.dread.description',
+        color: '#2f2862'
     },
     grace: {
         id: 'grace',
@@ -73,8 +74,8 @@ export const domains = {
 };
 
 export const allDomains = () => ({
-    ...domains,
-    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains
+    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains,
+    ...domains
 });
 
 export const orderedDomains = () => {

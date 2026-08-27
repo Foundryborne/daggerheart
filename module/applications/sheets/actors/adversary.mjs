@@ -1,5 +1,6 @@
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
+import { prepareFeatureContext } from '../sheet-helpers.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -205,45 +206,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
      * @protected
      */
     async _prepareFeaturesContext(context, _options) {
-        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
-        const featureData = this.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        ).map(feature => ({ feature, childFeatures: [] }));
-
-        const { evolved } = CONFIG.DH.ACTIONS.evolutionStates;
-        for (const { feature, childFeatures } of featureData) {
-            if (feature.system.featureForm === 'evolution') {
-                const evolutionActions = 
-                    feature.system.actions.filter(x => x.type === CONFIG.DH.ACTIONS.actionTypes.evolution.id);
-                for (const action of evolutionActions) {
-                    for (const [id, featureState] of Object.entries(action.evolution.evolutionFeatures)) {
-                        const evolutionFeature = featureData.find(x => x.feature.id === id);
-                        if (!evolutionFeature) continue;
-
-                        if (featureState === evolved.id) {
-                            childFeatures.push(evolutionFeature);
-                            featureData.splice(featureData.indexOf(evolutionFeature), 1);
-                        }
-                    }
-                }
-            }
-        }
-
-        context.features = [];
-        context.evolutionFeatures = [];
-        for (const { feature, childFeatures } of featureData) {
-            if (childFeatures.length) {
-                context.evolutionFeatures.push(feature);
-            } else {
-                context.features.push(feature);
-            }
-
-            for (const data of childFeatures) {
-                context.evolutionFeatures.push(data.feature);
-            }
-        }
+        const featureContext = prepareFeatureContext(this.document);
+        foundry.utils.mergeObject(context, featureContext);
     }
 
     /* -------------------------------------------- */

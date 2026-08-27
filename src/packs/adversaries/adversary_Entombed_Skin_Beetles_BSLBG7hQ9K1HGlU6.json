@@ -304,7 +304,7 @@
       "name": "Momentum",
       "type": "feature",
       "system": {
-        "featureForm": "reaction",
+        "featureForm": "passive",
         "description": "<p>When the Beetles make a successful attack against a PC, you gain a Fear.</p>",
         "attribution": {},
         "gmNotes": "",

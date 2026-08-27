@@ -9,20 +9,8 @@
         }
     }
 
+    .actions-list,
     .action-buttons-list {
-        display: flex;
-        flex-direction: column;
-
-        .action-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-    }
-
-    .actions-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
         gap: 10px;
 
         .action-item {
@@ -45,8 +33,14 @@
         }
     }
 
+    .action-buttons-list {
+        display: flex;
+        flex-direction: column;
+    }
+
     .actions-list {
-        gap: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 
         .action-item {
             &:hover {
@@ -72,5 +66,5 @@
                 margin-left: auto;
             }
         }
-    }
+    }  
 }

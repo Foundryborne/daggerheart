@@ -202,7 +202,7 @@
       "type": "feature",
       "system": {
         "featureForm": "action",
-        "description": "<p><strong>Spend a Fear</strong> to have the @Lookup[@name] let out a spine-chilling screech. All creatures within Far range are Terrified until they succeed on a Presence Roll (18) to clear the condition or the @Lookup[@name] is defeated. While Terrified, a PC doesn't gain a Hope when they roll with Hope.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to have the @Lookup[@name] let out a spine-chilling screech. All PCs within Far range are Terrified until they succeed on a Presence Roll (18) to clear the condition or the @Lookup[@name] is defeated. While Terrified, a PC doesn't gain a Hope when they roll with Hope.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,

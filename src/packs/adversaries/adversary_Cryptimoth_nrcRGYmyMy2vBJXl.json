@@ -233,7 +233,7 @@
       "type": "feature",
       "system": {
         "featureForm": "action",
-        "description": "<p><strong>Spend 2 Fear</strong> to have the @Lookup[@name] unleash a burst of psychic energy that causes each PC within Far range to suffer visions of their horrifying fate. Each target must make an Insight Reaction Roll (16). Targets who fail take <strong>3d8</strong> direct magic damage and become <em>Vulnerable</em> until their next rest. Targets who succeed must mark a Stress or take half damage.</p>",
+        "description": "<p><strong>Spend 2 Fear</strong> to have the @Lookup[@name] unleash a burst of psychic energy that causes each PC within Far range to suffer visions of their horrifying fate. Each target must make an Instinct Reaction Roll (16). Targets who fail take <strong>3d8</strong> direct magic damage and become <em>Vulnerable</em> until their next rest. Targets who succeed must mark a Stress or take half damage.</p>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,

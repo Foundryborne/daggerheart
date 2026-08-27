@@ -458,7 +458,7 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "featureForm": "reaction",
+        "featureForm": "passive",
         "description": "<p>When a PC fails an attack roll against the Queen, you gain a Fear.</p>",
         "attribution": {},
         "gmNotes": "",
