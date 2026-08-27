@@ -1,6 +1,6 @@
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import { prepareFeatureContext } from './sheet-helpers.mjs';
+import { prepareFeatureContext } from '../sheet-helpers.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 

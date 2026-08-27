@@ -80,7 +80,7 @@ export default class DHAncestry extends BaseDataItem {
         config.cite ??= false;
         config.inline ??= true;
 
-        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'tooltip' });
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'embed' });
         const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
             item: this.parent,
             description

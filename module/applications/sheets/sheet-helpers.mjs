@@ -65,7 +65,7 @@ export async function prepareFeatureEmbedContext(actor, options = {}) {
         const value = await Promise.all(context[prop].map(async f => ({
             name: f.name,
             featureForm: _loc(CONFIG.DH.ITEM.featureForm[f.system.featureForm]),
-            description: await TextEditor.implementation.enrichHTML(f.system.description, {
+            description: await TextEditor.implementation.enrichHTML(simplifyDescriptionForEmbed(f.system.description), {
                 secrets: true,
                 relativeTo: actor,
                 rollData: f.getRollData(),
@@ -75,4 +75,13 @@ export async function prepareFeatureEmbedContext(actor, options = {}) {
         sections.push(value);
     }
     return sections;
+}
+
+/**
+ * Does certain pre enrich replacements for embed uses.
+ * @param {string} value the pre-enrich string to simplify 
+ * @returns {string} the simplified string
+ */
+export function simplifyDescriptionForEmbed(value) {
+    return value.replaceAll(/<p>@(Template|Effect)\[([^[\]]*)\](?:{([^}]*)})?<\/p>/g, '')
 }

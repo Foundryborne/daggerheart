@@ -95,7 +95,7 @@ export default class DHSubclass extends BaseDataItem {
             ? game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.spellcastingTrait].label)
             : null;
         
-        if (config.type === 'tooltip') {
+        if (config.type === 'embed') {
             // for now, tooltips do not show any specific version. Eventually we may want rank specific embeds via dataset params or something
             return { value: baseDescription };
         } else {
@@ -132,7 +132,7 @@ export default class DHSubclass extends BaseDataItem {
         const domains = CONFIG.DH.DOMAIN.allDomains();
         const classDomains = classItem?.system.domains?.slice(0, 2) ?? []; // 2 max for displays
 
-        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'tooltip' });
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'embed' });
         const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
             item: this.parent,
             description,

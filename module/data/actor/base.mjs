@@ -1,4 +1,4 @@
-import { prepareFeatureEmbedContext } from '../../applications/sheets/actors/sheet-helpers.mjs';
+import { prepareFeatureEmbedContext } from '../../applications/sheets/sheet-helpers.mjs';
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 

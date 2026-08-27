@@ -1,3 +1,4 @@
+import { simplifyDescriptionForEmbed } from '../applications/sheets/sheet-helpers.mjs';
 import { fromUuids } from '../helpers/utils.mjs';
 import { parseInlineParams } from './parser.mjs';
 
@@ -141,7 +142,8 @@ const rowsByItemType = {
                     const rollData = item.getRollData();
                     return Promise.all(
                         itemFeatures.map(async f => {
-                            const description = await TextEditor.enrichHTML(_loc(f.description), { rollData });
+                            const raw = simplifyDescriptionForEmbed(_loc(f.description));
+                            const description = await TextEditor.enrichHTML(raw, { rollData });
                             return `<div class="feature"><strong>${_loc(f.label)}:</strong> ${description}</div>`;
                         })
                     );
@@ -178,7 +180,8 @@ const rowsByItemType = {
                     const rollData = i.getRollData();
                     return Promise.all(
                         itemFeatures.map(async f => {
-                            const description = await TextEditor.enrichHTML(_loc(f.description), { rollData });
+                            const raw = simplifyDescriptionForEmbed(_loc(f.description));
+                            const description = await TextEditor.enrichHTML(raw, { rollData });
                             return `<div class="feature"><strong>${_loc(f.label)}:</strong> ${description}</div>`;
                         })
                     );
@@ -197,7 +200,7 @@ const rowsByItemType = {
             {
                 label: 'DAGGERHEART.GENERAL.description',
                 cssClass: 'description',
-                value: i => i.system.getEnrichedDescription(),
+                value: i => i.system.getEnrichedDescription({ type: 'embed' }),
                 html: true
             }
         ]
@@ -212,7 +215,7 @@ const rowsByItemType = {
             {
                 label: 'DAGGERHEART.GENERAL.description',
                 cssClass: 'description',
-                value: i => i.system.getEnrichedDescription(),
+                value: i => i.system.getEnrichedDescription({ type: 'embed' }),
                 html: true
             }
         ]
