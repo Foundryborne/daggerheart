@@ -213,6 +213,11 @@
             }
         }
     }
+
+    // Passing secrets: false only removes unrevealed secrets, so we need to hide it here
+    section.secret {
+        display: none;
+    }
 }
 
 /** Older Firefox cannot handle division or multiplication of values with units. We force a static size when this happens */
