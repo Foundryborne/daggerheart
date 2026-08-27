@@ -146,9 +146,6 @@
     // the items inside use border-box
     box-sizing: content-box;
 
-    // This tricks the container so that display: inline-block doen't try to line up the ability text
-    float: left; 
-
     * {
         scrollbar-color: light-dark(@dark-blue, @golden) transparent;
     }
@@ -215,6 +212,20 @@
                 margin-left: auto;
             }
         }
+    }
+
+    // Passing secrets: false only removes unrevealed secrets, so we need to hide it here
+    section.secret {
+        display: none;
+    }
+}
+
+/** Older Firefox cannot handle division or multiplication of values with units. We force a static size when this happens */
+body.dh-old-firefox-cards {
+    .dh-card,
+    .dh-card * {
+        --card-width: 292px;
+        --scale: 1;
     }
 }
 

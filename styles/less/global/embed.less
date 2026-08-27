@@ -24,15 +24,34 @@
         background-color: var(--dh-embed-stats-bg);
         border-top: 1px solid var(--dh-embed-color-border);
         border-bottom: 1px solid var(--dh-embed-color-border);
+        padding-block: 0.25rem;
     }
 
     .row {
         display: flex;
         align-items: baseline;
+        padding-inline:  0.5rem;
+    }
+
+    .divider {
+        display: inline-block;
+        background-color: var(--dh-embed-color-text);
+        width: 1px;
+        align-self: stretch;
+        margin: 0 var(--spacer-4);
+        margin-top: 0.12em;
+        height: 1em;
+    }
+
+    .experience-row {
+        border-top: 1px dashed var(--dh-embed-color-border);
+        padding-top: 0.25rem;
+        margin-top: 0.25rem;
     }
 
     // Secrets are often used by environments for flavor text
     section.secret {
+        // once compat improves, swap to display: contents
         --color-secret-bg: none;
         --color-revealed-bg: none;
         --color-secret-border: none;
@@ -47,13 +66,17 @@
     .features > header {
         font-size: 1.25em;
         font-weight: bold;
+        text-transform: uppercase;
     }
     
     .feature {
         .typography();
+        margin-top: 0.5em;
+        padding-left: 1ch;
 
         > strong.name {
             font-style: italic;
+            margin-left: -1ch;
         }
         > p:first-of-type {
             display: inline;
