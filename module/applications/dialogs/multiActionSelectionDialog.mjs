@@ -1,10 +1,22 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
+/**
+ * @import DHBaseAction from '../../data/action/baseAction.mjs';;
+ */
+
+/** 
+ * Selection dialog when using multi actions, allowing to select what sub-action is being used.
+ */
 export default class MultiActionSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
+    /**
+     * @param {string[]} titleName 
+     * @param {DHBaseAction[]} actions 
+     * @param {object} options 
+     */
     constructor(titleName, actions, options = {}) {
         super(options);
 
-        this.titleName = titleName;
+        this.options.window.title = titleName;
         this.actions = actions;
         this.action = null;
     }
@@ -20,20 +32,11 @@ export default class MultiActionSelectionDialog extends HandlebarsApplicationMix
         position: { width: 400 }
     };
 
-    /* -------------------------------------------- */
-
     static PARTS = {
         actions: {
             template: 'systems/daggerheart/templates/dialogs/multiActionSelect.hbs'
         }
     };
-
-    /* -------------------------------------------- */
-
-    /** @override */
-    get title() {
-        return this.titleName;
-    }
 
     /* -------------------------------------------- */
 
@@ -45,6 +48,10 @@ export default class MultiActionSelectionDialog extends HandlebarsApplicationMix
         return context;
     }
 
+    /**
+     * @this MultiActionSelectionDialog
+     * @type {ApplicationClickAction}
+     */
     static async #onChooseAction(_, button) {
         const { actionId } = button.dataset;
         this.action = this.actions.find(a => a.id === actionId);
@@ -52,6 +59,12 @@ export default class MultiActionSelectionDialog extends HandlebarsApplicationMix
         this.close();
     }
 
+    /**
+     * @param {string[]} titleName 
+     * @param {DHBaseAction[]} actions 
+     * @param {object} options 
+     * @returns {Promise<DHBaseAction | undefined>}
+     */
     static create(titleName, actions, options) {
         return new Promise(resolve => {
             const dialog = new this(titleName, actions, options);
