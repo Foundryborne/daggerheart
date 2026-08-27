@@ -180,4 +180,9 @@ body:not([data-gm=true]) [data-visibility="gm"] {
 /** Embedded cards are usually inline */
 document-embed:has(.dh-card) {
     display: inline-block;
+    
+    // This tricks the container so that display: inline-block doen't try to line up the ability text
+    .dh-card {
+        float: left; 
+    }
 }
