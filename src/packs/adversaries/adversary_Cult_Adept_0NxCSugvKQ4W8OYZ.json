@@ -134,7 +134,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 85,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -269,69 +269,15 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d4",
-                    "bonus": 3,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                },
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 2,
-                  "dice": "d4",
-                  "bonus": 3,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -350,21 +296,22 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {
                 "stress": {
                   "value": {
                     "custom": {
-                      "enabled": true,
+                      "enabled": false,
                       "formula": "1"
                     },
                     "multiplier": "flat",
-                    "flatMultiplier": 1,
+                    "flatMultiplier": 0,
                     "dice": "d6",
-                    "bonus": null
+                    "bonus": 1
                   },
                   "applyTo": "stress",
                   "base": false,
@@ -408,7 +355,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Spend Fear",
             "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
             "range": "far",
             "baseAction": false,
@@ -419,12 +366,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "kCffzM8rX8NEr9d2",
       "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
@@ -488,12 +433,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "IHWDn097sRgjlZXO",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -501,7 +444,6 @@
         {
           "name": "Shroud of the Fallen",
           "img": "icons/magic/unholy/orb-contained-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.IHWDn097sRgjlZXO",
           "transfer": false,
           "_id": "U9lWz1LgeAiK5L85",
           "type": "base",
@@ -626,12 +568,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "JpSrduK3vjd9h098",
       "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
@@ -639,7 +579,6 @@
         {
           "name": "Shadow Shackles",
           "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.JpSrduK3vjd9h098",
           "transfer": false,
           "_id": "lNH6srSPyEprXZ4o",
           "type": "base",
@@ -695,7 +634,7 @@
       "name": "Fear Is Fuel",
       "type": "feature",
       "system": {
-        "description": "<p> Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
+        "description": "<p>Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
         "resource": null,
         "actions": {
           "3tibqB97ooJesxf0": {
@@ -713,34 +652,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "stress": {
@@ -802,12 +713,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "x6FbcrfOscb3er6P",
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",

@@ -129,7 +129,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 86,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -240,12 +240,10 @@
         "description": "<p>The @Lookup[@name] is resistant to physical damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "nCIGFPFOKzyznL0O",
       "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
@@ -280,7 +278,6 @@
             "expired": false
           },
           "description": "<p>The Experiment is resistant to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -310,12 +307,10 @@
         "description": "<p>When a target the @Lookup[@name] attacks has other adversaries within Very Close range, the @Lookup[@name] deals double damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "1fE6xo8yIOmZkGNE",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -350,7 +345,6 @@
             "expired": false
           },
           "description": "<p>When a target the Failed Experiment attacks has other adversaries within Very Close range, the Failed Experiment deals double damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -419,12 +413,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "g0h3Zo6xqgfSlyxi",
       "img": "icons/skills/melee/strike-slashes-red.webp",

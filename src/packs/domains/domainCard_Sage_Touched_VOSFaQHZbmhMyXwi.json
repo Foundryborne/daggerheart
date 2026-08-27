@@ -109,7 +109,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 131,
+      "page": null,
       "artist": ""
     },
     "domainTouched": 4,
@@ -151,8 +151,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
-      "origin": null,
+      "description": "<p>While you're in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -169,7 +168,6 @@
     {
       "name": "Double Agility",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-      "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
       "transfer": true,
       "_id": "Mmax64mlLPYxJPB7",
       "type": "base",
@@ -213,7 +211,6 @@
     {
       "name": "Double Instinct",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
-      "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
       "transfer": true,
       "_id": "p03IjcyigL4b2WD1",
       "type": "base",
@@ -241,7 +238,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
+      "description": "<p>Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

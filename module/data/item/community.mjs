@@ -5,6 +5,8 @@ import BaseDataItem from './base.mjs';
 const fields = foundry.data.fields;
 
 export default class DHCommunity extends BaseDataItem {
+    static embedTemplate = 'systems/daggerheart/templates/components/card/community.hbs';
+
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -31,10 +33,6 @@ export default class DHCommunity extends BaseDataItem {
 
     /** @inheritdoc */
     async getDescriptionData(options = {}) {
-        // Preload all community features for acquisition from the cache
-        // todo: make feature acquisition async and replace feature helpers for methods
-        await fromUuids(this._source.features);
-
         const showReferenceInline = options.type === 'sheet';
         const reference = (CONFIG.DH.lore.community[this.loreReference] ?? this.loreReference ?? '').replace(/\[\]/g, '');
         const label = _loc('DAGGERHEART.ITEMS.Base.viewReference');
@@ -42,14 +40,34 @@ export default class DHCommunity extends BaseDataItem {
             ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
-        const features = await getFeaturesHTMLData(this.features);
+        const features = await getFeaturesHTMLData(await fromUuids(this._source.features));
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
-            { label: 'DAGGERHEART.ITEMS.Community.featuresLabel', features }
+            { features }
         );
 
         return { prefix: null, value: baseDescription, suffix };
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        // Card styling has certain defaults designed for embedding
+        config.caption ??= false;
+        config.cite ??= false;
+        config.inline ??= true;
+
+        const description = await this.getEnrichedDescription({ ...options, gmNotes: false, type: 'embed' });
+        const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
+            item: this.parent,
+            description
+        })
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        if (['dark', 'light'].includes(config.theme)) {
+            container.children[0].classList.add('themed', `theme-${config.theme}`);
+        }
+        return container.children;
     }
 }

@@ -9,7 +9,10 @@
     "tokenRingImg": "icons/creatures/magical/humanoid-giant-forest-blue.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "custom",
+      "scale": 1,
+      "depth": null
     },
     "mainTrait": "agility",
     "advantageOn": {},
@@ -18,7 +21,8 @@
       "mainTraitBonus": 1,
       "maximumTier": 1,
       "damageBonus": 6,
-      "evasionBonus": 2
+      "evasionBonus": 2,
+      "increaseDamageDice": 0
     },
     "hybrid": {
       "beastformOptions": 2,
@@ -28,7 +32,7 @@
     "examples": "",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 14,
+      "page": null,
       "artist": ""
     }
   },
@@ -42,15 +46,24 @@
         "characterTokenData": {
           "tokenImg": null,
           "tokenRingImg": "icons/svg/mystery-man.svg",
-          "tokenSize": {}
+          "tokenSize": {
+            "height": 1,
+            "width": 1,
+            "scale": 1
+          },
+          "usesDynamicToken": false
         },
-        "advantageOn": [],
+        "advantageOn": {},
         "featureIds": [],
         "effectIds": [],
         "changes": [],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -59,8 +72,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Pick a Tier 1 Beastform option and become a larger, more powerful version of that creature. While you’re in this form, you retain all traits and features from the original form and gain the following bonuses:</p><ul><li><p>A +6 bonus to the damage rolls</p></li><li><p>A +1 bonus to the trait used by this form</p></li><li><p>A +2 bonus to evasion</p></li></ul>",
-      "origin": null,
+      "description": "<p>Pick a Tier 1 Beastform option and become a larger, more powerful version of that creature. While you're in this form, you retain all traits and features from the original form and gain the following bonuses:</p><ul><li><p>A +6 bonus to the damage rolls</p></li><li><p>A +1 bonus to the trait used by this form</p></li><li><p>A +2 bonus to evasion</p></li></ul>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

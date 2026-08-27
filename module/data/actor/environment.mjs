@@ -6,6 +6,8 @@ import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 export default class DhEnvironment extends BaseDataActor {
     scenes = new Set();
 
+    static embedTemplate = 'systems/daggerheart/templates/components/actor-embed/environment.hbs';
+
     /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Environment'];
 
@@ -78,5 +80,13 @@ export default class DhEnvironment extends BaseDataActor {
                 });
             }
         }
+    }
+
+    async _prepareEmbedContext(options) {
+        const environmentTypes = CONFIG.DH.ACTOR.environmentTypes;
+        return {
+            ...(await super._prepareEmbedContext(options)),
+            type: _loc(environmentTypes[this.type]?.label)
+        };
     }
 }

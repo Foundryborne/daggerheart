@@ -1,0 +1,61 @@
+<fieldset class="one-column evolution-section" id="evolution-drop-zone" data-is-drop-zone="true" data-key="evolution">
+    <legend>
+        {{localize "DAGGERHEART.ACTIONS.TYPES.evolution.name"}}
+    </legend>
+
+    <div class="evolution-resources">
+        <div class="evolution-resource">
+            <input type="checkbox" data-resource="hitPoints" {{checked source.resourceRefresh.hitPoints}}/>
+            <span class="resource-title">{{localize "DAGGERHEART.ACTIONS.Settings.evolution.clearHitPoints"}}</span>
+        </div>
+        <div class="evolution-resource">
+            <input type="checkbox" data-resource="stress" {{checked source.resourceRefresh.stress}}/>
+            <span class="resource-title">{{localize "DAGGERHEART.ACTIONS.Settings.evolution.clearStress"}}</span>
+        </div>
+    </div>
+
+    <div class="evolution-container">
+        <div class="evolution-features">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{localize "DAGGERHEART.ACTIONS.Settings.evolution.featureName"}}</th>
+                        <th>{{localize "DAGGERHEART.ACTIONS.Settings.evolution.evolutionState"}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each evolutionFeatures as | feature |}}
+                        <tr>
+                            <td>{{feature.name}}</td>
+                            <td>
+                                <select class="evolution-state-select" data-id="{{feature.id}}">
+                                    {{selectOptions @root.evolutionStates selected=feature.state localize=true}}
+                                </select>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <fieldset class="one-column optional">
+        <legend>
+            {{localize "Alternative Token"}}
+            <input type="checkbox" data-action="toggleEvolutionTokenData" {{checked source.tokenOverride}} />
+        </legend>
+
+        {{#if source.tokenOverride}}
+            {{formField fields.tokenOverride.fields.tokenImage value=source.tokenOverride.tokenImage name="evolution.tokenOverride.tokenImage" localize=true }}
+            {{formField fields.tokenOverride.fields.tokenScale value=source.tokenOverride.tokenScale name="evolution.tokenOverride.tokenScale" localize=true }}
+            <span class="subtitle">{{localize "DAGGERHEART.ACTIONS.TYPES.evolution.dynamicToken"}}</span>
+            {{formField fields.tokenOverride.fields.dynamicToken.fields.image value=source.tokenOverride.dynamicToken.image name="evolution.tokenOverride.dynamicToken.image" localize=true }}
+            {{formField fields.tokenOverride.fields.dynamicToken.fields.scale value=source.tokenOverride.dynamicToken.scale name="evolution.tokenOverride.dynamicToken.scale" localize=true }}
+            <div class="two-columns even full-width-section">
+                {{formField fields.tokenOverride.fields.dynamicToken.fields.ring value=source.tokenOverride.dynamicToken.ring name="evolution.tokenOverride.dynamicToken.ring" localize=true }}
+                {{formField fields.tokenOverride.fields.dynamicToken.fields.background value=source.tokenOverride.dynamicToken.background name="evolution.tokenOverride.dynamicToken.background" localize=true }}               
+            </div>
+            {{formField fields.tokenOverride.fields.dynamicToken.fields.effects value=source.tokenOverride.dynamicToken.effects name="evolution.tokenOverride.dynamicToken.effects" label="DAGGERHEART.ACTIONS.TYPES.evolution.dynamicEffects" localize=true }}
+        {{/if}}
+    </fieldset>
+</fieldset>

@@ -1,0 +1,20 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Only Skin Deep",
+  "type": "feature",
+  "_id": "qXA130mgMnvPZfNF",
+  "img": "icons/commodities/biological/hand-clawed-blue.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>You gain the benefit of only one of your chosen ancestry's features, which you select when you choose the ancestry. You can use a downtime move to choose a different feature from that ancestry.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!qXA130mgMnvPZfNF"
+}

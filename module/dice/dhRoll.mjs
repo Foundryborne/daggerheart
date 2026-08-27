@@ -189,6 +189,7 @@ export default class DHRoll extends BaseRoll {
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,
+            appliesEffects: chatData.appliesEffects,
             metagamingSettings,
             automationSettings
         });

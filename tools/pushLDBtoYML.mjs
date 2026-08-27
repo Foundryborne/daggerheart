@@ -51,14 +51,33 @@ function transformDocument(entry) {
     const stats = entry._stats;
     entry._stats = stats ? { compendiumSource: stats.compendiumSource } : stats;
     delete entry.ownership;
-    if (entry?.system) {
+    entry.name = removeSpecialCharacters(entry.name);
+    entry.description = removeSpecialCharacters(entry.description);
+    if (entry.system) {
+        entry.system.motivesAndTactics = removeSpecialCharacters(entry.system.motivesAndTactics);
         entry.system.description = removeSpecialCharacters(entry.system.description);
+        entry.system.backgroundQuestions = entry.system.backgroundQuestions?.map(removeSpecialCharacters);
+        entry.system.connections = entry.system.connections?.map(removeSpecialCharacters);
+        if (entry.system.duration) {
+            entry.system.duration.description = removeSpecialCharacters(entry.system.duration.description);
+        }
         for (const action of Object.values(entry.system.actions ?? {})) {
             action.description = removeSpecialCharacters(action.description);
             if (action.description && action.description === entry.system.description) {
                 action.description = '';
             }
+            for (const area of action.areas ?? []) {
+                area.name = removeSpecialCharacters(area.name)
+            }
         }
+
+        // Remove any origin flags that accidentally got in there. Effect origins are meant for in-world use
+        if ('changes' in entry.system && 'origin' in entry) {
+            delete entry.origin;
+        }
+    }
+    if (entry.prototypeToken) {
+        entry.prototypeToken.name = removeSpecialCharacters(entry.prototypeToken.name);
     }
     
     for (const effect of entry.effects ?? []) {

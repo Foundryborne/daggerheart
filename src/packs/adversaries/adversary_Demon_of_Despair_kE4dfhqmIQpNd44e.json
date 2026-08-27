@@ -129,7 +129,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 92,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -240,12 +240,10 @@
         "description": "<p>The @Lookup[@name] deals double damage to PCs with 0 Hope.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "2ESeh4tPhr6DI5ty",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -280,7 +278,6 @@
             "expired": false
           },
           "description": "<p>The Demon of Despair deals double damage to PCs with 0 Hope.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -363,12 +360,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "FC8PIf4BVkhmoJX8",
       "img": "icons/magic/death/skull-flames-white-blue.webp",
@@ -376,7 +371,6 @@
         {
           "name": "Your Struggle is Pointless",
           "img": "icons/magic/death/skull-flames-white-blue.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.kE4dfhqmIQpNd44e.Item.FC8PIf4BVkhmoJX8",
           "transfer": false,
           "_id": "6WSx03mFbpbPWnOI",
           "type": "base",
@@ -384,7 +378,7 @@
             "changes": [
               {
                 "key": "system.rules.dualityRoll.defaultHopeDice",
-                "value": "d8",
+                "value": "8",
                 "priority": null,
                 "type": "override",
                 "phase": "initial"
@@ -465,35 +459,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hope": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "hope",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {
                 "hope": {
@@ -549,12 +514,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "dlMdfUjy2GaqgeOJ",
       "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",
@@ -589,35 +552,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "fear": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "fear",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "fear": {
@@ -679,12 +613,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "7qjx1c4C1fUfvXnu",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

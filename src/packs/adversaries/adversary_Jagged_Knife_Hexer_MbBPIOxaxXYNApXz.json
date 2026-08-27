@@ -128,7 +128,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 78,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -276,19 +276,15 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "effects": [
         {
           "name": "Curse",
           "img": "icons/magic/unholy/hand-marked-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.MbBPIOxaxXYNApXz.Item.Bl8L0RCGOgVUzuXo",
           "transfer": false,
           "_id": "ihy3kvEGSOEKdNfT",
           "type": "base",
@@ -371,35 +367,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d6",
-                    "bonus": 3,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -470,13 +437,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "effects": [],
       "folder": null,

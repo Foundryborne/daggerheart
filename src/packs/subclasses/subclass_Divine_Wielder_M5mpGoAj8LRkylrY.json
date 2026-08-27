@@ -29,10 +29,11 @@
     "isMulticlass": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 21,
+      "page": null,
       "artist": ""
     },
-    "linkedClass": "Compendium.daggerheart.classes.Item.5ZnlJ5bEoyOTkUJv"
+    "linkedClass": "Compendium.daggerheart.classes.Item.5ZnlJ5bEoyOTkUJv",
+    "gmNotes": ""
   },
   "effects": [],
   "sort": 0,

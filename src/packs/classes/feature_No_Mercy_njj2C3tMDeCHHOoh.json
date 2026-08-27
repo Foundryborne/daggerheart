@@ -21,7 +21,8 @@
             "key": "hope",
             "value": 3,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -42,22 +43,28 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 23,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "No Mercy",
       "img": "icons/skills/melee/blade-tip-chipped-blood-red.webp",
-      "origin": "Compendium.daggerheart.classes.Item.njj2C3tMDeCHHOoh",
       "transfer": false,
       "_id": "XK4cCcz9sRGDJr0q",
       "type": "base",
@@ -72,11 +79,15 @@
           }
         ],
         "duration": {
-          "type": "shortRest"
+          "type": "shortRest",
+          "description": ""
         },
         "stacking": {
-          "max": null
-        }
+          "max": null,
+          "value": 1
+        },
+        "rangeDependence": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

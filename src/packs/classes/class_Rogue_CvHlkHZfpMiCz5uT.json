@@ -26,10 +26,6 @@
         "item": "Compendium.daggerheart.classes.Item.5QqpEwmwkPfZHpMW"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.h161OSIK24Up4qNd",
-      "Compendium.daggerheart.subclasses.Item.95QxNZwgyEm1LqdG"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -61,19 +57,20 @@
     "isMulticlass": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 19,
+      "page": null,
       "artist": ""
     },
     "backgroundQuestions": [
       "What did you get caught doing that got you exiled from your home community?",
-      "You used to have a different life, but you’ve tried to leave it behind. Who from your past is still chasing you?",
+      "You used to have a different life, but you've tried to leave it behind. Who from your past is still chasing you?",
       "Who from your past were you most sad to say goodbye to?"
     ],
     "connections": [
       "What did I recently convince you to do that got us both in trouble?",
       "What have I discovered about your past that I hold secret from the others?",
       "Who do you know from my past, and how have they influenced your feelings about me?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

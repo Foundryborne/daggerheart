@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Apply",
         "img": "icons/consumables/potions/bottle-conical-corked-labeled-skull-poison-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 60,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Grindletooth Venom",
       "img": "icons/consumables/potions/bottle-conical-corked-labeled-skull-poison-green.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.8WkhvSzeOmLdnoLJ",
       "transfer": false,
       "_id": "yx4ZkXeuXgw2KvV4",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.bonuses.damage.physical.dice",
             "type": "add",
             "value": "1d6",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,7 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 1700000,
   "flags": {},
   "_key": "!items!8WkhvSzeOmLdnoLJ"
 }

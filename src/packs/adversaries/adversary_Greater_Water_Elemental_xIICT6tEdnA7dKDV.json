@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 93,
+      "page": null,
       "artist": ""
     },
     "size": "gargantuan",
@@ -258,35 +258,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d4",
-                    "bonus": 7,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -361,12 +332,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "B8ZrtRCZrwwwWJOE",
       "img": "icons/magic/water/projectile-icecicle-glowing.webp",
@@ -374,7 +343,6 @@
         {
           "name": "Water Jet",
           "img": "icons/magic/water/projectile-icecicle-glowing.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.B8ZrtRCZrwwwWJOE",
           "transfer": false,
           "_id": "WYqjt1tVqPEdVV5l",
           "type": "base",
@@ -455,9 +423,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {}
             },
@@ -511,12 +476,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "bcwFQeuU6ZfIGjau",
       "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
@@ -524,7 +487,6 @@
         {
           "name": "Drowning Embrace",
           "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.bcwFQeuU6ZfIGjau",
           "transfer": true,
           "_id": "X8NF2OB23mSpDvlx",
           "type": "base",
@@ -623,12 +585,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "BGE42W1XPd0vpimR",
       "img": "icons/magic/water/tendrils-ice-thorns.webp",

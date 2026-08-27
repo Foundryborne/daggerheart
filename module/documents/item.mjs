@@ -1,4 +1,5 @@
 import ActionSelectionDialog from '../applications/dialogs/actionSelectionDialog.mjs';
+import { fromUuids, keyBy } from '../helpers/utils.mjs';
 
 /**
  * Override and extend the basic Item implementation.
@@ -37,17 +38,76 @@ export default class DHItem extends foundry.documents.Item {
         }
         return doc;
     }
-
+    
     static async createDocuments(sources, operation) {
         // Ensure that items being created are valid to the actor its being added to
         const actor = operation.parent;
-        const filtered = actor ? sources.filter(s => actor.system.isItemValid(s)) : sources;
-        if (actor && filtered.length === 0 && sources.length > 0) {
-            const itemType = _loc(`TYPES.Item.${sources[0].type}`);
+        const addedType = sources[0]?.type;
+        sources = actor ? sources.filter(s => actor.system.isItemValid(s)) : sources;
+        if (actor && sources.length === 0 && addedType) {
+            const itemType = _loc(`TYPES.Item.${addedType}`);
             const actorType = _loc(`TYPES.Actor.${actor.type}`);
             ui.notifications.error('DAGGERHEART.ACTORS.Base.CannotAddType', { format: { itemType, actorType } });
         }
-        return super.createDocuments(filtered, operation);
+        
+        // Beastform already manages its features creation
+        if (addedType !== 'beastform') await this.prepareGrantedItems(actor, sources, operation);
+
+        return super.createDocuments(sources, operation);
+    }
+
+    static async prepareGrantedItems(actor, sources, operation) {
+        // If the item grants any features, include them and set the granter flags
+        // If keepId is false, set random ids and from then on switch keepId to true
+        const grantingItems = actor ? sources.filter(s => s.system?.features?.length) : [];
+        if (grantingItems.length && !operation.keepId) {
+            for (const source of sources) {
+                source._id = foundry.utils.randomID();
+            }
+            operation.keepId = true;
+        }
+
+        const getUuid = f => {
+            const item = f.item === null ? null : (f.item ?? f);
+            return typeof item === 'object' ? item.uuid : item;
+        } 
+
+        const grantedFeatures = await fromUuids(
+            grantingItems.flatMap(i => i.system.features.map(getUuid))
+        );
+        const grantedFeaturesByUuid = keyBy(grantedFeatures, f => f.uuid)
+        for (const granter of grantingItems) {
+            for (const f of granter.system.features) {
+                const itemUuid = getUuid(f);
+                if (!itemUuid) continue;
+
+                const feature = grantedFeaturesByUuid[itemUuid];
+                sources.push(
+                    foundry.utils.mergeObject(feature.toObject(), {
+                        _stats: {
+                            compendiumSource: itemUuid.startsWith('Compendium.') ? itemUuid : null,
+                            duplicateSource: !itemUuid.startsWith('Compendium.') ? itemUuid : null
+                        },
+                        system: {
+                            granter: {
+                                id: granter._id,
+                                type: granter.type,
+                                multiclass: Boolean(granter.system.isMulticlass),
+                                identifier: f.type ?? null
+                            }
+                        }
+                    })
+                );
+            }
+        }
+    }
+
+    static async deleteDocuments(ids = [], operation = {}) {
+        const allIds = operation.parent ? ids.flatMap(id => (
+            [id, ...operation.parent.items.get(id).system.getLinkedItems().map(x => x.id)]
+        )) : ids;
+
+        return super.deleteDocuments(allIds, operation);
     }
 
     /* -------------------------------------------- */

@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 27,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "clank"
+    "loreReference": "clank",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "ed8BoLR4SHOpeV00",

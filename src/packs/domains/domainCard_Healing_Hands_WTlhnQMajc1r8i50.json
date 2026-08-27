@@ -407,7 +407,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 132,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -424,7 +424,6 @@
     {
       "name": "Healed by Healing Hands",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
-      "origin": "Compendium.daggerheart.domains.Item.WTlhnQMajc1r8i50",
       "transfer": false,
       "_id": "sd5liP4ZcVeTMAoW",
       "type": "base",
@@ -444,7 +443,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Can’t be healed again with Healing Hands by the caster of the Healing Hands until a long rest.</p>",
+      "description": "<p>Can't be healed again with Healing Hands by the caster of the Healing Hands until a long rest.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

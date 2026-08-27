@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 28,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "faerie"
+    "loreReference": "faerie",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "XzJVbb5NT9k79ykR",

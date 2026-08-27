@@ -35,7 +35,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML({ actor: actorData, author: this.author });
 
-        if (this.flags.core?.RollTable) {
+        if (this.flags.core?.RollTable || this.flags.daggerheart?.noButtons) {
             html.querySelector('.roll-buttons.apply-buttons')?.remove();
         }
 

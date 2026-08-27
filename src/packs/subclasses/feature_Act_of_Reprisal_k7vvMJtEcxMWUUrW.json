@@ -34,22 +34,28 @@
         },
         "name": "Mark Adversary",
         "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
-        "range": "melee"
+        "range": "melee",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 16,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Act of Reprisal",
       "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.k7vvMJtEcxMWUUrW",
       "transfer": false,
       "_id": "9Uo0yOYGn3vandPp",
       "type": "base",
@@ -58,7 +64,10 @@
         "duration": {
           "type": "temporary",
           "description": "<p>Until the next successful attack you make against that adversary.</p>"
-        }
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {

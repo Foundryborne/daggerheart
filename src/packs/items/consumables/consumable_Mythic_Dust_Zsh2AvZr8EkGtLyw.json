@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Use",
         "img": "icons/commodities/materials/bowl-powder-grey.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Mythic Dust",
       "img": "icons/commodities/materials/bowl-powder-grey.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.Zsh2AvZr8EkGtLyw",
       "transfer": false,
       "_id": "L68lFhuWdS3ppDxR",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.bonuses.damage.magical.dice",
             "type": "add",
             "value": "1d12",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,7 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 6200000,
   "flags": {},
   "_key": "!items!Zsh2AvZr8EkGtLyw"
 }

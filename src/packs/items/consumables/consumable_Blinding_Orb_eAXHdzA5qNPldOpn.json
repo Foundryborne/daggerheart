@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Activate",
         "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Blinding Orb",
       "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.eAXHdzA5qNPldOpn",
       "transfer": false,
       "_id": "nryJhrF26hyFQUxH",
       "type": "base",
@@ -64,7 +71,10 @@
         "duration": {
           "type": "temporary",
           "description": "<p>Until they mark HP.</p>"
-        }
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -97,7 +107,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 7500000,
   "flags": {},
   "_key": "!items!eAXHdzA5qNPldOpn"
 }

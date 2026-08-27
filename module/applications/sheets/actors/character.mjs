@@ -405,11 +405,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && doc.system.inVault;
                 },
-                onClick: async (_, target) => {
+                onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    const actorLoadout = doc.actor.system.loadoutSlot;
-                    if (actorLoadout.available) return doc.update({ 'system.inVault': false });
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+                    await doc.system.toggleVault(event, false);
                 }
             },
             {
@@ -421,34 +419,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 },
                 onClick: async (event, target) => {
                     const doc = await getDocFromElement(target);
-                    const actorLoadout = doc.actor.system.loadoutSlot;
-                    if (!actorLoadout.available) {
-                        ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
-                        return;
-                    }
-                    if (doc.system.recallCost == 0) {
-                        return doc.update({ 'system.inVault': false });
-                    }
-                    const type = 'effect';
-                    const cls = game.system.api.models.actions.actionsTypes[type];
-                    const action = new cls(
-                        {
-                            ...cls.getSourceConfig(doc.system),
-                            type: type,
-                            chatDisplay: false,
-                            cost: [
-                                {
-                                    key: 'stress',
-                                    value: doc.system.recallCost
-                                }
-                            ]
-                        },
-                        { parent: doc.system }
-                    );
-                    const config = await action.use(event);
-                    if (config) {
-                        return doc.update({ 'system.inVault': false });
-                    }
+                    await doc.system.toggleVault(event, false, true);
                 }
             },
             {
@@ -458,7 +429,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc?.isOwner && !doc.system.inVault;
                 },
-                onClick: async (_, target) => (await getDocFromElement(target)).update({ 'system.inVault': true })
+                onClick: async (event, target) => {
+                    const doc = await getDocFromElement(target);
+                    await doc.system.toggleVault(event, true);
+                }
             }
         ].map(option => ({
             ...option,
@@ -911,14 +885,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Toggles whether an item is stored in the vault.
      * @type {ApplicationClickAction}
      */
-    static async #toggleVault(_event, button) {
+    static async #toggleVault(event, button) {
         const doc = await getDocFromElement(button);
-        const { available } = this.document.system.loadoutSlot;
-        if (doc.system.inVault && !available && !doc.system.loadoutIgnore) {
-            return ui.notifications.warn('DAGGERHEART.UI.Notifications.loadoutMaxReached', { localize: true });
-        }
-
-        await doc?.update({ 'system.inVault': !doc.system.inVault });
+        if (!doc) return;
+        return await doc.system.toggleVault(event);
     }
 
     /**
@@ -1242,13 +1212,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
             const itemData = item.toObject();
             const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
-            if (!data?.selectedImage) {
-                return;
-            } else if (data) {
+            if (data?.selectedImage) {
                 if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
                 else itemData.system.tokenImg = data.selectedImage;
-                return await this._onDropItemCreate(itemData);
             }
+            return await this._onDropItemCreate(itemData);
         }
 
         // If this is a type that gets deleted, delete it first (but still defer to super)

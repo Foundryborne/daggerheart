@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 30,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "katari"
+    "loreReference": "katari",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "yyW0UM8srD9WuwW7",

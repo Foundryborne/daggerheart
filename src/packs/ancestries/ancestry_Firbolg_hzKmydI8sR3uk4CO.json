@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 28,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "firbolg"
+    "loreReference": "firbolg",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "hzKmydI8sR3uk4CO",

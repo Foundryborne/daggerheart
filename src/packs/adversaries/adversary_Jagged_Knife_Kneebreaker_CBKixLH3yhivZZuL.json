@@ -134,7 +134,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 78,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -247,13 +247,10 @@
         "description": "<p>Creatures <em>Restrained</em> by the @Lookup[@name] take double damage from attacks by other adversaries.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
@@ -288,8 +285,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -334,19 +329,15 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "effects": [
         {
           "name": "Hold Them Down",
           "img": "icons/skills/melee/unarmed-punch-fist.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.CBKixLH3yhivZZuL.Item.Sa4Nt0eoDjirBKGf",
           "transfer": false,
           "_id": "d7sB1Qa1kJMnglqu",
           "type": "base",

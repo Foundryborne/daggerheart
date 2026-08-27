@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 30,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "orc"
+    "loreReference": "orc",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "D1RbUsRV9HpTrPuF",

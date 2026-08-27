@@ -179,9 +179,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const partContext = await super._preparePartContext(partId, context);
         switch (partId) {
             case 'header':
-                const originItem = this.document?.item && this.document?.transfer ? this.document.item
-                    : fromUuidSync(this.document.origin);
-                if (originItem) partContext.originItem = originItem.item ?? originItem;
+                const originItem = this.document?.item ?? await fromUuid(this.document.origin);
+                if (originItem) {
+                    partContext.originItem = originItem.item ?? (originItem instanceof Item ? originItem : null);
+                }
                 break;
             case 'details':
                 partContext.isItemEffect = partContext.isItemEffect || this.options.isSetting;

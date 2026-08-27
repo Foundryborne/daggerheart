@@ -30,6 +30,61 @@ export default class DhpActor extends Actor {
         return this.system.metadata.isNPC;
     }
 
+    /** @inheritDoc */
+    _initializeSource(source, options = {}) {
+        source = super._initializeSource(source, options);
+        if (source.type !== 'adversary') return source;
+
+        const pack = game.packs.get(options.pack);
+        if (!source._id || !pack || !game.compendiumArt.enabled) return source;
+
+        const uuid = pack.getUuid(source._id);
+        const artData = game.compendiumArt.get(uuid);
+        const evolutionEntries = Object.entries(artData?.evolutions ?? {});
+        if (evolutionEntries?.length) {
+            for (const [featureId, actionData] of evolutionEntries) {
+                const feature = source.items.find(x => x._id === featureId);
+                if (!feature) continue;
+
+                /**
+                 * Currently assuming 1x evolution action on an evolution feature. 
+                 * If this changes, add parsing for <featureId>/<actionId> 
+                 */
+                const action = Object.values(feature.system.actions).find(x => x.type === 'evolution');
+                if (!action || !actionData.token) continue;
+
+                if (!action.evolution.tokenOverride) action.evolution.tokenOverride = { dynamicToken: {} };
+                
+                const { texture, ring } = actionData.token;
+                if (texture?.src) 
+                    action.evolution.tokenOverride.tokenImage = texture.src;
+                if (texture?.scale)
+                    action.evolution.tokenOverride.tokenScale = texture.scale;
+
+                if (ring?.subject?.texture)
+                    action.evolution.tokenOverride.dynamicToken.image = ring.subject.texture;
+                if (ring?.subject?.scale)
+                    action.evolution.tokenOverride.dynamicToken.scale = ring.subject.scale;
+                if (ring?.colors?.ring) 
+                    action.evolution.tokenOverride.dynamicToken.ring = ring.colors.ring;
+                if (ring?.colors?.background) 
+                    action.evolution.tokenOverride.dynamicToken.background = ring.colors.background;
+                if (ring?.effects?.length) {
+                    const validEffects = ring.effects.filter(x => Boolean(CONFIG.DH.ACTIONS.dynamicEffects[x]));
+                    const invalidEffects = ring.effects.filter(x => !CONFIG.DH.ACTIONS.dynamicEffects[x]);
+                    if (invalidEffects.length) 
+                        ui.notifications.warn(`Invalid DynamicToken effects were supplied to evolution feature ${actionData.name} (${invalidEffects.join(', ')})`);
+
+                    if (validEffects.length)
+                        action.evolution.tokenOverride.dynamicToken.effects = validEffects;
+                }
+                       
+            }
+        }  
+
+        return source;
+    }
+
     prepareData() {
         super.prepareData();
 
@@ -49,6 +104,27 @@ export default class DhpActor extends Actor {
     /** @inheritDoc */
     static migrateData(source) {
         if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
+
+        // Migrate feature granter stuff. source.items usually only exists the first time, not on subsequent updates
+        if (source.type === 'character' && source.items) {
+            for (const feature of source.items.filter(x => x.type === 'feature' && x.system.originItemType)) {
+                if (feature.system.granter?.id) continue;
+
+                const isMulticlass = feature.system.multiclassOrigin;
+                let originFeature = source.items.find(
+                    x => x.type === feature.system.originItemType && (!isMulticlass || x.system.isMulticlass)
+                )?._id;
+                if (!originFeature) continue;
+                
+                feature.system.granter = {
+                    id: originFeature,
+                    type: feature.system.originItemType,
+                    multiclass: feature.system.multiclassOrigin,
+                    identifier: feature.system.identifier
+                };
+            }
+        }
+
         return super.migrateData(source);
     }
 
@@ -281,7 +357,7 @@ export default class DhpActor extends Actor {
                         x =>
                             x.uuid === multiclass?.itemUuid ||
                             x.system.isMulticlass ||
-                            (['class', 'subclass'].includes(x.system.originItemType) && x.system.multiclassOrigin)
+                            (['class', 'subclass'].includes(x.system.granter?.type) && x.system.granter?.multiclass)
                     );
 
                     this.deleteEmbeddedDocuments(

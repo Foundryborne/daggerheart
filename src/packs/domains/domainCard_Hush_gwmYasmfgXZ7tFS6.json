@@ -80,7 +80,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 128,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -97,7 +97,6 @@
     {
       "name": "Silenced",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
-      "origin": "Compendium.daggerheart.domains.Item.gwmYasmfgXZ7tFS6",
       "transfer": false,
       "_id": "pZ5YpjKidaj48IYF",
       "type": "base",
@@ -118,7 +117,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Suppressive magic around the target that encompasses everything within Very Close range of them and follows them as they move. The target and anything within the area is Silenced until the GM spends a Fear on their turn to clear this condition, you cast Hush again, or you take Major damage. While Silenced, they can’t make noise and can’t cast spells.</p>",
+      "description": "<p>Suppressive magic around the target that encompasses everything within Very Close range of them and follows them as they move. The target and anything within the area is Silenced until the GM spends a Fear on their turn to clear this condition, you cast Hush again, or you take Major damage. While Silenced, they can't make noise and can't cast spells.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

@@ -1,0 +1,518 @@
+/** 
+ * Anything with the dh-card-header class can have domain card banners and recall costs.
+ * An example of a non-card with these is the item sheet header.
+ */
+.dh-card-header {
+    .domain-card-banner {
+        --border-color: @golden;
+        position: absolute;
+        width: var(--width);
+        top: 0;
+        left: 14px;
+        font-family: sans-serif;
+        color: white;
+
+        svg {
+            width: 100%;
+        }
+        .details {
+            top: 15%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            left: 22%;
+            right: 22%;
+            bottom: 24%;
+
+            .level {
+                font: 900 calc(var(--width) * 0.44)/0.8 @font-description;
+                letter-spacing: -0.05em;
+            }
+            
+            > span:has(.domain-icon),
+            > .domain-icon {
+                width: 80%;
+            }
+            
+            .domain-icon {
+                filter: brightness(0) invert(1);
+                border: none;
+            }
+        }
+
+        &.invert-text {
+            color: black;
+            .domain-icon {
+                filter: brightness(0);
+            }
+        }
+    }
+
+    .recall-cost {
+        --border-size: max(1px, calc(var(--width) * 0.066));
+        
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--width);
+        width: var(--width);
+
+        background-color: lab(8.11897% .811279 -12.254);
+        color: white;
+        font: bold calc(0.52 * var(--width)) @font-description;
+        border: var(--border-size) solid @golden;
+        border-radius: 50%;
+
+        &::after {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            border: var(--border-size) solid lab(47.7841% -.393182 -10.0268);
+            border-radius: 50%;
+        }
+
+        span {
+            padding-top: 0.2em;
+        }
+
+        i {
+            margin-left: -0.1945em;
+            margin-right: -0.1945em;
+            padding-top: 0.1em;
+            font-size: 0.55em;
+        }
+    }
+}
+
+/** 
+ * Generally reusable style for card description styling, except a few 
+ * things that may differ on use like font size, scrolling, and padding.
+ */
+.dh-card-description {
+    .typography();
+    .card-typography();
+    --font-body: @font-description;
+    font-family: @font-description;
+    letter-spacing: -4%;
+    line-height: 1.17;
+    > :last-child:where(p) {
+        margin-bottom: 0;
+    }
+}
+
+/** Prevent opening up applications on clicking domain cards in journal embeds */
+.journal-sheet .dh-card img {
+    pointer-events: none;
+}
+
+/**
+ * Main card styling. They often use svg or image masks and some color mixing.
+ * These may be used in journal embeds and can't presume dh-style
+ * The cards are mostly resizable via the width parameter, but only mostly, some additional work will be needed to get it to the finish line.
+ */
+.dh-card {
+    --width: var(--card-width, 18.25rem);
+    --initial-portrait-ratio: 0.665;
+    --height: calc(var(--width) * 1.4);
+
+    /** 
+     * A multiplier for internal elements based on the base width of 292px
+     * The width may have changed either due to css overrides or font size changes.
+     * In all cases, the elements inside must scale uniformly.
+     * This does mean that if the width is set to a non-rem value, fonts inside won't scale with font size changes.
+     */
+    --scale: calc(var(--width) / 292px);
+
+    position: relative;
+    border: 1px solid @card-trim-color;
+    border-radius: 12px;
+    width: var(--width);
+    aspect-ratio: 5/7;
+    background: light-dark(#f5f5f5, #101217);
+    color: @color-text-primary;
+    line-height: 1.25;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; // ensures the border functions
+
+    // This makes it so that things don't overflow by virtue of a border, given that we attempt to scale to width
+    // Certain uses may or may not remove the border, so we need to be flexible
+    // the items inside use border-box
+    box-sizing: content-box;
+
+    // This tricks the container so that display: inline-block doen't try to line up the ability text
+    float: left; 
+
+    * {
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+    }
+
+    > header.dh-card-header {
+        position: relative;
+        flex: 0 1 calc(var(--width) * var(--initial-portrait-ratio));
+        .domain-card-banner {
+            --width: calc(58px * var(--scale));
+            left: calc(12px * var(--scale));
+            margin-top: calc(-4px * var(--scale)); // banner might need to be less tall, but taller looks good in the item sheet?
+        }
+        .recall-cost {
+            --width: calc(36px * var(--scale));
+            top: calc(16px * var(--scale));
+            right: calc(16px * var(--scale));
+        }
+        img.portrait {
+            border: none;
+            box-shadow: unset;
+            object-fit: cover;
+            object-position: center center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        img {
+            cursor: default;
+            user-select: none;
+        }
+    }
+
+    > article {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        max-height: calc(var(--height) * 0.75);
+        > header.name {
+            text-align: center;
+            text-transform: uppercase;
+            font: 900 calc(16px * var(--scale))/1 @font-description;
+            letter-spacing: -1%;
+            padding: calc(8px * var(--scale)) 0;
+            margin-bottom: -0.125em; // 2px less
+        }
+        > section.description {
+            font-size: calc(13px * var(--scale));
+            flex: 1;
+            overflow: auto;
+            padding: 0 calc(10px * var(--scale));
+            .with-scroll-shadows();
+        }
+        .attribution {
+            padding: calc(4px * var(--scale)) calc(8px * var(--scale));
+            font: calc(9px * var(--scale))/1 @font-description;
+            letter-spacing: -3.5%;
+            font-style: italic;
+            display: flex;
+            align-items: baseline;
+            .artist {
+                margin-right: auto;
+            }
+            .source {
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+.dh-card.domainCard {
+    --initial-portrait-ratio: 0.665;
+    --trim-height: calc(22px * var(--scale));
+
+    .trim {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        height: var(--trim-height);
+        margin-top: calc(-10px * var(--scale));
+        color: white;
+
+        &.invert-text {
+            color: black;
+        }
+
+        &::before {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/cards/domain-card-trim-shadow.webp') top center/auto 100% no-repeat;
+            z-index: 1;
+        }
+
+        &::after {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/cards/card-grunge-flattened.webp'), linear-gradient(to right, var(--dh-card-trim-highlight) -15%, @golden 14%, @golden 86%, var(--dh-card-trim-highlight) 115%);
+            background-blend-mode: overlay;
+            mask: url('../assets/cards/domain-card-trim.svg') center / auto 100% no-repeat;
+            z-index: 3;
+        }
+
+        .type {
+            position: relative;
+            text-align: center;
+            text-transform: uppercase;
+            font: 600 calc(12px * var(--scale))/var(--trim-height) @font-description;
+            width: calc(var(--trim-height) * 5.35);
+
+            &::before {
+                content: ' ';
+                position: absolute;
+                inset: 0;
+                background-color: var(--domain-color);
+                clip-path: polygon(5% 50%, 18% 18%, 82% 18%, 95% 50%, 80% 95%, 20% 95%);
+                z-index: 0;
+            }
+
+            span {
+                position: absolute;
+                inset: 0;
+                margin-top: 1.5%;
+                z-index: 2;
+            }
+        }
+    }
+}
+
+.dh-card.subclass {
+    --initial-portrait-ratio: 0.655;
+    --trim-height: calc(var(--width) * 0.0822);
+
+    .trim {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        height: var(--trim-height);
+        margin-top: calc(-12px * var(--scale));
+        color: white;
+
+        &.invert-text {
+            color: black;
+        }
+
+        &::after {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/cards/card-grunge-flattened.webp'), linear-gradient(to right, var(--dh-card-trim-highlight) -15%, @golden 14%, @golden 86%, var(--dh-card-trim-highlight) 115%);
+            background-blend-mode: overlay;
+            mask: url('../assets/cards/subclass-trim.webp') top center/auto 100% no-repeat;
+            z-index: 3;
+        }
+
+        &::before {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/cards/subclass-trim-shadow.webp') top center/auto 100% no-repeat;
+            z-index: 1;
+        }
+
+        .type {
+            position: relative;
+            text-align: center;
+            width: calc(var(--trim-height) * 5.25);
+            align-self: stretch;
+            overflow: hidden;
+
+            text-transform: uppercase;
+            font: 600 calc(12px * var(--scale)) @font-description;
+            color: @golden;
+            text-shadow: 1px 1px 2px black;
+            letter-spacing: -3.5%;
+            
+            &::before {
+                content: ' ';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to right, var(--domain-color-1, black) 0, var(--domain-color-2, black) 100%);
+                clip-path: polygon(3% 50%, 7% 30%, 16% 10%, 82% 10%, 93% 30%, 97% 50%, 84% 94%, 18% 94%);
+                z-index: 0;
+            }
+
+            span {
+                position: absolute;
+                inset: 0;
+                line-height: 2.2;
+                z-index: 2;
+            }
+        }
+    }
+}
+
+.dh-card.ancestry {
+    --initial-portrait-ratio: 0.75;
+    --trim-height: calc(var(--width) * 0.17466);
+
+    .dh-card-header {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 6% calc(100% - (16px * var(--scale))), 0 calc(100% - (4px * var(--scale))));
+    }
+
+    .trim {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        height: var(--trim-height);
+        margin-top: calc(var(--trim-height) * -0.3529);
+        color: black;
+
+        &::before {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/cards/card-grunge-flattened.webp'), linear-gradient(to right, var(--dh-card-trim-highlight) 0, @golden 14%, @golden 86%, var(--dh-card-trim-highlight) 100%);
+            background-blend-mode: overlay;
+            mask: url('../assets/cards/ancestry-trim.svg') top right/auto 100%;
+            z-index: 0;
+        }
+
+        .type {
+            position: absolute;
+            right: calc(var(--trim-height) * 0.2745);
+            bottom: 0;
+            width: calc(var(--trim-height) * 1.4118);
+            z-index: 1;
+
+            text-align: center;
+            text-transform: uppercase;
+            font: 300 calc(12px * var(--scale))/1.5 @font-description;
+        }
+    }
+
+    header.name {
+        margin-top: calc(-28px * var(--scale));
+        text-align: left;
+        padding-left: calc(10px * var(--scale));
+        font-size: calc(24px * var(--scale));
+        &::before {
+            content: ' ';
+            float: right;
+            width: 6rem;
+            height: 1rem;
+            shape-outside: inset(0); // make name wrap around the type label
+        }
+    }
+
+    .description {
+        > *:not(.features),
+        .feature > strong:first-child {
+            font-style: italic;
+        }
+    }
+}
+
+.dh-card.community {
+    --initial-portrait-ratio: 0.7;
+    --trim-height: calc(var(--width) * 0.23);
+
+    .dh-card-header {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.5rem), 97.5% 100%, 0 100%);
+    }
+
+    .trim {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        height: var(--trim-height);
+        margin-top: calc(-0.925 * var(--trim-height));
+        color: black;
+
+        &::after {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/cards/card-grunge-flattened.webp'), @golden;
+            background-blend-mode: overlay;
+            mask: url('../assets/cards/community-trim.svg') top right/auto 100%;
+            z-index: 0;
+        }
+
+        .type {
+            position: absolute;
+            right: calc(var(--trim-height) * 0.3);
+            bottom: calc(var(--trim-height) * 0.278);
+            width: calc(var(--trim-height) * 1.29);
+            z-index: 1;
+
+            text-align: center;
+            text-transform: uppercase;
+            font: 300 calc(12px * var(--scale)) @font-description;
+            line-height: 1.5;
+        }
+    }
+
+    header.name {
+        text-align: left;
+        padding-left: calc(10px * var(--scale));
+        font-size: calc(24px * var(--scale));
+    }
+
+    .description {
+        > *:not(.features) {
+            font-style: italic;
+        }
+        .feature > strong:first-child {
+            font-style: italic;
+        }
+    }
+}
+
+.dh-card.transformation {
+    --initial-portrait-ratio: 0.7;
+    --trim-height: calc(var(--width) * 0.121);
+
+    .dh-card-header {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--trim-height) * 0.50), 0 100%);
+    }
+
+    .trim {
+        position: relative;
+        display: flex;
+        height: var(--trim-height);
+        margin-top: calc(-0.92 * var(--trim-height));
+        color: black;
+        margin-left: calc(var(--trim-height) * -0.01);
+
+        &::after {
+            content: ' ';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/cards/card-grunge-flattened.webp'), linear-gradient(to right, var(--dh-card-trim-highlight) 0, @golden 16%, @golden 84%, var(--dh-card-trim-highlight) 100%);
+            background-blend-mode: overlay;
+            mask: url('../assets/cards/transformation-trim.svg') top center/auto 100% no-repeat;
+            z-index: 0;
+        }
+
+        .type {
+            position: absolute;
+            left: calc(var(--trim-height) * 0.525);
+            top: calc(var(--trim-height) * 0.2);
+            width: calc(var(--trim-height) * 2.64);
+            z-index: 1;
+
+            text-align: center;
+            text-transform: uppercase;
+            font: 300 calc(11px * var(--scale))/1.27 @font-description;
+            letter-spacing: -6%;
+        }
+    }
+
+    header.name {
+        text-align: left;
+        padding-left: 10px;
+        font-size: calc(24px * var(--scale));
+    }
+
+    .description {
+        > *:not(.features) {
+            font-style: italic;
+        }
+        .feature > strong:first-child {
+            font-style: italic;
+        }
+    }
+}

@@ -733,7 +733,7 @@ export const daggerheartDiceAnimationEvents = {
     }
 };
 
-const getDiceSoNiceSFX = sfxOptions => {
+export const getDiceSoNiceSFX = sfxOptions => {
     const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
     const criticalAnimationData = diceSoNice.sfx.critical;
     if (sfxOptions.critical && criticalAnimationData.class) {
@@ -753,7 +753,7 @@ const getDiceSoNiceSFX = sfxOptions => {
     return {};
 };
 
-export const getDiceSoNicePreset = async (type, faces, sfxOptions = {}) => {
+export const getDiceSoNicePreset = async (type, faces) => {
     const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
     if (!system) {
         ui.notifications.error(
@@ -776,35 +776,7 @@ export const getDiceSoNicePreset = async (type, faces, sfxOptions = {}) => {
         appearance: {
             ...system.appearance,
             ...type
-        },
-        sfx: getDiceSoNiceSFX(sfxOptions)
-    };
-};
-
-export const getDiceSoNicePresets = async (
-    result,
-    hopeFaces,
-    fearFaces,
-    advantageFaces = 'd6',
-    disadvantageFaces = 'd6'
-) => {
-    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
-
-    const { isCritical, withHope, withFear } = result;
-
-    return {
-        hope: await getDiceSoNicePreset(diceSoNice.hope, hopeFaces, {
-            critical: isCritical,
-            higher: withHope,
-            data: diceSoNice.hope.sfx
-        }),
-        fear: await getDiceSoNicePreset(diceSoNice.fear, fearFaces, {
-            critical: isCritical,
-            higher: withFear,
-            data: diceSoNice.fear.sfx
-        }),
-        advantage: await getDiceSoNicePreset(diceSoNice.advantage, advantageFaces),
-        disadvantage: await getDiceSoNicePreset(diceSoNice.disadvantage, disadvantageFaces)
+        }
     };
 };
 

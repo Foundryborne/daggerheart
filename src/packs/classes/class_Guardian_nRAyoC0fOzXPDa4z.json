@@ -22,10 +22,6 @@
         "item": "Compendium.daggerheart.classes.Item.PnD2UCgzIlwX6cY3"
       }
     ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.rKRxFBlkbh9cDK8K",
-      "Compendium.daggerheart.subclasses.Item.SUo8NPBPO8aN193u"
-    ],
     "inventory": {
       "take": [
         "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
@@ -57,19 +53,20 @@
     "isMulticlass": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 15,
+      "page": null,
       "artist": ""
     },
     "backgroundQuestions": [
       "Who from your community did you fail to protect, and why do you still think of them?",
-      "You’ve been tasked with protecting something important and delivering\nit somewhere dangerous. What is it, and where does it need to go?",
+      "You've been tasked with protecting something important and delivering\nit somewhere dangerous. What is it, and where does it need to go?",
       "You consider an aspect of yourself to be a weakness. What is it, and how has it affected you?"
     ],
     "connections": [
       "How did I save your life the first time we met?",
       "What small gift did you give me that you notice I always carry with me?",
       "What lie have you told me about yourself that I absolutely believe?"
-    ]
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,

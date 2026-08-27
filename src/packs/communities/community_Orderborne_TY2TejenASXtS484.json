@@ -10,10 +10,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 32,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "orderborne"
+    "loreReference": "orderborne",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "TY2TejenASXtS484",

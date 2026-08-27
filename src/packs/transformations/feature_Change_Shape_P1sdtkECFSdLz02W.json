@@ -1,0 +1,20 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Change Shape",
+  "type": "feature",
+  "_id": "P1sdtkECFSdLz02W",
+  "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>During a rest, you can use a downtime move to swap your current ancestry with another. When you do, describe how your appearance changes.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!P1sdtkECFSdLz02W"
+}

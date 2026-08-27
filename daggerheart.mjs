@@ -20,6 +20,7 @@ import {
 import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
+import { pick } from './module/helpers/utils.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -198,6 +199,11 @@ Hooks.once('init', () => {
         makeDefault: true,
         label: sheetLabel('TYPES.Item.beastform')
     });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Transformation, {
+        types: ['transformation'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.transformation')
+    });
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Character, {
@@ -326,6 +332,7 @@ Hooks.on('setup', () => {
 
 Hooks.on('ready', async () => {
     const appearanceSettings = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
+    const homebrewSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew);
     ui.resources = new CONFIG.ui.resources();
     if (appearanceSettings.displayFear !== 'hide') ui.resources.render({ force: true });
 
@@ -350,6 +357,18 @@ Hooks.on('ready', async () => {
             game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage, true);
         }
     }
+
+    // Remove any homebrew domains that is a core domain (or at least any configured as such)
+    const coreDomains = Object.keys(CONFIG.DH.DOMAIN.domains);
+    const homebrewDomains = Object.keys(homebrewSettings.domains);
+    if (homebrewDomains.some(d => coreDomains.includes(d))) {
+        const validKeys = homebrewDomains.filter(d => !coreDomains.includes(d));
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, {
+            ...homebrewSettings.toObject(true),
+            domains: pick(homebrewSettings.domains, validKeys)
+        });
+    }
+
 
     runMigrations();
 });
@@ -393,6 +412,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
         await dialog.render({ force: true });
     }
 });
+
+Hooks.on(CONFIG.DH.HOOKS.hooksConfig.downtimeTrigger, applications.sheets.actors.Party.downtimeMoveQuery);
 
 const updateActorsRangeDependentEffects = async token => {
     if (!token) return;

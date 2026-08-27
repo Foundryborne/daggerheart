@@ -24,10 +24,11 @@
     "isMulticlass": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 11,
+      "page": null,
       "artist": ""
     },
-    "linkedClass": "Compendium.daggerheart.classes.Item.ZNwUTCyGCEcidZFv"
+    "linkedClass": "Compendium.daggerheart.classes.Item.ZNwUTCyGCEcidZFv",
+    "gmNotes": ""
   },
   "effects": [],
   "folder": "AZWrSJzGXltzQhAJ",

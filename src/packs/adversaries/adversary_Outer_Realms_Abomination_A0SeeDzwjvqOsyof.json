@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 99,
+      "page": null,
       "artist": ""
     },
     "size": "large",
@@ -234,12 +234,10 @@
         "description": "<p>When the @Lookup[@name] attacks, roll <strong>2d4</strong> and use the result as their attack modifier.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "yGeHxe8Loe21QSgH",
       "img": "icons/magic/symbols/question-stone-yellow.webp",
@@ -274,8 +272,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -320,12 +316,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "CoWjh12FkhDGYIie",
       "img": "icons/magic/perception/eye-slit-pink.webp",
@@ -333,7 +327,6 @@
         {
           "name": "Disorienting Presence",
           "img": "icons/magic/perception/eye-slit-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.CoWjh12FkhDGYIie",
           "transfer": false,
           "_id": "rpkjVdlJYI5dB99B",
           "type": "base",
@@ -405,9 +398,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {}
             },
@@ -461,12 +451,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "K3MQO1I42nmfM2F2",
       "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
@@ -474,7 +462,6 @@
         {
           "name": "Unstuck From Reality",
           "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.K3MQO1I42nmfM2F2",
           "transfer": false,
           "_id": "edEZER9ImWicMwRb",
           "type": "base",
@@ -546,8 +533,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -587,12 +572,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "u9dR2Qh3swHZalXj",
       "img": "icons/magic/unholy/orb-contained-pink.webp",

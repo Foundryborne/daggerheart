@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,26 +42,38 @@
         },
         "name": "Apply",
         "img": "icons/commodities/materials/bowl-powder-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Gill Salve",
       "img": "icons/commodities/materials/bowl-powder-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.Nvbb9mze6o5D0AEg",
       "transfer": false,
       "_id": "5rL9CY5GO9SJcEZq",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -84,7 +97,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 4300000,
   "flags": {},
   "_key": "!items!Nvbb9mze6o5D0AEg"
 }

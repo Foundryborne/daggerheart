@@ -1,0 +1,68 @@
+{
+  "type": "domainCard",
+  "name": "Dire Strike",
+  "folder": "ZjU7pw0DklPo9XZH",
+  "system": {
+    "domain": "dread",
+    "level": 5,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null
+    },
+    "description": "<p>When a target marks any number of Hit Points from an attack you make, you can <strong>spend a Hope</strong> to drain power from them. The GM loses a Fear.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "OEqCPBY0AG6SFiTJ": {
+        "type": "effect",
+        "_id": "OEqCPBY0AG6SFiTJ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "itemId": null,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "range": "",
+        "img": "icons/magic/unholy/energy-smoke-pink.webp"
+      }
+    },
+    "recallCost": 2,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "tTExFWUt2DoImpat",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!tTExFWUt2DoImpat"
+}

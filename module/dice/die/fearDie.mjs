@@ -1,9 +1,11 @@
-import { getDiceSoNicePresets } from '../../config/generalConfig.mjs';
 import DualityDie from './dualityDie.mjs';
 
-export default class FearDie extends DualityDie {
-    async getDiceSoNiceAppearance(roll) {
-        const { fear } = await getDiceSoNicePresets(roll, this.denomination, this.denomination);
-        return fear;
+export default class FearDie extends DualityDie { 
+    constructor(options) {
+        options.modifiers = options.modifiers ? 
+            (options.modifiers.includes('f') ? options.modifiers : [...options.modifiers, 'f'])
+            : ['f'];
+            
+        super(options);
     }
 }

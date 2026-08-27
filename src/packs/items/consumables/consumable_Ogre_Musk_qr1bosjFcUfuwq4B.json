@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,29 +42,39 @@
         },
         "name": "Use",
         "img": "icons/commodities/materials/slime-thick-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Ogre Musk",
       "img": "icons/commodities/materials/slime-thick-green.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.qr1bosjFcUfuwq4B",
       "transfer": false,
       "_id": "n73d0J4oMCBIPWHN",
       "type": "base",
       "system": {
         "changes": [],
         "duration": {
-          "type": "shortRest"
-        }
+          "type": "shortRest",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -94,7 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 10200000,
   "flags": {},
   "_key": "!items!qr1bosjFcUfuwq4B"
 }

@@ -51,7 +51,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 123,
+      "page": null,
       "artist": ""
     },
     "domainTouched": 4,
@@ -95,7 +95,6 @@
         "expired": false
       },
       "description": "<p>+1 bonus to Agility</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

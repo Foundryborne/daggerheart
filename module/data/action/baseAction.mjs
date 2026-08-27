@@ -1,4 +1,3 @@
-import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
@@ -109,6 +108,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         /* Fallback to feature description */
         this.description = this.description || this.parent?.description;
+
+        this.isGrouped = false; // Wether a MultiAction has removed it from being an available action button.
     }
 
     /**
@@ -151,12 +152,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
-     * @returns {DhpActor | null}
+     * @returns {CONFIG.Actor.documentClass | null}
      */
     get actor() {
-        return this.item instanceof DhpActor
+        return this.item instanceof CONFIG.Actor.documentClass
             ? this.item
-            : this.item?.parent instanceof DhpActor
+            : this.item?.parent instanceof CONFIG.Actor.documentClass
                 ? this.item.parent
                 : null;
     }
@@ -183,12 +184,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      */
     static getSourceConfig(parent) {
         const updateSource = {};
-        if (parent?.parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
+
+        const { attack, damage } = game.system.api.models.actions.actionsTypes;
+        if (this === attack || this === damage) {
             updateSource['damage'] = { includeBase: true };
-            updateSource['range'] = parent?.attack?.range;
-            updateSource['roll'] = {
-                useDefault: true
-            };
+        }
+        
+        if (this === attack) {
+            if (parent?.parent?.type === 'weapon') {
+                updateSource['range'] = parent?.attack?.range;
+                updateSource['roll'] = {
+                    useDefault: true
+                };
+            }
         } else {
             if (parent?.trait) {
                 updateSource['roll'] = {

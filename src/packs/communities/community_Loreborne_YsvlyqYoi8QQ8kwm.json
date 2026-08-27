@@ -10,10 +10,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 32,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "loreborne"
+    "loreReference": "loreborne",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "YsvlyqYoi8QQ8kwm",

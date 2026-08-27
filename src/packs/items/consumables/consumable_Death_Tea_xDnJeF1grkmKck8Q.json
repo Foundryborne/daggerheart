@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,26 +42,38 @@
         },
         "name": "Drink",
         "img": "icons/consumables/drinks/wine-amphora-clay-gray.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Death Tea",
       "img": "icons/consumables/drinks/wine-amphora-clay-gray.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.xDnJeF1grkmKck8Q",
       "transfer": false,
       "_id": "IqlpqsgurXsUEQhs",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -69,7 +82,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>After you drink this tea, you instantly kill your target when you critically succeed on an attack. If you don’t critically succeed on an attack before your next long rest, you die.</p>",
+      "description": "<p>After you drink this tea, you instantly kill your target when you critically succeed on an attack. If you don't critically succeed on an attack before your next long rest, you die.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -84,7 +97,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 11200000,
   "flags": {},
   "_key": "!items!xDnJeF1grkmKck8Q"
 }

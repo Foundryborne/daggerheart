@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 27,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "drakona"
+    "loreReference": "drakona",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "VLeOEqkLS0RbF0tB",

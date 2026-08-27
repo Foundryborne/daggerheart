@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 29,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "goblin"
+    "loreReference": "goblin",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "EKPEdIz9lA9grPqH",

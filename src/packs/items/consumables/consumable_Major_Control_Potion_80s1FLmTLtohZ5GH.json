@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/bottle-round-corked-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Major Control Potion",
       "img": "icons/consumables/potions/bottle-round-corked-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.80s1FLmTLtohZ5GH",
       "transfer": false,
       "_id": "YOgojNdjARXUUrky",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.traits.finesse.value",
             "type": "add",
             "value": 1,
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,7 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 1600000,
   "flags": {},
   "_key": "!items!80s1FLmTLtohZ5GH"
 }

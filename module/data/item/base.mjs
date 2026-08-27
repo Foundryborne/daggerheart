@@ -7,6 +7,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
+import { simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
 import {
     addLinkedItemsDiff,
     getScrollTextData,
@@ -109,7 +110,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Convenient access to the item's actor, if it exists.
-     * @returns {foundry.documents.Actor | null}
+     * @returns {DhpActor | null}
      */
     get actor() {
         return this.parent.actor;
@@ -124,7 +125,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     get itemFeatures() {
-        return [];
+        return this.actor?.items.filter(i => i.system.granterItem === this.parent) ?? [];
     }
 
     get attributionLabel() {
@@ -136,27 +137,29 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
-     * @param {ItemDescriptionOptions} [options] - Options that modify the styling of the rendered template.
+     * @param {ItemDescriptionConfig} [options] Options that modify the styling of the rendered template.
+     * @param {import('@client/applications/ux/text-editor.mjs').EnrichmentOptions} [config] Options for enrichHTML
      * @returns {Promise<{ prefix: string | null; value: string | null; suffix: string | null }>}
      */
-    async getDescriptionData(options) {
+    async getDescriptionData(options, config) {
         return { prefix: null, value: this.description, suffix: null };
     }
 
     /**
      * Gets the enriched and augmented description for the item.
-     * @param {ItemDescriptionOptions} [options] - Options that modify the styling of the rendered template.
+     * @param {ItemDescriptionConfig} [config] Options that modify the styling of the rendered template.
+     * @param {import('@client/applications/ux/text-editor.mjs').EnrichmentOptions} [config] Options for enrichHTML
      * @returns {Promise<string>}
      */
-    async getEnrichedDescription(options = {}) {
+    async getEnrichedDescription(config = {}, options = {}) {
         if (!this.metadata.hasDescription) return '';
-        options.gmNotes ??= true;
-        options.type ??= 'sheet';
+        config.gmNotes ??= true;
+        config.type ??= 'sheet';
 
-        const { prefix, value, suffix } = await this.getDescriptionData(options);
-        const separator = options.type === 'tooltip' ? '\n' : '\n<hr>\n';
+        const { prefix, value, suffix } = await this.getDescriptionData(config, options);
+        const separator = config.type === 'embed' ? '\n' : '\n<hr>\n';
         let fullDescription = [prefix, value, suffix].filter(p => !!p).join(separator);
-        if (this.gmNotes && options.gmNotes) {
+        if (this.gmNotes && config.gmNotes) {
             const gmNotesElement = document.createElement('section');
             gmNotesElement.classList.add('gm-notes-section');
             gmNotesElement.dataset.visibility = 'gm';
@@ -166,12 +169,21 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             gmNotesElement.innerHTML = header.outerHTML + this.gmNotes;
             fullDescription += gmNotesElement.outerHTML;
         }
-
+        if (config.type === 'embed') {
+            fullDescription = simplifyDescriptionForEmbed(fullDescription);
+        }
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
-            relativeTo: this.parent,
+            ...options,
+            relativeTo: options.relativeTo ?? this.parent,
             rollData: this.getRollData(),
-            secrets: this.parent.isOwner
+            secrets: options.secrets ?? this.parent.isOwner
         });
+    }
+
+    getLinkedItems() {
+        if (!this.actor) return [];
+
+        return this.actor.items.filter(x => x.system.granter?.id === this.parent.id);
     }
 
     /**
@@ -212,29 +224,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             this.updateSource({ actions: [action] });
         }
 
-        if (this.actor && this.actor.type === 'character' && this.features) {
-            const features = [];
-            for (let f of this.features) {
-                const fBase = f.item ?? f;
-                const feature = fBase.pack ? await foundry.utils.fromUuid(fBase.uuid) : fBase;
-                features.push(
-                    foundry.utils.mergeObject(
-                        feature.toObject(),
-                        {
-                            _stats: { compendiumSource: fBase.uuid },
-                            system: {
-                                originItemType: this.parent.type,
-                                identifier: f.item ? f.type : null,
-                                multiclassOrigin: this.isMulticlass
-                            }
-                        },
-                        { inplace: false }
-                    )
-                );
-            }
-
-            await this.actor.createEmbeddedDocuments('Item', features);
-        }
+        return super._preCreate(data, options, user);
     }
 
     async _preUpdate(changed, options, userId) {

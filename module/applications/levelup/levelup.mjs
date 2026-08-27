@@ -338,7 +338,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 minCost: Number(button.dataset.cost),
                 amount: button.dataset.amount ? Number(button.dataset.amount) : null,
                 value: button.dataset.value,
-                type: button.dataset.type
+                type: button.dataset.type,
+                subType: button.dataset.subType
             };
 
             if (button.dataset.type === 'domainCard') {

@@ -1,3 +1,4 @@
+import autocomplete from 'autocompleter';
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
@@ -69,15 +70,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
 
     /**@inheritdoc */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
-
-        return context;
-    }
-
-    /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
         await super._preparePartContext(partId, context, options);
         const TextEditor = foundry.applications.ux.TextEditor.implementation;
@@ -118,6 +110,37 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         for (const effect of this.item.effects) {
             const list = effect.active ? context.effects.actives : context.effects.inactives;
             list.push(effect);
+        }
+    }
+
+    /** @inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        // If the item supports lore references, add autocomplete
+        const loreRefElement = htmlElement.querySelector('input[name="system.loreReference"]');
+        const choiceKeys = Object.keys(CONFIG.DH.lore[this.item.type] ?? {});
+        if (loreRefElement && choiceKeys) {
+            const choices = choiceKeys.map(k => ({ value: k, label: k }));
+            autocomplete({
+                input: loreRefElement,
+                fetch: function (text, update) {
+                    if (!text) {
+                        update(choices);
+                    } else {
+                        text = text.toLowerCase();
+                        update(choices.filter(n => n.label.toLowerCase().includes(text)));
+                    }
+                },
+                onSelect: item => {
+                    this.item.update({ 'system.loreReference': String(item.value) });
+                },
+                click: e => e.fetch(),
+                customize: function (_input, _inputRect, container) {
+                    container.style.zIndex = foundry.applications.api.ApplicationV2._maxZ;
+                },
+                minLength: 0
+            })
         }
     }
 
@@ -175,8 +198,11 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         let systemData = {};
         if (this.document.parent?.type === 'character') {
             systemData = {
-                originItemType: this.document.type,
-                identifier: multiclass ?? type
+                granter: {
+                    id: this.document.id,
+                    type: this.document.type,
+                    identifier: multiclass ?? type
+                }
             };
         }
 
@@ -316,8 +342,11 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                         _stats: { compendiumSource: this.document.uuid },
                         system: {
                             ...itemData.system,
-                            originItemType: this.document.type,
-                            identifier: multiclass ?? target.dataset.type
+                            granter: {
+                                id: this.document.id,
+                                type: this.document.type,
+                                identifier: multiclass ?? target.dataset.type
+                            }
                         }
                     },
                     { parent: this.document.parent }

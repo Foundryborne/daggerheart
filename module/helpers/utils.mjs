@@ -1,43 +1,18 @@
-import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
+import { diceTypes, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
+export * from './functional.mjs';
 
 /**
  * @import DhpActor from '../documents/actor.mjs';
  */
 
-/** Given an object, returns a new object with the keys listed in keys */
-export function pick(obj, keys) {
-    return keys.reduce((r, k) => {
-        r[k] = obj[k];
-        return r;
-    }, {});
-}
-
-/** Given an object, returns a new object with the keys not listed in keys */
-export function omit(obj, keys) {
-    const keysAsString = keys.map(k => String(k));
-    return Object.keys(obj).reduce((r, k) => {
-        if (!keysAsString.includes(k)) {
-            r[k] = obj[k];
-        }
-        return r;
-    }, {});
-}
-
 /** 
- * Given an object, returns a new object with each value altered by a transform function
- * @template {string} K
- * @template V
- * @template R
- * @param {Record<K, V>} obj object to transform
- * @param {(value: V, index: number) => R} transform mapping function
- * @returns {Record<K, R>} new object with mapped values
+ * @param {unknown} value
+ * @returns {string}
  */
-export function mapValues(obj, transform) {
-    return Object.entries(obj).reduce((r, [k, v], index) => {
-        r[k] = transform(v, index);
-        return r;
-    }, {});
+export function signedNumber(value) {
+    const number = Number(value);
+    return number >= 0 ? `+${value}` : String(value);
 }
 
 export function rollCommandToJSON(text) {
@@ -91,37 +66,6 @@ export const getCommandTarget = (options = {}) => {
     }
 
     return target;
-};
-
-export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
-    if (!game.dice3d) return;
-    const diceSoNicePresets = await getDiceSoNicePresets(
-        rollResult,
-        hopeFaces,
-        fearFaces,
-        advantageFaces,
-        advantageFaces
-    );
-    rollResult.dice[0].options = diceSoNicePresets.hope;
-    rollResult.dice[1].options = diceSoNicePresets.fear;
-    if (rollResult.dice[2] && advantageState) {
-        rollResult.dice[2].options =
-            advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
-    }
-};
-
-export const setDiceSoNiceForHopeFateRoll = async (rollResult, hopeFaces) => {
-    if (!game.dice3d) return;
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
-    rollResult.dice[0].options = diceSoNicePresets;
-};
-
-export const setDiceSoNiceForFearFateRoll = async (rollResult, fearFaces) => {
-    if (!game.dice3d) return;
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.fear, fearFaces);
-    rollResult.dice[0].options = diceSoNicePresets;
 };
 
 export const chunkify = (array, chunkSize, mappingFunc) => {
@@ -394,7 +338,7 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
 export function updateLinkedItemApps(options, sheet) {
     for (const featureUuid of [...(options.toUnlink ?? []), ...(options.toLink ?? [])]) {
         const doc = foundry.utils.fromUuidSync(featureUuid);
-        if (doc) doc.apps[sheet.id] = sheet;
+        if (doc?.apps) doc.apps[sheet.id] = sheet;
     }
 }
 
@@ -744,7 +688,7 @@ export function getArmorSources(actor) {
         // Get the origin item. Since the actor is already loaded, it should already be cached
         // Consider the relative function versions if this causes an issue
         const origin = doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc;
-        const useParentName = doc.parent && !(doc.parent instanceof Actor);
+        const useParentName = doc.parent && !(doc.parent instanceof Actor) && doc.parent.type !== 'armor';
         const name = doc.origin || !useParentName ? doc.name : doc.parent.name;
 
         return {
@@ -857,7 +801,10 @@ export function camelize(str) {
         .replace(/\s+/g, '');
 }
 
-/** Bulk load a list of documents using uuids. Returns the documents in the same order */
+/** 
+ * Bulk load a list of documents using uuids. Returns the documents in the same order.
+ * @returns {Promise<foundry.abstract.Document[]>}
+ */
 export async function fromUuids(uuids) {
     // Set up base entries. Each step works on a sublist of these objects
     const entries = uuids.map(uuid => ({

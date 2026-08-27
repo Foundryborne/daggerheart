@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 29,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "halfling"
+    "loreReference": "halfling",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "CtL2jDjvPOJxNJKm",

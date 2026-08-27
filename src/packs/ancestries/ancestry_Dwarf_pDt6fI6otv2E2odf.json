@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 27,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "dwarf"
+    "loreReference": "dwarf",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "pDt6fI6otv2E2odf",

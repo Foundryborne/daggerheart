@@ -6,11 +6,12 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 /**
  * A UI element which displays the Users defined for this world.
  * Currently active users are always displayed, while inactive users can be displayed on toggle.
+ * 
+ * The actual items are configured in itemBrowserConfig.mjs
  *
  * @extends ApplicationV2
  * @mixes HandlebarsApplication
  */
-
 export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(options = {}) {
         super(options);
@@ -183,8 +184,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     getCompendiumFolders(config, parent = null, depth = 0) {
         let folders = [];
-        Object.values(config).forEach(c => {
-            // if(this.presets.render?.folders?.length && !this.presets.render.folders.includes(c.id)) return;
+        for (const c of Object.values(config)) {
             const folder = {
                 id: c.id,
                 label: game.i18n.localize(c.label),
@@ -194,7 +194,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 ? ItemBrowser.sortBy(this.getCompendiumFolders(c.folders, folder, depth + 2), 'label')
                 : [];
             folders.push(folder);
-        });
+        }
         folders.sort((a, b) => a.label.localeCompare(b.label));
 
         return folders;
@@ -594,31 +594,27 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static injectSidebarButton(html) {
         if (!game.user.isGM) return;
-        const sectionId = html.dataset.tab,
-            menus = {
-                actors: {
-                    folder: 'adversaries',
-                    render: {
-                        folders: ['adversaries', 'characters', 'environments']
-                    }
-                },
-                items: {
-                    folder: 'equipments',
-                    render: {
-                        folders: [
-                            'equipments',
-                            'ancestries',
-                            'classes',
-                            'subclasses',
-                            'domains',
-                            'communities',
-                            'beastforms'
-                            // excluded: features
-                        ]
-                    }
-                },
-                compendium: {}
-            };
+
+        const config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
+        const actorFolders = Object.values(config).filter(c => c.documentName === 'Actor').map(c => c.id);
+        const itemFolders = Object.values(config).filter(c => c.documentName === 'Item').map(c => c.id);
+
+        const sectionId = html.dataset.tab;
+        const menus = {
+            actors: {
+                folder: 'adversaries',
+                render: {
+                    folders: actorFolders
+                }
+            },
+            items: {
+                folder: 'equipments',
+                render: {
+                    folders: itemFolders.filter(i => i !== 'features')
+                }
+            },
+            compendium: {}
+        };
 
         if (Object.keys(menus).includes(sectionId)) {
             const headerActions = html.querySelector('.header-actions');

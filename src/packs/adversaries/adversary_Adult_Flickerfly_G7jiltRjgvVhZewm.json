@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 91,
+      "page": null,
       "artist": ""
     },
     "size": "gargantuan",
@@ -273,12 +273,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "fFOhhMl4SDUnYNNO",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -333,12 +331,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "PrwC6RpsP12fPUwy",
       "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
@@ -346,7 +342,6 @@
         {
           "name": "Never Misses",
           "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.G7jiltRjgvVhZewm.Item.PrwC6RpsP12fPUwy",
           "transfer": false,
           "_id": "ia0NUIOxE3RHb45P",
           "type": "base",
@@ -374,7 +369,7 @@
             "expired": false
           },
           "disabled": false,
-          "description": "<p>When the Flickerfly makes an attack, the target’s Evasion is halved against the attack.</p>",
+          "description": "<p>When the Flickerfly makes an attack, the target's Evasion is halved against the attack.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -427,37 +422,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d8",
-                    "bonus": null,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "direct": true,
-              "groupAttack": "",
               "main": {
                 "value": {
                   "custom": {
@@ -537,12 +501,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "BuL6ndgaiJtjaM2T",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -586,9 +548,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {}
             },
@@ -637,12 +596,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "bOTsfXr9yNIGkIzK",
       "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
@@ -677,61 +634,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d8",
-                    "bonus": 3,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                },
-                "hope": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "2"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "hope",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
-              "groupAttack": "",
               "main": {
                 "value": {
                   "custom": {
@@ -878,12 +780,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "49cIxZRFiAM6jDva",
       "img": "icons/magic/air/fog-gas-smoke-purple.webp",
@@ -942,12 +842,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "KLdLRKoJHBJlHwYe",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
@@ -967,11 +865,10 @@
         "description": "<p>While flying the @Lookup[@name] can move up to Far range instead of Close range before taking an action.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false,
         "attribution": {},
         "gmNotes": "",
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "WFRpSDZvqF0Upjoy",
       "img": "icons/skills/movement/feet-winged-boots-blue.webp",

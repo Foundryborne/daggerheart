@@ -10,10 +10,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 34,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "wanderborne"
+    "loreReference": "wanderborne",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "82mDY2EIBfLkNwQj",

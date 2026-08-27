@@ -7,6 +7,10 @@
   "_id": "NbXyhDASDCqpg4eG",
   "description": "",
   "sort": 0,
-  "flags": {},
+  "flags": {
+    "daggerheart": {
+      "defaultEntity": "weapon"
+    }
+  },
   "_key": "!folders!NbXyhDASDCqpg4eG"
 }

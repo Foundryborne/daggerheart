@@ -21,7 +21,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -42,7 +43,13 @@
         },
         "name": "Bonus to Roll",
         "img": "icons/sundries/gaming/dice-runed-tan.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "S7HvFD3qIR3ifJRL": {
         "type": "effect",
@@ -57,7 +64,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -78,22 +86,28 @@
         },
         "name": "Bonus to Damage",
         "img": "icons/sundries/gaming/dice-runed-tan.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 22,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Bonus to Roll",
       "img": "icons/magic/fire/flame-burning-hand-white.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
       "transfer": false,
       "_id": "EY87mY6ULfIt3XC8",
       "type": "base",
@@ -103,19 +117,23 @@
             "key": "system.bonuses.roll.action.bonus",
             "type": "add",
             "value": "+2",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>+2 to an action roll</p>",
       "tint": "#ffffff",
@@ -125,12 +143,14 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!dPcqKN5NeDkjB1HW.EY87mY6ULfIt3XC8"
     },
     {
       "name": "Bonus to Damage",
       "img": "icons/magic/fire/flame-burning-hand-white.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
       "transfer": false,
       "_id": "WwibpgaO6Kkks7aZ",
       "type": "base",
@@ -140,25 +160,30 @@
             "key": "system.bonuses.damage.magical.bonus",
             "type": "add",
             "value": "+3",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.physical.bonus",
             "type": "add",
             "value": "+3",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>+3 to damage</p>",
       "tint": "#ffffff",
@@ -168,6 +193,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!dPcqKN5NeDkjB1HW.WwibpgaO6Kkks7aZ"
     }
   ],

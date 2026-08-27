@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,29 +42,39 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/bottle-ornate-bat-teal.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 60,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Vial of Moondrip",
       "img": "icons/consumables/potions/bottle-ornate-bat-teal.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.VqEX5YwK5oL3r1t6",
       "transfer": false,
       "_id": "548KAUPcSbQLsivh",
       "type": "base",
       "system": {
         "changes": [],
         "duration": {
-          "type": "shortRest"
-        }
+          "type": "shortRest",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -94,7 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 5800000,
   "flags": {},
   "_key": "!items!VqEX5YwK5oL3r1t6"
 }

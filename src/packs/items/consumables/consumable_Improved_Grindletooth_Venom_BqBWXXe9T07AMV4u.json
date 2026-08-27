@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Apply",
         "img": "icons/consumables/potions/potion-jar-corked-labeled-poison-skull-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 60,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Improved Grindletooth Venom",
       "img": "icons/consumables/potions/potion-jar-corked-labeled-poison-skull-green.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.BqBWXXe9T07AMV4u",
       "transfer": false,
       "_id": "P7tbNjq58bQ9R1Cc",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.bonuses.damage.physical.dice",
             "type": "add",
             "value": "1d8",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,7 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 2400000,
   "flags": {},
   "_key": "!items!BqBWXXe9T07AMV4u"
 }

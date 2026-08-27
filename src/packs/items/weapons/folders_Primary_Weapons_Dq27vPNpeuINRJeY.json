@@ -7,6 +7,10 @@
   "_id": "Dq27vPNpeuINRJeY",
   "description": "",
   "sort": 800000,
-  "flags": {},
+  "flags": {
+    "daggerheart": {
+      "defaultEntity": "weapon"
+    }
+  },
   "_key": "!folders!Dq27vPNpeuINRJeY"
 }

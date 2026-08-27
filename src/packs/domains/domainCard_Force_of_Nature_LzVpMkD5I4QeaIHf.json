@@ -94,7 +94,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 131,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -111,7 +111,6 @@
     {
       "name": "Force of Nature",
       "img": "icons/magic/nature/elemental-plant-humanoid.webp",
-      "origin": "Compendium.daggerheart.domains.Item.LzVpMkD5I4QeaIHf",
       "transfer": false,
       "_id": "ptBC882plZW39Ld9",
       "type": "base",
@@ -153,7 +152,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<ul><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">You can’t be <em>Restrained</em>.</p></li><li><p>Before you make an action roll, you must spend a Hope. If you can’t, you revert to your normal form.</p></li></ul>",
+      "description": "<ul><li><p>When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li><p>When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li><p>You can't be <em>Restrained</em>.</p></li><li><p>Before you make an action roll, you must spend a Hope. If you can't, you revert to your normal form.</p></li></ul>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

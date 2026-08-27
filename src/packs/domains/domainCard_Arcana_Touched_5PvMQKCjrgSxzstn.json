@@ -24,7 +24,7 @@
         "type": "effect",
         "_id": "hBh4Lt0Bdd9CtJY7",
         "systemPath": "actions",
-        "description": "<p><span class=\"vertical-card-list-found\" style=\"box-sizing: border-box; margin: 0px 0px 0.25rem; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Once per rest, you can switch the results of your Hope and Fear Dice.</p>",
+        "description": "<p>Once per rest, you can switch the results of your Hope and Fear Dice.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -61,7 +61,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 120,
+      "page": null,
       "artist": ""
     },
     "domainTouched": 4,
@@ -104,7 +104,6 @@
         "expired": false
       },
       "description": "<p>When 4 or more of the domain cards in your loadout are from the Arcana domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Spellcast Rolls</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can switch the results of your Hope and Fear Dice.</p></li></ul>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

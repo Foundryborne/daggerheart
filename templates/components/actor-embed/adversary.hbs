@@ -1,0 +1,53 @@
+<section class="embed actor adversary">
+    <header class="name">{{actor.name}}</header>
+    <div class="tier">
+        {{localize "DAGGERHEART.GENERAL.Tiers.typed" tier=actor.system.tier type=type}}
+    </div>
+    <section class="description">{{{description}}}</section>
+    <div class="motives">
+        <strong>{{localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label"}}:</strong>
+        {{actor.system.motivesAndTactics}}
+    </div>
+    <section class="stats">
+        <div class="row">
+            <div class="difficulty">
+                <strong>{{localize "DAGGERHEART.GENERAL.difficulty"}}:</strong>
+                {{actor.system.difficulty}}
+            </div>
+            <div class="thresholds">
+                <strong>{{localize "DAGGERHEART.ACTORS.Adversary.Embed.thresholds"}}:</strong>
+                {{actor.system.damageThresholds.major}}/{{actor.system.damageThresholds.severe}}
+            </div>
+            <div class="hp">
+                <strong>{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}:</strong>
+                {{actor.system.resources.hitPoints.max}}
+            </div>
+            <div class="stress">
+                <strong>{{localize "DAGGERHEART.GENERAL.stress"}}:</strong>
+                {{actor.system.resources.stress.max}}
+            </div>
+        </div>
+        <div class="row attack">
+            <div class="bonus">
+                <strong>{{localize "DAGGERHEART.ACTORS.Adversary.Embed.attack"}}:</strong>
+                {{attack.bonus}}
+            </div>
+            <div class="name-and-range">
+                <strong>{{attack.name}}:</strong>
+                {{attack.range}}
+            </div>
+            <div class="damage">{{attack.damage}}</div>
+        </div>
+        {{#if experiences.length}}
+            <div class="row experience-row">
+                <div class="experiences">
+                    <strong>{{localize "DAGGERHEART.GENERAL.Experience.plural"}}:</strong>
+                    {{#each experiences as |exp index|}}
+                        <span>{{exp.name}} {{exp.value}}{{#unless @last}},{{/unless}}</span>
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+    </section>
+    {{> "systems/daggerheart/templates/components/actor-embed/_features.hbs" featureGroups=featureGroups}}
+</section>

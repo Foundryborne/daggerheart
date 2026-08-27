@@ -129,7 +129,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 78,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -257,35 +257,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": 6,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -355,13 +326,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
@@ -416,19 +384,15 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "effects": [
         {
           "name": "Cloaked",
           "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.XF4tYTq9nPJAy2ox.Item.ILIogeKbYioPutRw",
           "transfer": false,
           "_id": "w5VTwlHmUjl8XCQ4",
           "type": "base",
@@ -456,7 +420,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+          "description": "<p>Become <em>Hidden</em> until after the Shadow's next attack. Attacks made while Hidden from this feature have advantage.</p>",
           "tint": "#ffffff",
           "statuses": [
             "hidden"

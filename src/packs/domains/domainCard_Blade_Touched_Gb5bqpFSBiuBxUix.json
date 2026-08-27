@@ -11,7 +11,7 @@
     "type": "ability",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 121,
+      "page": null,
       "artist": ""
     },
     "domainTouched": 4,
@@ -63,7 +63,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

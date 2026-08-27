@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,26 +42,38 @@
         },
         "name": "Use",
         "img": "icons/consumables/plants/leaf-broad-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Wingsprout",
       "img": "icons/consumables/plants/leaf-broad-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.n10vozlmosVR6lo4",
       "transfer": false,
       "_id": "80F8gAn7ejhhNL7R",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -84,7 +97,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 9400000,
   "flags": {},
   "_key": "!items!n10vozlmosVR6lo4"
 }

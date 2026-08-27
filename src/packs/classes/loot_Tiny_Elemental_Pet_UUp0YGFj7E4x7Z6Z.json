@@ -7,7 +7,9 @@
   "system": {
     "description": "<p>A tiny elemental pet</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {},
+    "gmNotes": ""
   },
   "effects": [],
   "sort": 0,

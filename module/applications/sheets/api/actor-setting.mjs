@@ -89,7 +89,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
     async _onDropItem(event, item) {
         if (item?.type === 'feature') {
             if (item.parent?.uuid === this.actor.uuid) {
-                return super._onDropItem(event);
+                return super._onDropItem(event, item);
             }
 
             const itemData = item.toObject();

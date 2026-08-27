@@ -13,7 +13,7 @@
  */
 
 import { getScrollTextData } from '../../helpers/utils.mjs';
-import { changeTypes } from './_module.mjs';
+import { changeTypes } from './changeTypes/_module.mjs'
 
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {

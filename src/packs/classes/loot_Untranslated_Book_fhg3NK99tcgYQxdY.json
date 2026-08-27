@@ -7,7 +7,9 @@
   "system": {
     "description": "<p>A book you're trying to translate.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {},
+    "gmNotes": ""
   },
   "effects": [],
   "sort": 0,

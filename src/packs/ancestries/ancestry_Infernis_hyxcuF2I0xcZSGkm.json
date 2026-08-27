@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 30,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "infernis"
+    "loreReference": "infernis",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "hyxcuF2I0xcZSGkm",

@@ -1,5 +1,6 @@
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
+import { prepareFeatureContext } from '../sheet-helpers.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -23,7 +24,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
             toggleStress: AdversarySheet.#toggleStress,
             reactionRoll: AdversarySheet.#reactionRoll,
             toggleResourceDice: AdversarySheet.#toggleResourceDice,
-            handleResourceDice: AdversarySheet.#handleResourceDice
+            handleResourceDice: AdversarySheet.#handleResourceDice,
+            advanceResourceDie: AdversarySheet.#advanceResourceDie
         },
         dragDrop: [
             {
@@ -103,13 +105,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
-        const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
-        context.features = this.document.system.features.sort((a, b) =>
-            a.system.featureForm !== b.system.featureForm
-                ? featureForms.indexOf(a.system.featureForm) - featureForms.indexOf(b.system.featureForm)
-                : a.sort - b.sort
-        );
-
         return context;
     }
 
@@ -123,6 +118,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
+                break;
+            case 'features': 
+                await this._prepareFeaturesContext(context, options);
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
@@ -148,6 +146,11 @@ export default class AdversarySheet extends DHBaseActorSheet {
             element.addEventListener('change', this.updateItemResource.bind(this));
             element.addEventListener('click', e => e.stopPropagation());
         }
+
+        
+        htmlElement.querySelectorAll('.item-resource.die').forEach(element => {
+            element.addEventListener('contextmenu', this.lowerResourceDie.bind(this));
+        });
     }
 
     /**
@@ -193,6 +196,18 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+    }
+
+    /**
+     * Prepare render context for the Features part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareFeaturesContext(context, _options) {
+        const featureContext = prepareFeatureContext(this.document);
+        foundry.utils.mergeObject(context, featureContext);
     }
 
     /* -------------------------------------------- */
@@ -271,6 +286,26 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 acc[index] = { value: state.value, used: state.used };
                 return acc;
             }, {})
+        });
+    }
+
+    static #advanceResourceDie(_, target) {
+        this.updateResourceDie(target, true);
+    }
+
+    lowerResourceDie(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.updateResourceDie(event.target, false);
+    }
+
+    async updateResourceDie(target, advance) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const advancedValue = item.system.resource.value + (advance ? 1 : -1);
+        await item.update({
+            'system.resource.value': Math.min(advancedValue, Number(item.system.resource.dieFaces.split('d')[1]))
         });
     }
 

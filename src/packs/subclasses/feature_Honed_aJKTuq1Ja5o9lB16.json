@@ -1,0 +1,183 @@
+{
+  "folder": "lWpkV14I1qmLrVHt",
+  "name": "Honed",
+  "type": "feature",
+  "_id": "aJKTuq1Ja5o9lB16",
+  "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p><strong>Spend a Focus</strong> before you make an attack roll to gain a +1 bonus to your Proficiency for that attack.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "Xs4xgmFwibfOp6Ky": {
+        "type": "effect",
+        "_id": "Xs4xgmFwibfOp6Ky",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "HkFjCOTppPwFhoDD",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Enter Stance",
+        "range": "self"
+      },
+      "InclNwt5wzExUNUc": {
+        "type": "effect",
+        "_id": "InclNwt5wzExUNUc",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "dyHrEgxlTrZPrV0p",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Spend Focus",
+        "range": "self",
+        "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp"
+      }
+    },
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [
+    {
+      "name": "Stance: Honed",
+      "disabled": false,
+      "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
+      "description": "<p><strong>Spend a Focus</strong> before you make an attack roll to gain a +1 bonus to your Proficiency for that attack.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": "scene"
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "HkFjCOTppPwFhoDD",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!aJKTuq1Ja5o9lB16.HkFjCOTppPwFhoDD"
+    },
+    {
+      "name": "Honed",
+      "disabled": false,
+      "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp",
+      "description": "<p>Gain a +1 bonus to your Proficiency for that attack.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "dyHrEgxlTrZPrV0p",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!aJKTuq1Ja5o9lB16.dyHrEgxlTrZPrV0p"
+    }
+  ],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!aJKTuq1Ja5o9lB16"
+}

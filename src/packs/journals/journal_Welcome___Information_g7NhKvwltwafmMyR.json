@@ -32,12 +32,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754223650079,
-        "modifiedTime": 1754225785759,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "systemVersion": "2.7.4",
+        "createdTime": 1787131648446,
+        "modifiedTime": 1787131648446,
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.Qn12vkbvV4m8LW3E"
     },
@@ -54,7 +54,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>The system supports various levels of automation. You find these settings in the <strong>Automation</strong> system settings.</p><p>The most immediate choice you should make is if you want to use the game setting for `Levelup Automation`. You should make a choice there, and then not change it during play to avoid potential unwanted oddities.</p><p></p><hr /><blockquote><p>Some parts of the system are not currently automated due to technical limitations. If something is not working correctly you always have the option to manually adjust things to be correct.</p><p>We plan to find a solution for these cases in the future.</p><p>This especially includes things that need a check for specific inventory/loadout conditions, or some actions that have complex conditions or scaling. We hope to find a solution for all of these cases in the future.</p></blockquote><hr />"
+        "content": "<p>The system supports various levels of automation. You find these settings in the <strong>Automation</strong> system settings.</p><p>The most immediate choice you should make is if you want to use the game setting for `Levelup Automation`. You should make a choice there, and then not change it during play to avoid potential unwanted oddities.</p><p></p><hr><blockquote><p>Some parts of the system are not currently automated due to technical limitations. If something is not working correctly you always have the option to manually adjust things to be correct.</p><p>We plan to find a solution for these cases in the future.</p><p>This especially includes things that need a check for specific inventory/loadout conditions, or some actions that have complex conditions or scaling. We hope to find a solution for all of these cases in the future.</p></blockquote><hr>"
       },
       "video": {
         "controls": true,
@@ -71,12 +71,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754223746740,
-        "modifiedTime": 1754321125413,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "systemVersion": "2.7.4",
+        "createdTime": 1787131648447,
+        "modifiedTime": 1787131648447,
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.VBhZyON3eZi6dfo7"
     },
@@ -110,12 +110,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754225823379,
-        "modifiedTime": 1754225935779,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "systemVersion": "2.7.4",
+        "createdTime": 1787131648447,
+        "modifiedTime": 1787131648447,
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.PQdKJiorsBUEcPLk"
     },
@@ -132,7 +132,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<blockquote><p>This product includes materials from the Daggerheart System Reference Document 1.0, © Critical Role, LLC. under the terms of the Darrington Press Community Gaming (DPCGL) License. More information can be found at <a href=\"https://www.daggerheart.com/\" title=\"Daggerheart Official Website\">https://www.daggerheart.com</a>. There are no previous modifications by others.</p><p></p></blockquote><h1>The Foundryborne Team</h1><p></p><p>The Foundryborne Team consists of:</p><p></p><ul><li><p>@harryfuralle</p></li><li><p>@cptn_cosmo</p></li><li><p>@molilo</p></li><li><p>@joaquinp98</p></li><li><p>@dapoulp</p></li><li><p>@ikraik</p></li><li><p>@irktheimp</p></li><li><p>@jacobwojo</p></li><li><p>@vyrth</p></li><li><p>@.ontaro</p></li><li><p>@saatsin</p></li><li><p>@david.xyz</p></li><li><p>@lazjen</p></li><li><p>@Skarlso</p></li></ul><p></p><p>With Art from:</p><p></p><ul><li><p>@molilo (Foundryborne User Interface &amp; Domain Card Placeholder Artwork)</p></li><li><p>@UsernameIsInUse (Foundryborne Logo, Website Design, Duality Roll Icon</p></li><li><p>@CyrensMaps (Combat Wheelchair Icons)</p></li></ul><p></p><p>And special thanks to our hard working community testers:<br /></p><ul><li><p>@lazjen</p></li></ul><p></p><p>We would also like to thank the FoundryVTT team for their support in publishing this system, as well as providing countless Icons to be used in many places.</p><p>And, of course, special thanks to the teams at Critical Role and Darrington Press for making such a wonderful game and updating the license to allow a FoundryVTT version of the system.</p><p></p><h1>The Foundryborne Community</h1><p></p><p>Without our amazing community this project would not have been possible.</p><p>You kept us going with both direct contributions and just endless support!</p><p>We thank you with all our hearts.</p><p><a href=\"https://foundryborne.online/\" title=\"Foundryborne official website\">Come join us!</a></p>"
+        "content": "<blockquote><p>This product includes materials from the Daggerheart System Reference Document 1.0, © Critical Role, LLC. under the terms of the Darrington Press Community Gaming (DPCGL) License. More information can be found at <a href=\"https://www.daggerheart.com/\" title=\"Daggerheart Official Website\">https://www.daggerheart.com</a>. There are no previous modifications by others.</p><p></p></blockquote><h1>The Foundryborne Team</h1><p></p><p>The Foundryborne Team consists of:</p><p></p><ul><li><p>@harryfuralle</p></li><li><p>@cptn_cosmo</p></li><li><p>@molilo</p></li><li><p>@joaquinp98</p></li><li><p>@dapoulp</p></li><li><p>@ikraik</p></li><li><p>@irktheimp</p></li><li><p>@jacobwojo</p></li><li><p>@vyrth</p></li><li><p>@.ontaro</p></li><li><p>@saatsin</p></li><li><p>@david.xyz</p></li><li><p>@lazjen</p></li><li><p>@Skarlso</p></li></ul><p></p><p>With Art from:</p><p></p><ul><li><p>@molilo (Foundryborne User Interface &amp; Domain Card Placeholder Artwork)</p></li><li><p>@UsernameIsInUse (Foundryborne Logo, Website Design, Duality Roll Icon</p></li><li><p>@CyrensMaps (Combat Wheelchair Icons)</p></li></ul><p></p><p>And special thanks to our hard working community testers:<br></p><ul><li><p>@lazjen</p></li></ul><p></p><p>We would also like to thank the FoundryVTT team for their support in publishing this system, as well as providing countless Icons to be used in many places.</p><p>And, of course, special thanks to the teams at Critical Role and Darrington Press for making such a wonderful game and updating the license to allow a FoundryVTT version of the system.</p><p></p><h1>The Foundryborne Community</h1><p></p><p>Without our amazing community this project would not have been possible.</p><p>You kept us going with both direct contributions and just endless support!</p><p>We thank you with all our hearts.</p><p><a href=\"https://foundryborne.online/\" title=\"Foundryborne official website\">Come join us!</a></p>"
       },
       "video": {
         "controls": true,
@@ -149,12 +149,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754225939902,
-        "modifiedTime": 1754847043391,
-        "lastModifiedBy": "9GFCfEY8m5Co2mHo"
+        "systemVersion": "2.7.4",
+        "createdTime": 1787131648447,
+        "modifiedTime": 1787131648447,
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.dP6xSKEld4TSqHhK"
     }

@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 29,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "fungril"
+    "loreReference": "fungril",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "J1hX7nBBc5jQiHli",

@@ -14,7 +14,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p><strong>When an invading nation attacks an ancient forest deity, a virulent overgrowth spreads throughout the land.</strong></p><p></p><p><em>Designed by Carlos Cisco, Rowan Hall, &amp; Spenser Starke</em></p><p></p><h2>COMPLEXITY RATING: •</h2><p></p><h2>THE PITCH</h2><p>Read this section to your players to introduce them to the campaign.</p><hr /><blockquote><p><em>Fanewick was once a place of great abundance and peace—dangerous to those unfamiliar with the land, but a cornucopia to those who respected its ways. When Haven invaded the wilds and forced the land into eternal spring, a dangerous bloom known as the Witherwild took hold and now threatens the lives of all who live there. In a Witherwild campaign, you’ll play unlikely heroes from humble beginnings who are reckoning with their newfound duty to save Fanewick’s people from dangerous corruption.</em></p></blockquote><hr /><p></p><h2>TONE &amp; FEEL</h2><p>Adventurous, Dynamic, Epic, Heroic, Thrilling, Uncanny, Whimsical</p><p></p><h2>THEMES</h2><p>Cultural Clash, Ends Justify Means, Grief, People vs. Nature, Transformation and Change, Survival</p><p></p><h2>TOUCHSTONES</h2><p>Princess Mononoke, The Legend of Zelda, The Dark Crystal, Nausicaä of the Valley of the Wind</p>"
+        "content": "<p><strong>When an invading nation attacks an ancient forest deity, a virulent overgrowth spreads throughout the land.</strong></p><p></p><p><em>Designed by Carlos Cisco, Rowan Hall, &amp; Spenser Starke</em></p><p></p><h2>COMPLEXITY RATING: •</h2><p></p><h2>THE PITCH</h2><p>Read this section to your players to introduce them to the campaign.</p><hr><blockquote><p><em>Fanewick was once a place of great abundance and peace—dangerous to those unfamiliar with the land, but a cornucopia to those who respected its ways. When Haven invaded the wilds and forced the land into eternal spring, a dangerous bloom known as the Witherwild took hold and now threatens the lives of all who live there. In a Witherwild campaign, you’ll play unlikely heroes from humble beginnings who are reckoning with their newfound duty to save Fanewick’s people from dangerous corruption.</em></p></blockquote><hr><p></p><h2>TONE &amp; FEEL</h2><p>Adventurous, Dynamic, Epic, Heroic, Thrilling, Uncanny, Whimsical</p><p></p><h2>THEMES</h2><p>Cultural Clash, Ends Justify Means, Grief, People vs. Nature, Transformation and Change, Survival</p><p></p><h2>TOUCHSTONES</h2><p>Princess Mononoke, The Legend of Zelda, The Dark Crystal, Nausicaä of the Valley of the Wind</p>"
       },
       "video": {
         "controls": true,
@@ -31,10 +31,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648408,
+        "modifiedTime": 1787131648408
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.6FCpkiZfGKg5GBNT"
     },
@@ -68,10 +70,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648409,
+        "modifiedTime": 1787131648409
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.IoJzLplbYACTHDyh"
     },
@@ -88,7 +92,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>The following mechanics are unique to this campaign.</p><p></p><h2>CORRUPTION FROM THE WITHERWILD</h2><p>Adversaries and environments in this campaign can gain an additional type called Withered. When an adversary is Withered, describe how the Witherwild changed or impacted how they would normally appear or operate. You also need about 20 Wither tokens (these can be the same as the tokens you use for Fear).</p><p>Any time a PC takes Severe damage from a Withered adversary or environment, gain a Wither token and place it on that PC’s character sheet. When you do, the PC must roll their Fear Die. If they roll equal to or below the number of Wither tokens on their sheet, they immediately gain a scar and clear all tokens, describing how the Witherwild changes them permanently.</p><p>At the end of each session, clear all Wither tokens from the PCs’ sheets and gain an equal amount of Fear. If a character ever dies with Wither tokens on their sheet, their body is permanently taken over by the Witherwild.</p><p></p><hr /><blockquote><p><strong>Note:</strong> For the FoundryVTT Module Version 1.0.0 Release, the Witherwild Corruption Mechanic can be added to character sheets by creating a custom \"Withered\" Feature Item that has a Resource and drag that Feature onto each Character. Better support for this Feature is planned in a future release.</p></blockquote><hr /><h2>SESSION ZERO QUESTIONS</h2><p><em>Ask any of these questions to your players, or make your own.</em></p><blockquote><hr /></blockquote><p>What dangerous animal comes out during the week of night that isn’t out during the week of day?</p><p>What unique trait (such as appearance, smell, or taste) does anything tainted by the Witherwild have?</p><p>What superstitions does your character or their community have about traversing Fanewick during the long nights?</p><p>Your character has witnessed something beautiful that came from the Witherwild. What is it and how has it transformed their view of the corruption?</p><blockquote><hr /></blockquote><p></p><p></p><p></p>"
+        "content": "<p>The following mechanics are unique to this campaign.</p><p></p><h2>CORRUPTION FROM THE WITHERWILD</h2><p>Adversaries and environments in this campaign can gain an additional type called Withered. When an adversary is Withered, describe how the Witherwild changed or impacted how they would normally appear or operate. You also need about 20 Wither tokens (these can be the same as the tokens you use for Fear).</p><p>Any time a PC takes Severe damage from a Withered adversary or environment, gain a Wither token and place it on that PC’s character sheet. When you do, the PC must roll their Fear Die. If they roll equal to or below the number of Wither tokens on their sheet, they immediately gain a scar and clear all tokens, describing how the Witherwild changes them permanently.</p><p>At the end of each session, clear all Wither tokens from the PCs’ sheets and gain an equal amount of Fear. If a character ever dies with Wither tokens on their sheet, their body is permanently taken over by the Witherwild.</p><p></p><hr><blockquote><p><strong>Note:</strong> For the FoundryVTT Module Version 1.0.0 Release, the Witherwild Corruption Mechanic can be added to character sheets by creating a custom \"Withered\" Feature Item that has a Resource and drag that Feature onto each Character. Better support for this Feature is planned in a future release.</p></blockquote><hr><h2>SESSION ZERO QUESTIONS</h2><p><em>Ask any of these questions to your players, or make your own.</em></p><blockquote><hr></blockquote><p>What dangerous animal comes out during the week of night that isn’t out during the week of day?</p><p>What unique trait (such as appearance, smell, or taste) does anything tainted by the Witherwild have?</p><p>What superstitions does your character or their community have about traversing Fanewick during the long nights?</p><p>Your character has witnessed something beautiful that came from the Witherwild. What is it and how has it transformed their view of the corruption?</p><blockquote><hr></blockquote><p></p><p></p><p></p>"
       },
       "video": {
         "controls": true,
@@ -105,10 +109,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648409,
+        "modifiedTime": 1787131648409
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.5t5OW3MwiAq3IxSn"
     },
@@ -142,10 +148,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648410,
+        "modifiedTime": 1787131648410
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.nQXGisdFbV59iAj0"
     },
@@ -162,7 +170,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>All communities are available, but some have unique aspects within a Witherwild campaign. As needed, provide the following information to your players and choose one or more of the questions to ask them during your session zero.</p><p></p><h3>LOREBORNE AND HIGHBORNE</h3><p>In Fanewick, knowledge is the most valuable commodity, and those who have expertise have the most power. This economy of information functions primarily through gifting and trading, and wisdom would be considered acceptable collateral for a weapon or warm meal. As such, loreborne community members are the wealthiest in Fanewick and might be smaller, distinct groups of hunters, historians, or artisans within larger villages.</p><hr /><blockquote><p><em>What knowledge did your community teach you that you must now protect or share?</em></p><p><em>What are you able to accomplish because of your upbringing that others outside your community do not understand?</em></p><p><em>You once traded important knowledge for something terrible. What did you impart and what did you gain in return?</em></p></blockquote><hr /><p>In Haven, the wealthiest members are highborne, having inherited riches built in the walled city over generations. While the highborne of Haven were more insulated from the Serpent’s Sickness, none were immune.</p><hr /><blockquote><p><em>Who have you lost to the Serpent’s Sickness? How did it affect you?</em></p><p><em>How did your family make their wealth? Have you rejected or embraced their core set of ethics?</em></p><p><em>You grew up in a world of abundance but were kept from learning something about the world. What was this knowledge and when did you discover it?</em></p></blockquote><hr /><p></p><h3>RIDGEBORNE, UNDERBORNE, AND WILDBORNE</h3><p>Characters from these communities were likely raised in Fanewick’s deadly environs, which have only become more dangerous as the Witherwild grows. Each community has unique customs, some freely shared and others kept secret, that allow them safe passage through dangerous terrain and the Faint Divinities’ territories.</p><p>In exchange for protection from the Witherwild for themselves and their families, some Wicklings from these groups have been forced to take jobs as farmers in Haven’s flower fields. Though it is backbreaking work performed for a nation destroying their land, the farmers are offered safety by the Haven fires that burn back the ever-creeping Witherwild.</p><hr /><blockquote><p>What Faint Divinities do you give tribute to, and how have you been rewarded in kind?</p><p>You displeased a god of Fanewick. What did you do, and what misfortune befell you or a loved one?</p><p>You fled the place of your birth. What circumstances drove you to leave?</p></blockquote><hr /><p></p><h3>ORDERBORNE</h3><blockquote><p>Players might choose to build orderborne characters if they want to play current or former members of the Haven Army that invaded Fanewick. Though the army brings violence into this land, they also carry overwhelming grief for a homeland succumbing to disease.</p><hr /><p>What regrets do you carry with you from your conquest of foreign soil?</p><p>What kindness did an enemy combatant bestow upon you in an hour of need? How did this change your view of the people of Fanewick?</p><p>You were charged with planting a rumor in a Fanewick community. What is the rumor, and do you plan to carry out this mission?</p></blockquote><hr /><p></p><h3>SLYBORNE</h3><p>As the Haven Army is the current martial power in Fanewick, those who wish to play slyborne characters might come from Fanewick rebel groups seeking to expel the invading forces from their lands. Depending on the tactics their group employs, a character from a slyborne community might align with or go against their upbringing.</p><hr /><blockquote><p>Who among the Haven Army do you wish to exact revenge upon and why?</p><p>You joined an insurgent group working to free this land from Haven’s grasp. What has given you doubts about the leadership’s methods?</p><p>Someone you love is a member of the Haven Army. How have you used your position in the rebellion to protect them?</p></blockquote><hr /><p></p><h3>SEABORNE</h3><p>Both Fanewick and Haven have a coastal border. The majority of Fanewick’s seaborne communities live in small seaside groups and focus on local travel to neighboring regions, while Havenites tend to live in large ports that ship and receive goods from distant lands.</p><hr /><blockquote><p>You recently traveled by sea over a vast distance. What went terribly wrong on that passage, and how has it changed you?</p><p>Growing up on the sea taught you a skill few have. What did you learn, and how did it save your life?</p><p>You used to sail with a companion. Who were they, and how do you remain connected?</p></blockquote><hr /><p></p><h3>WANDERBORNE</h3><p>Wanderborne communities can be found in both Fanewick and Haven, though safe travel has been severely restricted due to the military occupation and the expansion of the Witherwild. Whether a wanderborne character comes from Fanewick, Haven, or elsewhere, the player should determine their character’s personal views on the invasion of Fanewick, and how that aligns or departs from their community’s views.</p><hr /><blockquote><p>What do you do to keep your small community safe, independent, and hidden from Haven’s forces?</p><p>Because of your community’s transience, you have loved ones in both Fanewick and Haven. How has this affected your relationship with the invasion?</p><p>Your community travels to protect something. What is it, and why does it keep you from settling down?</p></blockquote><hr />"
+        "content": "<p>All communities are available, but some have unique aspects within a Witherwild campaign. As needed, provide the following information to your players and choose one or more of the questions to ask them during your session zero.</p><p></p><h3>LOREBORNE AND HIGHBORNE</h3><p>In Fanewick, knowledge is the most valuable commodity, and those who have expertise have the most power. This economy of information functions primarily through gifting and trading, and wisdom would be considered acceptable collateral for a weapon or warm meal. As such, loreborne community members are the wealthiest in Fanewick and might be smaller, distinct groups of hunters, historians, or artisans within larger villages.</p><hr><blockquote><p><em>What knowledge did your community teach you that you must now protect or share?</em></p><p><em>What are you able to accomplish because of your upbringing that others outside your community do not understand?</em></p><p><em>You once traded important knowledge for something terrible. What did you impart and what did you gain in return?</em></p></blockquote><hr><p>In Haven, the wealthiest members are highborne, having inherited riches built in the walled city over generations. While the highborne of Haven were more insulated from the Serpent’s Sickness, none were immune.</p><hr><blockquote><p><em>Who have you lost to the Serpent’s Sickness? How did it affect you?</em></p><p><em>How did your family make their wealth? Have you rejected or embraced their core set of ethics?</em></p><p><em>You grew up in a world of abundance but were kept from learning something about the world. What was this knowledge and when did you discover it?</em></p></blockquote><hr><p></p><h3>RIDGEBORNE, UNDERBORNE, AND WILDBORNE</h3><p>Characters from these communities were likely raised in Fanewick’s deadly environs, which have only become more dangerous as the Witherwild grows. Each community has unique customs, some freely shared and others kept secret, that allow them safe passage through dangerous terrain and the Faint Divinities’ territories.</p><p>In exchange for protection from the Witherwild for themselves and their families, some Wicklings from these groups have been forced to take jobs as farmers in Haven’s flower fields. Though it is backbreaking work performed for a nation destroying their land, the farmers are offered safety by the Haven fires that burn back the ever-creeping Witherwild.</p><hr><blockquote><p>What Faint Divinities do you give tribute to, and how have you been rewarded in kind?</p><p>You displeased a god of Fanewick. What did you do, and what misfortune befell you or a loved one?</p><p>You fled the place of your birth. What circumstances drove you to leave?</p></blockquote><hr><p></p><h3>ORDERBORNE</h3><blockquote><p>Players might choose to build orderborne characters if they want to play current or former members of the Haven Army that invaded Fanewick. Though the army brings violence into this land, they also carry overwhelming grief for a homeland succumbing to disease.</p><hr><p>What regrets do you carry with you from your conquest of foreign soil?</p><p>What kindness did an enemy combatant bestow upon you in an hour of need? How did this change your view of the people of Fanewick?</p><p>You were charged with planting a rumor in a Fanewick community. What is the rumor, and do you plan to carry out this mission?</p></blockquote><hr><p></p><h3>SLYBORNE</h3><p>As the Haven Army is the current martial power in Fanewick, those who wish to play slyborne characters might come from Fanewick rebel groups seeking to expel the invading forces from their lands. Depending on the tactics their group employs, a character from a slyborne community might align with or go against their upbringing.</p><hr><blockquote><p>Who among the Haven Army do you wish to exact revenge upon and why?</p><p>You joined an insurgent group working to free this land from Haven’s grasp. What has given you doubts about the leadership’s methods?</p><p>Someone you love is a member of the Haven Army. How have you used your position in the rebellion to protect them?</p></blockquote><hr><p></p><h3>SEABORNE</h3><p>Both Fanewick and Haven have a coastal border. The majority of Fanewick’s seaborne communities live in small seaside groups and focus on local travel to neighboring regions, while Havenites tend to live in large ports that ship and receive goods from distant lands.</p><hr><blockquote><p>You recently traveled by sea over a vast distance. What went terribly wrong on that passage, and how has it changed you?</p><p>Growing up on the sea taught you a skill few have. What did you learn, and how did it save your life?</p><p>You used to sail with a companion. Who were they, and how do you remain connected?</p></blockquote><hr><p></p><h3>WANDERBORNE</h3><p>Wanderborne communities can be found in both Fanewick and Haven, though safe travel has been severely restricted due to the military occupation and the expansion of the Witherwild. Whether a wanderborne character comes from Fanewick, Haven, or elsewhere, the player should determine their character’s personal views on the invasion of Fanewick, and how that aligns or departs from their community’s views.</p><hr><blockquote><p>What do you do to keep your small community safe, independent, and hidden from Haven’s forces?</p><p>Because of your community’s transience, you have loved ones in both Fanewick and Haven. How has this affected your relationship with the invasion?</p><p>Your community travels to protect something. What is it, and why does it keep you from settling down?</p></blockquote><hr>"
       },
       "video": {
         "controls": true,
@@ -179,10 +187,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648411,
+        "modifiedTime": 1787131648411
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.euVnz6gzWVrQD3uH"
     },
@@ -216,10 +226,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648412,
+        "modifiedTime": 1787131648412
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.EP4QW9St6zgo1bcq"
     },
@@ -253,10 +265,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648413,
+        "modifiedTime": 1787131648413
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.E49gwszdn1szNmSQ"
     },
@@ -290,10 +304,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648414,
+        "modifiedTime": 1787131648414
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.XkLfeCHjmWwgqm3s"
     },
@@ -327,10 +343,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "14.367",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "2.7.4",
+        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "createdTime": 1787131648414,
+        "modifiedTime": 1787131648414
       },
       "_key": "!journal.pages!Cty8pCZZxJDc2E1l.r7D8rZMOPK6vWZ43"
     }

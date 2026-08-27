@@ -19,7 +19,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -33,7 +34,13 @@
         },
         "name": "Fire",
         "img": "icons/magic/fire/flame-burning-fist-strike.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "knGm3snaplWYDaue": {
         "type": "effect",
@@ -46,7 +53,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -60,7 +68,13 @@
         },
         "name": "Earth",
         "img": "icons/magic/earth/strike-fist-stone.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "MocaqHUdyVwH0ZFu": {
         "type": "effect",
@@ -74,13 +88,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -94,7 +111,13 @@
         },
         "name": "Water",
         "img": "icons/magic/water/heart-ice-freeze.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "AQMNJRmVyhJTSCfR": {
         "type": "effect",
@@ -107,7 +130,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -121,22 +145,28 @@
         },
         "name": "Air",
         "img": "icons/magic/air/air-smoke-casting.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 11,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Elemental Dominion (Fire)",
       "img": "icons/magic/fire/flame-burning-fist-strike.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "FoBFRSXRfGa1zkiX",
       "type": "base",
@@ -145,20 +175,24 @@
           {
             "key": "system.proficiency",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You gain a +1 bonus to your Proficiency for attacks and spells that deal damage.</p>",
       "tint": "#ffffff",
@@ -168,20 +202,26 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!EFUJHrkTuyv8uA9l.FoBFRSXRfGa1zkiX"
     },
     {
       "name": "Elemental Dominion (Water)",
       "img": "icons/magic/water/heart-ice-freeze.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "bGwFZZT4juuaIRmZ",
       "type": "base",
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -215,7 +255,6 @@
     {
       "name": "Elemental Dominion (Air)",
       "img": "icons/magic/air/air-smoke-casting.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "edF2zvvlcGf54r2n",
       "type": "base",
@@ -224,20 +263,24 @@
           {
             "key": "system.evasion",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You gain a +1 bonus to your Evasion and can fly</p>",
       "tint": "#ffffff",
@@ -247,27 +290,32 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!EFUJHrkTuyv8uA9l.edF2zvvlcGf54r2n"
     },
     {
       "name": "Elemental Dominion (Earth)",
       "img": "icons/magic/earth/strike-fist-stone.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "p5FoUb4JKQFP405d",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -277,6 +325,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!EFUJHrkTuyv8uA9l.p5FoUb4JKQFP405d"
     }
   ],

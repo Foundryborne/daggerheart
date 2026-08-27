@@ -1,5 +1,5 @@
 {
-  "name": "Champion’s Edge",
+  "name": "Champion's Edge",
   "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
   "type": "domainCard",
   "folder": "Emnx4o1DWGTVKoAg",
@@ -250,7 +250,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 121,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

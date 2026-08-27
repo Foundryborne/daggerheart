@@ -1,0 +1,26 @@
+{
+  "name": "Shapeshifter",
+  "type": "transformation",
+  "_id": "MDGd5nTyjjL9NGb2",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null,
+      "artist": ""
+    },
+    "description": "<p>Shapeshifters are creatures who can change their physical form.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.transformations.Item.P1sdtkECFSdLz02W",
+      "Compendium.daggerheart.transformations.Item.qXA130mgMnvPZfNF"
+    ],
+    "questions": "<ul><li><p>You believe you have a “true form,” but you haven’t seen it. What do you think it is, and how do you know it’s there?</p></li><li><p>What trick have you developed to identify other shapeshifters?</p></li><li><p>Someone you loved dearly abandoned you when they found out about your ability to change shape. Who was it, and what happened?</p></li><li><p>What is one form you’ve vowed to never take, and why?</p></li><li><p>Which ancestry do you live as more than others? Why do you spend so much time in this form?</p></li><li><p>Someone you know can instantly recognize you, no matter your form. How do they claim to identify you and what does their familiarity mean to you?</p></li></ul>",
+    "loreReference": "shapeshifter"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!MDGd5nTyjjL9NGb2"
+}

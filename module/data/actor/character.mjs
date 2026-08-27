@@ -312,6 +312,12 @@ export default class DhCharacter extends DhCreature {
                         choices: CONFIG.DH.GENERAL.dieFaces,
                         initial: null,
                         label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
+                    }),
+                    comboDieIndex: new fields.NumberField({
+                        integer: true,
+                        min: 0,
+                        max: 5,
+                        initial: 0
                     })
                 })
             }, { persisted: false }),
@@ -428,9 +434,11 @@ export default class DhCharacter extends DhCreature {
     get loadoutSlot() {
         const loadoutCount = this.domainCards.loadout?.length ?? 0;
         const worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout;
+        const limit = worldSetting + this.bonuses.maxLoadout;
+
         return {
             current: loadoutCount,
-            available: loadoutCount < worldSetting
+            available: loadoutCount < limit
         };
     }
 
@@ -453,6 +461,24 @@ export default class DhCharacter extends DhCreature {
         return !(this.primaryWeapon?.system?.equipped || this.secondaryWeapon?.system?.equipped);
     }
 
+    get levelupTiers() {
+        const tierData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers);
+        const setTierData = levelupOptionTiers => {
+            for (const tierKey of Object.keys(levelupOptionTiers ?? {})) {
+                const tier = levelupOptionTiers[tierKey];
+                for (const optionKey of Object.keys(tier)) {
+                    const option = tier[optionKey];
+                    tierData.tiers[tierKey].options[optionKey] = option;
+                }
+            }
+        }
+
+        setTierData(this.class?.value?.system.levelupOptionTiers);
+        setTierData(this.multiclass?.value?.system.levelupOptionTiers);
+
+        return tierData;
+    }
+
     /* All items are valid on characters */
     isItemValid() {
         return true;
@@ -465,19 +491,19 @@ export default class DhCharacter extends DhCreature {
          * Preventing subclass features from being available if the chacaracter does not
          * have the right subclass advancement
          */
-        if (item.system.originItemType !== CONFIG.DH.ITEM.featureTypes.subclass.id) {
+        if (item.system.granter?.type !== CONFIG.DH.ITEM.featureTypes.subclass.id) {
             return true;
         }
         if (!this.class.subclass) return false;
 
-        const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
+        const prop = item.system.granter?.multiclass ? 'multiclass' : 'class';
         const subclassState = this[prop].subclass?.system?.featureState;
         if (!subclassState) return false;
 
         if (
-            item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
-            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
+            item.system.granter?.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+            (item.system.granter?.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
+            (item.system.granter?.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
         ) {
             return true;
         } else {
@@ -581,7 +607,8 @@ export default class DhCharacter extends DhCreature {
     }
 
     get sheetLists() {
-        const ancestryFeatures = [],
+        const transformations = {},
+            ancestryFeatures = [],
             communityFeatures = [],
             classFeatures = [],
             subclassFeatures = [],
@@ -591,15 +618,28 @@ export default class DhCharacter extends DhCreature {
             features = [];
 
         for (let item of this.parent.items.filter(x => this.isItemAvailable(x))) {
-            if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
+            const originItemType = item.system.granter?.type;
+
+            if (item.type === 'transformation') {
+                const features = this.parent.items.filter(x => x.type === 'feature' && x.system.granter?.id === item.id);
+                transformations[`transformation-${item.id}`] = {
+                    title: `${_loc('TYPES.Item.transformation')} - ${item.name}`,
+                    type: 'transformation',
+                    deleteUuid: item.uuid,
+                    values: features
+                };   
+            }
+            if (originItemType === CONFIG.DH.ITEM.featureTypes.transformation.id) {
+                continue; 
+            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
                 ancestryFeatures.push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
+            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
                 communityFeatures.push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
-                (item.system.multiclassOrigin ? multiclassFeatures : classFeatures).push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
-                (item.system.multiclassOrigin ? multiclassSubclassFeatures : subclassFeatures).push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
+            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
+                (item.system.granter?.multiclass ? multiclassFeatures : classFeatures).push(item);
+            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
+                (item.system.granter?.multiclass ? multiclassSubclassFeatures : subclassFeatures).push(item);
+            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {
                 features.push(item);
@@ -607,6 +647,7 @@ export default class DhCharacter extends DhCreature {
         }
 
         return {
+            ...transformations,
             ancestryFeatures: {
                 title: `${game.i18n.localize('TYPES.Item.ancestry')} - ${this.ancestry?.name}`,
                 type: 'ancestry',
@@ -765,6 +806,9 @@ export default class DhCharacter extends DhCreature {
                                 }
                             });
                             break;
+                        case 'dice':
+                            this.rules.roll[selection.subType] += 1;
+                            break;
                     }
                 }
             }
@@ -820,6 +864,14 @@ export default class DhCharacter extends DhCreature {
             label: 'DAGGERHEART.GENERAL.armor',
             isReversed: true
         };
+
+        /* Add convience <dice>Faces properties for all diceIndexes */
+        const { comboDieIndex } = this.rules.roll;
+        const dice = { comboDieIndex };
+        for (const dieKey of Object.keys(dice)) {
+            const diceBaseKey = dieKey.replace('Index', '');
+            this.rules.roll[`${diceBaseKey}Faces`] = CONFIG.DH.GENERAL.dieFaces[dice[dieKey]];
+        }
 
         // Clamp resources (must be done last to ensure all updates occur)
         this.resources.clamp();

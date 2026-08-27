@@ -1,0 +1,18 @@
+{
+  "type": "loot",
+  "name": "List of names with several marked off",
+  "folder": "p3XtGHebvpmIvChA",
+  "_id": "a4MyV9MZZFY4dKCZ",
+  "img": "icons/sundries/scrolls/scroll-runed-brown.webp",
+  "system": {
+    "attribution": {},
+    "description": "",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!a4MyV9MZZFY4dKCZ"
+}

@@ -4,9 +4,12 @@ import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
 import { bonusField } from '../fields/actorField.mjs';
 import { getTierAdjustedAdversary } from './tierAdjustment.mjs';
+import { signedNumber } from '../../helpers/utils.mjs';
 
 export default class DhpAdversary extends DhCreature {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
+
+    static embedTemplate = 'systems/daggerheart/templates/components/actor-embed/adversary.hbs';
 
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -188,6 +191,21 @@ export default class DhpAdversary extends DhCreature {
         super.prepareDerivedData();
         this.attack.roll.isStandardAttack = true;
 
+        // Evolution features may set other features as inactive
+        for (const feature of this.features.filter(x => x.system.featureForm === 'evolution')) {
+            const evolutionActions = feature.system.actions.filter(x => x.type === 'evolution');
+            for (const action of evolutionActions) {
+                const evolutionActive = action.evolution.active;
+                for (const [id, state] of Object.entries(action.evolution.evolutionFeatures)) {
+                    const isEvolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.evolved.id;
+                    const isUnevolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.unevolved.id;
+                    const feature = this.parent.items.get(id);
+                    feature.system.inactive = 
+                        (isEvolvedFeature && !evolutionActive) || (isUnevolvedFeature && evolutionActive);
+                }
+            }
+        }
+
         // Clamp resources (must be done last to ensure all updates occur)
         this.resources.clamp();
     }
@@ -205,5 +223,24 @@ export default class DhpAdversary extends DhCreature {
     adjustForTier(tier) {
         const source = this.parent.toObject(true);
         return getTierAdjustedAdversary(source, tier);
+    }
+
+    /** @inheritdoc */
+    async _prepareEmbedContext(options) {
+        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+        const attack = this.attack ? {
+            name: this.attack.name,
+            range: _loc(CONFIG.DH.GENERAL.range[this.attack.range]?.label),
+            bonus: signedNumber(this.attack.roll?.bonus),
+            damage: this.attack.getDamageFormula()
+        } : null;
+
+        return {
+            ...(await super._prepareEmbedContext(options)),
+            actor: this.parent,
+            type: _loc(adversaryTypes[this.type]?.label),
+            attack,
+            experiences: Object.values(this.experiences).map(e => ({ name: e.name, value: signedNumber(e.value) }))
+        }
     }
 }

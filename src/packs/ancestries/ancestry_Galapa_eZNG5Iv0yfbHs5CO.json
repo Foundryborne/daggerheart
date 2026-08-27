@@ -17,10 +17,11 @@
     ],
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 29,
+      "page": null,
       "artist": ""
     },
-    "loreReference": "galapa"
+    "loreReference": "galapa",
+    "gmNotes": ""
   },
   "flags": {},
   "_id": "eZNG5Iv0yfbHs5CO",
