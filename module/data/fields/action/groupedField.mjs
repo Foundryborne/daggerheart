@@ -29,7 +29,7 @@ export default class DHGroupedField extends fields.SchemaField {
         const groupedActions = 
             Array.from(this.grouped.groupedActions).map(x => this.item.system.actions.get(x)).filter(Boolean);
         if (!groupedActions.length) {
-            return ui.notifications.error(_loc('Failed'));
+            return ui.notifications.error(_loc('DAGGERHEART.ACTIONS.TYPES.grouped.missingGroupedActions'));
         }
 
         let selectedAction;

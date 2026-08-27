@@ -107,7 +107,8 @@
                     "name": "Group",
                     "tooltip": "Groups many actions under one button. Individual actions either selected or randomized.",
                     "selectionType": { "label": "Action Selection Type" }, 
-                    "groupedActions": { "label": "Grouped Actions" }
+                    "groupedActions": { "label": "Grouped Actions" },
+                    "missingGroupedActions": "This action has no grouped actions attached to it"
                 }
             },
             "Config": {
