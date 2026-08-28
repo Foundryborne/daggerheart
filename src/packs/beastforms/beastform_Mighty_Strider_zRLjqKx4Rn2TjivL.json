@@ -96,7 +96,7 @@
               "damageFormula": "@profd8 + 1",
               "img": "icons/environment/creatures/horse-tan.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

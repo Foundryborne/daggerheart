@@ -96,7 +96,7 @@
               "damageFormula": "@profd4 + 2",
               "img": "icons/creatures/abilities/wings-birdlike-blue.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

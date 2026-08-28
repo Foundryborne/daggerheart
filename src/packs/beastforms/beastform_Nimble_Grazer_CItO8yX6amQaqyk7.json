@@ -96,7 +96,7 @@
               "damageFormula": "@profd6",
               "img": "icons/creatures/mammals/deer-antlers-glowing-blue.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

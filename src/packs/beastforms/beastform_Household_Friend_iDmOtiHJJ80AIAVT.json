@@ -96,7 +96,7 @@
               "damageFormula": "@profd6",
               "img": "icons/magic/nature/wolf-paw-glow-small-teal-blue.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

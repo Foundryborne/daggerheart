@@ -99,7 +99,7 @@
               "damageFormula": "@profd10 + 10",
               "img": "icons/creatures/fish/squid-kraken-orange.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

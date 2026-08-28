@@ -96,7 +96,7 @@
               "damageFormula": "@profd8 + 6",
               "img": "icons/creatures/claws/claw-straight-orange.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

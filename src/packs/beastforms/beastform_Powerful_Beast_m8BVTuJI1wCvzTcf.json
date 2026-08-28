@@ -96,7 +96,7 @@
               "damageFormula": "@profd10 + 4",
               "img": "icons/creatures/claws/claw-bear-paw-swipe-brown.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

@@ -84,7 +84,7 @@
               "damageFormula": "@profd10 + 8",
               "img": "icons/creatures/claws/claw-talons-yellow-red.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

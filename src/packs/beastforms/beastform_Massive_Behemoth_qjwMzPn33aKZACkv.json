@@ -100,7 +100,7 @@
               "damageFormula": "@profd12 + 12",
               "img": "icons/creatures/mammals/beast-horned-scaled-glowing-orange.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {

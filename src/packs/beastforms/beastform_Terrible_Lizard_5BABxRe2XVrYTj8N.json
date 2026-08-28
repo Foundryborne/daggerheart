@@ -99,7 +99,7 @@
               "damageFormula": "@profd12 + 10",
               "img": "icons/creatures/abilities/tail-swipe-green.webp"
             },
-            "priority": 0
+            "priority": 51
           }
         ],
         "duration": {
