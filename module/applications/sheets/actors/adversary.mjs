@@ -1,6 +1,6 @@
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import { prepareFeatureContext } from '../sheet-helpers.mjs';
+import { prepareFeatureData } from '../sheet-helpers.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -206,8 +206,20 @@ export default class AdversarySheet extends DHBaseActorSheet {
      * @protected
      */
     async _prepareFeaturesContext(context, _options) {
-        const featureContext = prepareFeatureContext(this.document);
-        foundry.utils.mergeObject(context, featureContext);
+        const featureData = prepareFeatureData(this.document);
+        context.features = [];
+        context.evolutionFeatures = [];
+        for (const { feature, childFeatures } of featureData) {
+            if (childFeatures.length) {
+                context.evolutionFeatures.push(feature);
+            } else {
+                context.features.push(feature);
+            }
+
+            for (const data of childFeatures) {
+                context.evolutionFeatures.push(data.feature);
+            }
+        }
     }
 
     /* -------------------------------------------- */

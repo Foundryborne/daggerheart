@@ -23,7 +23,7 @@
       {
         "value": "protective",
         "effectIds": [
-          "IuSwTQC0nMfRPxND"
+          "TqOWmUMXr5RnE8fY"
         ],
         "actionIds": []
       }
@@ -129,8 +129,8 @@
           {
             "type": "armor",
             "value": {
+              "max": "ITEM.@system.tier",
               "current": 0,
-              "max": "1",
               "damageThresholds": null,
               "interaction": "none"
             },
@@ -145,7 +145,7 @@
         "stacking": null,
         "targetDispositions": []
       },
-      "_id": "IuSwTQC0nMfRPxND",
+      "_id": "TqOWmUMXr5RnE8fY",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -165,7 +165,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!YmTXwjVpXrnKTVso.IuSwTQC0nMfRPxND"
+      "_key": "!items.effects!YmTXwjVpXrnKTVso.TqOWmUMXr5RnE8fY"
     }
   ],
   "sort": 0,

@@ -1,13 +1,21 @@
 <section class="features">
     <header>{{localize "DAGGERHEART.GENERAL.features"}}</header>
-    {{#each featureGroups as |section|}}
-        <section class="features">
-            {{#each section as |feature|}}
-                <div class="feature">
-                    <strong class="name">{{feature.name}} - {{feature.featureForm}}:</strong>
-                    {{{feature.description}}}
-                </div>
-            {{/each}}
-        </section>
-    {{/each}}
+    <section class="feature-list">
+        {{#each featureGroups as |feature|}}
+            <div class="feature {{#if feature.children.length}}grouped{{/if}}">
+                <strong class="name">{{feature.name}} - {{feature.featureForm}}:</strong>
+                {{{feature.description}}}
+                {{#if feature.children.length}}
+                    <section class="child-features">
+                    {{#each feature.children as |feature|}}
+                        <div class="feature">
+                            <strong class="name">{{feature.name}} - {{feature.featureForm}}:</strong>
+                            {{{feature.description}}}
+                        </div>
+                    {{/each}}
+                    </section>
+                {{/if}}
+            </div>
+        {{/each}}
+    </section>
 </section>
