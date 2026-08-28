@@ -1116,10 +1116,8 @@ export const weaponFeatures = {
                             value: '-1'
                         },
                         {
-                            key: 'Armor',
                             type: 'armor',
-                            typeData: {
-                                type: 'armor',
+                            value: {
                                 max: 'ITEM.@system.tier + 1'
                             }
                         }
@@ -1558,11 +1556,8 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/sword-shield-stylized-white.webp',
                 changes: [
                     {
-                        key: 'Armor',
                         type: 'armor',
-                        value: 0,
-                        typeData: {
-                            type: 'armor',
+                        value: {
                             max: 1
                         }
                     }
@@ -2273,11 +2268,8 @@ export const weaponFeatures = {
                 system: {
                     changes: [
                         {
-                            key: 'Armor',
                             type: 'armor',
-                            value: 0,
-                            typeData: {
-                                type: 'armor',
+                            value: {
                                 max: 'ITEM.@system.tier'
                             }
                         }
