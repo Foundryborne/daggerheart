@@ -8,7 +8,7 @@
             <fieldset>
                 <legend>
                     {{localize "DAGGERHEART.SETTINGS.Homebrew.resources.typeTitle" type=(localize (concat "TYPES.Actor." key))}}
-                    <a data-action="addResource" data-actor-type="{{key}}"><i class="fa-solid fa-plus"></i></a>
+                    <a data-action="addActorResource" data-actor-type="{{key}}"><i class="fa-solid fa-plus"></i></a>
                 </legend>
 
                 {{#each type.resources as |resource key|}}

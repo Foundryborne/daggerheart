@@ -7,8 +7,8 @@ export default class FeatureSheet extends DHBaseItemSheet {
         classes: ['feature'],
         actions: {
             addActorResource: FeatureSheet.#onAddActorResource,
-            removeResource: FeatureSheet.#onRemoveResource,
-            resetResourceImage: FeatureSheet.#onResetResourceImage
+            removeActorResource: FeatureSheet.#onRemoveActorResource,
+            resetActorResourceImage: FeatureSheet.#onResetActorResourceImage
         }
     };
 
@@ -92,7 +92,7 @@ export default class FeatureSheet extends DHBaseItemSheet {
         });
     }
     
-    static async #onRemoveResource(_, button) {
+    static async #onRemoveActorResource(_, button) {
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
                 title: game.i18n.localize(`DAGGERHEART.ITEMS.Feature.deleteActorResourceTitle`)
@@ -116,7 +116,7 @@ export default class FeatureSheet extends DHBaseItemSheet {
         }});
     }
 
-    static async #onResetResourceImage(_, button) {
+    static async #onResetActorResourceImage(_, button) {
         const element = button.closest('.resource-icon-container');
         const { resourceKey, imageKey } = element.dataset;
 

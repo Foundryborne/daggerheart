@@ -1,7 +1,7 @@
 <fieldset class="custom-resource-container">
     <legend>
         {{label}}
-        <a data-action="removeResource" data-actor-type="{{actorType}}" data-resource-key="{{key}}"><i class="fa-solid fa-trash"></i></a>
+        <a data-action="removeActorResource" data-actor-type="{{actorType}}" data-resource-key="{{key}}"><i class="fa-solid fa-trash"></i></a>
     </legend>
 
     <div class="nest-inputs">
@@ -20,7 +20,7 @@
                 <div class="resource-icon-title-container">
                     <div class="resource-icon-title">
                         <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.resources.filledIcon"}}</span>
-                        <a data-action="resetResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                        <a data-action="resetActorResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
                     </div>
                 </div>
                 <div class="resource-icon-content">
@@ -35,6 +35,7 @@
                     <div class="icons-container">
                         {{formGroup this.isIcon value=../images.full.isIcon name="" classes="path-field" localize=true }}
                         {{formGroup this.noColorFilter value=../images.full.noColorFilter name=(concat ../basePath "images.full.noColorFilter") localize=true }}
+                        {{formGroup this.opacity value=../images.full.opacity name=(concat ../basePath "images.full.opacity") localize=true}}
                     </div>
                 </div>
             {{/with}}
@@ -44,7 +45,7 @@
                 <div class="resource-icon-title-container">
                     <div class="resource-icon-title">
                         <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.resources.emptyIcon"}}</span>
-                        <a data-action="resetResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                        <a data-action="resetActorResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
                     </div>
                 </div>
                 <div class="resource-icon-content">
@@ -59,6 +60,7 @@
                     <div class="icons-container">
                         {{formGroup this.isIcon value=../images.empty.isIcon name="" classes="path-field" localize=true }}
                         {{formGroup this.noColorFilter value=../images.empty.noColorFilter name=(concat ../basePath "images.empty.noColorFilter") localize=true }}
+                        {{formGroup this.opacity value=../images.empty.opacity name=(concat ../basePath "images.empty.opacity") localize=true}}
                     </div>
                 </div>
             {{/with}}
