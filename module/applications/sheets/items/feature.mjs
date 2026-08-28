@@ -1,4 +1,3 @@
-import { Resource } from '../../../data/settings/Homebrew.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 
 export default class FeatureSheet extends DHBaseItemSheet {
@@ -7,8 +6,7 @@ export default class FeatureSheet extends DHBaseItemSheet {
         classes: ['feature'],
         actions: {
             addActorResource: FeatureSheet.#onAddActorResource,
-            removeActorResource: FeatureSheet.#onRemoveActorResource,
-            resetActorResourceImage: FeatureSheet.#onResetActorResourceImage
+            removeActorResource: FeatureSheet.#onRemoveActorResource
         }
     };
 
@@ -42,13 +40,6 @@ export default class FeatureSheet extends DHBaseItemSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
-
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-
-        for (const element of htmlElement.querySelectorAll('.path-field input'))
-            element.addEventListener('change', this.#onToggleActorResourceIconType.bind(this));
-    }
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
@@ -121,28 +112,5 @@ export default class FeatureSheet extends DHBaseItemSheet {
         if (!confirmed) return;
 
         this.document.update({ [`system.actorResources.${button.dataset.resourceKey}`]: _del})
-    }
-
-    async #onToggleActorResourceIconType(event) {
-        const element = event.target.closest('.resource-icon-container');
-        const { resourceKey, imageKey } = element.dataset;
-
-        const current = this.document.system.actorResources[resourceKey].images[imageKey].isIcon;
-        await this.document.update({ [`system.actorResources.${resourceKey}.images.${imageKey}`]: { 
-            isIcon: !current,
-            value: ''
-        }});
-    }
-
-    static async #onResetActorResourceImage(_, button) {
-        const element = button.closest('.resource-icon-container');
-        const { resourceKey, imageKey } = element.dataset;
-
-        await this.document.update({
-            [`system.actorResources.${resourceKey}.images.${imageKey}`]:
-                Resource.getDefaultImageData(imageKey)
-        });
-
-        this.render();
     }
 }
