@@ -1,13 +1,15 @@
 <section class="embed actor adversary">
-    <header class="name">{{actor.name}}</header>
-    <div class="tier">
-        {{localize "DAGGERHEART.GENERAL.Tiers.typed" tier=actor.system.tier type=type}}
-    </div>
-    <section class="description">{{{description}}}</section>
-    <div class="impulses">
-        <strong>{{localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label"}}:</strong>
-        {{actor.system.impulses}}
-    </div>
+    <header class="main">
+        <div class="name actor-name">{{actor.name}}</div>
+        <div class="tier">
+            {{localize "DAGGERHEART.GENERAL.Tiers.typed" tier=actor.system.tier type=type}}
+        </div>
+        <section class="description">{{{description}}}</section>
+        <div class="impulses">
+            <strong>{{localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label"}}:</strong>
+            {{actor.system.impulses}}
+        </div>
+    </header>
     <section class="stats">
         <div class="row">
             <div class="difficulty">

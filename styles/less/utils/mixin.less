@@ -143,6 +143,8 @@
 
 /** Typography stylings for most longform text, usually item descriptions and prosemirror blocks */
 .typography() {
+    --paragraph-spacing: 0.5em;
+
     h1 {
         font-size: var(--font-size-32);
     }
@@ -161,7 +163,7 @@
     }
 
     p {
-        margin: 0.5em 0;
+        margin: var(--paragraph-spacing) 0;
         &:first-child {
             margin-top: 0;
         }
@@ -172,11 +174,11 @@
 
     ul,
     ol {
-        margin: 0.5em 0;
+        margin: var(--paragraph-spacing) 0;
         padding: 0 0 0 1.25rem;
 
         li {
-            margin-bottom: 0.25rem;
+            margin-bottom: var(--paragraph-spacing);
             p {
                 margin: 0;
             }
