@@ -1,8 +1,13 @@
 import { parseInlineParams } from './parser.mjs';
 
+/** Supports a template such as `@Template[type:emanation|range:far]` */
 export function DhTemplateEnricher(match, _options) {
     const params = parseInlineParams(match[1]);
-    const { type, angle = CONFIG.MeasuredTemplate.defaults.angle, inline = false } = params;
+    const { 
+        type = CONFIG.DH.GENERAL.templateTypes.circle.id,
+        angle = CONFIG.MeasuredTemplate.defaults.angle,
+        inline = false
+    } = params;
     const direction = Number(params.direction) || 0;
     params.range = params.range?.toLowerCase();
     const range =
@@ -49,7 +54,7 @@ export function DhTemplateEnricher(match, _options) {
 }
 
 export const renderMeasuredTemplate = async event => {
-    const button = event.currentTarget,
+    const button = event.target,
         type = button.dataset.type,
         range = button.dataset.range,
         angle = button.dataset.angle,

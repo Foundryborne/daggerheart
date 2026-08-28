@@ -41,7 +41,7 @@ function getDamageMessage(damage, types, inline) {
 }
 
 export const renderDamageButton = async event => {
-    const button = event.currentTarget;
+    const button = event.target;
     const value = button.dataset.value;
     const types = button.dataset.type
         .replace('[', '')
