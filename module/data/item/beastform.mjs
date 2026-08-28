@@ -325,7 +325,7 @@ export default class DHBeastform extends BaseDataItem {
             beastformEffect.system.changes.push({
                 type: 'standardAttack',
                 phase: 'initial',
-                priority: 0,
+                priority: 51,
                 value: {
                     name: 'DAGGERHEART.ITEMS.Beastform.attackName',
                     damageTypes: ['physical'],
