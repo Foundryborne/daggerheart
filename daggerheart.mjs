@@ -391,12 +391,11 @@ Hooks.on('renderChatMessageHTML', (document, element) => {
     if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
 });
 
-Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {
-    enricherRenderSetup(element);
-});
-
-Hooks.on('renderHandlebarsApplication', (_, element) => {
-    enricherRenderSetup(element);
+Hooks.on('renderHandlebarsApplication', (_, element, data) => {
+    const enricherExcludedDocuments = [CONFIG.JournalEntryPage.documentClass];
+    if (!enricherExcludedDocuments.some(x => data.document instanceof x)) {
+        enricherRenderSetup(element);
+    }
 });
 
 Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
