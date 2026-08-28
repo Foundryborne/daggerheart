@@ -17,22 +17,7 @@
     "granter": null,
     "actorResources": {
       "favor": {
-        "label": "Favor",
-        "value": 3,
-        "max": 6,
-        "images": {
-          "full": {
-            "value": "fa-solid fa-spaghetti-monster-flying",
-            "isIcon": true,
-            "noColorFilter": false
-          },
-          "empty": {
-            "value": "fa-solid fa-spaghetti-monster-flying",
-            "isIcon": true,
-            "noColorFilter": false,
-            "opacity": 0.6
-          }
-        }
+        "value": 3
       }
     }
   },

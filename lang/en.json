@@ -1780,6 +1780,10 @@
                     "label": "Automatic"
                 }
             },
+            "Resources": {
+                "favor": "Favor",
+                "focus": "Focus"
+            },
             "RollTypes": {
                 "trait": {
                     "name": "Trait"
@@ -3517,6 +3521,7 @@
                 "activeWhenEvolved": "Active When Evolved",
                 "evolutionFeature": "Evolution Feature",
                 "evolutionLocked": "Features with an evolution action must be of evolution type",
+                "actorResources": "Actor Resources",
                 "createActorResourceTitle": "Add Actor Resource",
                 "deleteActorResourceTitle": "Delete Actor Resource",
                 "deleteActorResourceText": "Are you sure you want to delete the resource?"

@@ -63,6 +63,29 @@ const companionBaseResources = Object.freeze({
     }
 });
 
+export const optionalResources = Object.freeze({
+    favor: {
+        id: 'favor',
+        initial: 3,
+        max: 6,
+        label: 'DAGGERHEART.CONFIG.Resources.favor',
+        images: {
+            full: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 1 },
+            empty: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 0.6 }
+        }
+    },
+    focus: {
+        id: 'focus',
+        initial: 0,
+        max: 6,
+        label: 'DAGGERHEART.CONFIG.Resources.focus',
+        images: {
+            full: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 1 },
+            empty: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 0.6 }
+        }
+    }
+});
+
 export const character = {
     base: characterBaseResources,
     custom: {}, // module stuff goes here
