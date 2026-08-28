@@ -17,22 +17,7 @@
     "granter": null,
     "actorResources": {
       "focus": {
-        "label": "Focus",
-        "value": 0,
-        "max": 6,
-        "images": {
-          "full": {
-            "value": "fa-solid fa-yin-yang",
-            "isIcon": true,
-            "noColorFilter": false
-          },
-          "empty": {
-            "value": "fa-solid fa-yin-yang",
-            "isIcon": true,
-            "noColorFilter": false,
-            "opacity": 0.6
-          }
-        }
+        "value": 0
       }
     }
   },

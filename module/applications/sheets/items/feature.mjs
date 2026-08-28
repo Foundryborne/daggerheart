@@ -60,23 +60,41 @@ export default class FeatureSheet extends DHBaseItemSheet {
             disabled: evolutionLocked,
             tooltip: evolutionLocked ? _loc('DAGGERHEART.ITEMS.Feature.evolutionLocked') : null
         };
+
+        context.featureActorResources = Object.entries(this.document.system.actorResources)
+            .reduce((acc, [key, data]) => {
+                const resource = CONFIG.DH.RESOURCE.optionalResources[key];
+                if (!resource) return acc; // Might need to handle this better incase the global resource has been removed, so we can delete the feature part?
+                acc[key] = {
+                    ...resource,
+                    ...data
+                }
+                return acc;
+            }, {});
         
         return context;
     }
 
     static async #onAddActorResource() {
+        const choices = Object.entries(CONFIG.DH.RESOURCE.optionalResources).reduce((acc, [key, data]) => {
+            if (!this.document.system.actorResources[key])
+                acc[key] = data;
+
+            return acc;
+        }, {});
         const content = new foundry.data.fields.StringField({
-            label: game.i18n.localize('DAGGERHEART.GENERAL.name'),
+            choices: choices,
+            blank: true,
             required: true
         }).toFormGroup({}, { name: 'name', localize: true }).outerHTML;
 
         async function callback(_, button) {
             const name = button.form.elements.name.value;
-            if (!name) return;
+            const resource = choices[name];
+            if (!resource) return;
 
-            const sluggedName = name.slugify();
-            await this.document.update({ [`system.actorResources.${sluggedName}`]: {  
-                label: name
+            await this.document.update({ [`system.actorResources.${resource.id}`]: {  
+                value: resource.initial
             }})
         }
 
