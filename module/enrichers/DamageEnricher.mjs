@@ -37,13 +37,13 @@ function getDamageMessage(damage, type, inline, defaultElement) {
 }
 
 export const renderDamageButton = async event => {
-    const button = event.currentTarget,
-        value = button.dataset.value,
-        type = button.dataset.type
-            .replace('[', '')
-            .replace(']', '')
-            .split(',')
-            .map(x => x.trim());
+    const button = event.currentTarget;
+    const value = button.dataset.value;
+    const types = button.dataset.type
+        .replace('[', '')
+        .replace(']', '')
+        .split(',')
+        .map(x => x.trim());
 
     const config = {
         event: event,
@@ -55,13 +55,12 @@ export const renderDamageButton = async event => {
         targets: Array.from(game.user.targets).map(t =>
             game.system.api.fields.ActionFields.TargetField.formatTarget(t)
         ),
-        roll: [
-            {
-                formula: value,
-                applyTo: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
-                damageTypes: type
-            }
-        ]
+        damageFormula: {
+            formula: value,
+            applyTo: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
+            damageTypes: types
+        },
+        resourceFormulas: []
     };
 
     CONFIG.Dice.daggerheart.DamageRoll.build(config);
