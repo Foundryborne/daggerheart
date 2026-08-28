@@ -1,9 +1,17 @@
-/**
- * Prepares function context for sheet preparation reasons. This is also required for embeds, and is relegated to a helper as a result
- * @param {DhpActor} actor 
- * @returns {Promise<{ features: unknown[]; evolutionFeatures: unknown[] }>}
+/** 
+ * @typedef FeatureGroup
+ * @property {DHItem} feature
+ * @property {FeatureGroup[]} childFeatures
  */
-export function prepareFeatureContext(actor) {
+
+/**
+ * Prepares function context for sheet preparation reasons. 
+ * This is also required for embeds, and is relegated to a helper as a result.
+ * Since this is merely organizing top level and child features, this should become data prep at some point
+ * @param {DhpActor} actor 
+ * @returns {FeatureGroup[]}
+ */
+export function prepareFeatureData(actor) {
     const featureForms = Object.keys(CONFIG.DH.ITEM.featureForm);
     const featureData = actor.system.features.sort((a, b) =>
         a.system.featureForm !== b.system.featureForm
@@ -30,22 +38,7 @@ export function prepareFeatureContext(actor) {
         }
     }
 
-    const context = {};
-    context.features = [];
-    context.evolutionFeatures = [];
-    for (const { feature, childFeatures } of featureData) {
-        if (childFeatures.length) {
-            context.evolutionFeatures.push(feature);
-        } else {
-            context.features.push(feature);
-        }
-
-        for (const data of childFeatures) {
-            context.evolutionFeatures.push(data.feature);
-        }
-    }
-
-    return context;
+    return featureData;
 }
 
 /**

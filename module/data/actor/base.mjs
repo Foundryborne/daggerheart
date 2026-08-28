@@ -1,4 +1,4 @@
-import { prepareFeatureContext, simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
+import { prepareFeatureData, simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -261,36 +261,45 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      * @protected
      */
     async _prepareEmbedContext(options = {}) {
+        const actor = this.parent;
         const { TextEditor } = foundry.applications.ux;
         const description = await TextEditor.implementation.enrichHTML(this.description, {
             secrets: true,
-            relativeTo: this.parent,
+            relativeTo: actor,
             ...options
         });
 
-        const featureContext = await prepareFeatureContext(this.parent);
-        const featureGroups = [];
-        for (const prop of ['features', 'evolutionFeatures']) {
-            if (!featureContext[prop]?.length) continue;
-            const value = await Promise.all(featureContext[prop].map(async f => {
-                const simplified = simplifyDescriptionForEmbed(f.system.description);
-                return {
-                    name: f.name,
-                    featureForm: _loc(CONFIG.DH.ITEM.featureForm[f.system.featureForm]),
-                    description: await TextEditor.implementation.enrichHTML(simplified, {
-                        secrets: true,
-                        relativeTo: this.parent,
-                        rollData: f.getRollData(),
-                        ...options
-                    })
-                };
-
-            }));
-            featureGroups.push(value);
+        async function prepareFeatureViewData(f) {
+            const simplified = simplifyDescriptionForEmbed(f.system.description);
+            return {
+                name: f.name,
+                featureForm: _loc(CONFIG.DH.ITEM.featureForm[f.system.featureForm]),
+                description: await TextEditor.implementation.enrichHTML(simplified, {
+                    secrets: true,
+                    relativeTo: actor,
+                    rollData: f.getRollData(),
+                    ...options
+                }),
+                children: []
+            };
         }
 
+        // Make every feature with child features have their own section
+        // We don't handle recursive features here
+        const featureContext = prepareFeatureData(actor);
+        const topLevel = await Promise.all(
+            featureContext.filter(f => !f.childFeatures.length).map(f => prepareFeatureViewData(f.feature))
+        );
+        const grouped = await Promise.all(
+            featureContext.filter(f => f.childFeatures.length).map(async f => ({
+                ...(await prepareFeatureViewData(f.feature)),
+                children: await Promise.all(f.childFeatures.map(f => prepareFeatureViewData(f.feature)))
+            }))
+        )
+        const featureGroups = [...topLevel, ...grouped];
+
         return {
-            actor: this.parent,
+            actor,
             description,
             featureGroups
         };

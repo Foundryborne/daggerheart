@@ -1,23 +1,35 @@
 .embed.actor {
+    --side-padding: 0.625rem;
     background: var(--dh-embed-bg);
     color: var(--dh-embed-color-text);
     border: 2px solid var(--dh-embed-color-border);
-    padding: 4px;
+    border-radius: 12px;
+    padding: var(--spacer-8) 0;
+    line-height: 1.2;
 
-    header.name {
+    header.main {    
+        padding: 0 var(--side-padding);
+    }
+
+    .actor-name {
         font-size: 1.5em;
         text-transform: uppercase;
         font-weight: 900;
+        line-height: 1.47;
     }
 
     .tier {
         font-size: 1.125em;
         font-style: italic;
         font-weight: 600;
+        line-height: 1.25;
     }
 
     .description {
         font-style: italic;
+        p {
+            margin: 0;
+        }
     }
 
     .stats {
@@ -25,6 +37,7 @@
         border-top: 1px solid var(--dh-embed-color-border);
         border-bottom: 1px solid var(--dh-embed-color-border);
         padding-block: 0.25rem;
+        margin: 0.25rem var(--side-padding);
     }
 
     .row {
@@ -63,16 +76,35 @@
         }
     }
 
-    .features > header {
-        font-size: 1.25em;
-        font-weight: bold;
-        text-transform: uppercase;
+    .features {
+        margin-top: 0.375rem;
+        > * {
+            padding-inline: var(--side-padding);
+        }
+        > header {
+            font-size: 1.25em;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 1.25;
+            margin-bottom: 0.125rem;
+        }
     }
     
     .feature {
         .typography();
-        margin-top: 0.5em;
-        padding-left: 1ch;
+        --paragraph-spacing: 0.25em;
+
+        padding-left: 1ch;     
+        margin-bottom: 0.25em;
+
+        &.grouped {
+            border-top: 1px dashed var(--dh-embed-color-border);
+            padding-top: 0.5em;
+        }
+
+        .child-features {
+            margin-top: var(--paragraph-spacing);
+        }
 
         > strong.name {
             font-style: italic;
