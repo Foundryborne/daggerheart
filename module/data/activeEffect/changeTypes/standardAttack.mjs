@@ -58,91 +58,56 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
         defaultPriority: 20,
         handler: (actor, change, _options, _field, replacementData) => {
             if (change.value.name) {
-                game.system.api.documents.DhActiveEffect.applyChange(
+                foundry.utils.setProperty(
                     actor,
-                    {
-                        ...change,
-                        key: 'system.attack.name',
-                        type: 'override',
-                        value: change.value.name
-                    },
-                    replacementData
+                    'system.attack.name',
+                    change.value.name
                 );
             }
             
             if (change.value.img) {
-                game.system.api.documents.DhActiveEffect.applyChange(
+                foundry.utils.setProperty(
                     actor,
-                    {
-                        ...change,
-                        key: 'system.attack.img',
-                        type: 'override',
-                        value: change.value.img
-                    },
-                    replacementData
+                    'system.attack.img',
+                    change.value.img
                 );
             }
 
             if (change.value.trait) {
-                game.system.api.documents.DhActiveEffect.applyChange(
+                foundry.utils.setProperty(
                     actor,
-                    {
-                        ...change,
-                        key: 'system.attack.roll.trait',
-                        type: 'override',
-                        value: change.value.trait
-                    },
-                    replacementData
+                    'system.attack.roll.trait',
+                    change.value.trait
                 );
             }
 
             if (change.value.damageTypes) {
-                game.system.api.documents.DhActiveEffect.applyChange(
+                foundry.utils.setProperty(
                     actor,
-                    {
-                        ...change,
-                        key: 'system.attack.damage.main.type',
-                        type: 'override',
-                        value: Array.from(change.value.damageTypes)
-                    },
-                    replacementData
+                    'system.attack.damage.main.type',
+                    Array.from(change.value.damageTypes)
                 );
             }
 
             if (change.value.attackRange) {
-                game.system.api.documents.DhActiveEffect.applyChange(
+                foundry.utils.setProperty(
                     actor,
-                    {
-                        ...change,
-                        key: 'system.attack.range',
-                        type: 'override',
-                        value: change.value.attackRange
-                    },
-                    replacementData
+                    'system.attack.range',
+                    change.value.attackRange
                 );
             }
 
             if (change.value.damageFormula) {
-                game.system.api.documents.DhActiveEffect.applyChange(
+                foundry.utils.setProperty(
                     actor,
-                    {
-                        ...change,
-                        key: 'system.attack.damage.main.value.custom.enabled',
-                        type: 'override',
-                        value: true
-                    },
-                    replacementData
+                    'system.attack.damage.main.value.custom.enabled',
+                    true
                 );
 
-                game.system.api.documents.DhActiveEffect.applyChange(
+                foundry.utils.setProperty(
                     actor,
-                    {
-                        ...change,
-                        key: 'system.attack.damage.main.value.custom.formula',
-                        type: 'override',
-                        value: change.value.damageFormula
-                    },
-                    replacementData
+                    'system.attack.damage.main.value.custom.formula',
+                    change.value.damageFormula
                 );
             }
 
