@@ -16,11 +16,16 @@
     <fieldset>
         <legend>
             {{localize "Actor Resources"}}
-            <a><i class="fa-solid fa-plus"></i></a>
+            <a><i class="fa-solid fa-plus" data-action="addActorResource"></i></a>
         </legend>
 
-        {{#each actorResources as |resource key|}}
-            {{> "systems/daggerheart/templates/sheets/global/partials/custom-resource/custom-resource.hbs" resource field=document.system.schema.fields.actorResources.element.fields basePath="system.actorResources.{{key}}." }}
+        {{#each document.system.actorResources as |resource key|}}
+            {{> "systems/daggerheart/templates/sheets/global/partials/custom-resource/custom-resource.hbs" 
+                resource 
+                key=key
+                fields=../document.system.schema.fields.actorResources.element.fields 
+                basePath=(concat "system.actorResources." key ".") 
+            }}
         {{/each}}
     </fieldset>
 </section>

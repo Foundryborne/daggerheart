@@ -3,52 +3,61 @@
     flex-direction: column;
     gap: 4px;
 
-    .resource-container {
-        .resource-icons-container {
+    .resource-icons-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+
+        .resource-icon-container {
             display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            width: 100%;
+            flex-direction: column;
+            flex: 1;
 
-            .resource-icon-container {
+            .resource-icon-title-container {
                 display: flex;
-                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 gap: 4px;
-                flex: 1;
 
-                .resource-icon-title-container {
+                &::before,
+                &::after {
+                    color: @dark-blue;
+                    content: '';
+                    flex: 1;
+                    height: 2px;
+                }
+
+                &::before {
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @golden 100%);
+                }
+
+                &::after {
+                    background: linear-gradient(90deg, @golden 0%, rgba(0, 0, 0, 0) 100%);
+                }
+
+                .resource-icon-title {
+                    font-size: var(--font-size-16);
+                    white-space: nowrap;
                     display: flex;
                     align-items: center;
-                    justify-content: center;
                     gap: 4px;
+                    color: @color-text-emphatic;
 
-                    &::before,
-                    &::after {
-                        color: @dark-blue;
-                        content: '';
-                        flex: 1;
-                        height: 2px;
+                    i {
+                        font-size: 14px;
                     }
+                }
+            }
 
-                    &::before {
-                        background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @golden 100%);
-                    }
+            .resource-icon-content {
+                .icons-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
 
-                    &::after {
-                        background: linear-gradient(90deg, @golden 0%, rgba(0, 0, 0, 0) 100%);
-                    }
-
-                    .resource-icon-title {
-                        font-size: var(--font-size-16);
-                        white-space: nowrap;
-                        display: flex;
-                        align-items: center;
-                        gap: 4px;
-                        color: @color-text-emphatic;
-
-                        i {
-                            font-size: 14px;
-                        }
+                    > * {
+                        width: auto;
                     }
                 }
             }

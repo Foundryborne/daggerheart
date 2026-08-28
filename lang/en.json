@@ -3515,7 +3515,10 @@
             "Feature": {
                 "activeWhenEvolved": "Active When Evolved",
                 "evolutionFeature": "Evolution Feature",
-                "evolutionLocked": "Features with an evolution action must be of evolution type"
+                "evolutionLocked": "Features with an evolution action must be of evolution type",
+                "createActorResourceTitle": "Add Actor Resource",
+                "deleteActorResourceTitle": "Delete Actor Resource",
+                "deleteActorResourceText": "Are you sure you want to delete the resource?"
             },
             "Subclass": {
                 "spellcastingTrait": "Spellcasting Trait",
