@@ -338,6 +338,9 @@ Hooks.on('setup', () => {
             value: [...actorCommon.value, 'evasion', 'levelData.level.current']
         }
     };
+
+    // Setup enricher on window
+    enricherRenderSetup(window.document);
 });
 
 Hooks.on('ready', async () => {
@@ -385,18 +388,9 @@ Hooks.on('ready', async () => {
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (document, element) => {
-    enricherRenderSetup(element);
-    const cssClass = document.flags?.daggerheart?.cssClass;
-    if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
-});
-
-Hooks.on('renderHandlebarsApplication', (_, element, data) => {
-    const enricherExcludedDocuments = [CONFIG.JournalEntryPage.documentClass];
-    if (!enricherExcludedDocuments.some(x => data.document instanceof x)) {
-        enricherRenderSetup(element);
-    }
-});
+Hooks.on('openDetachedWindow', (_, window) => {
+    enricherRenderSetup(window.document);
+})
 
 Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
     if (data.openForAllPlayers && data.partyId) {

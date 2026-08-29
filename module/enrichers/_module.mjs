@@ -45,25 +45,24 @@ export const enricherConfig = [
     }
 ];
 
-export const enricherRenderSetup = element => {
-    const clickWrapper = func => event => {
-        event.stopPropagation();
-        func(event);
-    };   
-
-    element
-        .querySelectorAll('.enriched-damage-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderDamageButton)));
-
-    element
-        .querySelectorAll('.duality-roll-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderDualityButton)));
-
-    element
-        .querySelectorAll('.fate-roll-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderFateButton)));
-
-    element
-        .querySelectorAll('.measured-template-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderMeasuredTemplate)));
-};
+/** 
+ * Setups up a listener for inline roll links on the element. Should be called on window.document and any popout windows.
+ * @param {HTMLDocument} element
+ */
+export function enricherRenderSetup(element) {
+    element.addEventListener('click', event => {
+        if (event.target.closest('.enriched-damage-button')) {
+            event.stopPropagation();
+            return renderDamageButton(event);
+        } else if (event.target.closest('.duality-roll-button')) {
+            event.stopPropagation();
+            return renderDualityButton(event);
+        } else if (event.target.closest('.fate-roll-button')) {
+            event.stopPropagation();
+            return renderFateButton(event);
+        } else if (event.target.closest('.measured-template-button')) {
+            event.stopPropagation();
+            return renderMeasuredTemplate(event);
+        }
+    }, { passive: true });
+}

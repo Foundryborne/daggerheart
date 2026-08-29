@@ -59,7 +59,7 @@ function getDualityMessage(roll, flavor) {
 }
 
 export const renderDualityButton = async event => {
-    const button = event.currentTarget,
+    const button = event.target,
         reaction = button.dataset.reaction === 'true',
         traitValue = button.dataset.trait?.toLowerCase(),
         target = getCommandTarget({ allowNull: true }),
