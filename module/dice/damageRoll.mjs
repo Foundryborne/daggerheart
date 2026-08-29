@@ -37,7 +37,8 @@ export default class DamageRoll extends DHRoll {
             roll.roll.options = {
                 ...roll.roll.options,
                 damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
-                fullRestore: !!roll.fullRestore
+                fullRestore: !!roll.fullRestore,
+                itemId: roll.itemId
             };
             return roll.roll;
         }

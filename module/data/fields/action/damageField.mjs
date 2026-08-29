@@ -80,6 +80,12 @@ export default class DamageField extends fields.SchemaField {
         targets ??= config.targets.filter(target => target.hitResult?.success);
         if (!config.damage || !targets?.length || (!DamageField.getApplyAutomation() && !force)) return;
 
+        for (const resourceKey in config.damage.resources) {
+            const resource = config.damage.resources[resourceKey];
+            if (resource.options.itemId)
+                resource.options.target = this.parent.parent;
+        }
+
         const targetDamage = [];
         const damagePromises = [];
         for (const target of targets) {
@@ -211,7 +217,8 @@ export default class DamageField extends fields.SchemaField {
             formula: x.fullRestore ? '0' : DamageField.getFormulaValue.call(this, x, data).getFormula(this.actor),
             damageTypes: x.type ?? new Set(),
             applyTo: x.applyTo,
-            fullRestore: !!x.fullRestore
+            fullRestore: !!x.fullRestore,
+            itemId: x.itemId
         }));
 
         const formattedFormulas = [];
@@ -329,6 +336,7 @@ export class DHResourceData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
+            itemId: new fields.StringField({ nullable: true, initial: null }),
             applyTo: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.healingTypes,
                 required: true,

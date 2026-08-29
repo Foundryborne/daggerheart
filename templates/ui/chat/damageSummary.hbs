@@ -14,7 +14,7 @@
             <ul class="damage-container">
                 {{#each this.updates}}
                     <li class="damage-row">
-                        {{#if this.itemId}}
+                        {{#if (and this.itemId (eq this.target.type "weapon"))}}
                             <span>
                                 {{#if this.clear}}
                                     {{localize "DAGGERHEART.UI.Chat.reloadWeapon" weapon=this.target.name}}
