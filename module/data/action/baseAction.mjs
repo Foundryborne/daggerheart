@@ -501,6 +501,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
             delete source.damage.parts;
         }
+
+        if (source.damage.resources.weaponResource) {
+            // source.damage.resources.resource = source.damage.resources.weaponResource;
+            // source.damage.resources.resource.applyTo = CONFIG.DH.GENERAL.healingTypes.resource.id;
+            // source.damage.resources.resource.itemId = ;
+            delete source.damage.resources.weaponResource;
+        }
     }
 }
 
