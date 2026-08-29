@@ -53,6 +53,6 @@
         {{/each}}
     </div>
     <div class="action-section">
-        <button type="button" data-action="actionRoll">{{localize "DAGGERHEART.GENERAL.Roll.action"}}</button>
+        <button type="button" data-action="actionRoll"{{#unless document.system.partner}} disabled{{/unless}}>{{localize "DAGGERHEART.GENERAL.Roll.action"}}</button>
     </div>
 </section>

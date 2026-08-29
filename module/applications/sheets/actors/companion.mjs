@@ -65,6 +65,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
     /** @this {DhCompanionSheet} **/
     static async #actionRoll(event) {
         const partner = this.actor.system.partner;
+        if (!partner) return ui.notifications.warn('DAGGERHEART.UI.Notifications.partnerRequired');
         const config = {
             event,
             title: `${game.i18n.localize('DAGGERHEART.GENERAL.Roll.action')}: ${this.actor.name}`,
