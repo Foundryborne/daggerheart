@@ -923,7 +923,7 @@ export default class DhpActor extends Actor {
                 };
             } else {
                 const valueFunc = (base, resource, baseMax) => {
-                    if (resource.clear) return baseMax && base.inverted ? baseMax : 0;
+                    if (resource.clear) return baseMax && !base.isReversed ? baseMax : 0;
 
                     return (base.value ?? base) + resource.value;
                 };
@@ -932,7 +932,8 @@ export default class DhpActor extends Actor {
                         ui.resources.updateFear(
                             valueFunc(
                                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                                r
+                                r,
+                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear
                             )
                         );
                         break;
