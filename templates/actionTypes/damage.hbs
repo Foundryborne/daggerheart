@@ -52,9 +52,8 @@
                             <a data-action="removeDamageResource" data-key="{{key}}"><i class="fas fa-trash"></i></a>
                         {{/unless}}
                     </legend>
-                    {{#if (eq dmg.applyTo 'weaponResource')}}
-                        {{formField ../fields.resources.element.fields.fullRestore value=dmg.fullRestore name=(concat ../path "damage.resources." dmg.applyTo ".fullRestore") localize=true classes="checkbox"}}
-                    {{/if}}
+
+                    {{formField ../fields.resources.element.fields.fullRestore value=dmg.fullRestore name=(concat ../path "damage.resources." dmg.applyTo ".fullRestore") localize=true classes="checkbox"}}
                     {{#unless dmg.fullRestore}}
                         {{> damageData damage=dmg fields=../fields.resources.element.fields basePath=(concat ../path "damage.resources." dmg.applyTo)}}
                     {{/unless}}

@@ -169,9 +169,9 @@
         "gmNotes": "",
         "resource": null,
         "actions": {
-          "Fdp9ERscvRPKVzPD": {
-            "type": "effect",
-            "_id": "Fdp9ERscvRPKVzPD",
+          "BfxTYVkuJNrK9ola": {
+            "type": "healing",
+            "_id": "BfxTYVkuJNrK9ola",
             "systemPath": "actions",
             "baseAction": false,
             "description": "",
@@ -198,15 +198,87 @@
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "effects": [
-              {
-                "_id": "jsSpZ9WaB1NdAhO4",
-                "onSave": false
+            "damage": {
+              "main": null,
+              "resources": {
+                "hitPoints": {
+                  "base": false,
+                  "applyTo": "hitPoints",
+                  "resultBased": false,
+                  "fullRestore": true,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                },
+                "stress": {
+                  "base": false,
+                  "applyTo": "stress",
+                  "resultBased": false,
+                  "fullRestore": true,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
               }
-            ],
+            },
             "target": {
               "type": "self",
               "amount": null
+            },
+            "effects": [
+              {
+                "_id": "iLgfMc5nYu56Cgqa",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
             },
             "name": "Spend Fear",
             "range": "self"
@@ -291,6 +363,81 @@
             "compendiumSource": null
           },
           "_key": "!actors.items.effects!lKmBNV3Sgpq9sTtp.jC4ngCoNcUSTuJv9.jsSpZ9WaB1NdAhO4"
+        },
+        {
+          "name": "Came Back Worse",
+          "disabled": false,
+          "img": "icons/creatures/magical/spirit-poison-smoke-green.webp",
+          "description": "<p>The Rabble Mawb gains a bonus to all rolls equal to the number of times this feature has been used by this Rabble Mawb.</p>",
+          "transfer": false,
+          "statuses": [],
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.roll.action.bonus",
+                "type": "add",
+                "value": "@stacks",
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.roll.reaction.bonus",
+                "type": "add",
+                "value": "@stacks",
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.damage.physical.bonus",
+                "type": "add",
+                "value": "@stacks",
+                "priority": null,
+                "phase": "initial"
+              },
+              {
+                "key": "system.bonuses.damage.magical.bonus",
+                "type": "add",
+                "value": "@stacks",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": {
+              "value": 1,
+              "max": null
+            },
+            "targetDispositions": []
+          },
+          "_id": "iLgfMc5nYu56Cgqa",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!lKmBNV3Sgpq9sTtp.jC4ngCoNcUSTuJv9.iLgfMc5nYu56Cgqa"
         }
       ],
       "folder": null,

@@ -13,9 +13,9 @@
     "consumeOnUse": true,
     "gmNotes": "",
     "actions": {
-      "wUImqyDPQpkiZ97K": {
-        "type": "effect",
-        "_id": "wUImqyDPQpkiZ97K",
+      "OaeTodiubEfIhiZe": {
+        "type": "healing",
+        "_id": "OaeTodiubEfIhiZe",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -42,10 +42,56 @@
           "recovery": null,
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "hitPoints": {
+              "base": false,
+              "applyTo": "hitPoints",
+              "resultBased": false,
+              "fullRestore": true,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
           "type": "any",
           "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
         },
         "name": "Use",
         "range": ""
