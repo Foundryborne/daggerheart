@@ -1631,38 +1631,26 @@
   "sort": 0,
   "flags": {
     "daggerheart": {
-      "formulaName": "Common (1d12)",
+      "formulaName": "Common",
       "altFormula": {
         "vN7tM7NoAFOKp6lg": {
-          "name": "Common (2d12)",
-          "formula": "2d12"
-        },
-        "hT0dqmVzxEHL3heU": {
-          "name": "Uncommon (2d12)",
+          "name": "Common/Uncommon",
           "formula": "2d12"
         },
         "WCBoCAi8GmQlqHln": {
-          "name": "Uncommon (3d12)",
-          "formula": "3d12"
-        },
-        "rQ0pcWlTE0AUhUw4": {
-          "name": "Rare (3d12)",
+          "name": "Uncommon/Rare",
           "formula": "3d12"
         },
         "2ju4ySAWXmyvb2Y5": {
-          "name": "Rare (4d12)",
-          "formula": "4d12"
-        },
-        "zqENKmYpQtX9JrcJ": {
-          "name": "Legenary (4d12)",
+          "name": "Rare/Legendary",
           "formula": "4d12"
         },
         "Pu1yAAOGuej37qcL": {
-          "name": "Legenary (5d12)",
+          "name": "Legenary",
           "formula": "5d12"
         }
       },
-      "activeAltFormula": "rTdPe9mSDOFTQSd3"
+      "activeAltFormula": "2ju4ySAWXmyvb2Y5"
     }
   },
   "formula": "1d12",
