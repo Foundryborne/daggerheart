@@ -21,9 +21,9 @@
       "icon": "fa-solid fa-skull"
     },
     "actions": {
-      "ikciPDte9vyVJ6Kb": {
-        "type": "effect",
-        "_id": "ikciPDte9vyVJ6Kb",
+      "I2Ifm2A6C1fkcQJS": {
+        "type": "healing",
+        "_id": "I2Ifm2A6C1fkcQJS",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -50,14 +50,99 @@
           "recovery": "shortRest",
           "consumeOnSuccess": false
         },
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "SZS0WYAdFBPuzOrh",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@fear"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Mark Stress",
+        "range": "self",
+        "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp"
+      },
+      "oeuSyzRQ7Qtg6JaT": {
+        "type": "effect",
+        "_id": "oeuSyzRQ7Qtg6JaT",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>After an attack roll is made against you, you can spend any number of tokens to give the result a -1 penalty per token spent.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "resource",
+            "value": 1,
+            "step": 1,
+            "itemId": "SZS0WYAdFBPuzOrh",
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
         "effects": [],
         "target": {
           "type": "self",
           "amount": null
         },
-        "name": "Mark Stress",
+        "name": "Spend Tokens",
         "range": "self",
-        "img": "icons/magic/unholy/barrier-fire-pink.webp"
+        "img": "icons/magic/defensive/barrier-shield-dome-pink.webp"
       }
     },
     "recallCost": 1,

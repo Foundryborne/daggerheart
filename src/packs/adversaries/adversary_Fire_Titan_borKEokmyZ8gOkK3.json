@@ -477,9 +477,9 @@
           "diceStates": {}
         },
         "actions": {
-          "lFJ1GoUNMyGWg9pd": {
-            "type": "effect",
-            "_id": "lFJ1GoUNMyGWg9pd",
+          "beZFL9AvGqIQ7oSo": {
+            "type": "healing",
+            "_id": "beZFL9AvGqIQ7oSo",
             "systemPath": "actions",
             "baseAction": false,
             "description": "",
@@ -506,13 +506,60 @@
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "effects": [],
+            "damage": {
+              "main": null,
+              "resources": {
+                "resource": {
+                  "base": false,
+                  "itemId": "JU15za0bgkRuliRN",
+                  "applyTo": "resource",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
             "target": {
-              "type": "any",
+              "type": "self",
               "amount": null
             },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
             "name": "Mark Stress",
-            "range": ""
+            "range": "self"
           },
           "Fy3CLnChxJEjGNoK": {
             "type": "attack",

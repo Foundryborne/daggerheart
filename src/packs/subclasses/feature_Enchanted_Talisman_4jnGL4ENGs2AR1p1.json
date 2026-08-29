@@ -22,9 +22,9 @@
       "diceStates": {}
     },
     "actions": {
-      "oQlkWHxCs4c567Nl": {
-        "type": "effect",
-        "_id": "oQlkWHxCs4c567Nl",
+      "9joeFXWM5FAzoRCd": {
+        "type": "healing",
+        "_id": "9joeFXWM5FAzoRCd",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -47,17 +47,64 @@
         ],
         "uses": {
           "value": null,
-          "max": "1",
-          "recovery": "shortRest",
+          "max": "",
+          "recovery": null,
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "4jnGL4ENGs2AR1p1",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@scale"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
         "name": "Spend Hope",
-        "range": ""
+        "range": "self"
       }
     },
     "featureForm": "passive",

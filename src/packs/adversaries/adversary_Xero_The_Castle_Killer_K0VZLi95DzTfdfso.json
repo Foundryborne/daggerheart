@@ -462,9 +462,9 @@
           "diceStates": {}
         },
         "actions": {
-          "KgXA5nm4a7K1WHcD": {
-            "type": "effect",
-            "_id": "KgXA5nm4a7K1WHcD",
+          "ExvMjIBxdm4FY7LJ": {
+            "type": "healing",
+            "_id": "ExvMjIBxdm4FY7LJ",
             "systemPath": "actions",
             "baseAction": false,
             "description": "<p><strong>Spend a Fear</strong> to have Xero charge up a nuclear beam. Place a token on this stat block.</p>",
@@ -475,20 +475,76 @@
             "actionType": "action",
             "triggers": [],
             "areas": [],
-            "cost": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "effects": [],
+            "damage": {
+              "main": null,
+              "resources": {
+                "resource": {
+                  "base": false,
+                  "itemId": "ZfCW3kRWg5bXFDes",
+                  "applyTo": "resource",
+                  "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
+                  "valueAlt": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  }
+                }
+              }
+            },
             "target": {
-              "type": "any",
+              "type": "self",
               "amount": null
             },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
             "name": "Charge",
-            "range": ""
+            "range": "self"
           },
           "ulyNsxBBqLTslNSJ": {
             "type": "attack",

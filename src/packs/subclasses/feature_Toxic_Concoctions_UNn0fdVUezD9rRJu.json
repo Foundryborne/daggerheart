@@ -22,9 +22,9 @@
       "diceStates": {}
     },
     "actions": {
-      "IcOClhbFlKZmXwd1": {
-        "type": "effect",
-        "_id": "IcOClhbFlKZmXwd1",
+      "muouYqVhSxKflJkl": {
+        "type": "healing",
+        "_id": "muouYqVhSxKflJkl",
         "systemPath": "actions",
         "baseAction": false,
         "description": "<p><strong>Mark a Stress</strong> to place <strong>1d4+1</strong> tokens on this card.</p>",
@@ -51,13 +51,60 @@
           "recovery": null,
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "UNn0fdVUezD9rRJu",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d4",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
-        "name": "Mark Stress",
-        "range": ""
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Gain Tokens",
+        "range": "self"
       },
       "RStmr0d20BrcSQpu": {
         "type": "effect",

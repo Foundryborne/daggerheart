@@ -11,15 +11,19 @@
     },
     "description": "<p>During a moment of calm, make a <strong>Spellcast Roll (13)</strong>. Once per rest on a success, you can <strong>mark a Stress</strong> to step beyond the veil of death and converse with any nearby spirits. Place a number of tokens equal to your Spellcast trait on this card and remove one each time a spirit answers a question. When the last token is removed or at the end of the scene, you return to the Mortal Realm in the same spot you left it.</p>",
     "gmNotes": "",
-    "resource": null,
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": null,
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-ghost"
+    },
     "actions": {
-      "3rpLHjF65YfHfr52": {
-        "type": "attack",
-        "damage": {
-          "main": null,
-          "resources": {}
-        },
-        "_id": "3rpLHjF65YfHfr52",
+      "KPwMmCHMYD1ByXDt": {
+        "type": "healing",
+        "_id": "KPwMmCHMYD1ByXDt",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -32,7 +36,7 @@
         "areas": [],
         "cost": [
           {
-            "consumeOnSuccess": false,
+            "consumeOnSuccess": true,
             "scalable": false,
             "key": "stress",
             "value": 1,
@@ -42,12 +46,44 @@
         ],
         "uses": {
           "value": null,
-          "max": "1",
-          "recovery": "shortRest",
-          "consumeOnSuccess": true
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "VMjYY6MPqVhyKgM7",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@cast"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
         },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [],
@@ -66,13 +102,8 @@
           },
           "useDefault": false
         },
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
         "name": "Spellcast Roll",
-        "range": ""
+        "range": "self"
       }
     },
     "featureForm": "passive",

@@ -10,43 +10,90 @@
     "level": 5,
     "type": "spell",
     "actions": {
-      "vGgUNZMcchMsQoYb": {
-        "type": "effect",
-        "_id": "vGgUNZMcchMsQoYb",
+      "zuiLXexIzTvLmoKF": {
+        "type": "healing",
+        "_id": "zuiLXexIzTvLmoKF",
         "systemPath": "actions",
+        "baseAction": false,
         "description": "<p>Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card.</p>",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "cost": [
           {
+            "itemId": null,
             "key": "hope",
             "value": 1,
             "scalable": false,
             "step": null,
-            "itemId": null,
             "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null,
+          "max": "1",
+          "recovery": "shortRest",
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "oUipGK84E2KjoKqh",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@cast"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
           "type": "self",
           "amount": null
         },
-        "name": "Spend Hope",
-        "img": "icons/magic/nature/thorns-hand-glow-green.webp",
-        "range": "self",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
         },
-        "triggers": [],
-        "areas": []
+        "name": "Gain Tokens",
+        "range": "self",
+        "img": "icons/magic/nature/thorns-hand-glow-green.webp"
       },
       "IVAyyVf8gqFWB7bP": {
         "type": "effect",
@@ -91,8 +138,8 @@
       "type": "simple",
       "value": 0,
       "recovery": "shortRest",
-      "max": "@cast",
-      "icon": "",
+      "max": "",
+      "icon": "fa-solid fa-road-spikes",
       "dieFaces": "d6",
       "progression": "increasing",
       "diceStates": {}
