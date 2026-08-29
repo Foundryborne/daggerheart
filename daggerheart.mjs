@@ -533,3 +533,19 @@ Hooks.on('renderDialogV2', (dialog, html) => {
         select.querySelector(`option[value=${defaultEntity}]`).selected = true;
     }
 });
+
+Hooks.on('renderRollResolver', (document, html) => {
+    for (const [termId, data] of document.fulfillable) {
+        const dualityLabel = 
+            data.term.modifiers.includes('h') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.hope`) }) : 
+                data.term.modifiers.includes('f') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.fear`) }) : 
+                    null;
+
+        if (!dualityLabel) continue;
+        
+        const legend = html.querySelector(`.input-grid[data-term-id=${termId}] legend`);
+        if (!legend) continue;
+        
+        legend.childNodes[0].nodeValue = `${dualityLabel} `;
+    }
+});
