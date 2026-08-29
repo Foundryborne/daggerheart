@@ -1,7 +1,7 @@
 {
-  "name": "Consumables",
+  "name": "Core Set Consumables",
   "img": "icons/consumables/potions/bottle-corked-red.webp",
-  "description": "",
+  "description": "<p>The following table includes the consumables from the Daggerheart Core Set.</p>",
   "results": [
     {
       "type": "document",
@@ -1626,22 +1626,38 @@
   ],
   "replacement": true,
   "displayRoll": true,
-  "folder": null,
+  "folder": "94bFJP3btPxvbpqP",
   "flags": {
     "daggerheart": {
       "activeAltFormula": "",
-      "formulaName": "Common",
+      "formulaName": "Common (1d12)",
       "altFormula": {
         "uoUn5fRTUkyg6U2G": {
-          "name": "Uncommon",
-          "formula": "3d12"
+          "name": "Common (2d12)",
+          "formula": "2d12"
         },
         "FGxM2yoxUUUd9Eov": {
-          "name": "Rare",
+          "name": "Uncommon (2d12)",
+          "formula": "2d12"
+        },
+        "PhmYBiClbupKOYfQ": {
+          "name": "Uncommon (3d12)",
+          "formula": "3d12"
+        },
+        "Gq6mOIPwSCiJDs9G": {
+          "name": "Rare (3d12)",
+          "formula": "3d12"
+        },
+        "BIayvaj1Rh83Teoo": {
+          "name": "Rare (4d12)",
           "formula": "4d12"
         },
-        "HZ2hRBxu0k8IW0jC": {
-          "name": "Legendary",
+        "siQEVVIEI3QS0tjG": {
+          "name": "Legendary (4d12)",
+          "formula": "4d12"
+        },
+        "0IzFB1jGWCR7TzTT": {
+          "name": "Legendary (5d12)",
           "formula": "5d12"
         }
       }
@@ -1649,6 +1665,6 @@
   },
   "formula": "2d12",
   "_id": "tF04P02yVN1YDVel",
-  "sort": 300000,
+  "sort": 100000,
   "_key": "!tables!tF04P02yVN1YDVel"
 }
