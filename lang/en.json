@@ -637,7 +637,15 @@
             "DaggerheartMenu": {
                 "title": "GM Tools",
                 "refreshFeatures": "Refresh Features",
-                "fallingAndCollision": "Falling And Collision Damage"
+                "fallingAndCollision": "Falling And Collision Damage",
+                "gmRestMenu": "Downtime Fear",
+                "partSizePrompt": {
+                    "inputLabel": "Party Size",
+                    "title": "Determine Party Size",
+                    "text": "There is no active Party actor in the world or it's empty. Manually input the number of player characters."
+                 },
+                 "chatMessageTitle": "GM Consequences",
+                 "chatMessageText": "The GM gains fear"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -711,6 +719,9 @@
                         "name": "Prepare (together)",
                         "description": "You prepare with one or more members of your party, and you each gain 2 Hope."
                     }
+                },
+                "extendedDowntime": {
+                    "title": "Extended Downtime"
                 },
                 "refreshable": {
                     "title": "Refreshing Resources"
