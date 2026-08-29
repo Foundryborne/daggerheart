@@ -190,7 +190,8 @@
                 },
                 "fullRestore": {
                     "label": "Fully restore the resource.",
-                    "inChatRoll": "Full"
+                    "inChatRoll": "Full",
+                    "inFormula": "Full Restore"
                 },
                 "applyTo": {
                     "label": "Targeted Resource"
@@ -3986,6 +3987,7 @@
                     "applyEffect": "Apply Effects"
                 },
                 "clearResource": "Clear {quantity} {resource}",
+                "clearResourceFully": "Fully Clear {resource}",
                 "damageSummary": {
                     "title": "Damage Applied",
                     "healingTitle": "Healing Applied"

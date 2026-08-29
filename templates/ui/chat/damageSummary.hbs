@@ -22,20 +22,27 @@
                                     {{localize "DAGGERHEART.UI.Chat.restoreWeaponResource" quantity=this.value weapon=this.target.name}}
                                 {{/if}}
                             </span>
+                        {{else if this.clear}}
+                            <span>
+                                {{
+                                    localize "DAGGERHEART.UI.Chat.clearResourceFully"
+                                    resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                }}
+                            </span>
                         {{else if (gte this.value 0)}}
                             <span>
                                 {{
-                                localize "DAGGERHEART.UI.Chat.markResource"
-                                quantity=this.value
-                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                    localize "DAGGERHEART.UI.Chat.markResource"
+                                    quantity=this.value
+                                    resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
                                 }}
                             </span>
                         {{else}}
                             <span>
                                 {{
-                                localize "DAGGERHEART.UI.Chat.clearResource"
-                                quantity=(positive this.value)
-                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                    localize "DAGGERHEART.UI.Chat.clearResource"
+                                    quantity=(positive this.value)
+                                    resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
                                 }}
                             </span>
                         {{/if}}
