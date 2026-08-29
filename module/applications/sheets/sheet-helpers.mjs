@@ -47,5 +47,6 @@ export function prepareFeatureData(actor) {
  * @returns {string} the simplified string
  */
 export function simplifyDescriptionForEmbed(value) {
-    return value.replaceAll(/<p>@(Template|Effect)\[([^[\]]*)\](?:{([^}]*)})?<\/p>/g, '')
+    // Currently only replaces standalone lines with certain embed types
+    return value.replaceAll(/<p>@(Template|Effect|UUID)\[([^[\]]*)\](?:{([^}]*)})?<\/p>/g, '')
 }
