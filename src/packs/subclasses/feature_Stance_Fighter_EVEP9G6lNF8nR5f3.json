@@ -15,11 +15,9 @@
     "actions": {},
     "featureForm": "passive",
     "granter": null,
-    "actorResources": {
-      "focus": {
-        "value": 0
-      }
-    }
+    "actorResources": [
+      "focus"
+    ]
   },
   "effects": [],
   "sort": 0,

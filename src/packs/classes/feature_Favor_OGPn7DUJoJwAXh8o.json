@@ -15,11 +15,9 @@
     "actions": {},
     "featureForm": "passive",
     "granter": null,
-    "actorResources": {
-      "favor": {
-        "value": 3
-      }
-    }
+    "actorResources": [
+      "favor"
+    ]
   },
   "effects": [],
   "sort": 0,

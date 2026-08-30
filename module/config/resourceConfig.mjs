@@ -70,7 +70,7 @@ export const optionalResources = Object.freeze({
         id: 'favor',
         initial: 3,
         max: 6,
-        label: 'DAGGERHEART.CONFIG.Resources.favor',
+        label: 'DAGGERHEART.CONFIG.Resources.optionalResources.favor',
         images: {
             full: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 1 },
             empty: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 0.6 }
@@ -82,7 +82,7 @@ export const optionalResources = Object.freeze({
         id: 'focus',
         initial: 0,
         max: 6,
-        label: 'DAGGERHEART.CONFIG.Resources.focus',
+        label: 'DAGGERHEART.CONFIG.Resources.optionalResources.focus',
         images: {
             full: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 1 },
             empty: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 0.6 }
