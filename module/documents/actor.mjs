@@ -1,7 +1,7 @@
 import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
@@ -28,6 +28,18 @@ export default class DhpActor extends Actor {
      */
     get isNPC() {
         return this.system.metadata.isNPC;
+    }
+
+    /**
+     * Returns the uuid of the actor that is used for refreshing.
+     * This isn't necessarily the sourceUuid. Compendium items don't have a refresh source.
+     * @returns {string | null} the uuid to refresh from, or null if it can't be refreshed
+     */
+    get refreshSourceUuid() {
+        const hasCompendiumSource = this._stats.compendiumSource?.startsWith('Compendium.');
+        return !this.pack && hasCompendiumSource && ['adversary', 'environment'].includes(this.type)
+            ? this._stats.compendiumSource
+            : null;
     }
 
     /** @inheritDoc */
@@ -1186,7 +1198,117 @@ export default class DhpActor extends Actor {
         }
     }
 
-    applyActiveEffects(phase) {
-        super.applyActiveEffects(phase);
+    /** 
+     * Refreshes this actor's data, effects, and items using information from the compendium.
+     * @param {options} [options]
+     * @param {boolean} [options.save] if set to false, returns the batch data to perform the operation instead of doing it
+     */
+    async refreshFromCompendium({ save = true } = {}) {
+        const latest = await fromUuid(this.refreshSourceUuid);
+        if (!latest || !this._stats.compendiumSource?.startsWith('Compendium.')) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.doesNotExist'));
+        }
+        if (latest.type !== this.type) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidType'));
+        }
+        if (latest.system.tier !== this.system.tier) {
+            // An adversary that has been re-tiered is not eligible for refresh
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidTier'));
+        }
+
+        // @todo defer preserved properties to system data somehow
+        // should gm notes be preserved or ko'd?
+        // what do we do about flags?
+        const currentSource = this.toObject(true);
+        const latestSource = latest.toObject(true);
+        const system = foundry.utils.mergeObject(latestSource.system, {
+            notes: currentSource.system.notes || latestSource.system.notes
+        });
+
+        // Handle Effects
+        const effectsToDelete = this.effects.filter(e => !latest.effects.has(e.id)).map(i => i.id);
+        const effectUpdates = [];
+        const effectCreates = [];
+        for (const effectSource of latestSource.effects) {
+            const existingEffect = this.effects.get(effectSource._id)?.toObject(true);
+            if (!existingEffect) {
+                effectCreates.push(effectSource);
+            } else {
+                effectUpdates.push(foundry.utils.mergeObject(effectSource, pick(existingEffect, ['disabled'])))
+            }
+        }
+
+        // Hnadle Items
+        const itemsToDelete = this.items.filter(e => !latest.items.has(e.id)).map(i => i.id);
+        const itemCreates = latestSource.items.filter(i => !this.items.has(i._id));
+        const batchFromItems = (await Promise.all(
+            this.items
+                .filter(i => latest.items.has(i.id))
+                .map(i => i.refreshFromCompendium({ save: false, latest: latest.items.get(i.id) }))
+        )).flat();
+
+        /** @type {foundry.abstract.types.DatabaseWriteOperation[]} */
+        const batch = [{
+            parent: this.parent,
+            documentName: this.documentName,
+            pack: this.pack,
+            action: 'update',
+            updates: [{
+                _id: this._id,
+                name: latestSource.name,
+                img: latestSource.img,
+                system: _replace(system)
+            }]
+        }];
+        if (effectCreates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'create',
+                data: effectCreates,
+                keepId: true
+            });
+        }
+        if (effectUpdates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'update',
+                updates: effectUpdates,
+                recursive: false,
+                diff: false
+            });
+        }
+        if (effectsToDelete.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'delete',
+                ids: effectsToDelete
+            });
+        }
+        if (itemCreates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'Item',
+                action: 'create',
+                data: itemCreates,
+                keepId: true
+            });
+        }
+        if (itemsToDelete.length) {
+            batch.push({
+                parent: this,
+                documentName: 'Item',
+                action: 'delete',
+                ids: itemsToDelete
+            });
+        }
+        batch.push(...batchFromItems);
+        if (save) {
+            if (batch.length) await foundry.documents.modifyBatch(batch);
+        } else {
+            return batch;
+        }
     }
 }

@@ -3403,7 +3403,16 @@
             },
             "Base": {
                 "addGMNote": "Add GM Note",
-                "viewReference": "View Full Details"
+                "viewReference": "View Full Details",
+                "Refresh": {
+                    "Title": "Refresh From Compendium",
+                    "AreYouSure": "Are you sure you want to refresh this item with new contents?",
+                    "Error": {
+                        "doesNotExist": "This document does not have a copy in the compendium",
+                        "invalidTier": "This document is of a different tier than the source, and was likely re-tiered",
+                        "invalidType": "The source document is the incorrect type"
+                    }
+                }
             },
             "Beastform": {
                 "FIELDS": {

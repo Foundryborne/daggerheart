@@ -25,7 +25,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             openSettings: DHBaseActorSheet.#openSettings,
             sendExpToChat: DHBaseActorSheet.#sendExpToChat,
             increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true),
-            groupActionSelect: DHBaseActorSheet.#groupActionSelect
+            groupActionSelect: DHBaseActorSheet.#groupActionSelect,
+            refreshFromCompendium: DHBaseActorSheet.#onRefreshFromCompendium
         },
         contextMenus: [
             {
@@ -60,6 +61,20 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         const viewPermission = this.document.testUserPermission(game.user, this.options.viewPermission);
         const limitedOnly = this.document.testUserPermission(game.user, this.options.viewPermission, { exact: true });
         return limitedOnly ? this.document.system.metadata.hasLimitedView : viewPermission;
+    }
+
+    /** @inheritdoc */
+    _getHeaderControls() {
+        const controls = super._getHeaderControls();
+        if (this.actor.refreshSourceUuid) {
+            controls.push({
+                label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
+                icon: 'fa-solid fa-arrow-rotate-left',
+                action: 'refreshFromCompendium'
+            });
+        }
+
+        return controls;
     }
 
     /* -------------------------------------------- */
@@ -304,6 +319,19 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     static async #groupActionSelect(event, button) {
         const action = await fromUuid(button.dataset.itemUuid);
         action.use(event, { groupAction: { forceSelect: true }});
+    }
+
+    /** @this DHBaseActorSheet */
+    static async #onRefreshFromCompendium() {
+        const refresh = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title')
+            },
+            content: _loc('DAGGERHEART.ITEMS.Base.Refresh.AreYouSure')
+        });
+        if (refresh) {
+            this.document.refreshFromCompendium();
+        }
     }
 
     /* -------------------------------------------- */
