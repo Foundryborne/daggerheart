@@ -28,12 +28,16 @@ export default class DhCreature extends BaseDataActor {
     }
 
     get availableExtraResources() {
+        const homebrewResources = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+        const applicableHomebrewResources = homebrewResources.resources[this.metadata.type]?.resources ?? {};
+        
         return Object.entries(this.resources).reduce((acc, [key, data]) => {
             if (data.isExtra) 
                 acc[key] = data;
 
             return acc;
-        }, {});
+        }, applicableHomebrewResources);
     }
 
     get availableOptionalResourceKeys() {
