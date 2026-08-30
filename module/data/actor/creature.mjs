@@ -88,10 +88,6 @@ export default class DhCreature extends BaseDataActor {
         }
     }
 
-    // _preUpdateOperation() {
-
-    // }
-
     prepareBaseData() {
         /** Initializes the original source data for this.resources */
         const resources = Object.entries(CONFIG.DH.RESOURCE.optionalResources).reduce((acc, [key, data]) => {
