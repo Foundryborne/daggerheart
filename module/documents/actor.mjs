@@ -1205,7 +1205,7 @@ export default class DhpActor extends Actor {
      */
     async refreshFromCompendium({ save = true } = {}) {
         const latest = await fromUuid(this.refreshSourceUuid);
-        if (!latest || !this._stats.compendiumSource?.startsWith('Compendium.')) {
+        if (!latest) {
             return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.doesNotExist'));
         }
         if (latest.type !== this.type) {

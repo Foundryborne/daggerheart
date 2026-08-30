@@ -351,7 +351,7 @@ export default class DHItem extends foundry.documents.Item {
      */
     async refreshFromCompendium({ save = true, latest } = {}) {
         latest ??= await fromUuid(this.refreshSourceUuid);
-        if (!latest || !latest.pack) {
+        if (!latest) {
             return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.doesNotExist'));
         }
         if (latest.type !== this.type) {
