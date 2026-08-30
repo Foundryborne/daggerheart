@@ -1,5 +1,5 @@
 import { simplifyDescriptionForEmbed } from '../applications/sheets/sheet-helpers.mjs';
-import { fromUuids } from '../helpers/utils.mjs';
+import { createHtmlElement, fromUuids } from '../helpers/utils.mjs';
 import { parseInlineParams } from './parser.mjs';
 
 /** 
@@ -222,22 +222,7 @@ const rowsByItemType = {
     }
 }
 
-/**
- * 
- * @param {keyof HTMLElementTagNameMap} tagName 
- * @param {*} param1 
- * @returns 
- */
-function createHtmlElement(tagName, { text = null, html = null, className = null, attributes }) {
-    const tag = document.createElement(tagName);
-    if (text) tag.textContent = text;
-    if (html) tag.innerHTML = html;
-    if (className) tag.classList.add(className);
-    for (const [key, value] of Object.entries(attributes ?? {})) {
-        tag.setAttribute(key, value);
-    }
-    return tag;
-}
+
 
 function createErrorMessage(message) {
     const div = createHtmlElement('div', { text: message })

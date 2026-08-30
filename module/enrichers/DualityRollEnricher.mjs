@@ -1,5 +1,5 @@
 import { abilities } from '../config/actorConfig.mjs';
-import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
+import { createHtmlElement, getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export function DhDualityRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[0]);
@@ -35,26 +35,27 @@ function getDualityMessage(roll, flavor) {
                 : undefined;
 
     const dualityElement = document.createElement('span');
-    dualityElement.innerHTML = `
-        <button type="button" class="duality-roll-button${roll?.inline ? ' inline' : ''}" 
-            data-title="${label}"
-            data-label="${dataLabel}"
-            data-reaction="${roll?.reaction ? 'true' : 'false'}"
-            data-hope="${roll?.hope ?? 'd12'}" 
-            data-fear="${roll?.fear ?? 'd12'}"
-            ${advantage ? `data-advantage="${advantage}"` : ''}
-            ${roll?.difficulty !== undefined ? `data-difficulty="${roll.difficulty}"` : ''}
-            ${roll?.trait && abilities[roll.trait] ? `data-trait="${roll.trait}"` : ''}
-            ${roll?.advantage ? 'data-advantage="true"' : ''}
-            ${roll?.disadvantage ? 'data-disadvantage="true"' : ''}
-            ${roll?.grantResources ? 'data-grant-resources="true"' : ''}
-        >
-            ${roll?.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>'}
-            ${label}
-            ${!flavor && (roll?.difficulty || advantageLabel) ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
-        </button>
-    `;
-
+    const anchor = createHtmlElement('a', {
+        className: 'content-link duality-roll-button',
+        data: {
+            title: label,
+            label: dataLabel,
+            reaction: `${roll?.reaction ? 'true' : 'false'}`,
+            hope: roll?.hope ?? 'd12',
+            fear: roll?.fear ?? 'd12',
+            difficulty: roll?.difficulty,
+            trait: roll?.trait && abilities[roll.trait] ? roll.trait : null,
+            advantage: roll?.advantage || null,
+            disadvantage: roll?.disadvantage || null,
+            grantResources: roll?.grantResources || null
+        },
+        html: [
+            roll?.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>',
+            label,
+            !flavor && (roll?.difficulty || advantageLabel) ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''
+        ].join('')
+    });
+    dualityElement.append(anchor);
     return dualityElement;
 }
 

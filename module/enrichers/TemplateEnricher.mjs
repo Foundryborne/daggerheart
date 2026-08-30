@@ -1,3 +1,4 @@
+import { createHtmlElement } from '../helpers/utils.mjs';
 import { parseInlineParams } from './parser.mjs';
 
 /** Supports a template such as `@Template[type:emanation|range:far]` */
@@ -5,8 +6,7 @@ export function DhTemplateEnricher(match, _options) {
     const params = parseInlineParams(match[1]);
     const { 
         type = CONFIG.DH.GENERAL.templateTypes.circle.id,
-        angle = CONFIG.MeasuredTemplate.defaults.angle,
-        inline = false
+        angle = CONFIG.MeasuredTemplate.defaults.angle
     } = params;
     const direction = Number(params.direction) || 0;
     params.range = params.range?.toLowerCase();
@@ -43,13 +43,17 @@ export function DhTemplateEnricher(match, _options) {
     }
 
     const templateElement = document.createElement('span');
-    templateElement.innerHTML = `
-        <button type="button" class="measured-template-button${inline ? ' inline' : ''}" 
-            data-type="${type}" data-range="${range}" data-angle="${angle}" data-direction="${direction}">
-            ${label} - ${rangeDisplay}${extraDisplay}
-        </button>
-    `;
-
+    const anchor = createHtmlElement('a', {
+        className: 'content-link measured-template-button',
+        data: {
+            type,
+            range,
+            angle,
+            direction
+        },
+        html: `${label} - ${rangeDisplay}${extraDisplay}`
+    });
+    templateElement.append(anchor);
     return templateElement;
 }
 

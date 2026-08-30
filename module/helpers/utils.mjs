@@ -218,6 +218,27 @@ export const damageKeyToNumber = key => {
     }[key];
 };
 
+/**
+ * Shorthand for creating an html element with certain properties as shorthand
+ * @template {keyof HTMLElementTagNameMap} T
+ * @param {T} tagName 
+ * @returns {HTMLElementTagNameMap[T]}
+ */
+export function createHtmlElement(tagName, { text = null, html = null, className = null, attributes, data }) {
+    const tag = document.createElement(tagName);
+    if (text) tag.textContent = text;
+    if (html) tag.innerHTML = html;
+    if (className) tag.classList.add(...className.split(' '));
+    for (const [key, value] of Object.entries(attributes ?? {})) {
+        tag.setAttribute(key, value);
+    }
+    for (const [key, value] of Object.entries(data ?? {})) {
+        if (value === null || value === undefined) continue;
+        tag.dataset[key] = String(value);
+    }
+    return tag;
+}
+
 export default function constructHTMLButton({
     label,
     dataset = {},
