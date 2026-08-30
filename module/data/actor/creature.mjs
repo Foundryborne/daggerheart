@@ -124,19 +124,4 @@ export default class DhCreature extends BaseDataActor {
             enumerable: false
         });
     }
-
-    prepareDerivedData() {
-        for (const feature of this.parent.items.filter(x => x.type === 'feature')) {
-            for (const [key, data] of Object.entries(feature.system.actorResources)) {
-                const resource = CONFIG.DH.RESOURCE.optionalResources[key];
-                if (!resource) continue;
-
-                this.resources[key] = {
-                    ...resource,
-                    value: data.value,
-                    featureParentId: feature.id
-                }
-            }
-        }
-    }
 }

@@ -1151,12 +1151,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const inputValue = Number.parseInt(textValue);
         const decreasing = inputValue <= resource.value;
         const value = decreasing ? inputValue - 1 : inputValue;
-        if (resource.featureParentId) {
-            const feature = this.document.items.get(resource.featureParentId);
-            await feature.update({ [`system.actorResources.${resourceKey}.value`]: value });
-        } else {
-            await this.document.update({ [`system.resources.${resourceKey}.value`]: value }, { render: false });
-        }
+        
+        await this.document.update({ [`system.resources.${resourceKey}.value`]: value }, { render: false });
 
         /* Update resource symbols */
         const section = target.closest('.resource-section');

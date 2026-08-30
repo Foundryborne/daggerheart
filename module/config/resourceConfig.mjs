@@ -65,7 +65,7 @@ const companionBaseResources = Object.freeze({
     }
 });
 
-export const optionalResources = Object.freeze({
+export const optionalResources = {
     favor: {
         id: 'favor',
         initial: 3,
@@ -90,7 +90,7 @@ export const optionalResources = Object.freeze({
         isOptional: true,
         isExtra: true
     }
-});
+};
 
 export const character = {
     base: characterBaseResources,
