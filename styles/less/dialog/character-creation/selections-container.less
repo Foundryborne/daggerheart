@@ -45,6 +45,8 @@
 });
 
 .daggerheart.dh-style.dialog.character-creation {
+    border-radius: 0;
+
     .setup-tabs {
         display: flex;
         justify-content: center;
@@ -75,6 +77,22 @@
         side-line-div {
             width: auto;
             flex: 1;
+        }
+
+        .m-top-40 {
+            margin-top: 40px;
+        }
+
+        .m-top-20 {
+            margin-top: 20px;
+        }
+
+        .m-top-10 {
+            margin-top: 10px;
+        }
+
+        .d-flex {
+            display: flex;
         }
 
         .title-section {
@@ -172,6 +190,23 @@
             }
         }
 
+        .equip-items {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            img {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 3px;
+            }
+
+            a {
+                margin-left: auto;
+            }
+        }
+
         .step-sidebar {
             width: 300px;
             min-width: 300px;
@@ -199,12 +234,57 @@
                     }
                 }
 
+                &.domains {
+                    .domain-card {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+
+                        .delete { margin-left: auto; }
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            object-fit: cover;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+
+                &.equipment {
+                    .empty-slot {
+                        text-align: center;
+                        place-content: center;
+
+                        width: 100%;
+                        box-sizing: border-box;
+                        height: 40px;
+                        border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+                        border-radius: 3px;
+                        color: light-dark(@dark-blue-50, @beige-50);
+                    }
+
+                    .choice-item-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 30px;
+                        margin-left: 10px;
+
+                    }
+
+                    .item-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
+
                 .compedium-item {
                     
                     ul .sidebar-item-container {
                         display: flex;
                         align-items: center;
-                        gap: 5px;
+                        gap: 10px;
 
                         &:not(:first-child) {
                             margin-top: 5px;
@@ -247,16 +327,13 @@
             max-width: 900px;
         }
 
-        .m-top-20 {
-            margin-top: 20px;
+        .equipment-list {
+            width: 100%;
+            min-width: 400px;
         }
 
-        .m-top-10 {
-            margin-top: 10px;
-        }
-
-        .d-flex {
-            display: flex;
+        .suggested-equipments {
+            width: 250px;
         }
 
         .class-info {
@@ -268,7 +345,7 @@
                     .domain-item {
                         display: flex;
                         align-items: center;
-                        gap: 5px;
+                        gap: 10px;
                         padding: 5px 10px;
                         border-radius: 3px;
                         color: light-dark(@dark, @beige);
@@ -296,7 +373,7 @@
                     .class-item {
                         display: flex;
                         align-items: center;
-                        gap: 5px;
+                        gap: 10px;
 
                         img {
                             width: 40px;
@@ -460,6 +537,7 @@
                 }
             }
         }
+
         .experience-example-list {
             margin-left: auto;
             max-width: 350px;
@@ -468,6 +546,17 @@
             p {font-family: @font-body;}
         }
 
+        .domain-card-info {
+            .card-list {
+                overflow-y: auto;
+                padding: 10px;
+                height: -webkit-fill-available;
+
+                .card-item {
+                    .dh-card-style()
+                }
+            }
+        }
 
         .ancestry-mixed-controller {
             position: relative;

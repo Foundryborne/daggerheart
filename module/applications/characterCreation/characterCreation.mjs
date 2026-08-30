@@ -55,6 +55,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.subclassGroups = [];
         this.ancestryGroups = [];
         this.communityGroups = [];
+        this.domainCardGroups = {
+            label: '',
+            items: []
+        };
 
         this._dragDrop = this._createDragDropHandlers();
 
@@ -91,6 +95,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             finish: this.finish,
             selectSubclass: this.selectSubclass,
             selectItem: this.selectItem,
+            removeDomainCard: this.removeDomainCard,
+            applySuggestedEquips: this.applySuggestedEquips,
+            removeSelectedEquip: this.removeSelectedEquip,
             mixedAncestryToggle: this.mixedAncestryToggle,
             selectAncestryFeature: this.selectAncestryFeature
         },
@@ -121,7 +128,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         traits: { template: 'systems/daggerheart/templates/characterCreation/tabs/traits.hbs' },
         experience: { template: 'systems/daggerheart/templates/characterCreation/tabs/experience.hbs' },
         domainCards: { template: 'systems/daggerheart/templates/characterCreation/tabs/domainCards.hbs' },
-        equipment: { template: 'systems/daggerheart/templates/characterCreation/equipment.hbs' },
+        equipment: { template: 'systems/daggerheart/templates/characterCreation/tabs/equipment.hbs' },
         // story: { template: 'systems/daggerheart/templates/characterCreation/story.hbs' },
         footer: { template: 'systems/daggerheart/templates/characterCreation/footer.hbs' }
     };
@@ -227,6 +234,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.tabGroups.setup = this.tabGroups.setup ?? 'class';
         const context = await super._prepareContext(_options);
 
+        context.config = CONFIG.DH;
+
         context.tabs = this._getTabs(this.constructor.TABS);
         const availableTraitModifiers = game.settings
             .get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
@@ -288,12 +297,15 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             acc[x] = { ...this.setup.domainCards[x], compendium: 'domains' };
             return acc;
         }, {});
+        context.selectedDomainCards = Object.values(context.domainCards).filter(card => card.name).length;
+        context.totalDomainCards = Object.keys(context.domainCards).length;
 
         context.visibility = this.setup.visibility;
 
         context.subclassGroups = this.subclassGroups;
         context.ancestryGroups = this.ancestryGroups;
         context.communityGroups = this.communityGroups;
+        context.domainCardGroups = this.domainCardGroups;
 
         context.mixedFeatures = this.setup.mixedFeatures;
 
@@ -408,8 +420,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             this.setup.mixedFeatures.primaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.primaryFeature : this.setup.primaryAncestry.system.primaryFeature;
             this.setup.mixedFeatures.secondaryFeature = feature;
         }
-
-        console.log(this.setup.mixedFeatures)
 
         this.setup.visibility = this.getUpdateVisibility();
         this.render();
@@ -826,6 +836,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             for (const item of this.items.filter(item => item.type == 'community')) {
                 communityGroups[0].items.push(item)
             }
+
+            const domainCardGroups = {
+                label: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.domainCards'),
+                items: []
+            };
+            for (const item of this.items.filter(item => item.type == 'domainCard')) {
+                domainCardGroups.items.push(item)
+            }
             
             subclassGroups.sort((a, b) => a.label.localeCompare(b.label))
 
@@ -859,6 +877,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             this.subclassGroups = subclassGroups;
             this.ancestryGroups = ancestryGroups;
             this.communityGroups = communityGroups;
+            this.domainCardGroups = domainCardGroups;
         });
     }
 
@@ -914,14 +933,60 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 const community = await foundry.utils.fromUuid(target.dataset.uuid);
                 this.setup.community = community;
                 this.setup.visibility = this.getUpdateVisibility();
-                console.log(community);
                 this.render();
+                break;
+            case 'domainCard':
+                const randomIDs = Object.keys(this.setup.domainCards);
+                const domain = await foundry.utils.fromUuid(target.dataset.uuid);
+
+                if (this.setup.domainCards[randomIDs[0]].name) {
+                    this.setup.domainCards[randomIDs[1]] = domain;
+                } else {
+                    this.setup.domainCards[randomIDs[0]] = domain;
+                }
                 break;
         }
 
         this.setup.visibility = this.getUpdateVisibility();
         this.render();
-        console.log(type);
-        console.log('chegou aqui');
+        // console.log(type);
+        // console.log('chegou aqui');
+    }
+
+    static async removeDomainCard(_, target) {
+        const indexID = target.dataset.id;
+        this.setup.domainCards[indexID] = {}
+        this.setup.visibility = this.getUpdateVisibility();
+        this.render();
+    }
+
+    static async applySuggestedEquips(_, target) {
+        const suggestions = await this.getEquipmentSuggestions(
+            this.equipment.inventory.choiceA,
+            this.equipment.inventory.choiceB
+        );
+
+
+        this.equipment.primaryWeapon = suggestions.primaryWeapon
+        this.equipment.secondaryWeapon = suggestions.secondaryWeapon
+        this.equipment.armor = suggestions.armor
+
+        this.setup.visibility = this.getUpdateVisibility();
+        this.render();
+    }
+
+    static async removeSelectedEquip(_, target) {
+        const type = target.dataset.type;
+
+        if (type === 'primaryWeapon') {
+            this.equipment.primaryWeapon = {}
+        } else if (type === 'secondaryWeapon') {
+            this.equipment.secondaryWeapon = {}
+        } else {
+            this.equipment.armor = {}
+        }
+
+        this.setup.visibility = this.getUpdateVisibility();
+        this.render();
     }
 }

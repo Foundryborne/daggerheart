@@ -517,6 +517,7 @@
                 "selectArmor": "Select Armor",
                 "selectClass": "Select Class",
                 "selectCommunity": "Select Community",
+                "selectedDomains": "Selected Domains",
                 "selectPrimaryWeapon": "Select Primary Weapon",
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
@@ -531,7 +532,9 @@
                 "suggestedTraits": "Suggested Traits",
                 "suggestedWeapons": "Suggested Weapon",
                 "title": "{actor} - Character Setup",
-                "traitIncreases": "Trait Increases"
+                "traitIncreases": "Trait Increases",
+                "yourEquipments": "Your Equipments",
+                "equipmentList": "Equipment list",
             },
             "CharacterReset": {
                 "title": "Reset Character",
