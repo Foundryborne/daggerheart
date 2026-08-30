@@ -892,3 +892,49 @@ export async function getWorldActor(baseActor) {
 
     return baseActor;
 }
+
+/**
+ * Get all possible resources. 
+ * This combines the possible resources for all actor types and adds both optional resources and homebrew resources.
+ * @returns { Map<string, Object> } 
+ */
+export function getAllResources() {
+    const actorResources = {
+        ...CONFIG.DH.RESOURCE.companion.all,
+        ...CONFIG.DH.RESOURCE.adversary.all,
+        ...CONFIG.DH.RESOURCE.character.all
+    }
+
+    const additionalResources = {
+        armor: {
+            id: 'armor',
+            label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
+            group: 'TYPES.Actor.character'
+        },
+        fear: {
+            id: 'fear',
+            label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
+            group: 'TYPES.Actor.adversary'
+        },
+        resource: {
+            id: 'resource',
+            label: 'DAGGERHEART.GENERAL.Resource.single'
+        }
+    }
+
+    const homebrew = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+    const homebrewResources = Object.values(homebrew.resources).reduce((acc, category) => {
+        for (const [key, resource] of Object.entries(category.resources)) {
+            acc[key] = resource;
+        }
+
+        return acc;
+    }, {});
+
+    return {
+        ...actorResources,
+        ...additionalResources,
+        ...homebrewResources,
+        ...CONFIG.DH.RESOURCE.optionalResources
+    }
+}

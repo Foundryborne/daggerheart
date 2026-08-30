@@ -1,5 +1,5 @@
 import { DHDamageData } from '../../data/fields/action/damageField.mjs';
-import { tagifyElement } from '../../helpers/utils.mjs';
+import { getAllResources, tagifyElement } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -261,14 +261,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     getCostOptions() {
-        const options = foundry.utils.deepClone(CONFIG.DH.GENERAL.abilityCosts);
-        const resource = this.action.parent.resource;
-        if (resource) {
-            options.resource = {
-                label: 'DAGGERHEART.GENERAL.itemResource',
-                group: 'Global'
+        const options = Object.entries(getAllResources()).reduce((acc, [key, data]) => {
+            acc[key] = {
+                label: data.label,
+                group: data.group ?? 'Global'
             };
-        }
+
+            return acc;
+        }, {});
 
         if (this.action.parent.metadata?.isInventoryItem) {
             options.quantity = {
