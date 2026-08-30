@@ -23,7 +23,16 @@
         "actionType": "action",
         "triggers": [],
         "areas": [],
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "focus",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -44,13 +53,13 @@
         "range": "self",
         "img": "icons/magic/life/cross-beam-green.webp"
       },
-      "L5Uhj2wnmfMhSCP6": {
+      "j2LtmkIfNDTHjyHH": {
         "type": "attack",
         "damage": {
           "main": null,
           "resources": {}
         },
-        "_id": "L5Uhj2wnmfMhSCP6",
+        "_id": "j2LtmkIfNDTHjyHH",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -82,8 +91,8 @@
           "diceRolling": {
             "multiplier": "flat",
             "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "aboveEqual",
+            "dice": "d4",
+            "compare": "equal",
             "treshold": 4
           },
           "useDefault": false
@@ -95,7 +104,7 @@
         },
         "name": "Roll D4",
         "range": "",
-        "img": "icons/magic/life/cross-beam-green.webp"
+        "img": "icons/sundries/gaming/dice-runed-brown.webp"
       }
     },
     "granter": null,

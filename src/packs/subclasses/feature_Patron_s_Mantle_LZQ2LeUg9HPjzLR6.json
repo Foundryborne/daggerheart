@@ -13,9 +13,9 @@
     "gmNotes": "",
     "resource": null,
     "actions": {
-      "1x08s6VdOYXtNPKq": {
+      "4rtdJw7LSUvCzsSm": {
         "type": "effect",
-        "_id": "1x08s6VdOYXtNPKq",
+        "_id": "4rtdJw7LSUvCzsSm",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -26,7 +26,16 @@
         "actionType": "action",
         "triggers": [],
         "areas": [],
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "favor",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -35,7 +44,7 @@
         },
         "effects": [
           {
-            "_id": "P3rUht3benQYJgFU",
+            "_id": "afUbEgMRpjjlmuOw",
             "onSave": false
           }
         ],
@@ -52,7 +61,7 @@
   },
   "effects": [
     {
-      "name": "PAtron's Mantle",
+      "name": "Patron's Mantle",
       "disabled": false,
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
       "description": "<p>While this effect is active, you gain a bonus to your damage thresholds equal to your tier and have advantage on action rolls to intimidate a target.</p>",
@@ -77,20 +86,20 @@
           {
             "key": "system.advantageSources",
             "type": "add",
-            "value": "Action rolls to intimidate a target",
+            "value": "Action rolls to intimidate a targe",
             "priority": null,
             "phase": "initial"
           }
         ],
         "duration": {
           "description": "",
-          "type": "scene"
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
         "targetDispositions": []
       },
-      "_id": "P3rUht3benQYJgFU",
+      "_id": "afUbEgMRpjjlmuOw",
       "type": "base",
       "start": {
         "time": 0,
@@ -114,7 +123,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!LZQ2LeUg9HPjzLR6.P3rUht3benQYJgFU"
+      "_key": "!items.effects!LZQ2LeUg9HPjzLR6.afUbEgMRpjjlmuOw"
     }
   ],
   "sort": 0,

@@ -60,7 +60,16 @@
         "actionType": "action",
         "triggers": [],
         "areas": [],
-        "cost": [],
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": false,
+            "key": "focus",
+            "value": 1,
+            "itemId": null,
+            "step": null
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -92,7 +101,7 @@
           "difficulty": null,
           "damageMod": "none"
         },
-        "name": "Instinct Roll",
+        "name": "Spend Focus",
         "range": "far"
       }
     },

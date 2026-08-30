@@ -12,7 +12,45 @@
     "description": "<p><strong>Spend a Favor</strong> to reroll any number of your damage dice. You can continue spending Favor to use this feature on the same damage roll.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "Fp4Gb6o5Ac9nAv9a": {
+        "type": "effect",
+        "_id": "Fp4Gb6o5Ac9nAv9a",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "favor",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Spend Favor",
+        "range": "self"
+      }
+    },
     "featureForm": "passive",
     "granter": null
   },

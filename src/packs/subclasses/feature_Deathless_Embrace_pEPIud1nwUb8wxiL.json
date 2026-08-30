@@ -12,7 +12,45 @@
     "description": "<p>Once per rest, <strong>spend any number of Favor</strong> to roll an equal number of Patron Dice. For each result of 4 or higher, clear a Hit Point.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "MESGNBGIReGomg5u": {
+        "type": "effect",
+        "_id": "MESGNBGIReGomg5u",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "favor",
+            "value": 1,
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Favor",
+        "range": ""
+      }
+    },
     "featureForm": "passive",
     "granter": null
   },
