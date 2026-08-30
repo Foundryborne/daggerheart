@@ -10,31 +10,10 @@
             {{formInput document.system.schema.fields.featureForm value=document.system.featureForm choices=featureFormChoices disabled=featureFormData.disabled localize=true}}
         </span>
         <span>{{localize "DAGGERHEART.ITEMS.Feature.actorResources"}}</span>
-        {{formInput document.system.schema.fields.actorResources value=document.system.actorResources localize=true}}
+        <multi-select name="system.actorResources">
+            {{selectOptions featureActorResources selected=document.system.actorResources localize=true}}
+        </multi-select>
     </fieldset>
 
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}
-
-    <fieldset>
-        <legend>
-            {{localize "Actor Resources"}}
-            <a><i class="fa-solid fa-plus" data-action="addActorResource"></i></a>
-        </legend>
-
-        {{#each featureActorResources as |resource key|}}
-            <div class="actor-resource-container">
-                <span>{{localize resource.label}}</span>
-                <div class="inputs-container">
-                    {{formGroup ../document.system.schema.fields.actorResources.element.fields.value value=resource.value localize=true}}
-                    <div class="form-group">
-                        <label>{{localize "Max"}}</label>
-                        <div class="form-fields">
-                            <input type="text" value="{{resource.max}}" disabled />
-                        </div>
-                    </div>
-                </div>
-                <a><i class="fa-solid fa-trash" data-action="removeActorResource" data-resource-key="{{key}}"></i></a>
-            </div>
-        {{/each}}
-    </fieldset>
 </section>

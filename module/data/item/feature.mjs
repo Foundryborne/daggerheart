@@ -40,13 +40,9 @@ export default class DHFeature extends BaseDataItem {
                 choices: CONFIG.DH.ITEM.featureForm,
                 label: 'DAGGERHEART.CONFIG.FeatureForm.label'
             }),
-            actorResources: new fields.TypedObjectField(new fields.SchemaField({
-                value: new fields.NumberField({
-                    label: 'DAGGERHEART.GENERAL.value',
-                    required: true,
-                    nullable: false,
-                    integer: true
-                })
+            actorResources: new fields.SetField(new fields.StringField({
+                required: true,
+                nullable: false
             }))
         };
     }

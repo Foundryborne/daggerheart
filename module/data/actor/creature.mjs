@@ -27,14 +27,27 @@ export default class DhCreature extends BaseDataActor {
         return !vulnerableAppliedByOther;
     }
 
-    get availableResources() {
-        const excemptKeys = ['armor'];
+    get availableExtraResources() {
         return Object.entries(this.resources).reduce((acc, [key, data]) => {
-            if (!excemptKeys.includes(key))
+            if (data.isExtra) 
                 acc[key] = data;
-            
+
             return acc;
-        }, foundry.utils.deepClone(CONFIG.DH.RESOURCE.character.all));
+        }, {});
+    }
+
+    get availableOptionalResourceKeys() {
+        const optionalFeatureResources = this.parent.items.reduce((acc, item) => {
+            if (item.type === 'feature') {
+                for (const resource of item.system.actorResources) {
+                    acc.add(resource);
+                }
+            }
+
+            return acc;
+        }, new Set());
+
+        return optionalFeatureResources;
     }
 
     async _preUpdate(changes, options, userId) {
@@ -69,6 +82,47 @@ export default class DhCreature extends BaseDataActor {
                 );
             }
         }
+    }
+
+    // _preUpdateOperation() {
+
+    // }
+
+    prepareBaseData() {
+        /** Initializes the original source data for this.resources */
+        const resources = Object.entries(CONFIG.DH.RESOURCE.optionalResources).reduce((acc, [key, data]) => {
+            if (this.availableOptionalResourceKeys.has(key)) {
+                acc[key] = data;
+            }
+            
+            return acc;
+        }, foundry.utils.deepClone(CONFIG.DH.RESOURCE[this.metadata.type].all));
+
+        for (const [key, data] of Object.entries(resources)) {
+            this.resources[key] ??= {};
+            const resource = this.resources[key];
+
+            // Add basic prepared data.
+            resource.label = data.label;
+            resource.isReversed = data.reverse;
+            resource.images = data.images;
+            resource.isExtra = data.isExtra;
+            resources.isOptional = data.isOptional;
+            resource.max = typeof data.max === 'number' ? (resource.max ?? data.max) : null;
+            resource.value = resource.value ?? data.initial;
+        }
+
+        Object.defineProperty(this.resources, 'clamp', {
+            value: function () {
+                for (const key of Object.keys(this)) {
+                    const resource = this[key];
+                    if (typeof resource?.max === 'number') {
+                        resource.value = Math.clamp(resource.value, 0, resource.max);
+                    }
+                }
+            },
+            enumerable: false
+        });
     }
 
     prepareDerivedData() {

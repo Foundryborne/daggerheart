@@ -8,7 +8,9 @@
  *  images {
  *    full { value, isIcon, noColorFilter }
  *    empty { value, isIcon noColorFilter }
- *  }
+ *  },
+ *  isOptional,
+ *  isExtra
  */
 
 const characterBaseResources = Object.freeze({
@@ -72,7 +74,9 @@ export const optionalResources = Object.freeze({
         images: {
             full: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 1 },
             empty: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 0.6 }
-        }
+        },
+        isOptional: true,
+        isExtra: true
     },
     focus: {
         id: 'focus',
@@ -82,7 +86,9 @@ export const optionalResources = Object.freeze({
         images: {
             full: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 1 },
             empty: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 0.6 }
-        }
+        },
+        isOptional: true,
+        isExtra: true
     }
 });
 

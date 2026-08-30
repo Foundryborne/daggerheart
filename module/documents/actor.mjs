@@ -5,6 +5,7 @@ import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy }
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
+import DhCreature from '../data/actor/creature.mjs';
 
 export default class DhpActor extends Actor {
     parties = new Set();
@@ -213,8 +214,79 @@ export default class DhpActor extends Actor {
 
     _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
         super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        
         for (const party of this.parties) {
             party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    _preUpdateDescendantDocuments(parent, collection, changes, options, userId) {
+        super._preUpdateDescendantDocuments(parent, collection, changes, options, userId);
+
+        if (collection === 'items') {
+            if (this.system instanceof DhCreature) {
+                const features = changes.map(x => this.items.get(x._id)).filter(x => x.type === 'feature');
+                const possibleRemovedResources = features.reduce((acc, feature) => {
+                    const change = changes.find(x => x._id === feature.id);
+                    if (change) {
+                        const possibleRemoved = feature.system.actorResources.filter(x => 
+                            !(change.system?.actorResources ?? []).includes(x));
+                        acc.push(...possibleRemoved);
+                    }
+
+                    return acc;
+                }, []);
+
+                this.cleanupOptionalResources(features.map(x => x.id), possibleRemovedResources);
+            }
+        }
+    }
+
+    _preDeleteDescendantDocuments(parent, collection, ids, options, userId) {
+        super._preDeleteDescendantDocuments(parent, collection, ids, options, userId);
+
+        if (collection === 'items') {
+            if (this.system instanceof DhCreature) {
+                const possibleRemovedResources = ids.reduce((acc, curr) => {
+                    const item = this.items.get(curr);
+                    if (item && item.type == 'feature') {
+                        acc.push(...item.system.actorResources);
+                    }
+
+                    return acc;
+                }, []);
+
+                this.cleanupOptionalResources(ids, possibleRemovedResources);
+            }
+        }
+    }
+
+    /**
+     * Cleanup of any optional resources on the actor that are no longer available.
+     * @param {string[]} featureIds 
+     * @param {string[]} possibleRemovedResources 
+     */
+    cleanupOptionalResources(featureIds, possibleRemovedResources) {
+        const availableOptionalResources = new Set();
+        for (const feature of this.items.filter(x => x.type === 'feature')) {
+            const actorResources = feature.system.actorResources.filter(x => 
+                !featureIds.includes(feature.id) ||
+                !possibleRemovedResources.includes(x)
+            );
+            
+            for (const resourceKey of actorResources) {
+                availableOptionalResources.add(resourceKey);
+            }
+        }
+
+        const resourcesToCleanup = this.system.availableOptionalResourceKeys.difference(availableOptionalResources);
+        if (resourcesToCleanup.size) {
+            this.update({
+                'system.resources': resourcesToCleanup.reduce((acc, curr) => {
+                    acc[curr] = _del;
+                    return acc;
+                }, {})
+            });
         }
     }
 
