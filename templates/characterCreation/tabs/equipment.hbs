@@ -4,6 +4,122 @@
     data-group='{{tabs.equipment.group}}'
 >
     <div class="main-selections-container">
+        <div class="step-sidebar">
+            <h1 class="title-section">6. Equipment</h1>
+
+            <div class="compedium-list equipment">
+                <div class="items item-list">
+                    <h2 class="subtitle-section">
+                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.yourEquipments"}}
+                        <side-line-div></side-line-div>
+                    </h2>
+                    {{> selectedItem
+                        item=primaryWeapon
+                        type='primaryWeapon'
+                        emptyMessage='Select a Primary Weapon'
+                    }}
+                    {{> selectedItem
+                        item=secondaryWeapon
+                        type='secondaryWeapon'
+                        emptyMessage='Select a Secondary Weapon'
+                    }}
+                    {{> selectedItem
+                        item=armor
+                        type='armor'
+                        emptyMessage='Select a Armor'
+                    }}
+                </div>
+
+                <div class="choices">
+                    <h2 class="subtitle-section">
+                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.choice"}}
+                        <side-line-div></side-line-div>
+                    </h2>
+                    <div class="d-flex m-top-10">
+                        <span class="choice-side-label">
+                            {{localize 'DAGGERHEART.GENERAL.or'}}
+                        </span>
+                        <ul class="choice-item-list">
+                            {{#each inventory.choiceA.suggestions as |item|}}
+                                <span class="equip-items">
+                                    <img src="{{item.img}}" alt="{{item.name}}">
+                                    <span>{{item.name}}</span>
+                                </span>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <div class="d-flex m-top-40">
+                        <span class="choice-side-label">
+                            {{localize 'DAGGERHEART.GENERAL.or'}}
+                        </span>
+                        <ul class="choice-item-list">
+                            {{#each inventory.choiceB.suggestions as |item|}}
+                                <span class="equip-items">
+                                    <img src="{{item.img}}" alt="{{item.name}}">
+                                    <span>{{item.name}}</span>
+                                </span>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="start-items">
+                    <h2 class="subtitle-section">
+                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.startingItems"}}
+                        <side-line-div></side-line-div>
+                    </h2>
+                    <div class="item-list">
+                        {{#each inventory.take as |item|}}
+                            <span class="equip-items">
+                                <img src="{{item.img}}" alt="{{item.name}}">
+                                <span>{{item.name}}</span>
+                            </span>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="equipment-list">
+            <h2 class="subtitle-section">
+                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.equipmentList"}}
+                <side-line-div></side-line-div>
+            </h2>
+        </div>
+
+        <div class="suggested-equipments">
+            <h2 class="subtitle-section">
+                {{localize "DAGGERHEART.ITEMS.Class.guide.suggestedEquipment"}}
+                <side-line-div></side-line-div>
+            </h2>
+
+            <div class="item-list">
+                {{#if primaryWeapon.suggestion.name}}
+                    <span class="equip-items">
+                        <img src="{{primaryWeapon.suggestion.img}}" alt="{{primaryWeapon.suggestion.name}}">
+                        <span>{{primaryWeapon.suggestion.name}}</span>
+                    </span>
+                {{/if}}
+                {{#if secondaryWeapon.suggestion.name}}
+                    <span class="equip-items">
+                        <img src="{{secondaryWeapon.suggestion.img}}" alt="{{secondaryWeapon.suggestion.name}}">
+                        <span>{{secondaryWeapon.suggestion.name}}</span>
+                    </span>
+                {{/if}}
+                {{#if armor.suggestion.name}}
+                    <span class="equip-items">
+                        <img src="{{armor.suggestion.img}}" alt="{{armor.suggestion.name}}">
+                        <span>{{armor.suggestion.name}}</span>
+                    </span>
+                {{/if}}
+            </div>
+
+            <button class="m-top-20" data-action="applySuggestedEquips">
+                Apply Suggested Equipment
+            </button>
+        </div>
+
+        {{!-- 
         <div class="main-equipment-selection">
             <fieldset class="equipment-selection">
                 <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.suggestedArmor"}}</legend>
@@ -105,5 +221,21 @@
                 </fieldset>
             </div>
         {{/unless}}
+        --}}
+
     </div>
 </section>
+
+{{#*inline "selectedItem"}}
+    {{#if item.name}}
+        <div class="equip-items">
+            <img src="{{item.img}}" alt="{{item.name}}">
+            <p>{{item.name}}</p>
+            <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-type="{{type}}" data-action="removeSelectedEquip"></i></a>
+        </div>
+    {{else}}
+        <div class="empty-slot">
+            {{emptyMessage}}
+        </div>
+    {{/if}}
+{{/inline}}
