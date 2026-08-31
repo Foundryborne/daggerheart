@@ -1,4 +1,5 @@
 import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
+import { SYSTEM_ID } from '../config/system.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     static #EXPAND_SECTIONS = [
@@ -123,6 +124,16 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const buttons = html.querySelectorAll('.ability-card-footer > .ability-use-button');
             buttons.forEach(b => b.remove());
         }
+
+        // If undo damage already done
+        if (this.flags.daggerheart?.resourcesUpdates) {
+            for (const update of this.flags.daggerheart.resourcesUpdates) {
+                if (!update.token.reverted) continue;
+                const liToken = html.querySelector(`li[data-token="${update.token.id}"]`);
+                if (liToken) liToken.classList.add('damage-reverted');
+            }
+        }
+
     }
 
     addChatListeners(html) {
@@ -136,6 +147,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
         html.querySelectorAll('.duality-action-effect').forEach(element =>
             element.addEventListener('click', this.onApplyEffect.bind(this))
+        );
+
+        html.querySelectorAll('.undo-damage-button').forEach(element =>
+            element.addEventListener('click', this.onUndoDamage.bind(this))
         );
 
         for (const element of html.querySelectorAll('.action-areas')) {
@@ -223,6 +238,26 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 if (this.system.hasHealing) actor.takeHealing(this.system.damage);
                 else actor.takeDamage(this.system.damage);
             }
+        }
+    }
+
+    async onUndoDamage(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const { token: tokenId } = event.target.closest('[data-token]').dataset;
+        const actor = canvas.scene.tokens.get(tokenId)?.actor;
+        const resourcesUpdates = this.getFlag(SYSTEM_ID, 'resourcesUpdates') ?? [];
+        const [index, actorDatas] = [...resourcesUpdates.entries()]?.find(([index, r]) => r.token?.id === tokenId)
+            ?? [];
+        const actorUpdates = actorDatas?.updates;
+        if (!actor || !actorUpdates) return;
+
+        const revertedUpdates = actorUpdates.map(u => ({...u, value: u.value * -1}));
+        const updated = await actor.modifyResource(revertedUpdates);
+        if (updated) {
+            resourcesUpdates[index].token.reverted = true;
+            await this.setFlag(SYSTEM_ID, 'resourcesUpdates', resourcesUpdates);
+            this.renderHTML();
         }
     }
 

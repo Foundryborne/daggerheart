@@ -978,6 +978,8 @@ export default class DhpActor extends Actor {
                 }
             }
         });
+
+        return this;
     }
 
     convertDamageToThreshold(damage) {

@@ -4001,7 +4001,8 @@
                 "clearResourceFully": "Fully Clear {resource}",
                 "damageSummary": {
                     "title": "Damage Applied",
-                    "healingTitle": "Healing Applied"
+                    "healingTitle": "Healing Applied",
+                    "undoDamage": "Undo {type}"
                 },
                 "damageRoll": {
                     "title": "Damage - {damage}",

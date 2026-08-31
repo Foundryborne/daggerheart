@@ -83,6 +83,19 @@
                     }
                 }
             }
+
+            button.undo-damage-button {
+                --input-height: 1.5rem;
+                justify-self: right;
+                margin-left: auto;
+                width: var(--input-height);
+                pointer-events: auto;
+                font-size: var(--font-size-12);
+            }
+        }
+
+        &.damage-reverted {
+            opacity: 0.5;
         }
 
         .damage-container {

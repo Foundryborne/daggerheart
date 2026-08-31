@@ -10,6 +10,7 @@
                         {{#if this.token.immune}}<div class="token-resistance-container immune">{{localize "DAGGERHEART.GENERAL.immune"}}</div>{{/if}}
                     {{/unless}}
                 </div>
+                {{#if ../isGM}}<button class="undo-damage-button fa-solid fa-rotate-left icon" data-tooltip="{{localize 'DAGGERHEART.UI.Chat.damageSummary.undoDamage' type=(localize (concat 'DAGGERHEART.GENERAL.' ../type))}}"></button>{{/if}}
             </header>
             <ul class="damage-container">
                 {{#each this.updates}}
