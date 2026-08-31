@@ -1216,9 +1216,6 @@ export default class DhpActor extends Actor {
             return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidTier'));
         }
 
-        // @todo defer preserved properties to system data somehow
-        // should gm notes be preserved or ko'd?
-        // what do we do about flags?
         const currentSource = this.toObject(true);
         const latestSource = latest.toObject(true);
         const system = foundry.utils.mergeObject(latestSource.system, {

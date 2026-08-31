@@ -27,7 +27,7 @@ export default class DHItem extends foundry.documents.Item {
         if (this.pack || this.type === 'ancestry') return null;
 
         const actor = this.actor;
-        if (['adversary', 'environment'].includes(actor.type)) {
+        if (['adversary', 'environment'].includes(actor?.type)) {
             const uuid = `${actor.refreshSourceUuid}.Item.${this.id}`;
             return uuid.startsWith('Compendium.') ? uuid : null;
         }
@@ -358,12 +358,12 @@ export default class DHItem extends foundry.documents.Item {
             return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidType'));
         }
 
-        // @todo defer preserved properties to system data somehow
-        // should gm notes be preserved or ko'd?
-        // what do we do about flags?
+        // Get system data, preserving certain properties
         const currentSource = this.toObject(true);
         const latestSource = latest.toObject(true);
         const system = foundry.utils.mergeObject(latestSource.system, pick(currentSource.system, [
+            // General
+            'gmNotes',
             // domain cards
             'inVault',
             // inventory items
@@ -376,7 +376,7 @@ export default class DHItem extends foundry.documents.Item {
             'isMulticlass'
         ]), { recursive: false });
 
-        // todo: effects
+        // Handle Effects
         const effectsToDelete = this.effects.filter(e => !latest.effects.has(e.id)).map(i => i.id);
         const effectUpdates = [];
         const effectCreates = [];
