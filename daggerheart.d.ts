@@ -24,7 +24,7 @@ declare global {
     // These are convenience types for common imported things. This allows them to be used in JSDoc directly
     // For actual use such as instanceof, an import is still required
     type DHItem<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DHItem<T>>;
-    type DhpActor<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DhpActor<T>>;
+    type DhpActor<T extends BaseDataActor = BaseDataActor> = InstanceType<typeof documents.DhpActor<T>>;
 
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.

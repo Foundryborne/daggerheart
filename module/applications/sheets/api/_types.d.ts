@@ -1,9 +1,9 @@
 export {}; // top level import/export required or types don't work
 
 declare module './base-actor.mjs' {
-    export default interface DHBaseActorSheet {
-        actor: DhpActor;
-        document: DhpActor;
+    export default interface DHBaseActorSheet<T extends DhpActor> {
+        actor: T;
+        document: T;
     }
 }
 

@@ -348,6 +348,7 @@ export default class DhCharacter extends DhCreature {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
+    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
     get class() {
         const value = this.parent.items.find(x => x.type === 'class' && !x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && !x.system.isMulticlass);
@@ -358,6 +359,7 @@ export default class DhCharacter extends DhCreature {
         };
     }
 
+    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
     get multiclass() {
         const value = this.parent.items.find(x => x.type === 'class' && x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
@@ -604,95 +606,6 @@ export default class DhCharacter extends DhCreature {
                 ]
             });
         }
-    }
-
-    get sheetLists() {
-        const transformations = {},
-            ancestryFeatures = [],
-            communityFeatures = [],
-            classFeatures = [],
-            subclassFeatures = [],
-            multiclassFeatures = [],
-            multiclassSubclassFeatures = [],
-            companionFeatures = [],
-            features = [];
-
-        for (let item of this.parent.items.filter(x => this.isItemAvailable(x))) {
-            const originItemType = item.system.granter?.type;
-
-            if (item.type === 'transformation') {
-                const features = this.parent.items.filter(x => x.type === 'feature' && x.system.granter?.id === item.id);
-                transformations[`transformation-${item.id}`] = {
-                    title: `${_loc('TYPES.Item.transformation')} - ${item.name}`,
-                    type: 'transformation',
-                    deleteUuid: item.uuid,
-                    values: features
-                };   
-            }
-            if (originItemType === CONFIG.DH.ITEM.featureTypes.transformation.id) {
-                continue; 
-            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
-                ancestryFeatures.push(item);
-            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
-                communityFeatures.push(item);
-            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
-                (item.system.granter?.multiclass ? multiclassFeatures : classFeatures).push(item);
-            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
-                (item.system.granter?.multiclass ? multiclassSubclassFeatures : subclassFeatures).push(item);
-            } else if (originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
-                companionFeatures.push(item);
-            } else if (item.type === 'feature' && !item.system.type) {
-                features.push(item);
-            }
-        }
-
-        return {
-            ...transformations,
-            ancestryFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.ancestry')} - ${this.ancestry?.name}`,
-                type: 'ancestry',
-                values: ancestryFeatures
-            },
-            communityFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.community')} - ${this.community?.name}`,
-                type: 'community',
-                values: communityFeatures
-            },
-            classFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.class')} - ${this.class.value?.name}`,
-                type: 'class',
-                values: classFeatures
-            },
-            subclassFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.subclass')} - ${this.class.subclass?.name}`,
-                type: 'subclass',
-                values: subclassFeatures
-            },
-            ...(multiclassFeatures.length
-                ? {
-                    multiclassFeatures: {
-                        title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} - ${this.multiclass.value?.name}`,
-                        type: 'multiclass',
-                        values: multiclassFeatures
-                    }
-                }
-                : {}),
-            ...(multiclassSubclassFeatures.length
-                ? {
-                    multiclassSubclassFeatures: {
-                        title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} ${game.i18n.localize('TYPES.Item.subclass')} - ${this.multiclass.subclass?.name}`,
-                        type: 'multiclassSubclass',
-                        values: multiclassSubclassFeatures
-                    }
-                }
-                : {}),
-            companionFeatures: {
-                title: game.i18n.localize('DAGGERHEART.ACTORS.Character.companionFeatures'),
-                type: 'companion',
-                values: companionFeatures
-            },
-            features: { title: game.i18n.localize('DAGGERHEART.GENERAL.features'), type: 'feature', values: features }
-        };
     }
 
     get primaryWeapon() {

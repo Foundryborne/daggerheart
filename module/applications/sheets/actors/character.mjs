@@ -5,8 +5,15 @@ import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import { getArmorSources, getDocFromElement, getDocFromElementSync, itemAbleRollParse, sortBy } from '../../../helpers/utils.mjs';
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/** 
+ * @import DhCharacter from '../../../data/actor/character.mjs';
+ */
 
+/**
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction 
+ */
+
+/** @extends {DHBaseActorSheet<DhpActor<DhCharacter>>} */
 export default class CharacterSheet extends DHBaseActorSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -223,6 +230,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /*  Prepare Context                             */
     /* -------------------------------------------- */
 
+    /** @inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
@@ -264,6 +272,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
             case 'header':
                 await this._prepareHeaderContext(context, options);
                 break;
+            case 'features':
+                await this._prepareFeaturesContext(context, options);
+                break;
             case 'loadout':
                 await this._prepareLoadoutContext(context, options);
                 break;
@@ -282,6 +293,61 @@ export default class CharacterSheet extends DHBaseActorSheet {
         context.hasExtraResources = Object.keys(CONFIG.DH.RESOURCE.character.all).some(
             key => !CONFIG.DH.RESOURCE.character.base[key]
         );
+    }
+
+    async _prepareFeaturesContext(context, _options) {
+        const actor = this.actor;
+        const features = actor.itemTypes.feature;
+        const { value: classItem, subclass } = actor.system.class ?? {};
+        const { value: multiclass, subclass: multiSubclass } = actor.system.multiclass ?? {};
+        const anchorItems = [
+            ...actor.itemTypes.transformation,
+            actor.system.ancestry,
+            actor.system.community,
+            classItem,
+            subclass,
+            multiclass,
+            multiSubclass
+        ].filter(Boolean);
+
+        const groups = anchorItems.map(item => {
+            const type = item.system.isMulticlass ? (item.type === 'class' ? 'multiclass' : 'multiclassSubclass') : item.type;
+            const label = type === 'multiclass' 
+                ? 'DAGGERHEART.GENERAL.multiclass'
+                : type === 'multiclassSubclass' 
+                    ? `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} ${game.i18n.localize('TYPES.Item.subclass')}`
+                    : `TYPES.Item.${type}`;
+            const linked = item.system.getLinkedItems();
+            return {
+                title: `${_loc(label)} - ${item.name}`,
+                type,
+                // If the item should be clickable/deletable
+                anchorItem: !['class', 'subclass'].includes(item.type) ? item : null,
+                deleteUuid: item.type === 'transformation' ? item.uuid : null,
+                values: linked.filter(i => i.type === 'feature' && actor.system.isItemAvailable(i))
+            }
+        }).filter(g => g.values.length || g.deleteUuid);
+
+        const companionFeatures = features.filter(f => 
+            f.system.granter?.type === CONFIG.DH.ITEM.featureTypes.companion.id);
+        if (companionFeatures.length) {
+            groups.push({
+                title: _loc('DAGGERHEART.ACTORS.Character.companionFeatures'),
+                type: 'companion',
+                values: companionFeatures
+            });
+        }
+
+        const assignedFeatures = groups.flatMap(g => g.values.map(f => f.id));
+        const looseFeatures = features.filter(i => !assignedFeatures.includes(i.id) && actor.system.isItemAvailable(i));
+        groups.push({ 
+            title: game.i18n.localize('DAGGERHEART.GENERAL.features'),
+            type: 'feature',
+            canCreate: true,
+            values: looseFeatures
+        })
+
+        context.featureGroups = groups;
     }
 
     /**
