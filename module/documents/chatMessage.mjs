@@ -1,5 +1,4 @@
 import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
-import { SYSTEM_ID } from '../config/system.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     static #EXPAND_SECTIONS = [
@@ -124,16 +123,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const buttons = html.querySelectorAll('.ability-card-footer > .ability-use-button');
             buttons.forEach(b => b.remove());
         }
-
-        // If undo damage already done
-        if (this.flags.daggerheart?.resourcesUpdates) {
-            for (const update of this.flags.daggerheart.resourcesUpdates) {
-                if (!update.token.reverted) continue;
-                const liToken = html.querySelector(`li[data-token="${update.token.id}"]`);
-                if (liToken) liToken.classList.add('damage-reverted');
-            }
-        }
-
     }
 
     addChatListeners(html) {
@@ -246,7 +235,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         event.stopPropagation();
         const { token: tokenId } = event.target.closest('[data-token]').dataset;
         const actor = canvas.scene.tokens.get(tokenId)?.actor;
-        const resourcesUpdates = this.getFlag(SYSTEM_ID, 'resourcesUpdates') ?? [];
+        const resourcesUpdates = this.getFlag(CONFIG.DH.id, 'resourcesUpdates') ?? [];
         const [index, actorDatas] = [...resourcesUpdates.entries()]?.find(([index, r]) => r.token?.id === tokenId)
             ?? [];
         const actorUpdates = actorDatas?.updates;
@@ -256,7 +245,13 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const updated = await actor.modifyResource(revertedUpdates);
         if (updated) {
             resourcesUpdates[index].token.reverted = true;
-            await this.setFlag(SYSTEM_ID, 'resourcesUpdates', resourcesUpdates);
+            await this.setFlag(CONFIG.DH.id, 'resourcesUpdates', resourcesUpdates);
+
+            const element = document.createElement('div');
+            element.innerHTML = this.content;
+            element.querySelector(`[data-token=${tokenId}]`).classList.add('damage-reverted');
+            await this.update({ content: element.innerHTML });
+
             this.renderHTML();
         }
     }

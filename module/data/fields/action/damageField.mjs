@@ -1,7 +1,6 @@
 import FormulaField from '../formulaField.mjs';
 import { setsEqual } from '../../../helpers/utils.mjs';
 import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
-import { SYSTEM_ID } from '../../../config/system.mjs';
 
 const fields = foundry.data.fields;
 
@@ -162,7 +161,7 @@ export default class DamageField extends fields.SchemaField {
                 type: 'systemMessage',
                 user: game.user.id,
                 speaker: cls.getSpeaker({ actor: speakerActor }),
-                flags: { [SYSTEM_ID]: { resourcesUpdates: targetDamage } },
+                flags: { [CONFIG.DH.id]: { resourcesUpdates: targetDamage } },
                 title: game.i18n.localize(
                     `DAGGERHEART.UI.Chat.damageSummary.${config.hasHealing ? 'healingTitle' : 'title'}`
                 ),
