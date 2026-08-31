@@ -48,7 +48,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         this.noOffset = options.noOffset;
         super.activate(element, { ...options, html });
-        if (html) this.tooltip.innerHTML = html; // foundry likes to strip certain stuff like svgs, put it back
+        if (typeof html === 'string') this.tooltip.innerHTML = html; // foundry likes to strip certain stuff like svgs, put it back
     }
 
     async #activateBattlepoints(element, options) {

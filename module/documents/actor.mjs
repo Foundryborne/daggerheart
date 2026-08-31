@@ -5,7 +5,6 @@ import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy }
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
-import DhCreature from '../data/actor/creature.mjs';
 
 export default class DhpActor extends Actor {
     parties = new Set();
@@ -218,46 +217,16 @@ export default class DhpActor extends Actor {
         for (const party of this.parties) {
             party.renderDebounced({ parts: ['partyMembers'] });
         }
-    }
-
-    _preUpdateDescendantDocuments(parent, collection, changes, options, userId) {
-        super._preUpdateDescendantDocuments(parent, collection, changes, options, userId);
 
         if (collection === 'items') {
-            if (this.system instanceof DhCreature) {
-                const features = changes.map(x => this.items.get(x._id)).filter(x => x.type === 'feature');
-                const possibleRemovedResources = features.reduce((acc, feature) => {
-                    const change = changes.find(x => x._id === feature.id);
-                    if (change) {
-                        const possibleRemoved = feature.system.actorResources.filter(x => 
-                            !(change.system?.actorResources ?? []).includes(x));
-                        acc.push(...possibleRemoved);
-                    }
-
-                    return acc;
-                }, []);
-
-                this.cleanupOptionalResources(features.map(x => x.id), possibleRemovedResources);
-            }
+            this._cleanupOptionalResources();
         }
     }
 
-    _preDeleteDescendantDocuments(parent, collection, ids, options, userId) {
-        super._preDeleteDescendantDocuments(parent, collection, ids, options, userId);
-
+    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
         if (collection === 'items') {
-            if (this.system instanceof DhCreature) {
-                const possibleRemovedResources = ids.reduce((acc, curr) => {
-                    const item = this.items.get(curr);
-                    if (item && item.type == 'feature') {
-                        acc.push(...item.system.actorResources);
-                    }
-
-                    return acc;
-                }, []);
-
-                this.cleanupOptionalResources(ids, possibleRemovedResources);
-            }
+            this._cleanupOptionalResources();
         }
     }
 
@@ -265,29 +234,39 @@ export default class DhpActor extends Actor {
      * Cleanup of any optional resources on the actor that are no longer available.
      * @param {string[]} featureIds 
      * @param {string[]} possibleRemovedResources 
+     * @returns {Promise<unknown> | void}
+     * @protected
      */
-    cleanupOptionalResources(featureIds, possibleRemovedResources) {
-        const availableOptionalResources = new Set();
-        for (const feature of this.items.filter(x => x.type === 'feature')) {
-            const actorResources = feature.system.actorResources.filter(x => 
-                !featureIds.includes(feature.id) ||
-                !possibleRemovedResources.includes(x)
-            );
-            
-            for (const resourceKey of actorResources) {
-                availableOptionalResources.add(resourceKey);
-            }
-        }
+    _cleanupOptionalResources() {
+        if (!(this.type in CONFIG.DH.RESOURCE)) return;
 
-        const resourcesToCleanup = this.system.availableOptionalResourceKeys.difference(availableOptionalResources);
-        if (resourcesToCleanup.size) {
-            this.update({
-                'system.resources': resourcesToCleanup.reduce((acc, curr) => {
-                    acc[curr] = _del;
-                    return acc;
+        // Get features and homebrew resources that are valid
+        // Because we have to filter out possibly removed ones, 
+        const features = this.itemTypes.feature;
+        const featureProvidedResources = features.flatMap(f => Array.from(f.system.actorResources));
+        const homebrewResources = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+        const applicableHomebrewResources = homebrewResources.resources[this.type]?.resources ?? {};
+
+        const resourceKeys = Object.keys(this.system._source.resources); 
+        const keysToDelete = resourceKeys.filter(key => 
+            !((key in CONFIG.DH.RESOURCE[this.type].base) 
+                || featureProvidedResources.includes(key)
+                || (key in applicableHomebrewResources))
+        );
+
+        if (keysToDelete.length) {
+            return this.update({ 
+                'system.resources': keysToDelete.reduce((r, k) => {
+                    r[k] = _del;
+                    return r;
                 }, {})
             });
         }
+    }
+
+    _preUpdate(changed, options, user) {
+        return super._preUpdate(changed, options, user);
     }
 
     _onUpdate(changes, options, userId) {

@@ -1,3 +1,4 @@
+import { pickBy } from '../../helpers/functional.mjs';
 import { ResourcesField } from '../fields/actorField.mjs';
 import BaseDataActor from './base.mjs';
 
@@ -20,6 +21,12 @@ export default class DhCreature extends BaseDataActor {
         };
     }
 
+    /** 
+     * The set of all available optional resources added by features
+     * @type {Set<string>}
+     */
+    availableOptionalResourceKeys = new Set();
+
     get isAutoVulnerableActive() {
         const vulnerableAppliedByOther = this.parent.effects.some(
             x => x.statuses.has('vulnerable') && !x.flags.daggerheart?.autoApplyFlagId
@@ -32,26 +39,10 @@ export default class DhCreature extends BaseDataActor {
             game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
         const applicableHomebrewResources = homebrewResources.resources[this.metadata.type]?.resources ?? {};
         
-        return Object.entries(this.resources).reduce((acc, [key, data]) => {
-            if (data.isExtra) 
-                acc[key] = data;
-
-            return acc;
-        }, applicableHomebrewResources);
-    }
-
-    get availableOptionalResourceKeys() {
-        const optionalFeatureResources = this.parent.items.reduce((acc, item) => {
-            if (item.type === 'feature') {
-                for (const resource of item.system.actorResources) {
-                    acc.add(resource);
-                }
-            }
-
-            return acc;
-        }, new Set());
-
-        return optionalFeatureResources;
+        return {
+            ...applicableHomebrewResources,
+            ...pickBy(this.resources, v => v.isExtra)
+        };
     }
 
     async _preUpdate(changes, options, userId) {
@@ -89,6 +80,14 @@ export default class DhCreature extends BaseDataActor {
     }
 
     prepareBaseData() {
+        // Initialize the set of feature granted resources
+        this.availableOptionalResourceKeys.clear();
+        for (const feature of this.parent.itemTypes.feature) {
+            for (const resource of feature.system.actorResources) {
+                this.availableOptionalResourceKeys.add(resource);
+            }
+        }
+
         /** Initializes the original source data for this.resources */
         const resources = Object.entries(CONFIG.DH.RESOURCE.optionalResources).reduce((acc, [key, data]) => {
             if (this.availableOptionalResourceKeys.has(key)) {
