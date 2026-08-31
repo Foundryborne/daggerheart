@@ -66,6 +66,12 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /** @inheritdoc */
     _getHeaderControls() {
         const controls = super._getHeaderControls();
+        controls.push({
+            icon: 'fa-solid fa-image',
+            label: 'SIDEBAR.CharArt',
+            action: 'showPortraitArtwork'
+        });
+
         if (this.actor.refreshSourceUuid) {
             controls.push({
                 label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),

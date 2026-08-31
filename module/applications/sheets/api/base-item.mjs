@@ -31,6 +31,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             submitOnChange: true
         },
         actions: {
+            showPortraitArtwork: DHBaseItemSheet.#onShowPortraitArtwork,
             addFeature: DHBaseItemSheet.#addFeature,
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
@@ -69,6 +70,12 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /** @inheritdoc */
     _getHeaderControls() {
         const controls = super._getHeaderControls();
+        controls.push({
+            icon: 'fa-solid fa-image',
+            label: 'ITEM.ViewArt',
+            action: 'showPortraitArtwork'
+        });
+
         if (this.item.refreshSourceUuid) {
             controls.push({
                 label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
@@ -131,6 +138,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /** @inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
+
+        
+        htmlElement.querySelector('img.profile')
+            ?.addEventListener('contextmenu', DHBaseItemSheet.#onShowPortraitArtwork.bind(this));
 
         // If the item supports lore references, add autocomplete
         const loreRefElement = htmlElement.querySelector('input[name="system.loreReference"]');
@@ -200,6 +211,12 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
+
+    static #onShowPortraitArtwork() {
+        const { ImagePopout } = foundry.applications.apps;
+        const {img, name, uuid} = this.document;
+        new ImagePopout({src: img, uuid, window: {title: name}}).render({force: true});
+    }
 
     /**
      * Add a new feature to the item, prompting the user for its type.
