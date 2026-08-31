@@ -219,14 +219,18 @@ export default class DhpActor extends Actor {
         }
 
         if (collection === 'items') {
-            this._cleanupOptionalResources();
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
         }
     }
 
     _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
         super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
         if (collection === 'items') {
-            this._cleanupOptionalResources();
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
         }
     }
 
