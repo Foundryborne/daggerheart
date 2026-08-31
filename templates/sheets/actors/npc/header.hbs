@@ -1,5 +1,6 @@
 <header class='npc-header-sheet'>
     <div class="portrait">
+        {{#if isToken}}<div class="token-tag">{{localize 'DOCUMENT.Token'}}</div>{{/if}}
         <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
     </div>
     <div class="info-section">
