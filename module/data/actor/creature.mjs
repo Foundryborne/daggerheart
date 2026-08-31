@@ -110,17 +110,18 @@ export default class DhCreature extends BaseDataActor {
             resource.max = typeof data.max === 'number' ? (resource.max ?? data.max) : null;
             resource.value = resource.value ?? data.initial;
         }
+    }
 
-        Object.defineProperty(this.resources, 'clamp', {
-            value: function () {
-                for (const key of Object.keys(this)) {
-                    const resource = this[key];
-                    if (typeof resource?.max === 'number') {
-                        resource.value = Math.clamp(resource.value, 0, resource.max);
-                    }
-                }
-            },
-            enumerable: false
-        });
+    /** 
+     * Post preparation process called to clamp resource values.
+     * Exists here so that its always called at the end of even subclass prepareDeriveds
+     */
+    clampResources() {
+        for (const key of Object.keys(this.resources)) {
+            const resource = this.resources[key];
+            if (typeof resource?.max === 'number') {
+                resource.value = Math.clamp(resource.value, 0, resource.max);
+            }
+        }
     }
 }

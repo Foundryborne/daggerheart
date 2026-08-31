@@ -207,7 +207,7 @@ export default class DhpAdversary extends DhCreature {
         }
 
         // Clamp resources (must be done last to ensure all updates occur)
-        this.resources.clamp();
+        this.clampResources();
     }
 
     _getTags() {
