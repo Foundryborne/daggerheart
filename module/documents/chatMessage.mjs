@@ -249,7 +249,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
             const element = document.createElement('div');
             element.innerHTML = this.content;
-            element.querySelector(`[data-token=${tokenId}]`).classList.add('damage-reverted');
+            element.querySelector(`[data-token="${tokenId}"]`).classList.add('damage-reverted');
             await this.update({ content: element.innerHTML });
 
             this.renderHTML();
