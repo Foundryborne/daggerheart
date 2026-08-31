@@ -11,6 +11,21 @@ export function pick(obj, keys) {
     }, {});
 }
 
+/**
+ * @template {T extends Record<string, any>} T
+ * @param {T} obj 
+ * @param {(value: T[keyof T], key: keyof T) => boolean} fn 
+ * @returns {Partial<T>}
+ */
+export function pickBy(obj, fn) {
+    return Object.entries(obj).reduce((r, [k, v]) => {
+        if (fn(v, k)) {
+            r[k] = obj[k];
+        }
+        return r;
+    }, {});
+}
+
 /** Given an object, returns a new object with the keys not listed in keys */
 export function omit(obj, keys) {
     const keysAsString = keys.map(k => String(k));

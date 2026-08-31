@@ -217,7 +217,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
         else {
             for (const target of targets) {
-                const actor = target.document.actor;
+                const actor = foundry.utils.fromUuidSync(target.actorId);
                 if (!actor) continue;
 
                 if (this.system.hasHealing) actor.takeHealing(this.system.damage);

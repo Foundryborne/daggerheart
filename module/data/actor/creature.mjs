@@ -1,3 +1,4 @@
+import { pickBy } from '../../helpers/functional.mjs';
 import { ResourcesField } from '../fields/actorField.mjs';
 import BaseDataActor from './base.mjs';
 
@@ -20,11 +21,28 @@ export default class DhCreature extends BaseDataActor {
         };
     }
 
+    /** 
+     * The set of all available optional resources added by features
+     * @type {Set<string>}
+     */
+    availableOptionalResourceKeys = new Set();
+
     get isAutoVulnerableActive() {
         const vulnerableAppliedByOther = this.parent.effects.some(
             x => x.statuses.has('vulnerable') && !x.flags.daggerheart?.autoApplyFlagId
         );
         return !vulnerableAppliedByOther;
+    }
+
+    get availableExtraResources() {
+        const homebrewResources = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+        const applicableHomebrewResources = homebrewResources.resources[this.metadata.type]?.resources ?? {};
+        
+        return {
+            ...applicableHomebrewResources,
+            ...pickBy(this.resources, v => v.isExtra)
+        };
     }
 
     async _preUpdate(changes, options, userId) {
@@ -59,5 +77,50 @@ export default class DhCreature extends BaseDataActor {
                 );
             }
         }
+    }
+
+    prepareBaseData() {
+        // Initialize the set of feature granted resources
+        this.availableOptionalResourceKeys.clear();
+        for (const feature of this.parent.itemTypes.feature) {
+            for (const resource of feature.system.actorResources) {
+                this.availableOptionalResourceKeys.add(resource);
+            }
+        }
+
+        /** Initializes the original source data for this.resources */
+        const resources = Object.entries(CONFIG.DH.RESOURCE.optionalResources).reduce((acc, [key, data]) => {
+            if (this.availableOptionalResourceKeys.has(key)) {
+                acc[key] = data;
+            }
+            
+            return acc;
+        }, foundry.utils.deepClone(CONFIG.DH.RESOURCE[this.metadata.type].all));
+
+        for (const [key, data] of Object.entries(resources)) {
+            this.resources[key] ??= {};
+            const resource = this.resources[key];
+
+            // Add basic prepared data.
+            resource.label = data.label;
+            resource.isReversed = data.reverse;
+            resource.images = data.images;
+            resource.isExtra = data.isExtra;
+            resources.isOptional = data.isOptional;
+            resource.max = typeof data.max === 'number' ? (resource.max ?? data.max) : null;
+            resource.value = resource.value ?? data.initial;
+        }
+
+        Object.defineProperty(this.resources, 'clamp', {
+            value: function () {
+                for (const key of Object.keys(this)) {
+                    const resource = this[key];
+                    if (typeof resource?.max === 'number') {
+                        resource.value = Math.clamp(resource.value, 0, resource.max);
+                    }
+                }
+            },
+            enumerable: false
+        });
     }
 }

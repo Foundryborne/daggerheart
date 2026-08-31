@@ -23,7 +23,16 @@
         "actionType": "action",
         "triggers": [],
         "areas": [],
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "focus",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -37,11 +46,11 @@
           }
         ],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Enter Stance",
-        "range": ""
+        "range": "self"
       },
       "akBB4AYAAZBpxLxA": {
         "type": "effect",

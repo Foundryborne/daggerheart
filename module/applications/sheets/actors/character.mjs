@@ -279,9 +279,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _prepareHeaderContext(context, _options) {
-        context.hasExtraResources = Object.keys(CONFIG.DH.RESOURCE.character.all).some(
-            key => !CONFIG.DH.RESOURCE.character.base[key]
-        );
+        context.hasExtraResources = Boolean(Object.keys(this.document.system.availableExtraResources).length);
     }
 
     /**
@@ -1101,21 +1099,20 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return;
         }
 
-        const extraResources = Object.values(CONFIG.DH.RESOURCE.character.all).reduce((acc, resource) => {
-            if (CONFIG.DH.RESOURCE.character.base[resource.id]) return acc;
+        const extraResources = Object.entries(this.document.system.availableExtraResources)
+            .reduce((acc, [key, resource]) => {
+                const resourceData = this.document.system.resources[key];
+                acc[key] = {
+                    id: key,
+                    label: game.i18n.localize(resource.label),
+                    value: resourceData.value,
+                    max: resourceData.max,
+                    fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle', isIcon: true },
+                    emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle', isIcon: true }
+                };
 
-            const resourceData = this.document.system.resources[resource.id];
-            acc[resource.id] = {
-                id: resource.id,
-                label: game.i18n.localize(resource.label),
-                value: resourceData.value,
-                max: resourceData.max,
-                fullIcon: resource.images?.full ?? { value: 'fa-solid fa-circle', isIcon: true },
-                emptyIcon: resource.images?.empty ?? { value: 'fa-regular fa-circle', isIcon: true }
-            };
-
-            return acc;
-        }, {});
+                return acc;
+            }, {});
 
         const html = document.createElement('div');
         html.innerHTML = await foundry.applications.handlebars.renderTemplate(
@@ -1148,12 +1145,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     async onUpdateResource(event) {
         const target = event.target.closest('.resource-value');
-        const { resource, value: textValue } = target.dataset;
+        const { resource: resourceKey, value: textValue } = target.dataset;
+        const resource = this.document.system.resources[resourceKey];
 
         const inputValue = Number.parseInt(textValue);
-        const decreasing = inputValue <= this.document.system.resources[resource].value;
+        const decreasing = inputValue <= resource.value;
         const value = decreasing ? inputValue - 1 : inputValue;
-        await this.document.update({ [`system.resources.${resource}.value`]: value }, { render: false });
+        
+        await this.document.update({ [`system.resources.${resourceKey}.value`]: value }, { render: false });
 
         /* Update resource symbols */
         const section = target.closest('.resource-section');

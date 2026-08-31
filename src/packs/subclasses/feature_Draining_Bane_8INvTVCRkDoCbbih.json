@@ -12,11 +12,129 @@
     "description": "<p>When an adversary targets you or an ally within Very Close range with an attack, you can <strong>spend a Favor</strong> to <em>Drain</em> them. When you do, they must mark a Stress, and you can clear a Stress. While <em>Drained</em>, the target uses a <strong>d12</strong> instead of a d20 for attack rolls (including for advantage or disadvantage) until they fail a roll.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "9uGvYN7h6mlUAsiQ": {
+        "type": "damage",
+        "damage": {
+          "main": null,
+          "resources": {
+            "stress": {
+              "base": false,
+              "applyTo": "stress",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "_id": "9uGvYN7h6mlUAsiQ",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "favor",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "kXd9hPnE1W5SHw1T",
+            "onSave": false
+          }
+        ],
+        "name": "Spend Favor",
+        "range": ""
+      }
+    },
     "featureForm": "passive",
     "granter": null
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Drained",
+      "disabled": false,
+      "img": "icons/magic/unholy/orb-contained-pink.webp",
+      "description": "<p>While <em>Drained</em>, the target uses a <strong>d12</strong> instead of a d20 for attack rolls (including for advantage or disadvantage) until they fail a roll.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "kXd9hPnE1W5SHw1T",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!8INvTVCRkDoCbbih.kXd9hPnE1W5SHw1T"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!8INvTVCRkDoCbbih"

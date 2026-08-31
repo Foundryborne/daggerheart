@@ -11,19 +11,13 @@
     },
     "description": "<p>You can channel your inner resolve to shift into martial stances that grant you special benefits in combat.</p><p>Take the Martial Stances sheet and choose two martial stances from Tier 1. Each time you level up your character, choose an additional stance from your tier or lower.</p><hr><p><em>Currently the implementation for this is to simply grab the stances you want from the compendium <strong>Subclasses —&gt; Subclass Features —&gt; Martial Stances</strong></em></p>",
     "gmNotes": "",
-    "resource": {
-      "type": "simple",
-      "value": 0,
-      "max": "",
-      "recovery": null,
-      "progression": "increasing",
-      "dieFaces": "d4",
-      "icon": "fa-solid fa-yin-yang",
-      "diceStates": {}
-    },
+    "resource": null,
     "actions": {},
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": [
+      "focus"
+    ]
   },
   "effects": [],
   "sort": 0,

@@ -3,8 +3,7 @@ import DHBaseItemSheet from '../api/base-item.mjs';
 export default class FeatureSheet extends DHBaseItemSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
-        classes: ['feature'],
-        actions: {}
+        classes: ['feature']
     };
 
     /** @inheritdoc */
@@ -48,6 +47,8 @@ export default class FeatureSheet extends DHBaseItemSheet {
             disabled: evolutionLocked,
             tooltip: evolutionLocked ? _loc('DAGGERHEART.ITEMS.Feature.evolutionLocked') : null
         };
+
+        context.featureActorResources = CONFIG.DH.RESOURCE.optionalResources;
         
         return context;
     }

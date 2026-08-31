@@ -11,19 +11,13 @@
     },
     "description": "<p>You start with 3 Favor. You can use a downtime move to show tribute to your patron. Describe how and gain Favor equal to your Spellcast trait. Additionally, when you succeed on an action roll with Hope, you can choose to gain a Favor instead of a Hope.</p>",
     "gmNotes": "",
-    "resource": {
-      "type": "simple",
-      "value": 3,
-      "max": "",
-      "recovery": null,
-      "progression": "increasing",
-      "dieFaces": "d4",
-      "icon": "fa-solid fa-spaghetti-monster-flying",
-      "diceStates": {}
-    },
+    "resource": null,
     "actions": {},
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": [
+      "favor"
+    ]
   },
   "effects": [],
   "sort": 0,

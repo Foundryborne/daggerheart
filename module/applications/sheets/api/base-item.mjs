@@ -35,7 +35,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
             removeResource: DHBaseItemSheet.#removeResource,
-            editGMNote: DHBaseItemSheet.#onEditGMNote
+            editGMNote: DHBaseItemSheet.#onEditGMNote,
+            refreshFromCompendium: DHBaseItemSheet.#onRefreshFromCompendium
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.drop-section' },
@@ -64,6 +65,20 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    /** @inheritdoc */
+    _getHeaderControls() {
+        const controls = super._getHeaderControls();
+        if (this.item.refreshSourceUuid) {
+            controls.push({
+                label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
+                icon: 'fa-solid fa-arrow-rotate-left',
+                action: 'refreshFromCompendium'
+            });
+        }
+
+        return controls;
+    }
 
     /* -------------------------------------------- */
     /*  Prepare Context                             */
@@ -416,6 +431,19 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         window.setTimeout(() => {
             if (wasHidden) editor.classList.add('hide-if-inactive');
         }, 0);
+    }
+
+    /** @this DHBaseItemSheet */
+    static async #onRefreshFromCompendium() {
+        const refresh = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title')
+            },
+            content: _loc('DAGGERHEART.ITEMS.Base.Refresh.AreYouSure')
+        });
+        if (refresh) {
+            this.document.refreshFromCompendium();
+        }
     }
 
     /** @inheritdoc */

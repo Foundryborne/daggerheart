@@ -12,7 +12,45 @@
     "description": "<p>When you mark any number of Hit Points from an attack, you can <strong>spend a Favor</strong> to roll an equal number of Patron Dice. For each result of 4 or higher, the attacker marks a Hit Point.</p>",
     "gmNotes": "",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "g1nxHBuHbeRc60qc": {
+        "type": "effect",
+        "_id": "g1nxHBuHbeRc60qc",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "favor",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Favor",
+        "range": ""
+      }
+    },
     "featureForm": "passive",
     "granter": null
   },

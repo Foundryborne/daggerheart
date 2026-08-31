@@ -26,7 +26,16 @@
         "actionType": "action",
         "triggers": [],
         "areas": [],
-        "cost": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "favor",
+            "value": 1,
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "1",
@@ -35,11 +44,11 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "name": "Spend Favor",
-        "range": ""
+        "range": "self"
       }
     },
     "featureForm": "passive",
