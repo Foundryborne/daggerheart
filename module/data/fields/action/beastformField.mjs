@@ -1,4 +1,5 @@
 import BeastformDialog from '../../../applications/dialogs/beastformDialog.mjs';
+import { adjustDice } from '../../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -131,27 +132,17 @@ export default class BeastformField extends fields.SchemaField {
 
             const standardAttack = beastformEffect.changes.find(x => x.type === 'standardAttack');
             if (standardAttack) {
-                const damageTerms = new Roll(standardAttack.value.damageFormula).terms;
                 if (evolved.damageBonus) {
-                    damageTerms.push(...[
-                        new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                        new foundry.dice.terms.NumericTerm({ number: evolved.damageBonus })
-                    ]);
+                    standardAttack.value.damageFormula = `${standardAttack.value.damageFormula} + ${evolved.damageBonus}`; 
                 }
                 
                 if (evolved.increaseDamageDice) {
-                    const diceTerm = 
-                        damageTerms.find(x => x instanceof foundry.dice.terms.DiceTerm);
-                    if (diceTerm) {
-                        const index = CONFIG.DH.GENERAL.dieFaces.indexOf(diceTerm.faces);
-                        const faces = 
-                            CONFIG.DH.GENERAL.dieFaces[Math.min(index + evolved.increaseDamageDice, 20)];
-                        diceTerm.faces = faces;
+                    const diceDenomination = standardAttack.value.damageFormula.match(/d\d/)[0];
+                    if (diceDenomination) {
+                        const adjustedDice = adjustDice(diceDenomination);
+                        standardAttack.value.damageFormula = standardAttack.value.damageFormula.replace(/d\d/, adjustedDice);
                     }
                 }
-                
-                
-                standardAttack.value.damageFormula = Roll.fromTerms(damageTerms).formula;
             }
 
             beastformEffect.changes = [...beastformEffect.changes, ...evolvedForm.changes];
