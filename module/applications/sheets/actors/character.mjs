@@ -297,12 +297,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     async _prepareFeaturesContext(context, _options) {
         const actor = this.actor;
-        const itemTypes = actor.itemTypes;
-        const features = itemTypes.feature;
+        const features = actor.itemTypes.feature;
         const { value: classItem, subclass } = actor.system.class ?? {};
         const { value: multiclass, subclass: multiSubclass } = actor.system.multiclass ?? {};
         const anchorItems = [
-            ...itemTypes.transformation,
+            ...actor.itemTypes.transformation,
             actor.system.ancestry,
             actor.system.community,
             classItem,
