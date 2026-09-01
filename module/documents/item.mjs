@@ -341,6 +341,15 @@ export default class DHItem extends foundry.documents.Item {
             documentClass.migrateDocumentData(source);
         }
 
+        for (const action of Object.values(source.system?.actions ?? {})) {
+            if (action.damage?.resources?.weaponResource) {
+                action.damage.resources.resource = action.damage.resources.weaponResource;
+                action.damage.resources.resource.applyTo = CONFIG.DH.GENERAL.healingTypes.resource.id;
+                action.damage.resources.resource.itemId = source._id;
+                delete action.damage.resources.weaponResource;
+            }
+        }
+
         return super.migrateData(source);
     }
 

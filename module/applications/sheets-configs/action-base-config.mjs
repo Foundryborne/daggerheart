@@ -115,8 +115,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static CLEAN_ARRAYS = ['cost', 'effects', 'summon', 'damage.resources'];
-
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
@@ -302,7 +300,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const submitData = foundry.utils.expandObject(formData.object);
 
         const itemAbilityCostKeys = Object.keys(CONFIG.DH.GENERAL.itemAbilityCosts);
-        for (const keyPath of this.constructor.CLEAN_ARRAYS) {
+        for (const keyPath of ['cost', 'effects', 'summon', 'damage.resources']) {
             const data = foundry.utils.getProperty(submitData, keyPath);
             if (keyPath === 'cost') {
                 const dataValues = data ? Object.values(data) : [];
