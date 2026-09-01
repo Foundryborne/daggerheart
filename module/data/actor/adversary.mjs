@@ -71,6 +71,7 @@ export default class DhpAdversary extends DhCreature {
                 ...commonActorRules()
             }, { persisted: false }),
             attack: new ActionField({
+                nullable: true,
                 initial: {
                     name: 'Attack',
                     img: 'icons/skills/melee/blood-slash-foam-red.webp',
@@ -126,7 +127,7 @@ export default class DhpAdversary extends DhCreature {
     /* -------------------------------------------- */
 
     get attackBonus() {
-        return this.attack.roll.bonus;
+        return this.attack?.roll.bonus ?? null;
     }
 
     get features() {
@@ -189,7 +190,9 @@ export default class DhpAdversary extends DhCreature {
 
     prepareDerivedData() {
         super.prepareDerivedData();
-        this.attack.roll.isStandardAttack = true;
+        if (this.attack) {
+            this.attack.roll.isStandardAttack = true;
+        }
 
         // Evolution features may set other features as inactive
         for (const feature of this.features.filter(x => x.system.featureForm === 'evolution')) {

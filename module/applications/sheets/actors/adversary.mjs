@@ -93,7 +93,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     /**@inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        context.systemFields.attack.fields = this.document.system.attack.schema.fields;
+        context.systemFields.attack.fields = game.system.api.models.actions.actionsTypes.attack.schema.fields;
 
         context.resources = Object.keys(this.document.system.resources).reduce((acc, key) => {
             acc[key] = this.document.system.resources[key];

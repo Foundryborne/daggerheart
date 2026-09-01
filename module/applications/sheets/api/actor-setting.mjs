@@ -47,7 +47,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
         context.isNPC = this.actor.isNPC;
 
         if (context.systemFields.attack) {
-            context.systemFields.attack.fields = this.actor.system.attack.schema.fields;
+            context.systemFields.attack.fields = game.system.api.models.actions.actionsTypes.attack.schema.fields;
         }
 
         // Create fake fields for actor configurable max resource value.

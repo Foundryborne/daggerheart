@@ -72,13 +72,15 @@ export class ActionsField extends foundry.data.fields.TypedObjectField {
  */
 export class ActionField extends foundry.data.fields.ObjectField {
     getModel(value) {
-        return game.system.api.models.actions.actionsTypes[value.type] ?? null;
+        return game.system.api.models.actions.actionsTypes[value?.type] ?? null;
     }
 
     /* -------------------------------------------- */
 
     /** @override */
     _cleanType(value, options, _state) {
+        if (value === null && this.options.nullable) return null;
+
         if (!(typeof value === 'object')) value = {};
         value = super._cleanType(value, options, _state);
         const cls = this.getModel(value);
@@ -104,7 +106,9 @@ export class ActionField extends foundry.data.fields.ObjectField {
      */
     _migrate(sourceData, _fieldData) {
         const source = sourceData ?? this.options.initial;
-        if (!source) return sourceData;
+        if ((this.options.nullable && sourceData === null) || !source) {
+            return sourceData;
+        }
 
         const cls = this.getModel(source);
         if (cls) {

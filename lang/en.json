@@ -310,6 +310,7 @@
                         "label": "Type"
                     }
                 },
+                "confirmDeleteAttack": "Are you sure you want to delete this adversary's attack?",
                 "Embed": {
                     "attack": "ATK",
                     "potentialAdversaries": "Potential Adversaries",

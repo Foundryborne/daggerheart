@@ -11,6 +11,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         actions: {
             addExperience: this.#onAddExperience,
             removeExperience: this.#onRemoveExperience,
+            addAttack: this.#onAddAttack,
+            removeAttack: this.#onRemoveAttack,
             addDamage: this.#onAddDamage,
             removeDamage: this.#onRemoveDamage
         }
@@ -124,5 +126,33 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         this.actor.update({
             'system.attack.damage.main': null
         });
+    }
+
+    /**
+     * @this DHAdversarySettings 
+     * @type {ApplicationClickAction}
+     */
+    static #onAddAttack() {
+        this.actor.update({
+            'system.attack': _replace(this.document.system.schema.fields.attack.getInitialValue())
+        })
+    }
+
+    /**
+     * @this DHAdversarySettings 
+     * @type {ApplicationClickAction}
+     */
+    static async #onRemoveAttack(event) {
+        const confirm = event.shiftKey 
+            || await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: _loc('COMMON.AreYouSure')
+                },
+                content: _loc('DAGGERHEART.ACTORS.Adversary.confirmDeleteAttack')
+            });
+
+        if (confirm) {
+            this.actor.update({ 'system.attack': null });
+        }
     }
 }

@@ -57,20 +57,22 @@
         </div>
     </div>
     <div class="shortcut-items-section">
-        <div class="attack-section">
-            <div class="title">
-                <side-line-div class="invert"></side-line-div>
-                <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
-                <side-line-div></side-line-div>
+        {{#if document.system.attack}}
+            <div class="attack-section">
+                <div class="title">
+                    <side-line-div class="invert"></side-line-div>
+                    <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
+                    <side-line-div></side-line-div>
+                </div>
+                <ul class="items-sidebar-list">
+                    {{> 'daggerheart.inventory-item-compact'
+                        item=document.system.attack
+                        type='attack'
+                        noCompendiumEdit=true
+                    }}
+                </ul>
             </div>
-            <ul class="items-sidebar-list">
-                {{> 'daggerheart.inventory-item-compact'
-                    item=document.system.attack
-                    type='attack'
-                    noCompendiumEdit=true
-                }}
-            </ul>
-        </div>
+        {{/if}}
         <div class="experience-section">
             <div class="title">
                 <side-line-div class="invert"></side-line-div>
