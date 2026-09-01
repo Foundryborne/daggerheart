@@ -14,7 +14,9 @@
                 {{> formula roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
             {{/if}}
             {{#each damage.resources as | roll key | }}
-                {{> formula roll=roll label=(ifThen ../hasHealing (localize (lookup (lookup @root.allResourceLabels key) 'label')) (localize (lookup (lookup @root.allResourceLabels key) 'inChatRoll'))) }}
+                {{#with (lookup @root.allResourceLabels key) as | labelData |}}
+                    {{> formula roll=roll label=(localize (ifThen ../../hasHealing labelData.label labelData.inChatRoll)) }}
+                {{/with}}
             {{/each}}
         </div>
     </div>
@@ -26,11 +28,13 @@
                 {{/if}}
 
                 {{#each damage.resources as |roll key| }}
-                    {{> damage
-                        label=(ifThen ../hasHealing (localize (lookup (lookup @root.allResourceLabels key) 'label')) (localize (lookup (lookup @root.allResourceLabels key) 'inChatRoll'))) 
-                        roll=roll
-                        resource=key
-                    }}
+                    {{#with (lookup @root.allResourceLabels key) as | labelData |}}
+                        {{> damage
+                            label=(localize (ifThen ../../hasHealing labelData.label labelData.inChatRoll)) 
+                            roll=roll
+                            resource=key
+                        }}
+                    {{/with}}
                 {{/each}}
             </div>
         </div>

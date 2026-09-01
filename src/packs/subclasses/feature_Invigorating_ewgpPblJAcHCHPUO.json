@@ -53,13 +53,9 @@
         "range": "self",
         "img": "icons/magic/life/cross-beam-green.webp"
       },
-      "j2LtmkIfNDTHjyHH": {
-        "type": "attack",
-        "damage": {
-          "main": null,
-          "resources": {}
-        },
-        "_id": "j2LtmkIfNDTHjyHH",
+      "8ZmPagKI9BmHtAS6": {
+        "type": "healing",
+        "_id": "8ZmPagKI9BmHtAS6",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -77,8 +73,40 @@
           "recovery": null,
           "consumeOnSuccess": false
         },
+        "damage": {
+          "main": null,
+          "resources": {
+            "focus": {
+              "base": false,
+              "itemId": null,
+              "applyTo": "focus",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 0,
+                "dice": "d6",
+                "bonus": 1,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
         "effects": [],
@@ -97,13 +125,8 @@
           },
           "useDefault": false
         },
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
         "name": "Roll D4",
-        "range": "",
+        "range": "self",
         "img": "icons/sundries/gaming/dice-runed-brown.webp"
       }
     },
