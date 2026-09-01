@@ -39,7 +39,11 @@ export default class DHFeature extends BaseDataItem {
                 initial: 'passive',
                 choices: CONFIG.DH.ITEM.featureForm,
                 label: 'DAGGERHEART.CONFIG.FeatureForm.label'
-            })
+            }),
+            actorResources: new fields.SetField(new fields.StringField({
+                required: true,
+                nullable: false
+            }))
         };
     }
     

@@ -192,10 +192,10 @@ export const healingTypes = {
         label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
         abbreviation: 'DAGGERHEART.CONFIG.HealingType.fear.abbreviation'
     },
-    weaponResource: {
-        id: 'weaponResource',
-        label: 'DAGGERHEART.CONFIG.HealingType.weaponResource.name',
-        abbreviation: 'DAGGERHEART.CONFIG.HealingType.weaponResource.abbreviation'
+    resource: {
+        id: 'resource',
+        label: 'DAGGERHEART.CONFIG.HealingType.resource.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.resource.abbreviation'
     }
 };
 

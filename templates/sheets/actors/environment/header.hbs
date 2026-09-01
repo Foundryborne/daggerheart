@@ -1,4 +1,5 @@
 <header class='environment-header-sheet'>
+    {{#if isToken}}<div class="token-tag">{{localize 'DOCUMENT.Token'}}</div>{{/if}}
     <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
     <div class='item-container'>
         <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>

@@ -10,14 +10,29 @@
     "level": 1,
     "type": "spell",
     "actions": {
-      "Rncq6VD6B9ugC0AO": {
-        "type": "damage",
-        "_id": "Rncq6VD6B9ugC0AO",
+      "gMdD6cTmUU4qbwq7": {
+        "type": "healing",
+        "_id": "gMdD6cTmUU4qbwq7",
         "systemPath": "actions",
-        "description": "<p>When you have a few minutes to prepare, you can mark a <strong>Stress</strong> to don the facade of any humanoid you can picture clearly in your mind. While disguised, you have advantage on Presence Rolls to avoid scrutiny.</p>",
+        "baseAction": false,
+        "description": "",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
-        "cost": [],
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -26,7 +41,35 @@
         },
         "damage": {
           "main": null,
-          "resources": {}
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "TV56wSysbU5xAlOa",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@cast"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
         },
         "target": {
           "type": "self",
@@ -34,19 +77,28 @@
         },
         "effects": [
           {
-            "_id": "ZMDyDwI5RHe427O4",
+            "_id": "ou3RLeYshTocbNYo",
             "onSave": false
           }
         ],
-        "name": "Don Facade",
-        "img": "icons/magic/control/debuff-energy-hold-pink.webp",
-        "range": "self",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
         },
-        "triggers": [],
-        "areas": []
+        "name": "Don Facade",
+        "range": "self",
+        "img": "icons/magic/control/debuff-energy-hold-pink.webp"
       },
       "OoNND7VcWoBQdtFK": {
         "type": "effect",
@@ -154,6 +206,57 @@
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!TV56wSysbU5xAlOa.ZMDyDwI5RHe427O4"
+    },
+    {
+      "name": "Disguised",
+      "disabled": false,
+      "img": "icons/commodities/treasure/mask-bone-white.webp",
+      "description": "<p>While disguised, you have advantage on Presence Rolls to avoid scrutiny.</p><p>When you take an action while disguised, spend a token from this card. After the action that spends the last token is resolved, the disguise drops.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.advantageSources",
+            "type": "add",
+            "value": "Presence Rolls to avoid scrutiny",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "ou3RLeYshTocbNYo",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!TV56wSysbU5xAlOa.ou3RLeYshTocbNYo"
     }
   ],
   "_key": "!items!TV56wSysbU5xAlOa"

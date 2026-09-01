@@ -1,5 +1,6 @@
 <aside class="adversary-sidebar-sheet">
     <div class="portrait {{#if (and source.system.resources.hitPoints.max (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.max))}}death-roll{{/if}}">
+        {{#if isToken}}<div class="token-tag">{{localize 'DOCUMENT.Token'}}</div>{{/if}}
         <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
         <a class="death-roll-btn"><i class="fa-solid fa-skull death-save"></i></a>
     </div>
@@ -56,20 +57,22 @@
         </div>
     </div>
     <div class="shortcut-items-section">
-        <div class="attack-section">
-            <div class="title">
-                <side-line-div class="invert"></side-line-div>
-                <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
-                <side-line-div></side-line-div>
+        {{#if document.system.attack}}
+            <div class="attack-section">
+                <div class="title">
+                    <side-line-div class="invert"></side-line-div>
+                    <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
+                    <side-line-div></side-line-div>
+                </div>
+                <ul class="items-sidebar-list">
+                    {{> 'daggerheart.inventory-item-compact'
+                        item=document.system.attack
+                        type='attack'
+                        noCompendiumEdit=true
+                    }}
+                </ul>
             </div>
-            <ul class="items-sidebar-list">
-                {{> 'daggerheart.inventory-item-compact'
-                    item=document.system.attack
-                    type='attack'
-                    noCompendiumEdit=true
-                }}
-            </ul>
-        </div>
+        {{/if}}
         <div class="experience-section">
             <div class="title">
                 <side-line-div class="invert"></side-line-div>

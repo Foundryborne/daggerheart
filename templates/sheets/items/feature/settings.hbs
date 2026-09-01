@@ -9,6 +9,10 @@
         <span {{#if featureFormData.tooltip}}data-tooltip="{{featureFormData.tooltip}}"{{/if}}>
             {{formInput document.system.schema.fields.featureForm value=document.system.featureForm choices=featureFormChoices disabled=featureFormData.disabled localize=true}}
         </span>
+        <span>{{localize "DAGGERHEART.ITEMS.Feature.actorResources"}}</span>
+        <multi-select name="system.actorResources">
+            {{selectOptions featureActorResources selected=document.system.actorResources localize=true}}
+        </multi-select>
     </fieldset>
 
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}

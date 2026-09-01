@@ -22,9 +22,9 @@
       "diceStates": {}
     },
     "actions": {
-      "P3ovvIE7pazbDUOe": {
-        "type": "effect",
-        "_id": "P3ovvIE7pazbDUOe",
+      "eakpQUeo64jPWjaU": {
+        "type": "healing",
+        "_id": "eakpQUeo64jPWjaU",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -42,7 +42,7 @@
             "size": "veryClose",
             "hasHole": false,
             "effects": [
-              "l3vpVeRrxmy7QgPy"
+              "YMhiEmt31R0s5MH0"
             ]
           }
         ],
@@ -53,13 +53,60 @@
           "recovery": "shortRest",
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "VmX3uaONxYo3wzsU",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@cast"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
-          "type": "any",
+          "type": "self",
           "amount": null
         },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
         "name": "Mark Circle",
-        "range": ""
+        "range": "self"
       }
     },
     "featureForm": "passive",
@@ -67,7 +114,7 @@
   },
   "effects": [
     {
-      "name": "Circle Of Power",
+      "name": "Circle of Power",
       "disabled": false,
       "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
       "description": "<p>While within this circle, you and your allies gain a +2 bonus to damage thresholds, attack rolls, and Evasion. Remove a token each time you or an ally within the circle makes an action roll or evades an attack. This spell lasts until the last token is removed or you exit the circle.</p>",
@@ -114,7 +161,7 @@
           1
         ]
       },
-      "_id": "l3vpVeRrxmy7QgPy",
+      "_id": "YMhiEmt31R0s5MH0",
       "type": "base",
       "start": {
         "time": 0,
@@ -138,7 +185,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!VmX3uaONxYo3wzsU.l3vpVeRrxmy7QgPy"
+      "_key": "!items.effects!VmX3uaONxYo3wzsU.YMhiEmt31R0s5MH0"
     }
   ],
   "sort": 0,

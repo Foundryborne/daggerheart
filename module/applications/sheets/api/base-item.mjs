@@ -31,11 +31,13 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             submitOnChange: true
         },
         actions: {
+            showPortraitArtwork: DHBaseItemSheet.#onShowPortraitArtwork,
             addFeature: DHBaseItemSheet.#addFeature,
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
             removeResource: DHBaseItemSheet.#removeResource,
-            editGMNote: DHBaseItemSheet.#onEditGMNote
+            editGMNote: DHBaseItemSheet.#onEditGMNote,
+            refreshFromCompendium: DHBaseItemSheet.#onRefreshFromCompendium
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.drop-section' },
@@ -64,6 +66,26 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    /** @inheritdoc */
+    _getHeaderControls() {
+        const controls = super._getHeaderControls();
+        controls.push({
+            icon: 'fa-solid fa-image',
+            label: 'ITEM.ViewArt',
+            action: 'showPortraitArtwork'
+        });
+
+        if (this.item.refreshSourceUuid) {
+            controls.push({
+                label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
+                icon: 'fa-solid fa-arrow-rotate-left',
+                action: 'refreshFromCompendium'
+            });
+        }
+
+        return controls;
+    }
 
     /* -------------------------------------------- */
     /*  Prepare Context                             */
@@ -116,6 +138,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /** @inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
+
+        
+        htmlElement.querySelector('img.profile')
+            ?.addEventListener('contextmenu', DHBaseItemSheet.#onShowPortraitArtwork.bind(this));
 
         // If the item supports lore references, add autocomplete
         const loreRefElement = htmlElement.querySelector('input[name="system.loreReference"]');
@@ -185,6 +211,12 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
+
+    static #onShowPortraitArtwork() {
+        const { ImagePopout } = foundry.applications.apps;
+        const {img, name, uuid} = this.document;
+        new ImagePopout({src: img, uuid, window: {title: name}}).render({force: true});
+    }
 
     /**
      * Add a new feature to the item, prompting the user for its type.
@@ -416,6 +448,19 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         window.setTimeout(() => {
             if (wasHidden) editor.classList.add('hide-if-inactive');
         }, 0);
+    }
+
+    /** @this DHBaseItemSheet */
+    static async #onRefreshFromCompendium() {
+        const refresh = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title')
+            },
+            content: _loc('DAGGERHEART.ITEMS.Base.Refresh.AreYouSure')
+        });
+        if (refresh) {
+            this.document.refreshFromCompendium();
+        }
     }
 
     /** @inheritdoc */

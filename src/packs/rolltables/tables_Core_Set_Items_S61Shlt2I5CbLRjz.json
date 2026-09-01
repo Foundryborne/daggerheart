@@ -1,7 +1,7 @@
 {
-  "name": "Loot",
+  "name": "Core Set Items",
   "img": "icons/commodities/treasure/brooch-gold-ruby.webp",
-  "description": "",
+  "description": "<p>The following table includes the items from the Daggerheart Core Set.</p>",
   "results": [
     {
       "type": "document",
@@ -1626,28 +1626,32 @@
   ],
   "replacement": true,
   "displayRoll": true,
-  "folder": null,
+  "folder": "94bFJP3btPxvbpqP",
   "flags": {
     "daggerheart": {
       "activeAltFormula": "",
       "formulaName": "Common",
       "altFormula": {
-        "hJJtajaMk14bYM4X": {
-          "name": "Uncommon",
+        "yDVeXdKpG7LzjHWa": {
+          "name": "Common/Uncommon",
+          "formula": "2d12"
+        },
+        "AfKdabeXI6EbeRuZ": {
+          "name": "Uncommon/Rare",
           "formula": "3d12"
         },
-        "yDVeXdKpG7LzjHWa": {
-          "name": "Rare",
+        "DZdKW5ZD1HFhWrEh": {
+          "name": "Rare/Legendary",
           "formula": "4d12"
         },
-        "qPHNIuUgWAHauI6V": {
+        "lbOwKKz4Bwl82khb": {
           "name": "Legendary",
           "formula": "5d12"
         }
       }
     }
   },
-  "formula": "2d12",
+  "formula": "1d12",
   "_id": "S61Shlt2I5CbLRjz",
   "sort": 200000,
   "_key": "!tables!S61Shlt2I5CbLRjz"

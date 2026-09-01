@@ -112,21 +112,27 @@
         "triggers": [],
         "areas": []
       },
-      "MPBIzxemh61S9xDB": {
-        "type": "effect",
-        "_id": "MPBIzxemh61S9xDB",
+      "OOMICXFmXqlPy80J": {
+        "type": "healing",
+        "_id": "OOMICXFmXqlPy80J",
         "systemPath": "actions",
+        "baseAction": false,
         "description": "<p><strong>Mark a Stress</strong> to replenish this card with tokens (up to your Spellcast trait).</p>",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "cost": [
           {
             "scalable": false,
             "key": "stress",
             "value": 1,
+            "itemId": null,
             "step": null,
-            "consumeOnSuccess": false,
-            "itemId": null
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -135,20 +141,61 @@
           "recovery": null,
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "o62i0QdbUDIiAhSq",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": true,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
           "type": "self",
           "amount": null
         },
-        "name": "Replenish Tokens",
-        "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
-        "range": "self",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
         },
-        "triggers": [],
-        "areas": []
+        "name": "Replenish Tokens",
+        "range": "self",
+        "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp"
       }
     },
     "attribution": {
@@ -165,42 +212,6 @@
   "flags": {},
   "_id": "o62i0QdbUDIiAhSq",
   "sort": 3400000,
-  "effects": [
-    {
-      "name": "Unleash Chaos",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
-      "transfer": false,
-      "_id": "F2yHIwHeZmLlrkkS",
-      "type": "base",
-      "system": {
-        "changes": [],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
-      },
-      "disabled": false,
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "description": "",
-      "tint": "#ffffff",
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "start": null,
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!items.effects!o62i0QdbUDIiAhSq.F2yHIwHeZmLlrkkS"
-    }
-  ],
+  "effects": [],
   "_key": "!items!o62i0QdbUDIiAhSq"
 }

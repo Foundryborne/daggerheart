@@ -31,5 +31,9 @@ declare module './item.mjs' {
         actor: DhpActor;
         system: T;
         effects: EmbeddedCollection<DhActiveEffect>;
+        _stats: {
+            compendiumSource?: string;
+            duplicateSource?: string;
+        }
     }
 }

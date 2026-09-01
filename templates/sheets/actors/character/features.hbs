@@ -1,27 +1,37 @@
 <section class='tab {{tabs.features.cssClass}} {{tabs.features.id}}' data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'>
     <div class="features-sections">
-        {{#each document.system.sheetLists as |category|}}
-            {{#if (eq category.type 'feature' )}}
-                {{> 'daggerheart.inventory-items'
-                    title=category.title
-                    type='feature'
-                    actorType='character'
-                    collection=category.values
-                    canCreate=@root.editable
-                    showActions=@root.editable
-                }}
-            {{else if (or category.values.length category.deleteUuid)}}
-                {{> 'daggerheart.inventory-items'
-                    title=category.title
-                    type='feature'
-                    actorType='character'
-                    collection=category.values
-                    canCreate=false
-                    deleteUuid=category.deleteUuid
-                    showActions=@root.editable
-                }}
-            {{/if}}
+        {{#each featureGroups as |category|}}
+            <fieldset class="drop-section" >
+                <legend {{#if category.anchorItem}}data-tooltip="#item#{{category.anchorItem.uuid}}"{{/if}}>
+                    {{#if category.anchorItem}}
+                        <a data-action="editDoc" data-item-uuid="{{category.anchorItem.uuid}}">{{category.title}}</a>
+                    {{else}}
+                        {{category.title}}
+                    {{/if}}
+                    {{#if category.canCreate}}
+                        <a data-action="addNewItem" data-document-class="Item" data-type="feature" data-tooltip="{{localize 'DOCUMENT.Create' type=''}}">
+                            <i class="fa-solid fa-plus icon-button"></i>
+                        </a>
+                    {{/if}}
+                    {{#if category.deleteUuid}}
+                        <a data-action="deleteDoc" data-item-uuid="{{category.deleteUuid}}">
+                            <i class="fa-solid fa-trash icon-button"></i>
+                        </a>
+                    {{/if}}
+                </legend>
+                <ul class="items-list">
+                    {{#each category.values as |item|}}
+                        {{> 'daggerheart.inventory-item'
+                            item=item
+                            type="feature"
+                            actorType=@root.document.type
+                            showActions=@root.editable
+                        }}
+                    {{/each}}
+                </ul>
+            </fieldset>
+
         {{/each}}
     </div>
 </section>

@@ -1,5 +1,5 @@
 import { AdversaryBPPerEncounter, BaseBPPerEncounter } from '../config/encounterConfig.mjs';
-import { pick } from '../helpers/utils.mjs';
+import { getAllResources, pick } from '../helpers/utils.mjs';
 
 export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
     #wide = false;
@@ -48,7 +48,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         this.noOffset = options.noOffset;
         super.activate(element, { ...options, html });
-        if (html) this.tooltip.innerHTML = html; // foundry likes to strip certain stuff like svgs, put it back
+        if (typeof html === 'string') this.tooltip.innerHTML = html; // foundry likes to strip certain stuff like svgs, put it back
     }
 
     async #activateBattlepoints(element, options) {
@@ -200,7 +200,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             }
             tags.push(
                 ...item.cost.map(cost => {
-                    const costType = CONFIG.DH.GENERAL.abilityCosts[cost.key];
+                    const costType = getAllResources()[cost.key];
                     const baseTag = `${_loc('DAGGERHEART.GENERAL.Cost.single')} ${cost.value} ${_loc(costType?.label)}`;
                     if (cost.scalable) {
                         return `${baseTag} (${_loc('DAGGERHEART.GENERAL.scalable')} ${cost.step})`;

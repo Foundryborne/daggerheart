@@ -1,4 +1,5 @@
 import { defaultRestOptions } from '../config/generalConfig.mjs';
+import { getAllResources } from '../helpers/utils.mjs';
 import { Migration_2_5_2 } from './migration-handlers/2_5_2.mjs';
 import { Migration_2_6_0 } from './migration-handlers/2_6_0.mjs';
 import { Migration_2_8_0_hotfix } from './migration-handlers/2_8_0-hotfix.mjs';
@@ -126,7 +127,7 @@ export async function runMigrations() {
             actor.items.filter(x => x.system?.metadata?.hasActions)
         );
 
-        const validCostKeys = Object.keys(CONFIG.DH.GENERAL.abilityCosts);
+        const validCostKeys = Object.keys(getAllResources());
         for (let item of [...worldItems, ...worldActorItems, ...compendiumItems]) {
             for (let action of item.system.actions) {
                 const resourceCostIndexes = Object.keys(action.cost).reduce(

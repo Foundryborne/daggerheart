@@ -149,8 +149,8 @@
                 "hitPoints": {
                   "value": {
                     "custom": {
-                      "enabled": true,
-                      "formula": "@system.resources.hitPoints.max"
+                      "enabled": false,
+                      "formula": ""
                     },
                     "multiplier": "flat",
                     "flatMultiplier": 1,
@@ -170,7 +170,7 @@
                       "formula": ""
                     }
                   },
-                  "fullRestore": false
+                  "fullRestore": true
                 }
               }
             },

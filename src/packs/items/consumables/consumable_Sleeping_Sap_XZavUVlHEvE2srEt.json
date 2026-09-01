@@ -36,8 +36,8 @@
             "stress": {
               "value": {
                 "custom": {
-                  "enabled": true,
-                  "formula": "@system.resources.stress.max"
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "prof",
                 "flatMultiplier": 1,
@@ -57,7 +57,7 @@
                   "formula": ""
                 }
               },
-              "fullRestore": false
+              "fullRestore": true
             }
           }
         },

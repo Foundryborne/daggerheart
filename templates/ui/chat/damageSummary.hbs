@@ -10,11 +10,12 @@
                         {{#if this.token.immune}}<div class="token-resistance-container immune">{{localize "DAGGERHEART.GENERAL.immune"}}</div>{{/if}}
                     {{/unless}}
                 </div>
+                {{#if ../isGM}}<button class="undo-damage-button fa-solid fa-rotate-left icon" data-tooltip="{{localize 'DAGGERHEART.UI.Chat.damageSummary.undoDamage' type=(localize (concat 'DAGGERHEART.GENERAL.' ../type))}}"></button>{{/if}}
             </header>
             <ul class="damage-container">
                 {{#each this.updates}}
                     <li class="damage-row">
-                        {{#if this.itemId}}
+                        {{#if (and this.itemId (eq this.target.type "weapon"))}}
                             <span>
                                 {{#if this.clear}}
                                     {{localize "DAGGERHEART.UI.Chat.reloadWeapon" weapon=this.target.name}}
@@ -22,20 +23,27 @@
                                     {{localize "DAGGERHEART.UI.Chat.restoreWeaponResource" quantity=this.value weapon=this.target.name}}
                                 {{/if}}
                             </span>
+                        {{else if this.clear}}
+                            <span>
+                                {{
+                                    localize "DAGGERHEART.UI.Chat.clearResourceFully"
+                                    resource=(localize (lookup (lookup @root.allResourceLabels this.key) 'label'))
+                                }}
+                            </span>
                         {{else if (gte this.value 0)}}
                             <span>
                                 {{
-                                localize "DAGGERHEART.UI.Chat.markResource"
-                                quantity=this.value
-                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                    localize "DAGGERHEART.UI.Chat.markResource"
+                                    quantity=this.value
+                                    resource=(localize (lookup (lookup @root.allResourceLabels this.key) 'label'))
                                 }}
                             </span>
                         {{else}}
                             <span>
                                 {{
-                                localize "DAGGERHEART.UI.Chat.clearResource"
-                                quantity=(positive this.value)
-                                resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                    localize "DAGGERHEART.UI.Chat.clearResource"
+                                    quantity=(positive this.value)
+                                    resource=(localize (lookup (lookup @root.allResourceLabels this.key) 'label'))
                                 }}
                             </span>
                         {{/if}}

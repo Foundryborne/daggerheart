@@ -1,5 +1,5 @@
 import { DHDamageData } from '../../data/fields/action/damageField.mjs';
-import { tagifyElement } from '../../helpers/utils.mjs';
+import { getAllResources, tagifyElement } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -115,8 +115,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
     };
 
-    static CLEAN_ARRAYS = ['cost', 'effects', 'summon'];
-
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
@@ -166,6 +164,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
         context.action = this.action;
+        context.allResources = getAllResources();
 
         context.summons = [];
         for (const summon of context.source.summon ?? []) {
@@ -261,14 +260,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     getCostOptions() {
-        const options = foundry.utils.deepClone(CONFIG.DH.GENERAL.abilityCosts);
-        const resource = this.action.parent.resource;
-        if (resource) {
-            options.resource = {
-                label: 'DAGGERHEART.GENERAL.itemResource',
-                group: 'Global'
+        const options = Object.entries(getAllResources()).reduce((acc, [key, data]) => {
+            acc[key] = {
+                label: data.label,
+                group: data.group ?? 'Global'
             };
-        }
+
+            return acc;
+        }, {});
 
         if (this.action.parent.metadata?.isInventoryItem) {
             options.quantity = {
@@ -302,16 +301,23 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const submitData = foundry.utils.expandObject(formData.object);
 
         const itemAbilityCostKeys = Object.keys(CONFIG.DH.GENERAL.itemAbilityCosts);
-        for (const keyPath of this.constructor.CLEAN_ARRAYS) {
+        for (const keyPath of ['cost', 'effects', 'summon', 'damage.resources']) {
             const data = foundry.utils.getProperty(submitData, keyPath);
-            const dataValues = data ? Object.values(data) : [];
             if (keyPath === 'cost') {
+                const dataValues = data ? Object.values(data) : [];
                 for (var value of dataValues) {
                     value.itemId = itemAbilityCostKeys.includes(value.key) ? this.action.parent.parent.id : null;
                 }
-            }
 
-            if (data) foundry.utils.setProperty(submitData, keyPath, dataValues);
+                if (dataValues.length) foundry.utils.setProperty(submitData, keyPath, dataValues);
+            }
+            if (keyPath === 'damage.resources') {
+                const dataValues = data ? Object.entries(data) : [];
+                for (var [key, resource] of dataValues) {
+                    resource.itemId = itemAbilityCostKeys.includes(key) ? this.action.parent.parent.id : null;
+                    foundry.utils.setProperty(submitData, `${keyPath}.${key}`, resource);
+                }
+            }  
         }
         return submitData;
     }
@@ -391,9 +397,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static #onAddDamageResource(_event) {
         if (!this.action.damage) return;
 
-        const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
-        const unused = allKeys.filter(k => !(k in this.action._source.damage.resources));
-        const choices = unused.map(k => ({ value: k, label: _loc(CONFIG.DH.GENERAL.healingTypes[k].label) }));
+        const allResources = getAllResources();
+        const unused = Object.keys(allResources).filter(k => !(k in this.action._source.damage.resources));
+        const choices = unused.map(k => ({ value: k, label: _loc(allResources[k].label) }));
         const content = new foundry.data.fields.StringField({
             label: _loc('DAGGERHEART.GENERAL.Resource.single'),
             choices,

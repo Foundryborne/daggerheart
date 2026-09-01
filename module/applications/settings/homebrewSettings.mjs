@@ -44,9 +44,9 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             addAdversaryType: this.addAdversaryType,
             deleteAdversaryType: this.deleteAdversaryType,
             selectAdversaryType: this.selectAdversaryType,
-            addResource: this.addResource,
-            removeResource: this.removeResource,
-            resetResourceImage: this.resetResourceImage,
+            addActorResource: this.#onAddActorResource,
+            removeActorResource: this.#onRemoveActorResource,
+            resetActorResourceImage: this.#onResetActorResourceImage,
             save: this.save,
             resetTokenSizes: this.resetTokenSizes,
             reset: this.reset
@@ -163,7 +163,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.render();
     }
 
-    static async resetResourceImage(_event, button) {
+    static async #onResetActorResourceImage(_event, button) {
         const element = button.closest('.resource-icon-container');
         const { actorType, resourceKey, imageKey } = element.dataset;
 
@@ -517,7 +517,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.render();
     }
 
-    static async addResource(_, target) {
+    static async #onAddActorResource(_, target) {
         const { actorType } = target.dataset;
         const content = new foundry.data.fields.StringField({
             label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.resources.resourceIdentifier'),
@@ -550,7 +550,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         });
     }
 
-    static async removeResource(_, target) {
+    static async #onRemoveActorResource(_, target) {
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
                 title: game.i18n.localize(`DAGGERHEART.SETTINGS.Homebrew.deleteResourceTitle`)

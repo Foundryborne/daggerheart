@@ -60,16 +60,21 @@
 
     {{#each @root.resourceFormulas}}
         <div class="damage-formula">
-            <span class="damage-resource"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{roll.formula}}</span>
+            <span class="damage-resource">
+                <b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> 
+                {{#if fullRestore}}{{localize "DAGGERHEART.ACTIONS.Settings.fullRestore.inFormula"}}{{else}}{{roll.formula}}{{/if}}
+            </span>
             <span class="damage-details">
                 {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
                     {{localize label}}
                 {{/with}}
             </span>
         </div>
-        <div class="bonuses form-group flexrow">
-            <input type="text" value="{{extraFormula}}" name={{concat "resourceFormulas." @key ".extraFormula"}} placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
-        </div>
+        {{#unless fullRestore}}
+            <div class="bonuses form-group flexrow">
+                <input type="text" value="{{extraFormula}}" name={{concat "resourceFormulas." @key ".extraFormula"}} placeholder="{{localize "DAGGERHEART.GENERAL.situationalBonus"}}">
+            </div>
+        {{/unless}}
     {{/each}}
 
     {{#unless (empty @root.modifiers)}}

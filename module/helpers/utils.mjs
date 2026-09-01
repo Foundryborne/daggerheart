@@ -218,6 +218,27 @@ export const damageKeyToNumber = key => {
     }[key];
 };
 
+/**
+ * Shorthand for creating an html element with certain properties as shorthand
+ * @template {keyof HTMLElementTagNameMap} T
+ * @param {T} tagName 
+ * @returns {HTMLElementTagNameMap[T]}
+ */
+export function createHtmlElement(tagName, { text = null, html = null, className = null, attributes, data }) {
+    const tag = document.createElement(tagName);
+    if (text) tag.textContent = text;
+    if (html) tag.innerHTML = html;
+    if (className) tag.classList.add(...className.split(' '));
+    for (const [key, value] of Object.entries(attributes ?? {})) {
+        tag.setAttribute(key, value);
+    }
+    for (const [key, value] of Object.entries(data ?? {})) {
+        if (value === null || value === undefined) continue;
+        tag.dataset[key] = String(value);
+    }
+    return tag;
+}
+
 export default function constructHTMLButton({
     label,
     dataset = {},
@@ -891,4 +912,61 @@ export async function getWorldActor(baseActor) {
     }
 
     return baseActor;
+}
+
+/**
+ * Get all possible resources. 
+ * This combines the possible resources for all actor types and adds both optional resources and homebrew resources.
+ * @returns { Map<string, Object> } 
+ */
+export function getAllResources() {
+    const actorResources = {
+        ...CONFIG.DH.RESOURCE.companion.all,
+        ...CONFIG.DH.RESOURCE.adversary.all,
+        ...CONFIG.DH.RESOURCE.character.all
+    }
+
+    const additionalResources = {
+        armor: {
+            id: 'armor',
+            label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
+            group: 'TYPES.Actor.character'
+        },
+        fear: {
+            id: 'fear',
+            label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
+            group: 'TYPES.Actor.adversary'
+        },
+        resource: {
+            id: 'resource',
+            label: 'DAGGERHEART.GENERAL.Resource.single'
+        }
+    }
+
+    const homebrew = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+    const homebrewResources = Object.values(homebrew.resources).reduce((acc, category) => {
+        for (const [key, resource] of Object.entries(category.resources)) {
+            acc[key] = resource;
+        }
+
+        return acc;
+    }, {});
+
+    return {
+        ...actorResources,
+        ...additionalResources,
+        ...homebrewResources,
+        ...CONFIG.DH.RESOURCE.optionalResources
+    }
+}
+
+export function getAllResourceLabels() {
+    return Object.entries(getAllResources()).reduce((acc, [key, data]) => {
+        const configData = CONFIG.DH.GENERAL.healingTypes[key];
+        acc[key] = {
+            ...data,
+            inChatRoll: configData ? _loc(`DAGGERHEART.CONFIG.HealingType.${key}.inChatRoll`) : data.label
+        };
+        return acc;
+    }, {});
 }

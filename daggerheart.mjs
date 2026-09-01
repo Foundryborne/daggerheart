@@ -338,6 +338,9 @@ Hooks.on('setup', () => {
             value: [...actorCommon.value, 'evasion', 'levelData.level.current']
         }
     };
+
+    // Setup enricher on window
+    enricherRenderSetup(window.document);
 });
 
 Hooks.on('ready', async () => {
@@ -385,19 +388,9 @@ Hooks.on('ready', async () => {
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (document, element) => {
-    enricherRenderSetup(element);
-    const cssClass = document.flags?.daggerheart?.cssClass;
-    if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
-});
-
-Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {
-    enricherRenderSetup(element);
-});
-
-Hooks.on('renderHandlebarsApplication', (_, element) => {
-    enricherRenderSetup(element);
-});
+Hooks.on('openDetachedWindow', (_, window) => {
+    enricherRenderSetup(window.document);
+})
 
 Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
     if (data.openForAllPlayers && data.partyId) {
@@ -526,7 +519,6 @@ Hooks.on('renderDialogV2', (dialog, html) => {
     if (!defaultEntity) {
         nameInput.placeholder = cls.defaultName({});
         const emptyOption = document.createElement('option');
-        emptyOption.value = defaultEntity;
         emptyOption.selected = true;
         select.required = true;
         select.prepend(emptyOption);
@@ -537,6 +529,24 @@ Hooks.on('renderDialogV2', (dialog, html) => {
             }
         });
     } else {
+        const { pack, parent } = dialog.options;
+        nameInput.placeholder = cls.defaultName({ type: defaultEntity, pack, parent });
         select.querySelector(`option[value=${defaultEntity}]`).selected = true;
+    }
+});
+
+Hooks.on('renderRollResolver', (document, html) => {
+    for (const [termId, data] of document.fulfillable) {
+        const dualityLabel = 
+            data.term.modifiers.includes('h') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.hope`) }) : 
+                data.term.modifiers.includes('f') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.fear`) }) : 
+                    null;
+
+        if (!dualityLabel) continue;
+        
+        const legend = html.querySelector(`.input-grid[data-term-id=${termId}] legend`);
+        if (!legend) continue;
+        
+        legend.childNodes[0].nodeValue = `${dualityLabel} `;
     }
 });

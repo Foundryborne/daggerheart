@@ -98,8 +98,10 @@ export default class PartySheet extends DHBaseActorSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+        context.isGM = game.user.isGM;
         context.showStats =
             settings.hidePartyStats === 'never' || (settings.hidePartyStats === 'players' && game.user.isGM);
+            
         return context;
     }
 
