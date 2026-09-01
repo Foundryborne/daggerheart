@@ -91,7 +91,7 @@
         4,
         4
       ],
-      "name": "Alistair’s Torch",
+      "name": "Alistair's Torch",
       "img": "icons/sundries/lights/torch-brown-lit.webp",
       "documentUuid": "Compendium.daggerheart.loot.Item.MeEg57T6MKpw3sme",
       "_id": "jYHROKTetnH9U1NF",
@@ -105,9 +105,9 @@
         "coreVersion": "14.367",
         "systemId": "daggerheart",
         "systemVersion": "2.7.4",
-        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "lastModifiedBy": "ET8d2buBDDPA9J7i",
         "createdTime": 1787131648635,
-        "modifiedTime": 1787131648635
+        "modifiedTime": 1788286051210
       },
       "_key": "!tables.results!S61Shlt2I5CbLRjz.jYHROKTetnH9U1NF"
     },
@@ -982,7 +982,7 @@
         37,
         37
       ],
-      "name": "Paragon’s Chain",
+      "name": "Paragon's Chain",
       "img": "icons/equipment/neck/choker-chain-thin-gold.webp",
       "documentUuid": "Compendium.daggerheart.loot.Item.F4hoRfvVdZq5bhhI",
       "_id": "TFgxOPNDbLYDzxrl",
@@ -996,9 +996,9 @@
         "coreVersion": "14.367",
         "systemId": "daggerheart",
         "systemVersion": "2.7.4",
-        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "lastModifiedBy": "ET8d2buBDDPA9J7i",
         "createdTime": 1787131648648,
-        "modifiedTime": 1787131648648
+        "modifiedTime": 1788286099490
       },
       "_key": "!tables.results!S61Shlt2I5CbLRjz.TFgxOPNDbLYDzxrl"
     },

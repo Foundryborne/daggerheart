@@ -2,6 +2,7 @@ import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import DHEnvironmentSettings from '../../applications/sheets-configs/environment-settings.mjs';
 import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
+import { fromUuids } from '../../helpers/utils.mjs';
 
 export default class DhEnvironment extends BaseDataActor {
     scenes = new Set();
@@ -39,6 +40,7 @@ export default class DhEnvironment extends BaseDataActor {
             potentialAdversaries: new fields.TypedObjectField(
                 new fields.SchemaField({
                     label: new fields.StringField(),
+                    /* @todo replace with DocumentUUIDField, this type isn't good with compendium actors */
                     adversaries: new ForeignDocumentUUIDArrayField({ type: 'Actor' })
                 })
             ),
@@ -84,9 +86,19 @@ export default class DhEnvironment extends BaseDataActor {
 
     async _prepareEmbedContext(options) {
         const environmentTypes = CONFIG.DH.ACTOR.environmentTypes;
+
+        // potential adversaries are strictly defined in our data, and do not match book format
+        // get a consensus on what we should do, or accept that it will not match
+        // Use source data since these are often compendium actors, which we really shouldn't use foreign document uuid for
+        const groupSources = Object.values(this._source.potentialAdversaries ?? {});
+        const adversaryGroups = await Promise.all(groupSources.map(async group => 
+            `${group.label} (${(await fromUuids(group.adversaries)).map(a => a?.name).join(', ')})`
+        ));
+
         return {
             ...(await super._prepareEmbedContext(options)),
-            type: _loc(environmentTypes[this.type]?.label)
+            type: _loc(environmentTypes[this.type]?.label),
+            potentialAdversaries: adversaryGroups.join(', ')
         };
     }
 }

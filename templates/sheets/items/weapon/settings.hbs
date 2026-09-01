@@ -45,7 +45,14 @@
     </fieldset>
     <fieldset class="two-columns">
         <legend>{{localize "TYPES.Item.feature"}}</legend>
-        <span>{{localize "TYPES.Item.feature"}}</span>
+        
+        <div class="nested-inputs">
+            <span>{{localize "TYPES.Item.feature"}}</span>
+            {{#if featureErrors}}
+                <i class="warning-icon fa-solid fa-triangle-exclamation" data-tooltip="{{featureErrors}}"></i>
+            {{/if}}
+        </div>
+
         <input type="text" class="features-input" value="{{features}}" />
     </fieldset>
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}

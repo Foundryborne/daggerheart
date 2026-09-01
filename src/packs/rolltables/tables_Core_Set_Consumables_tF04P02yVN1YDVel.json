@@ -847,7 +847,7 @@
         32,
         32
       ],
-      "name": "Homet’s Secret Potion",
+      "name": "Homet's Secret Potion",
       "img": "icons/consumables/potions/conical-ornate-purple.webp",
       "documentUuid": "Compendium.daggerheart.consumables.Item.VSwa1LpQ9PjZKsWF",
       "_id": "QQsRU8GRbQeFU3KP",
@@ -861,9 +861,9 @@
         "coreVersion": "14.367",
         "systemId": "daggerheart",
         "systemVersion": "2.7.4",
-        "lastModifiedBy": "JMhdNTzd2YUj2XFj",
+        "lastModifiedBy": "ET8d2buBDDPA9J7i",
         "createdTime": 1787131648702,
-        "modifiedTime": 1787131648702
+        "modifiedTime": 1788286147034
       },
       "_key": "!tables.results!tF04P02yVN1YDVel.QQsRU8GRbQeFU3KP"
     },

@@ -237,7 +237,7 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] can be spotlighted up to two times times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "2JfPSV3pw6pv0BXd": {

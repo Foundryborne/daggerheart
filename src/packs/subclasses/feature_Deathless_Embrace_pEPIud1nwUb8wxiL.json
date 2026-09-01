@@ -38,8 +38,8 @@
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null,
+          "max": "1",
+          "recovery": "shortRest",
           "consumeOnSuccess": false
         },
         "effects": [],

@@ -116,6 +116,7 @@
     --dh-resistance-color-bg: #ffa50010;
     --dh-immunity-color-border: @chat-purple;
     --dh-immunity-color-bg: @chat-purple-10;
+    --dh-warning-glow: light-dark(@dark-blue, @golden-90);
 
     .dh-style :scope,
     :scope.dh-style,
@@ -123,7 +124,7 @@
     .duality {
         --color-border: light-dark(@dark-blue, @golden);
         --color-fieldset-border: light-dark(@dark-blue, @golden);
-        --color-text-emphatic: light-dark(@dark-blue, @golden);;
+        --color-text-emphatic: light-dark(@dark-blue, @golden);
         --color-text-subtle: light-dark(#555, #a29086);
     }
 }
@@ -235,6 +236,16 @@
     }
 }
 
+@keyframes warning-glow {
+    0% {
+        filter: drop-shadow(0 0 2px var(--dh-warning-glow));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 4px var(--dh-warning-glow));
+    }
+}
+
 // LESS variable versions of core foundry color variables
 @color-border: var(--color-border);
 @color-fieldset-border: var(--color-fieldset-border);
@@ -242,6 +253,8 @@
 @color-text-primary: var(--color-text-primary);
 @color-text-subtle: var(--color-text-subtle);
 @color-text-shadow-contrast: var(--dh-color-text-shadow-contrast);
+@color-level-warning: var(--color-level-warning);
+
 @card-trim-color: var(--dh-card-trim-color);
 @input-color-border: var(--dh-input-color-border);
 @input-color-text: var(--dh-input-color-text);

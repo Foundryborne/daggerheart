@@ -41,6 +41,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
         this.enrichChatMessage(html);
         this.addChatListeners(html);
+        
+        // todo: move to system renderHTML once implemented
+        if (['adversaryRoll', 'damageRoll', 'dualityRoll', 'fateRoll'].includes(this.type)) {
+            html.classList.add('themed', 'theme-dark');
+        }
 
         return html;
     }

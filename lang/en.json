@@ -2605,6 +2605,9 @@
                             "name": "Reload",
                             "description": "After you make an attack, roll a d6. On a result of 1, you must mark a Stress to reload this weapon before you can fire it again."
                         }
+                    },
+                    "errors": {
+                        "missingResource": "Reloading requires that the weapon has a Resource set on it with a max of 1 or higher."
                     }
                 },
                 "retractable": {

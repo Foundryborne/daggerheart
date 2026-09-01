@@ -3,6 +3,7 @@ import { getAllResources } from '../helpers/utils.mjs';
 import { Migration_2_5_2 } from './migration-handlers/2_5_2.mjs';
 import { Migration_2_6_0 } from './migration-handlers/2_6_0.mjs';
 import { Migration_2_8_0_hotfix } from './migration-handlers/2_8_0-hotfix.mjs';
+import { Migration_2_9_1 } from './migration-handlers/2_9_1.mjs';
 
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
@@ -334,7 +335,8 @@ export async function runMigrations() {
     const migrations = [
         new Migration_2_5_2(),
         new Migration_2_6_0(),
-        new Migration_2_8_0_hotfix()
+        new Migration_2_8_0_hotfix(),
+        new Migration_2_9_1()
     ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, lastMigrationVersion));
 
     for (const handler of migrations) {
