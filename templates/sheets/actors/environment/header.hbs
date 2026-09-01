@@ -1,40 +1,39 @@
 <header class='environment-header-sheet'>
     {{#if isToken}}<div class="token-tag">{{localize 'DOCUMENT.Token'}}</div>{{/if}}
-    <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
-    <div class='item-container'>
-        <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
-        <div class="status-number">
-            <div class='status-value armor-slots'>
-                {{#if source.system.difficulty}}
-                    <p>{{source.system.difficulty}}</p>
-                {{else}}
-                    <p>-</p>
-                {{/if}}
-            </div>
-            <div class="status-label">
-                <h4>{{localize "DAGGERHEART.GENERAL.difficulty"}}</h4>
-            </div>
-        </div>
-        <div class="flexrow">
+    <div class='actor-container'>
+        <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
+        <div class="name-section">
+            <h1
+                class="input actor-name"
+                contenteditable="plaintext-only"
+                data-property="name"
+                placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}"
+                autocomplete="off"
+                spellcheck="false"
+            >{{source.name}}</h1>
             <div class="tags">
                 <div class="tag">
-                    <span>
-                        {{localize (concat 'DAGGERHEART.GENERAL.Tiers.' source.system.tier)}}
-                    </span>
+                    <span>{{localize (concat 'DAGGERHEART.GENERAL.Tiers.' source.system.tier)}}</span>
                 </div>
                 {{#if source.system.type}}
                     <div class="tag">
-                        <span>
-                            {{localize (concat 'DAGGERHEART.CONFIG.EnvironmentType.' source.system.type '.label')}}
-                        </span>
+                        <span>{{localize (concat 'DAGGERHEART.CONFIG.EnvironmentType.' source.system.type '.label')}}</span>
                     </div>
                 {{/if}}
+                <div class="tag difficulty">
+                    {{localize "DAGGERHEART.GENERAL.difficulty"}}
+                    <strong>
+                        {{#if source.system.difficulty}}
+                            {{source.system.difficulty}}
+                        {{else}}
+                            -
+                        {{/if}}
+                    </strong>
+                </div>
             </div>
-            {{#if document.system.attributionLabel}}
-                <label class="attribution-header-label">{{document.system.attributionLabel}}</label>
-            {{/if}}
         </div>
     </div>
+
     <line-div></line-div>
     <div class="environment-info">
         <span class="description">

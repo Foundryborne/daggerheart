@@ -73,7 +73,7 @@ const typeSettingsMap = {
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
-        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+        #nonHeaderAttribution = ['ancestry', 'community', 'domainCard'];
 
         /**
          * @param {DHSheetV2Configuration} [options={}]
