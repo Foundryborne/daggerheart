@@ -2344,7 +2344,13 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.reloading.actions.reload.description',
                 img: 'icons/weapons/ammunition/shot-round-blue.webp'
             }
-        ]
+        ],
+        getErrorText: item => {
+            if (!item.system.resource?.max)
+                return _loc('DAGGERHEART.CONFIG.WeaponFeature.reloading.errors.missingResource');
+
+            return null;
+        }
     },
     retractable: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.retractable.name',

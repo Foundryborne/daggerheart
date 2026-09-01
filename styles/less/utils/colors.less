@@ -116,6 +116,8 @@
     --dh-resistance-color-bg: #ffa50010;
     --dh-immunity-color-border: @chat-purple;
     --dh-immunity-color-bg: @chat-purple-10;
+    --dh-warning-color: light-dark(@dark-blue, @golden);
+    --dh-warning-glow: light-dark(@dark-blue, @golden-90);
 
     .dh-style :scope,
     :scope.dh-style,
@@ -235,6 +237,16 @@
     }
 }
 
+@keyframes warning-glow {
+    0% {
+        filter: drop-shadow(0 0 2px var(--dh-warning-glow));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 4px var(--dh-warning-glow));
+    }
+}
+
 // LESS variable versions of core foundry color variables
 @color-border: var(--color-border);
 @color-fieldset-border: var(--color-fieldset-border);
@@ -254,3 +266,5 @@
 @resistance-color-bg: var(--dh-resistance-color-bg);
 @immunity-color-border: var(--dh-immunity-color-border);
 @immunity-color-bg: var(--dh-immunity-color-bg);
+@warning-color: var(--dh-warning-color);
+@warning-glow: var(--dh-warning-glow);
