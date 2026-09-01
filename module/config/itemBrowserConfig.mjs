@@ -208,7 +208,7 @@ export const typeConfig = {
             {
                 key: 'system.secondary',
                 label: 'DAGGERHEART.UI.ItemBrowser.subtype',
-                format: isSecondary => (isSecondary ? 'secondary' : isSecondary === false ? 'primary' : '-')
+                format: isSecondary => (isSecondary ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short' : isSecondary === false ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short' : '-')
             },
             {
                 key: 'system.tier',
