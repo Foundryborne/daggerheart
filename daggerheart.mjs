@@ -519,7 +519,6 @@ Hooks.on('renderDialogV2', (dialog, html) => {
     if (!defaultEntity) {
         nameInput.placeholder = cls.defaultName({});
         const emptyOption = document.createElement('option');
-        emptyOption.value = defaultEntity;
         emptyOption.selected = true;
         select.required = true;
         select.prepend(emptyOption);
