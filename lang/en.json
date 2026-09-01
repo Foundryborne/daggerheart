@@ -2607,7 +2607,7 @@
                         }
                     },
                     "errors": {
-                        "missingResource": "Reloading requires that that weapon has a Resource set on it with a max of 1 or higher."
+                        "missingResource": "Reloading requires that the weapon has a Resource set on it with a max of 1 or higher."
                     }
                 },
                 "retractable": {
