@@ -72,7 +72,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             action: 'showPortraitArtwork'
         });
 
-        if (this.actor.refreshSourceUuid) {
+        if (!this.actor.isToken && this.actor.refreshSourceUuid) {
             controls.push({
                 label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
                 icon: 'fa-solid fa-arrow-rotate-left',
