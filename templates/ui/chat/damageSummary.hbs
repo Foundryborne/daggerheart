@@ -27,7 +27,7 @@
                             <span>
                                 {{
                                     localize "DAGGERHEART.UI.Chat.clearResourceFully"
-                                    resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                    resource=(localize (lookup (lookup @root.allResourceLabels this.key) 'label'))
                                 }}
                             </span>
                         {{else if (gte this.value 0)}}
@@ -35,7 +35,7 @@
                                 {{
                                     localize "DAGGERHEART.UI.Chat.markResource"
                                     quantity=this.value
-                                    resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                    resource=(localize (lookup (lookup @root.allResourceLabels this.key) 'label'))
                                 }}
                             </span>
                         {{else}}
@@ -43,7 +43,7 @@
                                 {{
                                     localize "DAGGERHEART.UI.Chat.clearResource"
                                     quantity=(positive this.value)
-                                    resource=(localize (concat "DAGGERHEART.CONFIG.HealingType." this.key ".name"))
+                                    resource=(localize (lookup (lookup @root.allResourceLabels this.key) 'label'))
                                 }}
                             </span>
                         {{/if}}

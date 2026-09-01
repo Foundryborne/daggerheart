@@ -1,5 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
-import { triggerChatRollFx } from '../helpers/utils.mjs';
+import { getAllResourceLabels, triggerChatRollFx } from '../helpers/utils.mjs';
 import BaseRoll from './baseRoll.mjs';
 
 export default class DHRoll extends BaseRoll {
@@ -210,6 +210,7 @@ export default class DHRoll extends BaseRoll {
             };
         } else {
             options.message.system.user = game.user.id;
+            options.message.system.allResourceLabels = getAllResourceLabels();
             return options.message.system;
         }
     }

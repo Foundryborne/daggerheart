@@ -959,3 +959,14 @@ export function getAllResources() {
         ...CONFIG.DH.RESOURCE.optionalResources
     }
 }
+
+export function getAllResourceLabels() {
+    return Object.entries(getAllResources()).reduce((acc, [key, data]) => {
+        const configData = CONFIG.DH.GENERAL.healingTypes[key];
+        acc[key] = {
+            ...data,
+            inChatRoll: configData ? _loc(`DAGGERHEART.CONFIG.HealingType.${key}.inChatRoll`) : data.label
+        };
+        return acc;
+    }, {});
+}

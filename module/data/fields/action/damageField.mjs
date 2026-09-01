@@ -1,5 +1,5 @@
 import FormulaField from '../formulaField.mjs';
-import { setsEqual } from '../../../helpers/utils.mjs';
+import { getAllResourceLabels, setsEqual } from '../../../helpers/utils.mjs';
 import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
 
 const fields = foundry.data.fields;
@@ -175,6 +175,7 @@ export default class DamageField extends fields.SchemaField {
                     'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
                     {
                         targets: targetDamage,
+                        allResourceLabels: getAllResourceLabels(),
                         hideObserverPermissionInChat,
                         isGM: game.user.isGM,
                         type: config.hasHealing ? 'healing' : 'damage'
@@ -341,7 +342,6 @@ export class DHResourceData extends foundry.abstract.DataModel {
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
             itemId: new fields.StringField({ nullable: true, initial: null }),
             applyTo: new fields.StringField({
-                choices: CONFIG.DH.GENERAL.healingTypes,
                 required: true,
                 blank: false,
                 initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,

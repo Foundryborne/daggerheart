@@ -904,7 +904,11 @@ export default class DhpActor extends Actor {
         }
         
         for (const u of updates) {
-            u.value = u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value;
+            const shouldFlip = (
+                u.key === 'fear' || 
+                (this.system?.resources?.[u.key] && !this.system.resources[u.key].isReversed)
+            );
+            u.value = shouldFlip ? u.value * -1 : u.value;
         }
 
         await this.modifyResource(updates);
@@ -920,7 +924,11 @@ export default class DhpActor extends Actor {
 
         const updates = args.resourceUpdates;
         for (const u of updates) {
-            const shouldFlip = !(u.key === 'fear' || u.key === 'resource' || this.system?.resources?.[u.key]?.isReversed === false);
+            const shouldFlip = !(
+                u.key === 'fear' || 
+                u.key === 'resource' || 
+                (this.system?.resources?.[u.key] && !this.system.resources[u.key].isReversed)
+            );
             u.value = shouldFlip ? u.value * -1 : u.value;
         }
 

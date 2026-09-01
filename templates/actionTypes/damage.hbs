@@ -47,7 +47,7 @@
             <div class="nest-inputs">
                 <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
                     <legend class="with-icon">
-                        {{localize (concat "DAGGERHEART.CONFIG.HealingType." dmg.applyTo ".name")}}
+                        {{localize (lookup (lookup @root.allResources dmg.applyTo) 'label')}}
                         {{#unless (or dmg.base ../path)}}
                             <a data-action="removeDamageResource" data-key="{{key}}"><i class="fas fa-trash"></i></a>
                         {{/unless}}

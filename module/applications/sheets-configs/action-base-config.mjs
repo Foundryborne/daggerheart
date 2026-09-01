@@ -164,6 +164,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
         context.action = this.action;
+        context.allResources = getAllResources();
 
         context.summons = [];
         for (const summon of context.source.summon ?? []) {
@@ -396,9 +397,9 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     static #onAddDamageResource(_event) {
         if (!this.action.damage) return;
 
-        const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
-        const unused = allKeys.filter(k => !(k in this.action._source.damage.resources));
-        const choices = unused.map(k => ({ value: k, label: _loc(CONFIG.DH.GENERAL.healingTypes[k].label) }));
+        const allResources = getAllResources();
+        const unused = Object.keys(allResources).filter(k => !(k in this.action._source.damage.resources));
+        const choices = unused.map(k => ({ value: k, label: _loc(allResources[k].label) }));
         const content = new foundry.data.fields.StringField({
             label: _loc('DAGGERHEART.GENERAL.Resource.single'),
             choices,
