@@ -529,6 +529,8 @@ Hooks.on('renderDialogV2', (dialog, html) => {
             }
         });
     } else {
+        const { pack, parent } = dialog.options;
+        nameInput.placeholder = cls.defaultName({ type: defaultEntity, pack, parent });
         select.querySelector(`option[value=${defaultEntity}]`).selected = true;
     }
 });
