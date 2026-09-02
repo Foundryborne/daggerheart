@@ -58,7 +58,9 @@ export default class DHAncestry extends BaseDataItem {
             ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
-        const features = await getFeaturesHTMLData(await fromUuids(this._source.features.map(f => f.item)));
+        
+        const featureData = [this.primaryFeature, this.secondaryFeature].filter(Boolean).map(x => x.uuid);
+        const features = await getFeaturesHTMLData(await fromUuids(featureData));
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
