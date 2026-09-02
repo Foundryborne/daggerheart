@@ -1,9 +1,17 @@
 .daggerheart.dh-style.dialog.active-effect-change-paths-dialog {
+    .window-content {
+        padding-inline: 0;
+    }
+
     .paths-main-container {
         display: flex;
         flex-direction: column;
         gap: 16px;
         overflow: hidden;
+
+        > * {
+            padding-inline: var(--spacer-16);
+        }
 
         .search-label {
             font-size: var(--font-size-18);
@@ -17,6 +25,9 @@
             flex-direction: column;
             gap: 8px;
             overflow: auto;
+            font-family: var(--font-sans);
+            padding-right: max(0px, calc(var(--spacer-16) - var(--scrollbar-width)));
+            scrollbar-gutter: stable;
 
             .group-container {
                 display: flex;
@@ -25,6 +36,7 @@
 
                 .group-label {
                     font-size: var(--font-size-18);
+                    font-weight: bold;
                 }
 
                 .path-container {
@@ -32,19 +44,36 @@
                     align-items: center;
                     justify-content: space-between;
                     color: @input-color-text;
+                    overflow: hidden;
+
+                    &:has(.key-field:hover) {
+                        .name-container,
+                        .key-field {
+                            color: @color-text-emphatic;
+                        }
+                        a {
+                            text-shadow: unset;
+                        }
+                    }
+
+                    .name-container {
+                        flex: 0 0 17rem;
+                    }
 
                     .key-container {
                         display: flex;
                         align-items: center;
+                        flex: 1 0 0;
+                        overflow: hidden;
 
                         .key-field {
                             height: 24px;
-                            width: 260px;
                             border: 1px solid @input-color-border;
                             padding: 2px 4px;
                             border-radius: 6px 0 0 6px;
                             overflow: hidden;
                             text-overflow: ellipsis;
+                            flex: 1;
                         }
 
                         .key-icon {
@@ -62,10 +91,6 @@
                             color: @button-color-text;
                             background-color: @button-color-bg;
                         }
-                    }
-
-                    .name-container {
-
                     }
                 }
             }

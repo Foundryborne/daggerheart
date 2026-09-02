@@ -14,11 +14,11 @@
 
                 {{#each this.paths}}
                     <div class="path-container" data-value="{{this.value}}" data-name="{{this.label}}">
-                        <div class="name-container" {{#if this.hint}}data-tooltip="{{this.hint}}"{{/if}}>
+                        <label class="name-container" {{#if this.hint}}data-tooltip="{{this.hint}}"{{/if}}>
                             {{this.label}}
                             {{#if this.hint}}<i class="fa-solid fa-circle-question"></i>{{/if}}
-                        </div>
-                        <a class="key-container" data-action="copyPath">
+                        </label>
+                        <a class="key-container" data-action="copyPath" id="{{@root.id}}">
                             <div class="key-field">
                                 {{this.value}}
                             </div>
