@@ -22,18 +22,13 @@
     "impulses": "Connect the Mortal Realm with the Hallows Above, display the power of the divine, provide aid and succor to the faithful",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 107,
+      "page": null,
       "artist": ""
     }
   },
   "flags": {},
   "_id": "dsA6j69AnaJhUyqH",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Hallowed Temple",
     "displayName": 0,
@@ -145,15 +140,17 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "hitPoints": {
                   "value": {
                     "custom": {
-                      "enabled": true,
-                      "formula": "@system.resources.hitPoints.max"
+                      "enabled": false,
+                      "formula": ""
                     },
                     "multiplier": "flat",
                     "flatMultiplier": 1,
@@ -169,13 +166,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": true
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "any",
@@ -199,21 +196,25 @@
             },
             "name": "Healing",
             "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "hgHpS2k1sVxHKiG1",
       "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -224,21 +225,19 @@
       "name": "Divine Guidance",
       "type": "feature",
       "system": {
-        "description": "<p>A PC who prays to a deity while in the Hallowed Temple can make an Instinct Roll to receive answers. If the god they beseech isn’t welcome in this temple, the roll is made with disadvantage.</p><ul><li><p><strong>Critical Success:</strong> The PC gains clear information. Additionally, they gain [[/r 1d4]] Hope, which can be distributed between the party if they share the vision and guidance they received.</p></li><li><p><strong>Success with Hope:</strong> The PC receives clear information.</p></li><li><p><strong>Success with Fear:</strong> The PC receives brief flashes of insight and an emotional impression conveying an answer.</p></li><li><p><strong>Any Failure:</strong> The PC receives only vague flashes. They can mark a Stress to receive one clear image without context.</p></li></ul><section class=\"secret\" id=\"secret-EYCrn403Zbz0NQKo\"><p><em>What does it feel like as you are touched by this vision? What feeling lingers after the images have passed?</em></p></section>",
+        "description": "<p>A PC who prays to a deity while in the Hallowed Temple can make an Instinct Roll to receive answers. If the god they beseech isn't welcome in this temple, the roll is made with disadvantage.</p><ul><li><p><strong>Critical Success:</strong> The PC gains clear information. Additionally, they gain [[/r 1d4]] Hope, which can be distributed between the party if they share the vision and guidance they received.</p></li><li><p><strong>Success with Hope:</strong> The PC receives clear information.</p></li><li><p><strong>Success with Fear:</strong> The PC receives brief flashes of insight and an emotional impression conveying an answer.</p></li><li><p><strong>Any Failure:</strong> The PC receives only vague flashes. They can mark a Stress to receive one clear image without context.</p></li></ul><section class=\"secret\" id=\"secret-EYCrn403Zbz0NQKo\"><p><em>What does it feel like as you are touched by this vision? What feeling lingers after the images have passed?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "uqV1mTkJmXJwMYue",
       "img": "icons/magic/holy/chalice-glowing-yellow-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -249,7 +248,7 @@
       "name": "Relentless Hope",
       "type": "feature",
       "system": {
-        "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope. </p><section id=\"secret-z2wMjfAVnSoTHSlR\" class=\"secret\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
+        "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope.</p><section id=\"secret-z2wMjfAVnSoTHSlR\" class=\"secret\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
         "resource": null,
         "actions": {
           "VlBjJ32dXlboSANv": {
@@ -263,10 +262,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "stress": {
                   "value": {
                     "custom": {
@@ -287,13 +288,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "any",
@@ -302,22 +303,25 @@
             "effects": [],
             "name": "Mark Stress",
             "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "vICfHK2urDQ2Jm8s",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -343,13 +347,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -358,22 +365,25 @@
             },
             "name": "Generic",
             "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "8tGAuFRyM4onvQ2o",
       "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

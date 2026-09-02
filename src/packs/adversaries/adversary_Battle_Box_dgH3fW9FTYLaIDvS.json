@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 8,
-        "isReversed": true
+        "max": 8
       },
       "stress": {
         "value": 0,
-        "max": 6,
-        "isReversed": true
+        "max": 6
       }
     },
     "resistance": {
@@ -43,32 +41,6 @@
         "value": 2
       }
     },
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 2,
     "description": "<p>A cube-shaped construct with a different rune on each of their six sides.</p>",
     "motivesAndTactics": "Change tactics, trample foes, wait in disguise",
@@ -77,57 +49,97 @@
       "img": "icons/commodities/tech/metal-barrel.webp",
       "roll": {
         "bonus": 2,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 2,
-              "dice": "d6",
-              "bonus": 3,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 2,
+            "dice": "d6",
+            "bonus": 3,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "range": "melee",
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "3t8BeXHuoIbBXuV2",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 85,
+      "page": null,
       "artist": ""
     },
-    "size": "large"
+    "size": "large",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "dgH3fW9FTYLaIDvS",
   "sort": 2600000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Battle Box",
     "displayName": 0,
@@ -225,7 +237,7 @@
       "name": "Relentless (2)",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] can be spotlighted up to two times times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "description": "<p>The @Lookup[@name] can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {
           "2JfPSV3pw6pv0BXd": {
@@ -240,9 +252,9 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null,
-                "consumeOnSuccess": false
+                "consumeOnSuccess": false,
+                "itemId": null
               }
             ],
             "uses": {
@@ -258,21 +270,25 @@
             },
             "name": "Spotlight: Relentless",
             "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "RSovCwuGrZ1mk5py",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -283,132 +299,106 @@
       "name": "Randomized Tactics",
       "type": "feature",
       "system": {
-        "description": "<p>Mark a Stress and roll a <strong>d6</strong>. The @Lookup[@name] uses the corresponding move:</p><ol><li><p><strong>Mana Beam</strong></p></li><li><p><strong>Fire Jets</strong></p></li><li><p><strong>Trample</strong></p></li><li><p><strong>Shocking Gas</strong></p></li><li><p><strong>Stunning Clap</strong></p></li><li><p><strong>Psionic Whine</strong></p></li></ol>",
+        "description": "<p><strong>Mark a Stress</strong> and roll a <strong>d6</strong>. The Box uses the corresponding move:</p><ol><li><p><strong>Mana Beam.</strong> The Box fires a searing beam. Make an attack against a target within Far range. On a success, deal <strong>2d10+2</strong> magic damage.</p></li><li><p><strong>Fire Jets.</strong> The Box shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the Box succeeds against take <strong>2d8</strong> physical damage.</p></li><li><p><strong>Trample.</strong> The Box rockets around erratically. Make an attack against all PCs within Close range. Targets the Box succeeds against take <strong>1d6+5</strong> physical damage and are <em>Vulnerable</em> until their next roll with Hope.</p></li><li><p><strong>Shocking Gas.</strong> The Box sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p></li><li><p><strong>Stunning Clap.</strong> The Box leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p></li><li><p><strong>Psionic Whine.</strong> The Box releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p></li></ol>",
         "resource": null,
         "actions": {
-          "FX9jwg5ZNjAWnti3": {
-            "type": "attack",
-            "_id": "FX9jwg5ZNjAWnti3",
+          "Yr2e0A9SRWHhFv9u": {
+            "type": "grouped",
+            "_id": "Yr2e0A9SRWHhFv9u",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
+            "areas": [],
             "cost": [
               {
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
-            "damage": {
-              "parts": {},
-              "includeBase": false
+            "grouped": {
+              "selectionType": "randomized",
+              "groupedActions": [
+                "emk5sdywXogqo1fM",
+                "dgVOG9MX1jCQXZJi",
+                "0TsDWkKRYZpJYhYp",
+                "iwxBO9oQBAuBhTKK",
+                "ey2man48zSlQ9pM5",
+                "Y2rycSVaupmnNAxc"
+              ]
             },
-            "target": {
-              "type": "self",
-              "amount": null
-            },
-            "effects": [],
-            "roll": {
-              "type": "diceSet",
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "save": {
-              "trait": null,
-              "difficulty": null,
-              "damageMod": "none"
-            },
-            "name": "Roll d6",
-            "img": "icons/commodities/tech/transmission.webp",
+            "name": "Mark Stress",
             "range": ""
-          }
-        },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
-      },
-      "_id": "ZqfLMjVkbUwDw4p6",
-      "img": "icons/commodities/tech/transmission.webp",
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!dgH3fW9FTYLaIDvS.ZqfLMjVkbUwDw4p6"
-    },
-    {
-      "name": "Mana Beam",
-      "type": "feature",
-      "system": {
-        "description": "<p>The @Lookup[@name] fires a searing beam. Make an attack against a target within Far range. On a success, deal <strong>2d10+2</strong> magic damage.</p>",
-        "resource": null,
-        "actions": {
-          "Co09oXMw0yBjGaws": {
+          },
+          "emk5sdywXogqo1fM": {
             "type": "attack",
-            "_id": "Co09oXMw0yBjGaws",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": 2,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "emk5sdywXogqo1fM",
             "systemPath": "actions",
-            "description": "",
+            "baseAction": false,
+            "description": "<p>The Box fires a searing beam. Make an attack against a target within Far range. On a success, deal <strong>2d10+2</strong> magic damage.</p>",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
+            "areas": [],
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 2,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "target": {
               "type": "any",
@@ -435,81 +425,73 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
-            "img": "icons/magic/light/beam-rays-blue.webp",
-            "range": "far"
-          }
-        },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
-      },
-      "_id": "lqyN4CQop53BzarW",
-      "img": "icons/magic/light/beam-rays-blue.webp",
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!dgH3fW9FTYLaIDvS.lqyN4CQop53BzarW"
-    },
-    {
-      "name": "Fire Jets",
-      "type": "feature",
-      "system": {
-        "description": "<p>The @Lookup[@name] shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>2d8</strong> physical damage.</p>",
-        "resource": null,
-        "actions": {
-          "hRAKaOdzQXLYBNVV": {
+            "name": "Mana Beam",
+            "range": "far",
+            "img": "icons/magic/light/beam-rays-blue.webp"
+          },
+          "dgVOG9MX1jCQXZJi": {
             "type": "attack",
-            "_id": "hRAKaOdzQXLYBNVV",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d8",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "dgVOG9MX1jCQXZJi",
             "systemPath": "actions",
-            "description": "",
+            "baseAction": false,
+            "description": "<p>The Box shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the Box succeeds against take <strong>2d8</strong> physical damage.</p>",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Fire Jets",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d8",
-                    "bonus": null,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "target": {
               "type": "any",
@@ -536,90 +518,73 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
-            "img": "icons/magic/fire/explosion-embers-orange.webp",
-            "range": "close",
+            "name": "Fire Jets",
+            "range": "",
+            "img": "icons/magic/fire/barrier-wall-explosion-orange.webp"
+          },
+          "0TsDWkKRYZpJYhYp": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": 5,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "0TsDWkKRYZpJYhYp",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The Box rockets around erratically. Make an attack against all PCs within Close range. Targets the Box succeeds against take <strong>1d6+5</strong> physical damage and are <em>Vulnerable</em> until their next roll with Hope.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
             "areas": [
               {
-                "name": "Fire Jets",
+                "name": "Trample",
                 "type": "placed",
                 "shape": "emanation",
                 "size": "close",
+                "hasHole": false,
                 "effects": []
               }
-            ]
-          }
-        },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
-      },
-      "_id": "IHQoqt39T772FVMs",
-      "img": "icons/magic/fire/explosion-embers-orange.webp",
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!dgH3fW9FTYLaIDvS.IHQoqt39T772FVMs"
-    },
-    {
-      "name": "Trample",
-      "type": "feature",
-      "system": {
-        "description": "<p>The @Lookup[@name] rockets around erratically. Make an attack against all PCs within Close range. Targets the @Lookup[@name] succeeds against take <strong>1d6+5</strong> physical damage and are Vulnerable until their next roll with Hope.</p>",
-        "resource": null,
-        "actions": {
-          "IOgPMu12Xnn33TfG": {
-            "type": "attack",
-            "_id": "IOgPMu12Xnn33TfG",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
+            ],
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": 5,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "target": {
               "type": "any",
@@ -627,7 +592,7 @@
             },
             "effects": [
               {
-                "_id": "9NQcCXMhjyBReJRd",
+                "_id": "5bJYVKu4fuzGa7KY",
                 "onSave": false
               }
             ],
@@ -651,133 +616,69 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
-            "img": "icons/skills/movement/arrow-upward-yellow.webp",
-            "range": "close",
-            "areas": [
-              {
-                "name": "Trample",
-                "type": "placed",
-                "shape": "emanation",
-                "size": "close",
-                "effects": []
-              }
-            ]
-          }
-        },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
-      },
-      "_id": "XtnByqUr9AuYU9Ip",
-      "img": "icons/skills/movement/arrow-upward-yellow.webp",
-      "effects": [
-        {
-          "name": "TRampled",
-          "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.dgH3fW9FTYLaIDvS.Item.XtnByqUr9AuYU9Ip",
-          "transfer": false,
-          "_id": "9NQcCXMhjyBReJRd",
-          "type": "base",
-          "system": {
-            "changes": [],
-            "duration": {
-              "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until their next roll with Hope.</span></p>"
-            }
+            "name": "Trample",
+            "range": "",
+            "img": "icons/skills/movement/arrow-upward-yellow.webp"
           },
-          "disabled": false,
-          "duration": {
-            "value": null,
-            "units": "seconds",
-            "expiry": null,
-            "expired": false
-          },
-          "description": "<p><em>Vulnerable</em> until your next roll with Hope.</p>",
-          "tint": "#ffffff",
-          "statuses": [
-            "vulnerable"
-          ],
-          "sort": 0,
-          "flags": {},
-          "_stats": {
-            "compendiumSource": null
-          },
-          "start": {
-            "time": 0,
-            "combat": null,
-            "combatant": null,
-            "initiative": null,
-            "round": null,
-            "turn": null
-          },
-          "showIcon": 1,
-          "folder": null,
-          "_key": "!actors.items.effects!dgH3fW9FTYLaIDvS.XtnByqUr9AuYU9Ip.9NQcCXMhjyBReJRd"
-        }
-      ],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!dgH3fW9FTYLaIDvS.XtnByqUr9AuYU9Ip"
-    },
-    {
-      "name": "Shocking Gas",
-      "type": "feature",
-      "system": {
-        "description": "<p>The @Lookup[@name] sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p>",
-        "resource": null,
-        "actions": {
-          "ky4OMl558J5wCbDp": {
+          "iwxBO9oQBAuBhTKK": {
             "type": "attack",
-            "_id": "ky4OMl558J5wCbDp",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "3"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
                   "base": false,
+                  "applyTo": "stress",
                   "resultBased": false,
+                  "fullRestore": false,
+                  "value": {
+                    "multiplier": "flat",
+                    "flatMultiplier": 0,
+                    "dice": "d6",
+                    "bonus": 3,
+                    "custom": {
+                      "enabled": false,
+                      "formula": ""
+                    }
+                  },
                   "valueAlt": {
-                    "multiplier": "prof",
+                    "multiplier": "flat",
                     "flatMultiplier": 1,
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  },
-                  "type": []
+                  }
                 }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              }
+            },
+            "_id": "iwxBO9oQBAuBhTKK",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The Box sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [
+              {
+                "name": "Shocking Gas",
+                "type": "placed",
+                "shape": "emanation",
+                "size": "close",
+                "hasHole": false,
+                "effects": []
+              }
+            ],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "target": {
               "type": "any",
@@ -804,63 +705,42 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Roll Save",
-            "img": "icons/magic/lightning/bolt-strike-embers-teal.webp",
-            "range": "close",
+            "name": "Shocking Gas",
+            "range": "",
+            "img": "icons/magic/lightning/bolt-strike-embers-teal.webp"
+          },
+          "ey2man48zSlQ9pM5": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "ey2man48zSlQ9pM5",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The Box leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
             "areas": [
               {
-                "name": "Shocking Gas",
+                "name": "Stunning Clap",
                 "type": "placed",
                 "shape": "emanation",
-                "size": "close",
+                "size": "veryClose",
+                "hasHole": false,
                 "effects": []
               }
-            ]
-          }
-        },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
-      },
-      "_id": "3bPURmuwQs06fThQ",
-      "img": "icons/magic/lightning/bolt-strike-embers-teal.webp",
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!dgH3fW9FTYLaIDvS.3bPURmuwQs06fThQ"
-    },
-    {
-      "name": "Stunning Clap",
-      "type": "feature",
-      "system": {
-        "description": "<p>The @Lookup[@name] leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p>",
-        "resource": null,
-        "actions": {
-          "LQtopkrtSlCQ5MAr": {
-            "type": "attack",
-            "_id": "LQtopkrtSlCQ5MAr",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
+            ],
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": ""
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "target": {
               "type": "any",
@@ -868,7 +748,7 @@
             },
             "effects": [
               {
-                "_id": "S7kJlhnV8Nexzi8l",
+                "_id": "kqpF4nFsPVYlwRZY",
                 "onSave": false
               }
             ],
@@ -892,134 +772,73 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Roll Save",
-            "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
-            "range": "veryClose",
+            "name": "Stunning Clap",
+            "range": "",
+            "img": "icons/magic/sonic/explosion-shock-wave-teal.webp"
+          },
+          "Y2rycSVaupmnNAxc": {
+            "type": "attack",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 2,
+                  "dice": "d4",
+                  "bonus": 9,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": false,
+                "direct": true,
+                "type": [
+                  "magical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "Y2rycSVaupmnNAxc",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>The Box releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
             "areas": [
               {
-                "name": "Stunning Clap",
+                "name": "Randomized Tactics",
                 "type": "placed",
                 "shape": "emanation",
-                "size": "veryClose",
+                "size": "close",
+                "hasHole": false,
                 "effects": []
               }
-            ]
-          }
-        },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
-      },
-      "_id": "ijIaKjroxq3xZd9Z",
-      "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
-      "effects": [
-        {
-          "name": "Stunned",
-          "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.dgH3fW9FTYLaIDvS.Item.ijIaKjroxq3xZd9Z",
-          "transfer": false,
-          "_id": "S7kJlhnV8Nexzi8l",
-          "type": "base",
-          "system": {
-            "changes": [],
-            "duration": {
-              "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the cube is defeated.</span></p>"
-            }
-          },
-          "disabled": false,
-          "duration": {
-            "value": null,
-            "units": "seconds",
-            "expiry": null,
-            "expired": false
-          },
-          "description": "<p><em>Vulnerable</em> until the cube is defeated.</p>",
-          "tint": "#ffffff",
-          "statuses": [
-            "vulnerable"
-          ],
-          "sort": 0,
-          "flags": {},
-          "_stats": {
-            "compendiumSource": null
-          },
-          "start": {
-            "time": 0,
-            "combat": null,
-            "combatant": null,
-            "initiative": null,
-            "round": null,
-            "turn": null
-          },
-          "showIcon": 1,
-          "folder": null,
-          "_key": "!actors.items.effects!dgH3fW9FTYLaIDvS.ijIaKjroxq3xZd9Z.S7kJlhnV8Nexzi8l"
-        }
-      ],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!dgH3fW9FTYLaIDvS.ijIaKjroxq3xZd9Z"
-    },
-    {
-      "name": "Psionic Whine",
-      "type": "feature",
-      "system": {
-        "description": "<p>The @Lookup[@name] releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p>",
-        "resource": null,
-        "actions": {
-          "3R3pGOUj4rHaUzPK": {
-            "type": "attack",
-            "_id": "3R3pGOUj4rHaUzPK",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
+            ],
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d4",
-                    "bonus": 9,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "target": {
               "type": "any",
@@ -1046,134 +865,208 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Bees!",
-            "img": "icons/creatures/invertebrates/wasp-swarm-tan.webp",
-            "range": "close",
-            "areas": [
-              {
-                "name": "Psionic Whine",
-                "type": "placed",
-                "shape": "emanation",
-                "size": "close",
-                "effects": []
-              }
-            ]
+            "name": "Psionic Whine",
+            "range": "",
+            "img": "icons/creatures/invertebrates/wasp-swarm-attack.webp"
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
-      "_id": "JCue4ko61bjhedXv",
-      "img": "icons/creatures/invertebrates/wasp-swarm-tan.webp",
-      "effects": [],
+      "_id": "ZqfLMjVkbUwDw4p6",
+      "img": "icons/commodities/tech/transmission.webp",
+      "effects": [
+        {
+          "name": "Trampled",
+          "disabled": true,
+          "img": "icons/skills/movement/arrow-down-pink.webp",
+          "description": "<p>You are <em>Vulnerable</em> until your next roll with Hope.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "5bJYVKu4fuzGa7KY",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!dgH3fW9FTYLaIDvS.ZqfLMjVkbUwDw4p6.5bJYVKu4fuzGa7KY"
+        },
+        {
+          "name": "Stunning Clap",
+          "disabled": false,
+          "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
+          "description": "<p>You are <em>Vulnerable</em> until the cube is defeated.</p>",
+          "transfer": false,
+          "statuses": [
+            "vulnerable"
+          ],
+          "system": {
+            "changes": [],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "kqpF4nFsPVYlwRZY",
+          "type": "base",
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "tint": "#ffffff",
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!dgH3fW9FTYLaIDvS.ZqfLMjVkbUwDw4p6.kqpF4nFsPVYlwRZY"
+        }
+      ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!actors.items!dgH3fW9FTYLaIDvS.JCue4ko61bjhedXv"
+      "_key": "!actors.items!dgH3fW9FTYLaIDvS.ZqfLMjVkbUwDw4p6"
     },
     {
       "name": "Overcharge",
       "type": "feature",
       "system": {
-        "description": "<p>Before rolling damage for the @Lookup[@name]’s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
+        "description": "<p>Before rolling damage for the @Lookup[@name]'s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
         "resource": null,
         "actions": {
-          "3XOvKoYz4CqMNrU9": {
-            "type": "healing",
-            "_id": "3XOvKoYz4CqMNrU9",
+          "U6ND54T8GFzkOEOM": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": ""
+              },
+              "resources": {}
+            },
+            "_id": "U6ND54T8GFzkOEOM",
             "systemPath": "actions",
+            "baseAction": false,
             "description": "",
             "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
             "actionType": "action",
+            "triggers": [],
+            "areas": [],
             "cost": [
               {
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": {
-                "fear": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": ""
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "fear",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "target": {
-              "type": "self",
+              "type": "any",
               "amount": null
             },
             "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
             "name": "Mark Stress",
-            "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
-            "range": "self"
+            "range": ""
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "ITzpRJr2jWK0Ksmp",
       "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -1198,39 +1091,43 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d8",
-                    "bonus": 1,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 2,
+                  "dice": "d8",
+                  "bonus": 1,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "magical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -1266,24 +1163,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "YvfzPyJbbv2ia6Yp",
       "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

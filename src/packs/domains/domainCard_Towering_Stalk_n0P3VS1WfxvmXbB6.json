@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "uXGugK72AffddFdH",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p><p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to use this spell as an attack. Make a <strong>Spellcast Roll</strong> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your Proficiency.</p>",
+    "description": "<p>Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p><p><strong>Mark a Stress</strong> to use this spell as an attack. Make a <strong>Spellcast Roll</strong> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your Proficiency.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 3,
@@ -38,38 +38,42 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": null,
-                "flatMultiplier": 1
+          "main": {
+            "resultBased": false,
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "physical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "prof",
+              "dice": "d8",
+              "bonus": null,
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "base": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -105,15 +109,21 @@
             "type": "placed",
             "shape": "emanation",
             "size": "close",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "I6eSBTpuYDU1nEgr": {
         "type": "effect",
         "_id": "I6eSBTpuYDU1nEgr",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p>",
+        "description": "<p>Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -129,7 +139,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -138,7 +149,13 @@
         },
         "name": "Conjure Stalk",
         "img": "icons/magic/nature/root-vine-beanstolk-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
@@ -148,20 +165,23 @@
       "recovery": "shortRest",
       "progression": "decreasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-seedling"
+      "icon": "fa-solid fa-seedling",
+      "diceStates": {}
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 130,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "n0P3VS1WfxvmXbB6",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!n0P3VS1WfxvmXbB6"
 }

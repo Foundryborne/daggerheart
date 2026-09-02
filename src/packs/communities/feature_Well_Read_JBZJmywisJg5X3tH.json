@@ -8,14 +8,14 @@
     "description": "<p>You have advantage on rolls that involve the history, culture, or politics of a prominent person or place.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 32,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -29,22 +29,26 @@
             "key": "system.advantageSources",
             "type": "add",
             "value": "History, culture, or politics of a prominent person or place",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "",
-      "origin": null,
+      "description": "<p>You have advantage on rolls that involve the history, culture, or politics of a prominent person or place.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -53,14 +57,20 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!JBZJmywisJg5X3tH.RwhxYOAAKKlYZiz0"
     }
   ],
   "flags": {},
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "_key": "!items!JBZJmywisJg5X3tH"
 }

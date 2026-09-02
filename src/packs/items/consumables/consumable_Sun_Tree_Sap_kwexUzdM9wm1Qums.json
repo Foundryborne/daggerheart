@@ -11,7 +11,7 @@
         "type": "attack",
         "_id": "Fh7OR8ZmiLNvRPHa",
         "systemPath": "actions",
-        "description": "<p>Consume this sap to roll a [[/r d6]]. On a result of 5–6, clear 2 HP. On a result of 2–4, clear 3 Stress. On a result of 1, see through the veil of death and return changed, gaining one scar.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,11 +27,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "",
@@ -60,23 +61,26 @@
         },
         "name": "Consume",
         "img": "icons/consumables/drinks/wine-amphora-clay-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 8900000,
   "flags": {},
   "_key": "!items!kwexUzdM9wm1Qums"
 }

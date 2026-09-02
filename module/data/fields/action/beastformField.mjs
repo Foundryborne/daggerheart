@@ -1,4 +1,5 @@
 import BeastformDialog from '../../../applications/dialogs/beastformDialog.mjs';
+import { adjustDice } from '../../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -91,16 +92,63 @@ export default class BeastformField extends fields.SchemaField {
         }
 
         if (evolvedData?.form) {
+            const { tokenSize, evolved } = selectedForm.system;
             const evolvedForm = selectedForm.effects.find(x => x.type === 'beastform');
             if (!evolvedForm) {
                 ui.notifications.error('DAGGERHEART.UI.Notifications.beastformMissingEffect');
                 return false;
             }
 
+            if (evolved.mainTraitBonus) {
+                const traitChange = 
+                    beastformEffect.changes.find(x => x.key === `system.traits.${formData.system.mainTrait}.value`);
+                if (traitChange) {
+                    traitChange.value += evolved.mainTraitBonus;
+                } else {
+                    beastformEffect.changes.push({ 
+                        key: `system.traits.${formData.system.mainTrait}.value`, 
+                        value: evolved.mainTraitBonus,
+                        type: 'add',
+                        priority: 20,
+                        phase: 'initial' 
+                    });
+                }
+            }
+
+            if (evolved.evasionBonus) {
+                const evasionChange = beastformEffect.changes.find(x => x.key === `system.evasion`);
+                if (evasionChange) {
+                    evasionChange.value += evolved.evasionBonus;
+                } else {
+                    beastformEffect.changes.push({ 
+                        key: 'system.evasion', 
+                        value: evolved.evasionBonus,
+                        type: 'add',
+                        priority: 20,
+                        phase: 'initial' 
+                    });
+                }
+            }
+
+            const standardAttack = beastformEffect.changes.find(x => x.type === 'standardAttack');
+            if (standardAttack) {
+                if (evolved.damageBonus) {
+                    standardAttack.value.damageFormula = `${standardAttack.value.damageFormula} + ${evolved.damageBonus}`; 
+                }
+                
+                if (evolved.increaseDamageDice) {
+                    const diceDenomination = standardAttack.value.damageFormula.match(/d\d/)[0];
+                    if (diceDenomination) {
+                        const adjustedDice = adjustDice(diceDenomination);
+                        standardAttack.value.damageFormula = standardAttack.value.damageFormula.replace(/d\d/, adjustedDice);
+                    }
+                }
+            }
+
             beastformEffect.changes = [...beastformEffect.changes, ...evolvedForm.changes];
             formData.system.features = [...formData.system.features, ...selectedForm.system.features.map(x => x.uuid)];
 
-            const baseSize = evolvedData.form.system.tokenSize.size;
+            const baseSize = tokenSize.size;
             const evolvedSize =
                 baseSize === 'custom'
                     ? 'custom'
@@ -108,7 +156,7 @@ export default class BeastformField extends fields.SchemaField {
                         x => CONFIG.DH.ACTOR.tokenSize[x].value === CONFIG.DH.ACTOR.tokenSize[baseSize].value + 1
                     ) ?? baseSize);
             formData.system.tokenSize = {
-                ...evolvedData.form.system.tokenSize,
+                ...tokenSize,
                 size: evolvedSize
             };
         }

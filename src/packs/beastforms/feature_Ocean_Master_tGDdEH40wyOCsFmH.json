@@ -17,7 +17,8 @@
         "uses": {
           "value": null,
           "max": null,
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -31,31 +32,40 @@
         },
         "name": "Restrain",
         "img": "icons/creatures/fish/fish-bioluminous-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 15,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Ocean Master",
       "img": "icons/creatures/fish/fish-bioluminous-blue.webp",
-      "origin": "Item.5UbOIcuLE5Z3ViAm",
       "transfer": false,
       "_id": "6GBczj8REkDmgX2Q",
       "type": "base",
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -88,10 +98,6 @@
     }
   ],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "tGDdEH40wyOCsFmH",
   "sort": 0,

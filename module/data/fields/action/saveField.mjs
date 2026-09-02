@@ -41,6 +41,8 @@ export default class SaveField extends fields.SchemaField {
         if (!message && !config.skips.createMessage) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
+            // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
+            config.mute = true;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
@@ -70,6 +72,9 @@ export default class SaveField extends fields.SchemaField {
             const aPromise = [];
             targets.forEach(target => {
                 aPromise.push(
+                    // Preserved deliberately: rejections are swallowed here so that one failing
+                    // target cannot abort the saves still in flight for the other targets.
+                    // eslint-disable-next-line no-async-promise-executor
                     new Promise(async subResolve => {
                         const actor = fromUuidSync(target.actorId);
                         if (actor) {
@@ -161,12 +166,11 @@ export default class SaveField extends fields.SchemaField {
      * @param {ChatMessage} param0.message     Chat Message to update
      * @returns
      */
-    static rollSaveQuery({ actionId, actorId, event, message }) {
-        return new Promise(async (resolve, reject) => {
-            const actor = await fromUuid(actorId),
-                action = await fromUuid(actionId);
-            if (!actor || !actor?.isOwner) reject();
-            SaveField.rollSave.call(action, actor, event, message).then(result => resolve(result));
-        });
+    static async rollSaveQuery({ actionId, actorId, event, message }) {
+        const actor = await fromUuid(actorId),
+            action = await fromUuid(actionId);
+        if (!actor?.isOwner) throw new Error(`Actor [${actorId}] is not owned by the queried user.`);
+
+        return SaveField.rollSave.call(action, actor, event, message);
     }
 }

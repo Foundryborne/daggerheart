@@ -76,6 +76,24 @@ export default class DHBeastform extends BaseDataItem {
                     integer: true,
                     min: 0,
                     initial: 0
+                }),
+                damageBonus: new fields.NumberField({
+                    required: true,
+                    integer: true,
+                    min: 0,
+                    initial: 0
+                }),
+                evasionBonus: new fields.NumberField({
+                    required: true,
+                    integer: true,
+                    min: 0,
+                    initial: 0
+                }),
+                increaseDamageDice: new fields.NumberField({  
+                    required: true,
+                    integer: true,
+                    min: 0,
+                    initial: 0
                 })
             }),
             hybrid: new fields.SchemaField({
@@ -99,28 +117,8 @@ export default class DHBeastform extends BaseDataItem {
     /* -------------------------------------------- */
 
     get beastformAttackData() {
-        const effect = this.parent.effects.find(x => x.type === 'beastform');
-        return DHBeastform.getBeastformAttackData(effect);
-    }
-
-    static getBeastformAttackData(effect) {
-        if (!effect) return null;
-
-        const mainTrait = effect.system.changes.find(x => x.key === 'system.rules.attack.roll.trait')?.value;
-        const traitBonus = effect.system.changes.find(x => x.key === `system.traits.${mainTrait}.value`)?.value ?? 0;
-        const evasionBonus = effect.system.changes.find(x => x.key === 'system.evasion')?.value ?? 0;
-
-        const damageDiceIndex = effect.system.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
-        const damageDice = damageDiceIndex ? Object.keys(CONFIG.DH.GENERAL.diceTypes)[damageDiceIndex.value] : null;
-        const damageBonus = effect.system.changes.find(x => x.key === 'system.rules.attack.damage.bonus')?.value ?? 0;
-
-        return {
-            trait: game.i18n.localize(CONFIG.DH.ACTOR.abilities[mainTrait]?.label),
-            traitBonus: traitBonus ? Number(traitBonus).signedString() : '',
-            evasionBonus: evasionBonus ? Number(evasionBonus).signedString() : '',
-            damageDice: damageDice,
-            damageBonus: damageBonus ? `${Number(damageBonus).signedString()}` : ''
-        };
+        const effect = this.parent?.effects.find(x => x.type === 'beastform');
+        return effect?.system?.getBeastformAttackData();
     }
 
     static async getWildcardImage(actor, beastform) {
@@ -277,5 +275,79 @@ export default class DHBeastform extends BaseDataItem {
 
             return;
         }
+    }
+
+    static migrateDocumentData(source) {
+        const beastformEffect = source.effects?.find(x => x.type === 'beastform');
+        if (!beastformEffect) return source;
+
+        const hasStandardAttack = beastformEffect.system.changes.some(x => x.type === 'standardAttack');
+        const { evolved } = CONFIG.DH.ITEM.beastformTypes;
+        if (source.system.beastformType === evolved.id) {
+            if (
+                source.system.evolved.damageBonus === undefined && 
+                source.system.evolved.evasionBonus === undefined &&
+                source.system.evolved.increaseDamageDice === undefined
+            ) {
+                const evasionChange = 
+                    beastformEffect.system.changes.find(x => x.key === 'system.evasion');
+                const physicalDamageBonusChange = 
+                    beastformEffect.system.changes.find(x => x.key === 'system.bonuses.damage.physical.bonus');
+                const damageDieIncreaseChange = 
+                    beastformEffect.system.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
+
+                if (physicalDamageBonusChange?.value) {
+                    source.system.evolved.damageBonus = physicalDamageBonusChange.value;
+                }
+                if (evasionChange?.value) {
+                    source.system.evolved.evasionBonus = evasionChange.value;
+                }
+                if (damageDieIncreaseChange?.value) {
+                    source.system.evolved.increaseDamageDice = damageDieIncreaseChange.value;
+                }
+
+                const changesToRemove = [
+                    'system.rules.attack.damage.diceIndex',
+                    'system.bonuses.damage.physical.bonus',
+                    'system.evasion'
+                ];
+
+                beastformEffect.system.changes = 
+                    beastformEffect.system.changes.filter(x => !changesToRemove.includes(x.key));
+            }
+        } else if (!hasStandardAttack) {
+            const damageDieChange = beastformEffect.system.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
+            const damageBonusChange = beastformEffect.system.changes.find(x => x.key === 'system.rules.attack.damage.bonus');
+            
+            const damageDice = damageDieChange?.value !== undefined ? 
+                CONFIG.DH.GENERAL.dieFaces[damageDieChange.value] : null;
+            const damageFormula = damageDice ? `@profd${damageDice}${damageBonusChange?.value ? ` + ${damageBonusChange.value}` : ''}` : null;
+            beastformEffect.system.changes.push({
+                type: 'standardAttack',
+                phase: 'initial',
+                priority: 0,
+                value: {
+                    name: 'DAGGERHEART.ITEMS.Beastform.attackName',
+                    damageTypes: ['physical'],
+                    attackRange: 'melee',
+                    trait: source.system.mainTrait,
+                    damageFormula: damageFormula ?? '',
+                    img: 'icons/creatures/claws/claw-straight-brown.webp'
+                }
+            })
+            
+
+            const changesToRemove = [
+                'system.rules.attack.damage.diceIndex',
+                'system.rules.attack.damage.bonus',
+                'system.bonuses.damage.physical.bonus',
+                'system.rules.attack.roll.trait'
+            ];
+
+            beastformEffect.system.changes = 
+                beastformEffect.system.changes.filter(x => !changesToRemove.includes(x.key));
+        }
+
+        return source;
     }
 }

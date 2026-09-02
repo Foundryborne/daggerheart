@@ -42,6 +42,11 @@ export default class DhCountdownAction extends DHBaseAction {
                 countdown.progress.start = 1;
                 countdown.progress.max = null;
             }
+            if (countdown.defaultOwnership) {
+                // Inherit (-1) is use default, and None (0) is hidden. All others are visible
+                countdown.hidden = countdown.defaultOwnership === -1 ? null : countdown.defaultOwnership === 0;
+                delete countdown.defaultOwnership;
+            }
         }
 
         return super.migrateData(source);

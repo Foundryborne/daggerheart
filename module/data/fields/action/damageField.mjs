@@ -1,5 +1,5 @@
 import FormulaField from '../formulaField.mjs';
-import { setsEqual } from '../../../helpers/utils.mjs';
+import { getAllResourceLabels, setsEqual } from '../../../helpers/utils.mjs';
 import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
 
 const fields = foundry.data.fields;
@@ -80,28 +80,31 @@ export default class DamageField extends fields.SchemaField {
         targets ??= config.targets.filter(target => target.hitResult?.success);
         if (!config.damage || !targets?.length || (!DamageField.getApplyAutomation() && !force)) return;
 
+        for (const resourceKey in config.damage.resources) {
+            const resource = config.damage.resources[resourceKey];
+            if (resource.options.itemId)
+                resource.options.target = this.parent.parent;
+        }
+
         const targetDamage = [];
         const damagePromises = [];
         for (const target of targets) {
             const actor = foundry.utils.fromUuidSync(target.actorId);
             if (!actor) continue;
-            if (!config.hasHealing && config.onSave && target.saved?.success === true) {
-                const mod = CONFIG.DH.ACTIONS.damageOnSave[config.onSave]?.mod ?? 1;
-                Object.entries(config.damage).forEach(([k, v]) => {
-                    v.total = 0;
-                    v.parts.forEach(part => {
-                        part.total = Math.ceil(part.total * mod);
-                        v.total += part.total;
-                    });
-                });
-            }
-
+            
             const token = target.id
                 ? game.scenes.find(x => x.active).tokens.find(x => x.id === target.id)
                 : actor.prototypeToken;
             if (config.hasHealing)
                 damagePromises.push(
-                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ token, updates }))
+                    actor.takeHealing(config.damage).then(updates => targetDamage.push({ 
+                        token: { 
+                            id: token.id,
+                            name: token.prototypeToken?.name ?? token.name,
+                            img: token.texture.src  
+                        }, 
+                        updates 
+                    }))
                 );
             else {
                 const configDamage = config.damage.clone();
@@ -109,6 +112,18 @@ export default class DamageField extends fields.SchemaField {
                 if (configDamage.main) {
                     const takenMultiplier = actor.system.rules?.attack?.damage?.hpDamageTakenMultiplier;
                     configDamage.main.total = Math.ceil(config.damage.main.total * takenMultiplier);
+
+                    if (config.onSave) {
+                        const onSaveData = CONFIG.DH.ACTIONS.damageOnSave[config.onSave];
+                        if (onSaveData) {
+                            if (
+                                (onSaveData.onSuccess && target.saveResult?.success === true) ||
+                                (!onSaveData.onSuccess && !target.saveResult?.success)
+                            ) {
+                                configDamage.main.total *= onSaveData.mod ?? 1;
+                            }
+                        }
+                    }
                 }
 
                 damagePromises.push(
@@ -134,6 +149,7 @@ export default class DamageField extends fields.SchemaField {
             }
         }
 
+        const speakerActor = this.actor;
         Promise.all(damagePromises).then(async _ => {
             const summaryMessageSettings = game.settings.get(
                 CONFIG.DH.id,
@@ -150,7 +166,8 @@ export default class DamageField extends fields.SchemaField {
             const msg = {
                 type: 'systemMessage',
                 user: game.user.id,
-                speaker: cls.getSpeaker(),
+                speaker: cls.getSpeaker({ actor: speakerActor }),
+                flags: { [CONFIG.DH.id]: { resourcesUpdates: targetDamage } },
                 title: game.i18n.localize(
                     `DAGGERHEART.UI.Chat.damageSummary.${config.hasHealing ? 'healingTitle' : 'title'}`
                 ),
@@ -158,7 +175,10 @@ export default class DamageField extends fields.SchemaField {
                     'systems/daggerheart/templates/ui/chat/damageSummary.hbs',
                     {
                         targets: targetDamage,
-                        hideObserverPermissionInChat
+                        allResourceLabels: getAllResourceLabels(),
+                        hideObserverPermissionInChat,
+                        isGM: game.user.isGM,
+                        type: config.hasHealing ? 'healing' : 'damage'
                     }
                 )
             };
@@ -201,7 +221,8 @@ export default class DamageField extends fields.SchemaField {
             formula: x.fullRestore ? '0' : DamageField.getFormulaValue.call(this, x, data).getFormula(this.actor),
             damageTypes: x.type ?? new Set(),
             applyTo: x.applyTo,
-            fullRestore: !!x.fullRestore
+            fullRestore: !!x.fullRestore,
+            itemId: x.itemId
         }));
 
         const formattedFormulas = [];
@@ -294,6 +315,11 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
         };
     }
 
+    get hasFormula() {
+        const formula = this.getFormula();
+        return formula === '0';
+    }
+
     /**
      * @returns {string} the formula associated with this damage field
      */
@@ -305,7 +331,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
 
         const dice = `${multiplier ?? 1}${this.dice}`;
         const sign = this.bonus < 0 ? ' - ' : ' + ';
-        return this.bonus ? `${dice} ${sign} ${Math.abs(this.bonus)}` : dice;
+        return this.bonus ? `${dice}${sign}${Math.abs(this.bonus)}` : dice;
     }
 }
 
@@ -314,8 +340,8 @@ export class DHResourceBaseData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
+            itemId: new fields.StringField({ nullable: true, initial: null }),
             applyTo: new fields.StringField({
-                choices: CONFIG.DH.GENERAL.healingTypes,
                 required: true,
                 blank: false,
                 initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,

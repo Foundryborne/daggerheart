@@ -19,10 +19,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -43,13 +45,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "",
@@ -73,7 +75,12 @@
             "hasHole": false,
             "effects": []
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "xDBLH5TWidvrYF7z": {
         "type": "effect",
@@ -86,7 +93,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -107,7 +115,12 @@
               "yvpWNCNobg0LLjey"
             ]
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "S4t5HlgxWlHwaBDw": {
         "type": "effect",
@@ -120,7 +133,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -144,7 +158,12 @@
             "hasHole": false,
             "effects": []
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "hAsKFFewtTqd1gg9": {
         "type": "attack",
@@ -161,8 +180,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "self",
@@ -203,27 +222,38 @@
               "vnKV5hsO4DVjURAl"
             ]
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 11,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Elemental Aura (Water)",
       "img": "icons/magic/water/vortex-water-whirlpool.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.2JH9NaOh69yN80Gw",
       "transfer": false,
       "_id": "H7W52ps5d3UGmaFr",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -248,12 +278,17 @@
     {
       "name": "Elemental Aura (Fire)",
       "img": "icons/magic/fire/barrier-wall-explosion-orange.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.2JH9NaOh69yN80Gw",
       "transfer": false,
       "_id": "WX5AMEpmUAutB9Hm",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -299,7 +334,8 @@
         "stacking": null,
         "targetDispositions": [
           1
-        ]
+        ],
+        "rangeDependence": null
       },
       "_id": "yvpWNCNobg0LLjey",
       "type": "base",
@@ -317,7 +353,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "showIcon": 1,
       "folder": null,
@@ -332,16 +367,11 @@
       "name": "Elemental Aura: Air",
       "disabled": false,
       "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.753);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When you or an ally takes damage from an attack beyond Melee range, reduce the damage by 1d8.</span></p>",
+      "description": "<p>When you or an ally takes damage from an attack beyond Melee range, reduce the damage by 1d8.</p>",
       "transfer": false,
       "statuses": [],
       "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        },
+        "rangeDependence": null,
         "changes": [],
         "duration": {
           "description": "",
@@ -368,7 +398,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "showIcon": 1,
       "folder": null,
@@ -381,10 +410,6 @@
     }
   ],
   "sort": 100000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!2JH9NaOh69yN80Gw"
 }

@@ -1,0 +1,161 @@
+{
+  "type": "domainCard",
+  "name": "Umbral Veil",
+  "folder": "pO0uBPDGQi4ULPAt",
+  "system": {
+    "domain": "dread",
+    "level": 1,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null
+    },
+    "description": "<p>Once per rest, you can <strong>mark a Stress</strong> to encase yourself in shadowy energy. When you do, place a number of tokens on this card equal to the number of Fear in the GM's pool. After an attack roll is made against you, you can spend any number of tokens to give the result a -1 penalty per token spent.</p><p>At the end of the scene, clear all unspent tokens.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": "scene",
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-skull"
+    },
+    "actions": {
+      "I2Ifm2A6C1fkcQJS": {
+        "type": "healing",
+        "_id": "I2Ifm2A6C1fkcQJS",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "SZS0WYAdFBPuzOrh",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@fear"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Mark Stress",
+        "range": "self",
+        "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp"
+      },
+      "oeuSyzRQ7Qtg6JaT": {
+        "type": "effect",
+        "_id": "oeuSyzRQ7Qtg6JaT",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>After an attack roll is made against you, you can spend any number of tokens to give the result a -1 penalty per token spent.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "resource",
+            "value": 1,
+            "step": 1,
+            "itemId": "SZS0WYAdFBPuzOrh",
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Spend Tokens",
+        "range": "self",
+        "img": "icons/magic/defensive/barrier-shield-dome-pink.webp"
+      }
+    },
+    "recallCost": 1,
+    "type": "spell",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
+  },
+  "_id": "SZS0WYAdFBPuzOrh",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/dread.png",
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!SZS0WYAdFBPuzOrh"
+}

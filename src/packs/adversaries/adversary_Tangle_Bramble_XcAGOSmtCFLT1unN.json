@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 1,
-        "isReversed": true
+        "max": 1
       },
       "stress": {
         "value": 0,
-        "max": 1,
-        "isReversed": true
+        "max": 1
       }
     },
     "motivesAndTactics": "Combine, drain, entangle",
@@ -38,32 +36,6 @@
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 1,
     "description": "<p>An animate, blood-drinking tumbleweed.</p>",
     "attack": {
@@ -94,36 +66,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": true,
-                "formula": "2"
-              },
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": true,
+              "formula": "2"
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "actionType": "action",
@@ -131,29 +105,33 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "baseAction": false,
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 83,
+      "page": null,
       "artist": ""
     },
-    "size": "tiny"
+    "size": "tiny",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3,
-    "MQSznptE5yLT7kj8": 3
-  },
   "prototypeToken": {
     "name": "Tangle Bramble",
     "displayName": 0,
@@ -256,17 +234,14 @@
         "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 4 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "subType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -311,39 +286,39 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "applyTo": "hitPoints",
-                  "resultBased": false,
-                  "value": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": true,
-                      "formula": "2"
-                    }
-                  },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "base": false,
-                  "type": [
-                    "physical"
-                  ]
-                }
+              "main": {
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": true,
+                    "formula": "2"
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "base": false,
+                "type": [
+                  "physical"
+                ],
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "close",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "direct": false,
-              "groupAttack": "close"
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -371,21 +346,18 @@
               "damageMod": "none"
             },
             "name": "Spend Fear",
-            "range": ""
+            "range": "",
+            "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -398,7 +370,7 @@
       "_id": "KBMf7oBfFSHoafKN",
       "img": "icons/magic/nature/root-vines-knot-brown.webp",
       "system": {
-        "description": "<p>When an attack from the @Lookup[@name] causes a target to mark HP and there are three or more @Lookup[@name] Minions within Close range, you can combine the Minions into a @UUID[Compendium.daggerheart.adversaries.Actor.PKSXFuaIHUCoH63A]{Tangle Bramble Swarm Horde}. The Horde’s HP is equal to the number of Minions combined.</p>",
+        "description": "<p>When an attack from the @Lookup[@name] causes a target to mark HP and there are three or more @Lookup[@name] Minions within Close range, you can combine the Minions into a @UUID[Compendium.daggerheart.adversaries.Actor.PKSXFuaIHUCoH63A]{Tangle Bramble Swarm Horde}. The Horde's HP is equal to the number of Minions combined.</p>",
         "resource": null,
         "actions": {
           "g1OQ5xlMHFWsoktd": {
@@ -426,21 +398,19 @@
               }
             ],
             "name": "Summon",
-            "range": ""
+            "range": "",
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

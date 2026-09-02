@@ -96,9 +96,9 @@
                 <side-line-div></side-line-div>
             </div>
             <ul class="items-sidebar-list">
-                {{#if document.system.usedUnarmed}}
+                {{#if document.system.usesUnarmed}}
                     {{> 'daggerheart.inventory-item-compact'
-                        item=document.system.usedUnarmed
+                        item=document.system.attack
                         type='attack'
                     }}
                 {{/if}}

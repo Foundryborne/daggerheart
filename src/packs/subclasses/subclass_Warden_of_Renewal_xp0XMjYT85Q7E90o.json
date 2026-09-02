@@ -4,7 +4,7 @@
   "_id": "xp0XMjYT85Q7E90o",
   "img": "icons/magic/nature/leaf-juggle-humanoid-green.webp",
   "system": {
-    "description": "<p>You wish to use powerful magic to heal your party.</p>",
+    "description": "<p>Play the Warden of Renewal if you want to use powerful magic to heal your party.</p>",
     "spellcastingTrait": "instinct",
     "features": [
       {
@@ -32,18 +32,15 @@
     "isMulticlass": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 11,
+      "page": null,
       "artist": ""
     },
-    "linkedClass": "Compendium.daggerheart.classes.Item.ZNwUTCyGCEcidZFv"
+    "linkedClass": "Compendium.daggerheart.classes.Item.ZNwUTCyGCEcidZFv",
+    "gmNotes": ""
   },
   "effects": [],
   "folder": "AZWrSJzGXltzQhAJ",
   "sort": 200000,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!xp0XMjYT85Q7E90o"
 }

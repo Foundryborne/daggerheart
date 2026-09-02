@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 4,
-        "isReversed": true
+        "max": 4
       },
       "stress": {
         "value": 0,
-        "max": 6,
-        "isReversed": true
+        "max": 6
       }
     },
     "motivesAndTactics": "Curry favor, hinder foes, uncover knowledge",
@@ -49,90 +47,104 @@
         "value": 2
       }
     },
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 2,
     "description": "<p>An experienced mage wielding shadow and fear.</p>",
     "attack": {
       "name": "Rune-Covered Rod",
       "roll": {
         "bonus": 2,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 2,
-              "dice": "d4",
-              "bonus": 3,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "magical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 2,
+            "dice": "d4",
+            "bonus": 3,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "magical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "range": "far",
       "img": "icons/weapons/staves/staff-ornate-purple.webp",
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "CTPABmeRS5Djpv4N",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 85,
+      "page": null,
       "artist": ""
     },
-    "size": "medium"
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "0NxCSugvKQ4W8OYZ",
   "sort": 100000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Cult Adept",
     "displayName": 0,
@@ -245,55 +257,63 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d4",
-                    "bonus": 3,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "magical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
                 },
+                "includeBase": true,
+                "direct": false,
+                "fullRestore": false,
+                "groupAttack": ""
+              },
+              "resources": {
                 "stress": {
                   "value": {
                     "custom": {
-                      "enabled": true,
+                      "enabled": false,
                       "formula": "1"
                     },
                     "multiplier": "flat",
-                    "flatMultiplier": 1,
+                    "flatMultiplier": 0,
                     "dice": "d6",
-                    "bonus": null
+                    "bonus": 1
                   },
                   "applyTo": "stress",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -302,12 +322,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  }
+                  },
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "any",
@@ -334,24 +355,27 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Spend Fear",
             "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
-            "range": "far"
+            "range": "far",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "kCffzM8rX8NEr9d2",
       "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -377,13 +401,16 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [
               {
@@ -397,12 +424,19 @@
             },
             "name": "Protect",
             "img": "icons/magic/unholy/orb-contained-pink.webp",
-            "range": "close"
+            "range": "close",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "IHWDn097sRgjlZXO",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -410,7 +444,6 @@
         {
           "name": "Shroud of the Fallen",
           "img": "icons/magic/unholy/orb-contained-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.IHWDn097sRgjlZXO",
           "transfer": false,
           "_id": "U9lWz1LgeAiK5L85",
           "type": "base",
@@ -420,19 +453,24 @@
                 "key": "system.resistance.magical.resistance",
                 "value": 1,
                 "priority": null,
-                "type": "override"
+                "type": "override",
+                "phase": "initial"
               },
               {
                 "key": "system.resistance.physical.resistance",
                 "value": 1,
                 "priority": null,
-                "type": "override"
+                "type": "override",
+                "phase": "initial"
               }
             ],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">Cult Adept</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"> marks their last HP.</span></p>"
-            }
+              "description": "<p>Until the Cult Adept marks their last HP.</p>"
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -464,10 +502,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -493,13 +527,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [
               {
@@ -520,14 +557,21 @@
                 "type": "placed",
                 "shape": "circle",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "JpSrduK3vjd9h098",
       "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
@@ -535,7 +579,6 @@
         {
           "name": "Shadow Shackles",
           "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.JpSrduK3vjd9h098",
           "transfer": false,
           "_id": "lNH6srSPyEprXZ4o",
           "type": "base",
@@ -543,8 +586,11 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you break free with a successful Strength or Instinct Roll.</span></p>"
-            }
+              "description": "<p>Until you break free with a successful Strength or Instinct Roll.</p>"
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -578,10 +624,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -592,7 +634,7 @@
       "name": "Fear Is Fuel",
       "type": "feature",
       "system": {
-        "description": "<p> Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
+        "description": "<p>Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
         "resource": null,
         "actions": {
           "3tibqB97ooJesxf0": {
@@ -606,10 +648,12 @@
             "uses": {
               "value": null,
               "max": "2",
-              "recovery": "scene"
+              "recovery": "scene",
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "stress": {
                   "value": {
                     "custom": {
@@ -630,13 +674,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "self",
@@ -660,22 +704,25 @@
             },
             "name": "Clear Stress",
             "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
-            "range": "self"
+            "range": "self",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "x6FbcrfOscb3er6P",
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

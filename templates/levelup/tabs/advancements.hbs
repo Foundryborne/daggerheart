@@ -19,12 +19,13 @@
                                                 type="checkbox" class="selection-checkbox{{#if (gt this.cost 1)}} multi{{/if}}" {{checked this.selected}} {{#if this.disabled}}disabled{{/if}}
                                                 data-tier="{{this.tier}}" 
                                                 data-level="{{this.level}}" 
-                                                data-option="{{this.type}}" 
+                                                data-option="{{this.option}}" 
                                                 data-checkbox-nr="{{this.checkboxNr}}" 
                                                 data-cost="{{this.minCost}}"
                                                 data-amount="{{this.amount}}"
                                                 data-value="{{this.value}}"
                                                 data-type="{{this.type}}"
+                                                data-sub-type="{{this.subType}}"
                                             />
                                         {{/each}}
                                     </div>

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "F3K719gxEwQH697e",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your next Knowledge Roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/vial-cork-empty.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 60,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Enlighten Potion",
       "img": "icons/consumables/potions/vial-cork-empty.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.aWHSO2AqDufi7nL4",
       "transfer": false,
       "_id": "QNzVrDW73jF1d5wE",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.traits.knowledge.value",
             "type": "add",
             "value": 1,
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,11 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 6300000,
   "flags": {},
   "_key": "!items!aWHSO2AqDufi7nL4"
 }

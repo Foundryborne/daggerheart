@@ -1,6 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
-import { setDiceSoNiceForHopeFateRoll, setDiceSoNiceForFearFateRoll } from '../helpers/utils.mjs';
 
 export default class FateRoll extends D20Roll {
     constructor(formula, data = {}, options = {}) {
@@ -83,15 +82,5 @@ export default class FateRoll extends D20Roll {
             value: roll.fateDie === 'Hope' ? roll.dHope.total : roll.dFear.total,
             fateDie: roll.fateDie
         };
-    }
-
-    /** @inheritdoc */
-    static async buildPost(roll, config, message) {
-        if (roll.fateDie === 'Hope') {
-            await setDiceSoNiceForHopeFateRoll(roll, config.roll.fate.dice);
-        } else {
-            await setDiceSoNiceForFearFateRoll(roll, config.roll.fate.dice);
-        }
-        return super.buildPost(roll, config, message);
     }
 }

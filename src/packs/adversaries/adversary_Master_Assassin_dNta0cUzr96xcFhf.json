@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 7,
-        "isReversed": true
+        "max": 7
       },
       "stress": {
         "value": 0,
-        "max": 5,
-        "isReversed": true
+        "max": 5
       }
     },
     "motivesAndTactics": "Ambush, get out alive, kill, prepare for all scenarios",
@@ -49,32 +47,6 @@
         "value": 3
       }
     },
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 2,
     "description": "<p>A seasoned killer with a threatening voice and a deadly blade.</p>",
     "attack": {
@@ -82,57 +54,97 @@
       "img": "icons/weapons/daggers/dagger-jagged-handguard-black.webp",
       "roll": {
         "bonus": 5,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "range": "close",
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 2,
-              "dice": "d10",
-              "bonus": 2,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 2,
+            "dice": "d10",
+            "bonus": 2,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "lYNOvl0K4FSlMhYy",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 84,
+      "page": null,
       "artist": ""
     },
-    "size": "medium"
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "dNta0cUzr96xcFhf",
   "sort": 2500000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Master Assassin",
     "displayName": 0,
@@ -143,12 +155,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -199,7 +208,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -225,14 +234,15 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
       "name": "Won't See it Coming",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] deals direct damage while they’re <em>Hidden</em>.</p>",
+        "description": "<p>The @Lookup[@name] deals direct damage while they're <em>Hidden</em>.</p>",
         "resource": null,
         "actions": {
           "xFBE0jLf96fbCY7K": {
@@ -254,38 +264,39 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 2,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": true,
+                "direct": true,
+                "fullRestore": false,
+                "groupAttack": ""
               },
-              "includeBase": false,
-              "direct": true
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -314,21 +325,21 @@
             },
             "name": "Hidden attack",
             "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
-            "range": "close"
+            "range": "close",
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "Pb3qWLBJmpOmoKq0",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -339,7 +350,7 @@
       "name": "Strike as One",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the @Lookup[@name]’s unmarked Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the @Lookup[@name]'s unmarked Stress.</p>",
         "resource": null,
         "actions": {
           "vKRDbD07bqR317Zv": {
@@ -354,13 +365,16 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -369,22 +383,25 @@
             },
             "name": "Mark Stress",
             "img": "icons/skills/movement/arrows-up-trio-red.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "za6Qr0CjI9Kb4I0U",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -410,13 +427,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -425,22 +445,25 @@
             },
             "name": "Spend Fear",
             "img": "icons/skills/melee/strike-dagger-blood-red.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "s0WcpK43WN2ptqNc",
       "img": "icons/skills/melee/strike-dagger-blood-red.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -469,7 +492,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "fear": {
                   "value": {
                     "custom": {
@@ -494,10 +518,9 @@
                       "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "any",
@@ -521,22 +544,25 @@
             },
             "name": "Gain Fear",
             "img": "icons/skills/melee/strike-weapons-orange.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "PcNgHScmTd9l3exN",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

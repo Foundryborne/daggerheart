@@ -35,12 +35,17 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML({ actor: actorData, author: this.author });
 
-        if (this.flags.core?.RollTable) {
+        if (this.flags.core?.RollTable || this.flags.daggerheart?.noButtons) {
             html.querySelector('.roll-buttons.apply-buttons')?.remove();
         }
 
         this.enrichChatMessage(html);
         this.addChatListeners(html);
+        
+        // todo: move to system renderHTML once implemented
+        if (['adversaryRoll', 'damageRoll', 'dualityRoll', 'fateRoll'].includes(this.type)) {
+            html.classList.add('themed', 'theme-dark');
+        }
 
         return html;
     }
@@ -138,6 +143,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('click', this.onApplyEffect.bind(this))
         );
 
+        html.querySelectorAll('.undo-damage-button').forEach(element =>
+            element.addEventListener('click', this.onUndoDamage.bind(this))
+        );
+
         for (const element of html.querySelectorAll('.action-areas')) {
             element.addEventListener('click', this.onCreateAreas.bind(this));
         }
@@ -217,12 +226,38 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
         else {
             for (const target of targets) {
-                const actor = target.document.actor;
+                const actor = foundry.utils.fromUuidSync(target.actorId);
                 if (!actor) continue;
 
                 if (this.system.hasHealing) actor.takeHealing(this.system.damage);
                 else actor.takeDamage(this.system.damage);
             }
+        }
+    }
+
+    async onUndoDamage(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const { token: tokenId } = event.target.closest('[data-token]').dataset;
+        const actor = canvas.scene.tokens.get(tokenId)?.actor;
+        const resourcesUpdates = this.getFlag(CONFIG.DH.id, 'resourcesUpdates') ?? [];
+        const [index, actorDatas] = [...resourcesUpdates.entries()]?.find(([index, r]) => r.token?.id === tokenId)
+            ?? [];
+        const actorUpdates = actorDatas?.updates;
+        if (!actor || !actorUpdates) return;
+
+        const revertedUpdates = actorUpdates.map(u => ({...u, value: u.value * -1}));
+        const updated = await actor.modifyResource(revertedUpdates);
+        if (updated) {
+            resourcesUpdates[index].token.reverted = true;
+            await this.setFlag(CONFIG.DH.id, 'resourcesUpdates', resourcesUpdates);
+
+            const element = document.createElement('div');
+            element.innerHTML = this.content;
+            element.querySelector(`[data-token="${tokenId}"]`).classList.add('damage-reverted');
+            await this.update({ content: element.innerHTML });
+
+            this.renderHTML();
         }
     }
 
@@ -415,7 +450,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
     static migrateData(source) {
-        for (let i = 0; i < source.rolls.length; i++) {
+        for (let i = 0; i < (source.rolls ?? []).length; i++) {
             const rollData = source.rolls[i];
             const roll = typeof rollData === 'string' ? Roll.fromJSON(rollData) : rollData;
             for (const effect of (roll.options.effects ?? [])) {

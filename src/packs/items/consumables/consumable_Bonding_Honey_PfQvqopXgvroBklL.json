@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "SWrgUGHIWCXpED1b",
         "systemPath": "actions",
-        "description": "<p>This honey can be used to glue two objects together permanently.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -36,23 +37,26 @@
         },
         "name": "Use",
         "img": "icons/consumables/food/soup-broth-bowl-wooden-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 4800000,
   "flags": {},
   "_key": "!items!PfQvqopXgvroBklL"
 }

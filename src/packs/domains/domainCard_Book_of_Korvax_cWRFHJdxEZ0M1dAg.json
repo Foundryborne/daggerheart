@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7XeaYZPMB0SopAfo",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Levitation:</strong></em> Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p><p class=\"Card-Feature\"><em><strong>Recant:</strong></em> <strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p><p class=\"Card-Feature\"><em><strong>Rune Circle:</strong></em> <strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
+    "description": "<p><em><strong>Levitation:</strong></em> Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p><p><em><strong>Recant:</strong></em> <strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p><p><em><strong>Rune Circle:</strong></em> <strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 3,
@@ -14,18 +14,19 @@
         "type": "attack",
         "_id": "fgBLkAtuv9okxUd4",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> to temporarily lift a target you can see up into the air and move them within Close range of their original position.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -54,13 +55,19 @@
         },
         "name": "Levitation",
         "img": "icons/magic/control/energy-stream-link-blue.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "m4y7KXhjVNT30wUT": {
         "type": "attack",
         "_id": "m4y7KXhjVNT30wUT",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p>",
+        "description": "<p><strong>Spend a Hope</strong> to force a target within Melee range to make a Reaction Roll (15). On a failure, they forget the last minute of your conversation.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -68,17 +75,20 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -107,13 +117,19 @@
         },
         "name": "Recant",
         "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-        "range": "melee"
+        "range": "melee",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "fb2HYD9J759nHKhV": {
         "type": "damage",
         "_id": "fb2HYD9J759nHKhV",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to Very Close range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -121,44 +137,50 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 2,
-                "dice": "d12",
-                "bonus": 4
+          "main": {
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 2,
+              "dice": "d12",
+              "bonus": 4
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "base": false,
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -174,23 +196,32 @@
             "type": "placed",
             "shape": "emanation",
             "size": "melee",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 124,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "cWRFHJdxEZ0M1dAg",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!cWRFHJdxEZ0M1dAg"
 }

@@ -1,10 +1,10 @@
 {
-  "name": "Reaper’s Strike",
+  "name": "Reaper's Strike",
   "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
   "type": "domainCard",
   "folder": "QYdeGsmVYIF34kZR",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>spend a Hope</strong> to make an attack roll. The GM tells you which targets within range it would succeed against. Choose one of these targets and force them to mark 5 Hit Points.</p>",
+    "description": "<p>Once per long rest, <strong>spend a Hope</strong> to make an attack roll. The GM tells you which targets within range it would succeed against. Choose one of these targets and force them to mark 5 Hit Points.</p>",
     "domain": "blade",
     "recallCost": 3,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "bFW8Qgv6fUswbA6s",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>spend a Hope</strong> to make an attack roll. The GM tells you which targets within range it would succeed against. Choose one of these targets and force them to mark 5 Hit Points.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,6 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false,
           "resources": {
             "hitPoints": {
               "base": false,
@@ -59,9 +58,11 @@
                   "enabled": false,
                   "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
-          }
+          },
+          "main": null
         },
         "target": {
           "type": "any",
@@ -90,21 +91,30 @@
         },
         "name": "Spend a Hope",
         "img": "icons/skills/melee/strike-axe-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 122,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "MCgNRlh0s5XUPCfl",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!MCgNRlh0s5XUPCfl"
 }

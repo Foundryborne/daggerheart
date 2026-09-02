@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 12,
-        "isReversed": true
+        "max": 12
       },
       "stress": {
         "value": 0,
-        "max": 6,
-        "isReversed": true
+        "max": 6
       }
     },
     "motivesAndTactics": "Collect shiny things, hunt, nest, swoop",
@@ -38,32 +36,6 @@
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 3,
     "description": "<p>A winged insect the size of a large house with iridescent scales and wings that move too fast to track.</p>",
     "attack": {
@@ -71,57 +43,97 @@
       "img": "icons/commodities/biological/wing-insect-blue.webp",
       "roll": {
         "bonus": 3,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "range": "veryClose",
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 3,
-              "dice": "d20",
-              "bonus": null,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 3,
+            "dice": "d20",
+            "bonus": null,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "uiERCQa7Lz2W8maT",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 91,
+      "page": null,
       "artist": ""
     },
-    "size": "gargantuan"
+    "size": "gargantuan",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "G7jiltRjgvVhZewm",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Adult Flickerfly",
     "displayName": 0,
@@ -234,9 +246,9 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null,
-                "consumeOnSuccess": false
+                "consumeOnSuccess": false,
+                "itemId": null
               }
             ],
             "uses": {
@@ -252,21 +264,25 @@
             },
             "name": "Spotlight: Relentless",
             "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "fFOhhMl4SDUnYNNO",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -277,7 +293,7 @@
       "name": "Never Misses",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] makes an attack, the target’s Evasion is halved against the attack.</p>",
+        "description": "<p>When the @Lookup[@name] makes an attack, the target's Evasion is halved against the attack.</p>",
         "resource": null,
         "actions": {
           "VRGPnDhDpReXUZZF": {
@@ -291,7 +307,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [
               {
@@ -305,11 +322,19 @@
             },
             "name": "Halve Evasion",
             "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "PrwC6RpsP12fPUwy",
       "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
@@ -317,7 +342,6 @@
         {
           "name": "Never Misses",
           "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.G7jiltRjgvVhZewm.Item.PrwC6RpsP12fPUwy",
           "transfer": false,
           "_id": "ia0NUIOxE3RHb45P",
           "type": "base",
@@ -327,9 +351,16 @@
                 "key": "system.evasion",
                 "type": "override",
                 "value": "@system.evasion / 2",
-                "priority": 10
+                "priority": 10,
+                "phase": "initial"
               }
-            ]
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "duration": {
             "value": null,
@@ -338,7 +369,7 @@
             "expired": false
           },
           "disabled": false,
-          "description": "<p>When the Flickerfly makes an attack, the target’s Evasion is halved against the attack.</p>",
+          "description": "<p>When the Flickerfly makes an attack, the target's Evasion is halved against the attack.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -346,15 +377,14 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!G7jiltRjgvVhZewm.PrwC6RpsP12fPUwy.ia0NUIOxE3RHb45P"
         }
       ],
       "folder": null,
       "sort": 200000,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -380,46 +410,51 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d8",
-                    "bonus": null,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": null,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": true,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "direct": true,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -455,24 +490,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "veryClose",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "BuL6ndgaiJtjaM2T",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -483,7 +521,7 @@
       "name": "Mind Dance",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target’s fears.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the @Lookup[@name] learns one of the target's fears.</p>",
         "resource": null,
         "actions": {
           "GNwsDlCabx3fiG4g": {
@@ -498,18 +536,20 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": ""
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -545,24 +585,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "bOTsfXr9yNIGkIzK",
       "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -587,36 +630,43 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d8",
-                    "bonus": 3,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": 3,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "magical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
                 },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
+              },
+              "resources": {
                 "hope": {
                   "value": {
                     "custom": {
@@ -637,14 +687,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              }
             },
             "target": {
               "type": "any",
@@ -680,9 +729,15 @@
                 "type": "placed",
                 "shape": "inFront",
                 "size": "far",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           },
           "lBhmLc33pcXzJHT3": {
             "type": "countdown",
@@ -705,7 +760,6 @@
               {
                 "name": "Hallucinatory Breath",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/magic/air/fog-gas-smoke-purple.webp",
                 "progress": {
                   "looping": "looping",
@@ -714,27 +768,28 @@
                   "startFormula": "1d6",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": null
               }
             ],
             "name": "Start Countdown",
             "img": "icons/magic/air/fog-gas-smoke-purple.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "49cIxZRFiAM6jDva",
       "img": "icons/magic/air/fog-gas-smoke-purple.webp",
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -760,13 +815,16 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -775,22 +833,25 @@
             },
             "name": "Mark Stress",
             "img": "icons/skills/movement/arrow-upward-yellow.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "KLdLRKoJHBJlHwYe",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -804,18 +865,16 @@
         "description": "<p>While flying the @Lookup[@name] can move up to Far range instead of Close range before taking an action.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "multiclassOrigin": false
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "WFRpSDZvqF0Upjoy",
       "img": "icons/skills/movement/feet-winged-boots-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 700000,
-      "ownership": {
-        "default": 0,
-        "fBcTgyTzoARBvohY": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

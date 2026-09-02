@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "KmaX6wNBLzkFevaG",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you would take magic damage, you can <strong>spend any number of Hope</strong> to roll that many <strong>d6s</strong>. If any roll a 6, the attack is reflected back to the caster, dealing the damage to them instead.</p>",
+    "description": "<p>When you would take magic damage, you can <strong>spend any number of Hope</strong> to roll that many <strong>d6s</strong>. If any roll a 6, the attack is reflected back to the caster, dealing the damage to them instead.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "45ywf6Juwz4mmn9j",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you would take magic damage, you can <strong>spend any number of Hope</strong> to roll that many <strong>d6s</strong>. If any roll a 6, the attack is reflected back to the caster, dealing the damage to them instead.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,8 @@
             "key": "hope",
             "value": 1,
             "step": 1,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -63,21 +64,30 @@
         },
         "name": "Reflect Back",
         "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 120,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "JzSvxy9Mu3RJp1jV",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!JzSvxy9Mu3RJp1jV"
 }

@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 10,
-        "isReversed": true
+        "max": 10
       },
       "stress": {
         "value": 0,
-        "max": 5,
-        "isReversed": true
+        "max": 5
       }
     },
     "motivesAndTactics": "Devour, regenerate, terrify",
@@ -38,32 +36,6 @@
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 3,
     "description": "<p>A quadrupedal scaled beast with multiple long-necked heads, each filled with menacing fangs.</p>",
     "attack": {
@@ -71,57 +43,97 @@
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
       "roll": {
         "bonus": 3,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "range": "close",
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 2,
-              "dice": "d12",
-              "bonus": 2,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 2,
+            "dice": "d12",
+            "bonus": 2,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "diNJAbg19O77pivi",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 94,
+      "page": null,
       "artist": ""
     },
-    "size": "huge"
+    "size": "huge",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "MI126iMOOobQ1Obn",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Hydra",
     "displayName": 0,
@@ -224,21 +236,23 @@
           "type": "simple",
           "value": 3,
           "max": "5",
-          "icon": ""
+          "icon": "",
+          "recovery": null,
+          "progression": "increasing",
+          "diceStates": {},
+          "dieFaces": "d4"
         },
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "Lg40vTEegQh2He7A",
       "img": "icons/creatures/reptiles/lizard-mouth-glowing-red.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -249,21 +263,19 @@
       "name": "Relentless (X)",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name] can be spotlighted X times per GM turn, where X is the @Lookup[@name]’s number of heads. Spend Fear as usual to spotlight them.</p><section class=\"secret\" id=\"secret-AOW6OiOMzL5FUfWv\"><p><br />Note: Automation is not added so manually spend fear as per text.</p></section>",
+        "description": "<p>The @Lookup[@name] can be spotlighted X times per GM turn, where X is the @Lookup[@name]'s number of heads. Spend Fear as usual to spotlight them.</p><section class=\"secret\" id=\"secret-AOW6OiOMzL5FUfWv\"><p><br>Note: Automation is not added so manually spend fear as per text.</p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "nwIjDjpLGfuXNYvA",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -289,16 +301,20 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "hitPoints": {
                   "value": {
                     "custom": {
@@ -319,13 +335,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "self",
@@ -349,22 +365,25 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/life/cross-beam-green.webp",
-            "range": "self"
+            "range": "self",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "b2KflqWoOxHMQf97",
       "img": "icons/magic/life/cross-beam-green.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -389,10 +408,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "hope": {
                   "value": {
                     "custom": {
@@ -405,7 +426,6 @@
                     "bonus": null
                   },
                   "applyTo": "hope",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -414,13 +434,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  }
+                  },
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              }
             },
             "target": {
               "type": "any",
@@ -436,24 +456,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "far",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "bCeCu8M25izOAsuY",
       "img": "icons/magic/death/skull-energy-light-white.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -464,7 +487,7 @@
       "name": "Magical Weakness",
       "type": "feature",
       "system": {
-        "description": "<p>When the @Lookup[@name] takes magic damage, they become Dazed until the next roll with Fear. While Dazed, they can’t use their Regeneration action but are immune to magic damage.</p>",
+        "description": "<p>When the @Lookup[@name] takes magic damage, they become Dazed until the next roll with Fear. While Dazed, they can't use their Regeneration action but are immune to magic damage.</p>",
         "resource": null,
         "actions": {
           "heAkvOuQG1EJmVbb": {
@@ -478,7 +501,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [
               {
@@ -492,12 +516,19 @@
             },
             "name": "Become Dazed",
             "img": "icons/magic/symbols/star-rising-purple.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "sJzjcRBgYRp5f53E",
       "img": "icons/magic/symbols/star-rising-purple.webp",
@@ -505,7 +536,6 @@
         {
           "name": "Dazed",
           "img": "icons/magic/symbols/star-rising-purple.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.MI126iMOOobQ1Obn.Item.sJzjcRBgYRp5f53E",
           "transfer": false,
           "_id": "iBJ3YhEkVsGKEIVk",
           "type": "base",
@@ -515,13 +545,17 @@
                 "key": "system.resistance.magical.immunity",
                 "value": 1,
                 "priority": null,
-                "type": "override"
+                "type": "override",
+                "phase": "initial"
               }
             ],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the next roll with Fear.</span></p>"
-            }
+              "description": "<p>Until the next roll with Fear.</p>"
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -530,7 +564,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>While Dazed, they can’t use their Regeneration action but are immune to magic damage.</p>",
+          "description": "<p>While Dazed, they can't use their Regeneration action but are immune to magic damage.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -553,10 +587,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

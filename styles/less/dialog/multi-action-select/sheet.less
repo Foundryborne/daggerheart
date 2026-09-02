@@ -1,0 +1,46 @@
+.application.daggerheart.dh-style.dialog.multi-action-dialog {
+    .window-content {
+        padding-top: 0;
+    }
+
+    .multi-action-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .actions-instructions {
+            text-align: center;
+            font-size: var(--font-size-24);
+        }
+
+        .actions-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+
+            .action-container {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                border-radius: 6px;
+                border: 1px solid @color-border;
+                color: light-dark(@dark, @beige);
+                background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+                &:hover {
+                    filter: drop-shadow(0 0 3px @color-border);
+                }
+
+                img {
+                    width: 40px;
+                    border-radius: 6px 0px 0px 6px;
+                }
+
+                span {
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

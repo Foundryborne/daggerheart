@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "KwZYrsSUYnHiNtPl",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Transform:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p><p class=\"Card-Feature\"><em><strong>Eternal Enervation:</strong> </em>Once per long rest, make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become permanently <em>Vulnerable</em>. They can’t clear this condition by any means.</p>",
+    "description": "<p><em><strong>Transform:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p><p><em><strong>Eternal Enervation:</strong> </em>Once per long rest, make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become permanently <em>Vulnerable</em>. They can't clear this condition by any means.</p>",
     "domain": "codex",
     "recallCost": 4,
     "level": 9,
@@ -14,18 +14,19 @@
         "type": "attack",
         "_id": "etnR1OKzpLWrx2os",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "self",
@@ -59,24 +60,31 @@
         },
         "name": "Transform",
         "img": "icons/containers/barrels/barrel-reinforced-cherry-brown.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "h7i4ZuDYuYLnjze6": {
         "type": "attack",
         "_id": "h7i4ZuDYuYLnjze6",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become permanently <em>Vulnerable</em>. They can’t clear this condition by any means.</p>",
+        "description": "<p>Once per long rest, make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become permanently <em>Vulnerable</em>. They can't clear this condition by any means.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -110,14 +118,26 @@
         },
         "name": "Eternal Enervation",
         "img": "icons/magic/unholy/hand-light-green.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 126,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "SZMNR3uGNinJcN4N",
@@ -126,22 +146,24 @@
     {
       "name": "Transform",
       "img": "icons/containers/barrels/barrel-reinforced-cherry-brown.webp",
-      "origin": "Compendium.daggerheart.domains.Item.SZMNR3uGNinJcN4N",
       "transfer": false,
       "_id": "ntQfpTcXyEL76vCK",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You've transformed into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p>",
       "tint": "#ffffff",
@@ -151,29 +173,34 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!SZMNR3uGNinJcN4N.ntQfpTcXyEL76vCK"
     },
     {
       "name": "Eternal Enervation",
       "img": "icons/magic/unholy/hand-light-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.SZMNR3uGNinJcN4N",
       "transfer": false,
       "_id": "y44r3c91m06WKSiq",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p>Permanently <em>Vulnerable</em>. They can’t clear this condition by any means.</p>",
+      "description": "<p>Permanently <em>Vulnerable</em>. They can't clear this condition by any means.</p>",
       "tint": "#ffffff",
       "statuses": [
         "vulnerable"
@@ -183,11 +210,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!SZMNR3uGNinJcN4N.y44r3c91m06WKSiq"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!SZMNR3uGNinJcN4N"
 }

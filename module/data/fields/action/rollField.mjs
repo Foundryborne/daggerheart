@@ -58,7 +58,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 
     getFormula() {
         if (!this.type) return;
-        let formula = '';
+        let formula;
         switch (this.type) {
             case 'diceSet':
                 const multiplier =
@@ -87,7 +87,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 if (this.type === CONFIG.DH.GENERAL.rollTypes.attack.id)
                     modifiers.push({
                         label: 'Bonus to Hit',
-                        value: this.bonus ?? this.parent.actor.system.attack.roll.bonus ?? 0
+                        value: this.bonus ?? this.parent.actor.system.attack?.roll.bonus ?? 0
                     });
                 break;
             default:

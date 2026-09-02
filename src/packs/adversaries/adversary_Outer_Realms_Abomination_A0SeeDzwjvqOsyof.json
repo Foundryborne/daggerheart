@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 7,
-        "isReversed": true
+        "max": 7
       },
       "stress": {
         "value": 0,
-        "max": 5,
-        "isReversed": true
+        "max": 5
       }
     },
     "resistance": {
@@ -37,32 +35,6 @@
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 4,
     "description": "<p>A chaotic mockery of life, constantly in flux.</p>",
     "motivesAndTactics": "Demolish, devour, undermine",
@@ -71,57 +43,97 @@
       "range": "veryClose",
       "roll": {
         "bonus": 4,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 4,
-              "dice": "d6",
-              "bonus": 13,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "magical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 4,
+            "dice": "d6",
+            "bonus": 13,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "magical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "img": "icons/creatures/tentacles/tentacle-earth-green.webp",
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "RVZdDKJHyBH3fI4t",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 99,
+      "page": null,
       "artist": ""
     },
-    "size": "large"
+    "size": "large",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "A0SeeDzwjvqOsyof",
   "sort": 700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Outer Realms Abomination",
     "displayName": 0,
@@ -222,18 +234,16 @@
         "description": "<p>When the @Lookup[@name] attacks, roll <strong>2d4</strong> and use the result as their attack modifier.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "yGeHxe8Loe21QSgH",
       "img": "icons/magic/symbols/question-stone-yellow.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -258,11 +268,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -296,11 +307,19 @@
             },
             "name": "Roll Save",
             "img": "icons/magic/perception/eye-slit-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "CoWjh12FkhDGYIie",
       "img": "icons/magic/perception/eye-slit-pink.webp",
@@ -308,7 +327,6 @@
         {
           "name": "Disorienting Presence",
           "img": "icons/magic/perception/eye-slit-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.CoWjh12FkhDGYIie",
           "transfer": false,
           "_id": "rpkjVdlJYI5dB99B",
           "type": "base",
@@ -318,19 +336,23 @@
                 "key": "system.disadvantageSources",
                 "type": "add",
                 "value": "On your next action roll.",
-                "priority": null
+                "priority": null,
+                "phase": "initial"
               }
-            ]
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>Disadvantage on your next action roll.</p>",
           "tint": "#ffffff",
@@ -340,15 +362,14 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!A0SeeDzwjvqOsyof.CoWjh12FkhDGYIie.rpkjVdlJYI5dB99B"
         }
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -373,12 +394,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": ""
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -419,14 +440,21 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "far",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "K3MQO1I42nmfM2F2",
       "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
@@ -434,15 +462,18 @@
         {
           "name": "Unstuck From Reality",
           "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.K3MQO1I42nmfM2F2",
           "transfer": false,
           "_id": "edEZER9ImWicMwRb",
           "type": "base",
           "system": {
             "changes": [],
             "duration": {
-              "type": "scene"
-            }
+              "type": "scene",
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -451,7 +482,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Signika, 'Palatino Linotype', sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Unstuck from reality until the end of the scene. When you spend Hope or mark Armor Slots, HP, or Stress, you must double the amount spent or marked.</span></p>",
+          "description": "<p>Unstuck from reality until the end of the scene. When you spend Hope or mark Armor Slots, HP, or Stress, you must double the amount spent or marked.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -474,10 +505,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -502,11 +529,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -535,22 +563,25 @@
             },
             "name": "Roll d20",
             "img": "icons/magic/unholy/orb-contained-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "u9dR2Qh3swHZalXj",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

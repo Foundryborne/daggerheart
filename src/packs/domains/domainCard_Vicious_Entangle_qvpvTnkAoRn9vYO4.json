@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <em>Restraining</em> the target.</p><p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <em>Restraining</em> the target.</p><p>Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 1,
@@ -21,38 +21,42 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d8",
-                "bonus": 1
+          "main": {
+            "resultBased": false,
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "physical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d8",
+              "bonus": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "base": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -86,13 +90,19 @@
         },
         "name": "Cast",
         "img": "icons/magic/nature/vines-thorned-curled-glow-teal.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "vh1IKRvsU4w57lBt": {
         "type": "effect",
         "_id": "vh1IKRvsU4w57lBt",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
+        "description": "<p>Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -100,13 +110,16 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -120,14 +133,26 @@
         },
         "name": "Restrain Another",
         "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 130,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "qvpvTnkAoRn9vYO4",
@@ -136,15 +161,18 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "Xh0wrgRUuYpwChBU",
       "type": "base",
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -178,15 +206,18 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "2xzOqTaPJQzGqFJv",
       "type": "base",
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -218,8 +249,5 @@
       "_key": "!items.effects!qvpvTnkAoRn9vYO4.2xzOqTaPJQzGqFJv"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!qvpvTnkAoRn9vYO4"
 }

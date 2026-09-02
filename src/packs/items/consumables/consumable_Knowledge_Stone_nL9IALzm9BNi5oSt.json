@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "We38aIuxBrv8zhfr",
         "systemPath": "actions",
-        "description": "<p>If you die while holding this stone, an ally can take a card from your loadout to place in their loadout or vault. After they take this knowledge, the stone crumbles.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -36,23 +37,26 @@
         },
         "name": "Use",
         "img": "icons/commodities/treasure/token-engraved-blue-glowing.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 9500000,
   "flags": {},
   "_key": "!items!nL9IALzm9BNi5oSt"
 }

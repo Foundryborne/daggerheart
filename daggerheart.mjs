@@ -20,11 +20,13 @@ import {
 import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
+import { pick } from './module/helpers/utils.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
-CONFIG.Dice.rolls = [Roll = BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
+globalThis.Roll = BaseRoll;
+CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll, FateRoll];
 CONFIG.Dice.daggerheart = {
     DHRoll: DHRoll,
     DualityRoll: DualityRoll,
@@ -41,6 +43,8 @@ CONFIG.RegionBehavior.dataModels = {
 Object.assign(CONFIG.Dice.termTypes, dice.diceTypes);
 CONFIG.Dice.terms.d = die.BaseDie;
 CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
+
+CONFIG.Folder.documentClass = documents.DhFolder;
 
 CONFIG.Actor.documentClass = documents.DhpActor;
 CONFIG.Actor.dataModels = models.actors.config;
@@ -130,6 +134,9 @@ Hooks.once('init', () => {
         makeDefault: true
     });
 
+    DocumentSheetConfig.unregisterSheet(foundry.documents.Folder, 'core', foundry.applications.sheets.FolderConfig);
+    DocumentSheetConfig.registerSheet(foundry.documents.Folder, SYSTEM.id, applications.sheetConfigs.DhFolderConfig);
+
     const sheetLabel = typePath => () =>
         game.i18n.format('DAGGERHEART.GENERAL.typeSheet', {
             type: game.i18n.localize(typePath)
@@ -191,6 +198,11 @@ Hooks.once('init', () => {
         types: ['beastform'],
         makeDefault: true,
         label: sheetLabel('TYPES.Item.beastform')
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Transformation, {
+        types: ['transformation'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.transformation')
     });
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
@@ -260,8 +272,18 @@ Hooks.once('init', () => {
 
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
-
-    return handlebarsRegistration();
+    handlebarsRegistration();
+    
+    // Firefox can't handle mixed unit calcs until the nightly (156)
+    // Until then, they must be fixed size
+    const userAgent = navigator.userAgent ?? '';
+    const firefoxVersionMatch = userAgent.match(/\bFirefox\/(\d+\.\d+)\b/);
+    if (firefoxVersionMatch) {
+        const version = Number(firefoxVersionMatch[1]);
+        if (version < 156) {
+            document.body.classList.add('dh-old-firefox-cards');
+        }
+    }
 });
 
 Hooks.on('i18nInit', () => {
@@ -316,10 +338,14 @@ Hooks.on('setup', () => {
             value: [...actorCommon.value, 'evasion', 'levelData.level.current']
         }
     };
+
+    // Setup enricher on window
+    enricherRenderSetup(window.document);
 });
 
 Hooks.on('ready', async () => {
     const appearanceSettings = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
+    const homebrewSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew);
     ui.resources = new CONFIG.ui.resources();
     if (appearanceSettings.displayFear !== 'hide') ui.resources.render({ force: true });
 
@@ -345,24 +371,26 @@ Hooks.on('ready', async () => {
         }
     }
 
+    // Remove any homebrew domains that is a core domain (or at least any configured as such)
+    const coreDomains = Object.keys(CONFIG.DH.DOMAIN.domains);
+    const homebrewDomains = Object.keys(homebrewSettings.domains);
+    if (homebrewDomains.some(d => coreDomains.includes(d))) {
+        const validKeys = homebrewDomains.filter(d => !coreDomains.includes(d));
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, {
+            ...homebrewSettings.toObject(true),
+            domains: pick(homebrewSettings.domains, validKeys)
+        });
+    }
+
+
     runMigrations();
 });
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (document, element) => {
-    enricherRenderSetup(element);
-    const cssClass = document.flags?.daggerheart?.cssClass;
-    if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
-});
-
-Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {
-    enricherRenderSetup(element);
-});
-
-Hooks.on('renderHandlebarsApplication', (_, element) => {
-    enricherRenderSetup(element);
-});
+Hooks.on('openDetachedWindow', (_, window) => {
+    enricherRenderSetup(window.document);
+})
 
 Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
     if (data.openForAllPlayers && data.partyId) {
@@ -387,6 +415,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
         await dialog.render({ force: true });
     }
 });
+
+Hooks.on(CONFIG.DH.HOOKS.hooksConfig.downtimeTrigger, applications.sheets.actors.Party.downtimeMoveQuery);
 
 const updateActorsRangeDependentEffects = async token => {
     if (!token) return;
@@ -470,7 +500,7 @@ Hooks.on('canvasReady', canas => {
 });
 
 /** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */
-Hooks.on('renderDialogV2', (_dialog, html) => {
+Hooks.on('renderDialogV2', (dialog, html) => {
     if (!html.classList.contains('dialog')) return;
     const cls = html.classList.contains('item-create')
         ? documents.DHItem.implementation
@@ -485,16 +515,38 @@ Hooks.on('renderDialogV2', (_dialog, html) => {
     const nameInput = html.querySelector('input[name=name]');
     if (!form || !select || !submit || !nameInput) return;
 
-    nameInput.placeholder = cls.defaultName({});
-    const emptyOption = document.createElement('option');
-    emptyOption.value = '';
-    emptyOption.selected = true;
-    select.required = true;
-    select.prepend(emptyOption);
-    submit.addEventListener('click', event => {
-        if (!form.reportValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    });
+    const defaultEntity = dialog.options.defaultEntity;
+    if (!defaultEntity) {
+        nameInput.placeholder = cls.defaultName({});
+        const emptyOption = document.createElement('option');
+        emptyOption.selected = true;
+        select.required = true;
+        select.prepend(emptyOption);
+        submit.addEventListener('click', event => {
+            if (!form.reportValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+    } else {
+        const { pack, parent } = dialog.options;
+        nameInput.placeholder = cls.defaultName({ type: defaultEntity, pack, parent });
+        select.querySelector(`option[value=${defaultEntity}]`).selected = true;
+    }
+});
+
+Hooks.on('renderRollResolver', (document, html) => {
+    for (const [termId, data] of document.fulfillable) {
+        const dualityLabel = 
+            data.term.modifiers.includes('h') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.hope`) }) : 
+                data.term.modifiers.includes('f') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.fear`) }) : 
+                    null;
+
+        if (!dualityLabel) continue;
+        
+        const legend = html.querySelector(`.input-grid[data-term-id=${termId}] legend`);
+        if (!legend) continue;
+        
+        legend.childNodes[0].nodeValue = `${dualityLabel} `;
+    }
 });

@@ -7,14 +7,12 @@
   "system": {
     "description": "",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {},
+    "gmNotes": ""
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!Yum0uBtnEtTBcpax"
 }

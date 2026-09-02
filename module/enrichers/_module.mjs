@@ -1,58 +1,68 @@
-import { default as DhDamageEnricher, renderDamageButton } from './DamageEnricher.mjs';
-import { default as DhDualityRollEnricher, renderDualityButton } from './DualityRollEnricher.mjs';
-import { default as DhFateRollEnricher, renderFateButton } from './FateRollEnricher.mjs';
-import { default as DhEffectEnricher } from './EffectEnricher.mjs';
-import { default as DhTemplateEnricher, renderMeasuredTemplate } from './TemplateEnricher.mjs';
-import { default as DhLookupEnricher } from './LookupEnricher.mjs';
+import { DhDamageEnricher, renderDamageButton } from './DamageEnricher.mjs';
+import { DhDualityRollEnricher, renderDualityButton } from './DualityRollEnricher.mjs';
+import { DhFateRollEnricher, renderFateButton } from './FateRollEnricher.mjs';
+import { DhEffectEnricher } from './EffectEnricher.mjs';
+import { DhTemplateEnricher, renderMeasuredTemplate } from './TemplateEnricher.mjs';
+import { DhLookupEnricher } from './LookupEnricher.mjs';
+import { DhResolveEnricher } from './ResolveEnricher.mjs';
+import { DhEmbedTableEnricher } from './EmbedTableEnricher.mjs';
 
 export { DhDamageEnricher, DhDualityRollEnricher, DhEffectEnricher, DhTemplateEnricher, DhFateRollEnricher };
 
+// @todo standardize enricher regex and use match labels
 export const enricherConfig = [
     {
-        pattern: /@Damage\[([^\[\]]*)\]({[^}]*})?/g,
+        pattern: /@Damage\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhDamageEnricher
     },
     {
-        pattern: /\[\[\/dr\s?(.*?)\]\]({[^}]*})?/g,
+        pattern: /\[\[\/dr\s?(.*?)\]\](?:{([^}]*)})?/g,
         enricher: DhDualityRollEnricher
     },
     {
-        pattern: /\[\[\/fr\s?(.*?)\]\]({[^}]*})?/g,
+        pattern: /\[\[\/fr\s?(.*?)\]\](?:{([^}]*)})?/g,
         enricher: DhFateRollEnricher
     },
     {
-        pattern: /@Effect\[([^\[\]]*)\]({[^}]*})?/g,
+        pattern: /@Effect\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhEffectEnricher
     },
     {
-        pattern: /@Template\[([^\[\]]*)\]({[^}]*})?/g,
+        pattern: /@Template\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhTemplateEnricher
     },
     {
-        pattern: /@Lookup\[([^\[\]]*)\]({[^}]*})?/g,
+        pattern: /@Lookup\[([^[\]]*)\](?:{([^}]*)})?/g,
         enricher: DhLookupEnricher
+    },
+    {
+        pattern: /@Resolve\[([^[\]]*)\](?:{([^}]*)})?/g,
+        enricher: DhResolveEnricher
+    },
+    {
+        pattern: /@EmbedTable\[([^[\]]*)\]/g,
+        enricher: DhEmbedTableEnricher
     }
 ];
 
-export const enricherRenderSetup = element => {
-    const clickWrapper = func => event => {
-        event.stopPropagation();
-        func(event);
-    };   
-
-    element
-        .querySelectorAll('.enriched-damage-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderDamageButton)));
-
-    element
-        .querySelectorAll('.duality-roll-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderDualityButton)));
-
-    element
-        .querySelectorAll('.fate-roll-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderFateButton)));
-
-    element
-        .querySelectorAll('.measured-template-button')
-        .forEach(element => element.addEventListener('click', clickWrapper(renderMeasuredTemplate)));
-};
+/** 
+ * Setups up a listener for inline roll links on the element. Should be called on window.document and any popout windows.
+ * @param {HTMLDocument} element
+ */
+export function enricherRenderSetup(element) {
+    element.addEventListener('click', event => {
+        if (event.target.closest('.enriched-damage-button')) {
+            event.stopPropagation();
+            return renderDamageButton(event);
+        } else if (event.target.closest('.duality-roll-button')) {
+            event.stopPropagation();
+            return renderDualityButton(event);
+        } else if (event.target.closest('.fate-roll-button')) {
+            event.stopPropagation();
+            return renderFateButton(event);
+        } else if (event.target.closest('.measured-template-button')) {
+            event.stopPropagation();
+            return renderMeasuredTemplate(event);
+        }
+    }, { passive: true });
+}

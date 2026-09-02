@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "j9i2Q6Z7Z82udHn1",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Adjust Appearance:</strong></em> You magically shift your appearance and clothing to avoid recognition.</p><p class=\"Card-Feature\"><em><strong>Parallela:</strong></em><strong> Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p><p class=\"Card-Feature\"><em><strong>Illusion:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
+    "description": "<p><em><strong>Adjust Appearance:</strong></em> You magically shift your appearance and clothing to avoid recognition.</p><p><em><strong>Parallela:</strong></em><strong> Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p><p><em><strong>Illusion:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 2,
@@ -14,14 +14,15 @@
         "type": "effect",
         "_id": "cc1ahwawL16OEu2r",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">You magically shift your appearance and clothing to avoid recognition.</p>",
+        "description": "<p>You magically shift your appearance and clothing to avoid recognition.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -35,13 +36,19 @@
         },
         "name": "Adjust Appearance",
         "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "wBQkw3P4Esj6kOx2": {
         "type": "effect",
         "_id": "wBQkw3P4Esj6kOx2",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\"><strong>Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p>",
+        "description": "<p><strong>Spend 2 Hope</strong> to cast this spell on yourself or an ally within Close range. The next time the target makes an attack, they can hit an additional target within range that their attack roll would succeed against. You can only hold this spell on one creature at a time.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -49,13 +56,16 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -69,24 +79,31 @@
         },
         "name": "Parallela",
         "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "rsyxORrTH5oU2DkV": {
         "type": "attack",
         "_id": "rsyxORrTH5oU2DkV",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within Melee range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -115,14 +132,26 @@
         },
         "name": "Illusion",
         "img": "icons/magic/control/silhouette-hold-change-green.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 124,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "eq8VNqYMRHhF9xw9",
@@ -131,22 +160,24 @@
     {
       "name": "Parallela",
       "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
-      "origin": "Compendium.daggerheart.domains.Item.eq8VNqYMRHhF9xw9",
       "transfer": false,
       "_id": "klUaU5KeQCu7KCBI",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>The next time you make an attack, you can hit an additional target within range that your attack roll would succeed against.</p>",
       "tint": "#ffffff",
@@ -156,27 +187,32 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!eq8VNqYMRHhF9xw9.klUaU5KeQCu7KCBI"
     },
     {
       "name": "Adjust Appearance",
       "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
-      "origin": "Compendium.daggerheart.domains.Item.eq8VNqYMRHhF9xw9",
       "transfer": false,
       "_id": "wnrHSvvB6pydTVcC",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>You magically shift your appearance and clothing to avoid recognition.</p>",
       "tint": "#ffffff",
@@ -186,11 +222,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!eq8VNqYMRHhF9xw9.wnrHSvvB6pydTVcC"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!eq8VNqYMRHhF9xw9"
 }

@@ -1,0 +1,20 @@
+{
+  "type": "feature",
+  "name": "Immovable",
+  "folder": "dSAccOl5ccgXPyje",
+  "_id": "CvUVZRfxgxhmRQ9I",
+  "img": "icons/magic/defensive/shield-barrier-glowing-triangle-orange.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>While you're touching the ground, you can't be lifted or moved against your will.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "featureForm": "passive",
+    "granter": null
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!CvUVZRfxgxhmRQ9I"
+}

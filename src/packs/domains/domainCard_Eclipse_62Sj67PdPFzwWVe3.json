@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8qr1Y2tW3vLwNZOg",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. Once per long rest on a success, plunge the entire area within Far range into complete darkness only you and your allies can see through. Attack rolls have disadvantage when targeting you or an ally within this shadow.</p><p class=\"Body-Foundation\">Additionally, when you or an ally succeeds with Hope against an adversary within this shadow, the target must mark a Stress.</p><p class=\"Body-Foundation\">This spell lasts until the GM spends a <strong>Fear</strong> on their turn to clear this effect or you take Severe damage.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (16)</strong>. Once per long rest on a success, plunge the entire area within Far range into complete darkness only you and your allies can see through. Attack rolls have disadvantage when targeting you or an ally within this shadow.</p><p>Additionally, when you or an ally succeeds with Hope against an adversary within this shadow, the target must mark a Stress.</p><p>This spell lasts until the GM spends a <strong>Fear</strong> on their turn to clear this effect or you take Severe damage.</p>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 10,
@@ -25,8 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -67,9 +67,15 @@
             "type": "placed",
             "shape": "emanation",
             "size": "far",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       },
       "rvkNiqCr8N6t6KPo": {
         "type": "damage",
@@ -82,10 +88,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -106,13 +114,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -121,14 +129,26 @@
         "effects": [],
         "name": "Target Marks Stress",
         "img": "icons/skills/wounds/anatomy-organ-brain-pink-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 129,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "62Sj67PdPFzwWVe3",
@@ -137,7 +157,6 @@
     {
       "name": "In the Eclipse",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
-      "origin": "Compendium.daggerheart.domains.Item.62Sj67PdPFzwWVe3",
       "transfer": false,
       "_id": "ARMcw2FtKfaYr902",
       "type": "base",
@@ -147,9 +166,16 @@
             "key": "system.disadvantageSources",
             "value": "Attacking you or an ally within this eclipse's shadow",
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -158,7 +184,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Attack rolls</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> have </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">disadvantage</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> when targeting you or an ally within this shadow.</p>",
+      "description": "<p>Attack rolls have disadvantage when targeting you or an ally within this shadow.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -172,8 +198,5 @@
       "_key": "!items.effects!62Sj67PdPFzwWVe3.ARMcw2FtKfaYr902"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!62Sj67PdPFzwWVe3"
 }

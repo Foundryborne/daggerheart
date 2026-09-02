@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 6,
-        "isReversed": true
+        "max": 6
       },
       "stress": {
         "value": 0,
-        "max": 3,
-        "isReversed": true
+        "max": 3
       }
     },
     "motivesAndTactics": "Ambush, feed, grapple, poison",
@@ -44,32 +42,6 @@
         "description": ""
       }
     },
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 1,
     "description": "<p>A human-sized insect with tearing claws and a stinging tail.</p>",
     "attack": {
@@ -77,57 +49,97 @@
       "img": "icons/creatures/claws/pincer-crab-brown.webp",
       "roll": {
         "bonus": 1,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "dice": "d12",
-              "bonus": 2,
-              "multiplier": "flat",
-              "flatMultiplier": 1
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "dice": "d12",
+            "bonus": 2,
+            "multiplier": "flat",
+            "flatMultiplier": 1
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "type": "attack",
       "range": "melee",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "eUkgLpljdidmySWd",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 76,
+      "page": null,
       "artist": ""
     },
-    "size": "medium"
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "fmfntuJ8mHRCAktP",
   "sort": 4200000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Giant Scorpion",
     "displayName": 0,
@@ -138,12 +150,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -194,7 +203,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -220,7 +229,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -244,44 +254,51 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d12",
-                    "bonus": 2,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": true,
+                "direct": false,
+                "fullRestore": false,
+                "groupAttack": ""
               },
-              "includeBase": false
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -310,21 +327,23 @@
             },
             "name": "Attack",
             "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
-            "range": "melee"
+            "range": "melee",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -337,7 +356,7 @@
       "_id": "lANiDkxxth2sGacT",
       "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
       "system": {
-        "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>spend a Fear</strong> to deal <strong>1d4+4</strong> physical damage and Poison them until their next rest or they succeed on a Knowledge Roll (16). While Poisoned, the target must roll a <strong>d6</strong> before they make an action roll. On a result of 4 or lower, they must mark a Stress. </p>",
+        "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>spend a Fear</strong> to deal <strong>1d4+4</strong> physical damage and Poison them until their next rest or they succeed on a Knowledge Roll (16). While Poisoned, the target must roll a <strong>d6</strong> before they make an action roll. On a result of 4 or lower, they must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "ZkcplnqoMP7dH9F4": {
@@ -351,38 +370,42 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d4",
-                    "bonus": 4,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 1,
+                  "dice": "d4",
+                  "bonus": 4,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "fullRestore": false
               },
-              "includeBase": false
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -416,27 +439,36 @@
             },
             "name": "Attack",
             "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "effects": [
         {
           "name": "Poisoned",
           "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.fmfntuJ8mHRCAktP.Item.lANiDkxxth2sGacT",
           "transfer": false,
           "_id": "oILkLJlGNZl7KI1R",
           "type": "base",
           "system": {
             "changes": [],
             "duration": {
-              "type": "shortRest"
-            }
+              "type": "shortRest",
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -468,10 +500,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -502,7 +530,8 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "fear": {
                   "value": {
                     "custom": {
@@ -527,10 +556,9 @@
                       "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "any",
@@ -554,21 +582,23 @@
             },
             "name": "Gain Fear",
             "img": "icons/skills/melee/strike-weapons-orange.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

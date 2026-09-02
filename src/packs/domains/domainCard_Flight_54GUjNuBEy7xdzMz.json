@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "mOv6BGhJAeGrzA84",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. On a success, place a number of tokens equal to your Agility on this card (minimum 1). When you make an action roll while flying, spend a token from this card. After the action that spends the last token is resolved, you descend to the ground directly below you.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. On a success, place a number of tokens equal to your Agility on this card (minimum 1). When you make an action roll while flying, spend a token from this card. After the action that spends the last token is resolved, you descend to the ground directly below you.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "sAE4ZDLyU9CmNzES",
         "systemPath": "actions",
-        "description": "<p>Make a </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">Spellcast Roll</strong></span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"> (15)</span>. On a success, place a number of tokens equal to your </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Agility</span> on this card (minimum 1).</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> (15). On a success, place a number of tokens equal to your Agility on this card (minimum 1).</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -25,8 +25,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -60,7 +60,13 @@
         },
         "name": "Cast",
         "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "2wzlrOPefdowBtRr": {
         "type": "effect",
@@ -92,20 +98,35 @@
         },
         "name": "Spend Token",
         "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": {
       "type": "simple",
       "value": 0,
       "max": "",
-      "icon": ""
+      "icon": "",
+      "recovery": null,
+      "progression": "increasing",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 119,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "54GUjNuBEy7xdzMz",
@@ -114,24 +135,26 @@
     {
       "name": "Flying",
       "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
-      "origin": "Compendium.daggerheart.domains.Item.54GUjNuBEy7xdzMz",
       "transfer": false,
       "_id": "gd8crfrvMGWXLWGP",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You can fly. When you make an action roll while flying, spend a token from this card. After the action that spends the last token is resolved, you descend to the ground directly below you.</p>",
+      "description": "<p>You can fly. When you make an action roll while flying, spend a token from this card. After the action that spends the last token is resolved, you descend to the ground directly below you.</p>",
       "tint": "#ffffff",
       "statuses": [
         "fly"
@@ -141,11 +164,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!54GUjNuBEy7xdzMz.gd8crfrvMGWXLWGP"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!54GUjNuBEy7xdzMz"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "XDSp0FdiYDVO0tfw",
   "system": {
-    "description": "<p class=\"Body-Foundation\">While you’re wearing armor, gain a +1 bonus to your Armor Score.</p><p class=\"Body-Foundation\">During a rest, when you choose to repair your armor as a downtime move, your allies also clear an Armor Slot.</p>",
+    "description": "<p>While you're wearing armor, gain a +1 bonus to your Armor Score.</p><p>During a rest, when you choose to repair your armor as a downtime move, your allies also clear an Armor Slot.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 5,
@@ -14,17 +14,19 @@
         "type": "healing",
         "_id": "Z864RtY6fR5Cnrx9",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">During a rest, when you choose to repair your armor as a downtime move, your allies also clear an Armor Slot.</p>",
+        "description": "<p>During a rest, when you choose to repair your armor as a downtime move, your allies also clear an Armor Slot.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "armor": {
               "value": {
                 "custom": {
@@ -45,13 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "friendly",
@@ -75,14 +77,26 @@
         },
         "name": "Repair Armor",
         "img": "icons/tools/hand/hammer-and-nail.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "cy8GjBPGc9w9RaGO",
@@ -99,10 +113,18 @@
             "priority": 20,
             "value": {
               "max": "1",
-              "interaction": "active"
+              "interaction": "active",
+              "current": 0,
+              "damageThresholds": null
             }
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "tJw2JIPcT9hEMRXg",
       "img": "icons/tools/hand/hammer-and-nail.webp",
@@ -113,8 +135,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While you’re wearing armor, gain a +1 bonus to your </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" class=\"tooltip-convert\">Armor Score</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">.</span></p>",
-      "origin": null,
+      "description": "<p>While you're wearing armor, gain a +1 bonus to your Armor Score.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -129,8 +150,5 @@
       "_key": "!items.effects!cy8GjBPGc9w9RaGO.tJw2JIPcT9hEMRXg"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!cy8GjBPGc9w9RaGO"
 }

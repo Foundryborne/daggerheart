@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "PeeIjbkBv41613yZ",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you’re targeted by an attack made from beyond Melee range, you can <strong>mark a Stress</strong> to roll a <strong>d4</strong> and gain a bonus to your Evasion equal to the result against the attack.</p>",
+    "description": "<p>When you're targeted by an attack made from beyond Melee range, you can <strong>mark a Stress</strong> to roll a <strong>d4</strong> and gain a bonus to your Evasion equal to the result against the attack.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "lVyTDd44pGJgF3w7",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When you’re targeted by an attack made from beyond Melee range, you can <strong>mark a Stress</strong> to roll a <strong>d4</strong> and gain a bonus to your Evasion equal to the result against the attack.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,8 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "self",
@@ -63,21 +64,30 @@
         },
         "name": "Roll d4",
         "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 122,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Kp6RejHGimnuoBom",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Kp6RejHGimnuoBom"
 }

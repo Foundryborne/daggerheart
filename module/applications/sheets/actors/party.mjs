@@ -98,8 +98,10 @@ export default class PartySheet extends DHBaseActorSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
+        context.isGM = game.user.isGM;
         context.showStats =
             settings.hidePartyStats === 'never' || (settings.hidePartyStats === 'players' && game.user.isGM);
+            
         return context;
     }
 
@@ -111,6 +113,7 @@ export default class PartySheet extends DHBaseActorSheet {
                 break;
             case 'partyMembers':
                 await this._prepareMembersContext(context, options);
+                break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
                 break;
@@ -143,8 +146,8 @@ export default class PartySheet extends DHBaseActorSheet {
         for (const actor of this.document.system.partyMembers) {
             const weapons = [];
             if (actor.type === 'character') {
-                if (actor.system.usedUnarmed) {
-                    weapons.push(actor.system.usedUnarmed);
+                if (actor.system.usesUnarmed) {
+                    weapons.push(actor.system.attack);
                 }
                 const equipped = actor.items.filter(i => i.system.equipped && i.type === 'weapon');
                 weapons.push(...sortBy(equipped, i => (i.system.secondary ? 1 : 0)));

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sCiN7DoysdKceIMd",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to make a <strong>Spellcast Roll</strong> and conjure throwing blades that strike out at all targets within Very Close range. Targets you succeed against take <strong>d8+2</strong> magic damage using your Proficiency.</p><p class=\"Body-Foundation\">If a target you hit is <em>Vulnerable</em>, they take an extra <strong>1d8</strong> damage.</p>",
+    "description": "<p><strong>Spend a Hope</strong> to make a <strong>Spellcast Roll</strong> and conjure throwing blades that strike out at all targets within Very Close range. Targets you succeed against take <strong>d8+2</strong> magic damage using your Proficiency.</p><p>If a target you hit is <em>Vulnerable</em>, they take an extra <strong>1d8</strong> damage.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 1,
@@ -22,44 +22,50 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": 2,
-                "flatMultiplier": 1
+          "main": {
+            "resultBased": false,
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "prof",
+              "dice": "d8",
+              "bonus": 2,
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "base": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -95,23 +101,32 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 128,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Ucenef6JpjQxwXni",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Ucenef6JpjQxwXni"
 }

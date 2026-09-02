@@ -1,7 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
-import { parseRallyDice, setDiceSoNiceForDualityRoll, shouldUseHopeFearAutomation } from '../helpers/utils.mjs';
-import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
+import { parseRallyDice, shouldUseHopeFearAutomation } from '../helpers/utils.mjs';
 import { updateResourcesForDualityReroll } from './helpers.mjs';
 
 export default class DualityRoll extends D20Roll {
@@ -13,9 +12,7 @@ export default class DualityRoll extends D20Roll {
         this.rallyChoices = this.setRallyChoices();
         this.guaranteedCritical = options.guaranteedCritical;
 
-        const advantageFaces = data.rules?.roll?.defaultAdvantageDice
-            ? Number.parseInt(data.rules.roll.defaultAdvantageDice)
-            : 6;
+        const advantageFaces = data.rules?.roll?.advantageFaces ? Number.parseInt(data.rules.roll.advantageFaces) : 6;
         this.advantageFaces = Number.isNaN(advantageFaces) ? 6 : advantageFaces;
     }
 
@@ -91,17 +88,17 @@ export default class DualityRoll extends D20Roll {
 
     get isCritical() {
         if (this.guaranteedCritical) return true;
-        if (!this.dHope._evaluated || !this.dFear._evaluated) return;
+        if (!this.dHope._evaluated || !this.dFear._evaluated) return false;
         return this.dHope.total === this.dFear.total;
     }
 
     get withHope() {
-        if (!this._evaluated || this.guaranteedCritical) return;
+        if (!this._evaluated || this.guaranteedCritical) return false;
         return this.dHope.total > this.dFear.total;
     }
 
     get withFear() {
-        if (!this._evaluated || this.guaranteedCritical) return;
+        if (!this._evaluated || this.guaranteedCritical) return false;
         return this.dHope.total < this.dFear.total;
     }
 
@@ -134,12 +131,12 @@ export default class DualityRoll extends D20Roll {
     createBaseDice() {
         this.terms = [this.terms[0], this.terms[1], this.terms[2]];
 
-        this.terms[0] = new game.system.api.dice.diceTypes.HopeDie({
-            faces: this.terms[0]?.faces ?? this.data.rules.dualityRoll?.defaultHopeDice ?? 12
+        this.terms[0] = new game.system.api.dice.diceTypes.HopeDie({ 
+            faces: this.terms[0]?.faces ?? this.data.rules.dualityRoll?.defaultHopeDice ?? 12 
         });
         this.terms[1] = new foundry.dice.terms.OperatorTerm({ operator: '+' });
-        this.terms[2] = new game.system.api.dice.diceTypes.FearDie({
-            faces: this.terms[2]?.faces ?? this.data.rules.dualityRoll?.defaultFearDice ?? 12
+        this.terms[2] = new game.system.api.dice.diceTypes.FearDie({ 
+            faces: this.terms[2]?.faces ?? this.data.rules.dualityRoll?.defaultFearDice ?? 12 
         });
     }
 
@@ -150,7 +147,10 @@ export default class DualityRoll extends D20Roll {
                 ? game.system.api.dice.diceTypes.DisadvantageDie
                 : null;
         if (advDieClass) {
-            const advDie = new advDieClass({ faces: this.advantageFaces, number: this.advantageNumber });
+            const modifier = this.hasAdvantage ? 'a' : 'd';
+            const advDie = new advDieClass({ 
+                faces: this.advantageFaces, number: this.advantageNumber, modifiers: [modifier] 
+            });
             if (this.terms.length < 4) {
                 if (this.advantageNumber > 1) advDie.modifiers = ['kh'];
                 this.terms.push(
@@ -267,14 +267,6 @@ export default class DualityRoll extends D20Roll {
     
     /** @inheritdoc */
     static async buildPost(roll, config, message) {
-        await setDiceSoNiceForDualityRoll(
-            roll,
-            config.roll.advantage.type,
-            config.roll.hope.dice,
-            config.roll.fear.dice,
-            config.roll.advantage.dice
-        );
-
         await super.buildPost(roll, config, message);
 
         await DualityRoll.dualityUpdate(config);
@@ -374,7 +366,8 @@ export default class DualityRoll extends D20Roll {
 
         if (looseSpotlight && game.combat?.active) {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
-            if (currentCombatant?.actorId == config.data.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
+            if (currentCombatant && currentCombatant.actorId == config.data.id)
+                ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
     }
 
@@ -383,18 +376,7 @@ export default class DualityRoll extends D20Roll {
         const rerolled = DualityRoll.fromData((await super.reroll(options)).toJSON());
 
         if (options?.liveRoll) {
-            if (game.modules.get('dice-so-nice')?.active) {
-                const diceAppearance = await getDiceSoNicePresets(
-                    rerolled,
-                    rerolled.dHope.denomination,
-                    rerolled.dFear.denomination
-                );
-                rerolled.dHope.options.appearance = diceAppearance.hope.appearance;
-                rerolled.dFear.options.appearance = diceAppearance.fear.appearance;
-                if (rerolled.dAdvantage) rerolled.dAdvantage.options.appearance = diceAppearance.advantage.appearance;
-                if (rerolled.dDisadvantage)
-                    rerolled.dDisadvantage.options.appearance = diceAppearance.disadvantage.appearance;
-
+            if (game.dice3d) {
                 await game.dice3d.showForRoll(rerolled, game.user, true);
             } else {
                 foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });

@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 9,
-        "isReversed": true
+        "max": 9
       },
       "stress": {
         "value": 0,
-        "max": 4,
-        "isReversed": true
+        "max": 4
       }
     },
     "motivesAndTactics": "Consume, hound, maim, terrify",
@@ -38,32 +36,6 @@
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 4,
     "description": "<p>A towering, muscular zombie with magically infused strength and skill.</p>",
     "attack": {
@@ -72,56 +44,96 @@
       "range": "veryClose",
       "roll": {
         "bonus": 4,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 4,
-              "dice": "d12",
-              "bonus": 15,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "flatMultiplier": 4,
+            "dice": "d12",
+            "bonus": 15,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "ThvfgVfn5Kle9ABF",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 101,
+      "page": null,
       "artist": ""
     },
-    "size": "large"
+    "size": "large",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "CP6iRfHdyFWniTHY",
   "sort": 800000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Perfected Zombie",
     "displayName": 0,
@@ -233,10 +245,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "hope": {
                   "value": {
                     "custom": {
@@ -249,7 +263,6 @@
                     "bonus": null
                   },
                   "applyTo": "hope",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -258,13 +271,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  }
+                  },
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              }
             },
             "target": {
               "type": "any",
@@ -280,23 +293,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "far",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "xyz5d7QISdB5X5ey",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -307,21 +324,19 @@
       "name": "Fearsome Presence",
       "type": "feature",
       "system": {
-        "description": "<p>PCs can’t spend Hope to use features against the @Lookup[@name].</p>",
+        "description": "<p>PCs can't spend Hope to use features against the @Lookup[@name].</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "0viJMAsPBNLq2azj",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -347,45 +362,51 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 4,
-                    "dice": "d12",
-                    "bonus": 15,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": true,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -417,7 +438,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Mark Stress",
             "img": "icons/skills/melee/strike-axe-energy-pink.webp",
             "range": "veryClose",
             "areas": [
@@ -426,14 +447,21 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "veryClose",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "CKy2r6FguyTSO9Fm",
       "img": "icons/skills/melee/strike-axe-energy-pink.webp",
@@ -441,7 +469,6 @@
         {
           "name": "Perfect Strike",
           "img": "icons/skills/melee/strike-axe-energy-pink.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.CP6iRfHdyFWniTHY.Item.CKy2r6FguyTSO9Fm",
           "transfer": false,
           "_id": "Q5eeh0B6qaXFS1Ck",
           "type": "base",
@@ -450,7 +477,10 @@
             "duration": {
               "type": "shortRest",
               "description": ""
-            }
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": true,
           "duration": {
@@ -484,10 +514,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -498,7 +524,7 @@
       "name": "Skilled Opportunist",
       "type": "feature",
       "system": {
-        "description": "<p>When another adversary deals damage to a target within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to add the @Lookup[@name]’s standard attack damage to the damage roll.</p>",
+        "description": "<p>When another adversary deals damage to a target within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to add the @Lookup[@name]'s standard attack damage to the damage roll.</p>",
         "resource": null,
         "actions": {
           "To2z7XQItxcMxKBp": {
@@ -512,7 +538,8 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -521,22 +548,25 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "hWxjmdc1O5J1otLM",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

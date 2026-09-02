@@ -30,13 +30,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 7,
-        "isReversed": true
+        "max": 7
       },
       "stress": {
         "value": 0,
-        "max": 5,
-        "isReversed": true
+        "max": 5
       }
     },
     "attack": {
@@ -67,35 +65,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 4,
-              "dice": "d12",
-              "bonus": 4,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+            "flatMultiplier": 4,
+            "dice": "d12",
+            "bonus": 4,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "actionType": "action",
@@ -103,14 +104,21 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "baseAction": false,
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "experiences": {
       "vHEB38ko8sY3S0ox": {
@@ -119,39 +127,16 @@
         "description": ""
       }
     },
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 100,
+      "page": null,
       "artist": ""
     },
-    "size": "gargantuan"
+    "size": "gargantuan",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Molten Scourge",
@@ -265,9 +250,9 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null,
-                "consumeOnSuccess": false
+                "consumeOnSuccess": false,
+                "itemId": null
               }
             ],
             "uses": {
@@ -283,21 +268,25 @@
             },
             "name": "Spotlight: Relentless",
             "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "DVtxHnbvNDz2POSD",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -311,18 +300,16 @@
         "description": "<p>When the @Lookup[@name] takes damage, roll a number of d6s equal to HP marked. For each result of 4 or higher, you gain a Fear.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "Tw3PBsg0Vo74N3pm",
       "img": "icons/commodities/leather/scales-brown.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -348,44 +335,50 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 4,
-                    "dice": "d8",
-                    "bonus": 1,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 4,
+                  "dice": "d8",
+                  "bonus": 1,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "fullRestore": false
               },
-              "includeBase": false
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -414,22 +407,25 @@
             },
             "name": "Attack",
             "img": "icons/creatures/abilities/tail-swipe-green.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "bpjpHxf6tj4i3H4r",
       "img": "icons/creatures/abilities/tail-swipe-green.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -440,7 +436,7 @@
       "name": "Eruption",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the @Lookup[@name]’s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the @Lookup[@name] enters that area or acts while inside of it, they must mark 6 HP.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the @Lookup[@name]'s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the @Lookup[@name] enters that area or acts while inside of it, they must mark 6 HP.</p>",
         "resource": null,
         "actions": {
           "OpwKa8tQQoaEIZiS": {
@@ -454,39 +450,43 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 4,
-                    "dice": "d6",
-                    "bonus": 6,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 4,
+                  "dice": "d6",
+                  "bonus": 6,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -522,24 +522,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "veryClose",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "NuksKUrbf4yj4vR2",
       "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -565,17 +568,20 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false
+              "main": null,
+              "resources": {}
             },
             "target": {
               "type": "self",
@@ -604,53 +610,67 @@
             },
             "name": "Roll d10",
             "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "LBNvfABGWcrygpQM": {
             "type": "attack",
             "_id": "LBNvfABGWcrygpQM",
             "systemPath": "actions",
-            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">The </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">@Lookup[@name] </span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-family: &#x27;Montserrat, sans-serif&#x27;\">2d10+4</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"> physical damage, mark </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-family: &#x27;Montserrat, sans-serif&#x27;\">1d4</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"> Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</span></p>",
+            "description": "<p>The @Lookup[@name] breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take 2d10+4 physical damage, mark 1d4 Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 4,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": 4,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
                 },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
+              },
+              "resources": {
                 "stress": {
                   "value": {
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     },
                     "flatMultiplier": 1,
                     "dice": "d4",
@@ -658,7 +678,6 @@
                     "multiplier": "flat"
                   },
                   "applyTo": "stress",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -667,13 +686,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  }
+                  },
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              }
             },
             "target": {
               "type": "any",
@@ -714,14 +733,21 @@
                 "type": "placed",
                 "shape": "inFront",
                 "size": "far",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "2mK8kxfp2WBUeBri",
       "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
@@ -729,7 +755,6 @@
         {
           "name": "Volcanic Breath",
           "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.eArAPuB38CNR0ZIM.Item.2mK8kxfp2WBUeBri",
           "transfer": false,
           "_id": "xmzA6NC9zrulhzQs",
           "type": "base",
@@ -738,7 +763,10 @@
             "duration": {
               "type": "temporary",
               "description": "<p>Until you clear a Stress.</p>"
-            }
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -772,10 +800,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -800,39 +824,42 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 4,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": 4,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": true,
+                "fullRestore": false
               },
-              "includeBase": false,
-              "direct": true
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -841,22 +868,25 @@
             "effects": [],
             "name": "Damage",
             "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
-            "range": "veryClose"
+            "range": "veryClose",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "3VdQdUDULZCQPvLZ",
       "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -897,22 +927,20 @@
               }
             },
             "name": "Transform",
-            "range": ""
+            "range": "",
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "qYFoyDSdZ5X2h245",
       "img": "icons/magic/fire/flame-burning-eye.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -922,10 +950,6 @@
   ],
   "effects": [],
   "sort": 200000,
-  "ownership": {
-    "default": 0,
-    "99pQVoplilbkZnOk": 3
-  },
   "flags": {},
   "_key": "!actors!eArAPuB38CNR0ZIM"
 }

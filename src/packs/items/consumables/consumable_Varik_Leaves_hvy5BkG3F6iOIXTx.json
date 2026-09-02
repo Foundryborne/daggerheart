@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "9e4l2Yiy8uV26SQF",
         "systemPath": "actions",
-        "description": "<p>You can eat these paired leaves to immediately gain 2 Hope.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,10 +27,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hope": {
               "value": {
                 "custom": {
@@ -51,13 +53,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "",
@@ -81,23 +83,26 @@
         },
         "name": "Eat",
         "img": "icons/consumables/plants/leaf-serrated-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 60,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 8600000,
   "flags": {},
   "_key": "!items!hvy5BkG3F6iOIXTx"
 }

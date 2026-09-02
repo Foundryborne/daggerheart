@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "D7EE2L2Y96nfrfTW",
         "systemPath": "actions",
-        "description": "<p>When you fail a roll that utilized one of your Experiences, you can <strong>mark a Stress</strong> to reroll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,13 +20,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -35,24 +38,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/magic/control/silhouette-hold-change-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 30,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!BNofV1UC4ZbdFTkb"
 }

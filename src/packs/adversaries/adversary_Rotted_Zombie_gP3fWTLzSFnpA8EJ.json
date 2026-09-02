@@ -21,32 +21,6 @@
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "difficulty": 8,
     "tier": 1,
     "description": "<p>A decaying corpse ambling toward their prey.</p>",
@@ -54,67 +28,112 @@
       "name": "Bite",
       "roll": {
         "bonus": -3,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": true,
-                "formula": "2"
-              },
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": true,
+              "formula": "2"
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
-        }
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
       "type": "attack",
       "range": "melee",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "s47hfydhnXhLGhm5",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "resources": {
       "hitPoints": {
+        "value": 0,
         "max": 1
       },
       "stress": {
+        "value": 0,
         "max": 1
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 83,
+      "page": null,
       "artist": ""
     },
-    "size": "medium"
+    "size": "medium",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20,
+    "damageThresholds": {
+      "major": 0,
+      "severe": 0
+    }
   },
   "flags": {},
   "_id": "gP3fWTLzSFnpA8EJ",
   "sort": 4300000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Rotted Zombie",
     "displayName": 0,
@@ -217,17 +236,14 @@
         "description": "<p>The @Lookup[@name] is defeated when they take any damage. For every 3 damage a PC deals to the @Lookup[@name], defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "subType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -272,39 +288,39 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "applyTo": "hitPoints",
-                  "resultBased": false,
-                  "value": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": true,
-                      "formula": "2"
-                    }
-                  },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "base": false,
-                  "type": [
-                    "physical"
-                  ]
-                }
+              "main": {
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": true,
+                    "formula": "2"
+                  }
+                },
+                "valueAlt": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
+                  }
+                },
+                "base": false,
+                "type": [
+                  "physical"
+                ],
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "close",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "direct": false,
-              "groupAttack": "close"
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -332,21 +348,18 @@
               "damageMod": "none"
             },
             "name": "Spend Fear",
-            "range": ""
+            "range": "",
+            "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

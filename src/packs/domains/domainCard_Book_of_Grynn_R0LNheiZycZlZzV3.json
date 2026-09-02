@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "rUGDM9JvGfhh9a2Y",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Arcane Deflection:</strong></em> Once per long rest, <strong>spend a Hope</strong> to negate the damage of an attack targeting you or an ally within Very Close range.</p><p class=\"Card-Feature\"><em><strong>Time Lock:</strong></em> Target an object within Far range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <strong>Spellcast Roll</strong> against them to maintain this spell.</p><p><em><strong>Wall of Flame:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, create a temporary wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p>",
+    "description": "<p><em><strong>Arcane Deflection:</strong></em> Once per long rest, <strong>spend a Hope</strong> to negate the damage of an attack targeting you or an ally within Very Close range.</p><p><em><strong>Time Lock:</strong></em> Target an object within Far range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <strong>Spellcast Roll</strong> against them to maintain this spell.</p><p><em><strong>Wall of Flame:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, create a temporary wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "2pyqgdVZDCUQPYaj",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Once per long rest, <strong>spend a Hope</strong> to negate the damage of an attack targeting you or an ally within Very Close range.</p>",
+        "description": "<p>Once per long rest, <strong>spend a Hope</strong> to negate the damage of an attack targeting you or an ally within Very Close range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,13 +23,15 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -38,20 +40,27 @@
         },
         "name": "Arcane Deflection",
         "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
-        "range": "veryClose"
+        "range": "veryClose",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "0vUkyQiGHTFS3Api": {
         "type": "effect",
         "_id": "0vUkyQiGHTFS3Api",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Target an object within Far range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <strong>Spellcast Roll</strong> against them to maintain this spell.</p>",
+        "description": "<p>Target an object within Far range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <strong>Spellcast Roll</strong> against them to maintain this spell.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -60,51 +69,61 @@
         },
         "name": "Time Lock",
         "img": "icons/magic/time/hourglass-yellow-green.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "K26kfjmTEH9zPMMO": {
         "type": "attack",
         "_id": "K26kfjmTEH9zPMMO",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (15)</strong>. On a success, create a temporary wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. On a success, create a temporary wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
-            "hitPoints": {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 4,
-                "dice": "d10",
-                "bonus": 3
+          "main": {
+            "resultBased": false,
+            "value": {
+              "custom": {
+                "enabled": false,
+                "formula": ""
               },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
+              "multiplier": "flat",
+              "flatMultiplier": 4,
+              "dice": "d10",
+              "bonus": 3
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "base": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
               }
-            }
+            },
+            "includeBase": false,
+            "direct": false,
+            "fullRestore": false
           },
-          "includeBase": false
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -140,23 +159,32 @@
             "type": "placed",
             "shape": "line",
             "size": "far",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 125,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "R0LNheiZycZlZzV3",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!R0LNheiZycZlZzV3"
 }

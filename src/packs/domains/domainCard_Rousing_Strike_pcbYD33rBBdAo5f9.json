@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "XDSp0FdiYDVO0tfw",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, when you critically succeed on an attack, you and all allies who can see or hear you can clear a Hit Point or <strong>1d4</strong> Stress.</p>",
+    "description": "<p>Once per rest, when you critically succeed on an attack, you and all allies who can see or hear you can clear a Hit Point or <strong>1d4</strong> Stress.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 5,
@@ -14,14 +14,15 @@
         "type": "effect",
         "_id": "rnt24R8xyeyBrJS0",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, when you critically succeed on an attack, you and all allies who can see or hear you can clear a Hit Point or <strong>1d4</strong> Stress.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "shortRest"
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -30,21 +31,30 @@
         },
         "name": "Critically Succeed",
         "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "pcbYD33rBBdAo5f9",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!pcbYD33rBBdAo5f9"
 }

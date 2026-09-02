@@ -1,0 +1,116 @@
+{
+  "type": "feature",
+  "name": "Walk Between Worlds",
+  "folder": "y4bIi7tPBdhHfvAj",
+  "_id": "VMjYY6MPqVhyKgM7",
+  "img": "icons/magic/light/light-lantern-lit-white.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null
+    },
+    "description": "<p>During a moment of calm, make a <strong>Spellcast Roll (13)</strong>. Once per rest on a success, you can <strong>mark a Stress</strong> to step beyond the veil of death and converse with any nearby spirits. Place a number of tokens equal to your Spellcast trait on this card and remove one each time a spirit answers a question. When the last token is removed or at the end of the scene, you return to the Mortal Realm in the same spot you left it.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": null,
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-ghost"
+    },
+    "actions": {
+      "KPwMmCHMYD1ByXDt": {
+        "type": "healing",
+        "_id": "KPwMmCHMYD1ByXDt",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "VMjYY6MPqVhyKgM7",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@cast"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 13,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Spellcast Roll",
+        "range": "self"
+      }
+    },
+    "featureForm": "passive",
+    "granter": null
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!VMjYY6MPqVhyKgM7"
+}

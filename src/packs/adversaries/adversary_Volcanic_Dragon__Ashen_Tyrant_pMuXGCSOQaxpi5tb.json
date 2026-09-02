@@ -5,7 +5,7 @@
   "_id": "pMuXGCSOQaxpi5tb",
   "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "system": {
-    "description": "<p><em>No enemy has ever had the insolence to wound the dragon so. As the lava settles, it’s ground to ash like the dragon’s past foes.</em></p>",
+    "description": "<p><em>No enemy has ever had the insolence to wound the dragon so. As the lava settles, it's ground to ash like the dragon's past foes.</em></p>",
     "resistance": {
       "physical": {
         "resistance": false,
@@ -30,13 +30,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 8,
-        "isReversed": true
+        "max": 8
       },
       "stress": {
         "value": 0,
-        "max": 5,
-        "isReversed": true
+        "max": 5
       }
     },
     "attack": {
@@ -67,35 +65,38 @@
         "useDefault": false
       },
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 4,
-              "dice": "d12",
-              "bonus": 15,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "base": false
-          }
+            "flatMultiplier": 4,
+            "dice": "d12",
+            "bonus": 15,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "resultBased": false,
+          "valueAlt": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "bonus": null,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
         },
-        "includeBase": false
+        "resources": {}
       },
       "description": "",
       "actionType": "action",
@@ -103,14 +104,21 @@
       "uses": {
         "value": null,
         "max": null,
-        "recovery": null
+        "recovery": null,
+        "consumeOnSuccess": false
       },
       "effects": [],
       "save": {
         "trait": null,
         "difficulty": null,
         "damageMod": "none"
-      }
+      },
+      "baseAction": false,
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "triggers": [],
+      "areas": []
     },
     "experiences": {
       "wOdWWjFaanbmRXYg": {
@@ -119,39 +127,16 @@
         "description": ""
       }
     },
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "motivesAndTactics": "Choke, fly, intimidate, kill or be killed",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 101,
+      "page": null,
       "artist": ""
     },
-    "size": "gargantuan"
+    "size": "gargantuan",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Ashen Tyrant",
@@ -265,9 +250,9 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null,
-                "consumeOnSuccess": false
+                "consumeOnSuccess": false,
+                "itemId": null
               }
             ],
             "uses": {
@@ -283,21 +268,25 @@
             },
             "name": "Spotlight: Relentless",
             "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "saz3Vr0xgfAl10tU",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -323,13 +312,16 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -338,21 +330,25 @@
             },
             "name": "Mark Stress",
             "img": "icons/magic/symbols/mask-metal-silver-white.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "8d4bCyFvNq3NymUK",
       "img": "icons/magic/symbols/mask-metal-silver-white.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -366,8 +362,10 @@
         "description": "<p>While flying, the @Lookup[@name] gains a +1 bonus to their Difficulty.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "jOojMjb779Kea1ZV",
       "img": "icons/commodities/biological/wing-green.webp",
@@ -380,25 +378,28 @@
               {
                 "key": "system.difficulty",
                 "type": "add",
-                "value": "1",
-                "priority": null
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
               }
-            ]
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "_id": "zCi90lgFAaA7yrJG",
           "img": "icons/commodities/biological/wing-green.webp",
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>While flying, the Ashen Tyrant gains a +1 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -407,15 +408,14 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!pMuXGCSOQaxpi5tb.jOojMjb779Kea1ZV.zCi90lgFAaA7yrJG"
         }
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -426,7 +426,7 @@
       "name": "Ashes to Ashes",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC rolls a failure while within Close range of the @Lookup[@name], they lose a Hope and you gain a Fear. If the PC can’t lose a Hope, they must mark a HP.</p>",
+        "description": "<p>When a PC rolls a failure while within Close range of the @Lookup[@name], they lose a Hope and you gain a Fear. If the PC can't lose a Hope, they must mark a HP.</p>",
         "resource": null,
         "actions": {
           "q6gbeIrGMII6IeiM": {
@@ -440,10 +440,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "hope": {
                   "value": {
                     "custom": {
@@ -456,7 +458,6 @@
                     "bonus": null
                   },
                   "applyTo": "hope",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -465,13 +466,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  }
+                  },
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              }
             },
             "target": {
               "type": "any",
@@ -487,23 +488,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "LeOYwp1GhN59NIHa",
       "img": "icons/magic/fire/flame-burning-skull-orange.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -528,36 +533,43 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d20",
-                    "bonus": 2,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 2,
+                  "dice": "d20",
+                  "bonus": 2,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
                 },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
+              },
+              "resources": {
                 "stress": {
                   "value": {
                     "custom": {
@@ -570,7 +582,6 @@
                     "bonus": null
                   },
                   "applyTo": "stress",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -579,13 +590,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  }
+                  },
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false,
-              "groupAttack": ""
+              }
             },
             "target": {
               "type": "any",
@@ -621,24 +632,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "close",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "AXhSVGL33i0j6DAw",
       "img": "icons/creatures/abilities/tail-swipe-green.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -664,13 +678,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -686,24 +703,27 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "far",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "ggCol5LQ2ZpeQjly",
       "img": "icons/magic/air/fog-gas-smoke-brown.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -728,39 +748,43 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d10",
-                    "bonus": 10,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 2,
+                  "dice": "d10",
+                  "bonus": 10,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -801,9 +825,15 @@
                 "type": "placed",
                 "shape": "emanation",
                 "size": "far",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           },
           "rZ7IwBnDzw7VmBT6": {
             "type": "countdown",
@@ -835,7 +865,6 @@
               {
                 "name": "Apocalyptic Thrasing",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -844,17 +873,22 @@
                   "startFormula": "1d12",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": null
               }
             ],
             "name": "Start Countdown",
             "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "uWiyaJPXcoW06pOM",
       "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
@@ -862,7 +896,6 @@
         {
           "name": "Apocalyptic Thrasing",
           "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb.Item.uWiyaJPXcoW06pOM",
           "transfer": false,
           "_id": "YUjdwrEZ4zn7WR9X",
           "type": "base",
@@ -871,7 +904,10 @@
             "duration": {
               "type": "temporary",
               "description": "<p>Until you break free with a successful Strength Roll.</p>"
-            }
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "disabled": false,
           "duration": {
@@ -905,10 +941,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -918,10 +950,6 @@
   ],
   "effects": [],
   "sort": 500000,
-  "ownership": {
-    "default": 0,
-    "99pQVoplilbkZnOk": 3
-  },
   "flags": {},
   "_key": "!actors!pMuXGCSOQaxpi5tb"
 }

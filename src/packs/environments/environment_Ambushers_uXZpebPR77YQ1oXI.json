@@ -13,18 +13,13 @@
     "impulses": "Escape, group up, protect the most vulnerable",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 103,
+      "page": null,
       "artist": ""
     }
   },
   "flags": {},
   "_id": "uXZpebPR77YQ1oXI",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Ambushers",
     "displayName": 0,
@@ -125,18 +120,16 @@
         "description": "<p>The Difficulty of this environment equals that of the adversary with the highest Difficulty.</p><section class=\"secret\" id=\"secret-zPYO0951x4IKM5FN\"><p><em>Which adversary is the least prepared? Which one is the most?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "hAGzlRjI3lpadVs7",
       "img": "icons/environment/people/charge.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -162,13 +155,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 2,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -177,22 +173,25 @@
             },
             "name": "Lose Fear",
             "img": "icons/skills/wounds/injury-face-impact-orange.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "b6Qviz1ANG8OrAYq",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

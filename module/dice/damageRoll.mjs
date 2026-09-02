@@ -37,7 +37,8 @@ export default class DamageRoll extends DHRoll {
             roll.roll.options = {
                 ...roll.roll.options,
                 damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
-                fullRestore: !!roll.fullRestore
+                fullRestore: !!roll.fullRestore,
+                itemId: roll.itemId
             };
             return roll.roll;
         }
@@ -71,7 +72,7 @@ export default class DamageRoll extends DHRoll {
             : getDocumentClass('ChatMessage').applyMode({}, config.rollMode ?? 'public');
 
         const diceRolls = [];
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             config.mute = true;
             const pool = foundry.dice.terms.PoolTerm.fromRolls([
                 ...(config.damage.main ? [config.damage.main] : []),

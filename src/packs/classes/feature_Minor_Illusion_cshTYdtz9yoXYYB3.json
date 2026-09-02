@@ -23,8 +23,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -53,23 +53,26 @@
         },
         "name": "Cast",
         "img": "icons/magic/unholy/hands-cloud-light-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 22,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!cshTYdtz9yoXYYB3"
 }

@@ -23,18 +23,13 @@
     "impulses": "Cast the unready down to a rocky doom, draw people in with promise of what lies at the top",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 104,
+      "page": null,
       "artist": ""
     }
   },
   "flags": {},
   "_id": "LPpfdlNKqiZIl04w",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Cliffside Ascent",
     "displayName": 0,
@@ -156,7 +151,6 @@
               {
                 "name": "The Climb",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -165,26 +159,28 @@
                   "startFormula": "12",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": null
               }
             ],
             "name": "Start Countdown",
             "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "bKBwM72OwVnlsHG6",
       "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -209,10 +205,12 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "stress": {
                   "value": {
                     "custom": {
@@ -225,7 +223,6 @@
                     "bonus": null
                   },
                   "applyTo": "stress",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -234,12 +231,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
-                  }
+                  },
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "any",
@@ -248,21 +246,25 @@
             "effects": [],
             "name": "Mark Stress",
             "img": "icons/tools/fasteners/pin-spiked.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "t8ZbtlGiYC8MKqqu",
       "img": "icons/tools/fasteners/pin-spiked.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -273,7 +275,7 @@
       "name": "Fall",
       "type": "feature",
       "system": {
-        "description": "<p>Spend a Fear to have a PC’s handhold fail, plummeting them toward the ground. If they aren’t saved on the next action, they hit the ground and tick up the countdown by 2. The PC takes <strong>1d12</strong> physical damage if the countdown is between 8 and 12, <strong>2d12</strong> between 4 and 7, and <strong>3d12</strong> at 3 or lower.</p><section class=\"secret\" id=\"secret-M5AEA24dk07O00FA\"><p><em>How can you tell many others have fallen here before? What lives in these walls that might try to scare adventurers into falling for an easy meal?</em></p></section>",
+        "description": "<p>Spend a Fear to have a PC's handhold fail, plummeting them toward the ground. If they aren't saved on the next action, they hit the ground and tick up the countdown by 2. The PC takes <strong>1d12</strong> physical damage if the countdown is between 8 and 12, <strong>2d12</strong> between 4 and 7, and <strong>3d12</strong> at 3 or lower.</p><section class=\"secret\" id=\"secret-M5AEA24dk07O00FA\"><p><em>How can you tell many others have fallen here before? What lives in these walls that might try to scare adventurers into falling for an easy meal?</em></p></section>",
         "resource": null,
         "actions": {
           "LVEPUPIAJJMiCtbV": {
@@ -287,36 +289,40 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d12",
-                    "bonus": null,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 1,
+                  "dice": "d12",
+                  "bonus": null,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "fullRestore": false
               },
-              "includeBase": false
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -325,7 +331,13 @@
             "effects": [],
             "name": "Roll 1d12",
             "img": "icons/skills/movement/arrow-down-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "F9B1uVeil6z1ZWoz": {
             "type": "damage",
@@ -338,36 +350,40 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d12",
-                    "bonus": null,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 2,
+                  "dice": "d12",
+                  "bonus": null,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "fullRestore": false
               },
-              "includeBase": false
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -376,7 +392,13 @@
             "effects": [],
             "name": "Roll 2d12",
             "img": "icons/skills/movement/arrow-down-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "gx8HEZvgf3yO9WOp": {
             "type": "damage",
@@ -389,36 +411,40 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d12",
-                    "bonus": null,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 3,
+                  "dice": "d12",
+                  "bonus": null,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "fullRestore": false
               },
-              "includeBase": false
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -427,7 +453,13 @@
             "effects": [],
             "name": "Roll 3d12",
             "img": "icons/skills/movement/arrow-down-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "M8MfD2qBfYCwNKvH": {
             "type": "effect",
@@ -441,13 +473,16 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -456,22 +491,25 @@
             },
             "name": "Spend Fear",
             "img": "icons/skills/movement/arrow-down-pink.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "EP4FXeQqbqFGQoIX",
       "img": "icons/skills/movement/arrow-down-pink.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

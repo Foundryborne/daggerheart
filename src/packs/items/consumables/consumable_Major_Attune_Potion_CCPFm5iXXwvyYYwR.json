@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "zerWKpcBvtiaUfaw",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your Instinct until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/bottle-round-corked-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Major Attune Potion",
       "img": "icons/consumables/potions/bottle-round-corked-pink.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.CCPFm5iXXwvyYYwR",
       "transfer": false,
       "_id": "v2EXGXbJaewaMxFC",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.traits.instinct.value",
             "type": "add",
             "value": 1,
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,11 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 2500000,
   "flags": {},
   "_key": "!items!CCPFm5iXXwvyYYwR"
 }

@@ -3,17 +3,17 @@
   "type": "feature",
   "img": "icons/skills/wounds/anatomy-bone-joint.webp",
   "system": {
-    "description": "<p>You gain a −2 penalty to your damage thresholds.</p>",
+    "description": "<p>You gain a -2 penalty to your damage thresholds.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 13,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -21,33 +21,38 @@
       "type": "base",
       "_id": "RM8wHu5GIF6zfF7V",
       "img": "icons/skills/wounds/anatomy-bone-joint.webp",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.damageThresholds.major",
-          "type": "add",
-          "value": "-2",
-          "priority": null
+      "system": {
+        "changes": [
+          {
+            "key": "system.damageThresholds.major",
+            "type": "add",
+            "value": -2,
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.damageThresholds.severe",
+            "type": "add",
+            "value": -2,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
         },
-        {
-          "key": "system.damageThresholds.severe",
-          "type": "add",
-          "value": "-2",
-          "priority": null
-        }
-      ],
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p>You gain a −2 penalty to your damage thresholds.</p>",
-      "origin": null,
+      "description": "<p>You gain a -2 penalty to your damage thresholds.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -56,14 +61,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!xVgmXhj2YgeqS1KK.RM8wHu5GIF6zfF7V"
     }
   ],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "xVgmXhj2YgeqS1KK",
   "sort": 1500000,

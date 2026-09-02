@@ -4,16 +4,23 @@
   "type": "domainCard",
   "folder": "eg2vM8j9xhya9Rwa",
   "system": {
-    "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
+    "description": "<p>When you have 2 or fewer Hit Points unmarked, you don't take Minor damage.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 9,
     "type": "ability",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 123,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "zbxPl81kbWEegKQN",
@@ -27,25 +34,28 @@
           {
             "key": "system.rules.damageReduction.thresholdImmunities.minor",
             "type": "override",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "UJTsJlnhi5Zi0XQ2",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
-      "origin": null,
+      "description": "<p>When you have 2 or fewer Hit Points unmarked, you don't take Minor damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -54,11 +64,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!zbxPl81kbWEegKQN.UJTsJlnhi5Zi0XQ2"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!zbxPl81kbWEegKQN"
 }

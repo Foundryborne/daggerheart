@@ -9,32 +9,11 @@ export default class DHAttackAction extends DHDamageAction {
 
     prepareData() {
         super.prepareData();
-        if (!!this.item?.system?.attack) {
-            if (this.damage.includeBase) {
-                const baseDamage = this.getParentHitPointDamage();
-                if (baseDamage) {
-                    if (!this.damage.main) {
-                        this.damage.main = baseDamage;
-                    } else {
-                        for (const type of baseDamage.type) this.damage.main.type.add(type);
 
-                        this.damage.main.value.custom = {
-                            enabled: true,
-                            formula: `${baseDamage.value.getFormula()} + ${this.damage.main.value.getFormula()}`
-                        };
-                    }
-                }
-            }
-            
-            if (this.roll.useDefault) {
-                this.roll.trait = this.item.system.attack.roll.trait;
-                this.roll.type = 'attack';
-            }
+        if (this.roll.useDefault) {
+            this.roll.trait = this.item.system.attack.roll.trait;
+            this.roll.type = 'attack';
         }
-    }
-
-    getParentHitPointDamage() {
-        return this.item?.system?.attack.damage.main;
     }
 
     get damageFormula() {
@@ -68,7 +47,7 @@ export default class DHAttackAction extends DHDamageAction {
 
     async handleReload(options = { awaitRoll: false }) {
         const roll = await new Roll('1d6').evaluate();
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             if (options.awaitRoll)
                 await game.dice3d.showForRoll(roll, game.user, true);
             else

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Abn46nCQst6kpGeA",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 2,
@@ -21,11 +21,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -66,16 +67,28 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 128,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "kguhWlidhxe2GbT0",
@@ -84,15 +97,18 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.kguhWlidhxe2GbT0",
       "transfer": false,
       "_id": "RFB4V0V4bDJ6vCL2",
       "type": "base",
       "system": {
         "changes": [],
         "duration": {
-          "type": "temporary"
-        }
+          "type": "temporary",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -124,8 +140,5 @@
       "_key": "!items.effects!kguhWlidhxe2GbT0.RFB4V0V4bDJ6vCL2"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!kguhWlidhxe2GbT0"
 }

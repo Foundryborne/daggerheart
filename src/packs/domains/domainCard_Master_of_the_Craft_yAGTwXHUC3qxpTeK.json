@@ -4,23 +4,27 @@
   "type": "domainCard",
   "folder": "yFcD1LOM3xKbkNYl",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Gain a permanent +2 bonus to two of your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"experience\" nexus=\"daggerheart\">Experiences</tooltip> or a permanent +3 bonus to one of your Experiences. Then place this card in your vault permanently.</p></p>",
+    "description": "<p>Gain a permanent +2 bonus to two of your Experiences or a permanent +3 bonus to one of your Experiences. Then place this card in your vault permanently.</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 9,
     "type": "ability",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 127,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "yAGTwXHUC3qxpTeK",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!yAGTwXHUC3qxpTeK"
 }

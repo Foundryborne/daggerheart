@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "FUzQxkv4gFc46SIs",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
+    "description": "<p>Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "GB1MKw1nnkSgDhBd",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -22,13 +22,16 @@
             "scalable": false,
             "key": "stress",
             "value": 3,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -42,14 +45,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 135,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "SgvjJfMyubZowPxS",
@@ -58,7 +73,6 @@
     {
       "name": "Full Surge",
       "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.SgvjJfMyubZowPxS",
       "transfer": false,
       "_id": "H5q5iYImr69TfZcp",
       "type": "base",
@@ -68,42 +82,52 @@
             "key": "system.traits.strength.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.traits.agility.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.traits.finesse.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.traits.instinct.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.traits.presence.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.traits.knowledge.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": "shortRest"
-        }
+          "type": "shortRest",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -133,8 +157,5 @@
       "_key": "!items.effects!SgvjJfMyubZowPxS.H5q5iYImr69TfZcp"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!SgvjJfMyubZowPxS"
 }

@@ -6,21 +6,17 @@
     "description": "<p>When you succeed on an attack against the same target as an ally who acts immediately before you, add a <strong>d8</strong> to your damage roll.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 12,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "d3q8lfeiEMyTjusT",
   "sort": 1800000,

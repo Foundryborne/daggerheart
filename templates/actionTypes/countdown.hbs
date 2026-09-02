@@ -10,7 +10,7 @@
         </div>
         <div class="nest-inputs">
             {{formField ../fields.type value=countdown.type name=(concat "countdown." index ".type") localize=true}}
-            {{formField ../fields.defaultOwnership value=countdown.defaultOwnership name=(concat "countdown." index ".defaultOwnership") localize=true}}
+            {{formField ../fields.hidden value=countdown.hidden name=(concat "countdown." index ".hidden") id=(concat @root.appId ".countdown.hidden") localize=true}}
         </div>
         {{formField ../fields.img value=countdown.img name=(concat "countdown." index ".img") label="DAGGERHEART.GENERAL.imagePath" localize=true}}
         <div class="nest-inputs">

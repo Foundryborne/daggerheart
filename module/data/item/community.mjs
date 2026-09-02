@@ -2,7 +2,11 @@ import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
 
+const fields = foundry.data.fields;
+
 export default class DHCommunity extends BaseDataItem {
+    static embedTemplate = 'systems/daggerheart/templates/components/card/community.hbs';
+
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -16,7 +20,9 @@ export default class DHCommunity extends BaseDataItem {
     static defineSchema() {
         return {
             ...super.defineSchema(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            /** An id or path to the journal page that has information for this community */
+            loreReference: new fields.StringField({ required: true, blank: false, nullable: true })
         };
     }
 
@@ -25,21 +31,43 @@ export default class DHCommunity extends BaseDataItem {
     /**@override */
     static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/village.svg';
 
-    /**@inheritdoc */
-    async getDescriptionData() {
-        // Preload all community features for acquisition from the cache
-        // todo: make feature acquisition async and replace feature helpers for methods
-        await fromUuids(this._source.features);
+    /** @inheritdoc */
+    async getDescriptionData(options = {}) {
+        const showReferenceInline = options.type === 'sheet';
+        const reference = (CONFIG.DH.lore.community[this.loreReference] ?? this.loreReference ?? '').replace(/\[\]/g, '');
+        const label = _loc('DAGGERHEART.ITEMS.Base.viewReference');
+        const referenceLink = showReferenceInline && reference?.includes('JournalEntry.') 
+            ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
-        const baseDescription = this.description;
-        const features = await getFeaturesHTMLData(this.features);
+        const baseDescription = `${this.description}${referenceLink}`;
+        const features = await getFeaturesHTMLData(await fromUuids(this._source.features));
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
-            { label: 'DAGGERHEART.ITEMS.Community.featuresLabel', features }
+            { features }
         );
 
         return { prefix: null, value: baseDescription, suffix };
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        // Card styling has certain defaults designed for embedding
+        config.caption ??= false;
+        config.cite ??= false;
+        config.inline ??= true;
+
+        const description = await this.getEnrichedDescription({ gmNotes: false, type: 'embed' }, options);
+        const content = await foundry.applications.handlebars.renderTemplate(this.constructor.embedTemplate, {
+            item: this.parent,
+            description
+        })
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        if (['dark', 'light'].includes(config.theme)) {
+            container.children[0].classList.add('themed', `theme-${config.theme}`);
+        }
+        return container.children;
     }
 }

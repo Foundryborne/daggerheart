@@ -8,13 +8,14 @@
     "description": "<p>Choose an additional level-up option for your companion.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 17,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -25,25 +26,28 @@
           {
             "key": "system.companionData.levelupChoices",
             "type": "add",
-            "value": "1",
-            "priority": null
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "rknTONvaUDZ2Yz1W",
       "img": "icons/creatures/mammals/dog-husky-white-blue.webp",
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.565);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Choose an additional level-up option for your companion.</span></p>",
-      "origin": null,
+      "description": "<p>Choose an additional level-up option for your companion.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -52,14 +56,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!iCXtOWBKv1FdKdWz.rknTONvaUDZ2Yz1W"
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!iCXtOWBKv1FdKdWz"
 }

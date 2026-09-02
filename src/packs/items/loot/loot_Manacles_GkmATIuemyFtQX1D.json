@@ -9,17 +9,14 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 58,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!GkmATIuemyFtQX1D"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xZrCYAd05ayNu1yW",
   "system": {
-    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies. You can communicate with them, make a <strong>Spellcast Roll</strong> to command them to perform simple tasks, and <strong>mark a Stress</strong> to see through their eyes.</p><p class=\"Body-Foundation\">When you deal damage to an adversary within Melee range of your familiar, you add a <strong>d6</strong> to your damage roll.</p>",
+    "description": "<p><strong>Spend a Hope</strong> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies. You can communicate with them, make a <strong>Spellcast Roll</strong> to command them to perform simple tasks, and <strong>mark a Stress</strong> to see through their eyes.</p><p>When you deal damage to an adversary within Melee range of your familiar, you add a <strong>d6</strong> to your damage roll.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 2,
@@ -23,13 +23,15 @@
             "key": "hope",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -43,7 +45,13 @@
         },
         "name": "Summon Familiar",
         "img": "icons/creatures/amphibians/bullfrog-glass-teal.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "kHAwq8lfsEPd9Qga": {
         "type": "attack",
@@ -56,11 +64,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -89,13 +98,19 @@
         },
         "name": "Perform Task",
         "img": "icons/creatures/amphibians/treefrog-leaf-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "8Y03LcPgXF30DfzZ": {
         "type": "effect",
         "_id": "8Y03LcPgXF30DfzZ",
         "systemPath": "actions",
-        "description": "<p><strong>Mark a Stress</strong> to see through their eyes.</p><p class=\"Body-Foundation\"></p>",
+        "description": "<p><strong>Mark a Stress</strong> to see through their eyes.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -103,13 +118,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -118,14 +136,26 @@
         },
         "name": "See Through Eyes",
         "img": "icons/magic/perception/eye-ringed-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 130,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "Tag303LoRNC5zGgl",
@@ -134,7 +164,6 @@
     {
       "name": "Familiar Damage",
       "img": "icons/sundries/gaming/dice-pair-white-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.Tag303LoRNC5zGgl",
       "transfer": false,
       "_id": "0BumAWKw2aK4A5al",
       "type": "base",
@@ -144,25 +173,30 @@
             "key": "system.bonuses.damage.magical.dice",
             "type": "add",
             "value": "d6",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.physical.dice",
             "type": "add",
             "value": "d6",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
       "tint": "#ffffff",
@@ -172,11 +206,11 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!Tag303LoRNC5zGgl.0BumAWKw2aK4A5al"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!Tag303LoRNC5zGgl"
 }

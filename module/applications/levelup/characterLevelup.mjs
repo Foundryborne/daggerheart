@@ -6,9 +6,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
     constructor(actor) {
         super(actor);
 
-        this.levelTiers = this.addBonusChoices(
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers)
-        );
+        this.levelTiers = this.addBonusChoices(actor.system.levelupTiers);
         const playerLevelupData = actor.system.levelData;
         this.levelup = new DhLevelup(DhLevelup.initializeData(this.levelTiers, playerLevelupData));
     }
@@ -89,7 +87,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                 }
 
                 context.domainCards = [];
-                for (var key of allDomainCardKeys) {
+                for (const key of allDomainCardKeys) {
                     const domainCard = allDomainCards[key];
                     if (domainCard.level > this.levelup.endLevel) continue;
 
@@ -134,7 +132,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                         return acc;
                     }, 0);
 
-                    for (var subclass of possibleSubclasses) {
+                    for (const subclass of possibleSubclasses) {
                         const choice =
                             advancementChoices.subclass.find(x => x.data[0] === subclass.uuid) ??
                             advancementChoices.subclass.find(x => x.data.length === 0);
@@ -195,14 +193,14 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                 let achivementProficiency = 0;
                 const achievementCards = [];
                 let achievementExperiences = [];
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
                     achivementProficiency += level.achievements.proficiency ?? 0;
                     const cards = level.achievements.domainCards ? Object.values(level.achievements.domainCards) : null;
                     if (cards) {
-                        for (var card of cards) {
+                        for (const card of cards) {
                             const itemCard = await foundry.utils.fromUuid(card.uuid);
                             achievementCards.push(itemCard);
                         }
@@ -248,13 +246,13 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                 };
 
                 const advancement = {};
-                for (var levelKey of levelKeys) {
+                for (const levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];
                     if (Number(levelKey) < this.levelup.startLevel) continue;
 
-                    for (var choiceKey of Object.keys(level.choices)) {
+                    for (const choiceKey of Object.keys(level.choices)) {
                         const choice = level.choices[choiceKey];
-                        for (var checkbox of Object.values(choice)) {
+                        for (const checkbox of Object.values(choice)) {
                             switch (choiceKey) {
                                 case 'proficiency':
                                 case 'hitPoint':
@@ -266,7 +264,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                     break;
                                 case 'trait':
                                     if (!advancement[choiceKey]) advancement[choiceKey] = {};
-                                    for (var traitKey of checkbox.data) {
+                                    for (const traitKey of checkbox.data) {
                                         if (!advancement[choiceKey][traitKey]) advancement[choiceKey][traitKey] = 0;
                                         advancement[choiceKey][traitKey] += 1;
                                     }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sGCKwmomutMTv0Xs",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. On a success, <strong>mark any number of Stress</strong> to target a line of allies within Far range. You can clear Hit Points on the targets equal to the number of Stress marked, divided among them however you’d like.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll (16)</strong>. On a success, <strong>mark any number of Stress</strong> to target a line of allies within Far range. You can clear Hit Points on the targets equal to the number of Stress marked, divided among them however you'd like.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 9,
@@ -23,7 +23,8 @@
             "scalable": true,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,7 +34,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "resultBased": false,
               "value": {
@@ -54,13 +56,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -91,23 +93,32 @@
             "type": "placed",
             "shape": "line",
             "size": "far",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 133,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "4uAFGp3LxiC07woC",
   "sort": 3500000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!4uAFGp3LxiC07woC"
 }

@@ -14,14 +14,18 @@ import * as fields from './module/data/fields/_module.mjs';
 import { gameSettings } from './module/config/settingsConfig.mjs';
 import DhAutomation from './module/data/settings/Automation.mjs';
 import FearTracker from './module/applications/ui/fearTracker.mjs';
-import DhCountdowns from './module/applications/ui/countdowns.mjs';
+import DhCountdowns from './module/data/countdowns.mjs';
 import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
-
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
 // Note: eslint is not aware of these, whatever is added here should go in the eslint's globals list
 declare global {
+    // These are convenience types for common imported things. This allows them to be used in JSDoc directly
+    // For actual use such as instanceof, an import is still required
+    type DHItem<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DHItem<T>>;
+    type DhpActor<T extends BaseDataActor = BaseDataActor> = InstanceType<typeof documents.DhpActor<T>>;
+
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.
      * When key actions or events occur, a "hook" is defined where user-defined callback functions can execute.
@@ -50,10 +54,13 @@ declare global {
     const Macro: foundry.documents.Macro;
     const Scene: foundry.documents.Scene;
     const TokenDocument: foundry.documents.TokenDocument;
+    const RollTable: foundry.documents.RollTable;
 
     const Collection: foundry.utils.Collection;
     const FormDataExtended: foundry.applications.ux.FormDataExtended;
+    /** @deprecated */
     const TextEditor: foundry.applications.ux.TextEditor;
+    const Roll: dice.BaseRoll;
 
     /**
      * Data used to build rolls such as duality rolls. The definition is incomplete and likely incorrect.

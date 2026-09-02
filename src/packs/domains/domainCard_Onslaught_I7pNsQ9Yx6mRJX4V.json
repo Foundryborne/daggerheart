@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7pKKYgRQAKlQAksV",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you successfully make an attack with your weapon, you never deal damage beneath a target’s Major damage threshold (the target always marks a minimum of 2 Hit Points).</p><p class=\"Body-Foundation\">Additionally, when a creature within your weapon’s range deals damage to an ally with an attack that doesn’t include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
+    "description": "<p>When you successfully make an attack with your weapon, you never deal damage beneath a target's Major damage threshold (the target always marks a minimum of 2 Hit Points).</p><p>Additionally, when a creature within your weapon's range deals damage to an ally with an attack that doesn't include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
     "domain": "blade",
     "recallCost": 3,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "damage",
         "_id": "MxaqNvY9IfWnFe5P",
         "systemPath": "actions",
-        "description": "<p>When a creature within your weapon’s range deals damage to an ally with an attack that doesn’t include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
+        "description": "<p>When a creature within your weapon's range deals damage to an ally with an attack that doesn't include you, you can <strong>mark a Stress</strong> to force them to make a Reaction Roll (15). On a failure, the target must mark a Hit Point.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,6 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false,
           "resources": {
             "hitPoints": {
               "base": false,
@@ -59,9 +58,11 @@
                   "enabled": false,
                   "formula": ""
                 }
-              }
+              },
+              "fullRestore": false
             }
-          }
+          },
+          "main": null
         },
         "target": {
           "type": "any",
@@ -70,21 +71,30 @@
         "effects": [],
         "name": "Mark a Stress",
         "img": "icons/skills/melee/strike-axe-blood-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 122,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "I7pNsQ9Yx6mRJX4V",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!I7pNsQ9Yx6mRJX4V"
 }

@@ -1,13 +1,19 @@
-import { diceTypes, getDiceSoNicePresets, getDiceSoNicePreset, range } from '../config/generalConfig.mjs';
+import { diceTypes, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
+export * from './functional.mjs';
 
 /**
  * @import DhpActor from '../documents/actor.mjs';
  */
 
-export const capitalize = string => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-};
+/** 
+ * @param {unknown} value
+ * @returns {string}
+ */
+export function signedNumber(value) {
+    const number = Number(value);
+    return number >= 0 ? `+${value}` : String(value);
+}
 
 export function rollCommandToJSON(text) {
     if (!text) return {};
@@ -16,7 +22,7 @@ export function rollCommandToJSON(text) {
     const flavor = flavorMatch ? flavorMatch[1] : null;
 
     // Match key="quoted string"  OR  key=unquotedValue
-    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]\}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
+    const PAIR_RE = /(\w+)\s*=\s*("(?:[^"\\]|\\.)*"|[^\]}\s]+)/g; //updated regex to allow escaped quotes in quoted strings and avoid matching closing brackets/braces
     const result = {};
     for (const [, key, raw] of text.matchAll(PAIR_RE)) {
         let value;
@@ -60,37 +66,6 @@ export const getCommandTarget = (options = {}) => {
     }
 
     return target;
-};
-
-export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
-    const diceSoNicePresets = await getDiceSoNicePresets(
-        rollResult,
-        hopeFaces,
-        fearFaces,
-        advantageFaces,
-        advantageFaces
-    );
-    rollResult.dice[0].options = diceSoNicePresets.hope;
-    rollResult.dice[1].options = diceSoNicePresets.fear;
-    if (rollResult.dice[2] && advantageState) {
-        rollResult.dice[2].options =
-            advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
-    }
-};
-
-export const setDiceSoNiceForHopeFateRoll = async (rollResult, hopeFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.hope, hopeFaces);
-    rollResult.dice[0].options = diceSoNicePresets;
-};
-
-export const setDiceSoNiceForFearFateRoll = async (rollResult, fearFaces) => {
-    if (!game.modules.get('dice-so-nice')?.active) return;
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-    const diceSoNicePresets = await getDiceSoNicePreset(diceSoNice.fear, fearFaces);
-    rollResult.dice[0].options = diceSoNicePresets;
 };
 
 export const chunkify = (array, chunkSize, mappingFunc) => {
@@ -243,6 +218,27 @@ export const damageKeyToNumber = key => {
     }[key];
 };
 
+/**
+ * Shorthand for creating an html element with certain properties as shorthand
+ * @template {keyof HTMLElementTagNameMap} T
+ * @param {T} tagName 
+ * @returns {HTMLElementTagNameMap[T]}
+ */
+export function createHtmlElement(tagName, { text = null, html = null, className = null, attributes, data }) {
+    const tag = document.createElement(tagName);
+    if (text) tag.textContent = text;
+    if (html) tag.innerHTML = html;
+    if (className) tag.classList.add(...className.split(' '));
+    for (const [key, value] of Object.entries(attributes ?? {})) {
+        tag.setAttribute(key, value);
+    }
+    for (const [key, value] of Object.entries(data ?? {})) {
+        if (value === null || value === undefined) continue;
+        tag.dataset[key] = String(value);
+    }
+    return tag;
+}
+
 export default function constructHTMLButton({
     label,
     dataset = {},
@@ -361,14 +357,10 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
  * @param {object} sheet                  The application to add or remove from document apps
  */
 export function updateLinkedItemApps(options, sheet) {
-    options.toLink?.forEach(featureUuid => {
+    for (const featureUuid of [...(options.toUnlink ?? []), ...(options.toLink ?? [])]) {
         const doc = foundry.utils.fromUuidSync(featureUuid);
-        doc.apps[sheet.id] = sheet;
-    });
-    options.toUnlink?.forEach(featureUuid => {
-        const doc = foundry.utils.fromUuidSync(featureUuid);
-        delete doc.apps[sheet.id];
-    });
+        if (doc?.apps) doc.apps[sheet.id] = sheet;
+    }
 }
 
 export const itemAbleRollParse = (value, actor, item) => {
@@ -443,7 +435,7 @@ export function itemIsIdentical(a, b) {
 }
 
 export async function waitForDiceSoNice(message) {
-    if (message && game.modules.get('dice-so-nice')?.active) {
+    if (message && game.dice3d) {
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
     }
 }
@@ -468,7 +460,7 @@ export function refreshIsAllowed(allowedTypes, typeToCheck) {
 }
 
 function expireActiveEffectIsAllowed(allowedTypes, typeToCheck) {
-    if (typeToCheck === CONFIG.DH.GENERAL.activeEffectDurations.act.id) return true;
+    if (typeToCheck === CONFIG.DH.EFFECTS.activeEffectDurations.act.id) return true;
 
     return refreshIsAllowed(allowedTypes, typeToCheck);
 }
@@ -485,7 +477,7 @@ export function expireActiveEffects(actor, allowedTypes = null) {
         .filter(effect => {
             if (!effect.system?.duration.type) return false;
 
-            const { temporary, custom } = CONFIG.DH.GENERAL.activeEffectDurations;
+            const { temporary, custom } = CONFIG.DH.EFFECTS.activeEffectDurations;
             if ([temporary.id, custom.id].includes(effect.system.duration.type)) return false;
 
             return expireActiveEffectIsAllowed(allowedTypes, effect.system.duration.type);
@@ -520,13 +512,22 @@ export function getIconVisibleActiveEffects(effects) {
 export async function getFeaturesHTMLData(features) {
     const result = [];
     for (const feature of features) {
-        if (feature) {
-            const base = feature.item ?? feature;
-            const item = base.system ? base : await foundry.utils.fromUuid(base.uuid);
-            const itemDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                item.system.description
-            );
-            result.push({ label: item.name, description: itemDescription });
+        if (!feature) continue;
+        
+        const base = feature.item ?? feature;
+        const item = base.system ? base : await foundry.utils.fromUuid(base.uuid);
+        if (item) {
+            result.push({ 
+                label: item.name, 
+                description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+                    item.system.description
+                )
+            });
+        } else {
+            result.push({ 
+                label: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.feature')}),
+                description: _loc('DAGGERHEART.GENERAL.missingItemDescription')
+            })
         }
     }
 
@@ -708,7 +709,7 @@ export function getArmorSources(actor) {
         // Get the origin item. Since the actor is already loaded, it should already be cached
         // Consider the relative function versions if this causes an issue
         const origin = doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc;
-        const useParentName = doc.parent && !(doc.parent instanceof Actor);
+        const useParentName = doc.parent && !(doc.parent instanceof Actor) && doc.parent.type !== 'armor';
         const name = doc.origin || !useParentName ? doc.name : doc.parent.name;
 
         return {
@@ -754,7 +755,7 @@ export function resetAndRerenderActors() {
     );
     for (const actor of actors) {
         for (const app of Object.values(actor.apps)) {
-            for (const element of app.element?.querySelectorAll('prose-mirror.active')) {
+            for (const element of app.element?.querySelectorAll('prose-mirror.active') ?? []) {
                 element.open = false; // This triggers a save
             }
         }
@@ -821,7 +822,10 @@ export function camelize(str) {
         .replace(/\s+/g, '');
 }
 
-/** Bulk load a list of documents using uuids. Returns the documents in the same order */
+/** 
+ * Bulk load a list of documents using uuids. Returns the documents in the same order.
+ * @returns {Promise<foundry.abstract.Document[]>}
+ */
 export async function fromUuids(uuids) {
     // Set up base entries. Each step works on a sublist of these objects
     const entries = uuids.map(uuid => ({
@@ -868,7 +872,7 @@ export async function fromUuids(uuids) {
  */
 export async function triggerChatRollFx(rolls, options = { whisper: false, blind: false }) {
     const { whisper, blind } = options;
-    if (game.modules.get('dice-so-nice')?.active) {
+    if (game.dice3d) {
         const rerollPromises = rolls.map(roll => game.dice3d.showForRoll(roll, game.user, true, whisper, blind));
         await Promise.allSettled(rerollPromises);
     } else {
@@ -908,4 +912,61 @@ export async function getWorldActor(baseActor) {
     }
 
     return baseActor;
+}
+
+/**
+ * Get all possible resources. 
+ * This combines the possible resources for all actor types and adds both optional resources and homebrew resources.
+ * @returns { Map<string, Object> } 
+ */
+export function getAllResources() {
+    const actorResources = {
+        ...CONFIG.DH.RESOURCE.companion.all,
+        ...CONFIG.DH.RESOURCE.adversary.all,
+        ...CONFIG.DH.RESOURCE.character.all
+    }
+
+    const additionalResources = {
+        armor: {
+            id: 'armor',
+            label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
+            group: 'TYPES.Actor.character'
+        },
+        fear: {
+            id: 'fear',
+            label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
+            group: 'TYPES.Actor.adversary'
+        },
+        resource: {
+            id: 'resource',
+            label: 'DAGGERHEART.GENERAL.Resource.single'
+        }
+    }
+
+    const homebrew = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+    const homebrewResources = Object.values(homebrew.resources).reduce((acc, category) => {
+        for (const [key, resource] of Object.entries(category.resources)) {
+            acc[key] = resource;
+        }
+
+        return acc;
+    }, {});
+
+    return {
+        ...actorResources,
+        ...additionalResources,
+        ...homebrewResources,
+        ...CONFIG.DH.RESOURCE.optionalResources
+    }
+}
+
+export function getAllResourceLabels() {
+    return Object.entries(getAllResources()).reduce((acc, [key, data]) => {
+        const configData = CONFIG.DH.GENERAL.healingTypes[key];
+        acc[key] = {
+            ...data,
+            inChatRoll: configData ? _loc(`DAGGERHEART.CONFIG.HealingType.${key}.inChatRoll`) : data.label
+        };
+        return acc;
+    }, {});
 }

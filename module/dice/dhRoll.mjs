@@ -1,5 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
-import { triggerChatRollFx } from '../helpers/utils.mjs';
+import { getAllResourceLabels, triggerChatRollFx } from '../helpers/utils.mjs';
 import BaseRoll from './baseRoll.mjs';
 
 export default class DHRoll extends BaseRoll {
@@ -7,6 +7,7 @@ export default class DHRoll extends BaseRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
         options.bonusEffects = this.bonusEffectBuilder();
+
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
@@ -35,9 +36,9 @@ export default class DHRoll extends BaseRoll {
         if (config.skips?.createMessage) config.messageRoll = roll;
 
         if (config.evaluate !== false) {
-            await this.buildEvaluate(roll, config, (message = {}));
+            await this.buildEvaluate(roll, config, message);
         }
-        await this.buildPost(roll, config, (message = {}));
+        await this.buildPost(roll, config, message);
         return config;
     }
 
@@ -161,7 +162,7 @@ export default class DHRoll extends BaseRoll {
         if (roll._evaluated) {
             const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
 
-            if (roll.formula !== '' && game.modules.get('dice-so-nice')?.active) {
+            if (roll.formula !== '' && game.dice3d) {
                 await game.dice3d.waitFor3DAnimationByMessageID(message.id);
             }
 
@@ -188,6 +189,7 @@ export default class DHRoll extends BaseRoll {
             parent: chatData.parent,
             targetMode: chatData.targetMode,
             areas: chatData.action?.areas,
+            appliesEffects: chatData.appliesEffects,
             metagamingSettings,
             automationSettings
         });
@@ -208,6 +210,7 @@ export default class DHRoll extends BaseRoll {
             };
         } else {
             options.message.system.user = game.user.id;
+            options.message.system.allResourceLabels = getAllResourceLabels();
             return options.message.system;
         }
     }
@@ -288,12 +291,19 @@ export default class DHRoll extends BaseRoll {
             if (!effect.selected) continue;
             for (const change of effect.changes) {
                 if (!change.key.includes(path)) continue;
+                
+                // TODO: We should handle override and all other modes. It'll have to be done in a different way
+                // as we cannot just go through each change and sum them up. We'll have to get the total value with
+                // overrides and everything considered.
+                if (!['add', 'subtract'].includes(change.type)) continue;
+
                 const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
                     this.data,
                     change,
                     effect.origEffect
                 );
-                modifiers.push({ label: label, value: changeValue });
+                const typedValue = change.type === 'add' ? changeValue : -changeValue;
+                modifiers.push({ label: label, value: typedValue });
             }
         }
 

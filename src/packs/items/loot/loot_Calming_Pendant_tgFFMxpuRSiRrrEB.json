@@ -4,7 +4,7 @@
   "_id": "tgFFMxpuRSiRrrEB",
   "img": "icons/equipment/neck/amulet-round-blue.webp",
   "system": {
-    "description": "<p>When you would mark your last Stress, roll a [[/r d6]]. On a result of 5 or higher, don’t mark it.</p>",
+    "description": "<p>When you would mark your last Stress, roll a [[/r d6]]. On a result of 5 or higher, don't mark it.</p>",
     "quantity": 1,
     "actions": {
       "wIlkGuUddWSUp4nN": {
@@ -18,11 +18,12 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -51,22 +52,25 @@
         },
         "name": "Use",
         "img": "icons/equipment/neck/amulet-round-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 59,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
   "flags": {},
   "_key": "!items!tgFFMxpuRSiRrrEB"
 }

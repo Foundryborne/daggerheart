@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "X4KtBG5Uve09hRoj",
         "systemPath": "actions",
-        "description": "<p>You can use this stone to take a spell or grimoire from your vault, use it once, and return it to your vault.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -36,23 +37,26 @@
         },
         "name": "Use",
         "img": "icons/commodities/stone/engraved-symbol-water-grey.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 3700000,
   "flags": {},
   "_key": "!items!IKMVQ6VwtapwoUim"
 }

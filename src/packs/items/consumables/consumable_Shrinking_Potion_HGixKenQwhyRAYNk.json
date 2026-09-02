@@ -4,14 +4,14 @@
   "_id": "HGixKenQwhyRAYNk",
   "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
   "system": {
-    "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a −1 penalty to your Proficiency.</p>",
+    "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a -1 penalty to your Proficiency.</p>",
     "quantity": 1,
     "actions": {
       "F9vKFVwtJfR4Q8Kh": {
         "type": "effect",
         "_id": "F9vKFVwtJfR4Q8Kh",
         "systemPath": "actions",
-        "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a −1 penalty to your Proficiency.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Shrinking Potion",
       "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.HGixKenQwhyRAYNk",
       "transfer": false,
       "_id": "yaRLd7eHWYm2MHRM",
       "type": "base",
@@ -65,18 +72,24 @@
             "key": "system.traits.agility.value",
             "value": 2,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           },
           {
             "key": "system.proficiency",
             "value": -1,
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": "shortRest"
-        }
+          "type": "shortRest",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -107,11 +120,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 3400000,
   "flags": {},
   "_key": "!items!HGixKenQwhyRAYNk"
 }

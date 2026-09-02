@@ -270,7 +270,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     updateStressArmor(armorMarkId, select) {
-        let stressMarkKey = null;
+        let stressMarkKey;
         if (select) {
             stressMarkKey = Object.keys(this.marks.stress).find(
                 key => this.marks.stress[key].selected && !this.marks.stress[key].armorMarkId
@@ -350,9 +350,10 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static async armorSlotQuery({ actorId, damage, type }) {
-        return new Promise(async (resolve, reject) => {
-            const actor = await fromUuid(actorId);
-            if (!actor || !actor?.isOwner) reject();
+        const actor = await fromUuid(actorId);
+        if (!actor?.isOwner) throw new Error(`Actor [${actorId}] is not owned by the queried user.`);
+
+        return new Promise((resolve, reject) => {
             new DamageReductionDialog(resolve, reject, actor, damage, type).render({ force: true });
         });
     }

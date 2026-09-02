@@ -1,7 +1,7 @@
 import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
@@ -30,6 +30,73 @@ export default class DhpActor extends Actor {
         return this.system.metadata.isNPC;
     }
 
+    /**
+     * Returns the uuid of the actor that is used for refreshing.
+     * This isn't necessarily the sourceUuid. Compendium items don't have a refresh source.
+     * @returns {string | null} the uuid to refresh from, or null if it can't be refreshed
+     */
+    get refreshSourceUuid() {
+        const hasCompendiumSource = this._stats.compendiumSource?.startsWith('Compendium.');
+        return !this.pack && hasCompendiumSource && ['adversary', 'environment'].includes(this.type)
+            ? this._stats.compendiumSource
+            : null;
+    }
+
+    /** @inheritDoc */
+    _initializeSource(source, options = {}) {
+        source = super._initializeSource(source, options);
+        if (source.type !== 'adversary') return source;
+
+        const pack = game.packs.get(options.pack);
+        if (!source._id || !pack || !game.compendiumArt.enabled) return source;
+
+        const uuid = pack.getUuid(source._id);
+        const artData = game.compendiumArt.get(uuid);
+        const evolutionEntries = Object.entries(artData?.evolutions ?? {});
+        if (evolutionEntries?.length) {
+            for (const [featureId, actionData] of evolutionEntries) {
+                const feature = source.items.find(x => x._id === featureId);
+                if (!feature) continue;
+
+                /**
+                 * Currently assuming 1x evolution action on an evolution feature. 
+                 * If this changes, add parsing for <featureId>/<actionId> 
+                 */
+                const action = Object.values(feature.system.actions).find(x => x.type === 'evolution');
+                if (!action || !actionData.token) continue;
+
+                if (!action.evolution.tokenOverride) action.evolution.tokenOverride = { dynamicToken: {} };
+                
+                const { texture, ring } = actionData.token;
+                if (texture?.src) 
+                    action.evolution.tokenOverride.tokenImage = texture.src;
+                if (texture?.scale)
+                    action.evolution.tokenOverride.tokenScale = texture.scale;
+
+                if (ring?.subject?.texture)
+                    action.evolution.tokenOverride.dynamicToken.image = ring.subject.texture;
+                if (ring?.subject?.scale)
+                    action.evolution.tokenOverride.dynamicToken.scale = ring.subject.scale;
+                if (ring?.colors?.ring) 
+                    action.evolution.tokenOverride.dynamicToken.ring = ring.colors.ring;
+                if (ring?.colors?.background) 
+                    action.evolution.tokenOverride.dynamicToken.background = ring.colors.background;
+                if (ring?.effects?.length) {
+                    const validEffects = ring.effects.filter(x => Boolean(CONFIG.DH.ACTIONS.dynamicEffects[x]));
+                    const invalidEffects = ring.effects.filter(x => !CONFIG.DH.ACTIONS.dynamicEffects[x]);
+                    if (invalidEffects.length) 
+                        ui.notifications.warn(`Invalid DynamicToken effects were supplied to evolution feature ${actionData.name} (${invalidEffects.join(', ')})`);
+
+                    if (validEffects.length)
+                        action.evolution.tokenOverride.dynamicToken.effects = validEffects;
+                }
+                       
+            }
+        }  
+
+        return source;
+    }
+
     prepareData() {
         super.prepareData();
 
@@ -49,6 +116,27 @@ export default class DhpActor extends Actor {
     /** @inheritDoc */
     static migrateData(source) {
         if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
+
+        // Migrate feature granter stuff. source.items usually only exists the first time, not on subsequent updates
+        if (source.type === 'character' && source.items) {
+            for (const feature of source.items.filter(x => x.type === 'feature' && x.system.originItemType)) {
+                if (feature.system.granter?.id) continue;
+
+                const isMulticlass = feature.system.multiclassOrigin;
+                let originFeature = source.items.find(
+                    x => x.type === feature.system.originItemType && (!isMulticlass || x.system.isMulticlass)
+                )?._id;
+                if (!originFeature) continue;
+                
+                feature.system.granter = {
+                    id: originFeature,
+                    type: feature.system.originItemType,
+                    multiclass: feature.system.multiclassOrigin,
+                    identifier: feature.system.identifier
+                };
+            }
+        }
+
         return super.migrateData(source);
     }
 
@@ -68,7 +156,12 @@ export default class DhpActor extends Actor {
     }
 
     static createDialog(data, createOptions, options, renderOptions) {
+        const collection = createOptions?.pack ? game.packs.get(createOptions.pack)?.folders : game.actors.folders;
+        const folder = collection?.get(data.folder) ?? null;
+        options.defaultEntity = folder?.getDefaultEntity(); // used in hook
         options.classes = [options.classes ?? [], 'actor-create'].flat(); // handled in hook
+        options.parent = createOptions?.parent;
+        options.pack = createOptions?.pack;
         return super.createDialog(data, createOptions, options, renderOptions);
     }
 
@@ -134,9 +227,64 @@ export default class DhpActor extends Actor {
 
     _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
         super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        
         for (const party of this.parties) {
             party.renderDebounced({ parts: ['partyMembers'] });
         }
+
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
+        }
+    }
+
+    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
+        }
+    }
+
+    /**
+     * Cleanup of any optional resources on the actor that are no longer available.
+     * @param {string[]} featureIds 
+     * @param {string[]} possibleRemovedResources 
+     * @returns {Promise<unknown> | void}
+     * @protected
+     */
+    _cleanupOptionalResources() {
+        if (!(this.type in CONFIG.DH.RESOURCE)) return;
+
+        // Get features and homebrew resources that are valid
+        // Because we have to filter out possibly removed ones, 
+        const features = this.itemTypes.feature;
+        const featureProvidedResources = features.flatMap(f => Array.from(f.system.actorResources));
+        const homebrewResources = 
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+        const applicableHomebrewResources = homebrewResources.resources[this.type]?.resources ?? {};
+
+        const resourceKeys = Object.keys(this.system._source.resources); 
+        const keysToDelete = resourceKeys.filter(key => 
+            !((key in CONFIG.DH.RESOURCE[this.type].base) 
+                || featureProvidedResources.includes(key)
+                || (key in applicableHomebrewResources))
+        );
+
+        if (keysToDelete.length) {
+            return this.update({ 
+                'system.resources': keysToDelete.reduce((r, k) => {
+                    r[k] = _del;
+                    return r;
+                }, {})
+            });
+        }
+    }
+
+    _preUpdate(changed, options, user) {
+        return super._preUpdate(changed, options, user);
     }
 
     _onUpdate(changes, options, userId) {
@@ -278,7 +426,7 @@ export default class DhpActor extends Actor {
                         x =>
                             x.uuid === multiclass?.itemUuid ||
                             x.system.isMulticlass ||
-                            (['class', 'subclass'].includes(x.system.originItemType) && x.system.multiclassOrigin)
+                            (['class', 'subclass'].includes(x.system.granter?.type) && x.system.granter?.multiclass)
                     );
 
                     this.deleteEmbeddedDocuments(
@@ -568,11 +716,11 @@ export default class DhpActor extends Actor {
     async rollTrait(trait, options = {}) {
         const abilityLabel = game.i18n.localize(abilities[trait].label);
         const config = {
-            event: event,
-            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+            event: null,
+            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
+            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
             effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this),
             roll: {
                 trait: trait,
@@ -580,10 +728,6 @@ export default class DhpActor extends Actor {
             },
             hasRoll: true,
             actionType: 'action',
-            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: abilityLabel
-            }),
             ...options
         };
         return await this.diceRoll(config);
@@ -640,6 +784,7 @@ export default class DhpActor extends Actor {
         rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
         rollData.cast = this.system.spellcastModifier ?? 1;
+        rollData.fear = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear);
 
         return rollData;
     }
@@ -759,7 +904,11 @@ export default class DhpActor extends Actor {
         }
         
         for (const u of updates) {
-            u.value = u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value;
+            const shouldFlip = (
+                u.key === 'fear' || 
+                (this.system?.resources?.[u.key] && !this.system.resources[u.key].isReversed)
+            );
+            u.value = shouldFlip ? u.value * -1 : u.value;
         }
 
         await this.modifyResource(updates);
@@ -775,12 +924,13 @@ export default class DhpActor extends Actor {
 
         const updates = args.resourceUpdates;
         for (const u of updates) {
-            if (u.key === CONFIG.DH.GENERAL.healingTypes.weaponResource.id) continue;
-            const shouldFlip = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false);
+            const shouldFlip = !(
+                u.key === 'fear' || 
+                u.key === 'resource' || 
+                (this.system?.resources?.[u.key] && !this.system.resources[u.key].isReversed)
+            );
             u.value = shouldFlip ? u.value * -1 : u.value;
         }
-
-        this.convertResourceHealingToReload(updates);
 
         await this.modifyResource(updates);
 
@@ -798,7 +948,9 @@ export default class DhpActor extends Actor {
         const resourceUpdates = Object.entries(args.resources ?? {}).map(([key, damage]) => ({
             key,
             value: typeof damage === 'number' ? damage : damage?.total ?? 0,
-            clear: typeof damage === 'number' ? false : !!damage?.options?.fullRestore
+            clear: typeof damage === 'number' ? false : !!damage?.options?.fullRestore,
+            itemId: typeof damage === 'number' ? null : damage?.options?.itemId,
+            target: typeof damage === 'number' ? null : damage?.options?.target
         }));
 
         return { main, resourceUpdates };
@@ -837,8 +989,8 @@ export default class DhpActor extends Actor {
             armor: { target: this.system.armor, resources: {} },
             items: {}
         };
-
-        resources.forEach(r => {
+        
+        for (const r of resources) {
             if (r.itemId) {
                 const { path, value } = game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r);
                 updates.items[`${r.itemId}-${r.key}`] = {
@@ -847,7 +999,7 @@ export default class DhpActor extends Actor {
                 };
             } else {
                 const valueFunc = (base, resource, baseMax) => {
-                    if (resource.clear) return baseMax && base.inverted ? baseMax : 0;
+                    if (resource.clear) return baseMax && !base.isReversed ? baseMax : 0;
 
                     return (base.value ?? base) + resource.value;
                 };
@@ -856,7 +1008,8 @@ export default class DhpActor extends Actor {
                         ui.resources.updateFear(
                             valueFunc(
                                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                                r
+                                r,
+                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear
                             )
                         );
                         break;
@@ -877,7 +1030,7 @@ export default class DhpActor extends Actor {
                         break;
                 }
             }
-        });
+        }
 
         Object.keys(updates).forEach(async key => {
             const u = updates[key];
@@ -901,6 +1054,8 @@ export default class DhpActor extends Actor {
                 }
             }
         });
+
+        return this;
     }
 
     convertDamageToThreshold(damage) {
@@ -912,22 +1067,6 @@ export default class DhpActor extends Actor {
             return 4;
         }
         return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
-    }
-
-    convertResourceHealingToReload(updates) {
-        const resourceIndex = updates.findIndex(u => u.key === CONFIG.DH.GENERAL.healingTypes.weaponResource.id);
-        if (resourceIndex === -1) return;
-        const [reload] = updates.splice(resourceIndex, 1);
-        const weapons = this.items.filter(i => i.type === 'weapon' && i.system.equipped && i.system.resource);
-        for (const weapon of weapons) {
-            updates.push({
-                key: CONFIG.DH.GENERAL.itemAbilityCosts.resource.id,
-                value: reload.value,
-                clear: reload.clear,
-                itemId: weapon.id,
-                target: weapon
-            });
-        }
     }
 
     convertStressDamageToHP(resources) {
@@ -1109,7 +1248,114 @@ export default class DhpActor extends Actor {
         }
     }
 
-    applyActiveEffects(phase) {
-        super.applyActiveEffects(phase);
+    /** 
+     * Refreshes this actor's data, effects, and items using information from the compendium.
+     * @param {options} [options]
+     * @param {boolean} [options.save] if set to false, returns the batch data to perform the operation instead of doing it
+     */
+    async refreshFromCompendium({ save = true } = {}) {
+        const latest = await fromUuid(this.refreshSourceUuid);
+        if (!latest) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.doesNotExist'));
+        }
+        if (latest.type !== this.type) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidType'));
+        }
+        if (latest.system.tier !== this.system.tier) {
+            // An adversary that has been re-tiered is not eligible for refresh
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidTier'));
+        }
+
+        const currentSource = this.toObject(true);
+        const latestSource = latest.toObject(true);
+        const system = foundry.utils.mergeObject(latestSource.system, {
+            notes: currentSource.system.notes || latestSource.system.notes
+        });
+
+        // Handle Effects
+        const effectsToDelete = this.effects.filter(e => !latest.effects.has(e.id)).map(i => i.id);
+        const effectUpdates = [];
+        const effectCreates = [];
+        for (const effectSource of latestSource.effects) {
+            const existingEffect = this.effects.get(effectSource._id)?.toObject(true);
+            if (!existingEffect) {
+                effectCreates.push(effectSource);
+            } else {
+                effectUpdates.push(foundry.utils.mergeObject(effectSource, pick(existingEffect, ['disabled'])))
+            }
+        }
+
+        // Hnadle Items
+        const itemsToDelete = this.items.filter(e => !latest.items.has(e.id)).map(i => i.id);
+        const itemCreates = latestSource.items.filter(i => !this.items.has(i._id));
+        const batchFromItems = (await Promise.all(
+            this.items
+                .filter(i => latest.items.has(i.id))
+                .map(i => i.refreshFromCompendium({ save: false, latest: latest.items.get(i.id) }))
+        )).flat();
+
+        /** @type {foundry.abstract.types.DatabaseWriteOperation[]} */
+        const batch = [{
+            parent: this.parent,
+            documentName: this.documentName,
+            pack: this.pack,
+            action: 'update',
+            updates: [{
+                _id: this._id,
+                name: latestSource.name,
+                img: latestSource.img,
+                system: _replace(system)
+            }]
+        }];
+        if (effectCreates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'create',
+                data: effectCreates,
+                keepId: true
+            });
+        }
+        if (effectUpdates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'update',
+                updates: effectUpdates,
+                recursive: false,
+                diff: false
+            });
+        }
+        if (effectsToDelete.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'delete',
+                ids: effectsToDelete
+            });
+        }
+        if (itemCreates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'Item',
+                action: 'create',
+                data: itemCreates,
+                keepId: true
+            });
+        }
+        if (itemsToDelete.length) {
+            batch.push({
+                parent: this,
+                documentName: 'Item',
+                action: 'delete',
+                ids: itemsToDelete
+            });
+        }
+        batch.push(...batchFromItems);
+        if (save) {
+            if (batch.length) await foundry.documents.modifyBatch(batch);
+        } else {
+            return batch;
+        }
     }
 }

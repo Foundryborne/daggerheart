@@ -12,13 +12,11 @@
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 8,
-        "isReversed": true
+        "max": 8
       },
       "stress": {
         "value": 0,
-        "max": 5,
-        "isReversed": true
+        "max": 5
       }
     },
     "resistance": {
@@ -37,91 +35,105 @@
     "notes": "",
     "hordeHp": 3,
     "experiences": {},
-    "bonuses": {
-      "roll": {
-        "attack": {
-          "bonus": 0,
-          "dice": []
-        },
-        "action": {
-          "bonus": 0,
-          "dice": []
-        },
-        "reaction": {
-          "bonus": 0,
-          "dice": []
-        }
-      },
-      "damage": {
-        "physical": {
-          "bonus": 0,
-          "dice": []
-        },
-        "magical": {
-          "bonus": 0,
-          "dice": []
-        }
-      }
-    },
     "tier": 4,
     "description": "<p>A large pack of undead, still powerful despite their rotting flesh.</p>",
     "motivesAndTactics": "Consume brain, shred fl esh, surround",
     "attack": {
       "damage": {
-        "parts": {
-          "hitPoints": {
-            "value": {
-              "custom": {
-                "enabled": false
-              },
-              "flatMultiplier": 4,
-              "dice": "d6",
-              "bonus": 10,
-              "multiplier": "flat"
+        "main": {
+          "value": {
+            "custom": {
+              "enabled": false,
+              "formula": ""
             },
-            "applyTo": "hitPoints",
-            "type": [
-              "physical"
-            ],
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 2,
-              "dice": "d6",
-              "bonus": 5,
-              "custom": {
-                "enabled": false
-              }
-            },
-            "resultBased": false,
-            "base": false
-          }
-        }
+            "flatMultiplier": 4,
+            "dice": "d6",
+            "bonus": 10,
+            "multiplier": "flat"
+          },
+          "applyTo": "hitPoints",
+          "type": [
+            "physical"
+          ],
+          "valueAlt": {
+            "multiplier": "flat",
+            "flatMultiplier": 2,
+            "dice": "d6",
+            "bonus": 5,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "resultBased": false,
+          "base": false,
+          "includeBase": false,
+          "direct": false,
+          "fullRestore": false
+        },
+        "resources": {}
       },
       "name": "Undead Hands",
       "roll": {
         "bonus": 2,
-        "type": "attack"
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "range": "close",
       "img": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp",
       "type": "attack",
-      "chatDisplay": false
+      "chatDisplay": false,
+      "_id": "sCB2ScV3lu5cLgeI",
+      "systemPath": "actions",
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 101,
+      "page": null,
       "artist": ""
     },
-    "size": "huge"
+    "size": "huge",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "criticalThreshold": 20
   },
   "flags": {},
   "_id": "YhJrP7rTBiRdX5Fp",
   "sort": 1300000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Zombie Legion",
     "displayName": 0,
@@ -132,12 +144,9 @@
       "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -188,7 +197,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "occludable": {
       "radius": 0
     },
@@ -214,7 +223,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -224,18 +234,16 @@
         "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "FYwMzXwULePzFyYJ",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -249,8 +257,10 @@
         "description": "<p>The @Lookup[@name] has resistance to physical damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "o1qQhASA882Fn9HN",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
@@ -263,25 +273,28 @@
               {
                 "key": "system.resistance.physical.resistance",
                 "type": "override",
-                "value": "1",
-                "priority": null
+                "value": 1,
+                "priority": null,
+                "phase": "initial"
               }
-            ]
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
           },
           "_id": "D1lCoe9WVr6vYuD9",
           "img": "icons/magic/defensive/shield-barrier-blue.webp",
           "disabled": false,
           "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
           },
           "description": "<p>The Legion has resistance to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -290,15 +303,14 @@
           "_stats": {
             "compendiumSource": null
           },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
           "_key": "!actors.items.effects!YhJrP7rTBiRdX5Fp.o1qQhASA882Fn9HN.D1lCoe9WVr6vYuD9"
         }
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -324,9 +336,9 @@
                 "scalable": false,
                 "key": "fear",
                 "value": 1,
-                "keyIsID": false,
                 "step": null,
-                "consumeOnSuccess": false
+                "consumeOnSuccess": false,
+                "itemId": null
               }
             ],
             "uses": {
@@ -342,21 +354,25 @@
             },
             "name": "Spotlight: Relentless",
             "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "fCYLZKeTn0YSpVDI",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -382,13 +398,16 @@
                 "scalable": false,
                 "key": "stress",
                 "value": 1,
-                "step": null
+                "step": null,
+                "itemId": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "effects": [],
             "target": {
@@ -397,22 +416,25 @@
             },
             "name": "Mark Stress",
             "img": "icons/skills/melee/strike-slashes-orange.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "d5Vilu9cUub1O6TD",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -428,14 +450,21 @@
       "disabled": true,
       "_id": "9D6SteWlhbfMPhvt",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "duration": {
-        "startTime": 0,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -444,6 +473,16 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": {
+        "combat": null,
+        "time": 0,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "showIcon": 1,
+      "folder": null,
       "_key": "!actors.effects!YhJrP7rTBiRdX5Fp.9D6SteWlhbfMPhvt"
     }
   ],

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "Z7ehTbRegQvq74tl",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your Strength until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/potion-jar-corked-orange.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Major Bolster Potion",
       "img": "icons/consumables/potions/potion-jar-corked-orange.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.mnyQDRtngWWQeRXF",
       "transfer": false,
       "_id": "3PfXBJy0ZjLBDAIn",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.traits.strength.value",
             "type": "add",
             "value": 1,
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,11 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 9300000,
   "flags": {},
   "_key": "!items!mnyQDRtngWWQeRXF"
 }

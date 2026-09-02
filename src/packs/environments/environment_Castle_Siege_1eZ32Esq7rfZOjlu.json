@@ -32,18 +32,13 @@
     "impulses": "Bleed out the will to fi ght, breach the walls, build tension",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 109,
+      "page": null,
       "artist": ""
     }
   },
   "flags": {},
   "_id": "1eZ32Esq7rfZOjlu",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Castle Siege",
     "displayName": 0,
@@ -141,21 +136,19 @@
       "name": "Secret Entrance",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can find or recall a secret way into the castle with a successful Instinct or Knowledge Roll. </p><section id=\"secret-6U0wYxm3kM3G7mAX\" class=\"secret\"><p><em>How do they get in without revealing the pathway to the attackers? Are any of the defenders monitoring this path?</em></p></section>",
+        "description": "<p>A PC can find or recall a secret way into the castle with a successful Instinct or Knowledge Roll.</p><section id=\"secret-6U0wYxm3kM3G7mAX\" class=\"secret\"><p><em>How do they get in without revealing the pathway to the attackers? Are any of the defenders monitoring this path?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null
+        "attribution": {},
+        "gmNotes": "",
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "2qUw5c3e22eywSwg",
       "img": "icons/environment/settlement/castle.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -166,24 +159,26 @@
       "name": "Siege Weapons (Environment Change)",
       "type": "feature",
       "system": {
-        "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders’ fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). When it triggers, the defenders’ fortifications have been breached and the attackers fl ood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p><section class=\"secret\" id=\"secret-P5oJplxVBVJGtggb\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
+        "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders' fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). When it triggers, the defenders' fortifications have been breached and the attackers fl ood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p><section class=\"secret\" id=\"secret-P5oJplxVBVJGtggb\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
         "resource": null,
         "actions": {
           "TGWI1Kvw4ZEP3QEo": {
             "type": "healing",
             "_id": "TGWI1Kvw4ZEP3QEo",
             "systemPath": "actions",
-            "description": "<p>The defenders’ fortifications have been breached and the attackers flood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p>",
+            "description": "<p>The defenders' fortifications have been breached and the attackers flood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
+              "main": null,
+              "resources": {
                 "fear": {
                   "value": {
                     "custom": {
@@ -204,13 +199,13 @@
                     "dice": "d6",
                     "bonus": null,
                     "custom": {
-                      "enabled": false
+                      "enabled": false,
+                      "formula": ""
                     }
                   },
-                  "type": []
+                  "fullRestore": false
                 }
-              },
-              "includeBase": false
+              }
             },
             "target": {
               "type": "self",
@@ -234,13 +229,19 @@
             },
             "name": "Gain Fear",
             "img": "icons/weapons/artillery/catapult-simple.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": [],
+            "areas": []
           },
           "udKS3ME8VKuayEyO": {
             "type": "countdown",
             "_id": "udKS3ME8VKuayEyO",
             "systemPath": "actions",
-            "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders’ fortifications. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). </p>",
+            "description": "<p><em>Consequence Countdown (6)</em>. The attacking force deploys siege weapons to try to raze the defenders' fortifications. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead).</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -257,7 +258,6 @@
               {
                 "name": "Siege Weapons (Environment Change)",
                 "type": "encounter",
-                "defaultOwnership": -1,
                 "img": "icons/weapons/artillery/catapult-simple.webp",
                 "progress": {
                   "looping": "noLooping",
@@ -266,27 +266,28 @@
                   "startFormula": "6",
                   "current": 1
                 },
-                "ownership": {}
+                "ownership": {},
+                "hidden": null
               }
             ],
             "name": "Start Countdown",
             "img": "icons/weapons/artillery/catapult-simple.webp",
-            "range": ""
+            "range": "",
+            "baseAction": false,
+            "triggers": [],
+            "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "eSTq8Y0v4Dwd13XU",
       "img": "icons/weapons/artillery/catapult-simple.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -297,22 +298,19 @@
       "name": "Reinforcements!",
       "type": "feature",
       "system": {
-        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight. </p><section id=\"secret-qYx1WuL81hHF5XW8\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
+        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight.</p><section id=\"secret-qYx1WuL81hHF5XW8\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "action"
+        "featureForm": "action",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "U59K0WKVjwbgzMZU",
       "img": "icons/environment/people/charge.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -323,7 +321,7 @@
       "name": "Collateral Damage",
       "type": "feature",
       "system": {
-        "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll.</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress.</p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-JdhetLsgL626ouo7\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
+        "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll.</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress.</p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-JdhetLsgL626ouo7\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can't be easily mended?</em></p></section>",
         "resource": null,
         "actions": {
           "r5JN5oFYL5DC6Qqw": {
@@ -337,39 +335,43 @@
             "uses": {
               "value": null,
               "max": "",
-              "recovery": null
+              "recovery": null,
+              "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 3,
-                    "dice": "d8",
-                    "bonus": 3,
-                    "multiplier": "flat"
+              "main": {
+                "value": {
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
+                  "flatMultiplier": 3,
+                  "dice": "d8",
+                  "bonus": 3,
+                  "multiplier": "flat"
+                },
+                "applyTo": "hitPoints",
+                "type": [
+                  "physical"
+                ],
+                "base": false,
+                "resultBased": false,
+                "valueAlt": {
+                  "multiplier": "prof",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": false,
+                    "formula": ""
                   }
-                }
+                },
+                "includeBase": false,
+                "direct": false,
+                "groupAttack": "",
+                "fullRestore": false
               },
-              "includeBase": false,
-              "groupAttack": ""
+              "resources": {}
             },
             "target": {
               "type": "any",
@@ -405,24 +407,27 @@
                 "type": "placed",
                 "shape": "circle",
                 "size": "veryClose",
-                "effects": []
+                "effects": [],
+                "hasHole": false
               }
-            ]
+            ],
+            "baseAction": false,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
-        "featureForm": "reaction"
+        "featureForm": "reaction",
+        "attribution": {},
+        "gmNotes": "",
+        "granter": null
       },
       "_id": "bemKmwjBtbEFVWXM",
       "img": "icons/magic/earth/projectile-stone-boulder-brown.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

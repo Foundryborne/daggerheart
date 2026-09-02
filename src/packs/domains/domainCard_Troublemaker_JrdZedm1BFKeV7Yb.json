@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pu3xD4rEkdfdAvGc",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you taunt or provoke a target within Far range, make a <strong>Presence Roll</strong> against them. Once per rest on a success, roll a number of <strong>d4s</strong> equal to your Proficiency. The target must mark Stress equal to the highest result rolled.</p>",
+    "description": "<p>When you taunt or provoke a target within Far range, make a <strong>Presence Roll</strong> against them. Once per rest on a success, roll a number of <strong>d4s</strong> equal to your Proficiency. The target must mark Stress equal to the highest result rolled.</p>",
     "domain": "grace",
     "recallCost": 2,
     "level": 2,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "8fv9Rk2Nq6kalkEQ",
         "systemPath": "actions",
-        "description": "<p>When you taunt or provoke a target within Far range, make a <strong>Presence Roll</strong> against them. Once per rest on a success, roll a number of <strong>d4s</strong> equal to your Proficiency. The target must mark Stress equal to the highest result rolled.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -25,7 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "resultBased": false,
               "value": {
@@ -46,13 +47,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -81,21 +82,30 @@
         },
         "name": "Provoke",
         "img": "icons/magic/control/fear-fright-monster-purple-blue.webp",
-        "range": "far"
+        "range": "far",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 126,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "JrdZedm1BFKeV7Yb",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!JrdZedm1BFKeV7Yb"
 }

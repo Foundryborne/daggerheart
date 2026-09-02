@@ -1,0 +1,23 @@
+{
+  "type": "feature",
+  "name": "Twin Fang",
+  "folder": "NysUQtRlcjGiqDHm",
+  "_id": "i4iY1IBTBWEI01QU",
+  "img": "icons/skills/melee/strike-dagger-poison-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null
+    },
+    "description": "<p>When you afflict a target <em>Marked for Death</em> with a poison you know, you can spend an additional token to also inflict the effect of a second poison you know.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "featureForm": "passive",
+    "granter": null
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!i4iY1IBTBWEI01QU"
+}

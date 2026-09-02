@@ -36,7 +36,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
     /** @inheritDoc */
     _validateType(value) {
         /* A bit suss, but seems to work */
-        let roll = null;
+        let roll;
         try {
             roll = new Roll(value.replace(/@([a-z.0-9_-]+)/gi, '1'));
         } catch {

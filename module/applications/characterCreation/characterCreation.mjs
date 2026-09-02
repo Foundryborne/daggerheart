@@ -526,6 +526,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         async function createEmbeddedItemData(baseData) {
             const uuid = baseData.uuid ?? baseData._uuid
             const data = baseData instanceof Item ? baseData : await foundry.utils.fromUuid(baseData.uuid) ?? baseData;
+            const compendiumSource = uuid.startsWith('Compendium.') ? uuid : baseData._stats?.compendiumSource ?? null;
             return {
                 ...baseData,
                 id: data.id,
@@ -535,8 +536,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 flags: baseData.flags ?? data.flags,
                 _stats: {
                     ...data._stats,
-                    compendiumSource: uuid.startsWith('Compendium.') ? uuid : null,
-                    duplicateSource: uuid && !uuid.startsWith('Compendium.') ? uuid : null
+                    compendiumSource,
+                    // mutually exclusive with compendiumSource
+                    duplicateSource: !compendiumSource && uuid && !uuid.startsWith('Compendium.') ? uuid : null
                 }
             };
         }

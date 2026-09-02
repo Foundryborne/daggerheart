@@ -29,7 +29,7 @@ export default class DhlevelUpViewMode extends HandlebarsApplicationMixin(Applic
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
-        const { tiers } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers);
+        const { tiers } = this.actor.system.levelupTiers;
         const tierKeys = Object.keys(tiers);
         const selections = Object.keys(this.actor.system.levelData.levelups).reduce(
             (acc, key) => {

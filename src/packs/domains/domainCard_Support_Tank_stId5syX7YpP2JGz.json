@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "cOZgzLQRGNnBzsHT",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When an ally within Close range fails a roll, you can <strong>spend 2 Hope</strong> to allow them to reroll either their Hope or Fear Die.</p>",
+    "description": "<p>When an ally within Close range fails a roll, you can <strong>spend 2 Hope</strong> to allow them to reroll either their Hope or Fear Die.</p>",
     "domain": "valor",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "YEzqOIIV4HqzCKx4",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">When an ally within Close range fails a roll, you can <strong>spend 2 Hope</strong> to allow them to reroll either their Hope or Fear Die.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -22,13 +22,16 @@
             "scalable": false,
             "key": "hope",
             "value": 2,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,21 +40,30 @@
         },
         "name": "Spend Hope",
         "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "stId5syX7YpP2JGz",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!stId5syX7YpP2JGz"
 }

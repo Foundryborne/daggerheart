@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "eg2vM8j9xhya9Rwa",
   "system": {
-    "description": "<p><strong>Spend a Hope</strong> and make an attack against all adversaries within your weapon’s range. Once per long rest, on a success against any targets, roll your weapon’s damage and distribute that damage however you wish between the targets you succeeded against. Before you deal damage to each target, roll an additional damage die and add its result to the damage you deal to them.</p>",
+    "description": "<p><strong>Spend a Hope</strong> and make an attack against all adversaries within your weapon's range. Once per long rest, on a success against any targets, roll your weapon's damage and distribute that damage however you wish between the targets you succeeded against. Before you deal damage to each target, roll an additional damage die and add its result to the damage you deal to them.</p>",
     "domain": "bone",
     "recallCost": 3,
     "level": 9,
@@ -23,7 +23,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -33,8 +34,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -63,21 +64,30 @@
         },
         "name": "Spend Hope",
         "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 123,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "TYKfM3H9vBXyWiH4",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!TYKfM3H9vBXyWiH4"
 }

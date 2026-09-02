@@ -8,11 +8,11 @@ Parameters:
 - collection {array} : Array of items to render.
 - type {string} : The type of items in the list:
 - isGlassy {boolean} : If true, applies the 'glassy' class to the fieldset.
-- cardView {boolean} : If true and type is 'domainCard', renders using domain card layout.
 - isActor {boolean} : Passed through to inventory-item partials.
 - isItem {boolean} : Passed through to inventory-item partials
 - actorType {boolean} : The actor type of the parent actor
 - canCreate {boolean} : If true, show createDoc anchor on legend
+- deleteUuid {string} : The optional uuid of the parent feature. Show deleteDoc anchor on legend when present.
 - inVault {boolean} : If true, the domainCard is created with inVault=true
 - disabled {boolean}:  If true, the ActiveEffect is created with disabled=true;
 - categoryAdversary {string} : Category adversary id.
@@ -30,28 +30,21 @@ Parameters:
   <legend>
     {{localize title}}
     {{#if canCreate}}
-    <a data-action="{{ifThen (or (eq type 'effect') (and (eq type 'feature') (not (eq actorType 'character'))) (eq type 'action')) 'createDoc' 'addNewItem' }}" data-document-class="{{ifThen (eq type 'effect') 'ActiveEffect' 'Item' }}"
-      data-type="{{ifThen (eq type 'effect') 'base' type}}"
-      {{#if inVault}}data-in-vault="{{inVault}}"{{/if}}
-      {{#if disabled}} data-disabled="{{disabled}}"{{/if}}
-      data-tooltip="{{localize 'DOCUMENT.Create' type=''}}"
-      >
-      <i class="fa-solid fa-plus icon-button"></i>
-    </a>
+      <a data-action="{{ifThen (or (eq type 'effect') (and (eq type 'feature') (not (eq actorType 'character'))) (eq type 'action')) 'createDoc' 'addNewItem' }}" data-document-class="{{ifThen (eq type 'effect') 'ActiveEffect' 'Item' }}"
+        data-type="{{ifThen (eq type 'effect') 'base' type}}"
+        {{#if inVault}}data-in-vault="{{inVault}}"{{/if}}
+        {{#if disabled}} data-disabled="{{disabled}}"{{/if}}
+        data-tooltip="{{localize 'DOCUMENT.Create' type=''}}"
+        >
+        <i class="fa-solid fa-plus icon-button"></i>
+      </a>
     {{/if }}
+    {{#if deleteUuid}}
+      <a data-action="deleteDoc" data-item-uuid="{{deleteUuid}}">
+        <i class="fa-solid fa-trash icon-button"></i>
+      </a>
+    {{/if}}
   </legend>
-  {{#if (and cardView (eq type 'domainCard'))}}
-  <ul class="card-list">
-    {{#each collection as |item|}}
-
-    {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs'
-    item=item
-    type='domainCard'
-    }}
-
-    {{/each}}
-  </ul>
-  {{else}}
   <ul class="items-list">
     {{#each collection as |item|}}
     {{> 'daggerheart.inventory-item'
@@ -74,5 +67,4 @@ Parameters:
 
     {{/each}}
   </ul>
-  {{/if}}
 </fieldset>

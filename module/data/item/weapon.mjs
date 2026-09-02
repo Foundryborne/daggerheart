@@ -1,7 +1,7 @@
-import AttachableItem from './attachableItem.mjs';
 import { ActionField } from '../fields/actionField.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHWeapon extends AttachableItem {
+export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -132,18 +132,11 @@ export default class DHWeapon extends AttachableItem {
         const features = this.weaponFeatures.map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/sheets/items/weapon/description.hbs',
-            {
-                item: this,
-                features
-            }
+            'systems/daggerheart/templates/sheets/items/description.hbs',
+            { features }
         );
 
         return { prefix, value: baseDescription, suffix: null };
-    }
-
-    prepareDerivedData() {
-        this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
     }
 
     async _preUpdate(changes, options, user) {
@@ -170,7 +163,7 @@ export default class DHWeapon extends AttachableItem {
 
             const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
             for (let weaponFeature of added) {
-                const featureData = allFeatures[weaponFeature.value];
+                const featureData = foundry.utils.deepClone(allFeatures[weaponFeature.value]);
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments(
                         'ActiveEffect',

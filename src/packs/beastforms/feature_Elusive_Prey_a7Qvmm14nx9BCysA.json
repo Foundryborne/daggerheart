@@ -10,7 +10,7 @@
         "type": "attack",
         "_id": "9lvrqQKTEB3NRwvM",
         "systemPath": "actions",
-        "description": "<p>When an attack roll against you would succeed, you can <strong>mark a Stress</strong> and roll a <strong>d4</strong>. Add the result to your Evasion against this attack.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -18,17 +18,20 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "",
@@ -57,24 +60,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/skills/movement/arrows-up-trio-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 12,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "a7Qvmm14nx9BCysA",
   "sort": 2300000,

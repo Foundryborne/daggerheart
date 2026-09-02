@@ -1,9 +1,14 @@
+import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 
 export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
-        c: 'comboDice'
+        c: 'comboDice',
+        h: 'hope',
+        f: 'fear',
+        a: 'advantage',
+        d: 'disadvantage'
     };
 
     async rerollResult(resultToReroll) {
@@ -38,6 +43,32 @@ export default class BaseDie extends foundry.dice.terms.Die {
     /*  Modifier Logic                              */
     /* -------------------------------------------- */
 
+    async hope() {
+        this.#setDualityDiePreset('hope');
+    }
+
+    async fear() {
+        this.#setDualityDiePreset('fear');
+    }
+
+    async advantage() {
+        this.#setDualityDiePreset('advantage');
+    }
+
+    async disadvantage() {
+        this.#setDualityDiePreset('disadvantage');
+    }
+
+    async #setDualityDiePreset(dualityType) {
+        if (!game.dice3d) return;
+
+        const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+        const dualityDie = diceSoNice[dualityType];
+        if (!dualityDie) return;
+
+        this.options = await getDiceSoNicePreset(dualityDie, this.denomination);
+    }
+
     async comboDice() {
         /* ComboDice only works with exactly two dice and both have to be the same denomination */
         if (this.number !== 2) {
@@ -57,7 +88,7 @@ export default class BaseDie extends foundry.dice.terms.Die {
            We solve this by marking the results as hidden so they're not picked up by the auto roll of DiceSoNice.
            The actual rolls are done here in place so every dice gets the correct denomination.
         */
-        if (game.modules.get('dice-so-nice')?.active) {
+        if (game.dice3d) {
             const resultsToRoll = this.results.filter((x, index) => 
                 x.active && (!rerollStartIndex || index === rerollStartIndex || index > initialResultsLength - 1));
             const rolls = [];

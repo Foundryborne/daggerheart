@@ -124,6 +124,14 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return this.hasSave && !this.targeting.usingSelect && this.currentHitTargets.some(x => !x.saveResult);
     }
 
+    /** 
+     * Returns if the roll would apply any effects
+     * @returns {boolean}
+     */
+    get appliesEffects() {
+        return this.hasEffect && !this.action?.evolution;
+    }
+
     /**
      * Get the target data for the current targets of the roll. 
      * This will either be the initial targets, or the currently selected tokens depending on which tab the GM has open.
@@ -277,7 +285,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             }
         }
 
-        for (const key of Object.keys(source.targetSaves)) {
+        for (const key of Object.keys(source.targetSaves ?? {})) {
             const saveData = source.targetSaves[key];
             if (typeof saveData === 'number') {
                 source.targetSaves[key] = { value: saveData, isCritical: false };

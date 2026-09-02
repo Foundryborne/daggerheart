@@ -28,11 +28,13 @@ export default class EffectsField extends fields.ArrayField {
         if (!message && !config.skips.createMessage) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
+            // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
+            config.mute = true;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (EffectsField.getAutomation() || force) {
             targets ??= 
-                (config.targets ?? message.system?.targets).filter(t => !config.hasRoll || t.hitResult?.success);
+                (config.targets ?? message.system?.targets ?? []).filter(t => !config.hasRoll || t.hitResult?.success);
             EffectsField.applyEffects.call(this, targets);
         }
     }
@@ -92,7 +94,7 @@ export default class EffectsField extends fields.ArrayField {
         const msg = {
             type: 'systemMessage',
             user: game.user.id,
-            speaker: cls.getSpeaker(),
+            speaker: cls.getSpeaker({ actor: this.actor }),
             title: game.i18n.localize('DAGGERHEART.UI.Chat.effectSummary.title'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/effectSummary.hbs',

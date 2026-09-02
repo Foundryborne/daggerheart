@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "0RdKeWfbPRTHcAMf",
         "systemPath": "actions",
-        "description": "<p>While touching a corpse that died recently, you can <strong>mark a Stress</strong> to extract one memory from the corpse related to a specific emotion or sensation of your choice.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,13 +20,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -35,24 +38,26 @@
         },
         "name": "Extract",
         "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 29,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!WuwXH2r2uM9sDJtj"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "hh2vkggcAQ0QUE6C",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Pass Through:</strong></em> Make a <strong>Spellcast Roll (13)</strong>. Once per rest on a success, you and all creatures touching you can pass through a wall or door within Close range. The effect ends once everyone is on the other side.</p><p class=\"Card-Feature\"><em><strong>Plane Gate:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you’ve been to before. This gateway lasts until your next rest.</p>",
+    "description": "<p><em><strong>Pass Through:</strong></em> Make a <strong>Spellcast Roll (13)</strong>. Once per rest on a success, you and all creatures touching you can pass through a wall or door within Close range. The effect ends once everyone is on the other side.</p><p><em><strong>Plane Gate:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you've been to before. This gateway lasts until your next rest.</p>",
     "domain": "codex",
     "recallCost": 0,
     "level": 7,
@@ -25,8 +25,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -55,13 +55,19 @@
         },
         "name": "Pass Through",
         "img": "icons/magic/symbols/cross-circle-blue.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "RTUxVXUyRM6mNwUX": {
         "type": "attack",
         "_id": "RTUxVXUyRM6mNwUX",
         "systemPath": "actions",
-        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you’ve been to before. This gateway lasts until your next rest.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you've been to before. This gateway lasts until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -72,8 +78,8 @@
           "consumeOnSuccess": true
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -102,22 +108,30 @@
         },
         "name": "Plane Gate",
         "img": "icons/magic/movement/portal-vortex-orange.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "resource": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 125,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "gFMx08ogQ8hS2Obi",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!gFMx08ogQ8hS2Obi"
 }

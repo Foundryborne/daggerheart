@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "9Xc6KzNyjDtTGZkp",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you make a successful attack against a target within Very Close range, you can <strong>spend a Hope</strong> to use the attack against all other targets within Very Close range. All additional adversaries you succeed against with this ability take half damage.</p>",
+    "description": "<p>When you make a successful attack against a target within Very Close range, you can <strong>spend a Hope</strong> to use the attack against all other targets within Very Close range. All additional adversaries you succeed against with this ability take half damage.</p>",
     "domain": "blade",
     "recallCost": 0,
     "level": 1,
@@ -23,7 +23,8 @@
             "value": 1,
             "scalable": false,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -46,23 +47,32 @@
             "type": "placed",
             "shape": "emanation",
             "size": "veryClose",
-            "effects": []
+            "effects": [],
+            "hasHole": false
           }
-        ]
+        ],
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 121,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "anO0arioUy7I5zBg",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!anO0arioUy7I5zBg"
 }

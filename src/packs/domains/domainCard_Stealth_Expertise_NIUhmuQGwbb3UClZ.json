@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "WTdOLLkQyPdg0KWU",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you roll with Fear while attempting to move unnoticed through a dangerous area, you can <strong>mark a Stress</strong> to roll with Hope instead.</p><p class=\"Body-Foundation\">If an ally within Close range is also attempting to move unnoticed and rolls with Fear, you can <strong>mark a Stress</strong> to change their result to a roll with Hope.</p>",
+    "description": "<p>When you roll with Fear while attempting to move unnoticed through a dangerous area, you can <strong>mark a Stress</strong> to roll with Hope instead.</p><p>If an ally within Close range is also attempting to move unnoticed and rolls with Fear, you can <strong>mark a Stress</strong> to change their result to a roll with Hope.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 4,
@@ -22,13 +22,16 @@
             "scalable": false,
             "key": "stress",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [],
         "target": {
@@ -37,21 +40,30 @@
         },
         "name": "Change Fear to Hope",
         "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
-        "range": "close"
+        "range": "close",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 128,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "inVault": false,
+    "vaultActive": false,
+    "loadoutIgnore": false,
+    "domainTouched": null
   },
   "flags": {},
   "_id": "NIUhmuQGwbb3UClZ",
   "sort": 3400000,
   "effects": [],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!NIUhmuQGwbb3UClZ"
 }

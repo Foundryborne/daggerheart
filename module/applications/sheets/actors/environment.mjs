@@ -72,6 +72,16 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         return applicationOptions;
     }
 
+    /**@inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        for (const element of htmlElement.querySelectorAll('.inventory-item-resource')) {
+            element.addEventListener('change', this.updateItemResource.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
+        }
+    }
+
     /** @inheritdoc */
     _prepareTabs(group) {
         const result = super._prepareTabs(group);
@@ -209,5 +219,18 @@ export default class DhpEnvironment extends DHBaseActorSheet {
                 return acc;
             }, {})
         });
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Listener Actions                */
+    /* -------------------------------------------- */
+    async updateItemResource(event) {
+        const item = await getDocFromElement(event.currentTarget);
+        if (!item) return;
+
+        const max = event.currentTarget.max ? Number(event.currentTarget.max) : null;
+        const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
+        await item.update({ 'system.resource.value': value });
+        this.render();
     }
 }
