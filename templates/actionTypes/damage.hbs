@@ -21,7 +21,7 @@
                     {{formField baseFields.main.fields.groupAttack value=source.main.groupAttack name=(concat path "damage.main.groupAttack") localize=true classes="select"}}
                 {{/if}}
             </div>
-            {{> damageData damage=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
+            {{> "systems/daggerheart/templates/actionTypes/parts/damageData.hbs" damageData damage=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
             {{#if horde}}
                 {{> hordeDamage source=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
             {{/if}}

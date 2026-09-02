@@ -8,6 +8,8 @@ export default class IterableTypedObjectField extends foundry.data.fields.TypedO
 
     /** Initializes an object with an iterator, where foundry.utils.getType() returns "Object" */
     initialize(values) {
+        if (values === null) return null;
+
         const object = {};
         for (const [key, value] of Object.entries(values)) {
             object[key] = new this.#elementClass(value);

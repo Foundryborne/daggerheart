@@ -335,7 +335,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
     }
 }
 
-export class DHResourceData extends foundry.abstract.DataModel {
+export class DHResourceBaseData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
@@ -354,7 +354,16 @@ export class DHResourceData extends foundry.abstract.DataModel {
             fullRestore: new fields.BooleanField({
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.fullRestore.label'
-            }),
+            })
+        };
+    }
+}
+
+export class DHResourceData extends DHResourceBaseData {
+    /** @override */
+    static defineSchema() {
+        return {
+            ...super.defineSchema(),
             value: new fields.EmbeddedDataField(DHActionDiceData),
             valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
         };

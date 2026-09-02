@@ -124,6 +124,78 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return tabs;
     }
 
+    /* Needs to consider effect altOutcomes aswell */
+    static getOutcomeTabs(action) {
+        const outcomeKeys = [
+            'default',
+            ...Object.keys(action.altOutcomes ?? {}).filter(key => action.altOutcomes[key])
+        ];
+        return outcomeKeys.reduce((acc, key, index) => {
+            acc[key] = {
+                active: index === 0,
+                cssClass: '',
+                group: 'outcomes',
+                id: key,
+                icon: null,
+                label: game.i18n.localize(CONFIG.DH.ACTIONS.outcomeTypes[key].label),
+                source: key === 'default' ? action._source : action._source.altOutcomes[key],
+                fields: key === 'default' ? action.schema.fields : action.schema.fields.altOutcomes.fields[key].fields,
+                getBasePath: path => (key === 'default' ? path : ['altOutcomes', key, path].join('.'))
+            };
+            return acc;
+        }, {});
+    }
+
+    /* Needs to consider effect altOutcomes aswell */
+    static selectOutcome(action, callback) {
+        const choices = Object.entries(CONFIG.DH.ACTIONS.outcomeTypes).reduce((acc, [key, value]) => {
+            if (action.altOutcomes[key] === null) acc.push({ id: key, label: game.i18n.localize(value.label) });
+
+            return acc;
+        }, []);
+        const content = new foundry.data.fields.StringField({
+            label: game.i18n.localize('Outcome'),
+            choices,
+            required: true
+        }).toFormGroup(
+            {},
+            {
+                name: 'outcome',
+                localize: true,
+                nameAttr: 'value',
+                labelAttr: 'label'
+            }
+        ).outerHTML;
+
+        const callbackWrapper = (_, button) => {
+            const choiceIndex = button.form.elements.outcome.value;
+            callback(choices[choiceIndex]?.id);
+        };
+
+        const typeDialog = new foundry.applications.api.DialogV2({
+            buttons: [
+                foundry.utils.mergeObject(
+                    {
+                        action: 'ok',
+                        label: 'Confirm',
+                        icon: 'fas fa-check',
+                        default: true
+                    },
+                    { callback: callbackWrapper }
+                )
+            ],
+            content: content,
+            rejectClose: false,
+            modal: false,
+            window: {
+                title: game.i18n.localize('Add Outcome')
+            },
+            position: { width: 300 }
+        });
+
+        typeDialog.render(true);
+    }
+
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
@@ -164,6 +236,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(true);
         context.action = this.action;
+        context.tabs = this._getTabs(this.constructor.TABS);
+        context.outcomeTabs = this._getTabs(DHActionBaseConfig.getOutcomeTabs(this.action));
         context.allResources = getAllResources();
 
         context.summons = [];
@@ -198,7 +272,6 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         }
 
         context.openSection = this.openSection;
-        context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
         if (this.action.damage) {
             const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
@@ -394,11 +467,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     /** @this DHActionBaseConfig */
-    static #onAddDamageResource(_event) {
-        if (!this.action.damage) return;
+    static #onAddDamageResource(_event, target) {
+        const outcomeKey = target.dataset.outcomeKey;
+        const outcomeData = foundry.utils.getProperty(this.action, outcomeKey);
+        if (!outcomeData) return;
 
         const allResources = getAllResources();
-        const unused = Object.keys(allResources).filter(k => !(k in this.action._source.damage.resources));
+        const sourceData = foundry.utils.getProperty(this.action._source, `${outcomeKey}.resources`);
+        const unused = Object.keys(allResources).filter(k => !(k in (sourceData?.resources ?? {})));
         const choices = unused.map(k => ({ value: k, label: _loc(allResources[k].label) }));
         const content = new foundry.data.fields.StringField({
             label: _loc('DAGGERHEART.GENERAL.Resource.single'),
@@ -414,10 +490,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         const callback = (_, button) => {
             const data = this.action.toObject();
             const type = choices[button.form.elements.type.value].value;
-            data.damage.resources[type] = {
-                ...this.action.schema.fields.damage.fields.resources.element.getInitialValue(),
-                applyTo: type
-            };
+            foundry.utils.setProperty(data, `${outcomeKey}.resources`, { 
+                [type]: { 
+                    ...this.action.schema.fields.damage.fields.resources.element.getInitialValue(),
+                    applyTo: type 
+                } 
+            });
             this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
         };
 
@@ -444,11 +522,14 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     }
 
     /** @this DHActionBaseConfig */
-    static #onRemoveDamageResource(_event, button) {
-        if (!this.action.damage?.resources) return;
+    static #onRemoveDamageResource(_event, target) {
+        const { outcomeKey, key } = target.dataset;
+
         const data = this.action.toObject();
-        const key = button.dataset.key;
-        data.damage.resources[key] = _del;
+        const outcomeData = foundry.utils.getProperty(data, outcomeKey);
+        if (!outcomeData?.resources) return;
+
+        outcomeData.resources[key] = _del;
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

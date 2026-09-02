@@ -1,0 +1,32 @@
+{{#unless (eq path 'system.attack.')}}
+    {{! In the future, consider allowing this even on NPCs}}
+    <fieldset class="one-column">
+        <legend class="with-icon">
+            {{#if (eq @root.source.type 'healing')}}
+                {{localize "DAGGERHEART.GENERAL.healing"}}
+            {{else}}
+                {{localize "DAGGERHEART.ACTIONS.Config.damage.markResources"}}
+            {{/if}}
+            {{#unless @root.allDamageTypesUsed}}<a data-action="addDamageResource" data-outcome-key="{{outcomeKey}}"><i class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
+        </legend>
+        {{!-- {{debug source}} --}}
+        {{#each source.resources as |dmg key|}}
+            <div class="nest-inputs">
+                <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
+                    <legend class="with-icon">
+                        {{localize (concat "DAGGERHEART.CONFIG.HealingType." dmg.applyTo ".name")}}
+                        {{#unless (or dmg.base ../path)}}
+                            <a data-action="removeDamageResource" data-outcome-key="{{../outcomeKey}}" data-key="{{key}}"><i class="fas fa-trash"></i></a>
+                        {{/unless}}
+                    </legend>
+                    {{#if (eq dmg.applyTo 'weaponResource')}}
+                        {{formField ../fields.resources.element.fields.fullRestore value=dmg.fullRestore name=(concat ../path ../outcomeKey ".resources." dmg.applyTo ".fullRestore") localize=true classes="checkbox"}}
+                    {{/if}}
+                    {{#unless dmg.fullRestore}}
+                        {{> "systems/daggerheart/templates/actionTypes/parts/damageData.hbs" damage=dmg fields=../fields.resources.element.fields basePath=(concat ../path ../outcomeKey ".resources." dmg.applyTo) isSimple=../isSimple }}
+                    {{/unless}}
+                </fieldset>
+            </div>
+        {{/each}}
+    </fieldset>
+{{/unless}}
