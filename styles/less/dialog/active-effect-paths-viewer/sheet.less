@@ -1,32 +1,77 @@
 .daggerheart.dh-style.dialog.active-effect-change-paths-dialog {
-    .paths-container {
+    .paths-main-container {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        .stable-scroll-container();
+        gap: 16px;
+        overflow: hidden;
 
-        .path-container {
+        .search-label {
+            font-size: var(--font-size-18);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            color: @input-color-text;
+            gap: 4px;
+        }
 
-            .key-container {
+        .paths-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow: auto;
+
+            .group-container {
                 display: flex;
-                align-items: center;
-                
-                .key-button {
-                    width: 320px;
-                    border: 1px solid @input-color-border;
-                    padding: 2px 4px;
-                    border-radius: 6px 0 0 6px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                flex-direction: column;
+                gap: 4px;
+
+                .group-label {
+                    font-size: var(--font-size-18);
+                }
+
+                .path-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    color: @input-color-text;
+
+                    .key-container {
+                        display: flex;
+                        align-items: center;
+
+                        .key-field {
+                            height: 24px;
+                            width: 260px;
+                            border: 1px solid @input-color-border;
+                            padding: 2px 4px;
+                            border-radius: 6px 0 0 6px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        .key-icon {
+                            left: -1px;
+                            position: relative;
+                            height: 24px;
+                            padding: 2px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 0 4px 4px 0;
+                            border-top: 1px solid @input-color-border;
+                            border-right: 1px solid @input-color-border;
+                            border-bottom: 1px solid @input-color-border;
+                            color: @button-color-text;
+                            background-color: @button-color-bg;
+                        }
+                    }
+
+                    .name-container {
+
+                    }
                 }
             }
 
-            .name-container {
-
+            .hidden {
+                display: none;
             }
         }
     }

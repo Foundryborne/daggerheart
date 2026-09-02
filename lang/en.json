@@ -338,6 +338,10 @@
                         "hint": "Ignore burden rules"
                     }
                 },
+                "comboDieIndex": {
+                    "label": "Combo Die Index",
+                    "hint": "The number of dice sizes your combo die has been raised from 1d4. Add +1 to increase it one size."
+                },
                 "companionFeatures": "Companion Features",
                 "connections": "Connections",
                 "contextMenu": {
@@ -479,7 +483,9 @@
         },
         "APPLICATIONS": {
             "ActiveEffectPathViewer": {
-                "title": "Active Effect Path Viewer"
+                "title": "Active Effect Path Viewer",
+                "searchLabel": "Search Paths",
+                "copyPathNotification": "Copied ActiveEffect path for {name} to clipboard"
             },
             "Attribution": {
                 "title": "Attribution"
@@ -971,6 +977,12 @@
                 "longRest": "Next Long Rest",
                 "session": "Next Session",
                 "custom": "Custom"
+            },
+            "ActiveEffectExtraPaths": {
+                "allCategory": "All Actors",
+                "cast": { "label": "Spellcasting Modifier" },
+                "fear": { "label": "Fear Amount" },
+                "partySize": { "label": "Party Size" }
             },
             "ActionAutomationChoices": {
                 "never": "Never",
