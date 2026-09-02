@@ -478,6 +478,9 @@
             }
         },
         "APPLICATIONS": {
+            "ActiveEffectPathViewer": {
+                "title": "Active Effect Path Viewer"
+            },
             "Attribution": {
                 "title": "Attribution"
             },
@@ -646,7 +649,8 @@
                     "text": "There is no active Party actor in the world or it's empty. Manually input the number of player characters."
                  },
                  "chatMessageTitle": "GM Consequences",
-                 "chatMessageText": "The GM gains fear"
+                 "chatMessageText": "The GM gains fear",
+                 "activeEffectPathViewer": "Active Effect Path Viewer"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",

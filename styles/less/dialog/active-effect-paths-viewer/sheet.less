@@ -1,0 +1,33 @@
+.daggerheart.dh-style.dialog.active-effect-change-paths-dialog {
+    .paths-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .stable-scroll-container();
+
+        .path-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: @input-color-text;
+
+            .key-container {
+                display: flex;
+                align-items: center;
+                
+                .key-button {
+                    width: 320px;
+                    border: 1px solid @input-color-border;
+                    padding: 2px 4px;
+                    border-radius: 6px 0 0 6px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .name-container {
+
+            }
+        }
+    }
+}

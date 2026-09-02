@@ -1,0 +1,15 @@
+<div class="paths-container">
+    {{#each paths}}
+        <div class="path-container">
+            <div class="key-container">
+                <div class="key-button">
+                    {{this.value}}
+                </div>
+                <button><i class="fa-solid fa-copy"></i></button>
+            </div>
+            <div class="name-container">
+                {{this.label}}
+            </div>
+        </div>
+    {{/each}}
+</div>
