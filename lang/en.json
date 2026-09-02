@@ -485,7 +485,9 @@
             "ActiveEffectPathViewer": {
                 "title": "Active Effect Path Viewer",
                 "searchLabel": "Search Paths",
-                "copyPathNotification": "Copied ActiveEffect path for {name} to clipboard"
+                "copyPathNotification": "Copied ActiveEffect path for {name} to clipboard",
+                "macroButtonLabel": "Open Macro",
+                "macroCopyNotification": "A macro to open the Path Viewer has been copied to your clipboard. Paste it in a macro on your hotbar."
             },
             "Attribution": {
                 "title": "Attribution"

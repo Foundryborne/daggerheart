@@ -1,5 +1,5 @@
-function showActiveEffectChangePaths () {
+function showActiveEffectPathViewer () {
     (new game.system.api.applications.dialogs.ActiveEffectPathViewer).render(true);
 }
 
-export default showActiveEffectChangePaths
+export default showActiveEffectPathViewer;

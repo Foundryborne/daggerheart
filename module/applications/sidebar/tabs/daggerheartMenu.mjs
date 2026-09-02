@@ -130,7 +130,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
     }
 
     static async #onShowEffectChangePaths() {
-        game.system.api.macros.showActiveEffectChangePaths();
+        game.system.api.macros.showActiveEffectPathViewer();
     }
 
     async getFallbackPartySize() {

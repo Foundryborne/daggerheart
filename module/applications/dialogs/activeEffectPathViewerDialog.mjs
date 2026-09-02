@@ -29,7 +29,8 @@ export default class ActiveEffectPathViewer extends HandlebarsApplicationMixin(A
             title: 'DAGGERHEART.APPLICATIONS.ActiveEffectPathViewer.title'
         },
         actions: {
-            copyPath: ActiveEffectPathViewer.#onCopyPath
+            copyPath: ActiveEffectPathViewer.#onCopyPath,
+            copyOpenMacro: ActiveEffectPathViewer.#onCopyOpenMacro
         }
     };
 
@@ -40,6 +41,17 @@ export default class ActiveEffectPathViewer extends HandlebarsApplicationMixin(A
             scrollable: ['.paths-container']
         }
     };
+
+    /** @inheritDoc */
+    _getFrameButtons(options) {
+        const buttons = super._getFrameButtons(options);
+        buttons.push({
+            icon: 'fa-solid fa-scroll',
+            label: 'DAGGERHEART.APPLICATIONS.ActiveEffectPathViewer.macroButtonLabel',
+            action: 'copyOpenMacro'
+        });
+        return buttons;
+    }
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
@@ -85,6 +97,13 @@ export default class ActiveEffectPathViewer extends HandlebarsApplicationMixin(A
         game.clipboard.copyPlainText(value);
         ui.notifications.info(
             _loc('DAGGERHEART.APPLICATIONS.ActiveEffectPathViewer.copyPathNotification', { name: name })
+        );
+    }
+
+    static #onCopyOpenMacro() {
+        game.clipboard.copyPlainText('game.system.api.macros.showActiveEffectPathViewer();');
+        ui.notifications.info(
+            _loc('DAGGERHEART.APPLICATIONS.ActiveEffectPathViewer.macroCopyNotification')
         );
     }
 }
