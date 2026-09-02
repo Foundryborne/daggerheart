@@ -11,7 +11,7 @@ export default class ActiveEffectPathViewer extends HandlebarsApplicationMixin(A
             if (!acc[curr.group]) acc[curr.group] = { name: curr.group, paths: [] };
             acc[curr.group].paths.push({
                 ...curr,
-                value: curr.fullPath ? curr.value : `@system.${curr.value}`
+                value: curr.isFullPath ? curr.value : `@system.${curr.value}`
             });
 
             return acc;

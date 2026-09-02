@@ -72,7 +72,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 label: _loc(x.label),
                 hint: x.hint ? _loc(x.hint) : null,
                 group: _loc(x.group),
-                fullPath: true
+                isFullPath: true
             }));
 
             return acc;
@@ -160,7 +160,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     return itemElement;
                 },
                 onSelect: function (item) {
-                    element.value = item.fullPath ? item.value : `system.${item.value}`;
+                    element.value = item.isFullPath ? item.value : `system.${item.value}`;
                 },
                 click: e => e.fetch(),
                 customize: function (_input, _inputRect, container) {
