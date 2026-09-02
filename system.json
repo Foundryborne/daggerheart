@@ -147,7 +147,7 @@
         },
         {
             "name": "loot",
-            "label": "Loot",
+            "label": "Items",
             "system": "daggerheart",
             "path": "packs/items/loot.db",
             "type": "Item",
