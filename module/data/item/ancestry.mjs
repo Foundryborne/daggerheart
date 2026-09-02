@@ -59,7 +59,7 @@ export default class DHAncestry extends BaseDataItem {
 
         const baseDescription = `${this.description}${referenceLink}`;
         
-        const featureData = [this.primaryFeature, this.secondaryFeature].filter(Boolean).map(x => x.uuid);
+        const featureData = [this.primaryFeature, this.secondaryFeature].filter(Boolean).map(x => x.uuid ?? x);
         const features = await getFeaturesHTMLData(await fromUuids(featureData));
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
