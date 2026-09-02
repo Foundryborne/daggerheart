@@ -15,7 +15,7 @@
     "resource": null,
     "quantity": 1,
     "actions": {
-      "LjPhjSJcvj8FJT0z": {
+      "B3PW3yWLtXAN2bZq": {
         "type": "effect",
         "chatDisplay": true,
         "name": "Deflect",
@@ -27,8 +27,8 @@
         },
         "cost": [
           {
+            "key": "armor",
             "value": 1,
-            "key": "hope",
             "itemId": null,
             "scalable": false,
             "step": null,
@@ -37,11 +37,11 @@
         ],
         "effects": [
           {
-            "_id": "BG2nxQOjWOvhTIKn",
+            "_id": "lWlxUPj4Ma4TPkqb",
             "onSave": false
           }
         ],
-        "_id": "LjPhjSJcvj8FJT0z",
+        "_id": "B3PW3yWLtXAN2bZq",
         "systemPath": "actions",
         "baseAction": false,
         "originItem": {
@@ -66,10 +66,10 @@
       {
         "value": "deflecting",
         "effectIds": [
-          "BG2nxQOjWOvhTIKn"
+          "lWlxUPj4Ma4TPkqb"
         ],
         "actionIds": [
-          "LjPhjSJcvj8FJT0z"
+          "B3PW3yWLtXAN2bZq"
         ]
       }
     ],
@@ -187,7 +187,7 @@
         "targetDispositions": []
       },
       "transfer": false,
-      "_id": "BG2nxQOjWOvhTIKn",
+      "_id": "lWlxUPj4Ma4TPkqb",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -206,7 +206,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!ADQ8kuCcRnHVWUcT.BG2nxQOjWOvhTIKn"
+      "_key": "!items.effects!ADQ8kuCcRnHVWUcT.lWlxUPj4Ma4TPkqb"
     }
   ],
   "sort": 0,

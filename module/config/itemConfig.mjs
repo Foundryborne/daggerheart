@@ -1411,7 +1411,7 @@ export const weaponFeatures = {
                 },
                 cost: [
                     {
-                        type: 'armor',
+                        key: 'armor',
                         value: 1
                     }
                 ],
@@ -1632,7 +1632,7 @@ export const weaponFeatures = {
                 },
                 cost: [
                     {
-                        type: 'hope',
+                        key: 'hope',
                         value: 1
                     }
                 ],
@@ -1675,7 +1675,7 @@ export const weaponFeatures = {
                 },
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ],

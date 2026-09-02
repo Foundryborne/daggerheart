@@ -163,7 +163,7 @@ export default class DHWeapon extends BaseDataItem {
 
             const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
             for (let weaponFeature of added) {
-                const featureData = allFeatures[weaponFeature.value];
+                const featureData = foundry.utils.deepClone(allFeatures[weaponFeature.value]);
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments(
                         'ActiveEffect',
