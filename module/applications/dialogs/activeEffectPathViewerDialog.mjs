@@ -25,6 +25,7 @@ export default class ActiveEffectPathViewer extends HandlebarsApplicationMixin(A
             height: 640
         },
         window: {
+            resizable: true,
             icon: 'fa-solid fa-scroll',
             title: 'DAGGERHEART.APPLICATIONS.ActiveEffectPathViewer.title'
         },
