@@ -107,6 +107,7 @@ CONFIG.ui.hotbar = applications.ui.DhHotbar;
 CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
 CONFIG.ui.actors = applications.sidebar.DhActorDirectory;
 CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
+CONFIG.ui.settings = applications.sidebar.DhSettings;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
 CONFIG.ui.pause = applications.ui.DhGamePause;

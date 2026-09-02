@@ -950,6 +950,12 @@
             },
             "MultiActionSelect": {
                 "instructionText": "Select Which Action to Use"
+            },
+            "SettingsSidebar": {
+                "systemLabel": "Game System",
+                "versionLabel": "Version {version}",
+                "wikiLink": "Wiki",
+                "discordLink": "Discord"
             }
         },
         "CLASS": {
