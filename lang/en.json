@@ -8,7 +8,7 @@
             "feature": "Feature",
             "domainCard": "Domain Card",
             "consumable": "Consumable",
-            "loot": "Loot",
+            "loot": "Item",
             "weapon": "Weapon",
             "armor": "Armor",
             "beastform": "Beastform",
@@ -4156,7 +4156,7 @@
                     "weapons": "Weapons",
                     "armors": "Armors",
                     "consumables": "Consumables",
-                    "loots": "Loot",
+                    "loots": "Items",
                     "transformations": "Transformations"
                 }
             },
