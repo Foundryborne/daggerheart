@@ -1,3 +1,5 @@
+import { resetAndRerenderActors } from '../../helpers/utils.mjs';
+
 export default class DhAppearance extends foundry.abstract.DataModel {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.SETTINGS.Appearance'];
 
@@ -140,5 +142,6 @@ export default class DhAppearance extends foundry.abstract.DataModel {
 
         const globalOverrides = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.GlobalOverrides);
         globalOverrides.diceSoNiceSFXUpdate(this);
+        resetAndRerenderActors();
     }
 }
