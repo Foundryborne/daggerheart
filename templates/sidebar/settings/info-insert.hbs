@@ -1,0 +1,15 @@
+<div class="sidebar-settings-dh-info">
+    <h4 class="divider">{{localize "DAGGERHEART.APPLICATIONS.SettingsSidebar.systemLabel"}}</h4>
+    <img src="systems/daggerheart/assets/logos/DaggerheartLogo.webp" />
+    <span>
+        {{localize "DAGGERHEART.APPLICATIONS.SettingsSidebar.versionLabel" version=version}}
+        {{~#if systemUpdate}}
+            <a class="notification-pip active fa-solid fa-circle-exclamation" data-tooltip-text="{{systemUpdate}}"
+                data-action="notifyUpdate" data-update="system"></a>
+        {{/if~}}
+    </span>
+    <div class="links-container">
+        <a href="https://github.com/Foundryborne/daggerheart/wiki" target="_blank">{{localize "DAGGERHEART.APPLICATIONS.SettingsSidebar.wikiLink"}}</a>
+        <a href="https://discord.gg/HnUt2AtwbD" target="_blank">{{localize "DAGGERHEART.APPLICATIONS.SettingsSidebar.discordLink"}}</a>
+    </div>
+</div>

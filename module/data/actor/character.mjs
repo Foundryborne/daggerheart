@@ -317,7 +317,9 @@ export default class DhCharacter extends DhCreature {
                         integer: true,
                         min: 0,
                         max: 5,
-                        initial: 0
+                        initial: 0,
+                        label: 'DAGGERHEART.ACTORS.Character.comboDieIndex.label',
+                        hint: 'DAGGERHEART.ACTORS.Character.comboDieIndex.hint'
                     })
                 })
             }, { persisted: false }),

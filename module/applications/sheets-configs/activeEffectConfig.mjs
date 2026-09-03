@@ -46,14 +46,15 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
      */
     static getChangeChoices() {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty', 'DhNPC'];
+        const ignoredRuleKeys = ['standardAttack'];
 
-        const getAllLeaves = (root, group, parentPath = '') => {
+        const getAllLeaves = (root, group, ignoredKeys = [], parentPath = '') => {
             const leaves = [];
             const rootKey = `${parentPath ? `${parentPath}.` : ''}${root.name}`;
             for (const field of Object.values(root.fields)) {
                 if (field instanceof foundry.data.fields.SchemaField)
-                    leaves.push(...getAllLeaves(field, group, rootKey));
-                else
+                    leaves.push(...getAllLeaves(field, group, ignoredKeys, rootKey));
+                else if (!ignoredKeys.includes(field.name))
                     leaves.push({
                         value: `${rootKey}.${field.name}`,
                         label: game.i18n.localize(field.label),
@@ -64,6 +65,19 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
             return leaves;
         };
+
+        const extraChoices = Object.entries(CONFIG.DH.ACTOR.activeEffectExtraPaths).reduce((acc, [key, paths]) => {
+            acc[key] = paths.map(x => ({
+                ...x,
+                label: _loc(x.label),
+                hint: x.hint ? _loc(x.hint) : null,
+                group: _loc(x.group),
+                isFullPath: true
+            }));
+
+            return acc;
+        }, {});
+
         return Object.keys(game.system.api.models.actors).reduce((acc, key) => {
             if (ignoredActorKeys.includes(key)) return acc;
 
@@ -95,12 +109,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             });
 
             const bonuses = getAllLeaves(model.schema.fields.bonuses, group);
-            const rules = getAllLeaves(model.schema.fields.rules, group);
+            const rules = getAllLeaves(model.schema.fields.rules, group, ignoredRuleKeys);
+            const extra = extraChoices[model.metadata.type];
 
-            acc.push(...bars, ...values, ...rules, ...bonuses);
+            acc.push(...extra, ...bars, ...values, ...rules, ...bonuses);
 
             return acc;
-        }, []);
+        }, extraChoices.allActors);
     }
 
     _attachPartListeners(partId, htmlElement, options) {
@@ -145,7 +160,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     return itemElement;
                 },
                 onSelect: function (item) {
-                    element.value = `system.${item.value}`;
+                    element.value = item.isFullPath ? item.value : `system.${item.value}`;
                 },
                 click: e => e.fetch(),
                 customize: function (_input, _inputRect, container) {

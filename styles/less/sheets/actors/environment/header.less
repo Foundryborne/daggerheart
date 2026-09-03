@@ -7,27 +7,26 @@
         display: flex;
         flex-direction: column;
         justify-content: start;
-        text-align: center;
 
         .profile {
-            height: 235px;
+            width: 4.875rem;
+            height: 4.875rem;
+            object-fit: cover;
+            object-position: center top;
             cursor: pointer;
-            .smooth-gradient-ease-in-out(mask-image, to top, black, 3.5rem);
         }
 
-        .item-container {
-            display: grid;
-            grid-auto-flow: row;
-            grid-template-columns: 1fr min-content;
+        .actor-container {
+            display: flex;
+            margin-top: 42px;
+            margin-bottom: 8px;
 
-            align-items: center;
+            align-items: start;
             position: relative;
-            top: -36px;
-            gap: 0 var(--spacer-12);
+            gap: 8px;
             padding: 0 20px;
-            margin-bottom: -26px;
 
-            .item-name input[type='text'] {
+            .actor-name {
                 backdrop-filter: none;
                 border: none;
                 font-family: @font-title;
@@ -38,23 +37,23 @@
                 box-shadow: none;
                 text-shadow: 0 0 4px @color-text-shadow-contrast, 0 0 8px @color-text-shadow-contrast, 0 0 14px @color-text-shadow-contrast;
                 padding-left: 0;
-                height: 2.625rem;
+                margin-bottom: 4px;
 
-                &:hover[type='text'],
-                &:focus[type='text'] {
+                &:hover,
+                &:focus {
                     box-shadow: none;
                     outline: 2px solid @color-border;
                 }
             }
-            
-            .flexrow {
-                align-items: baseline;
-                grid-column: span 2;
+
+            .name-section {
+                padding-top: 8px;
+                flex: 1;
             }
 
             .tags {
                 display: flex;
-                gap: 10px;
+                gap: 4px;
                 padding-bottom: 0;
                 flex: 0;
 
@@ -73,59 +72,9 @@
                     border-radius: 3px;
                 }
 
-                .label {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: var(--font-size-12);
-                }
-            }
-
-            .attribution-header-label {
-                text-align: right;
-                position: relative;
-            }
-
-            .status-number {
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-
-                .status-value {
-                    position: relative;
-                    display: flex;
-                    width: 50px;
-                    height: 30px;
-                    border: 1px solid @color-border;
-                    border-bottom: none;
-                    border-radius: 6px 6px 0 0;
-                    padding: 0 6px;
-                    font-size: 1.2rem;
-                    align-items: center;
-                    justify-content: center;
-                    background: light-dark(#e8e6e3, @dark-blue);
-                    z-index: 2;
-
-                    &.armor-slots {
-                        width: 80px;
-                        height: 30px;
-                    }
-                }
-
-                .status-label {
-                    padding: 2px 10px;
-                    width: 100%;
-                    border-radius: 0 0 3px 3px;
-                    background: light-dark(@dark-blue, @golden);
-
-                    h4 {
-                        font-weight: bold;
-                        text-align: center;
-                        line-height: 18px;
-                        font-size: var(--font-size-12);
-                        color: light-dark(@beige, @dark-blue);
-                    }
+                .difficulty {
+                    border-color: light-dark(@dark-blue, @golden);
+                    gap: 4px;
                 }
             }
         }

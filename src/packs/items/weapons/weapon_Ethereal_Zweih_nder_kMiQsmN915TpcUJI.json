@@ -15,7 +15,7 @@
     "resource": null,
     "quantity": 1,
     "actions": {
-      "zFv8Ncp86Qs9Kpje": {
+      "XdQBnYfIX5Km5KqU": {
         "type": "effect",
         "chatDisplay": true,
         "name": "Ethereal",
@@ -27,8 +27,8 @@
         },
         "cost": [
           {
+            "key": "stress",
             "value": 1,
-            "key": "hope",
             "itemId": null,
             "scalable": false,
             "step": null,
@@ -37,11 +37,11 @@
         ],
         "effects": [
           {
-            "_id": "WJZUeJOe7HMzhfXe",
+            "_id": "MnQKsDs3DCwlqUQs",
             "onSave": false
           }
         ],
-        "_id": "zFv8Ncp86Qs9Kpje",
+        "_id": "XdQBnYfIX5Km5KqU",
         "systemPath": "actions",
         "baseAction": false,
         "originItem": {
@@ -66,10 +66,10 @@
       {
         "value": "ethereal",
         "effectIds": [
-          "WJZUeJOe7HMzhfXe"
+          "MnQKsDs3DCwlqUQs"
         ],
         "actionIds": [
-          "zFv8Ncp86Qs9Kpje"
+          "XdQBnYfIX5Km5KqU"
         ]
       }
     ],
@@ -180,7 +180,7 @@
         "targetDispositions": []
       },
       "transfer": false,
-      "_id": "WJZUeJOe7HMzhfXe",
+      "_id": "MnQKsDs3DCwlqUQs",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -199,7 +199,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!kMiQsmN915TpcUJI.WJZUeJOe7HMzhfXe"
+      "_key": "!items.effects!kMiQsmN915TpcUJI.MnQKsDs3DCwlqUQs"
     }
   ],
   "sort": 0,

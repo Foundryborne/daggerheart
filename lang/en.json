@@ -8,7 +8,7 @@
             "feature": "Feature",
             "domainCard": "Domain Card",
             "consumable": "Consumable",
-            "loot": "Loot",
+            "loot": "Item",
             "weapon": "Weapon",
             "armor": "Armor",
             "beastform": "Beastform",
@@ -338,6 +338,10 @@
                         "hint": "Ignore burden rules"
                     }
                 },
+                "comboDieIndex": {
+                    "label": "Combo Die Index",
+                    "hint": "The number of dice sizes your combo die has been raised from 1d4. Add +1 to increase it one size."
+                },
                 "companionFeatures": "Companion Features",
                 "connections": "Connections",
                 "contextMenu": {
@@ -478,6 +482,13 @@
             }
         },
         "APPLICATIONS": {
+            "ActiveEffectPathViewer": {
+                "title": "Active Effect Path Viewer",
+                "searchLabel": "Search Paths",
+                "copyPathNotification": "Copied ActiveEffect path for {name} to clipboard",
+                "macroButtonLabel": "Open Macro",
+                "macroCopyNotification": "A macro to open the Path Viewer has been copied to your clipboard. Paste it in a macro on your hotbar."
+            },
             "Attribution": {
                 "title": "Attribution"
             },
@@ -646,7 +657,8 @@
                     "text": "There is no active Party actor in the world or it's empty. Manually input the number of player characters."
                  },
                  "chatMessageTitle": "GM Consequences",
-                 "chatMessageText": "The GM gains fear"
+                 "chatMessageText": "The GM gains fear",
+                 "activeEffectPathViewer": "Active Effect Path Viewer"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -950,6 +962,12 @@
             },
             "MultiActionSelect": {
                 "instructionText": "Select Which Action to Use"
+            },
+            "SettingsSidebar": {
+                "systemLabel": "Game System",
+                "versionLabel": "Version {version}",
+                "wikiLink": "Wiki",
+                "discordLink": "Discord"
             }
         },
         "CLASS": {
@@ -967,6 +985,12 @@
                 "longRest": "Next Long Rest",
                 "session": "Next Session",
                 "custom": "Custom"
+            },
+            "ActiveEffectExtraPaths": {
+                "allCategory": "All Actors",
+                "cast": { "label": "Spellcasting Modifier" },
+                "fear": { "label": "Fear Amount" },
+                "partySize": { "label": "Party Size" }
             },
             "ActionAutomationChoices": {
                 "never": "Never",
@@ -4156,7 +4180,7 @@
                     "weapons": "Weapons",
                     "armors": "Armors",
                     "consumables": "Consumables",
-                    "loots": "Loot",
+                    "loots": "Items",
                     "transformations": "Transformations"
                 }
             },

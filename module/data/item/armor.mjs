@@ -95,7 +95,7 @@ export default class DHArmor extends BaseDataItem {
 
             const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
             for (const feature of added) {
-                const featureData = allFeatures[feature.value];
+                const featureData = foundry.utils.deepClone(allFeatures[feature.value]);
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments(
                         'ActiveEffect',

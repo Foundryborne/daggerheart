@@ -1,6 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ItemLinkFields from '../../data/fields/itemLinkFields.mjs';
-import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
+import { fromUuids, getFeaturesHTMLData, sortBy } from '../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -58,7 +58,13 @@ export default class DHAncestry extends BaseDataItem {
             ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
-        const features = await getFeaturesHTMLData(await fromUuids(this._source.features.map(f => f.item)));
+        
+        const featureSubtypes = CONFIG.DH.ITEM.featureSubTypes;
+        const featureUuids = sortBy(
+            this._source.features, 
+            f => [featureSubtypes.primary, featureSubtypes.secondary].indexOf(f.type))
+            .map(f => f.item);
+        const features = await getFeaturesHTMLData(await fromUuids(featureUuids));
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
