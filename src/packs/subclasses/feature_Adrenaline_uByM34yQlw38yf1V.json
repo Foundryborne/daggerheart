@@ -8,19 +8,19 @@
     "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
     "resource": null,
     "actions": {},
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 19,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Adrenaline",
       "img": "icons/magic/unholy/hand-marked-pink.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.uByM34yQlw38yf1V",
       "transfer": true,
       "_id": "HMx9uZ54mvMiH95x",
       "type": "base",
@@ -30,25 +30,30 @@
             "key": "system.bonuses.damage.physical.bonus",
             "type": "add",
             "value": "@system.levelData.level.current",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.bonus",
             "type": "add",
             "value": "@system.levelData.level.current",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
       "tint": "#ffffff",
@@ -58,14 +63,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!uByM34yQlw38yf1V.HMx9uZ54mvMiH95x"
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!uByM34yQlw38yf1V"
 }

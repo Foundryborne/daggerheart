@@ -129,7 +129,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 87,
+      "page": null,
       "artist": ""
     },
     "size": "large",
@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "8VZIgU12cB3cvlyH",
   "sort": 800000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Giant Beastmaster",
     "displayName": 0,
@@ -245,22 +240,16 @@
         "description": "<p>When the @Lookup[@name] is spotlighted, you can also spotlight a Tier 1 animal adversary currently under their control.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "oUuUwtHMJidzLN6q",
       "img": "icons/creatures/mammals/bull-horned-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -281,7 +270,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": true,
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -289,46 +287,21 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d8",
-                    "bonus": 4,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 2,
-                  "dice": "d8",
-                  "bonus": 4,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
-                "type": [],
+                "type": [
+                  "physical"
+                ],
                 "base": false,
                 "resultBased": false,
                 "valueAlt": {
@@ -341,9 +314,10 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },
@@ -388,12 +362,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "6ZrDjgnWufJohkp1",
       "img": "icons/skills/ranged/arrow-flying-broadhead-metal.webp",
@@ -401,7 +373,6 @@
         {
           "name": "Pinning Strike",
           "img": "icons/skills/ranged/arrow-flying-broadhead-metal.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.8VZIgU12cB3cvlyH.Item.6ZrDjgnWufJohkp1",
           "transfer": false,
           "_id": "vb1sZCOLwDNLsr3j",
           "type": "base",
@@ -409,7 +380,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until you break free with a successful Finesse or Strength Roll.</span></p>"
+              "description": "<p>Until you break free with a successful Finesse or Strength Roll.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -447,10 +418,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -461,7 +428,7 @@
       "name": "Deadly Companion",
       "type": "feature",
       "system": {
-        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the @Lookup[@name]’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
+        "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the @Lookup[@name]'s control. The adversary appears at Close range and is immediately spotlighted.</p>",
         "resource": null,
         "actions": {
           "eSRUMqpQDPRG9leg": {
@@ -494,22 +461,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "w1oHm0NoEavQgUzl",
       "img": "icons/creatures/mammals/ox-bull-horned-glowing-orange.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

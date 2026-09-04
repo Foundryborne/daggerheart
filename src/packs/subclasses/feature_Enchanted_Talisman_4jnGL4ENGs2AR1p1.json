@@ -1,0 +1,117 @@
+{
+  "type": "feature",
+  "name": "Enchanted Talisman",
+  "folder": "CsC3T8aq5ueUHWqs",
+  "_id": "4jnGL4ENGs2AR1p1",
+  "img": "icons/commodities/treasure/brooch-gold-eye-green.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null
+    },
+    "description": "<p>Once per rest, you can imbue a small item with your protective essence. <strong>Spend any number of Hope</strong> to place an equal number of tokens on this card. When the person holding the talisman takes damage, spend a token to reduce the number of Hit Points they mark by one. Clear all tokens from this card when you take a rest.</p>",
+    "gmNotes": "",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "recovery": "shortRest",
+      "progression": "increasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-book",
+      "diceStates": {}
+    },
+    "actions": {
+      "9joeFXWM5FAzoRCd": {
+        "type": "healing",
+        "_id": "9joeFXWM5FAzoRCd",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "itemId": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "4jnGL4ENGs2AR1p1",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@scale"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Spend Hope",
+        "range": "self"
+      }
+    },
+    "featureForm": "passive",
+    "granter": null
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!4jnGL4ENGs2AR1p1"
+}

@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 82,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "qNgs3AbLyJrY19nt",
   "sort": 4700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Swarm of Rats",
     "displayName": 0,
@@ -241,21 +236,14 @@
         "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -271,21 +259,14 @@
         "description": "<p>All targets within Melee range have disadvantage on attacks against targets other than the @Lookup[@name].</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -316,7 +297,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],

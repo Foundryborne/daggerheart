@@ -23,7 +23,10 @@ for (const pack of packs) {
     await extractPack(`${MODULE_ID}/${pack}`, `${MODULE_ID}/src/${pack}`, {
         yaml,
         transformName,
-        transformEntry
+        transformEntry: entry => {
+            delete entry._stats; // top level stats are deleted, all others are pruned
+            transformDocument(entry);
+        }
     });
 }
 /**
@@ -38,20 +41,50 @@ function transformName(doc) {
     return `${doc.name ? `${prefix}_${safeFileName}_${doc._id}` : doc._id}.${yaml ? 'yml' : 'json'}`;
 }
 
-function transformEntry(entry) {
-    function prune(stats) {
-        return stats ? { compendiumSource: stats.compendiumSource } : stats;
+function transformDocument(entry) {
+    // Remove certain characters like rsquo and fancy subtract. Keeps emdash
+    function removeSpecialCharacters(description) {
+        if (typeof description !== 'string') return description;
+        return description.replaceAll('’', '\'').replaceAll('“', '"').replaceAll('”', '"').replaceAll('−', '-');
     }
 
-    delete entry._stats;
+    const stats = entry._stats;
+    entry._stats = stats ? { compendiumSource: stats.compendiumSource } : stats;
+    delete entry.ownership;
+    entry.name = removeSpecialCharacters(entry.name);
+    entry.description = removeSpecialCharacters(entry.description);
+    if (entry.system) {
+        entry.system.motivesAndTactics = removeSpecialCharacters(entry.system.motivesAndTactics);
+        entry.system.description = removeSpecialCharacters(entry.system.description);
+        entry.system.backgroundQuestions = entry.system.backgroundQuestions?.map(removeSpecialCharacters);
+        entry.system.connections = entry.system.connections?.map(removeSpecialCharacters);
+        if (entry.system.duration) {
+            entry.system.duration.description = removeSpecialCharacters(entry.system.duration.description);
+        }
+        for (const action of Object.values(entry.system.actions ?? {})) {
+            action.description = removeSpecialCharacters(action.description);
+            if (action.description && action.description === entry.system.description) {
+                action.description = '';
+            }
+            for (const area of action.areas ?? []) {
+                area.name = removeSpecialCharacters(area.name)
+            }
+        }
+
+        // Remove any origin flags that accidentally got in there. Effect origins are meant for in-world use
+        if ('changes' in entry.system && 'origin' in entry) {
+            delete entry.origin;
+        }
+    }
+    if (entry.prototypeToken) {
+        entry.prototypeToken.name = removeSpecialCharacters(entry.prototypeToken.name);
+    }
+    
     for (const effect of entry.effects ?? []) {
-        effect._stats = prune(effect._stats);
+        transformDocument(effect);
     }
     for (const item of entry.items ?? []) {
-        item._stats = prune(item._stats);
-        for (const effect of item.effects ?? []) {
-            effect._stats = prune(effect._stats);
-        }
+        transformDocument(item);
     }
 }
 

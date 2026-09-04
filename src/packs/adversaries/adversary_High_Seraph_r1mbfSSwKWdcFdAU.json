@@ -42,7 +42,7 @@
       }
     },
     "tier": 4,
-    "description": "<p>A divine champion, head of a hallowed host of warriors who enforce their god’s will.</p>",
+    "description": "<p>A divine champion, head of a hallowed host of warriors who enforce their god's will.</p>",
     "motivesAndTactics": "Enforce dogma, fl y, pronounce judgment, smite",
     "attack": {
       "name": "Holy Sword",
@@ -129,7 +129,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 98,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "r1mbfSSwKWdcFdAU",
   "sort": 1800000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "High Seraph",
     "displayName": 0,
@@ -284,22 +279,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "jUu058IZwt4u2goM",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -352,22 +341,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "2AB3ouMpy2wWnGQm",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -378,7 +361,7 @@
       "name": "Judgement",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Spend a Fear</strong> to make a target Guilty in the eyes of the Seraph’s god until the @Lookup[@name] is defeated. While Guilty, the target doesn’t gain Hope on a result with Hope. When the @Lookup[@name] succeeds on a standard attack against a Guilty target, they deal Severe damage instead of their standard damage. The @Lookup[@name] can only mark one target at a time.</p>",
+        "description": "<p><strong>Spend a Fear</strong> to make a target Guilty in the eyes of the Seraph's god until the @Lookup[@name] is defeated. While Guilty, the target doesn't gain Hope on a result with Hope. When the @Lookup[@name] succeeds on a standard attack against a Guilty target, they deal Severe damage instead of their standard damage. The @Lookup[@name] can only mark one target at a time.</p>",
         "resource": null,
         "actions": {
           "ErGJWtFIXFPgKtek": {
@@ -416,12 +399,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "FilEB21L5q9XxKE1",
       "img": "icons/magic/light/beams-rays-orange-purple-small.webp",
@@ -429,7 +410,6 @@
         {
           "name": "Guilty",
           "img": "icons/magic/light/beams-rays-orange-purple-small.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.r1mbfSSwKWdcFdAU.Item.FilEB21L5q9XxKE1",
           "transfer": false,
           "_id": "O8G0oOf9f3qzNOAT",
           "type": "base",
@@ -437,7 +417,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">High Seraph</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"> is defeated. </span>The High Seraph can only mark one target at a time.</p>"
+              "description": "<p>Until the High Seraph is defeated. The High Seraph can only mark one target at a time.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -450,7 +430,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>While Guilty, you don’t gain Hope on a result with Hope.</p>",
+          "description": "<p>While Guilty, you don't gain Hope on a result with Hope.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -473,10 +453,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -514,35 +490,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 4,
-                    "dice": "d6",
-                    "bonus": 12,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -612,22 +559,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "Vrb8dIJcOJ3ClwO5",
       "img": "icons/magic/light/beam-strike-orange-gold.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -680,22 +621,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "9LpLXpQBfQryJA60",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

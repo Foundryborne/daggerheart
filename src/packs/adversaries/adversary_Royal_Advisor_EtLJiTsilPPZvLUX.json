@@ -134,7 +134,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 89,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -145,11 +145,6 @@
   "flags": {},
   "_id": "EtLJiTsilPPZvLUX",
   "sort": 1600000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Royal Advisor",
     "displayName": 0,
@@ -265,34 +260,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "stress": {
@@ -339,22 +306,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "XFpF0FfTdqCjbHHF",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -365,7 +326,7 @@
       "name": "Bend Ears",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target’s opinion on one matter shifts toward the @Lookup[@name]’s preference unless it is in direct opposition to the target’s motives.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target's opinion on one matter shifts toward the @Lookup[@name]'s preference unless it is in direct opposition to the target's motives.</p>",
         "resource": null,
         "actions": {
           "JNFTnARlTAKermLx": {
@@ -407,22 +368,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "lG6vMc0zUbijpvCM",
       "img": "icons/skills/social/diplomacy-handshake.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -475,22 +430,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "iwNrNBbvm3RMgSw5",
       "img": "icons/skills/social/diplomacy-unity-alliance.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

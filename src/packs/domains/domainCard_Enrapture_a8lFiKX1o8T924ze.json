@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nVCKcZkcoEivYJaF",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice. Once per rest on a success, you can <strong>mark a Stress</strong> to force the <em>Enraptured</em> target to mark a Stress as well.</p>",
+    "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target's attention is fixed on you, narrowing their field of view and drowning out any sound but your voice. Once per rest on a success, you can <strong>mark a Stress</strong> to force the <em>Enraptured</em> target to mark a Stress as well.</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "G6RBFMbCuHlM45t0",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target's attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -140,7 +140,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 126,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -157,7 +157,6 @@
     {
       "name": "Enraptured",
       "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-      "origin": "Compendium.daggerheart.domains.Item.a8lFiKX1o8T924ze",
       "transfer": false,
       "_id": "EYG5dLImk6GkmfRd",
       "type": "base",
@@ -178,7 +177,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
+      "description": "<p>While <em>Enraptured</em>, a target's attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -199,8 +198,5 @@
       "_key": "!items.effects!a8lFiKX1o8T924ze.EYG5dLImk6GkmfRd"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!a8lFiKX1o8T924ze"
 }

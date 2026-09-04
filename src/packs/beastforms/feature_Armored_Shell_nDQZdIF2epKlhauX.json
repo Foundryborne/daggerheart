@@ -3,14 +3,14 @@
   "type": "feature",
   "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
   "system": {
-    "description": "<p>Your hardened exterior gives you resistance to physical damage. Additionally, <strong>mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+    "description": "<p>Your hardened exterior gives you resistance to physical damage. Additionally, <strong>mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can't perform other actions without leaving this form.</p>",
     "resource": null,
     "actions": {
       "15XSCpCAZ2JLspmN": {
         "type": "effect",
         "_id": "15XSCpCAZ2JLspmN",
         "systemPath": "actions",
-        "description": "<p><strong>Mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+        "description": "<p><strong>Mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can't perform other actions without leaving this form.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -18,13 +18,16 @@
             "scalable": false,
             "key": "armor",
             "value": 1,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -38,17 +41,23 @@
         },
         "name": "Retract",
         "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "subType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 13,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -56,27 +65,31 @@
       "type": "base",
       "_id": "XFmEC0kDQJNrGbtr",
       "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.resistance.physical.resistance",
-          "type": "override",
-          "value": "1",
-          "priority": null
-        }
-      ],
+      "system": {
+        "changes": [
+          {
+            "key": "system.resistance.physical.resistance",
+            "type": "override",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "description": "<p>Your hardened exterior gives you resistance to physical damage.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -85,35 +98,42 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!nDQZdIF2epKlhauX.XFmEC0kDQJNrGbtr"
     },
     {
       "name": "Retracted",
       "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-      "origin": "Item.WqNiQYeaRVGPWpm0",
       "transfer": false,
       "_id": "OY3lEB3vuDKNLzxv",
       "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.resistance.physical.reduction",
-          "type": "add",
-          "value": "@system.armorScore.max",
-          "priority": 21
-        }
-      ],
+      "system": {
+        "changes": [
+          {
+            "key": "system.resistance.physical.reduction",
+            "type": "add",
+            "value": "@system.armorScore.max",
+            "priority": 21,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p>While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+      "description": "<p>While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can't perform other actions without leaving this form.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -121,14 +141,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!nDQZdIF2epKlhauX.OY3lEB3vuDKNLzxv"
     }
   ],
   "folder": "uU8bIoZvXge0rLaU",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "nDQZdIF2epKlhauX",
   "sort": 2200000,

@@ -10,6 +10,7 @@
  * Generally a subclass will override the version and the updateXSource() functions.
  */
 export class MigrationHandlerBase {
+    /** System version that introduces this migration */
     version = null;
 
     /**
@@ -68,11 +69,13 @@ export class MigrationHandlerBase {
         const updateItem = async item => {
             const itemUpdate = await this.updateItemSource(item);
             if (itemUpdate) {
-                batch.push({
+                const itemAction = {
                     action: 'update',
                     documentName: 'Item',
                     updates: [itemUpdate]
-                });
+                };
+                if (item.isEmbedded) itemAction.parent = item.actor;
+                batch.push(itemAction);
             }
 
             const effectUpdates = [];
@@ -118,7 +121,6 @@ export class MigrationHandlerBase {
                 });
             }
         }
-
 
         for (const actor of game.actors) {
             await updateActor(actor);

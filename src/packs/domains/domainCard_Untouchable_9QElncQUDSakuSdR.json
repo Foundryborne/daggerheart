@@ -4,14 +4,14 @@
   "type": "domainCard",
   "folder": "PeeIjbkBv41613yZ",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
+    "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 1,
     "type": "ability",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 122,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -55,8 +55,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
-      "origin": null,
+      "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -71,8 +70,5 @@
       "_key": "!items.effects!9QElncQUDSakuSdR.H8hazlQe4Wj4JFO6"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!9QElncQUDSakuSdR"
 }

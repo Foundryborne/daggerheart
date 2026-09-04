@@ -1,9 +1,13 @@
+import autocomplete from 'autocompleter';
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/**
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction *
+ * @import DHItem from '../../../documents/item.mjs';
+ /
 
 /**
  * A base item sheet extending {@link ItemSheetV2} via {@link DHApplicationMixin}
@@ -27,11 +31,13 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             submitOnChange: true
         },
         actions: {
+            showPortraitArtwork: DHBaseItemSheet.#onShowPortraitArtwork,
             addFeature: DHBaseItemSheet.#addFeature,
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
             removeResource: DHBaseItemSheet.#removeResource,
-            editGMNote: DHBaseItemSheet.#onEditGMNote
+            editGMNote: DHBaseItemSheet.#onEditGMNote,
+            refreshFromCompendium: DHBaseItemSheet.#onRefreshFromCompendium
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.drop-section' },
@@ -61,18 +67,29 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         }
     };
 
+    /** @inheritdoc */
+    _getHeaderControls() {
+        const controls = super._getHeaderControls();
+        controls.push({
+            icon: 'fa-solid fa-image',
+            label: 'ITEM.ViewArt',
+            action: 'showPortraitArtwork'
+        });
+
+        if (this.item.refreshSourceUuid) {
+            controls.push({
+                label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
+                icon: 'fa-solid fa-arrow-rotate-left',
+                action: 'refreshFromCompendium'
+            });
+        }
+
+        return controls;
+    }
+
     /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
-
-    /**@inheritdoc */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
-
-        return context;
-    }
 
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
@@ -118,6 +135,41 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         }
     }
 
+    /** @inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        
+        htmlElement.querySelector('img.profile')
+            ?.addEventListener('contextmenu', DHBaseItemSheet.#onShowPortraitArtwork.bind(this));
+
+        // If the item supports lore references, add autocomplete
+        const loreRefElement = htmlElement.querySelector('input[name="system.loreReference"]');
+        const choiceKeys = Object.keys(CONFIG.DH.lore[this.item.type] ?? {});
+        if (loreRefElement && choiceKeys) {
+            const choices = choiceKeys.map(k => ({ value: k, label: k }));
+            autocomplete({
+                input: loreRefElement,
+                fetch: function (text, update) {
+                    if (!text) {
+                        update(choices);
+                    } else {
+                        text = text.toLowerCase();
+                        update(choices.filter(n => n.label.toLowerCase().includes(text)));
+                    }
+                },
+                onSelect: item => {
+                    this.item.update({ 'system.loreReference': String(item.value) });
+                },
+                click: e => e.fetch(),
+                customize: function (_input, _inputRect, container) {
+                    container.style.zIndex = foundry.applications.api.ApplicationV2._maxZ;
+                },
+                minLength: 0
+            })
+        }
+    }
+
     /* -------------------------------------------- */
     /*  Context Menu                                */
     /* -------------------------------------------- */
@@ -160,6 +212,12 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
 
+    static #onShowPortraitArtwork() {
+        const { ImagePopout } = foundry.applications.apps;
+        const {img, name, uuid} = this.document;
+        new ImagePopout({src: img, uuid, window: {title: name}}).render({force: true});
+    }
+
     /**
      * Add a new feature to the item, prompting the user for its type.
      * @type {ApplicationClickAction}
@@ -172,8 +230,11 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         let systemData = {};
         if (this.document.parent?.type === 'character') {
             systemData = {
-                originItemType: this.document.type,
-                identifier: multiclass ?? type
+                granter: {
+                    id: this.document.id,
+                    type: this.document.type,
+                    identifier: multiclass ?? type
+                }
             };
         }
 
@@ -223,7 +284,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             await this.document.update({
                 'system.features': this.document.system.features
                     .filter(x => target.dataset.type !== x.type || x.item.uuid !== feature.uuid)
-                    .map(x => ({ ...x, item: x.item.uuid }))
+                    .map(x => ({ ...x, item: x.item?.uuid }))
             });
         }
     }
@@ -289,13 +350,18 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDrop(event) {
-        super._onDrop(event);
-
+        event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal === this.document.id) return;
+        super._onDrop(event);
+    }
 
+    /**
+     * @param {DragEvent} event 
+     * @param {DHItem} item 
+     */
+    async _onDropItem(event, item) {
         const target = event.target.closest('fieldset.drop-section');
-        let item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
             const cls = foundry.documents.Item.implementation;
 
@@ -308,15 +374,18 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                         _stats: { compendiumSource: this.document.uuid },
                         system: {
                             ...itemData.system,
-                            originItemType: this.document.type,
-                            identifier: multiclass ?? target.dataset.type
+                            granter: {
+                                id: this.document.id,
+                                type: this.document.type,
+                                identifier: multiclass ?? target.dataset.type
+                            }
                         }
                     },
                     { parent: this.document.parent }
                 );
             }
 
-            if (target.dataset.type) {
+            if (target?.dataset.type) {
                 await this.document.update(
                     {
                         'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(
@@ -339,6 +408,31 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         }
     }
 
+    /**
+     * Handle a dropped document on this item sheet. This extends the existing functionality to support more than AEs
+     * @template {Document} TDocument
+     * @param {DragEvent} event         The initiating drop event
+     * @param {TDocument} document       The resolved Document class
+     * @returns {Promise<TDocument|null>} A Document of the same type as the dropped one in case of a successful result,
+     *                                    or null in case of failure or no action being taken
+     * @protected
+     * @override
+     */
+    async _onDropDocument(event, document) {
+        switch (document.documentName) {
+            case 'ActiveEffect':
+                return (await this._onDropActiveEffect?.(event, document)) ?? null;
+            case 'Actor':
+                return (await this._onDropActor?.(event, document)) ?? null;
+            case 'Item':
+                return (await this._onDropItem?.(event, document)) ?? null;
+            case 'Folder':
+                return (await this._onDropFolder?.(event, document)) ?? null;
+            default:
+                return null;
+        }
+    }
+
     /** 
      * Handles the Add GM Note button being pressed. This is only used when an item has no GM notes.
      * Later edits to a GM note instead go through the normal editor toggle workflow.
@@ -356,20 +450,32 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         }, 0);
     }
 
+    /** @this DHBaseItemSheet */
+    static async #onRefreshFromCompendium() {
+        const refresh = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title')
+            },
+            content: _loc('DAGGERHEART.ITEMS.Base.Refresh.AreYouSure')
+        });
+        if (refresh) {
+            this.document.refreshFromCompendium();
+        }
+    }
+
     /** @inheritdoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
 
         // Render an add gmnotes button if there are no set GM notes.
         // We need to re-render on close since its possible to prosemirror to close *without* triggering a full re-render
-        if (
-            game.user.isGM && 
-            this.item.system.metadata.hasDescription && 
-            !this.item.system.gmNotes
-        ) {
+        const item = this.item;
+        if (game.user.isGM && item.system.metadata.hasDescription && !item.system.gmNotes) {
             const description = this.element.querySelector('[name="system.description"]');
             const addButton = () => {
-                if (description.querySelector('[data-action=editGMNote]')) return;
+                if (description.disabled || description.querySelector('[data-action=editGMNote]')) {
+                    return;
+                }
 
                 const button = document.createElement('button');
                 button.type = 'button';

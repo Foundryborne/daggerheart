@@ -4,14 +4,14 @@
   "type": "domainCard",
   "folder": "eg2vM8j9xhya9Rwa",
   "system": {
-    "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
+    "description": "<p>When you have 2 or fewer Hit Points unmarked, you don't take Minor damage.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 9,
     "type": "ability",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 123,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -55,8 +55,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
-      "origin": null,
+      "description": "<p>When you have 2 or fewer Hit Points unmarked, you don't take Minor damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -71,8 +70,5 @@
       "_key": "!items.effects!zbxPl81kbWEegKQN.UJTsJlnhi5Zi0XQ2"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!zbxPl81kbWEegKQN"
 }

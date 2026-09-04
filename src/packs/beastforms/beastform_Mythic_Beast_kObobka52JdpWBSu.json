@@ -9,7 +9,10 @@
     "tokenRingImg": "icons/creatures/eyes/lizard-single-slit-pink.webp",
     "tokenSize": {
       "height": null,
-      "width": null
+      "width": null,
+      "size": "custom",
+      "scale": 1,
+      "depth": null
     },
     "mainTrait": "agility",
     "advantageOn": {},
@@ -29,7 +32,7 @@
     "examples": "",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 15,
+      "page": null,
       "artist": ""
     }
   },
@@ -43,15 +46,24 @@
         "characterTokenData": {
           "tokenImg": null,
           "tokenRingImg": "icons/svg/mystery-man.svg",
-          "tokenSize": {}
+          "tokenSize": {
+            "height": 1,
+            "width": 1,
+            "scale": 1
+          },
+          "usesDynamicToken": false
         },
-        "advantageOn": [],
+        "advantageOn": {},
         "featureIds": [],
         "effectIds": [],
         "changes": [],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -60,8 +72,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Pick a Tier 1 or Tier 2 Beastform option and become a larger, more powerful version of that creature. While you’re in this form, you retain all traits and features from the original form and gain the the following bonuses:</p><ul><li><p>A +9 bonus to damage rolls</p></li><li><p>A +2 bonus to the trait used by this form</p></li><li><p>A +3 bonus to Evasion</p></li><li><p>Your damage die increases by one size (d6 becomes d8, d8 becomes d10 etc.)</p></li></ul>",
-      "origin": null,
+      "description": "<p>Pick a Tier 1 or Tier 2 Beastform option and become a larger, more powerful version of that creature. While you're in this form, you retain all traits and features from the original form and gain the the following bonuses:</p><ul><li><p>A +9 bonus to damage rolls</p></li><li><p>A +2 bonus to the trait used by this form</p></li><li><p>A +3 bonus to Evasion</p></li><li><p>Your damage die increases by one size (d6 becomes d8, d8 becomes d10 etc.)</p></li></ul>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -84,10 +95,6 @@
     }
   ],
   "folder": "UQEr5SAm2Z1Aih1S",
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_id": "kObobka52JdpWBSu",
   "sort": 0,

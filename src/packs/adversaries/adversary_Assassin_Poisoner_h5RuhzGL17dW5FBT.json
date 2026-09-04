@@ -129,7 +129,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 84,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "h5RuhzGL17dW5FBT",
   "sort": 2700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Assassin Poisoner",
     "displayName": 0,
@@ -242,7 +237,7 @@
       "name": "Grindletooth Venom",
       "type": "feature",
       "system": {
-        "description": "<p>Targets who mark HP from the @Lookup[@name]’s attacks are Vulnerable until they clear a HP.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]'s attacks are Vulnerable until they clear a HP.</p>",
         "resource": null,
         "actions": {
           "L83tU1TgmqoH9SSn": {
@@ -280,12 +275,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "Fz2lnUEeBxsDpx0G",
       "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
@@ -293,7 +286,6 @@
         {
           "name": "Grindletooth Venom",
           "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.h5RuhzGL17dW5FBT.Item.Fz2lnUEeBxsDpx0G",
           "transfer": false,
           "_id": "2iBVUGHtGW3I9VIj",
           "type": "base",
@@ -339,10 +331,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -356,12 +344,10 @@
         "description": "<p>The @Lookup[@name] has advantage on attacks if they are <em>Hidden</em>.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "of6g4piugKzTI4dv",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
@@ -396,7 +382,6 @@
             "expired": false
           },
           "description": "<p>The Assassin has advantage on attacks if they are <em>Hidden.</em></p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -413,10 +398,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -474,12 +455,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "lAmiK8wVxjyHwKlp",
       "img": "icons/magic/air/fog-gas-smoke-green.webp",
@@ -487,7 +466,6 @@
         {
           "name": "Dizzy",
           "img": "icons/magic/control/silhouette-hold-change-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.h5RuhzGL17dW5FBT.Item.lAmiK8wVxjyHwKlp",
           "transfer": false,
           "_id": "yP4ot8VqS56RnxnE",
           "type": "base",
@@ -523,10 +501,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

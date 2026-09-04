@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "2trd3JYIb527LIrn",
         "systemPath": "actions",
-        "description": "<p>You gain a +1 bonus to your next Presence Roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,21 +42,27 @@
         },
         "name": "Drink",
         "img": "icons/consumables/potions/potion-tube-corked-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 60,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Charm Potion",
       "img": "icons/consumables/potions/potion-tube-corked-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.CVBbFfOY75YwyQsp",
       "transfer": false,
       "_id": "COrKb7gBin4Ro6r6",
       "type": "base",
@@ -65,9 +72,16 @@
             "key": "system.traits.presence.value",
             "type": "add",
             "value": 1,
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -91,11 +105,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 2600000,
   "flags": {},
   "_key": "!items!CVBbFfOY75YwyQsp"
 }

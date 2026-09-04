@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 93,
+      "page": null,
       "artist": ""
     },
     "size": "gargantuan",
@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "xIICT6tEdnA7dKDV",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Greater Water Elemental",
     "displayName": 0,
@@ -236,7 +231,7 @@
       "name": "Water Jet",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target’s next action has disadvantage. On a failure, the target must mark a Stress.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target's next action has disadvantage. On a failure, the target must mark a Stress.</p>",
         "resource": null,
         "actions": {
           "Gk5tcqshtwP4JsKS": {
@@ -263,35 +258,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d4",
-                    "bonus": 7,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
@@ -366,12 +332,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "B8ZrtRCZrwwwWJOE",
       "img": "icons/magic/water/projectile-icecicle-glowing.webp",
@@ -379,7 +343,6 @@
         {
           "name": "Water Jet",
           "img": "icons/magic/water/projectile-icecicle-glowing.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.B8ZrtRCZrwwwWJOE",
           "transfer": false,
           "_id": "WYqjt1tVqPEdVV5l",
           "type": "base",
@@ -423,10 +386,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -464,9 +423,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {}
             },
@@ -520,12 +476,10 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "bcwFQeuU6ZfIGjau",
       "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
@@ -533,7 +487,6 @@
         {
           "name": "Drowning Embrace",
           "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.bcwFQeuU6ZfIGjau",
           "transfer": true,
           "_id": "X8NF2OB23mSpDvlx",
           "type": "base",
@@ -541,7 +494,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">You can break free with a successful Strength or Instinct Roll.</span></p>"
+              "description": "<p>You can break free with a successful Strength or Instinct Roll.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -580,10 +533,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -636,22 +585,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "BGE42W1XPd0vpimR",
       "img": "icons/magic/water/tendrils-ice-thorns.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

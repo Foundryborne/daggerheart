@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "MC0EA6TDZpEHMz11",
         "systemPath": "actions",
-        "description": "<p>You can use this bone to control your falling speed for a number of minutes equal to your level.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -27,7 +27,8 @@
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -41,26 +42,38 @@
         },
         "name": "Use",
         "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": ""
   },
   "effects": [
     {
       "name": "Featherbone",
       "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.DpxEMpwfasEBpORU",
       "transfer": false,
       "_id": "VfJIJBW96e45xQHY",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -84,11 +97,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "OFxauskoxcvVTVNA": 3
-  },
+  "sort": 2800000,
   "flags": {},
   "_key": "!items!DpxEMpwfasEBpORU"
 }

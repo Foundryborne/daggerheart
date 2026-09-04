@@ -1,0 +1,20 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Weight of Divinity",
+  "type": "feature",
+  "_id": "S03wpIyK6S6qENlu",
+  "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>When you fail a roll, you must mark a Stress or the GM gains a Fear.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!S03wpIyK6S6qENlu"
+}

@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 86,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "TLzY1nDw0Bu9Ud40",
   "sort": 1900000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Electric Eels",
     "displayName": 0,
@@ -239,22 +234,16 @@
         "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "1mNlXMyCQNg4P3n3",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -292,44 +281,15 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "hitPoints": {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 2,
-                    "dice": "d6",
-                    "bonus": 4,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "physical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": {
                 "value": {
                   "custom": {
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 2,
+                  "flatMultiplier": 0,
                   "dice": "d6",
-                  "bonus": 4,
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -348,9 +308,10 @@
                     "formula": ""
                   }
                 },
-                "includeBase": false,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },
@@ -379,7 +340,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Mark Stress",
             "img": "icons/magic/lightning/bolt-strike-sparks-teal.webp",
             "range": "veryClose",
             "baseAction": false,
@@ -390,22 +351,16 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "u5NL1eUJeAkIEpgt",
       "img": "icons/magic/lightning/bolt-strike-sparks-teal.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -436,7 +391,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],

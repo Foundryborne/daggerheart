@@ -4,55 +4,102 @@
   "type": "domainCard",
   "folder": "ZZHIbaynhzVArA1p",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card. When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within Melee range of the attacker, deal that amount of damage back to them.</p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p>",
+    "description": "<p>Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card. When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you're within Melee range of the attacker, deal that amount of damage back to them.</p><p>When you take a rest, clear all unspent tokens.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 5,
     "type": "spell",
     "actions": {
-      "vGgUNZMcchMsQoYb": {
-        "type": "effect",
-        "_id": "vGgUNZMcchMsQoYb",
+      "zuiLXexIzTvLmoKF": {
+        "type": "healing",
+        "_id": "zuiLXexIzTvLmoKF",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card.</p>",
+        "baseAction": false,
+        "description": "<p>Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card.</p>",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "cost": [
           {
+            "itemId": null,
             "key": "hope",
             "value": 1,
             "scalable": false,
             "step": null,
-            "itemId": null,
             "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null,
+          "max": "1",
+          "recovery": "shortRest",
           "consumeOnSuccess": false
         },
-        "effects": [],
+        "damage": {
+          "main": null,
+          "resources": {
+            "resource": {
+              "base": false,
+              "itemId": "oUipGK84E2KjoKqh",
+              "applyTo": "resource",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@cast"
+                }
+              },
+              "valueAlt": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false,
+                  "formula": ""
+                }
+              }
+            }
+          }
+        },
         "target": {
           "type": "self",
           "amount": null
         },
-        "name": "Spend Hope",
-        "img": "icons/magic/nature/thorns-hand-glow-green.webp",
-        "range": "self",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
         },
-        "triggers": [],
-        "areas": []
+        "name": "Gain Tokens",
+        "range": "self",
+        "img": "icons/magic/nature/thorns-hand-glow-green.webp"
       },
       "IVAyyVf8gqFWB7bP": {
         "type": "effect",
         "_id": "IVAyyVf8gqFWB7bP",
         "systemPath": "actions",
-        "description": "<p>When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within Melee range of the attacker, deal that amount of damage back to them.</p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p>",
+        "description": "<p>When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you're within Melee range of the attacker, deal that amount of damage back to them.</p><p>When you take a rest, clear all unspent tokens.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -91,15 +138,15 @@
       "type": "simple",
       "value": 0,
       "recovery": "shortRest",
-      "max": "@cast",
-      "icon": "",
+      "max": "",
+      "icon": "fa-solid fa-road-spikes",
       "dieFaces": "d6",
       "progression": "increasing",
       "diceStates": {}
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 130,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -115,7 +162,6 @@
     {
       "name": "Thorn Skin",
       "img": "icons/magic/nature/thorns-hand-glow-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.oUipGK84E2KjoKqh",
       "transfer": false,
       "_id": "KPA1okccsR7AQH0x",
       "type": "base",
@@ -149,8 +195,5 @@
       "_key": "!items.effects!oUipGK84E2KjoKqh.KPA1okccsR7AQH0x"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!oUipGK84E2KjoKqh"
 }

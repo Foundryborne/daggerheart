@@ -1,10 +1,10 @@
 {
-  "name": "Nature’s Tongue",
+  "name": "Nature's Tongue",
   "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
-    "description": "<p class=\"Body-Foundation\">You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p><p class=\"Body-Foundation\">Additionally, before you make a Spellcast Roll while within a natural environment, you can <strong>spend a Hope</strong> to gain a +2 bonus to the roll.</p>",
+    "description": "<p>You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they'll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p><p>Additionally, before you make a Spellcast Roll while within a natural environment, you can <strong>spend a Hope</strong> to gain a +2 bonus to the roll.</p>",
     "domain": "sage",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "qQEeyIGs0wKjW3a1",
         "systemPath": "actions",
-        "description": "<p>You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p>",
+        "description": "<p>You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they'll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -109,7 +109,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 130,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -126,7 +126,6 @@
     {
       "name": "Bonus to Spellcast",
       "img": "icons/magic/nature/beam-hand-leaves-green.webp",
-      "origin": "Compendium.daggerheart.domains.Item.atWLorlCOxcrq8WB",
       "transfer": false,
       "_id": "0JYDk5CQ66bHGQO0",
       "type": "base",
@@ -168,8 +167,5 @@
       "_key": "!items.effects!atWLorlCOxcrq8WB.0JYDk5CQ66bHGQO0"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!atWLorlCOxcrq8WB"
 }

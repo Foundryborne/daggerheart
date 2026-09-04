@@ -132,11 +132,8 @@ export default class DHWeapon extends BaseDataItem {
         const features = this.weaponFeatures.map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/sheets/items/weapon/description.hbs',
-            {
-                item: this,
-                features
-            }
+            'systems/daggerheart/templates/sheets/items/description.hbs',
+            { features }
         );
 
         return { prefix, value: baseDescription, suffix: null };
@@ -166,7 +163,7 @@ export default class DHWeapon extends BaseDataItem {
 
             const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
             for (let weaponFeature of added) {
-                const featureData = allFeatures[weaponFeature.value];
+                const featureData = foundry.utils.deepClone(allFeatures[weaponFeature.value]);
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments(
                         'ActiveEffect',

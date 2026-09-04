@@ -1,0 +1,20 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Unfinished Business",
+  "type": "feature",
+  "_id": "Kz85MBLkNbcZB3Us",
+  "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>Work with your GM to decide what purpose or desire keeps you bound to the Mortal Realm. When you fulfill it, you cross through the veil of death.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!Kz85MBLkNbcZB3Us"
+}

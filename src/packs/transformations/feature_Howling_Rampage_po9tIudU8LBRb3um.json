@@ -1,0 +1,92 @@
+{
+  "folder": "D98dAGIivYnU7ing",
+  "name": "Howling Rampage",
+  "type": "feature",
+  "_id": "po9tIudU8LBRb3um",
+  "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>When you mark your last Stress while in Wolf Form, you go into a rampage. Roll a number of <strong>d20s</strong> equal to your tier and deal that much physical damage to all creatures within Very Close range, then drop out of Wolf Form.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {
+      "aDvVychT2u6QD8xw": {
+        "type": "damage",
+        "damage": {
+          "main": {
+            "base": false,
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": true,
+                "formula": "(@system.tier)d20"
+              }
+            },
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "physical"
+            ]
+          },
+          "resources": {}
+        },
+        "_id": "aDvVychT2u6QD8xw",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Howling Rampage",
+            "type": "placed",
+            "shape": "emanation",
+            "size": "veryClose",
+            "hasHole": false,
+            "effects": []
+          }
+        ],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "",
+        "range": ""
+      }
+    },
+    "granter": null,
+    "featureForm": "passive"
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!po9tIudU8LBRb3um"
+}

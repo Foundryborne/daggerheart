@@ -2,7 +2,7 @@
     <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
         <div class="item-header">
             <div class="item-info" {{#if @root.viewSheet}}data-action="viewSheet"{{else}}data-action="expandContent"{{/if}}>
-                <img src="{{img}}" data-item-key="img" class="item-list-img">
+                <img src="{{img}}" data-item-key="img" class="item-list-img" {{#if (and uuid (eq documentName "Item"))}}data-tooltip="#item#{{uuid}}"{{/if}}>
                 <span data-item-key="name" class="item-list-name">{{name}}</span>
                 {{#each ../menu.data.columns}}
                     <span data-item-key="{{key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</span>

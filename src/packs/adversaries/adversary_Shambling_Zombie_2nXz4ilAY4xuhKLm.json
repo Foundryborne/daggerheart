@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 84,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "2nXz4ilAY4xuhKLm",
   "sort": 600000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Shambling Zombie",
     "displayName": 0,
@@ -241,21 +236,14 @@
         "description": "<p>When the @Lookup[@name] is within Melee range of a creature and at least one other @Lookup[@name] is within Close range, all attacks against that creature have advantage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -268,7 +256,7 @@
       "_id": "iiOjamlZIuhpDC8W",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
       "system": {
-        "description": "<p>Targets who mark HP from the @Lookup[@name]’s attacks must also mark a Stress.</p>",
+        "description": "<p>Targets who mark HP from the @Lookup[@name]'s attacks must also mark a Stress.</p>",
         "resource": null,
         "actions": {
           "JUw16Jag9uTfBmKZ": {
@@ -286,34 +274,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {
-                "stress": {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "stress",
-                  "type": [],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              },
-              "includeBase": false,
               "main": null,
               "resources": {
                 "stress": {
@@ -360,21 +320,14 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "subType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

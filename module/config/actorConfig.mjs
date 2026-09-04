@@ -231,6 +231,19 @@ export const tokenSize = {
     }
 };
 
+export const activeEffectExtraPaths = {
+    adversary: [],
+    character: [
+        { value: '@prof', label: 'DAGGERHEART.GENERAL.proficiency', group: 'TYPES.Actor.character' },
+        { value: '@cast', label: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.cast.label', group: 'TYPES.Actor.character' }
+    ],
+    companion: [],
+    allActors: [
+        { value: '@fear', label: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.fear.label', group: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.allCategory' },
+        { value: '@partySize', label: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.partySize.label', group: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.allCategory' }
+    ]
+}
+
 export const levelChoices = {
     attributes: {
         name: 'attributes',

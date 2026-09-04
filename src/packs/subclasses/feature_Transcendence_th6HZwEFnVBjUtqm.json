@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "RIbyJjEkCgqoDmyn",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, you can transform into a physical manifestation of your element. When you do, describe your transformation and choose two of the following benefits to gain until your next rest:</p><ul><li><p>+4 bonus to your Severe threshold</p></li><li><p>+1 bonus to a character trait of your choice</p></li><li><p>+1 bonus to your Proficiency</p></li><li><p>+2 bonus to your Evasion</p></li></ul>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -21,7 +21,8 @@
             "key": "hitPoints",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -37,16 +38,23 @@
         },
         "name": "Transform",
         "img": "icons/magic/fire/elemental-fire-flying.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 22,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
@@ -58,12 +66,17 @@
             "key": "system.damageThresholds.severe",
             "value": "+4",
             "priority": null,
-            "type": "add"
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
-          "type": ""
-        }
+          "type": "",
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "zFOpzO3tBJPcZcRc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
@@ -75,7 +88,6 @@
         "expired": false
       },
       "description": "<p>+4 bonus to your Severe threshold</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -100,22 +112,24 @@
       "name": "Bonus to Trait",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "cTgSmxkTi89y6sbc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to a character trait of your choice</p>",
-      "origin": null,
+      "description": "<p>+1 bonus to a character trait of your choice</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -124,6 +138,9 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!th6HZwEFnVBjUtqm.cTgSmxkTi89y6sbc"
     },
     {
@@ -135,24 +152,27 @@
             "key": "system.proficiency",
             "type": "add",
             "value": "+1",
-            "priority": null
+            "priority": null,
+            "phase": "initial"
           }
-        ]
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "oWf3iXf4dawdbmzd",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to your Proficiency</p>",
-      "origin": null,
+      "description": "<p>+1 bonus to your Proficiency</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -161,28 +181,33 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!th6HZwEFnVBjUtqm.oWf3iXf4dawdbmzd"
     },
     {
       "name": "Bonus to Evasion",
       "type": "base",
       "system": {
-        "changes": []
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
       "_id": "2LCF6lSnWFqNiPs5",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
       "disabled": true,
       "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+2 bonus to your Evasion</p>",
-      "origin": null,
+      "description": "<p>+2 bonus to your Evasion</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -191,14 +216,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!th6HZwEFnVBjUtqm.2LCF6lSnWFqNiPs5"
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!th6HZwEFnVBjUtqm"
 }

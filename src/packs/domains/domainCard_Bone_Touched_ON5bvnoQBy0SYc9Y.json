@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "i5iDLXMZLc0ckWI5",
   "system": {
-    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your loadout are from the Bone domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to Agility</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can <strong>spend 3 Hope</strong> to cause an attack that succeeded against you to fail instead.</p></li></ul>",
+    "description": "<p>When 4 or more of the domain cards in your loadout are from the Bone domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to Agility</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can <strong>spend 3 Hope</strong> to cause an attack that succeeded against you to fail instead.</p></li></ul>",
     "domain": "bone",
     "recallCost": 2,
     "level": 7,
@@ -51,7 +51,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 123,
+      "page": null,
       "artist": ""
     },
     "domainTouched": 4,
@@ -94,8 +94,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">+1 bonus to Agility</p>",
-      "origin": null,
+      "description": "<p>+1 bonus to Agility</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -110,8 +109,5 @@
       "_key": "!items.effects!ON5bvnoQBy0SYc9Y.P6hYkkI64FqIcMoP"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!ON5bvnoQBy0SYc9Y"
 }

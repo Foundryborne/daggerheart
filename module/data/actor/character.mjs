@@ -312,6 +312,14 @@ export default class DhCharacter extends DhCreature {
                         choices: CONFIG.DH.GENERAL.dieFaces,
                         initial: null,
                         label: 'DAGGERHEART.ACTORS.Character.defaultDisadvantageDice'
+                    }),
+                    comboDieIndex: new fields.NumberField({
+                        integer: true,
+                        min: 0,
+                        max: 5,
+                        initial: 0,
+                        label: 'DAGGERHEART.ACTORS.Character.comboDieIndex.label',
+                        hint: 'DAGGERHEART.ACTORS.Character.comboDieIndex.hint'
                     })
                 })
             }, { persisted: false }),
@@ -342,6 +350,7 @@ export default class DhCharacter extends DhCreature {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
+    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
     get class() {
         const value = this.parent.items.find(x => x.type === 'class' && !x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && !x.system.isMulticlass);
@@ -352,6 +361,7 @@ export default class DhCharacter extends DhCreature {
         };
     }
 
+    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
     get multiclass() {
         const value = this.parent.items.find(x => x.type === 'class' && x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
@@ -428,9 +438,11 @@ export default class DhCharacter extends DhCreature {
     get loadoutSlot() {
         const loadoutCount = this.domainCards.loadout?.length ?? 0;
         const worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout;
+        const limit = worldSetting + this.bonuses.maxLoadout;
+
         return {
             current: loadoutCount,
-            available: loadoutCount < worldSetting
+            available: loadoutCount < limit
         };
     }
 
@@ -453,6 +465,24 @@ export default class DhCharacter extends DhCreature {
         return !(this.primaryWeapon?.system?.equipped || this.secondaryWeapon?.system?.equipped);
     }
 
+    get levelupTiers() {
+        const tierData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers);
+        const setTierData = levelupOptionTiers => {
+            for (const tierKey of Object.keys(levelupOptionTiers ?? {})) {
+                const tier = levelupOptionTiers[tierKey];
+                for (const optionKey of Object.keys(tier)) {
+                    const option = tier[optionKey];
+                    tierData.tiers[tierKey].options[optionKey] = option;
+                }
+            }
+        }
+
+        setTierData(this.class?.value?.system.levelupOptionTiers);
+        setTierData(this.multiclass?.value?.system.levelupOptionTiers);
+
+        return tierData;
+    }
+
     /* All items are valid on characters */
     isItemValid() {
         return true;
@@ -465,19 +495,19 @@ export default class DhCharacter extends DhCreature {
          * Preventing subclass features from being available if the chacaracter does not
          * have the right subclass advancement
          */
-        if (item.system.originItemType !== CONFIG.DH.ITEM.featureTypes.subclass.id) {
+        if (item.system.granter?.type !== CONFIG.DH.ITEM.featureTypes.subclass.id) {
             return true;
         }
         if (!this.class.subclass) return false;
 
-        const prop = item.system.multiclassOrigin ? 'multiclass' : 'class';
+        const prop = item.system.granter?.multiclass ? 'multiclass' : 'class';
         const subclassState = this[prop].subclass?.system?.featureState;
         if (!subclassState) return false;
 
         if (
-            item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
-            (item.system.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
+            item.system.granter?.identifier === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+            (item.system.granter?.identifier === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
+            (item.system.granter?.identifier === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
         ) {
             return true;
         } else {
@@ -578,80 +608,6 @@ export default class DhCharacter extends DhCreature {
                 ]
             });
         }
-    }
-
-    get sheetLists() {
-        const ancestryFeatures = [],
-            communityFeatures = [],
-            classFeatures = [],
-            subclassFeatures = [],
-            multiclassFeatures = [],
-            multiclassSubclassFeatures = [],
-            companionFeatures = [],
-            features = [];
-
-        for (let item of this.parent.items.filter(x => this.isItemAvailable(x))) {
-            if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
-                ancestryFeatures.push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
-                communityFeatures.push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
-                (item.system.multiclassOrigin ? multiclassFeatures : classFeatures).push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
-                (item.system.multiclassOrigin ? multiclassSubclassFeatures : subclassFeatures).push(item);
-            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
-                companionFeatures.push(item);
-            } else if (item.type === 'feature' && !item.system.type) {
-                features.push(item);
-            }
-        }
-
-        return {
-            ancestryFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.ancestry')} - ${this.ancestry?.name}`,
-                type: 'ancestry',
-                values: ancestryFeatures
-            },
-            communityFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.community')} - ${this.community?.name}`,
-                type: 'community',
-                values: communityFeatures
-            },
-            classFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.class')} - ${this.class.value?.name}`,
-                type: 'class',
-                values: classFeatures
-            },
-            subclassFeatures: {
-                title: `${game.i18n.localize('TYPES.Item.subclass')} - ${this.class.subclass?.name}`,
-                type: 'subclass',
-                values: subclassFeatures
-            },
-            ...(multiclassFeatures.length
-                ? {
-                    multiclassFeatures: {
-                        title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} - ${this.multiclass.value?.name}`,
-                        type: 'multiclass',
-                        values: multiclassFeatures
-                    }
-                }
-                : {}),
-            ...(multiclassSubclassFeatures.length
-                ? {
-                    multiclassSubclassFeatures: {
-                        title: `${game.i18n.localize('DAGGERHEART.GENERAL.multiclass')} ${game.i18n.localize('TYPES.Item.subclass')} - ${this.multiclass.subclass?.name}`,
-                        type: 'multiclassSubclass',
-                        values: multiclassSubclassFeatures
-                    }
-                }
-                : {}),
-            companionFeatures: {
-                title: game.i18n.localize('DAGGERHEART.ACTORS.Character.companionFeatures'),
-                type: 'companion',
-                values: companionFeatures
-            },
-            features: { title: game.i18n.localize('DAGGERHEART.GENERAL.features'), type: 'feature', values: features }
-        };
     }
 
     get primaryWeapon() {
@@ -765,6 +721,9 @@ export default class DhCharacter extends DhCreature {
                                 }
                             });
                             break;
+                        case 'dice':
+                            this.rules.roll[selection.subType] += 1;
+                            break;
                     }
                 }
             }
@@ -821,8 +780,16 @@ export default class DhCharacter extends DhCreature {
             isReversed: true
         };
 
+        /* Add convience <dice>Faces properties for all diceIndexes */
+        const { comboDieIndex } = this.rules.roll;
+        const dice = { comboDieIndex };
+        for (const dieKey of Object.keys(dice)) {
+            const diceBaseKey = dieKey.replace('Index', '');
+            this.rules.roll[`${diceBaseKey}Faces`] = CONFIG.DH.GENERAL.dieFaces[dice[dieKey]];
+        }
+
         // Clamp resources (must be done last to ensure all updates occur)
-        this.resources.clamp();
+        this.clampResources();
     }
 
     getRollData() {

@@ -1,9 +1,14 @@
+import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 
 export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
-        c: 'comboDice'
+        c: 'comboDice',
+        h: 'hope',
+        f: 'fear',
+        a: 'advantage',
+        d: 'disadvantage'
     };
 
     async rerollResult(resultToReroll) {
@@ -37,6 +42,32 @@ export default class BaseDie extends foundry.dice.terms.Die {
     /* -------------------------------------------- */
     /*  Modifier Logic                              */
     /* -------------------------------------------- */
+
+    async hope() {
+        this.#setDualityDiePreset('hope');
+    }
+
+    async fear() {
+        this.#setDualityDiePreset('fear');
+    }
+
+    async advantage() {
+        this.#setDualityDiePreset('advantage');
+    }
+
+    async disadvantage() {
+        this.#setDualityDiePreset('disadvantage');
+    }
+
+    async #setDualityDiePreset(dualityType) {
+        if (!game.dice3d) return;
+
+        const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+        const dualityDie = diceSoNice[dualityType];
+        if (!dualityDie) return;
+
+        this.options = await getDiceSoNicePreset(dualityDie, this.denomination);
+    }
 
     async comboDice() {
         /* ComboDice only works with exactly two dice and both have to be the same denomination */

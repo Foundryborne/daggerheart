@@ -140,7 +140,7 @@
 
 {{#*inline "classHeritage"}}
     {{#if item}}
-        <span data-action="editDoc" data-item-uuid="{{item.uuid}}">{{item.name}}</span>
+        <span data-action="editDoc" data-item-uuid="{{item.uuid}}" {{#if (or (eq item.type "ancestry") (eq item.type "community") (eq item.type "subclass"))}}data-tooltip="#item#{{item.uuid}}"{{/if}}>{{item.name}}</span>
     {{else}}
         <span class="missing-header-feature" data-action="openPack" data-key="{{key}}">{{label}}</span>
     {{/if}}

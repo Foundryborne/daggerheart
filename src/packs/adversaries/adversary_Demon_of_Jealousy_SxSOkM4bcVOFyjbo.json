@@ -19,7 +19,7 @@
         "max": 6
       }
     },
-    "motivesAndTactics": "Join in on others’ success, take what belongs to others, hold grudges",
+    "motivesAndTactics": "Join in on others' success, take what belongs to others, hold grudges",
     "resistance": {
       "physical": {
         "resistance": false,
@@ -129,7 +129,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 92,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -140,11 +140,6 @@
   "flags": {},
   "_id": "SxSOkM4bcVOFyjbo",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Demon of Jealousy",
     "displayName": 0,
@@ -242,25 +237,19 @@
       "name": "Unprotected Mind",
       "type": "feature",
       "system": {
-        "description": "<p>The @Lookup[@name]’s standard attack deals direct damage.</p>",
+        "description": "<p>The @Lookup[@name]'s standard attack deals direct damage.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "m8qmsssYQ3uFHkil",
       "img": "icons/magic/control/fear-fright-monster-purple-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -274,22 +263,16 @@
         "description": "<p>When the @Lookup[@name] marks HP from an attack, <strong>spend a number of Fear equal to the HP marked by the @Lookup[@name]</strong> to cause the attacker to mark the same number of HP.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "KVyhgMJSSHTwRISA",
       "img": "icons/magic/control/fear-fright-monster-grin-purple-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -351,22 +334,16 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "pSAupMWw1eYqm84z",
       "img": "icons/magic/perception/eye-ringed-glow-angry-small-teal.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -377,7 +354,7 @@
       "name": "What's Yours Is Mine",
       "type": "feature",
       "system": {
-        "description": "<p>When a PC takes Severe damage within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the @Lookup[@name] seizes one item or consumable of their choice from the target’s inventory.</p>",
+        "description": "<p>When a PC takes Severe damage within Very Close range of the @Lookup[@name], you can <strong>spend a Fear</strong> to cause the target to make a Finesse Reaction Roll. On a failure, the @Lookup[@name] seizes one item or consumable of their choice from the target's inventory.</p>",
         "resource": null,
         "actions": {
           "3cGZ2CofM9HUlELH": {
@@ -395,9 +372,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
-              "groupAttack": "",
               "main": null,
               "resources": {}
             },
@@ -446,22 +420,16 @@
             "triggers": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "589tCxFc8KZ3rdzP",
       "img": "icons/magic/perception/hand-eye-black.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

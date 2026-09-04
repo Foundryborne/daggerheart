@@ -19,7 +19,7 @@
             </section>
         {{/if}}
     </div>
-    {{#if (and showAttribution document.system.attribution.artist)}}
+    {{#if document.system.attribution.artist}}
         <label class="artist-attribution">{{localize "DAGGERHEART.GENERAL.artistAttribution" artist=document.system.attribution.artist}}</label>
     {{/if}}
 </section>

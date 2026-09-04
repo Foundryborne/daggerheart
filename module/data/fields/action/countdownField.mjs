@@ -1,3 +1,4 @@
+import { itemAbleRollParse } from '../../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
 import { NullableBooleanField } from '../nullableBooleanField.mjs';
 
@@ -45,9 +46,9 @@ export default class CountdownField extends fields.ArrayField {
         const countdownMessages = [];
         for (let countdown of config.countdowns) {
             let startFormula = countdown.progress.startFormula ? countdown.progress.startFormula : null;
-            let countdownStart = startFormula ?? '1';
+            let countdownStart = startFormula ? itemAbleRollParse(startFormula, this.actor, this.item) : '1';
             if (startFormula) {
-                const roll = await new Roll(startFormula).roll();
+                const roll = await new Roll(countdownStart).roll();
                 if (roll.dice.length > 0) {
                     countdownStart = roll.total;
                     const message = await roll.toMessage();

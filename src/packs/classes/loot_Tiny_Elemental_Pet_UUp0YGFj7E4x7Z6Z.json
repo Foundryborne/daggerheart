@@ -7,14 +7,12 @@
   "system": {
     "description": "<p>A tiny elemental pet</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {},
+    "gmNotes": ""
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!UUp0YGFj7E4x7Z6Z"
 }

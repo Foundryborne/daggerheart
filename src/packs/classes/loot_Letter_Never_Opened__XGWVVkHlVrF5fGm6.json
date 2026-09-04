@@ -6,14 +6,12 @@
   "system": {
     "description": "",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {},
+    "gmNotes": ""
   },
   "effects": [],
   "flags": {},
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "_id": "XGWVVkHlVrF5fGm6",
   "sort": 200000,
   "_key": "!items!XGWVVkHlVrF5fGm6"

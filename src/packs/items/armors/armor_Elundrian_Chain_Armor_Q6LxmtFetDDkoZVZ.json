@@ -11,10 +11,8 @@
     },
     "description": "",
     "actions": {},
-    "attached": [],
     "tier": 2,
     "equipped": false,
-    "baseScore": 4,
     "armorFeatures": [
       {
         "value": "warded",
@@ -24,41 +22,50 @@
         "actionIds": []
       }
     ],
-    "marks": {
-      "value": 0
-    },
     "baseThresholds": {
       "major": 9,
       "severe": 21
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 56,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "resource": null,
+    "quantity": 1
   },
   "effects": [
     {
       "name": "Warded",
       "description": "You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds.",
       "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
-      "changes": [
-        {
-          "key": "system.resistance.magical.reduction",
-          "type": "add",
-          "value": "@system.armorScore.max",
-          "priority": 21
-        }
-      ],
       "_id": "xGxqTCO8MjNq5Cw6",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.resistance.magical.reduction",
+            "type": "add",
+            "value": "@system.armorScore.max",
+            "priority": 21,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
       "disabled": false,
       "duration": {
-        "startTime": null,
-        "combat": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -67,14 +74,13 @@
       "_stats": {
         "compendiumSource": null
       },
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!Q6LxmtFetDDkoZVZ.xGxqTCO8MjNq5Cw6"
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "FecEtPuoQh6MpjQ0": 3
-  },
   "flags": {},
   "_key": "!items!Q6LxmtFetDDkoZVZ"
 }

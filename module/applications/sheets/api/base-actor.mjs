@@ -24,7 +24,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         actions: {
             openSettings: DHBaseActorSheet.#openSettings,
             sendExpToChat: DHBaseActorSheet.#sendExpToChat,
-            increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true)
+            increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true),
+            groupActionSelect: DHBaseActorSheet.#groupActionSelect,
+            refreshFromCompendium: DHBaseActorSheet.#onRefreshFromCompendium
         },
         contextMenus: [
             {
@@ -38,7 +40,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         ],
         dragDrop: [
             { dragSelector: '.inventory-item[data-type="attack"]', dropSelector: null },
-            { dragSelector: '.currency[data-currency] .drag-handle', dropSelector: null }
+            { dragSelector: '.currency[data-currency] .drag-handle', dropSelector: null },
+            // This exists in order to cancel a drag drop from happening. Implementation in _onDragStart()
+            { dragSelector: '[draggable="true"] input[type=text], [draggable="true"] input[type=number]', dropSelector: null }
         ]
     };
 
@@ -59,6 +63,26 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         return limitedOnly ? this.document.system.metadata.hasLimitedView : viewPermission;
     }
 
+    /** @inheritdoc */
+    _getHeaderControls() {
+        const controls = super._getHeaderControls();
+        controls.push({
+            icon: 'fa-solid fa-image',
+            label: 'SIDEBAR.CharArt',
+            action: 'showPortraitArtwork'
+        });
+
+        if (!this.actor.isToken && this.actor.refreshSourceUuid) {
+            controls.push({
+                label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
+                icon: 'fa-solid fa-arrow-rotate-left',
+                action: 'refreshFromCompendium'
+            });
+        }
+
+        return controls;
+    }
+
     /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
@@ -67,12 +91,11 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.isNPC = this.document.isNPC;
+        context.isToken = this.document.isToken;
         context.useResourcePips = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.appearance
         ).useResourcePips;
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
 
         // Prepare inventory data
         if (this.document.system.metadata.hasInventory) {
@@ -139,6 +162,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /**@inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelector('.portrait > img, img.profile')
+            ?.addEventListener('contextmenu', DHBaseActorSheet.#onDisplayPortraitArtwork.bind(this));
 
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
@@ -232,6 +258,12 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /*  Application Listener Actions                */
     /* -------------------------------------------- */
 
+    static #onDisplayPortraitArtwork() {
+        const { ImagePopout } = foundry.applications.apps;
+        const {img, name, uuid} = this.document;
+        new ImagePopout({src: img, uuid, window: {title: name}}).render({force: true});
+    }
+
     async updateItemQuantity(event) {
         const item = await getDocFromElement(event.currentTarget);
         await item?.update({ 'system.quantity': event.currentTarget.value });
@@ -298,6 +330,24 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         const newValue = (action.uses.value ?? 0) + (increase ? 1 : -1);
         await action.update({ 'uses.value': Math.min(Math.max(newValue, 0), action.uses.max ?? 0) });
+    }
+
+    static async #groupActionSelect(event, button) {
+        const action = await fromUuid(button.dataset.itemUuid);
+        action.use(event, { groupAction: { forceSelect: true }});
+    }
+
+    /** @this DHBaseActorSheet */
+    static async #onRefreshFromCompendium() {
+        const refresh = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title')
+            },
+            content: _loc('DAGGERHEART.ITEMS.Base.Refresh.AreYouSure')
+        });
+        if (refresh) {
+            this.document.refreshFromCompendium();
+        }
     }
 
     /* -------------------------------------------- */
@@ -424,6 +474,14 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDragStart(event) {
+        // If the target is an input element, stop the dragdrop. This may be a resource inside a draggable
+        // This relies on a dragdrop selector being registered for inputs specifically
+        if (event.target.tagName === 'INPUT' && ['number', 'text'].includes(event.target.type)) {
+            event.preventDefault();
+            event.stopPropagation();
+            return;
+        }
+
         // Handle drag/dropping currencies
         const currencyEl = event.currentTarget.closest('.currency[data-currency]');
         if (currencyEl) {

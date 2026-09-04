@@ -4,7 +4,7 @@
   "_id": "5ZnlJ5bEoyOTkUJv",
   "img": "icons/magic/holy/barrier-shield-winged-cross.webp",
   "system": {
-    "description": "<p>Seraphs are divine fighters and healers imbued with sacred purpose. A wide array of deities exist within the realms, and thus numerous kinds of seraphs are appointed by these gods. Their ethos traditionally aligns with the domain or goals of their god, such as defending the weak, exacting vengeance, protecting a land or artifact, or upholding a particular faith. Some seraphs ally themselves with an army or locale, much to the satisfaction of their rulers, but other crusaders fight in opposition to the follies of the Mortal Realm. It is better to be a seraph’s ally than their enemy, as they are terrifying foes to those who defy their purpose.</p>",
+    "description": "<p>Seraphs are divine fighters and healers imbued with sacred purpose. A wide array of deities exist within the realms, and thus numerous kinds of seraphs are appointed by these gods. Their ethos traditionally aligns with the domain or goals of their god, such as defending the weak, exacting vengeance, protecting a land or artifact, or upholding a particular faith. Some seraphs ally themselves with an army or locale, much to the satisfaction of their rulers, but other crusaders fight in opposition to the follies of the Mortal Realm. It is better to be a seraph's ally than their enemy, as they are terrifying foes to those who defy their purpose.</p>",
     "domains": [
       "valor",
       "splendor"
@@ -21,10 +21,6 @@
         "type": "class",
         "item": "Compendium.daggerheart.classes.Item.Xd7RYhfTxIj9aWI2"
       }
-    ],
-    "subclasses": [
-      "Compendium.daggerheart.subclasses.Item.M5mpGoAj8LRkylrY",
-      "Compendium.daggerheart.subclasses.Item.y7ERWRIpJsdP9Re4"
     ],
     "inventory": {
       "take": [
@@ -57,7 +53,7 @@
     "isMulticlass": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 20,
+      "page": null,
       "artist": ""
     },
     "backgroundQuestions": [
@@ -68,16 +64,13 @@
     "connections": [
       "What promise did you make me agree to, should you die on the battlefield?",
       "Why do you ask me so many questions about my god?",
-      "You’ve told me to protect one member of our party above all others, even yourself. Who are they and why?"
-    ]
+      "You've told me to protect one member of our party above all others, even yourself. Who are they and why?"
+    ],
+    "gmNotes": ""
   },
   "effects": [],
   "folder": null,
   "sort": 737500,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!5ZnlJ5bEoyOTkUJv"
 }

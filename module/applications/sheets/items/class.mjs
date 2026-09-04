@@ -1,7 +1,5 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
-const { TextEditor } = foundry.applications.ux;
-
 export default class ClassSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -123,58 +121,53 @@ export default class ClassSheet extends DHBaseItemSheet {
 
     /* -------------------------------------------- */
 
-    async _onDrop(event) {
-        event.stopPropagation();
-        const data = TextEditor.getDragEventData(event);
-        const item = await fromUuid(data.uuid);
-        const itemType = data.type === 'ActiveEffect' ? data.type : item.type;
+    async _onDropItem(event, item) {
         const target = event.target.closest('fieldset.drop-section');
-
-        if (['feature', 'ActiveEffect'].includes(itemType)) {
-            super._onDrop(event);
-        } else if (this.document.parent?.type !== 'character') {
-            if (itemType === 'weapon') {
+        if (target && this.document.parent?.type !== 'character') {
+            if (item.type === 'weapon') {
                 if (target.classList.contains('primary-weapon-section')) {
                     if (!item.system.secondary)
-                        await this.document.update({
+                        return await this.document.update({
                             'system.characterGuide.suggestedPrimaryWeapon': item.uuid
                         });
                 } else if (target.classList.contains('secondary-weapon-section')) {
                     if (item.system.secondary)
-                        await this.document.update({
+                        return await this.document.update({
                             'system.characterGuide.suggestedSecondaryWeapon': item.uuid
                         });
                 }
-            } else if (itemType === 'armor') {
+            } else if (item.type === 'armor') {
                 if (target.classList.contains('armor-section')) {
-                    await this.document.update({
+                    return await this.document.update({
                         'system.characterGuide.suggestedArmor': item.uuid
                     });
                 }
             } else if (target.classList.contains('choice-a-section')) {
-                if (itemType === 'loot' || itemType === 'consumable') {
+                if (item.type === 'loot' || item.type === 'consumable') {
                     const filteredChoiceA = this.document.system.inventory.choiceA;
                     if (filteredChoiceA.length < 2)
-                        await this.document.update({
+                        return await this.document.update({
                             'system.inventory.choiceA': [...filteredChoiceA.map(x => x.uuid), item.uuid]
                         });
                 }
-            } else if (itemType === 'loot') {
+            } else if (item.type === 'loot') {
                 if (target.classList.contains('take-section')) {
                     const filteredTake = this.document.system.inventory.take.filter(x => x);
                     if (filteredTake.length < 3)
-                        await this.document.update({
+                        return await this.document.update({
                             'system.inventory.take': [...filteredTake.map(x => x.uuid), item.uuid]
                         });
                 } else if (target.classList.contains('choice-b-section')) {
                     const filteredChoiceB = this.document.system.inventory.choiceB.filter(x => x);
                     if (filteredChoiceB.length < 2)
-                        await this.document.update({
+                        return await this.document.update({
                             'system.inventory.choiceB': [...filteredChoiceB.map(x => x.uuid), item.uuid]
                         });
                 }
             }
         }
+
+        return super._onDropItem(event, item);
     }
 
     /* -------------------------------------------- */

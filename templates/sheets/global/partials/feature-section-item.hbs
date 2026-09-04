@@ -1,14 +1,21 @@
-<li class='feature-item' data-item-uuid='{{feature.uuid}}' id="{{feature._id}}" data-type="{{type}}">
+<li class='feature-item' data-item-uuid="{{coalesce uuid feature.uuid}}" {{#if feature}}data-item=id="{{feature._id}}"{{/if}} data-type="{{type}}">
     <div class='feature-line'>
-        <img class='image' src='{{feature.img}}' />
-        <h4>
-            {{feature.name}}
-        </h4>
+        {{#if feature}}
+            <img class='image' src='{{feature.img}}' />
+            <h4>
+                {{feature.name}}
+            </h4>
+        {{else}}
+            <i class="fa-solid fa-link-slash hint image-icon" inert></i>
+            <span class="hint">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "TYPES.Item.feature")}}</span>
+        {{/if}}
         {{#unless hideContrals}}
         <div class='controls'>
-            <a class='effect-control' data-action='editDoc' data-tooltip="DAGGERHEART.UI.Tooltip.openItemWorld">
-                <i class="fa-solid fa-globe"></i>
-            </a>
+            {{#if feature}}
+                <a class='effect-control' data-action='editDoc' data-tooltip="DAGGERHEART.UI.Tooltip.openItemWorld">
+                    <i class="fa-solid fa-globe"></i>
+                </a>
+            {{/if}}
             <a class='effect-control' data-action='deleteFeature' data-tooltip="CONTROLS.CommonDelete">
                 <i class='fas fa-trash'></i>
             </a>

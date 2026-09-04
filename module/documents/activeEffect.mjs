@@ -114,9 +114,8 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         if (this.actor && data.origin) {
             const existingEffect = this.actor.effects.find(x => x.origin === data.origin);
             const stacks = Boolean(data.system?.stacking);
-            if (existingEffect && !stacks) return false;
-
-            if (existingEffect && stacks) {
+            if (existingEffect) {
+                if (!stacks) return false;
                 const incrementedValue = existingEffect.system.stacking.value + 1;
                 await existingEffect.update({
                     'system.stacking.value': Math.min(incrementedValue, existingEffect.system.stacking.max ?? Infinity)

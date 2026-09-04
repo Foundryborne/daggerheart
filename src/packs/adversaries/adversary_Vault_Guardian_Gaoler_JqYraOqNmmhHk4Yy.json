@@ -123,7 +123,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 95,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
@@ -134,11 +134,6 @@
   "flags": {},
   "_id": "JqYraOqNmmhHk4Yy",
   "sort": 3400000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
-  },
   "prototypeToken": {
     "name": "Vault Guardian Gaoler",
     "displayName": 0,
@@ -239,22 +234,16 @@
         "description": "<p>Creatures within Melee range of the @Lookup[@name] have disadvantage on attack rolls against them. Creatures trapped inside the @Lookup[@name] are immune to this feature.</p>",
         "resource": null,
         "actions": {},
-        "originItemType": null,
-        "originId": null,
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false,
-        "featureForm": "passive"
+        "featureForm": "passive",
+        "granter": null
       },
       "_id": "YiF0i85DeRoP4lEs",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -292,8 +281,6 @@
               "consumeOnSuccess": false
             },
             "damage": {
-              "parts": {},
-              "includeBase": false,
               "main": null,
               "resources": {}
             },
@@ -338,12 +325,10 @@
             "areas": []
           }
         },
-        "originItemType": null,
-        "originId": null,
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "multiclassOrigin": false
+        "granter": null
       },
       "_id": "VlHp8RjHy7MK8rqC",
       "img": "icons/environment/traps/cage-grey-steel.webp",
@@ -351,7 +336,6 @@
         {
           "name": "Lock Up",
           "img": "icons/environment/traps/cage-grey-steel.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.JqYraOqNmmhHk4Yy.Item.VlHp8RjHy7MK8rqC",
           "transfer": false,
           "_id": "6TZlstmWJPbeoL7i",
           "type": "base",
@@ -359,7 +343,7 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until freed with a successful Strength Roll (18).</span></p>"
+              "description": "<p>Until freed with a successful Strength Roll (18).</p>"
             },
             "rangeDependence": null,
             "stacking": null,
@@ -397,10 +381,6 @@
       ],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null

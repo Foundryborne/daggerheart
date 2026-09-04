@@ -16,3 +16,6 @@ export { default as TagTeamDialog } from './tagTeamDialog.mjs';
 export { default as GroupRollDialog } from './groupRollDialog.mjs';
 export { default as RiskItAllDialog } from './riskItAllDialog.mjs';
 export { default as CompendiumBrowserSettingsDialog } from './CompendiumBrowserSettings.mjs';
+export { default as LevelupOptionsDialog } from './levelupOptionsDialog.mjs';
+export { default as MultiActionSelectionDialog } from './multiActionSelectionDialog.mjs';
+export { default as ActiveEffectPathViewer } from './activeEffectPathViewerDialog.mjs';

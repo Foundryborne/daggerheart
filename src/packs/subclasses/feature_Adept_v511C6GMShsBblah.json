@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "FOl7kaOG6DFWIpMm",
         "systemPath": "actions",
-        "description": "<p>When you Utilize an Experience, you can <strong>mark a Stress</strong> instead of spending a Hope. If you do, double your Experience modifier for that roll.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -21,7 +21,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -37,23 +38,26 @@
         },
         "name": "Mark Stress",
         "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 25,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "MQSznptE5yLT7kj8": 3
-  },
   "flags": {},
   "_key": "!items!v511C6GMShsBblah"
 }

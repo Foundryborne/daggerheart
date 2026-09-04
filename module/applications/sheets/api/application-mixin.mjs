@@ -73,7 +73,7 @@ const typeSettingsMap = {
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
-        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+        #nonHeaderAttribution = ['ancestry', 'community', 'domainCard'];
 
         /**
          * @param {DHSheetV2Configuration} [options={}]
@@ -100,7 +100,8 @@ export default function DHApplicationMixin(Base) {
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#onAddNewItem,
                 browseItem: DHSheetV2.#onBrowseItem,
-                editAttribution: DHSheetV2.#editAttribution
+                editAttribution: DHSheetV2.#editAttribution,
+                configureLevelUpOptions: DHSheetV2.#configureLevelUpOptions
             },
             contextMenus: [
                 {
@@ -120,6 +121,16 @@ export default function DHApplicationMixin(Base) {
                     }
                 }
             ],
+            window: {
+                controls: [
+                    {
+                        icon: 'fa-solid fa-angles-up fa-fw',
+                        label: 'DAGGERHEART.UI.Tooltip.configureLevelupOptions',
+                        action: 'configureLevelUpOptions',
+                        visible: DHSheetV2.#hasLevelUpOptions
+                    }
+                ]
+            },
             dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
         };
@@ -128,12 +139,8 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const hideAttribution = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.appearance
-            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
@@ -143,16 +150,16 @@ export default function DHApplicationMixin(Base) {
             return frame;
         }
 
+        static #hasLevelUpOptions() {
+            return this.document.system.metadata.hasLevelUpOptions;
+        }
+
         /**
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const hideAttribution = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.appearance
-            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
 
@@ -580,6 +587,7 @@ export default function DHApplicationMixin(Base) {
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
             context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+
             return context;
         }
 
@@ -732,6 +740,10 @@ export default function DHApplicationMixin(Base) {
             new game.system.api.applications.dialogs.AttributionDialog(this.document).render({ force: true });
         }
 
+        static async #configureLevelUpOptions() {
+            new game.system.api.applications.dialogs.LevelupOptionsDialog(this.document).render({ force: true });
+        }
+
         /**
          * Create an embedded document.
          * @type {ApplicationClickAction}
@@ -751,8 +763,11 @@ export default function DHApplicationMixin(Base) {
             let systemData = {};
             if (featureOnCharacter) {
                 systemData = {
-                    originItemType: this.document.type,
-                    identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                    granter: {
+                        id: this.document.id,
+                        type: this.document.type,
+                        identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                    }
                 };
             }
             if (featureForm) systemData.featureForm = featureForm;

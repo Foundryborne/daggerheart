@@ -2,12 +2,6 @@ import { updateResourcesForDualityReroll } from '../helpers.mjs';
 import BaseDie from './baseDie.mjs';
 
 export default class DualityDie extends BaseDie {
-    constructor(options) {
-        super(options);
-
-        this.modifiers = [];
-    }
-
     get isRerolled() {
         return this.results.some(x => x.rerolled);
     }
@@ -26,15 +20,10 @@ export default class DualityDie extends BaseDie {
             if (game.dice3d) {
                 const diceSoNiceRoll = {
                     _evaluated: true,
-                    dice: [this],
-                    options: { appearance: {} }
+                    dice: [this]
                 };
 
-                const diceAppearance = await this.getDiceSoNiceAppearance(options.liveRoll.roll);
-                diceSoNiceRoll.dice[0].options.appearance = diceAppearance.appearance;
-                diceSoNiceRoll.dice[0].options.modelFile = diceAppearance.modelFile;
                 diceSoNiceRoll.dice[0].results = diceSoNiceRoll.dice[0].results.filter(x => x.active);
-
                 await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
             } else {
                 foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
@@ -46,12 +35,5 @@ export default class DualityDie extends BaseDie {
             const newDuality = this.#getDualityState(options.liveRoll.roll);
             updateResourcesForDualityReroll(oldDuality, newDuality, options.liveRoll.actor);
         }
-    }
-
-    /**
-     * Overridden by extending classes HopeDie and FearDie
-     */
-    async getDiceSoNiceAppearance() {
-        return {};
     }
 }

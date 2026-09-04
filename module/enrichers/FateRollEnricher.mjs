@@ -1,6 +1,6 @@
-import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
+import { createHtmlElement, getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
-export default function DhFateRollEnricher(match, _options) {
+export function DhFateRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[0]);
     if (!roll) return match[0];
 
@@ -29,21 +29,22 @@ function getFateMessage(roll, flavor) {
     const title = flavor ?? game.i18n.localize('DAGGERHEART.GENERAL.fateRoll');
 
     const fateElement = document.createElement('span');
-    fateElement.innerHTML = `
-        <button type="button" class="fate-roll-button${roll?.inline ? ' inline' : ''}"
-            data-title="${title}"
-            data-label="${fateTypeLabel}"
-            data-fateType="${fateType}"
-        >
-            ${title}
-        </button>
-    `;
+    const anchor = createHtmlElement('a', {
+        className: 'content-link fate-roll-button',
+        data: {
+            title,
+            label: fateTypeLabel,
+            fateType
+        },
+        html: title
+    });
+    fateElement.append(anchor);
 
     return fateElement;
 }
 
 export const renderFateButton = async event => {
-    const button = event.currentTarget,
+    const button = event.target,
         target = getCommandTarget({ allowNull: true });
 
     const fateTypeData = getFateTypeData(button.dataset?.fatetype);

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "9Xc6KzNyjDtTGZkp",
   "system": {
-    "description": "<p class=\"Body-Foundation\">When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
+    "description": "<p>When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 1,
@@ -12,7 +12,7 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 121,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -55,8 +55,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p class=\"Body-Foundation\">When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
-      "origin": null,
+      "description": "<p>When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -71,8 +70,5 @@
       "_key": "!items.effects!BFWN2cObMdlk9uVz.aV3KUHtXXR86PRMh"
     }
   ],
-  "ownership": {
-    "default": 0
-  },
   "_key": "!items!BFWN2cObMdlk9uVz"
 }

@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "amJMKDdSgJHsOsOB",
         "systemPath": "actions",
-        "description": "<p>You can call forth your element to protect you from harm. When an attack roll against you succeeds, you can <strong>mark a Stress</strong> and describe how you use your element to defend you. When you do, roll a <strong>d6</strong> and add its result to your Evasion against the attack.</p>",
+        "description": "",
         "chatDisplay": false,
         "actionType": "action",
         "cost": [
@@ -21,7 +21,8 @@
             "key": "stress",
             "value": 1,
             "step": null,
-            "consumeOnSuccess": false
+            "consumeOnSuccess": false,
+            "itemId": null
           }
         ],
         "uses": {
@@ -31,8 +32,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {},
-          "includeBase": false
+          "main": null,
+          "resources": {}
         },
         "target": {
           "type": "any",
@@ -61,23 +62,26 @@
         },
         "name": "Evade",
         "img": "icons/magic/movement/trail-streak-impact-blue.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 22,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!TnuLBtHQGbqyzn82"
 }

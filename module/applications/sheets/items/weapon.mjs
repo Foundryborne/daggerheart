@@ -46,6 +46,14 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
             case 'settings':
                 context.features = this.document.system.weaponFeatures.map(x => x.value);
                 context.systemFields.attack.fields = this.document.system.attack.schema.fields;
+                context.featureErrors = this.document.system.weaponFeatures.reduce((acc, curr) => {
+                    const configData = CONFIG.DH.ITEM.weaponFeatures[curr.value];
+                    const error = configData?.getErrorText?.(this.document);
+                    if (error) return !acc ? error : [acc, error].join(', ');
+
+                    return acc;
+                }, null);
+
                 break;
         }
         return context;

@@ -2,15 +2,15 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "An unofficial implementation of the Daggerheart system",
-    "version": "2.7.1",
+    "version": "2.9.2",
     "compatibility": {
         "minimum": "14.364",
-        "verified": "14.365",
+        "verified": "14.367",
         "maximum": "14"
     },
     "url": "https://github.com/Foundryborne/daggerheart",
     "manifest": "https://raw.githubusercontent.com/Foundryborne/daggerheart/v14/system.json",
-    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.7.1/system.zip",
+    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.9.2/system.zip",
     "authors": [
         {
             "name": "WBHarry"
@@ -147,7 +147,7 @@
         },
         {
             "name": "loot",
-            "label": "Loot",
+            "label": "Items",
             "system": "daggerheart",
             "path": "packs/items/loot.db",
             "type": "Item",
@@ -198,6 +198,15 @@
             "type": "Item",
             "private": false,
             "flags": {}
+        },
+        {
+            "name": "transformations",
+            "label": "Transformations",
+            "system": "daggerheart",
+            "path": "packs/transformations.db",
+            "type": "Item",
+            "private": false,
+            "flags": {}
         }
     ],
     "packFolders": [
@@ -211,7 +220,7 @@
                     "name": "Character Options",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": ["ancestries", "communities", "classes", "subclasses", "domains", "beastforms"]
+                    "packs": ["ancestries", "communities", "classes", "subclasses", "domains", "beastforms", "transformations"]
                 },
                 {
                     "name": "Items",
@@ -285,7 +294,10 @@
             "armor": {
                 "htmlFields": ["description", "gmNotes"]
             },
-            "beastform": {}
+            "beastform": {},
+            "transformation": {  
+                "htmlFields": ["description", "gmNotes", "questions"]
+            }
         },
         "ActiveEffect": {
             "beastform": {},

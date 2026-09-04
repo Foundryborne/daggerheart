@@ -282,7 +282,7 @@ export class Resource extends foundry.abstract.DataModel {
     };
 }
 
-const imageIconField = defaultValue =>
+export const imageIconField = defaultValue =>
     new foundry.data.fields.SchemaField(
         {
             value: new foundry.data.fields.StringField({
@@ -298,6 +298,14 @@ const imageIconField = defaultValue =>
                 required: true,
                 initial: false,
                 label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.noColorFilter.label'
+            }),
+            opacity: new foundry.data.fields.NumberField({
+                required: true,
+                initial: 1,
+                min: 0.1,
+                step: 0.1,
+                max: 1,
+                label: 'DAGGERHEART.GENERAL.opacity'
             })
         },
         { required: true }

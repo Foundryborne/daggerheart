@@ -72,13 +72,15 @@ export class ActionsField extends foundry.data.fields.TypedObjectField {
  */
 export class ActionField extends foundry.data.fields.ObjectField {
     getModel(value) {
-        return game.system.api.models.actions.actionsTypes[value.type] ?? null;
+        return game.system.api.models.actions.actionsTypes[value?.type] ?? null;
     }
 
     /* -------------------------------------------- */
 
     /** @override */
     _cleanType(value, options, _state) {
+        if (value === null && this.options.nullable) return null;
+
         if (!(typeof value === 'object')) value = {};
         value = super._cleanType(value, options, _state);
         const cls = this.getModel(value);
@@ -104,7 +106,9 @@ export class ActionField extends foundry.data.fields.ObjectField {
      */
     _migrate(sourceData, _fieldData) {
         const source = sourceData ?? this.options.initial;
-        if (!source) return sourceData;
+        if ((this.options.nullable && sourceData === null) || !source) {
+            return sourceData;
+        }
 
         const cls = this.getModel(source);
         if (cls) {
@@ -143,7 +147,9 @@ export function ActionMixin(Base) {
         //Getter for icons
         get typeIcon() {
             const config = CONFIG.DH.ACTIONS.actionTypes[this.type];
-            return config?.icon || 'fa-question'; // Fallback icon just in case
+            if (!config) return 'fa-question';
+
+            return typeof config.icon === 'function' ? config.icon(this) : config.icon; 
         }
 
         get relativeUUID() {
@@ -181,15 +187,17 @@ export function ActionMixin(Base) {
             const { parent, renderSheet } = operation;
             let { type } = data;
             if (!type || !game.system.api.models.actions.actionsTypes[type]) {
+                const types = CONFIG.DH.ACTIONS.actionTypes;
+
                 ({ type } =
                     (await foundry.applications.api.DialogV2.input({
                         window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
-                        position: { width: 300 },
+                        position: { width: 380 },
                         classes: ['daggerheart', 'dh-style'],
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',
                             {
-                                types: CONFIG.DH.ACTIONS.actionTypes,
+                                types: types,
                                 itemName: parent.parent?.name
                             }
                         ),

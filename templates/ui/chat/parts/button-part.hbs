@@ -15,7 +15,7 @@
                 <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}</button>
             {{/if}}
         {{/if}}
-        {{#if (and hasEffect)}}<button class="duality-action-effect">{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</button>{{/if}}
+        {{#if appliesEffects}}<button class="duality-action-effect">{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</button>{{/if}}
     </div>
 
     {{#if parent.system.hasReload}}

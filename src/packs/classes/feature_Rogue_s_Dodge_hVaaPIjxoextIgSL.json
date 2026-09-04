@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "GbQca7YphTh7skHG",
         "systemPath": "actions",
-        "description": "<p><strong>Spend 3 Hope</strong> to gain a +2 bonus to your Evasion until the next time an attack succeeds against you. Otherwise, this bonus lasts until your next rest.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -20,13 +20,16 @@
             "scalable": false,
             "key": "hope",
             "value": 3,
-            "step": null
+            "step": null,
+            "itemId": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "effects": [
           {
@@ -40,22 +43,28 @@
         },
         "name": "Spend Hope",
         "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
-        "range": "self"
+        "range": "self",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 19,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [
     {
       "name": "Rogue's Dodge",
       "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
-      "origin": "Compendium.daggerheart.classes.Item.hVaaPIjxoextIgSL",
       "transfer": false,
       "_id": "hhVjBro2osGDTT5g",
       "type": "base",
@@ -71,11 +80,14 @@
         ],
         "duration": {
           "type": "temporary",
-          "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.565); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">Until the next time an attack succeeds against you.</span></p>"
+          "description": "<p>Until the next time an attack succeeds against you.</p>"
         },
         "stacking": {
-          "max": null
-        }
+          "max": null,
+          "value": 1
+        },
+        "rangeDependence": null,
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
@@ -106,10 +118,6 @@
     }
   ],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "LgnbNMLaxandgMQq": 3
-  },
   "flags": {},
   "_key": "!items!hVaaPIjxoextIgSL"
 }

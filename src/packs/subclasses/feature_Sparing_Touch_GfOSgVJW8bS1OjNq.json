@@ -12,14 +12,16 @@
       "progression": "decreasing",
       "max": "1",
       "icon": "fa-solid fa-hands-praying",
-      "recovery": "longRest"
+      "recovery": "longRest",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {
       "aanLNQkeO2ZTIqBl": {
         "type": "healing",
         "_id": "aanLNQkeO2ZTIqBl",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, touch a creature and clear 2 Hit Points or 2 Stress from them.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -39,7 +41,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "hitPoints": {
               "value": {
                 "custom": {
@@ -60,13 +63,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -90,13 +93,19 @@
         },
         "name": "Clear Hit Points",
         "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       },
       "cWdzCQJv8RFfi2NR": {
         "type": "healing",
         "_id": "cWdzCQJv8RFfi2NR",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, touch a creature and clear 2 Hit Points or 2 Stress from them.</p>",
+        "description": "",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -116,7 +125,8 @@
           "consumeOnSuccess": false
         },
         "damage": {
-          "parts": {
+          "main": null,
+          "resources": {
             "stress": {
               "value": {
                 "custom": {
@@ -137,13 +147,13 @@
                 "dice": "d6",
                 "bonus": null,
                 "custom": {
-                  "enabled": false
+                  "enabled": false,
+                  "formula": ""
                 }
               },
-              "type": []
+              "fullRestore": false
             }
-          },
-          "includeBase": false
+          }
         },
         "target": {
           "type": "any",
@@ -167,23 +177,26 @@
         },
         "name": "Clear Stress",
         "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-        "range": ""
+        "range": "",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "triggers": [],
+        "areas": []
       }
     },
-    "originItemType": null,
-    "originId": null,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 21,
+      "page": null,
       "artist": ""
-    }
+    },
+    "gmNotes": "",
+    "granter": null,
+    "featureForm": "passive"
   },
   "effects": [],
   "sort": 0,
-  "ownership": {
-    "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
-  },
   "flags": {},
   "_key": "!items!GfOSgVJW8bS1OjNq"
 }

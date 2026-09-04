@@ -82,6 +82,7 @@ export default defineConfig([
                 Macro: 'readonly',
                 Scene: 'readonly',
                 TokenDocument: 'readonly',
+                RollTable: 'readonly',
                 // Other
                 Collection: 'readonly',
                 FormDataExtended: 'readonly',
@@ -100,6 +101,7 @@ export default defineConfig([
                 }
             ],
             'array-callback-return': 'error',
+            'getter-return': 'error',
             'no-async-promise-executor': 'error',
             'no-const-assign': 'error',
             'no-dupe-class-members': 'error',
