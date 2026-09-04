@@ -247,7 +247,73 @@
         "featureForm": "passive",
         "granter": null
       },
-      "effects": [],
+      "effects": [
+        {
+          "name": "Horde",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "type": "standardAttack",
+                "phase": "initial",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "1d4 + 1",
+                  "img": null
+                },
+                "priority": 0
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "V1LEaesiC5QBMAWE",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>When the Pirate Raiders have marked half or more of their HP, their standard attack deals <strong>1d4 + 1 </strong>physical damage instead.</p>",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5YgEajn0wa4i85kC.Q7DRbWjHl64CNwag.V1LEaesiC5QBMAWE"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -341,49 +407,6 @@
       "_key": "!actors.items!5YgEajn0wa4i85kC.N401rF937fLXMuMA"
     }
   ],
-  "effects": [
-    {
-      "type": "horde",
-      "name": "Horde",
-      "img": "icons/magic/movement/chevrons-down-yellow.webp",
-      "disabled": true,
-      "_id": "OU05YZwFQffawtna",
-      "system": {
-        "changes": [],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
-      },
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "description": "",
-      "tint": "#ffffff",
-      "transfer": false,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "start": {
-        "combat": null,
-        "time": 0,
-        "combatant": null,
-        "initiative": null,
-        "round": null,
-        "turn": null
-      },
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!actors.effects!5YgEajn0wa4i85kC.OU05YZwFQffawtna"
-    }
-  ],
+  "effects": [],
   "_key": "!actors!5YgEajn0wa4i85kC"
 }

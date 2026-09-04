@@ -138,56 +138,6 @@ export default class DhpAdversary extends DhCreature {
         return super.isItemValid(source) || source.type === 'feature';
     }
 
-    async _preUpdate(changes, options, user) {
-        const allowed = await super._preUpdate(changes, options, user);
-        if (allowed === false) return false;
-
-        if (this.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-            const autoHordeDamage = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.Automation
-            ).hordeDamage;
-            if (autoHordeDamage && changes.system?.resources?.hitPoints?.value !== undefined) {
-                const hordeActiveEffect = this.parent.effects.find(x => x.type === 'horde');
-                if (hordeActiveEffect) {
-                    const halfHP = Math.ceil(this.resources.hitPoints.max / 2);
-                    const newHitPoints = changes.system.resources.hitPoints.value;
-                    const previouslyAboveHalf = this.resources.hitPoints.value < halfHP;
-                    const loweredBelowHalf = previouslyAboveHalf && newHitPoints >= halfHP;
-                    const raisedAboveHalf = !previouslyAboveHalf && newHitPoints < halfHP;
-                    if (loweredBelowHalf) {
-                        await hordeActiveEffect.update({ disabled: false });
-                    } else if (raisedAboveHalf) {
-                        await hordeActiveEffect.update({ disabled: true });
-                    }
-                }
-            }
-        }
-    }
-
-    _onUpdate(changes, options, userId) {
-        super._onUpdate(changes, options, userId);
-
-        if (game.user.id === userId) {
-            if (changes.system?.type) {
-                const existingHordeEffect = this.parent.effects.find(x => x.type === 'horde');
-                if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-                    if (!existingHordeEffect)
-                        this.parent.createEmbeddedDocuments('ActiveEffect', [
-                            {
-                                type: 'horde',
-                                name: game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
-                                img: 'icons/magic/movement/chevrons-down-yellow.webp',
-                                disabled: true
-                            }
-                        ]);
-                } else {
-                    existingHordeEffect?.delete();
-                }
-            }
-        }
-    }
-
     prepareDerivedData() {
         super.prepareDerivedData();
         if (this.attack) {

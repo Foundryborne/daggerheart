@@ -247,7 +247,73 @@
       },
       "_id": "NXzJLDoJBJqCXlOm",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Horde",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "type": "standardAttack",
+                "phase": "initial",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "2d4 + 1",
+                  "img": null
+                },
+                "priority": 0
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "6C1qtdD7cfcuwSo8",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>When the Demonic Hound Pack has marked half or more of their HP, their standard attack deals <strong>2d4 + 1 </strong>physical damage instead.</p>",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!NoRZ1PqB8N5wcIw0.NXzJLDoJBJqCXlOm.6C1qtdD7cfcuwSo8"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -449,49 +515,6 @@
       "_key": "!actors.items!NoRZ1PqB8N5wcIw0.3mOBJE5c3cP2cGP1"
     }
   ],
-  "effects": [
-    {
-      "type": "horde",
-      "name": "Horde",
-      "img": "icons/magic/movement/chevrons-down-yellow.webp",
-      "disabled": true,
-      "_id": "dPZ7PwvTERjtG92P",
-      "system": {
-        "changes": [],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
-      },
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "description": "",
-      "tint": "#ffffff",
-      "transfer": false,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "start": {
-        "combat": null,
-        "time": 0,
-        "combatant": null,
-        "initiative": null,
-        "round": null,
-        "turn": null
-      },
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!actors.effects!NoRZ1PqB8N5wcIw0.dPZ7PwvTERjtG92P"
-    }
-  ],
+  "effects": [],
   "_key": "!actors!NoRZ1PqB8N5wcIw0"
 }

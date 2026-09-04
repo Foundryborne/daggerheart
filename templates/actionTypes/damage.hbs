@@ -22,9 +22,6 @@
                 {{/if}}
             </div>
             {{> damageData damage=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
-            {{#if horde}}
-                {{> hordeDamage source=source.main fields=fields.main.fields basePath=(concat path "damage.main")}}
-            {{/if}}
             {{#if (ne @root.source.type 'healing')}}
                 {{formField fields.main.fields.type value=source.main.type name=(concat path "damage.main.type") localize=true}}
             {{/if}}
@@ -103,16 +100,4 @@
         {{> formula key=damage.applyTo fields=fields.value.fields type=fields.type isBase=damage.base source=damage.value basePath=(concat basePath ".value")}}
     {{/if}}
     <input type="hidden" name="{{concat basePath ".base"}}" value="{{damage.base}}">
-{{/inline}}
-
-{{#*inline "hordeDamage"}}
-    <fieldset class="one-column">
-        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.hordeDamage"}}</legend>
-        <div class="nest-inputs">
-            <input type="hidden" name="{{basePath}}.valueAlt.multiplier" value="flat">
-            {{formField fields.valueAlt.fields.flatMultiplier value=source.valueAlt.flatMultiplier name=(concat basePath ".valueAlt.flatMultiplier") label="DAGGERHEART.ACTIONS.Settings.multiplier" classes="inline-child" localize=true }}
-            {{formField fields.valueAlt.fields.dice value=source.valueAlt.dice name=(concat basePath ".valueAlt.dice") classes="inline-child" localize=true}}
-            {{formField fields.valueAlt.fields.bonus value=source.valueAlt.bonus name=(concat basePath ".valueAlt.bonus") localize=true classes="inline-child"}}
-        </div>
-    </fieldset>
 {{/inline}}

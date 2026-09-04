@@ -241,7 +241,73 @@
       },
       "_id": "uPwtE9d63PHtQitG",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
-      "effects": [],
+      "effects": [
+        {
+          "name": "Horde",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "type": "standardAttack",
+                "phase": "initial",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "1d6 + 3",
+                  "img": null
+                },
+                "priority": 0
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "BvL39WnKTmCYSMHT",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>When the Archer Squadron has marked half or more of their HP, their standard attack deals <strong>1d6 + 3</strong> physical damage instead.</p>",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 2,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!0ts6CGd93lLqGZI5.uPwtE9d63PHtQitG.BvL39WnKTmCYSMHT"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -490,49 +556,6 @@
       "_key": "!actors.items!0ts6CGd93lLqGZI5.ayGHTtyjSuIR4BrV"
     }
   ],
-  "effects": [
-    {
-      "type": "horde",
-      "name": "Horde",
-      "img": "icons/magic/movement/chevrons-down-yellow.webp",
-      "disabled": true,
-      "_id": "bq8hTzQoCXmA3xad",
-      "system": {
-        "changes": [],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
-      },
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "description": "",
-      "tint": "#ffffff",
-      "transfer": false,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "start": {
-        "combat": null,
-        "time": 0,
-        "combatant": null,
-        "initiative": null,
-        "round": null,
-        "turn": null
-      },
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!actors.effects!0ts6CGd93lLqGZI5.bq8hTzQoCXmA3xad"
-    }
-  ],
+  "effects": [],
   "_key": "!actors!0ts6CGd93lLqGZI5"
 }

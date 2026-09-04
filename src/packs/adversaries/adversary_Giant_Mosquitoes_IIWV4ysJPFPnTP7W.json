@@ -247,7 +247,73 @@
         "featureForm": "passive",
         "granter": null
       },
-      "effects": [],
+      "effects": [
+        {
+          "name": "Horde",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "type": "standardAttack",
+                "phase": "initial",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "1d4 + 1",
+                  "img": null
+                },
+                "priority": 0
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "59X0UbixSRllXr9Z",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>When the Giant Mosquitoes have marked half or more of their HP, their standard attack deals <strong>1d4 + 1</strong> physical damage instead.</p>",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!IIWV4ysJPFPnTP7W.9RduwBLYcBaiouYk.59X0UbixSRllXr9Z"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "flags": {},
@@ -386,49 +452,6 @@
       "_key": "!actors.items!IIWV4ysJPFPnTP7W.BTlMLjG65KQs0Jk2"
     }
   ],
-  "effects": [
-    {
-      "type": "horde",
-      "name": "Horde",
-      "img": "icons/magic/movement/chevrons-down-yellow.webp",
-      "disabled": true,
-      "_id": "dQgcYTz5vmV25Y6G",
-      "system": {
-        "changes": [],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
-      },
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "description": "",
-      "tint": "#ffffff",
-      "transfer": false,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "start": {
-        "combat": null,
-        "time": 0,
-        "combatant": null,
-        "initiative": null,
-        "round": null,
-        "turn": null
-      },
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!actors.effects!IIWV4ysJPFPnTP7W.dQgcYTz5vmV25Y6G"
-    }
-  ],
+  "effects": [],
   "_key": "!actors!IIWV4ysJPFPnTP7W"
 }
