@@ -6,14 +6,16 @@ import {
     DhGlobalOverrides,
     DhHomebrew,
     DhMetagaming,
-    DhVariantRules
+    DhVariantRules,
+    DhDiceSoNice
 } from '../data/settings/_module.mjs';
 import {
     DhAppearanceSettings,
     DhAutomationSettings,
     DhHomebrewSettings,
     DhMetagamingSettings,
-    DhVariantRuleSettings
+    DhVariantRuleSettings,
+    DhDiceSoNiceSettings
 } from '../applications/settings/_module.mjs';
 import { CompendiumBrowserSettings } from '../data/_module.mjs';
 import SpotlightTracker from '../data/spotlightTracker.mjs';
@@ -120,6 +122,15 @@ const registerMenuSettings = () => {
             value.handleChange();
         }
     });
+
+    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.diceSoNice, {
+        scope: 'user',
+        config: false,
+        type: DhDiceSoNice,
+        onChange: value => {
+            value.handleChange();
+        }
+    });
 };
 
 const registerMenus = () => {
@@ -158,6 +169,17 @@ const registerMenus = () => {
         type: DhAppearanceSettings,
         restricted: false
     });
+
+    if (game.modules.get('dice-so-nice')?.active) {
+        game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.diceSoNice, {
+            name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.diceSoNice.label'),
+            label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.diceSoNice.label'),
+            hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.diceSoNice.hint'),
+            icon: 'fa-solid fa-palette',
+            type: DhDiceSoNiceSettings,
+            restricted: false
+        });
+    }
 
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.VariantRules.Name, {
         name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.variantRules.title'),

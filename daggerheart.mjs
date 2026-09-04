@@ -383,7 +383,6 @@ Hooks.on('ready', async () => {
         });
     }
 
-
     runMigrations();
 });
 

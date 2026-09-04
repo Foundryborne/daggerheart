@@ -1,4 +1,4 @@
-import DhAppearance from './Appearance.mjs';
+import { DhDiceSoNice } from './DiceSoNice.mjs';
 
 /**
  * A setting to handle cases where we want to allow the GM to set a global default for client settings.
@@ -11,20 +11,20 @@ export default class DhGlobalOverrides extends foundry.abstract.DataModel {
                 sfx: new fields.SchemaField({
                     overrideEnabled: new fields.BooleanField(),
                     global: new fields.SchemaField({
-                        critical: DhAppearance.sfxSchema()
+                        critical: DhDiceSoNice.sfxSchema()
                     }),
                     hope: new fields.SchemaField({
-                        higher: DhAppearance.sfxSchema()
+                        higher: DhDiceSoNice.sfxSchema()
                     }),
                     fear: new fields.SchemaField({
-                        higher: DhAppearance.sfxSchema()
+                        higher: DhDiceSoNice.sfxSchema()
                     })
                 })
             })
         };
     }
 
-    async diceSoNiceSFXUpdate(appearanceSettings, enabled) {
+    async diceSoNiceSFXUpdate(dsnSettings, enabled) {
         if (!game.user.isGM) return;
 
         const newEnabled = enabled !== undefined ? enabled : this.diceSoNice.sfx.overrideEnabled;
@@ -33,9 +33,9 @@ export default class DhGlobalOverrides extends foundry.abstract.DataModel {
                 diceSoNice: {
                     sfx: {
                         overrideEnabled: true,
-                        global: appearanceSettings.diceSoNice.sfx,
-                        hope: appearanceSettings.diceSoNice.hope.sfx,
-                        fear: appearanceSettings.diceSoNice.fear.sfx
+                        global: dsnSettings.sfx,
+                        hope: dsnSettings.hope.sfx,
+                        fear: dsnSettings.fear.sfx
                     }
                 }
             });
