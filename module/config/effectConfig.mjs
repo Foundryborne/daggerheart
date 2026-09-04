@@ -45,3 +45,43 @@ export const activeEffectDurations = {
         label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };
+
+export const conditionalTypes = {
+    dataCompare: {
+        id: 'dataCompare',
+        label: 'DAGGERHEART.CONFIG.ConditionalType.dataCompare'
+    }
+};
+
+export const conditionalComparators = {
+    less: {
+        id: 'less',
+        label: 'DAGGERHEART.CONFIG.ConditionalComparator.less'
+    },
+    lessEquals: {
+        id: 'lessEquals',
+        label: 'DAGGERHEART.CONFIG.ConditionalComparator.lessEquals'
+    },
+    equals: {
+        id: 'equals',
+        label: 'DAGGERHEART.CONFIG.ConditionalComparator.equals'
+    },
+    greaterEquals: {
+        id: 'greaterEquals',
+        label: 'DAGGERHEART.CONFIG.ConditionalComparator.greaterEquals'
+    },
+    greater: {
+        id: 'greater',
+        label: 'DAGGERHEART.CONFIG.ConditionalComparator.greater'
+    },
+    truthy: {
+        id: 'truthy',
+        label: 'DAGGERHEART.CONFIG.ConditionalComparator.truthy',
+        ignoresValue: true
+    },
+    falsy: {
+        id: 'falsy',
+        label: 'DAGGERHEART.CONFIG.ConditionalComparator.falsy',
+        ignoresValue: true
+    }
+};
