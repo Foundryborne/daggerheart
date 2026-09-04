@@ -14,6 +14,22 @@
         {{/each}}
     </ol>
 
+    <header>
+        <div class="key">{{localize "EFFECT.FIELDS.changes.element.key.label"}}</div>
+        <div class="type">{{localize "EFFECT.FIELDS.changes.element.type.label"}}</div>
+        <div class="value">{{localize "EFFECT.FIELDS.changes.element.value.label"}}</div>
+        <div class="priority">{{localize "EFFECT.FIELDS.changes.element.priority.label"}}</div>
+        <div class="controls">
+            <a class="inline-control icon" data-action="addEphemeralChange"><i class="fa-regular fa-square-plus"></i></a>
+        </div>
+    </header>
+    <ol class="scrollable" data-changes>
+        {{#each ephemeralChanges as |change|}}
+            {{change.key}}
+            Test
+        {{/each}}
+    </ol>
+
     <fieldset class="typed-change-container armor-change-container optional {{#if typeChanges.armor}}active{{/if}}">
         <legend>
             {{localize "DAGGERHEART.GENERAL.armor"}} 

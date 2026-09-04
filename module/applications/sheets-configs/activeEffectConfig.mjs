@@ -11,6 +11,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
+            ...super.DEFAULT_OPTIONS.actions,
+            addEphemeralChange: DhActiveEffectConfig.#onAddEphemeralChange,
             showItem: DhActiveEffectConfig.#onShowItem
         }
     };
@@ -231,10 +233,20 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 }, {});
                 partContext.changes = partContext.changes.filter(c => !!c);
                 partContext.typedChanges = typedChanges;
+                partContext.ephemeralChanges = this.document.changes.filter(x => x.type === 'ephemeral');
+
                 break;
         }
 
         return partContext;
+    }
+
+    static #onAddEphemeralChange() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        const changeType = game.system.api.data.activeEffects.changeTypes.ephemeral;
+        changes.push(changeType.getInitialValue());
+        return this.submit({ updateData: { system: { changes } } });
     }
 
     #onStackingChangeToggle(event) {

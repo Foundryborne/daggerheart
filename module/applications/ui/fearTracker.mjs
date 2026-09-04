@@ -130,7 +130,8 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
             this.element.classList.remove(position.value); 
         }
 
-        this.element.classList.add(fearPosition);
+        if (fearPosition in CONFIG.DH.GENERAL.fearPosition)
+            this.element.classList.add(fearPosition);
     }
 
     handleOffset() {
