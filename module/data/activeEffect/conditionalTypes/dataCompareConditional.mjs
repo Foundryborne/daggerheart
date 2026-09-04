@@ -29,13 +29,13 @@ export default class DataCompareConditional extends foundry.abstract.DataModel {
     }
 
     doesConditionalPass(rollData) {
-        if (!this.key || this.value === undefined) return true;
-
         const comparator = CONFIG.DH.EFFECTS.conditionalComparators[this.comparator];
-        const data = foundry.utils.getProperty(rollData, this.key);
-        const value = Roll.replaceFormulaData(this.value, rollData);
-        if (!data || (!comparator.ignoresValue && !value)) return true;
+        if (!this.key || (!comparator.ignoresValue && this.value === undefined)) return true;
 
+        const data = foundry.utils.getProperty(rollData, this.key);
+        if (!data) return true;
+
+        const value = this.value ? Roll.replaceFormulaData(this.value, rollData) : null;
         switch (this.comparator) {
             case CONFIG.DH.EFFECTS.conditionalComparators.less.id:
                 return data < value;
