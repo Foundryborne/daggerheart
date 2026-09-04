@@ -1,0 +1,10 @@
+<div class="data-compare-container">
+    <div class="data-compare-inner-container">
+        <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
+        {{formGroup model.fields.key value=this.key name=(concat "system.conditionals." @key ".key") localize=true }}
+        {{formGroup model.fields.comparator value=this.comparator name=(concat "system.conditionals." @key ".comparator") localize=true }}
+        {{formGroup model.fields.value value=this.value name=(concat "system.conditionals." @key ".value") classes="conditional-value" localize=true }}
+    </div>
+
+    <a class="form-row-icon" data-action="removeConditional" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
+</div>

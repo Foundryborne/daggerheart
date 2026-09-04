@@ -11,7 +11,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
-            showItem: DhActiveEffectConfig.#onShowItem
+            showItem: DhActiveEffectConfig.#onShowItem,
+            removeConditional: DhActiveEffectConfig.#onRemoveConditional
         }
     };
 
@@ -19,6 +20,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         header: { template: 'systems/daggerheart/templates/sheets/activeEffect/header.hbs' },
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
+        conditionals: { template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs' },
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
@@ -33,6 +35,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             tabs: [
                 { id: 'details', icon: 'fa-solid fa-book' },
                 { id: 'settings', icon: 'fa-solid fa-bars', label: 'DAGGERHEART.GENERAL.Tabs.settings' },
+                { id: 'conditionals', icon: 'fa-solid fa-sliders', label: 'DAGGERHEART.GENERAL.Tabs.conditionals' },
                 { id: 'changes', icon: 'fa-solid fa-gears' }
             ],
             initial: 'details',
@@ -170,6 +173,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             });
         });
 
+        htmlElement.querySelector('.conditional-select-input')
+            ?.addEventListener('change', this.#onAddConditional.bind(this));
+
         htmlElement.querySelector('.stacking-change-checkbox')
             ?.addEventListener('change', this.#onStackingChangeToggle.bind(this));
 
@@ -223,6 +229,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     group: CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(value) ? groups.time : groups.combat
                 }));
                 break;
+            case 'conditionals': 
+                partContext.conditionalOptions = CONFIG.DH.EFFECTS.conditionalTypes;
+                break;
             case 'changes':
                 const typedChanges = this.document.changes.reduce((acc, change, index) => {
                     if (change.single) acc[change.type] = { ...change, index };
@@ -235,6 +244,12 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         }
 
         return partContext;
+    }
+
+    #onAddConditional(event) {
+        const conditionals = [...this.document.system.conditionals, { type: event.target.value }];
+        event.target.value = '';
+        return this.submit({ updateData: { system: { conditionals } } });
     }
 
     #onStackingChangeToggle(event) {
@@ -353,6 +368,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             if (event.target.value === 'temporary') durationDescription.classList.add('visible');
             else durationDescription.classList.remove('visible');
         }
+
+        const conditionalComparatorMatch = event.target.name.match(/system.conditionals.\d.comparator/);
+        if (conditionalComparatorMatch) {
+            const parent = event.target.closest('[data-index]');
+            const comparator = CONFIG.DH.EFFECTS.conditionalComparators[event.target.value];
+            parent.querySelector('.conditional-value').hidden = comparator.ignoresValue;
+        }
     }
 
     /** @inheritDoc */
@@ -394,10 +416,17 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         });
     }
 
-    static #onShowItem(event, button) {
+    static #onShowItem(_event, button) {
         const { itemId } = button.dataset;
         if (!itemId) return;
         const item = fromUuidSync(itemId);
         if (item.visible) item.sheet?.render({ force: true });
+    }
+
+    static #onRemoveConditional(_event, button) {
+        const conditionals = this.document.system.conditionals
+        const index = Number(button.dataset.index);
+        conditionals.splice(index, 1);
+        return this.submit({ updateData: { system: { conditionals } } });
     }
 }

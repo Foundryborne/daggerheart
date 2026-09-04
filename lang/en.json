@@ -228,6 +228,9 @@
                 "stacking": {
                     "title": "Stacking"
                 },
+                "conditionals": {
+                    "title": "Conditionals"
+                },
                 "targetDispositions": "Affected Dispositions"
             },
             "RangeDependance": {
@@ -1605,6 +1608,18 @@
                     "autoAppliedByLabel": "Max Stress"
                 }
             },
+            "ConditionalComparator": {
+                "less": "Less Than",
+                "lessEquals": "Less Or Equals",
+                "equals": "Equals",
+                "greaterEquals": "Greater Or Equals",
+                "greater": "Greater Than",
+                "truthy": "Is True",
+                "falsy": "Is False"
+            },
+            "ConditionalType": {
+                "dataCompare": "Data Compare"
+            },
             "CountdownProgressType": {
                 "actionRoll": "Action Roll",
                 "characterAttack": "Character Attack",
@@ -2814,6 +2829,11 @@
                     }
                 }
             },
+            "Conditionals": {
+                "dataCompare": {
+                    "comparator": "Comparator"
+                }
+            },
             "Duration": {
                 "passive": "Passive",
                 "temporary": "Temporary"
@@ -3194,7 +3214,8 @@
                 "triggers": "Triggers",
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
-                "packs": "Packs"
+                "packs": "Packs",
+                "conditionals": "Conditionals"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -3285,6 +3306,7 @@
             "itemResource": "Item Resource",
             "itemQuantity": "Item Quantity",
             "items": "Items",
+            "key": "Key",
             "label": "Label",
             "level": "Level",
             "levelShort": "Lv",
