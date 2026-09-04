@@ -33,9 +33,10 @@ export default class DataCompareConditional extends foundry.abstract.DataModel {
         if (!this.key || (!comparator.ignoresValue && this.value === undefined)) return true;
 
         const data = foundry.utils.getProperty(rollData, this.key);
-        if (!data) return true;
+        if (data === undefined) return true;
 
-        const value = this.value ? Roll.replaceFormulaData(this.value, rollData) : null;
+        const replacedValue = this.value ? Roll.replaceFormulaData(this.value, rollData) : null;
+        const value = replacedValue ? (new Roll(replacedValue)).evaluateSync().total : null;
         switch (this.comparator) {
             case CONFIG.DH.EFFECTS.conditionalComparators.less.id:
                 return data < value;
