@@ -1,5 +1,5 @@
 import { conditionalTypes, conditionalFailureModes, conditionalPhases } from '../../../config/effectConfig.mjs';
-
+// TODO: Possibly add something to handle Otherwordly's case when it's implemented.
 export default class DamageTypeConditional extends foundry.abstract.DataModel {
     static get metadata() {
         return {
@@ -19,16 +19,18 @@ export default class DamageTypeConditional extends foundry.abstract.DataModel {
                 blank: false, 
                 initial: conditionalTypes.damageType.id 
             }),
-            damageTypes: new fields.SetField(new fields.StringField({
+            damageType: new fields.StringField({
+                label: 'DAGGERHEART.EFFECTS.Conditionals.damageType.damageType',
                 required: true,
-                choices: CONFIG.DH.GENERAL.damageTypes
-            }), { label: 'DAGGERHEART.EFFECTS.Conditionals.damageType.damageTypes' })
+                choices: CONFIG.DH.GENERAL.damageTypes,
+                initial: CONFIG.DH.GENERAL.damageTypes.physical.id
+            })
         }
     }
 
     doesConditionalPass(actionData) { 
         if (!actionData.damage) return false;
         
-        return Boolean(actionData.damage.main.type.intersection(this.damageTypes).size);
+        return actionData.damage.main.type.has(this.damageType)
     }
 }
