@@ -46,10 +46,40 @@ export const activeEffectDurations = {
     }
 };
 
+export const conditionalPhases = {
+    preparation: {
+        id: 'preparation',
+        label: 'DAGGERHEART.CONFIG.ConditionalPhase.preparation'
+    },
+    roll: {
+        id: 'roll',
+        label: 'DAGGERHEART.CONFIG.ConditionalPhase.roll'
+    }
+}
+
+export const conditionalFailureModes = {
+    suppress: {
+        id: 'suppress',
+        label: 'DAGGERHEART.CONFIG.ConditionalFailureMode.suppress'
+    },
+    remove: {
+        id: 'remove',
+        label: 'DAGGERHEART.CONFIG.ConditionalFailureMode.remove'
+    }
+}
+
 export const conditionalTypes = {
     dataCompare: {
         id: 'dataCompare',
         label: 'DAGGERHEART.CONFIG.ConditionalType.dataCompare'
+    },
+    weaponRestriction: {
+        id: 'weaponRestriction',
+        label: 'DAGGERHEART.CONFIG.ConditionalType.weaponRestriction' 
+    },
+    actionType: {
+        id: 'actionType',
+        label: 'DAGGERHEART.CONFIG.ConditionalType.actionType'
     }
 };
 
@@ -85,3 +115,41 @@ export const conditionalComparators = {
         ignoresValue: true
     }
 };
+
+export const weaponRestrictionType = {
+    sameWeapon: {
+        id: 'sameWeapon',
+        label: 'DAGGERHEART.CONFIG.ConditionalWeaponRestrictionType.sameWeapon'
+    },
+    primary: {
+        id: 'primary',
+        label: 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.full'
+    },
+    secondary: {
+        id: 'secondary',
+        label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full'
+    }
+};
+
+export const actionType = {
+    action: {
+        id: 'action',
+        label: 'DAGGERHEART.GENERAL.Roll.action'
+    },
+    reaction: {
+        id: 'reaction',
+        label: 'DAGGERHEART.GENERAL.Roll.reaction'
+    },
+    attack: {
+        id: 'attack',
+        label: 'DAGGERHEART.GENERAL.Roll.attack'
+    },
+    trait: {
+        id: 'trait',
+        label: 'DAGGERHEART.GENERAL.Roll.trait'
+    },
+    spellcast: {
+        id: 'spellcast',
+        label: 'DAGGERHEART.GENERAL.Roll.spellcast'
+    }
+}

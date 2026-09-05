@@ -1,6 +1,15 @@
+import { conditionalFailureModes, conditionalPhases } from '../../../config/effectConfig.mjs';
 import FormulaField from '../../fields/formulaField.mjs';
+import { conditionalTypes } from './_module.mjs';
 
 export default class DataCompareConditional extends foundry.abstract.DataModel {
+    static get metadata() {
+        return {
+            phase: conditionalPhases.preparation.id,
+            failureMode: conditionalFailureModes.suppress.id
+        }
+    }
+
     static defineSchema() {
         const fields = foundry.data.fields;
 
@@ -10,7 +19,7 @@ export default class DataCompareConditional extends foundry.abstract.DataModel {
                 required: true, 
                 nullable: false, 
                 blank: false, 
-                initial: 'dataCompare' 
+                initial: conditionalTypes.dataCompare.id
             }),
             key: new fields.StringField({
                 label: 'DAGGERHEART.GENERAL.key'
