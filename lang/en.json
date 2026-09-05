@@ -534,7 +534,7 @@
                 "title": "{actor} - Character Setup",
                 "traitIncreases": "Trait Increases",
                 "yourEquipments": "Your Equipments",
-                "equipmentList": "Equipment list",
+                "equipmentList": "Equipment list"
             },
             "CharacterReset": {
                 "title": "Reset Character",

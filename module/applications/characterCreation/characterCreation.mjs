@@ -60,6 +60,27 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             items: []
         };
 
+        this.equipmentGroups = {
+            primaryWeapon: {
+                label: '',
+                items: [],
+                columns: []
+            },
+            secondaryWeapon: {
+                label: '',
+                items: [],
+                columns: []
+            },
+            armor: {
+                label: '',
+                items: [],
+                columns: []
+            },
+            selectedTable: 'primaryWeapon'
+        }
+
+        this.selectedTable = {}
+
         this._dragDrop = this._createDragDropHandlers();
 
         this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
@@ -95,6 +116,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             finish: this.finish,
             selectSubclass: this.selectSubclass,
             selectItem: this.selectItem,
+            selectTable: this.selectTable,
             removeDomainCard: this.removeDomainCard,
             applySuggestedEquips: this.applySuggestedEquips,
             removeSelectedEquip: this.removeSelectedEquip,
@@ -306,8 +328,12 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         context.ancestryGroups = this.ancestryGroups;
         context.communityGroups = this.communityGroups;
         context.domainCardGroups = this.domainCardGroups;
+        context.equipmentGroups = this.equipmentGroups;
+        context.selectedTable = this.selectedTable;
 
         context.mixedFeatures = this.setup.mixedFeatures;
+
+        context.formatLabel = this.formatLabel;
 
         return context;
     }
@@ -640,6 +666,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             newItems.push(await createEmbeddedItemData(item));
         }
 
+        console.log(newItems)
+
         await this.character.createEmbeddedDocuments('Item', newItems);
         await this.character.update(
             {
@@ -764,7 +792,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
-    loadItems() {
+    async loadItems() {
         const browserSettings = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
@@ -773,6 +801,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         game.packs.forEach(pack => {
             promises.push(
+                // eslint-disable-next-line no-async-promise-executor
                 new Promise(async resolve => {
                     const items = await pack.getDocuments({ type__in: this.selectedMenu?.data?.type });
                     resolve(items);
@@ -842,9 +871,42 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 items: []
             };
             for (const item of this.items.filter(item => item.type == 'domainCard')) {
+                const cardTheme =
+                    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
+                item.embedCard = Array.from(await item.system.toEmbed({ theme: cardTheme })).map(el => el.outerHTML).join('');
                 domainCardGroups.items.push(item)
             }
-            
+
+            const equipmentGroups = {
+                primaryWeapon: {
+                    label: game.i18n.localize('DAGGERHEART.ITEMS.Class.guide.suggestedPrimaryWeaponTitle'),
+                    items: [],
+                    columns: CONFIG.DH.ITEMBROWSER.typeConfig.weapons.columns
+                },
+                secondaryWeapon: {
+                    label: game.i18n.localize('DAGGERHEART.ITEMS.Class.guide.suggestedSecondaryWeaponTitle'),
+                    items: [],
+                    columns: CONFIG.DH.ITEMBROWSER.typeConfig.weapons.columns
+                },
+                armor: {
+                    label: game.i18n.localize('DAGGERHEART.ITEMS.Class.guide.suggestedArmorTitle'),
+                    items: [],
+                    columns: CONFIG.DH.ITEMBROWSER.typeConfig.armors.columns
+                },
+                selectedTable: 'primaryWeapon'
+            }
+
+            for (const item of this.items.filter(item => item.type == 'weapon' && item.system.tier === 1)) {
+                if (item.system.secondary) {
+                    equipmentGroups.secondaryWeapon.items.push(item)
+                } else {
+                    equipmentGroups.primaryWeapon.items.push(item)
+                }
+            }
+            for (const item of this.items.filter(item => item.type == 'armor' && item.system.tier === 1)) {
+                equipmentGroups.armor.items.push(item)
+            }
+
             subclassGroups.sort((a, b) => a.label.localeCompare(b.label))
 
             if (this.subclassGroups.length) return;
@@ -878,6 +940,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             this.ancestryGroups = ancestryGroups;
             this.communityGroups = communityGroups;
             this.domainCardGroups = domainCardGroups;
+            this.equipmentGroups = equipmentGroups;
+            this.selectedTable = equipmentGroups[equipmentGroups.selectedTable];
         });
     }
 
@@ -911,19 +975,22 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 this.setup.visibility = this.getUpdateVisibility();
                 this.render();
                 break;
-        
+
             case 'ancestry':
                 const ancestry = await foundry.utils.fromUuid(target.dataset.uuid);
                 if (!this.setup.primaryAncestry.uuid) {
                     this.setup.primaryAncestry = ancestry;
+                    this.setup.ancestryName.primary = ancestry.name;
                 } else if (
                     this.setup.primaryAncestry.uuid &&
                     this.setup.mixedAncestry &&
                     (ancestry.uuid !== this.setup.primaryAncestry.uuid)
                 ) {
                     this.setup.secondaryAncestry = ancestry;
+                    this.setup.ancestryName.secondary = ancestry.name;
                 } else {
                     this.setup.primaryAncestry = ancestry;
+                    this.setup.ancestryName.primary = ancestry.name;
                 }
                 this.setup.visibility = this.getUpdateVisibility();
                 this.render();
@@ -945,11 +1012,27 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     this.setup.domainCards[randomIDs[0]] = domain;
                 }
                 break;
+            case 'weapon':
+                const weapon = await foundry.utils.fromUuid(target.dataset.itemUuid);
+
+                if (weapon.system.secondary) {
+                    if (this.equipment.primaryWeapon?.system?.burden === burden.twoHanded.value) return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.primaryIsTwoHanded'));
+                    this.equipment.secondaryWeapon = weapon;
+                } else {
+                    this.equipment.primaryWeapon = weapon;
+                }
+                break;
+
+            case 'armor':
+                const armor = await foundry.utils.fromUuid(target.dataset.itemUuid);
+
+                this.equipment.armor = armor;
+
+                break;
         }
 
         this.setup.visibility = this.getUpdateVisibility();
         this.render();
-        // console.log(type);
         // console.log('chegou aqui');
     }
 
@@ -965,7 +1048,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             this.equipment.inventory.choiceA,
             this.equipment.inventory.choiceB
         );
-
 
         this.equipment.primaryWeapon = suggestions.primaryWeapon
         this.equipment.secondaryWeapon = suggestions.secondaryWeapon
@@ -988,5 +1070,22 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         this.setup.visibility = this.getUpdateVisibility();
         this.render();
+    }
+
+    static async selectTable(_, target) {
+        const table = target.dataset.table;
+        this.equipmentGroups.selectedTable = table;
+
+        this.selectedTable = this.equipmentGroups[table];
+
+        this.setup.visibility = this.getUpdateVisibility();
+        this.render();
+    }
+
+    formatLabel(item, field) {
+        const property = foundry.utils.getProperty(item, field.key);
+        if (Array.isArray(property)) property.join(', ');
+        if (typeof field.format !== 'function') return property ?? '-';
+        return game.i18n.localize(field.format(property));
     }
 }
