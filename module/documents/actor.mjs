@@ -1239,9 +1239,11 @@ export default class DhpActor extends Actor {
     /**@inheritdoc */
     *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
         const isRemovedByConditional = effect => {
+            const { preparation } = CONFIG.DH.EFFECTS.conditionalPhases;
+            const { remove } = CONFIG.DH.EFFECTS.conditionalFailureModes;
             return effect.system.conditionals.some(x => 
-                x.phase === CONFIG.DH.EFFECTS.conditionalPhases.preparation.id && 
-                x.failureMode === CONFIG.DH.EFFECTS.conditionalFailureModes.remove.id &&
+                x.constructor.metadata.phase === preparation.id && 
+                x.constructor.metadata.failureMode === remove.id &&
                 !x.doesConditionalPass(this.getRollData())
             );
         }
