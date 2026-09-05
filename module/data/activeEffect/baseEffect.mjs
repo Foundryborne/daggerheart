@@ -124,7 +124,11 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             if (change.isSuppressed) return true;
         }
 
-        return rollData && this.conditionals.some(x => !x.doesConditionalPass(rollData));
+        return rollData && this.conditionals.some(x => 
+            x.phase === CONFIG.DH.EFFECTS.conditionalPhases.preparation.id && 
+            x.failureMode === CONFIG.DH.EFFECTS.conditionalFailureModes.suppress.id &&
+            !x.doesConditionalPass(rollData)
+        );
     }
 
     get armorChange() {
