@@ -1617,8 +1617,21 @@
                 "truthy": "Is True",
                 "falsy": "Is False"
             },
+            "ConditionalFailureMode": {
+                "suppress": "Suppress",
+                "remove": "Remove"
+            },
+            "ConditionalPhase": {
+                "preparation": "Preparation",
+                "roll": "Roll"
+            },
             "ConditionalType": {
-                "dataCompare": "Data Compare"
+                "dataCompare": "Data Compare",
+                "weaponRestriction": "Weapon Restriction",
+                "actionType": "Action Type"
+            },
+            "ConditionalWeaponRestrictionType": {
+                "sameWeapon": "Same Weapon"
             },
             "CountdownProgressType": {
                 "actionRoll": "Action Roll",
@@ -2830,8 +2843,16 @@
                 }
             },
             "Conditionals": {
+                "phase": "Phase",
+                "failureMode": "Failure Mode",
                 "dataCompare": {
                     "comparator": "Comparator"
+                },
+                "weaponRestriction": {
+                    "weaponType": "Weapon Type"
+                },
+                "actionType": {
+                    "actionType": "Action Type"
                 }
             },
             "Duration": {

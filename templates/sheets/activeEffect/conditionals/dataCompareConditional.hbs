@@ -1,5 +1,5 @@
-<div class="data-compare-container">
-    <div class="data-compare-inner-container">
+<div class="conditional-container">
+    <div class="conditional-inner-container">
         <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
         {{formGroup model.fields.key value=this.key name=(concat "system.conditionals." @key ".key") localize=true }}
         {{formGroup model.fields.comparator value=this.comparator name=(concat "system.conditionals." @key ".comparator") localize=true }}
