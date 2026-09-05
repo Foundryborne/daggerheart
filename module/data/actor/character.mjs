@@ -119,22 +119,9 @@ export default class DhCharacter extends DhCreature {
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
-                roll: new fields.SchemaField({
-                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
-                    spellcast: bonusField('DAGGERHEART.GENERAL.Roll.spellcast'),
-                    trait: bonusField('DAGGERHEART.GENERAL.Roll.trait'),
-                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
-                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction'),
-                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.primaryWeaponAttack'),
-                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.secondaryWeaponAttack')
-                }),
-                damage: new fields.SchemaField({
-                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
-                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage'),
-                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon'),
-                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.secondaryWeapon')
-                }),
-                healing: bonusField('DAGGERHEART.GENERAL.Healing.healingAmount'),
+                roll: bonusField('DAGGERHEART.GENERAL.roll'),
+                damage: bonusField('DAGGERHEART.GENERAL.damage'),
+                healing: bonusField('DAGGERHEART.GENERAL.healing'),
                 range: new fields.SchemaField({
                     weapon: new fields.NumberField({
                         integer: true,

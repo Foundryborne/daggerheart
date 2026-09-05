@@ -355,8 +355,15 @@ export default class DHRoll extends BaseRoll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
-                const isConditionalBlocked = 
-                    (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.doesConditionalPass(this));
+                const item = this.options.data.parent?.items?.get?.(this.options.source.item) ?? null;
+                const actions = item ? [
+                    ...item.system.actions,
+                    ...(item.system.attack?.id === this.options.source.action ? [item.system.attack] : [])
+                ] : [];
+                const action = actions.find(x => x.id === this.options.source.action);
+
+                const isConditionalBlocked = action &&
+                    (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.doesConditionalPass(action));
                 // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
                 if (
                     !isConditionalBlocked && 

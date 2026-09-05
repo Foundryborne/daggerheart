@@ -2324,11 +2324,15 @@ export const weaponFeatures = {
                 system: {
                     changes: [
                         {
-                            key: 'system.bonuses.roll.primaryWeapon.bonus',
+                            key: 'system.bonuses.roll.bonus',
                             type: 'add',
                             value: 1
                         }
-                    ]
+                    ],
+                    conditionals: [{
+                        type: 'weaponRestriction',
+                        weaponType: 'sameWeapon'    
+                    }]
                 }
             }
         ]
