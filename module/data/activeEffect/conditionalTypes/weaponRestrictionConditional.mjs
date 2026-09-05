@@ -28,7 +28,7 @@ export default class WeaponRestrictionConditional extends foundry.abstract.DataM
         }
     }
 
-    doesConditionalPass(dhRollData) {
+    test(dhRollData) {
         if (!dhRollData.options.source.item) return true;
         
         const item = dhRollData.options.data.parent?.items?.get?.(dhRollData.options.source.item);
