@@ -15,7 +15,7 @@
                 </h1>
                 {{#each domainCards as |card id|}}
                     {{#if card.name}}
-                    <div class="domain-card">
+                    <div class="domain-card" data-tooltip="#item#{{card.id}}">
                         <img src="{{card.img}}" alt="card.name">
                         <p>{{card.name}}</p>
                         <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-action="removeDomainCard"></i></a>
@@ -37,7 +37,7 @@
                             (eq card.system.level 1)
                         )
                     }}
-                        <div class="card-item" data-uuid="{{card.uuid}}" data-type="{{card.type}}" data-action="selectItem">
+                        {{!-- <div class="card-item" data-uuid="{{card.uuid}}" data-type="{{card.type}}" data-action="selectItem">
                             <div class="item-icons-list">
                                 <span class="item-icon">
                                     <span class="recall-value">{{card.system.recallCost}}</span>
@@ -62,7 +62,10 @@
                             {{#if card.system.description}}      
                                 <div class="tooltip-description">{{{card.system.description}}}</div>
                             {{/if}}
-                        </div>
+                        </div> --}}
+                        <a class="card" data-uuid="{{card.uuid}}" data-type="{{card.type}}" data-action="selectItem">
+                            {{{card.embedCard}}}
+                        </a>
                     {{/if}}
                 {{/each}}
             </div>
