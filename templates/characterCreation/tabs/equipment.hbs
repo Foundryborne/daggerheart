@@ -39,27 +39,19 @@
                         <span class="choice-side-label">
                             {{localize 'DAGGERHEART.GENERAL.or'}}
                         </span>
-                        <ul class="choice-item-list">
-                            {{#each inventory.choiceA.suggestions as |item|}}
-                                <span class="equip-items">
-                                    <img src="{{item.img}}" alt="{{item.name}}">
-                                    <span>{{item.name}}</span>
-                                </span>
-                            {{/each}}
-                        </ul>
+                        {{> choiceItems
+                            suggestions=inventory.choiceA.suggestions
+                            path='choiceA'
+                        }}
                     </div>
                     <div class="d-flex m-top-40">
                         <span class="choice-side-label">
                             {{localize 'DAGGERHEART.GENERAL.or'}}
                         </span>
-                        <ul class="choice-item-list">
-                            {{#each inventory.choiceB.suggestions as |item|}}
-                                <span class="equip-items">
-                                    <img src="{{item.img}}" alt="{{item.name}}">
-                                    <span>{{item.name}}</span>
-                                </span>
-                            {{/each}}
-                        </ul>
+                        {{> choiceItems
+                            suggestions=inventory.choiceB.suggestions
+                            path='choiceB'
+                        }}
                     </div>
                 </div>
 
@@ -85,6 +77,48 @@
                 {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.equipmentList"}}
                 <side-line-div></side-line-div>
             </h2>
+            <div class="tab-navigation">
+            <nav class="feature-tab sheet-tabs tabs">
+                <a
+                    class="{{#if (eq selectedTable.label equipmentGroups.primaryWeapon.label)}}active{{/if}}"
+                    data-table="primaryWeapon" data-action="selectTable"
+                >
+                    {{equipmentGroups.primaryWeapon.label}}
+                </a>
+                <a
+                    class="{{#if (eq selectedTable.label equipmentGroups.secondaryWeapon.label)}}active{{/if}}"
+                    data-table="secondaryWeapon" data-action="selectTable"
+                >
+                    {{equipmentGroups.secondaryWeapon.label}}
+                </a>
+                <a
+                    class="{{#if (eq selectedTable.label equipmentGroups.armor.label)}}active{{/if}}"
+                    data-table="armor" data-action="selectTable"
+                >
+                    {{equipmentGroups.armor.label}}
+                </a>
+            </nav>
+            </div>
+            {{#if selectedTable}}
+                <div class="item-list-header">
+                    <div class="item-list-img"></div>
+                    <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
+                        {{#each selectedTable.columns}}
+                            <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
+                        {{/each}}
+                </div>
+                <div class="item-list m-top-10">
+                    {{#each selectedTable.items as |item|}}
+                        <div class="item-container" data-item-uuid="{{item.uuid}}" {{#if (and uuid (eq documentName "Item"))}}data-tooltip="#item#{{item.uuid}}"{{/if}} data-action="selectItem" data-type="{{item.type}}">
+                            <img src="{{item.img}}" data-item-key="img" class="item-list-img">
+                            <span data-item-key="name" class="item-list-name">{{item.name}}</span>
+                            {{#each ../selectedTable.columns as |table|}}
+                                <span data-item-key="{{table.key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</span>
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{/if}}
         </div>
 
         <div class="suggested-equipments">
@@ -238,4 +272,19 @@
             {{emptyMessage}}
         </div>
     {{/if}}
+{{/inline}}
+
+{{#*inline "choiceItems"}}
+    <ul class="choice-item-list">
+        {{#each suggestions as |item|}}
+            <span class="equip-items selectable {{#if item.selected}}selected{{/if}}" data-action="equipmentChoice" data-path="{{../path}}" data-uuid="{{item.uuid}}">
+                <img src="{{item.img}}" alt="{{item.name}}">
+                <span>{{item.name}}</span>
+
+                <a>
+                    <i class="fa-regular fa-circle{{#if item.selected}}-check{{/if}}"></i>
+                </a>
+            </span>
+        {{/each}}
+    </ul>
 {{/inline}}
