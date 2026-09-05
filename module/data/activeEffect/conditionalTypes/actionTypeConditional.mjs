@@ -27,7 +27,7 @@ export default class ActionTypeConditional extends foundry.abstract.DataModel {
         }
     }
 
-    doesConditionalPass(actionData) {
+    test(actionData) {
         if (!this.actionTypes.size) return true;
         if (!actionData.roll || !actionData.actionType) return false;
         

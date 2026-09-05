@@ -28,7 +28,7 @@ export default class WeaponRestrictionConditional extends foundry.abstract.DataM
         }
     }
 
-    doesConditionalPass(actionData) {     
+    test(actionData) {     
         if (!this.weaponType) return true;  
         if (actionData.item?.type !== 'weapon') return false;
 

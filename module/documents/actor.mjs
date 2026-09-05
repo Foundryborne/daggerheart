@@ -1250,7 +1250,7 @@ export default class DhpActor extends Actor {
             return effect.system.conditionals.some(x => 
                 x.constructor.metadata.phase === preparation.id && 
                 x.constructor.metadata.failureMode === remove.id &&
-                !x.doesConditionalPass(this.getRollData())
+                !x.test(this.getRollData())
             );
         }
 
