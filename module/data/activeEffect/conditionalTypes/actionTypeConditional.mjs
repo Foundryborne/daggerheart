@@ -30,13 +30,14 @@ export default class ActionTypeConditional extends foundry.abstract.DataModel {
 
     test(dhRollData) {
         if (!this.actionTypes.size) return true;
-
-        const actionType = dhRollData.options.actionType;
+        if (!dhRollData.roll || !dhRollData.actionType) return false;
+        
+        const actionType = dhRollData.actionType;
         if (actionType === 'action' && this.actionTypes.has(CONFIG.DH.EFFECTS.actionType.action.id))
             return true;
         if (actionType === 'reaction' && this.actionTypes.has(CONFIG.DH.EFFECTS.actionType.reaction.id))
             return true;
 
-        return this.actionTypes.has(dhRollData.options.roll.type);
+        return this.actionTypes.has(dhRollData.roll.type);
     }
 }

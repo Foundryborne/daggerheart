@@ -523,12 +523,12 @@ export default function DHApplicationMixin(Base) {
                         return doc?.isOwner && hasDamage;
                     },
                     onClick: async (event, target) => {
-                        const doc = await getDocFromElement(target),
-                            action = doc?.system?.attack ?? doc;
+                        const doc = await getDocFromElement(target);
+                        const action = doc.system.attack;
                         const config = action.prepareConfig(event);
                         config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                            this.document,
-                            doc
+                            action,
+                            this.document
                         );
                         config.hasRoll = false;
                         return action && action.workflow.get('damage').execute(config, null, true);

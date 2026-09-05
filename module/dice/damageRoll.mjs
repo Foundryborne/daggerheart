@@ -121,21 +121,9 @@ export default class DamageRoll extends DHRoll {
         return { formula, total };
     }
 
-    applyBaseBonus(part) {
-        const modifiers = [],
-            type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage'),
-            options = part ?? this.options;
-
-        if (!this.options.hasHealing) {
-            options.damageTypes?.forEach(t => {
-                modifiers.push(...this.getBonus(`${type}.${t}`, `${t.capitalize()} ${type.capitalize()} Bonus`));
-            });
-            const weapons = ['primaryWeapon', 'secondaryWeapon'];
-            weapons.forEach(w => {
-                if (this.options.source.item && this.options.source.item === this.data[w]?.id)
-                    modifiers.push(...this.getBonus(`${type}.${w}`, 'Weapon Bonus'));
-            });
-        }
+    applyBaseBonus() {
+        const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
+        const modifiers = [...this.getBonus(`system.bonuses.${type}`)];
 
         return modifiers;
     }
@@ -143,24 +131,9 @@ export default class DamageRoll extends DHRoll {
     getActionChangeKeys() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
         const changeKeys = [
-            'system.rules.attack.damage.hpDamageMultiplier'
+            'system.rules.attack.damage.hpDamageMultiplier',
+            `system.bonuses.${type}`
         ];
-
-        for (const damageType of this.options.damageFormula?.damageTypes?.values?.() ?? []) {
-            changeKeys.push(`system.bonuses.${type}.${damageType}`);
-        }
-        
-        const item = this.data.parent?.items?.get(this.options.source.item);
-        if (item) {
-            switch (item.type) {
-                case 'weapon':
-                    if (!this.options.hasHealing)
-                        ['primaryWeapon', 'secondaryWeapon'].forEach(w =>
-                            changeKeys.push(`system.bonuses.damage.${w}`)
-                        );
-                    break;
-            }
-        }
 
         return changeKeys;
     }
