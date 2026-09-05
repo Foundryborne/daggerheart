@@ -300,8 +300,7 @@
             }
         },
         "ActiveEffect": {
-            "beastform": {},
-            "horde": {}
+            "beastform": {}
         },
         "Combat": {
             "combat": {}
