@@ -254,7 +254,7 @@ Hooks.once('init', () => {
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,
         {
-            types: ['base', 'beastform', 'horde'],
+            types: ['base', 'beastform'],
             makeDefault: true,
             label: sheetLabel('DOCUMENT.ActiveEffect')
         }

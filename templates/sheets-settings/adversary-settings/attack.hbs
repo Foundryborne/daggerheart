@@ -29,6 +29,6 @@
         {{/if}}
     </fieldset>
     {{#if document._source.system.attack}}
-        {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields source=document.system.attack.damage path="system.attack." baseFields=systemFields.attack.fields.damage.fields horde=(eq document._source.system.type 'horde')}}
+        {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields source=document.system.attack.damage path="system.attack." baseFields=systemFields.attack.fields.damage.fields }}
     {{/if}}
 </section>
