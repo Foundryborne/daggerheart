@@ -15,6 +15,8 @@
                     {{> "systems/daggerheart/templates/sheets/activeEffect/conditionals/weaponRestrictionConditional.hbs" model=(lookup ../systemFields.conditionals.element.types conditional.type) }}
                 {{else if (eq conditional.type 'actionType')}}
                     {{> "systems/daggerheart/templates/sheets/activeEffect/conditionals/actionTypeConditional.hbs" model=(lookup ../systemFields.conditionals.element.types conditional.type) }}
+                {{else if (eq conditional.type 'damageType')}}
+                    {{> "systems/daggerheart/templates/sheets/activeEffect/conditionals/damageTypeConditional.hbs" model=(lookup ../systemFields.conditionals.element.types conditional.type) }}
                 {{/if}}
             </div>
         {{/each}}
