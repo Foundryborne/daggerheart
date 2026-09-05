@@ -127,7 +127,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return rollData && this.conditionals.some(x => 
             x.constructor.metadata.phase === CONFIG.DH.EFFECTS.conditionalPhases.preparation.id && 
             x.constructor.metadata.failureMode === CONFIG.DH.EFFECTS.conditionalFailureModes.suppress.id &&
-            !x.doesConditionalPass(rollData)
+            !x.test(rollData)
         );
     }
 
