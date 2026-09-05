@@ -2855,7 +2855,7 @@
                     "actionTypes": "Action Types"
                 },
                 "damageType": {
-                    "damageTypes": "Damage Types"
+                    "damageType": "Damage Type"
                 }
             },
             "Duration": {
