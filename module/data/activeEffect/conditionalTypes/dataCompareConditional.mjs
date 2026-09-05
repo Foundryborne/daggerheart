@@ -37,7 +37,7 @@ export default class DataCompareConditional extends foundry.abstract.DataModel {
         }
     }
 
-    doesConditionalPass(rollData) {
+    test(rollData) {
         const comparator = CONFIG.DH.EFFECTS.conditionalComparators[this.comparator];
         if (!this.key || (!comparator.ignoresValue && this.value === undefined)) return true;
 

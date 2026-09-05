@@ -28,7 +28,7 @@ export default class ActionTypeConditional extends foundry.abstract.DataModel {
         }
     }
 
-    doesConditionalPass(dhRollData) {
+    test(dhRollData) {
         if (!this.actionTypes.size) return true;
 
         const actionType = dhRollData.options.actionType;
