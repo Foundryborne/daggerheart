@@ -53,7 +53,7 @@ export default class DhCreature extends BaseDataActor {
         if (
             automationSettings.vulnerableAutomation &&
             this.parent.type !== 'companion' &&
-            changes.system?.resources?.stress?.value
+            changes.system?.resources?.stress?.value !== undefined
         ) {
             const { name, description, img, autoApplyFlagId } = CONFIG.DH.GENERAL.conditions().vulnerable;
             const autoEffects = this.parent.effects.filter(
