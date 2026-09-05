@@ -20,11 +20,10 @@ export default class ActionTypeConditional extends foundry.abstract.DataModel {
                 initial: conditionalTypes.actionType.id 
             }),
             actionTypes: new fields.SetField(new fields.StringField({
-                label: 'DAGGERHEART.EFFECTS.Conditionals.actionType.actionType',
                 nullable: true,
                 choices: CONFIG.DH.EFFECTS.actionType,
                 initial: null
-            }))
+            }), { label: 'DAGGERHEART.EFFECTS.Conditionals.actionType.actionTypes' })
         }
     }
 

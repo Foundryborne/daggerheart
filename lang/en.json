@@ -1627,7 +1627,8 @@
             "ConditionalType": {
                 "dataCompare": "Data Compare",
                 "weaponRestriction": "Weapon Restriction",
-                "actionType": "Action Type"
+                "actionType": "Action Type",
+                "damageType": "Damage Type"
             },
             "ConditionalWeaponRestrictionType": {
                 "sameWeapon": "Same Weapon"
@@ -2851,7 +2852,10 @@
                     "weaponType": "Weapon Type"
                 },
                 "actionType": {
-                    "actionType": "Action Type"
+                    "actionTypes": "Action Types"
+                },
+                "damageType": {
+                    "damageTypes": "Damage Types"
                 }
             },
             "Duration": {

@@ -80,6 +80,10 @@ export const conditionalTypes = {
     actionType: {
         id: 'actionType',
         label: 'DAGGERHEART.CONFIG.ConditionalType.actionType'
+    },
+    damageType: {
+        id: 'damageType',
+        label: 'DAGGERHEART.CONFIG.ConditionalType.damageType'
     }
 };
 
