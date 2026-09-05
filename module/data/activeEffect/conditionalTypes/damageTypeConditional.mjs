@@ -28,7 +28,7 @@ export default class DamageTypeConditional extends foundry.abstract.DataModel {
         }
     }
 
-    doesConditionalPass(actionData) { 
+    test(actionData) { 
         if (!actionData.damage) return false;
         
         return actionData.damage.main.type.has(this.damageType)
