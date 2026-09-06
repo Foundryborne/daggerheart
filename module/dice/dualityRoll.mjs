@@ -285,7 +285,7 @@ export default class DualityRoll extends D20Roll {
         );
         if (dualityUpdates?.length) updates.push(...dualityUpdates);
 
-        if (config.roll.result.duality === -1) {
+        if (config.roll.result.duality === -1 && config.actionType === 'action') {
             const fearUpdates = await game.system.registeredTriggers.runTrigger(
                 CONFIG.DH.TRIGGER.triggers.fearRoll.id,
                 roll.data?.parent,
