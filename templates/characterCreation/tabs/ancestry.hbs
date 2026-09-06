@@ -5,25 +5,11 @@
 >
     <div class="main-selections-container">
         <div class="step-sidebar">
-            <h1 class="title-section">2. Choose a Ancestry</h1>
+            <h1 class="title-section">2. {{localize tabs.ancestry.label}}</h1>
             <input type="checkbox" data-action="mixedAncestryToggle" {{checked mixedAncestry}}/>
             <span>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}</span>
 
             <div class="ancestry compedium-list m-top-10">
-                {{!-- {{#each ancestryGroups}}
-                <div class="{{label}} compedium-item">
-                    <h1 class="subtitle-section">
-                        {{label}}
-                        <side-line-div></side-line-div>
-                    </h1>
-                    <ul>
-                        {{> "systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs"
-                            items=items
-                            action="selectItem"}}
-                    </ul>
-
-                </div>
-                {{/each}} --}}
                 <h2 class="subtitle-section">
                     {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.ancestry'}}
                     <side-line-div></side-line-div>

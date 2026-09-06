@@ -5,18 +5,18 @@
 >
     <div class="main-selections-container">
         <div class="step-sidebar">
-            <h1 class="title-section">5. Experiences</h1>
+            <h1 class="title-section">5. {{localize tabs.experience.label}}</h1>
         </div>
         <line-div></line-div>
         <div class="floating-container">
             <div class="experience-info">
                 <h1 class="subtitle-section">
-                    Create your experiences
+                    {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.createYourExperiences"}}
                     <side-line-div></side-line-div>
                 </h1>
                 <div class="m-top-10">
-                    <p>In Daggerheart, your character’s Experiences are one of the core ways you express their backstory and expertise through mechanics. An <b>Experience</b> is a word or phrase used to encapsulate a specific set of skills your character has acquired over the course of their exciting life.</p>
-                    <p>Your character starts with two Experiences at character creation (each with a +2 modifier), and they’ll earn more throughout your adventures. Before creating Experiences, you’ll want to have a solid idea of who your character is; the background questions are especially helpful for this. When you’re ready, work with your GM to create two Experiences that have shaped your character.</p>
+                    <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.paragraph1"}}</p>
+                    <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.paragraph2"}}</p>
                 </div>
                 <div class="experience-list">
                     {{#each experience.values as |experience id|}}
@@ -37,29 +37,18 @@
                         </div>
                     {{/each}}
                     <blockquote class="m-top-20">
-                        <p>
-                            <b>Tip:</b> <em>If you’re not sure what Experiences to take, consider the style of the campaign you’re playing in and the actions you’ll want to perform. In a standard, battle-focused campaign, it’s never a bad idea to take your character’s first Experience in something that will help with combat and the second Experience in something useful outside of combat.</em>
-                        </p>
+                        <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.tip"}}</p>
                     </blockquote>
                 </div>
             </div>
             <blockquote class="experience-example-list">
                 <h2 class="subtitle-section">Example Experiences</h2>
-                <p>
-                    <b>Backgrounds:</b> <em>Assassin, Blacksmith, Bodyguard, Bounty Hunter, Chef to the Royal Family, Circus Performer, Con Artist, Fallen Monarch, Field Medic, High Priestess, Merchant, Noble, Pirate, Politician, Runaway, Scholar, Sellsword, Soldier, Storyteller, Thief, World Traveler</em>
-                </p>
-                <p>
-                    <b>Characteristics:</b> <em>Affable, Battle-Hardened, Bookworm, Charming, Cowardly, Friend to All, Helpful, Intimidating Presence, Leader, Lone Wolf, Loyal, Observant, Prankster, Silver Tongue, Sticky Fingers, Stubborn to a Fault, Survivor, Young and Naive</em>
-                </p>
-                <p>
-                    <b>Specialties:</b> <em>Acrobat, Gambler, Healer, Inventor, Magical Historian, Mapmaker, Master of Disguise, Navigator, Sharpshooter, Survivalist, Swashbuckler, Tactician</em>
-                </p>
-                <p>
-                    <b>Skills:</b> <em>Animal Whisperer, Barter, Deadly Aim, Fast Learner, Incredible Strength, Liar, Light Feet, Negotiator, Photographic Memory, Quick Hands, Repair, Scavenger, Tracker</em>
-                </p>
-                <p>
-                    <b>Phrases:</b> <em>Catch Me If You Can, Fake It Till You Make It, First Time’s the Charm, Hold the Line, I Won’t Let You Down, I’ll Catch You, I’ve Got Your Back, Knowledge Is Power, Nature’s Friend, Never Again, No One Left Behind, Pick on Someone Your Own Size, The Show Must Go On, This Is Not a Negotiation, Wolf in Sheep’s Clothing</em>
-                </p>
+
+                <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.backgrounds"}}</p>
+                <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.characteristics"}}</p>
+                <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.specialties"}}</p>
+                <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.skills"}}</p>
+                <p>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.phrases"}}</p>
             </blockquote>
         </div>
     </div>
