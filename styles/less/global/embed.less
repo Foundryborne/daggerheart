@@ -44,7 +44,11 @@
     .row {
         display: flex;
         align-items: baseline;
-        padding-inline:  0.5rem;
+        padding-inline: 0.5rem;
+
+        > * {
+            white-space: nowrap;
+        }
     }
 
     .divider {
@@ -58,6 +62,7 @@
     }
 
     .experience-row {
+        display: block;
         border-top: 1px dashed var(--dh-embed-color-border);
         padding-top: 0.25rem;
         margin-top: 0.25rem;

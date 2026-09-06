@@ -13,14 +13,15 @@
         {{formGroup settingFields.schema.fields.rangeMeasurement.fields.far value=settingFields._source.rangeMeasurement.far localize=true}}
     </fieldset>
 
-    <div class="form-group">
-        <label>{{localize "DAGGERHEART.SETTINGS.Menu.variantRules.actionTokens"}}</label>
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.SETTINGS.Menu.variantRules.actionTokens'}}</legend>
 
-        <div class="form-fields">
+        <div class="two-columns even">
             {{formGroup settingFields.schema.fields.actionTokens.fields.enabled value=settingFields._source.actionTokens.enabled localize=true}}
-            {{formGroup settingFields.schema.fields.actionTokens.fields.tokens value=settingFields._source.actionTokens.tokens disabled=(not settingFields._source.actionTokens.enabled) localize=true}}
+            {{formGroup settingFields.schema.fields.actionTokens.fields.automation value=settingFields._source.actionTokens.automation disabled=(not settingFields._source.actionTokens.enabled) localize=true}}
         </div>
-    </div>
+        {{formGroup settingFields.schema.fields.actionTokens.fields.tokens value=settingFields._source.actionTokens.tokens disabled=(not settingFields._source.actionTokens.enabled) localize=true}}
+    </fieldset>
 
     <div class="form-group">
         <label>{{localize "DAGGERHEART.SETTINGS.VariantRules.FIELDS.massiveDamage.title"}}</label>

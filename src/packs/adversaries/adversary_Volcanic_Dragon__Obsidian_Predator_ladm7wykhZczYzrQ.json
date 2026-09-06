@@ -431,7 +431,7 @@
       "name": "Avalanche Tail",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>4d6+4</strong> physical damage and are knocked.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Obsidian Predator succeeds against take <strong>4d6+4</strong> physical damage and are knocked back to Far range and <em>Vulnerable</em> until their next roll with Hope.</p>",
         "resource": null,
         "actions": {
           "23y0BoufIgNq62j9": {

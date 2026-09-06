@@ -495,7 +495,7 @@
             "save": {
               "trait": "agility",
               "difficulty": null,
-              "damageMod": "none"
+              "damageMod": "half"
             },
             "name": "Roll Save",
             "img": "icons/magic/water/projectiles-ice-faceted-shard-salvo-blue.webp",
