@@ -13,6 +13,10 @@
         }
     }
 
+    .form-row-icon {
+        margin-top: 14px;
+    }
+
     .duration-description {
         height: 0;
         overflow: hidden;
@@ -20,6 +24,31 @@
 
         &.visible {
             height: 100px;
+        }
+    }
+
+    .tab.conditionals {
+        .conditional-outer-container {
+            .conditional-container {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                .conditional-inner-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+
+                    .form-group {
+                        display: block;
+                        
+                        label {
+                            line-height: normal;
+                            color: inherit;
+                        }
+                    }
+                }
+            }
         }
     }
 

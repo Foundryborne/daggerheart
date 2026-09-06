@@ -1238,12 +1238,22 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+        const isRemovedByConditional = effect => {
+            const { preparation } = CONFIG.DH.EFFECTS.conditionalPhases;
+            const { remove } = CONFIG.DH.EFFECTS.conditionalFailureModes;
+            return effect.system.conditionals.some(x => 
+                x.constructor.metadata.phase === preparation.id && 
+                x.constructor.metadata.failureMode === remove.id &&
+                !x.test(this.getRollData())
+            );
+        }
+
         for (const effect of this.effects) {
-            if (!noSelfArmor || effect.type !== 'armor') yield effect;
+            if (!isRemovedByConditional(effect) && (!noSelfArmor || effect.type !== 'armor')) yield effect;
         }
         for (const item of this.items) {
             for (const effect of item.effects) {
-                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
+                if (!isRemovedByConditional(effect) && effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
             }
         }
     }

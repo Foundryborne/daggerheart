@@ -1,0 +1,8 @@
+<div class="conditional-container">
+    <div class="conditional-inner-container">
+        <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
+        {{formGroup model.fields.actionTypes value=this.actionTypes name=(concat "system.conditionals." @key ".actionTypes") localize=true blank=false }}
+    </div>
+
+    <a class="form-row-icon" data-action="removeConditional" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
+</div>

@@ -16,8 +16,7 @@
         },
         "ActiveEffect": {
             "base": "Standard",
-            "beastform": "Beastform",
-            "horde": "Horde"
+            "beastform": "Beastform"
         },
         "Actor": {
             "character": "Character",
@@ -227,6 +226,9 @@
                 },
                 "stacking": {
                     "title": "Stacking"
+                },
+                "conditionals": {
+                    "title": "Conditionals"
                 },
                 "targetDispositions": "Affected Dispositions"
             },
@@ -1605,6 +1607,31 @@
                     "autoAppliedByLabel": "Max Stress"
                 }
             },
+            "ConditionalComparator": {
+                "less": "Less Than",
+                "lessEquals": "Less Or Equals",
+                "equals": "Equals",
+                "greaterEquals": "Greater Or Equals",
+                "greater": "Greater Than",
+                "truthy": "Is True",
+                "falsy": "Is False"
+            },
+            "ConditionalFailureMode": {
+                "suppress": "Suppress",
+                "remove": "Remove"
+            },
+            "ConditionalPhase": {
+                "preparation": "Preparation",
+                "roll": "Roll"
+            },
+            "ConditionalType": {
+                "dataCompare": "Data Compare",
+                "weaponRestriction": "Weapon Restriction",
+                "actionType": "Action Type"
+            },
+            "ConditionalWeaponRestrictionType": {
+                "sameWeapon": "Same Weapon"
+            },
             "CountdownProgressType": {
                 "actionRoll": "Action Roll",
                 "characterAttack": "Character Attack",
@@ -2814,6 +2841,19 @@
                     }
                 }
             },
+            "Conditionals": {
+                "phase": "Phase",
+                "failureMode": "Failure Mode",
+                "dataCompare": {
+                    "comparator": "Comparator"
+                },
+                "weaponRestriction": {
+                    "weaponType": "Weapon Type"
+                },
+                "actionType": {
+                    "actionType": "Action Type"
+                }
+            },
             "Duration": {
                 "passive": "Passive",
                 "temporary": "Temporary"
@@ -3194,7 +3234,8 @@
                 "triggers": "Triggers",
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
-                "packs": "Packs"
+                "packs": "Packs",
+                "conditionals": "Conditionals"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -3285,6 +3326,7 @@
             "itemResource": "Item Resource",
             "itemQuantity": "Item Quantity",
             "items": "Items",
+            "key": "Key",
             "label": "Label",
             "level": "Level",
             "levelShort": "Lv",
