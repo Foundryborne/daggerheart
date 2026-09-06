@@ -9,8 +9,8 @@
             <input type="checkbox" data-action="mixedAncestryToggle" {{checked mixedAncestry}}/>
             <span>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}</span>
 
-            <div class="ancestry compedium-list">
-                {{#each ancestryGroups}}
+            <div class="ancestry compedium-list m-top-10">
+                {{!-- {{#each ancestryGroups}}
                 <div class="{{label}} compedium-item">
                     <h1 class="subtitle-section">
                         {{label}}
@@ -23,189 +23,91 @@
                     </ul>
 
                 </div>
-                {{/each}}
-            </div>
-        </div>
-        {{#if primaryAncestry.name}}
-        <div class="ancestry-info">
-            <h1 class="title-section">{{primaryAncestry.name}}</h1>
-            <div class="d-flex container">
-                <img src="{{primaryAncestry.img}}" alt="">
-                <div class="description">
-                    {{{primaryAncestry.system.description}}}
-                </div>
-            </div>
-            <div class="ancestry-feature m-top-20">
+                {{/each}} --}}
                 <h2 class="subtitle-section">
-                    {{localize 'DAGGERHEART.ITEMS.Ancestry.featuresLabel'}}
+                    {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.ancestry'}}
                     <side-line-div></side-line-div>
                 </h2>
-                {{!-- <div class="m-top-10 d-flex">
-                    <input
-                        type="radio"
-                        name="primary-ancestry"
-                        id="primary-feature"
-                        data-action="selectAncestryFeature"
-                        data-uuid="{{primaryAncestry.system.primaryFeature.uuid}}"
-                        data-ancestry-type="primary"
-                        data-feature-type="primary"
-                        {{checked (eq mixedFeatures.primaryFeature.uuid primaryAncestry.system.primaryFeature.uuid)}}
-                    >
-                    <div for="primary-feature">
-                        <i><b>{{{primaryAncestry.system.primaryFeature.name}}}:</b></i>
-                        {{{primaryAncestry.system.primaryFeature.system.description}}}
-                    </div>
-                </div>
-                <div class="m-top-10 d-flex">
-                    <input
-                        type="radio"
-                        name="primary-ancestry"
-                        id="secondary-feature"
-                        data-action="selectAncestryFeature"
-                        data-uuid="{{primaryAncestry.system.secondaryFeature.uuid}}"
-                        data-ancestry-type="primary"
-                        data-feature-type="secondary"
-                        {{checked (eq mixedFeatures.secondaryFeature.uuid primaryAncestry.system.secondaryFeature.uuid)}}
-                    >
-                    <div for="primary-feature">
-                        <i><b>{{{primaryAncestry.system.secondaryFeature.name}}}:</b></i>
-                        {{{primaryAncestry.system.secondaryFeature.system.description}}}
-                    </div>
-                </div> --}}
-
-                {{> ancestryFeature
-                    name='primary-ancestry'
-                    elementId='primary-feature'
-                    ancestry=primaryAncestry
-                    uuid=primaryAncestry.system.primaryFeature.uuid
-                    mixedUuid=mixedFeatures.primaryFeature.uuid 
-                    ancestryType='primary'
-                    featureType='primary'
+                {{> selectedItem
+                    item=primaryAncestry
+                    type='primaryAncestry'
+                    emptyMessage='Select a Ancestry'
                 }}
-                {{> ancestryFeature
-                    name='primary-ancestry'
-                    elementId='secondary-feature'
-                    ancestry=primaryAncestry
-                    uuid=primaryAncestry.system.secondaryFeature.uuid
-                    mixedUuid=mixedFeatures.secondaryFeature.uuid 
-                    ancestryType='primary'
-                    featureType='secondary'
-                }}
-            </div>
-        </div>
-        {{/if}}
-        {{#if secondaryAncestry.name}}
-        <div class="secondary ancestry-info">
-            <h1 class="title-section">{{secondaryAncestry.name}}</h1>
-            <div class="d-flex container">
-                <img src="{{secondaryAncestry.img}}" alt="">
-                <div class="description">
-                    {{{secondaryAncestry.system.description}}}
+                {{#if mixedAncestry}}
+                    {{> selectedItem
+                        item=secondaryAncestry
+                        type='secondaryAncestry'
+                        emptyMessage='Select a Ancestry'
+                    }}
 
-                </div>
-            </div>
-            <div class="ancestry-feature m-top-20">
-                <h2 class="subtitle-section">
-                    {{localize 'DAGGERHEART.ITEMS.Ancestry.featuresLabel'}}
-                    <side-line-div></side-line-div>
-                </h2>
-                {{!-- <div class="m-top-10 d-flex">
-                    <input
-                        type="radio"
-                        name="secondary-ancestry"
-                        id="primary-feature"
-                        data-action="selectAncestryFeature"
-                        data-uuid="{{secondaryAncestry.system.primaryFeature.uuid}}"
-                        data-ancestry-type="secondary"
-                        data-feature-type="primary"
-                        {{checked (eq mixedFeatures.primaryFeature.uuid secondaryAncestry.system.primaryFeature.uuid)}}
-                    >
-                    <div for="primary-feature">
-                        <i><b>{{{secondaryAncestry.system.primaryFeature.name}}}:</b></i>
-                        {{{secondaryAncestry.system.primaryFeature.system.description}}}
-                    </div>
-                </div>
-                <div class="m-top-10 d-flex">
-                    <input
-                        type="radio"
-                        name="secondary-ancestry"
-                        id="secondary-feature"
-                        data-action="selectAncestryFeature"
-                        data-uuid="{{secondaryAncestry.system.secondaryFeature.uuid}}"
-                        data-ancestry-type="secondary"
-                        data-feature-type="secondary"
-                        {{checked (eq mixedFeatures.secondaryFeature.uuid secondaryAncestry.system.secondaryFeature.uuid)}}
-                    >
-                    <div for="primary-feature">
-                        <i><b>{{{secondaryAncestry.system.secondaryFeature.name}}}:</b></i>
-                        {{{secondaryAncestry.system.secondaryFeature.system.description}}}
-                    </div>
-                </div> --}}
-
-                {{> ancestryFeature
-                    name='secondary-ancestry'
-                    elementId='primary-feature'
-                    ancestry=secondaryAncestry
-                    uuid=secondaryAncestry.system.primaryFeature.uuid
-                    mixedUuid=mixedFeatures.primaryFeature.uuid 
-                    ancestryType='secondary'
-                    featureType='primary'
-                }}
-                {{> ancestryFeature
-                    name='secondary-ancestry'
-                    elementId='secondary-feature'
-                    ancestry=secondaryAncestry
-                    uuid=secondaryAncestry.system.secondaryFeature.uuid
-                    mixedUuid=mixedFeatures.secondaryFeature.uuid 
-                    ancestryType='secondary'
-                    featureType='secondary'
-                }}
-            </div>
-        </div>
-        {{/if}}
-
-        {{!-- {{#if mixedAncestry}}
-        <div class="mixed-options">
-            <h2 class="subtitle-section">
-                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}
-                <side-line-div></side-line-div>
-            </h2>
-
-            {{#if primaryAncestry.name}}
-                <div class="ancestry-feature m-top-20">
-                    <h2 class="subtitle-section">
-                        {{localize 'DAGGERHEART.ITEMS.Ancestry.primaryFeature'}}
+                    <h2 class="subtitle-section m-top-20">
+                        {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.selectPrimaryAncestry'}}
                         <side-line-div></side-line-div>
                     </h2>
-                    {{#each primaryAncestry.system.features as |feature|}}
-                        <div class="m-top-10">
-                            <i><b>{{{feature.item.name}}}:</b></i>
-                            {{{feature.item.system.description}}}
-                        </div>
-                    {{/each}}
-                </div>
-            {{/if}}
-            {{#if secondaryAncestry.name}}
-                <div class="ancestry-feature m-top-20">
-                    <h2 class="subtitle-section">
-                        {{localize 'DAGGERHEART.ITEMS.Ancestry.secondaryFeature'}}
+                    {{> ancestryFeature
+                        name='primary-ancestry'
+                        elementId='primary-feature'
+                        ancestry=primaryAncestry
+                        uuid=primaryAncestry.system.primaryFeature.uuid
+                        mixedUuid=mixedFeatures.primaryFeature.uuid 
+                        ancestryType='primary'
+                        featureType='primary'
+                    }}
+                    {{> ancestryFeature
+                        name='primary-ancestry'
+                        elementId='secondary-feature'
+                        ancestry=primaryAncestry
+                        uuid=primaryAncestry.system.secondaryFeature.uuid
+                        mixedUuid=mixedFeatures.secondaryFeature.uuid 
+                        ancestryType='primary'
+                        featureType='secondary'
+                    }}
+
+                    {{#if secondaryAncestry.name}}
+                    <h2 class="subtitle-section m-top-10">
+                        {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.selectSecondaryAncestry'}}
                         <side-line-div></side-line-div>
                     </h2>
-                    {{#each secondaryAncestry.system.features as |feature|}}
-                        <div class="m-top-10">
-                            <i><b>{{{feature.item.name}}}:</b></i>
-                            {{{feature.item.system.description}}}
-                        </div>
-                    {{/each}}
-                </div>
-            {{/if}}
+                    {{> ancestryFeature
+                        name='secondary-ancestry'
+                        elementId='primary-feature'
+                        ancestry=secondaryAncestry
+                        uuid=secondaryAncestry.system.primaryFeature.uuid
+                        mixedUuid=mixedFeatures.primaryFeature.uuid 
+                        ancestryType='primary'
+                        featureType='primary'
+                    }}
+                    {{> ancestryFeature
+                        name='secondary-ancestry'
+                        elementId='secondary-feature'
+                        ancestry=secondaryAncestry
+                        uuid=secondaryAncestry.system.secondaryFeature.uuid
+                        mixedUuid=mixedFeatures.secondaryFeature.uuid 
+                        ancestryType='primary'
+                        featureType='secondary'
+                    }}
+                    {{/if}}
+                {{/if}}
+            </div>
         </div>
-        {{/if}} --}}
+
+        <line-div></line-div>
+
+        <div class="ancestry-list card-list">
+            {{#each ancestryGroups.items as |ancestry|}}
+                <a 
+                    class="card {{#if ../primaryAncestry.name}}{{#unless (or (eq ../primaryAncestry.name ancestry.name) (eq ../secondaryAncestry.name ancestry.name))}}not-selected{{/unless}}{{/if}}"
+                    data-uuid="{{ancestry.uuid}}" data-type="{{ancestry.type}}" data-action="selectItem"
+                >
+                    {{{ancestry.embedCard}}}
+                </a>
+            {{/each}}
+        </div>
     </div>
 </section>
 
 {{#*inline "ancestryFeature"}}
-    <div class="m-top-10 d-flex">
+    <div class="ancestry-feature" >
         {{#if mixedAncestry}}
             <input
                 type="radio"
@@ -220,12 +122,24 @@
         {{/if}}
         <div for="{{elementId}}">
             {{#if (eq featureType 'primary')}}
-                <i><b>{{{ancestry.system.primaryFeature.name}}}:</b></i>
-                {{{ancestry.system.primaryFeature.system.description}}}
+                <b>{{{ancestry.system.primaryFeature.name}}}</b>
             {{else}}
-                <i><b>{{{ancestry.system.secondaryFeature.name}}}:</b></i>
-                {{{ancestry.system.secondaryFeature.system.description}}}
+                <b>{{{ancestry.system.secondaryFeature.name}}}</b>
             {{/if}}
         </div>
     </div>
+{{/inline}}
+
+{{#*inline "selectedItem"}}
+    {{#if item.name}}
+        <div class="equip-items">
+            <img src="{{item.img}}" alt="{{item.name}}">
+            <p>{{item.name}}</p>
+            <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-type="{{type}}" data-item-type="ancestry" data-action="removeSelectedItem"></i></a>
+        </div>
+    {{else}}
+        <div class="empty-slot">
+            {{emptyMessage}}
+        </div>
+    {{/if}}
 {{/inline}}

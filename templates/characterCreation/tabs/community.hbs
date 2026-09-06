@@ -8,7 +8,7 @@
             <h1 class="title-section">3. Choose a Community</h1>
 
             <div class="community compedium-list">
-                {{#each communityGroups}}
+                {{!-- {{#each communityGroups}}
                 <div class="{{label}} compedium-item">
                     <h1 class="subtitle-section">
                         {{label}}
@@ -20,11 +20,20 @@
                             action="selectItem"}}
                     </ul>
                 </div>
-                {{/each}}
+                {{/each}} --}}
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.community'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                {{> selectedItem
+                    item=community
+                    type='community'
+                    emptyMessage='Select a Community'
+                }}
             </div>
         </div>
         <line-div></line-div>
-        {{#if community.name}}
+        {{!-- {{#if community.name}}
             <div class="community-info">
                 <h1 class="title-section">{{community.name}}</h1>
                 <div class="d-flex container">
@@ -35,7 +44,15 @@
                     </div>
                 </div>
             </div>
-        {{/if}}
+        {{/if}} --}}
+
+        <div class="comunity-list card-list">
+            {{#each communityGroups.items as |community|}}
+                <a class="card {{#if ../community.name}}{{#unless (eq ../community.name community.name)}}not-selected{{/unless}}{{/if}}" data-uuid="{{community.uuid}}" data-type="{{community.type}}" data-action="selectItem">
+                    {{{community.embedCard}}}
+                </a>
+            {{/each}}
+        </div>
     </div>
 </section>
 
@@ -52,4 +69,18 @@
             </div>
         {{/each}}
     </div>
+{{/inline}}
+
+{{#*inline "selectedItem"}}
+    {{#if item.name}}
+        <div class="equip-items">
+            <img src="{{item.img}}" alt="{{item.name}}">
+            <p>{{item.name}}</p>
+            <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-type="{{type}}" data-item-type="community" data-action="removeSelectedItem"></i></a>
+        </div>
+    {{else}}
+        <div class="empty-slot">
+            {{emptyMessage}}
+        </div>
+    {{/if}}
 {{/inline}}
