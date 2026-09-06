@@ -3747,10 +3747,6 @@
                         "label": "Levelup Automation",
                         "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."
                     },
-                    "actionPoints": {
-                        "label": "Action Points",
-                        "hint": "Automatically give and take Action Points as combatants take their turns."
-                    },
                     "hordeDamage": {
                         "label": "Automatic Horde Damage",
                         "hint": "Automatically active horde effect to lower damage when reaching half or lower HP."
@@ -3999,6 +3995,10 @@
                         },
                         "tokens": {
                             "label": "Tokens"
+                        },
+                        "automation": {
+                            "label": "Automation",
+                            "hint": "Automatically give and take Action Points as combatants take their turns."
                         }
                     },
                     "massiveDamage": {
