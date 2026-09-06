@@ -22,39 +22,42 @@
                 </button>
             </div>
         </div>
-        <div class="traits-info">
-            <h1 class="subtitle-section">
-                Distribute Trait Modifiers
-                <side-line-div></side-line-div>
-            </h1>
-            <div class="m-top-10">
-                <p>Trait <b>modifiers</b> are the values associated with each trait. When you make an action roll using one of these traits, that trait’s modifier is added to the roll to determine the final result (or subtracted from the roll for a negative modifier).</p>
-                <p>Distribute the following starting modifiers across your character’s traits in any order you wish: +2, +1, +1, 0, 0, −1.</p>
-            </div>
-            <div class="trait-list m-top-20">
-                {{#each traits.values as |trait|}}
-                    <div class="trait-container">
-                        <div class="trait-header">
-                            <div class="trait-label">
-                                <h1 class="title-section">{{trait.name}}</h1>
-                                <div class="suggestion-list">
-                                    {{#each verbs as |verb index|}}
-                                        <p class="subtitle-trait">{{localize verb}}{{#unless (eq ../verbs.length (add index 1))}}, {{/unless}}</p>
-                                    {{/each}}
+        <line-div></line-div>
+        <div class="floating-container">
+            <div class="traits-info">
+                <h1 class="subtitle-section">
+                    Distribute Trait Modifiers
+                    <side-line-div></side-line-div>
+                </h1>
+                <div class="m-top-10">
+                    <p>Trait <b>modifiers</b> are the values associated with each trait. When you make an action roll using one of these traits, that trait’s modifier is added to the roll to determine the final result (or subtracted from the roll for a negative modifier).</p>
+                    <p>Distribute the following starting modifiers across your character’s traits in any order you wish: +2, +1, +1, 0, 0, −1.</p>
+                </div>
+                <div class="trait-list m-top-20">
+                    {{#each traits.values as |trait|}}
+                        <div class="trait-container">
+                            <div class="trait-header">
+                                <div class="trait-label">
+                                    <h1 class="title-section">{{trait.name}}</h1>
+                                    <div class="suggestion-list">
+                                        {{#each verbs as |verb index|}}
+                                            <p class="subtitle-trait">{{localize verb}}{{#unless (eq ../verbs.length (add index 1))}}, {{/unless}}</p>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                                <side-line-div></side-line-div>
+                                <div class="trait-select-container">
+                                    <select name="{{concat "traits." trait.key ".value"}}" data-dtype="Number">
+                                        {{selectOptions trait.options selected=trait.value valueAttr="key" labelAttr="value" blank=""}}
+                                    </select>
                                 </div>
                             </div>
-                            <side-line-div></side-line-div>
-                            <div class="trait-select-container">
-                                <select name="{{concat "traits." trait.key ".value"}}" data-dtype="Number">
-                                    {{selectOptions trait.options selected=trait.value valueAttr="key" labelAttr="value" blank=""}}
-                                </select>
-                            </div>
+                            <p class="trait-description m-top-10">
+                                {{trait.description}}
+                            </p>
                         </div>
-                        <p class="trait-description m-top-10">
-                            {{trait.description}}
-                        </p>
-                    </div>
-                {{/each}}
+                    {{/each}}
+                </div>
             </div>
         </div>
    </div>
