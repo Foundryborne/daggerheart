@@ -329,7 +329,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": true,
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -366,13 +375,14 @@
                 },
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },
             "target": {
               "type": "any",
-              "amount": null
+              "amount": 1
             },
             "effects": [],
             "roll": {
@@ -397,7 +407,7 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/unarmed-punch-fist-blue.webp",
-            "range": "",
+            "range": "veryClose",
             "baseAction": false,
             "originItem": {
               "type": "itemCollection"
