@@ -503,6 +503,24 @@
                     "equipment": "Equipment",
                     "story": "Story"
                 },
+                "experienceTab": {
+                    "createYourExperiences": "Create your experiences",
+                    "paragraph1": "In Daggerheart, your character’s Experiences are one of the core ways you express their backstory and expertise through mechanics. An <b>Experience</b> is a word or phrase used to encapsulate a specific set of skills your character has acquired over the course of their exciting life.",
+                    "paragraph2": "Your character starts with two Experiences at character creation (each with a +2 modifier), and they’ll earn more throughout your adventures. Before creating Experiences, you’ll want to have a solid idea of who your character is; the background questions are especially helpful for this. When you’re ready, work with your GM to create two Experiences that have shaped your character.",
+                    "tip": "<b>Tip:</b> <em>If you’re not sure what Experiences to take, consider the style of the campaign you’re playing in and the actions you’ll want to perform. In a standard, battle-focused campaign, it’s never a bad idea to take your character’s first Experience in something that will help with combat and the second Experience in something useful outside of combat.</em>",
+                    "exampleList": {
+                        "backgrounds": "<b>Backgrounds:</b> <em>Assassin, Blacksmith, Bodyguard, Bounty Hunter, Chef to the Royal Family, Circus Performer, Con Artist, Fallen Monarch, Field Medic, High Priestess, Merchant, Noble, Pirate, Politician, Runaway, Scholar, Sellsword, Soldier, Storyteller, Thief, World Traveler</em>",
+                        "characteristics": "<b>Characteristics:</b> <em>Affable, Battle-Hardened, Bookworm, Charming, Cowardly, Friend to All, Helpful, Intimidating Presence, Leader, Lone Wolf, Loyal, Observant, Prankster, Silver Tongue, Sticky Fingers, Stubborn to a Fault, Survivor, Young and Naive</em>",
+                        "specialties": "<b>Specialties:</b> <em>Acrobat, Gambler, Healer, Inventor, Magical Historian, Mapmaker, Master of Disguise, Navigator, Sharpshooter, Survivalist, Swashbuckler, Tactician</em>",
+                        "skills": "<b>Skills:</b> <em>Animal Whisperer, Barter, Deadly Aim, Fast Learner, Incredible Strength, Liar, Light Feet, Negotiator, Photographic Memory, Quick Hands, Repair, Scavenger, Tracker</em>",
+                        "phrases": "<b>Phrases:</b> <em>Catch Me If You Can, Fake It Till You Make It, First Time’s the Charm, Hold the Line, I Won’t Let You Down, I’ll Catch You, I’ve Got Your Back, Knowledge Is Power, Nature’s Friend, Never Again, No One Left Behind, Pick on Someone Your Own Size, The Show Must Go On, This Is Not a Negotiation, Wolf in Sheep’s Clothing</em>"
+                    }
+                },
+                "traitsTab": {
+                    "title": "Distribute Trait Modifiers",
+                    "paragraph1": "Trait <b>modifiers</b> are the values associated with each trait. When you make an action roll using one of these traits, that trait’s modifier is added to the roll to determine the final result (or subtracted from the roll for a negative modifier).",
+                    "paragraph2": "Distribute the following starting modifiers across your character’s traits in any order you wish: +2, +1, +1, 0, 0, −1."
+                },
                 "ancestryNamePlaceholder": "Your ancestry's name",
                 "buttonTitle": "Character Setup",
                 "choice": "Choice",

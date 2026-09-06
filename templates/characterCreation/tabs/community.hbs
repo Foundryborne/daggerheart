@@ -5,22 +5,9 @@
 >
     <div class="main-selections-container">
         <div class="step-sidebar">
-            <h1 class="title-section">3. Choose a Community</h1>
+            <h1 class="title-section">3. {{localize tabs.community.label}}</h1>
 
             <div class="community compedium-list">
-                {{!-- {{#each communityGroups}}
-                <div class="{{label}} compedium-item">
-                    <h1 class="subtitle-section">
-                        {{label}}
-                        <side-line-div></side-line-div>
-                    </h1>
-                    <ul>
-                        {{> "systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs"
-                            items=items
-                            action="selectItem"}}
-                    </ul>
-                </div>
-                {{/each}} --}}
                 <h2 class="subtitle-section">
                     {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.community'}}
                     <side-line-div></side-line-div>
@@ -33,18 +20,6 @@
             </div>
         </div>
         <line-div></line-div>
-        {{!-- {{#if community.name}}
-            <div class="community-info">
-                <h1 class="title-section">{{community.name}}</h1>
-                <div class="d-flex container">
-                    <img src="{{community.img}}" alt="">
-                    <div class="description">
-                        {{{community.system.description}}}
-                        {{> communityFeatures subtitle='DAGGERHEART.ITEMS.Community.featuresLabel' type='community' list=community.system.features}}
-                    </div>
-                </div>
-            </div>
-        {{/if}} --}}
 
         <div class="comunity-list card-list">
             {{#each communityGroups.items as |community|}}
