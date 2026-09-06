@@ -1631,7 +1631,8 @@
                 "damageType": "Damage Type"
             },
             "ConditionalWeaponRestrictionType": {
-                "sameWeapon": "Same Weapon"
+                "sameWeapon": "Same Weapon",
+                "anyWeapon": "Any Weapon"
             },
             "CountdownProgressType": {
                 "actionRoll": "Action Roll",

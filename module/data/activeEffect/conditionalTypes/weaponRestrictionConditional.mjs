@@ -33,10 +33,11 @@ export default class WeaponRestrictionConditional extends foundry.abstract.DataM
         if (actionData.item?.type !== 'weapon') return false;
 
         const rollData = actionData.item.getRollData();
-        const { secondary, primary, sameWeapon } = CONFIG.DH.EFFECTS.weaponRestrictionType;
+        const { secondary, primary, sameWeapon, anyWeapon } = CONFIG.DH.EFFECTS.weaponRestrictionType;
 
         /* TODO: Replace this.parent.parent with getNearestDocument in Stable 10 */
         const weaponTypeValid = 
+            (this.weaponType === anyWeapon) ||
             (this.weaponType === sameWeapon.id && rollData.item?.parent.id === this.parent.parent?.parent.id) ||
             (this.weaponType === secondary.id && rollData.item.secondary) ||
             (this.weaponType === primary.id && !rollData.item.secondary);

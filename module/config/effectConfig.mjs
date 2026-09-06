@@ -132,6 +132,10 @@ export const weaponRestrictionType = {
     secondary: {
         id: 'secondary',
         label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full'
+    },
+    anyWeapon: {
+        id: 'anyWeapon',
+        label: 'DAGGERHEART.CONFIG.ConditionalWeaponRestrictionType.anyWeapon'
     }
 };
 
