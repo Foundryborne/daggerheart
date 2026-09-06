@@ -1,4 +1,4 @@
-.daggerheart.dh-style.setting.appearance-settings {
+.daggerheart.dh-style.setting.dsn-settings {
     .tab.active[data-tab='diceSoNice'] {
         display: flex;
         flex-direction: column;
@@ -6,26 +6,18 @@
         gap: 0.5rem;
     }
 
-    .diceSoNice-footer {
-        display: grid;
-        align-items: center;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 8px;
-        margin-top: 32px;
-
-        label {
-            text-align: center;
-        }
-
-        select {
-            grid-column: span 2;
-        }
+    .general {
+        padding: 0 8px;
     }
 
-    .title-hint {
-        font-size: var(--font-size-14);
-        font-variant: small-caps;
-        text-align: center;
+    .form-fields label {
+        display: flex;
+        align-items: center;
+        line-height: unset;
+    }
+
+    .tab-navigation {
+        margin-top: var(--spacer-16);
     }
 
     .split-section {
@@ -53,7 +45,7 @@
     .label-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 2rem;
 
         &.full-width {
             grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -65,7 +57,7 @@
 
         label {
             align-self: center;
-            text-align: center;
+            text-align: end;
             white-space: nowrap;
         }
 
@@ -91,6 +83,22 @@
                 align-items: center;
                 gap: 2px;
             }
+        }
+    }
+
+    .diceSoNice-footer {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 8px;
+        margin-top: 32px;
+
+        label {
+            text-align: center;
+        }
+
+        select {
+            grid-column: span 2;
         }
     }
 }

@@ -29,9 +29,12 @@ export const menu = {
 export const gameSettings = {
     /** @type {'Automation'} */
     Automation: 'Automation',
+    /** @type {'diceSoNice'} */
+    diceSoNice: 'diceSoNice',
     Metagaming: 'Metagaming',
     /** @type {'Homebrew'} */
     Homebrew: 'Homebrew',
+    /** @type {'Appearance'} */
     appearance: 'Appearance',
     GlobalOverrides: 'GlobalOverrides',
     variantRules: 'VariantRules',

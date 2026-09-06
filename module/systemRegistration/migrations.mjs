@@ -6,6 +6,29 @@ import { Migration_2_8_0_hotfix } from './migration-handlers/2_8_0-hotfix.mjs';
 import { Migration_2_9_1 } from './migration-handlers/2_9_1.mjs';
 
 export async function runMigrations() {
+    // Handle client setting migrations. There is only dice so nice, so no splitting it up for now
+    // Client settings are personalized and cannot be resolved by the GM
+    const systemId = CONFIG.DH.id;
+    const settingKeys = CONFIG.DH.SETTINGS.gameSettings;
+    const storage = game.settings.storage;
+    const dsnSettingId = `${systemId}.${settingKeys.diceSoNice}`;
+    const hasDiceSettings = !!storage.get('user').getSetting(dsnSettingId, game.user.id);
+    if (!hasDiceSettings) {
+        try {
+            const rawData = storage.get('client').getItem(`${systemId}.${settingKeys.appearance}`);
+            const newData = rawData 
+                ? JSON.parse(rawData ?? '{}')?.diceSoNice
+                : game.settings.settings.get(dsnSettingId).type.schema.getInitialValue();
+            game.settings.set(systemId, settingKeys.diceSoNice, newData);
+        } catch {}
+    }
+
+    if (game.user.isActiveGM) {
+        await runGamemasterMigrations();
+    }
+}
+
+async function runGamemasterMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = game.system.version;
 

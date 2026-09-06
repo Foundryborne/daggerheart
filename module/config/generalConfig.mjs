@@ -734,7 +734,7 @@ export const daggerheartDiceAnimationEvents = {
 };
 
 export const getDiceSoNiceSFX = sfxOptions => {
-    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.diceSoNice).diceSoNiceData;
     const criticalAnimationData = diceSoNice.sfx.critical;
     if (sfxOptions.critical && criticalAnimationData.class) {
         return {

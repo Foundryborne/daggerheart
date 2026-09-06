@@ -16,6 +16,7 @@ import DhAutomation from './module/data/settings/Automation.mjs';
 import FearTracker from './module/applications/ui/fearTracker.mjs';
 import DhCountdowns from './module/data/countdowns.mjs';
 import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
+import { DhDiceSoNice } from './module/data/settings/DiceSoNice.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
@@ -122,6 +123,7 @@ declare module '@client/helpers/client-settings.mjs' {
         get(namespace: 'daggerheart', key: typeof gameSettings.Automation): DhAutomation;
         get(namespace: 'daggerheart', key: typeof gameSettings.Homebrew): DhHomebrew;
         get(namespace: 'daggerheart', key: typeof gameSettings.Countdowns): DhCountdowns;
+        get(namespace: 'daggerheart', key: typeof gameSettings.diceSoNice): DhDiceSoNice;
         get(namespace: 'daggerheart', key: string): unknown;
     }
 }
