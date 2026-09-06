@@ -1,11 +1,9 @@
 #ui-left #ui-left-column-2 {
-    flex: 0 0 230px;
-
     .scene-wrapper {
         display: flex;
         gap: 2px;
         height: var(--control-size);
-        width: 100%;
+        // width: 100%;
 
         > ul {
             margin: 0;
@@ -33,7 +31,16 @@
             border 0.25s,
             color 0.25s;
         text-shadow: none;
-        width: 200px;
-        max-width: 200px;
+        max-width: 18vw;
+    }
+
+    #scene-navigation-viewed {
+        .scene {
+            flex: 1;
+        }
+    }
+
+    #scene-navigation-active:empty {
+        display: none;
     }
 }

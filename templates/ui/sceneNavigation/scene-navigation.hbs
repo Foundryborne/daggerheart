@@ -14,15 +14,15 @@
     {{#if scenes.levels}}
         <menu id="scene-navigation-levels" class="scene-levels scene-navigation-menu flexcol" 
             style="--max-levels: {{ scenes.levels.length }}">
-            {{#each scenes.levels}}
+            {{#each scenes.levels as |level|}}
             <li class="level-row">
-                <div class="ui-control scene scene-level {{ css }}" data-scene-id="{{ sceneId }}" data-level-id="{{ id }}" data-action="viewLevel">
-                    <span class="ellipsis">{{ name }}</span>
+                <div class="ui-control scene scene-level {{level.css}}" data-scene-id="{{level.sceneId}}" data-level-id="{{level.id}}" data-action="viewLevel">
+                    <span class="ellipsis">{{level.name}}</span>
                     {{#if users}}
                     <ul class="scene-players">
-                        {{#each users}}
-                        <li class="scene-player" style="--color-bg: {{ color }}; --color-border: {{ border }}" data-tooltip
-                            aria-label="{{ name }}">{{ letter }}</li>
+                        {{#each users as |user|}}
+                        <li class="scene-player" style="--color-bg: {{user.color}}; --color-border: {{user.border}}" data-tooltip
+                            aria-label="{{user.name}}">{{user.letter}}</li>
                         {{/each}}
                     </ul>
                     {{/if}}
@@ -32,9 +32,9 @@
         </menu>
     {{/if}}
     <menu id="scene-navigation-active" class="scene-navigation-menu flexcol">
-        {{#each scenes.active}}
+        {{~#each scenes.active}}
         {{> ".scene" }}
-        {{/each}}
+        {{/each~}}
     </menu>
     <menu id="scene-navigation-inactive" class="scene-navigation-menu flexcol">
         {{#each scenes.inactive as |scene|}}
@@ -45,16 +45,23 @@
 
 {{#*inline ".scene"}}
 <li class="scene-wrapper">
-    <div class="ui-control scene {{ cssClass }}" data-scene-id="{{ id }}" data-action="viewScene" 
-        {{#if tooltip}}data-tooltip-text="{{ tooltip }}"{{/if}}>
-        <span class="scene-name ellipsis">{{ name }}</span>
+    <div class="ui-control flexrow scene{{#if isView}} view{{/if}}" data-scene-id="{{id}}" data-action="viewScene" 
+        {{#if tooltip}}data-tooltip aria-label="{{tooltip}}"{{/if}}>
+        <span class="scene-name ellipsis">{{name}}</span>
         {{#if users}}
         <ul class="scene-players">
-            {{#each users}}
-            <li class="scene-player" style="--color-bg: {{ color }}; --color-border: {{ border }}" data-tooltip
-                aria-label="{{ name }}">{{ letter }}</li>
+            {{#each users as |user|}}
+            <li class="scene-player" style="--color-bg: {{user.color}}; --color-border: {{user.border}}" data-tooltip
+                aria-label="{{user.name}}">{{user.letter}}</li>
             {{/each}}
         </ul>
+        {{/if}}
+        {{#if icons}}
+        <span class="icons flexrow">
+            {{#each icons as |icon|}}
+            <i class="icon fa-solid fa-{{icon.class}}" data-tooltip aria-label="{{icon.tooltip}}"></i>
+            {{/each}}
+        </span>
         {{/if}}
     </div>
     {{#if hasEnvironments}}
