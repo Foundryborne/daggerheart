@@ -367,7 +367,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
             const conditionalPassed = !effect.system.conditionals.some(x => 
                 x.constructor.metadata.phase === CONFIG.DH.EFFECTS.conditionalPhases.roll.id &&    
-                !x.doesConditionalPass(action)
+                !x.test(action)
             );
 
             if (conditionalPassed)
