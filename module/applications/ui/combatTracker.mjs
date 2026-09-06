@@ -209,7 +209,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
                 await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id);
             }
 
-            const autoPoints = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).actionPoints;
+            const autoPoints = 
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens.automation;
             if (autoPoints) {
                 update.system.actionTokens = Math.max(combatant.system.actionTokens - 1, 0);
             }

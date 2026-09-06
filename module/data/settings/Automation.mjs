@@ -32,11 +32,6 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 initial: true,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.levelupAuto.label'
             }),
-            actionPoints: new fields.BooleanField({
-                required: true,
-                initial: false,
-                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.actionPoints.label'
-            }),
             hordeDamage: new fields.BooleanField({
                 required: true,
                 initial: true,
