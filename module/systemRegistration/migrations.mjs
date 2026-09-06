@@ -7,6 +7,10 @@ import { Migration_2_9_1 } from './migration-handlers/2_9_1.mjs';
 import { Migration_2_9_3 } from './migration-handlers/2_9_3.mjs';
 
 export async function runMigrations() {
+    // All migrations here are meant for the active gm to run. 
+    // If we ever need to migrate client settings, split into a new function
+    if (!game.user.isActiveGM) return;
+    
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = game.system.version;
 
