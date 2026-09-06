@@ -3845,6 +3845,14 @@
                 "deleteResourceTitle": "Delete Homebrew Resource",
                 "deleteResourceText": "Are you sure you want to delete the resource?",
                 "FIELDS": {
+                    "domains": {
+                        "color": { 
+                            "label": "Banner Color" 
+                        },
+                        "invertText": {
+                            "label": "Invert Text Color"
+                        }
+                    },
                     "maxFear": {
                         "label": "Max Fear"
                     },
