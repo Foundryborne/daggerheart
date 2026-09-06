@@ -281,4 +281,23 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             }
         }
     }
+
+    /** @inheritdoc */
+    _displayScrollingStatus(enabled) {
+        const actor = this.target;
+        const tokens = actor.getActiveTokens(true);
+        const text = `${enabled ? '+' : '−'}(${this.name})`;
+        for (const token of tokens) {
+            if (!token.visible || token.document.isSecret) continue;
+            canvas.interface.createScrollingText(token.center, text, {
+                anchor: CONST.TEXT_ANCHOR_POINTS.CENTER,
+                direction: enabled ? CONST.TEXT_ANCHOR_POINTS.TOP : CONST.TEXT_ANCHOR_POINTS.BOTTOM,
+                distance: (2 * token.h),
+                fontSize: 28,
+                stroke: 0x000000,
+                strokeThickness: 4,
+                jitter: 0.25
+            });
+        }
+    }
 }
