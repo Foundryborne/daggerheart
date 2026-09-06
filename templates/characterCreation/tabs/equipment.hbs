@@ -72,87 +72,90 @@
             </div>
         </div>
 
-        <div class="equipment-list">
-            <h2 class="subtitle-section">
-                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.equipmentList"}}
-                <side-line-div></side-line-div>
-            </h2>
-            <div class="tab-navigation">
-            <nav class="feature-tab sheet-tabs tabs">
-                <a
-                    class="{{#if (eq selectedTable.label equipmentGroups.primaryWeapon.label)}}active{{/if}}"
-                    data-table="primaryWeapon" data-action="selectTable"
-                >
-                    {{equipmentGroups.primaryWeapon.label}}
-                </a>
-                <a
-                    class="{{#if (eq selectedTable.label equipmentGroups.secondaryWeapon.label)}}active{{/if}}"
-                    data-table="secondaryWeapon" data-action="selectTable"
-                >
-                    {{equipmentGroups.secondaryWeapon.label}}
-                </a>
-                <a
-                    class="{{#if (eq selectedTable.label equipmentGroups.armor.label)}}active{{/if}}"
-                    data-table="armor" data-action="selectTable"
-                >
-                    {{equipmentGroups.armor.label}}
-                </a>
-            </nav>
-            </div>
-            {{#if selectedTable}}
-                <div class="item-list-header">
-                    <div class="item-list-img"></div>
-                    <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
-                        {{#each selectedTable.columns}}
-                            <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
-                        {{/each}}
+        <line-div></line-div>
+
+        <div class="floating-container">
+            <div class="equipment-list">
+                <h2 class="subtitle-section">
+                    {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.equipmentList"}}
+                    <side-line-div></side-line-div>
+                </h2>
+                <div class="tab-navigation">
+                <nav class="feature-tab sheet-tabs tabs">
+                    <a
+                        class="{{#if (eq selectedTable.label equipmentGroups.primaryWeapon.label)}}active{{/if}}"
+                        data-table="primaryWeapon" data-action="selectTable"
+                    >
+                        {{equipmentGroups.primaryWeapon.label}}
+                    </a>
+                    <a
+                        class="{{#if (eq selectedTable.label equipmentGroups.secondaryWeapon.label)}}active{{/if}}"
+                        data-table="secondaryWeapon" data-action="selectTable"
+                    >
+                        {{equipmentGroups.secondaryWeapon.label}}
+                    </a>
+                    <a
+                        class="{{#if (eq selectedTable.label equipmentGroups.armor.label)}}active{{/if}}"
+                        data-table="armor" data-action="selectTable"
+                    >
+                        {{equipmentGroups.armor.label}}
+                    </a>
+                </nav>
                 </div>
-                <div class="item-list m-top-10">
-                    {{#each selectedTable.items as |item|}}
-                        <div class="item-container" data-item-uuid="{{item.uuid}}" {{#if (and uuid (eq documentName "Item"))}}data-tooltip="#item#{{item.uuid}}"{{/if}} data-action="selectItem" data-type="{{item.type}}">
-                            <img src="{{item.img}}" data-item-key="img" class="item-list-img">
-                            <span data-item-key="name" class="item-list-name">{{item.name}}</span>
-                            {{#each ../selectedTable.columns as |table|}}
-                                <span data-item-key="{{table.key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</span>
+                {{#if selectedTable}}
+                    <div class="item-list-header">
+                        <div class="item-list-img"></div>
+                        <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
+                            {{#each selectedTable.columns}}
+                                <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
                             {{/each}}
-                        </div>
-                    {{/each}}
-                </div>
-            {{/if}}
-        </div>
-
-        <div class="suggested-equipments">
-            <h2 class="subtitle-section">
-                {{localize "DAGGERHEART.ITEMS.Class.guide.suggestedEquipment"}}
-                <side-line-div></side-line-div>
-            </h2>
-
-            <div class="item-list">
-                {{#if primaryWeapon.suggestion.name}}
-                    <span class="equip-items">
-                        <img src="{{primaryWeapon.suggestion.img}}" alt="{{primaryWeapon.suggestion.name}}">
-                        <span>{{primaryWeapon.suggestion.name}}</span>
-                    </span>
-                {{/if}}
-                {{#if secondaryWeapon.suggestion.name}}
-                    <span class="equip-items">
-                        <img src="{{secondaryWeapon.suggestion.img}}" alt="{{secondaryWeapon.suggestion.name}}">
-                        <span>{{secondaryWeapon.suggestion.name}}</span>
-                    </span>
-                {{/if}}
-                {{#if armor.suggestion.name}}
-                    <span class="equip-items">
-                        <img src="{{armor.suggestion.img}}" alt="{{armor.suggestion.name}}">
-                        <span>{{armor.suggestion.name}}</span>
-                    </span>
+                    </div>
+                    <div class="item-list m-top-10">
+                        {{#each selectedTable.items as |item|}}
+                            <div class="item-container" data-item-uuid="{{item.uuid}}" {{#if (and uuid (eq documentName "Item"))}}data-tooltip="#item#{{item.uuid}}"{{/if}} data-action="selectItem" data-type="{{item.type}}">
+                                <img src="{{item.img}}" data-item-key="img" class="item-list-img">
+                                <span data-item-key="name" class="item-list-name">{{item.name}}</span>
+                                {{#each ../selectedTable.columns as |table|}}
+                                    <span data-item-key="{{table.key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</span>
+                                {{/each}}
+                            </div>
+                        {{/each}}
+                    </div>
                 {{/if}}
             </div>
 
-            <button class="m-top-20" data-action="applySuggestedEquips">
-                Apply Suggested Equipment
-            </button>
-        </div>
+            <div class="suggested-equipments">
+                <h2 class="subtitle-section">
+                    {{localize "DAGGERHEART.ITEMS.Class.guide.suggestedEquipment"}}
+                    <side-line-div></side-line-div>
+                </h2>
 
+                <div class="item-list">
+                    {{#if primaryWeapon.suggestion.name}}
+                        <span class="equip-items">
+                            <img src="{{primaryWeapon.suggestion.img}}" alt="{{primaryWeapon.suggestion.name}}">
+                            <span>{{primaryWeapon.suggestion.name}}</span>
+                        </span>
+                    {{/if}}
+                    {{#if secondaryWeapon.suggestion.name}}
+                        <span class="equip-items">
+                            <img src="{{secondaryWeapon.suggestion.img}}" alt="{{secondaryWeapon.suggestion.name}}">
+                            <span>{{secondaryWeapon.suggestion.name}}</span>
+                        </span>
+                    {{/if}}
+                    {{#if armor.suggestion.name}}
+                        <span class="equip-items">
+                            <img src="{{armor.suggestion.img}}" alt="{{armor.suggestion.name}}">
+                            <span>{{armor.suggestion.name}}</span>
+                        </span>
+                    {{/if}}
+                </div>
+
+                <button class="m-top-20" data-action="applySuggestedEquips">
+                    Apply Suggested Equipment
+                </button>
+            </div>
+        </div>
         {{!-- 
         <div class="main-equipment-selection">
             <fieldset class="equipment-selection">
@@ -265,7 +268,7 @@
         <div class="equip-items">
             <img src="{{item.img}}" alt="{{item.name}}">
             <p>{{item.name}}</p>
-            <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-type="{{type}}" data-action="removeSelectedEquip"></i></a>
+            <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-type="{{type}}" data-item-type="armor" data-action="removeSelectedItem"></i></a>
         </div>
     {{else}}
         <div class="empty-slot">

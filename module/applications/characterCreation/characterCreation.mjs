@@ -53,8 +53,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         this.subclassGroups = [];
-        this.ancestryGroups = [];
-        this.communityGroups = [];
+        this.ancestryGroups = {};
+        this.communityGroups = {};
         this.domainCardGroups = {
             label: '',
             items: []
@@ -117,9 +117,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             selectSubclass: this.selectSubclass,
             selectItem: this.selectItem,
             selectTable: this.selectTable,
-            removeDomainCard: this.removeDomainCard,
             applySuggestedEquips: this.applySuggestedEquips,
-            removeSelectedEquip: this.removeSelectedEquip,
+            removeSelectedItem: this.removeSelectedItem,
             mixedAncestryToggle: this.mixedAncestryToggle,
             selectAncestryFeature: this.selectAncestryFeature
         },
@@ -305,8 +304,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         const { primary, secondary, overwrite } = this.setup.ancestryName;
         context.ancestryName = overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary);
-        context.primaryAncestry = { ...this.setup.primaryAncestry, compendium: 'ancestries' };
-        context.secondaryAncestry = { ...this.setup.secondaryAncestry, compendium: 'ancestries' };
+        context.primaryAncestry = { ...this.setup.primaryAncestry };
+        context.secondaryAncestry = { ...this.setup.secondaryAncestry };
         context.community = { ...this.setup.community, compendium: 'communities' };
         context.class = { ...this.setup.class, compendium: 'classes' };
         context.subclass = { ...this.setup.subclass, compendium: 'subclasses' };
@@ -666,8 +665,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             newItems.push(await createEmbeddedItemData(item));
         }
 
-        console.log(newItems)
-
         await this.character.createEmbeddedDocuments('Item', newItems);
         await this.character.update(
             {
@@ -814,6 +811,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 result.flatMap(r => r).filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
                 'name'
             );
+            const cardTheme =
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
 
             /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
             for (const item of this.items) {
@@ -850,20 +849,22 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 }
             }
 
-            const ancestryGroups = [{
+            const ancestryGroups = {
                 label: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.ancestry'),
                 items: []
-            }];
+            };
             for (const item of this.items.filter(item => item.type == 'ancestry')) {
-                ancestryGroups[0].items.push(item)
+                item.embedCard = Array.from(await item.system.toEmbed({ theme: cardTheme })).map(el => el.outerHTML).join('');
+                ancestryGroups.items.push(item)
             }
 
-            const communityGroups = [{
+            const communityGroups = {
                 label: game.i18n.localize('DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.community'),
                 items: []
-            }];
+            };
             for (const item of this.items.filter(item => item.type == 'community')) {
-                communityGroups[0].items.push(item)
+                item.embedCard = Array.from(await item.system.toEmbed({ theme: cardTheme })).map(el => el.outerHTML).join('');
+                communityGroups.items.push(item)
             }
 
             const domainCardGroups = {
@@ -871,8 +872,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 items: []
             };
             for (const item of this.items.filter(item => item.type == 'domainCard')) {
-                const cardTheme =
-                    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
                 item.embedCard = Array.from(await item.system.toEmbed({ theme: cardTheme })).map(el => el.outerHTML).join('');
                 domainCardGroups.items.push(item)
             }
@@ -972,8 +971,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
                 this.setup.class = classItem;
                 this.setup.subclass = subclass;
-                this.setup.visibility = this.getUpdateVisibility();
-                this.render();
                 break;
 
             case 'ancestry':
@@ -992,16 +989,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     this.setup.primaryAncestry = ancestry;
                     this.setup.ancestryName.primary = ancestry.name;
                 }
-                this.setup.visibility = this.getUpdateVisibility();
-                this.render();
                 break;
 
             case 'community':
                 const community = await foundry.utils.fromUuid(target.dataset.uuid);
                 this.setup.community = community;
-                this.setup.visibility = this.getUpdateVisibility();
-                this.render();
                 break;
+
             case 'domainCard':
                 const randomIDs = Object.keys(this.setup.domainCards);
                 const domain = await foundry.utils.fromUuid(target.dataset.uuid);
@@ -1012,6 +1006,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     this.setup.domainCards[randomIDs[0]] = domain;
                 }
                 break;
+
             case 'weapon':
                 const weapon = await foundry.utils.fromUuid(target.dataset.itemUuid);
 
@@ -1025,20 +1020,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
             case 'armor':
                 const armor = await foundry.utils.fromUuid(target.dataset.itemUuid);
-
                 this.equipment.armor = armor;
 
                 break;
         }
 
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
-        // console.log('chegou aqui');
-    }
-
-    static async removeDomainCard(_, target) {
-        const indexID = target.dataset.id;
-        this.setup.domainCards[indexID] = {}
         this.setup.visibility = this.getUpdateVisibility();
         this.render();
     }
@@ -1057,16 +1043,35 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
-    static async removeSelectedEquip(_, target) {
+    static async removeSelectedItem(_, target) {
         const type = target.dataset.type;
+        const itemType = target.dataset.itemType;
+        const indexID = target.dataset.id;
 
-        if (type === 'primaryWeapon') {
-            this.equipment.primaryWeapon = {}
-        } else if (type === 'secondaryWeapon') {
-            this.equipment.secondaryWeapon = {}
-        } else {
-            this.equipment.armor = {}
+        switch (itemType) {
+            case 'armor':
+                if (type === 'primaryWeapon') {
+                    this.equipment.primaryWeapon = {}
+                } else if (type === 'secondaryWeapon') {
+                    this.equipment.secondaryWeapon = {}
+                } else {
+                    this.equipment.armor = {}
+                }
+                break;
+        
+            case 'ancestry':
+                if (type === 'primaryAncestry') {
+                    this.setup.primaryAncestry = {}
+                } else if (type === 'secondaryAncestry') {
+                    this.setup.secondaryAncestry = {}
+                }
+                break;
+            
+            case 'domainCard':
+                this.setup.domainCards[indexID] = {}
+                break;
         }
+
 
         this.setup.visibility = this.getUpdateVisibility();
         this.render();

@@ -17,6 +17,8 @@ export default class RegisterHandlebarsHelpers {
             positive: this.positive,
             rollParsed: this.rollParsed,
             setVar: this.setVar,
+            some: this.some,
+            someByObjet: this.someByObjet,
             times: this.times
         });
     }
@@ -95,5 +97,13 @@ export default class RegisterHandlebarsHelpers {
 
     static isNullish(a) {
         return a === null || a === undefined;
+    }
+
+    static someByObjet(list, property, value) {
+        return Object.values(list ?? {}).some(item => item[property] === value);
+    }
+
+    static some(list, property, value) {
+        return list?.some(item => item[property] === value) ?? false;
     }
 }
