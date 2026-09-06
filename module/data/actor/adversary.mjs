@@ -106,15 +106,8 @@ export default class DhpAdversary extends DhCreature {
                 })
             ),
             bonuses: new fields.SchemaField({
-                roll: new fields.SchemaField({
-                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
-                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
-                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction')
-                }),
-                damage: new fields.SchemaField({
-                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
-                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
-                })
+                roll: bonusField('DAGGERHEART.GENERAL.roll'),
+                damage: bonusField('DAGGERHEART.GENERAL.damage')
             }, { persisted: false })
         };
     }

@@ -134,54 +134,18 @@ export default class D20Roll extends DHRoll {
 
     applyBaseBonus() {
         const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
-
         modifiers.push(
             ...this.getBonus(
-                `system.bonuses.roll.${this.options.actionType}`,
-                `${this.options.actionType?.capitalize()} Bonus`
+                'system.bonuses.roll',
+                'Roll Bonus'
             )
         );
-
-        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
-            modifiers.push(
-                ...this.getBonus(
-                    `system.bonuses.roll.${this.options.roll.type}`,
-                    `${this.options.roll.type?.capitalize()} Bonus`
-                )
-            );
-        }
-
-        if (
-            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
-            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
-        ) {
-            modifiers.push(
-                ...this.getBonus(`system.bonuses.roll.attack`, `${this.options.roll.type?.capitalize()} Bonus`)
-            );
-        }
 
         return modifiers;
     }
 
     getActionChangeKeys() {
-        const changeKeys = new Set([`system.bonuses.roll.${this.options.actionType}`]);
-
-        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
-            changeKeys.add(`system.bonuses.roll.${this.options.roll.type}`);
-        }
-
-        if (
-            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
-            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
-        ) {
-            changeKeys.add(`system.bonuses.roll.attack`);
-        }
-
-        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait]) {
-            if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.spellcast.id)
-                changeKeys.add('system.bonuses.roll.trait');
-        }
-
+        const changeKeys = new Set(['system.bonuses.roll']);
         return changeKeys;
     }
 

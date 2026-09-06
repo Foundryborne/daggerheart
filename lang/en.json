@@ -1627,10 +1627,12 @@
             "ConditionalType": {
                 "dataCompare": "Data Compare",
                 "weaponRestriction": "Weapon Restriction",
-                "actionType": "Action Type"
+                "actionType": "Action Type",
+                "damageType": "Damage Type"
             },
             "ConditionalWeaponRestrictionType": {
-                "sameWeapon": "Same Weapon"
+                "sameWeapon": "Same Weapon",
+                "anyWeapon": "Any Weapon"
             },
             "CountdownProgressType": {
                 "actionRoll": "Action Roll",
@@ -2851,7 +2853,10 @@
                     "weaponType": "Weapon Type"
                 },
                 "actionType": {
-                    "actionType": "Action Type"
+                    "actionTypes": "Action Types"
+                },
+                "damageType": {
+                    "damageType": "Damage Type"
                 }
             },
             "Duration": {

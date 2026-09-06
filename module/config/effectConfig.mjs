@@ -80,6 +80,10 @@ export const conditionalTypes = {
     actionType: {
         id: 'actionType',
         label: 'DAGGERHEART.CONFIG.ConditionalType.actionType'
+    },
+    damageType: {
+        id: 'damageType',
+        label: 'DAGGERHEART.CONFIG.ConditionalType.damageType'
     }
 };
 
@@ -128,6 +132,10 @@ export const weaponRestrictionType = {
     secondary: {
         id: 'secondary',
         label: 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full'
+    },
+    anyWeapon: {
+        id: 'anyWeapon',
+        label: 'DAGGERHEART.CONFIG.ConditionalWeaponRestrictionType.anyWeapon'
     }
 };
 

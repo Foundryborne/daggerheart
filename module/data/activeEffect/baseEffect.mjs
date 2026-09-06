@@ -15,6 +15,7 @@
 import { getScrollTextData } from '../../helpers/utils.mjs';
 import { changeTypes } from './changeTypes/_module.mjs'
 import { conditionalTypes } from './conditionalTypes/_module.mjs';
+import { migrations } from './migrations/_module.mjs';
 
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
@@ -189,9 +190,9 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     }
 
     static migrateData(source) {
-        if (source.rangeDependence?.enabled === false) {
-            source.rangeDependence = null;
-        }
+        for (const migration of migrations) {
+            migration(source);
+        } 
 
         return super.migrateData(source);
     }
