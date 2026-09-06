@@ -66,6 +66,9 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs',
         'systems/daggerheart/templates/dialogs/levelupOptionsDialog/parts/tier.hbs',
         'systems/daggerheart/templates/sheets/activeEffect/typeChanges/standardAttack.hbs',
+        'systems/daggerheart/templates/sheets/activeEffect/conditionals/dataCompareConditional.hbs',
+        'systems/daggerheart/templates/sheets/activeEffect/conditionals/weaponRestrictionConditional.hbs',
+        'systems/daggerheart/templates/sheets/activeEffect/conditionals/actionTypeConditional.hbs',
         'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs'
     ]);
 };

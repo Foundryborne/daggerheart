@@ -1,0 +1,22 @@
+<section class="tab conditionals {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <fieldset class="one-column">
+        <legend class="with-select">
+            {{localize "DAGGERHEART.ACTIVEEFFECT.Config.conditionals.title"}} 
+            <select class="conditional-select-input">
+                {{selectOptions conditionalOptions localize=true blank=""}}
+            </select>
+        </legend>
+
+        {{#each document.system.conditionals as | conditional |}}
+            <div class="conditional-outer-container" data-index="{{@key}}">
+                {{#if (eq conditional.type 'dataCompare')}}
+                    {{> "systems/daggerheart/templates/sheets/activeEffect/conditionals/dataCompareConditional.hbs" model=(lookup ../systemFields.conditionals.element.types conditional.type) }}
+                {{else if (eq conditional.type 'weaponRestriction')}}
+                    {{> "systems/daggerheart/templates/sheets/activeEffect/conditionals/weaponRestrictionConditional.hbs" model=(lookup ../systemFields.conditionals.element.types conditional.type) }}
+                {{else if (eq conditional.type 'actionType')}}
+                    {{> "systems/daggerheart/templates/sheets/activeEffect/conditionals/actionTypeConditional.hbs" model=(lookup ../systemFields.conditionals.element.types conditional.type) }}
+                {{/if}}
+            </div>
+        {{/each}}
+    </fieldset>
+</section>

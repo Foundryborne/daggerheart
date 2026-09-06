@@ -81,7 +81,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
                 );
             }
 
-            if (change.value.damageTypes) {
+            if (change.value.damageTypes.size) {
                 foundry.utils.setProperty(
                     actor,
                     'system.attack.damage.main.type',

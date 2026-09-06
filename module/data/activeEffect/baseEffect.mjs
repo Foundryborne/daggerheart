@@ -14,6 +14,7 @@
 
 import { getScrollTextData } from '../../helpers/utils.mjs';
 import { changeTypes } from './changeTypes/_module.mjs'
+import { conditionalTypes } from './conditionalTypes/_module.mjs';
 
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
@@ -40,6 +41,8 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             return r;
         }, {});
 
+        
+
         return {
             ...super.defineSchema(),
             changes: new fields.ArrayField(
@@ -56,6 +59,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 }),
                 description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' })
             }),
+            conditionals: new fields.ArrayField(new fields.TypedSchemaField(conditionalTypes)),
             rangeDependence: new fields.SchemaField({
                 type: new fields.StringField({
                     required: true,
@@ -115,11 +119,16 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return true;
     }
 
-    get isSuppressed() {
+    getIsSuppressed(rollData) {
         for (const change of this.changes) {
             if (change.isSuppressed) return true;
         }
-        return false;
+
+        return rollData && this.conditionals.some(x => 
+            x.constructor.metadata.phase === CONFIG.DH.EFFECTS.conditionalPhases.preparation.id && 
+            x.constructor.metadata.failureMode === CONFIG.DH.EFFECTS.conditionalFailureModes.suppress.id &&
+            !x.test(rollData)
+        );
     }
 
     get armorChange() {
