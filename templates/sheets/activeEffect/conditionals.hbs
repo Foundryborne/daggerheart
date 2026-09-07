@@ -8,7 +8,7 @@
         </legend>
 
         {{#each document.system.conditionals as | conditional |}}
-            <div class="conditional-outer-container" data-index="{{@key}}">
+            <div>
                 {{#if (eq conditional.type 'dataCompare')}}
                     {{> "systems/daggerheart/templates/sheets/activeEffect/conditionals/dataCompareConditional.hbs" model=(lookup ../systemFields.conditionals.element.types conditional.type) }}
                 {{else if (eq conditional.type 'weaponRestriction')}}

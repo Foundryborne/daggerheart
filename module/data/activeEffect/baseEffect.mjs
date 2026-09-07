@@ -117,7 +117,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return true;
     }
 
-    getIsSuppressed(rollData) {
+    testIsSuppressed(rollData) {
         for (const change of this.changes) {
             if (change.isSuppressed) return true;
         }
