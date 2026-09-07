@@ -1618,7 +1618,7 @@
             },
             "ConditionalFailureMode": {
                 "suppress": "Suppress",
-                "remove": "Remove"
+                "hide": "Hide"
             },
             "ConditionalPhase": {
                 "preparation": "Preparation",
