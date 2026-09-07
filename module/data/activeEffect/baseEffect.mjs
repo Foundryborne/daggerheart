@@ -41,8 +41,6 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             return r;
         }, {});
 
-        
-
         return {
             ...super.defineSchema(),
             changes: new fields.ArrayField(
