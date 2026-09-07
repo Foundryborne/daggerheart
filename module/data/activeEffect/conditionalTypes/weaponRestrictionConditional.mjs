@@ -4,7 +4,7 @@ export default class WeaponRestrictionConditional extends foundry.abstract.DataM
     static get metadata() {
         return {
             phase: conditionalPhases.roll.id,
-            failureMode: conditionalFailureModes.remove.id
+            failureMode: conditionalFailureModes.hide.id
         }
     }
 

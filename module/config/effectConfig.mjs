@@ -62,9 +62,9 @@ export const conditionalFailureModes = {
         id: 'suppress',
         label: 'DAGGERHEART.CONFIG.ConditionalFailureMode.suppress'
     },
-    remove: {
-        id: 'remove',
-        label: 'DAGGERHEART.CONFIG.ConditionalFailureMode.remove'
+    hide: {
+        id: 'hide',
+        label: 'DAGGERHEART.CONFIG.ConditionalFailureMode.hide'
     }
 }
 
