@@ -28,24 +28,22 @@
     }
 
     .tab.conditionals {
-        .conditional-outer-container {
-            .conditional-container {
+        .conditional-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            .conditional-inner-container {
                 display: flex;
                 align-items: center;
                 gap: 4px;
 
-                .conditional-inner-container {
-                    display: flex;
-                    align-items: center;
-                    gap: 4px;
-
-                    .form-group {
-                        display: block;
-                        
-                        label {
-                            line-height: normal;
-                            color: inherit;
-                        }
+                .form-group {
+                    display: block;
+                    
+                    label {
+                        line-height: normal;
+                        color: inherit;
                     }
                 }
             }
