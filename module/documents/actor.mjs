@@ -1271,11 +1271,11 @@ export default class DhpActor extends Actor {
     *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
         const isRemovedByConditional = effect => {
             const { preparation } = CONFIG.DH.EFFECTS.conditionalPhases;
-            const { remove } = CONFIG.DH.EFFECTS.conditionalFailureModes;
+            const { hide } = CONFIG.DH.EFFECTS.conditionalFailureModes;
             const rollData = this.getRollData();
             return effect.system.conditionals.some(x => 
                 x.constructor.metadata.phase === preparation.id && 
-                x.constructor.metadata.failureMode === remove.id &&
+                x.constructor.metadata.failureMode === hide.id &&
                 !x.test(rollData)
             );
         }
