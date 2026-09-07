@@ -109,16 +109,24 @@
       "system": {
         "changes": [
           {
+            "type": "dice",
+            "key": "system.tokens.assassin.markedForDeath",
+            "value": "d4",
+            "diceMode": "override",
+            "priority": 0,
+            "phase": "initial"
+          },
+          {
             "key": "system.bonuses.damage.physical.dice",
             "type": "add",
-            "value": "(@system.tier)d4",
+            "value": "(@system.tier)@system.tokens.assassin.markedForDeath",
             "priority": null,
             "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.dice",
             "type": "add",
-            "value": "(@system.tier)d4",
+            "value": "(@system.tier)@system.tokens.assassin.markedForDeath",
             "priority": null,
             "phase": "initial"
           }
