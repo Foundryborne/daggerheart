@@ -4,7 +4,7 @@ export default class DamageTypeConditional extends foundry.abstract.DataModel {
     static get metadata() {
         return {
             phase: conditionalPhases.roll.id,
-            failureMode: conditionalFailureModes.remove.id
+            failureMode: conditionalFailureModes.hide.id
         }
     }
 
