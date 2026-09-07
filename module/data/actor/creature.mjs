@@ -17,7 +17,9 @@ export default class DhCreature extends BaseDataActor {
             disadvantageSources: new fields.ArrayField(new fields.StringField(), {
                 label: 'DAGGERHEART.ACTORS.Character.disadvantageSources.label',
                 hint: 'DAGGERHEART.ACTORS.Character.disadvantageSources.hint'
-            })
+            }),
+            /* Non-persisted field intended for ActiveEffects to add various tokens and dices to */
+            tokens: new fields.ObjectField({ persisted: false })
         };
     }
 
