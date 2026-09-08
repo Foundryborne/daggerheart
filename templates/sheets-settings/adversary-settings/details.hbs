@@ -8,8 +8,8 @@
         <div class="nest-inputs">
             {{formGroup systemFields.tier value=document._source.system.tier localize=true}}
             {{formGroup systemFields.type value=document._source.system.type localize=true}}
-            {{#if (eq document._source.system.type 'horde')}}
-                {{formGroup systemFields.hordeHp value=document._source.system.hordeHp label=(localize "DAGGERHEART.ACTORS.Adversary.horderHp")}}
+            {{#if (eq document._source.system.typeData.type 'horde')}}
+                {{formGroup typeDataFields.hordeHP value=document._source.system.typeData.hordeHP name="system.typeData.hordeHP" label=(localize "DAGGERHEART.ACTORS.Adversary.horderHp")}}
             {{/if}}
             {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
         </div>

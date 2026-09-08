@@ -66,6 +66,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         }));
         featureGroups[1].features.push(...features.filter(f => !featureFormsTypes.includes(f.system.featureForm)));
         context.featureGroups = featureGroups;
+        context.typeDataFields = this.document.system.typeData ? 
+            context.systemFields.typeData.types[this.document.system.typeData.type]?.fields : null;
 
         return context;
     }
