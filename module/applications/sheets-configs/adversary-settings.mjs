@@ -72,6 +72,24 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         return context;
     }
 
+    async _processSubmitData(event, form, submitData, options) {
+        // If the user is changing type, they may risk deleting certain data. Warn if that will happen.
+        const actor = this.actor;
+        if (actor.system.typeData && submitData.system?.type && submitData.system?.type !== actor.system.type) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: _loc('DAGGERHEART.ACTORS.Adversary.changeType.title')
+                },
+                content: _loc('DAGGERHEART.ACTORS.Adversary.changeType.content')
+            });
+            if (!confirm) {
+                this.render();
+                return;
+            }
+        }
+        return super._processSubmitData(event, form, submitData, options);
+    }
+
     /* -------------------------------------------- */
 
     /**
