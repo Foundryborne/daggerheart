@@ -322,7 +322,7 @@
                     "potentialAdversaries": "Potential Adversaries",
                     "thresholds": "Thresholds"
                 },
-                "hordeDamage": "Horde Damage",
+                "hordeDamage": "Horde Damage (Half HP)",
                 "horderHp": "Horde/HP",
                 "adversaryReactionRoll": {
                     "headerTitle": "Adversary Reaction Roll"
