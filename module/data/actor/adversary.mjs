@@ -127,6 +127,11 @@ export default class DhpAdversary extends DhCreature {
         return this.attack?.roll.bonus ?? null;
     }
 
+    get attackDamageType() {
+        const type = this.attack?.damage.main.type.first();
+        return type ? _loc(CONFIG.DH.GENERAL.damageTypes[type].lowercase) : '<No Damage Type>';
+    }
+
     get features() {
         return this.parent.items.filter(x => x.type === 'feature');
     }
@@ -151,16 +156,14 @@ export default class DhpAdversary extends DhCreature {
 
         if (game.user.id === userId) {
             if (changes.system?.type) {
-                const existingHordeEffect = 
-                    this.parent.effects.find(x => x.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.actorFlags.hordeEffect));
+                const existingHordeFeature = 
+                    this.parent.items.find(x => x.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.actorFlags.hordeFeature));
                 if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-                    if (!existingHordeEffect)
-                        this.parent.createEmbeddedDocuments('ActiveEffect', [
-                            {
-                                type: 'base',
-                                flags: { [CONFIG.DH.id]: { [CONFIG.DH.FLAGS.actorFlags.hordeEffect]: true } },
-                                name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
-                                img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                    if (!existingHordeFeature) {
+                        const hordeEffectData = {
+                            name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                            img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                            system: {
                                 conditionals: [{
                                     type: 'dataCompare',
                                     key: 'system.resources.hitPoints.value',
@@ -178,12 +181,23 @@ export default class DhpAdversary extends DhCreature {
                                         img: null
                                     },
                                     priority: 0
-                                }],
-                                disabled: true
+                                }]
                             }
-                        ]);
+                        };
+                        this.parent.createEmbeddedDocuments('Item', [{
+                            type: 'feature',
+                            featureForm: CONFIG.DH.ITEM.featureForm.passive,
+                            name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                            img: 'icons/creatures/magical/humanoid-silhouette-aliens-green.webp',
+                            system: {
+                                description: `When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.`
+                            },
+                            flags: { [CONFIG.DH.id]: { [CONFIG.DH.FLAGS.actorFlags.hordeFeature]: true } },
+                            effects: [hordeEffectData]
+                        }]);
+                    }
                 } else {
-                    existingHordeEffect?.delete();
+                    existingHordeFeature?.delete();
                 }
             }
         }

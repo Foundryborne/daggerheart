@@ -1672,10 +1672,12 @@
             "DamageType": {
                 "physical": {
                     "name": "Physical",
+                    "lowercase": "physical",
                     "abbreviation": "Phy"
                 },
                 "magical": {
                     "name": "Magical",
+                    "lowercase": "magical",
                     "abbreviation": "Mag"
                 },
                 "direct": {

@@ -37,5 +37,5 @@ export const activeEffectFlags = {
 };
 
 export const actorFlags = {
-    hordeEffect: 'hordeEffect'
+    hordeFeature: 'hordeFeature'
 };
