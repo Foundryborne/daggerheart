@@ -1,3 +1,5 @@
+import { HordeAdversaryType } from '../data/actor/adversaryTypes/_module.mjs';
+
 export const abilities = {
     agility: {
         id: 'agility',
@@ -150,6 +152,10 @@ export const adversaryTypes = {
         bpCost: 1
     }
 };
+
+export const adversaryTypeModels = {
+    horde: HordeAdversaryType
+}
 
 export const allAdversaryTypes = () => ({
     ...adversaryTypes,

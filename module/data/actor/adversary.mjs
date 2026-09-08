@@ -36,15 +36,12 @@ export default class DhpAdversary extends DhCreature {
                 choices: CONFIG.DH.ACTOR.allAdversaryTypes,
                 initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
+            typeData: new fields.TypedSchemaField(CONFIG.DH.ACTOR.adversaryTypeModels, 
+                { nullable: true, initial: null }
+            ),
             motivesAndTactics: new fields.StringField(),
             notes: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
-            hordeHp: new fields.NumberField({
-                required: true,
-                initial: 1,
-                integer: true,
-                label: 'DAGGERHEART.GENERAL.hordeHp'
-            }),
             criticalThreshold: new fields.NumberField({
                 required: true,
                 integer: true,
@@ -136,6 +133,60 @@ export default class DhpAdversary extends DhCreature {
 
     isItemValid(source) {
         return super.isItemValid(source) || source.type === 'feature';
+    }
+
+    async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
+        if (allowed === false) return false;
+
+        if (changes.system?.type && changes.system.type !== this.type) {
+            const newType = CONFIG.DH.ACTOR.adversaryTypeModels[changes.system.type] ?? null;
+            const newTypeData = newType ? (new newType()).toObject() : null;
+            changes.system.typeData = newTypeData;
+        }
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        if (game.user.id === userId) {
+            if (changes.system?.type) {
+                const existingHordeEffect = 
+                    this.parent.effects.find(x => x.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.actorFlags.hordeEffect));
+                if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+                    if (!existingHordeEffect)
+                        this.parent.createEmbeddedDocuments('ActiveEffect', [
+                            {
+                                type: 'base',
+                                flags: { [CONFIG.DH.id]: { [CONFIG.DH.FLAGS.actorFlags.hordeEffect]: true } },
+                                name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                                img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                                conditionals: [{
+                                    type: 'dataCompare',
+                                    key: 'system.resources.hitPoints.value',
+                                    comparator: 'greaterEquals',
+                                    value: '@system.resources.hitPoints.max / 2'
+                                }],
+                                changes: [{
+                                    type: 'standardAttack',
+                                    value: {
+                                        name: '',
+                                        damageTypes: [],
+                                        attackRange: null,
+                                        trait: null,
+                                        damageFormula: '@system.typeData.hordeDamage',
+                                        img: null
+                                    },
+                                    priority: 0
+                                }],
+                                disabled: true
+                            }
+                        ]);
+                } else {
+                    existingHordeEffect?.delete();
+                }
+            }
+        }
     }
 
     prepareDerivedData() {
