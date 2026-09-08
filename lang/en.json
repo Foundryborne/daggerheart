@@ -313,6 +313,10 @@
                     }
                 },
                 "confirmDeleteAttack": "Are you sure you want to delete this adversary's attack?",
+                "changeType": {
+                    "title": "Change Adversary Type",
+                    "content": "You are changing the adversary type, which will delete type specific data. Are you sure you want to do this?"
+                },
                 "Embed": {
                     "attack": "ATK",
                     "thresholds": "Thresholds"

@@ -154,52 +154,50 @@ export default class DhpAdversary extends DhCreature {
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
 
-        if (game.user.id === userId) {
-            if (changes.system?.type) {
-                const existingHordeFeature = 
-                    this.parent.items.find(x => x.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.actorFlags.hordeFeature));
-                if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-                    if (!existingHordeFeature) {
-                        const hordeEffectData = {
-                            name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
-                            img: 'icons/magic/movement/chevrons-down-yellow.webp',
-                            showIcon: 2,
-                            system: {
-                                conditionals: [{
-                                    type: 'dataCompare',
-                                    key: 'system.resources.hitPoints.value',
-                                    comparator: 'greaterEquals',
-                                    value: '@system.resources.hitPoints.max / 2'
-                                }],
-                                changes: [{
-                                    type: 'standardAttack',
-                                    value: {
-                                        name: '',
-                                        damageTypes: [],
-                                        attackRange: null,
-                                        trait: null,
-                                        damageFormula: '@system.typeData.hordeDamage',
-                                        img: null
-                                    },
-                                    priority: 0
-                                }]
-                            }
-                        };
-                        this.parent.createEmbeddedDocuments('Item', [{
-                            type: 'feature',
-                            featureForm: CONFIG.DH.ITEM.featureForm.passive,
-                            name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
-                            img: 'icons/creatures/magical/humanoid-silhouette-aliens-green.webp',
-                            system: {
-                                description: `When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.`
-                            },
-                            flags: { [CONFIG.DH.id]: { [CONFIG.DH.FLAGS.actorFlags.hordeFeature]: true } },
-                            effects: [hordeEffectData]
-                        }]);
-                    }
-                } else {
-                    existingHordeFeature?.delete();
+        if (game.user.id === userId && changes.system?.type) {
+            const existingHordeFeature = 
+                this.parent.items.find(x => x.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.actorFlags.hordeFeature));
+            if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+                if (!existingHordeFeature) {
+                    const hordeEffectData = {
+                        name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                        img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                        showIcon: 2,
+                        system: {
+                            conditionals: [{
+                                type: 'dataCompare',
+                                key: 'system.resources.hitPoints.value',
+                                comparator: 'greaterEquals',
+                                value: '@system.resources.hitPoints.max / 2'
+                            }],
+                            changes: [{
+                                type: 'standardAttack',
+                                value: {
+                                    name: '',
+                                    damageTypes: [],
+                                    attackRange: null,
+                                    trait: null,
+                                    damageFormula: '@system.typeData.hordeDamage',
+                                    img: null
+                                },
+                                priority: 0
+                            }]
+                        }
+                    };
+                    this.parent.createEmbeddedDocuments('Item', [{
+                        type: 'feature',
+                        featureForm: CONFIG.DH.ITEM.featureForm.passive,
+                        name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                        img: 'icons/creatures/magical/humanoid-silhouette-aliens-green.webp',
+                        system: {
+                            description: `When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.`
+                        },
+                        flags: { [CONFIG.DH.id]: { [CONFIG.DH.FLAGS.actorFlags.hordeFeature]: true } },
+                        effects: [hordeEffectData]
+                    }]);
                 }
+            } else {
+                existingHordeFeature?.delete();
             }
         }
     }
