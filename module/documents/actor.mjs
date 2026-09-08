@@ -1198,7 +1198,7 @@ export default class DhpActor extends Actor {
         const conditions = CONFIG.DH.GENERAL.conditions();
         const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
         const autoVulnerableActive = this.system.isAutoVulnerableActive;
-        return this.effects
+        return this.allApplicableEffects()
             .filter(x => !x.disabled && !x.isSuppressed)
             .reduce((acc, effect) => {
                 /* Could be generalized if needed. Currently just related to Vulnerable */
