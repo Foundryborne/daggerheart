@@ -163,6 +163,7 @@ export default class DhpAdversary extends DhCreature {
                         const hordeEffectData = {
                             name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
                             img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                            showIcon: 2,
                             system: {
                                 conditionals: [{
                                     type: 'dataCompare',

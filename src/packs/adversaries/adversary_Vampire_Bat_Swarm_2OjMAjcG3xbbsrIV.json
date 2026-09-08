@@ -197,7 +197,7 @@
       "img": "icons/creatures/mammals/bats-movement-flying-black.webp",
       "effects": [
         {
-          "name": "New Effect",
+          "name": "Blinding Multitude",
           "disabled": false,
           "img": "icons/creatures/mammals/bats-movement-flying-black.webp",
           "description": "<p>Creatures within Melee range have disadvantage on attacks made against adversaries other than the Swarm.</p>",
@@ -416,7 +416,7 @@
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
-          "showIcon": 1,
+          "showIcon": 2,
           "folder": null,
           "sort": 0,
           "flags": {},

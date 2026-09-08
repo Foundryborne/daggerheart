@@ -233,7 +233,7 @@
             "expired": false
           },
           "tint": "#ffffff",
-          "showIcon": 1,
+          "showIcon": 2,
           "folder": null,
           "sort": 0,
           "flags": {},
