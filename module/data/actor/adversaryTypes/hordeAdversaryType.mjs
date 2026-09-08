@@ -11,7 +11,7 @@ export default class HordeAdversaryType extends foundry.abstract.DataModel {
                 integer: true,
                 label: 'DAGGERHEART.GENERAL.hordeHp'
             }),
-            hordeDamage: new FormulaField()
+            hordeDamage: new FormulaField({ initial: '1d4', label: 'DAGGERHEART.ACTORS.Adversary.hordeDamage' })
         }
     }
 }
