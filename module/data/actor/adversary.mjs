@@ -246,7 +246,7 @@ export default class DhpAdversary extends DhCreature {
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
 
-        if (game.user.id === userId && changes.system?.type) {
+        if (game.user.id === userId && changes.system?.type && !options?.isRefresh) {
             const existingHordeFeature = 
                 this.parent.items.find(x => x.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.actorFlags.hordeFeature));
             if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {

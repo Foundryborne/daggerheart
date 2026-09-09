@@ -1347,7 +1347,8 @@ export default class DhpActor extends Actor {
                 name: latestSource.name,
                 img: latestSource.img,
                 system: _replace(system)
-            }]
+            }],
+            isRefresh: true
         }];
         if (effectCreates.length) {
             batch.push({
