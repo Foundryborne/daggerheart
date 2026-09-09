@@ -1,3 +1,4 @@
+import { nestedReplaceFormulaData } from '../../helpers/utils.mjs';
 import DHDamageAction from './damageAction.mjs';
 
 export default class DHAttackAction extends DHDamageAction {
@@ -67,7 +68,7 @@ export default class DHAttackAction extends DHDamageAction {
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
-            const damageString = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
+            const damageString = nestedReplaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
             const str = damageString
                 ? damageString
                 : game.i18n.format('DAGGERHEART.GENERAL.missingX', {

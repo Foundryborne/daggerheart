@@ -950,3 +950,18 @@ export function getAllResourceLabels() {
         return acc;
     }, {});
 }
+
+/** 
+ * Performs a replace data that reruns if the new result includes @ strings
+ * It only repeats once for efficiency, full recursion would need to track previous results.
+ * This handles the case where lookup looks up a damage formula that also needs to be resolved.
+ * @param {string} formula
+ * @param {object} rollData
+ * @returns {string}
+ */
+export function nestedReplaceFormulaData(formula, rollData) {
+    const replacement = Roll.replaceFormulaData(formula, rollData);
+    return replacement !== formula && replacement.includes('@') 
+        ? Roll.replaceFormulaData(replacement, rollData)
+        : replacement;
+}
