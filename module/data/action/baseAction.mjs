@@ -371,7 +371,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         ];
 
         const results = [];
-        const applicableEffects = await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        const applicableEffects = await actor.allApplicableEffects({ 
+            noTransferArmor: true, 
+            noSelfArmor: true, 
+            includeEphemerals: true 
+        });
         for (const effect of [...applicableEffects].filter(e => !e.isSuppressed)) {
             if (effect.parent.type === 'weapon') {
                 // Effects on weapons only ever apply for the weapon itself (with a few exceptions)

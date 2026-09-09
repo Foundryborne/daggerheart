@@ -45,3 +45,27 @@ export const activeEffectDurations = {
         label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
     }
 };
+
+
+export const ephemeralCostType = {
+    hitPoints: {
+        id: 'hitPoints',
+        label: 'DAGGERHEART.CONFIG.HealingType.hitPoints.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.hitPoints.abbreviation'
+    },
+    stress: {
+        id: 'stress',
+        label: 'DAGGERHEART.CONFIG.HealingType.stress.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.stress.abbreviation'
+    },
+    hope: {
+        id: 'hope',
+        label: 'DAGGERHEART.CONFIG.HealingType.hope.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.hope.abbreviation'
+    },
+    armor: {
+        id: 'armor',
+        label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.armor.abbreviation'
+    }
+};

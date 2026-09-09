@@ -221,7 +221,24 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static toggleSelectedEffect(_event, button) {
-        this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
+        const effect = this.selectedEffects[button.dataset.key];
+        effect.selected = !effect.selected;
+
+        if (effect.origEffect.type === 'ephemeral') {
+            this.config.costs =
+                this.config.costs.some(c => c.ephKey === effect.id)
+                    ? this.config.costs.filter(x => x.ephKey !== effect.id)
+                    : [
+                        ...this.config.costs,
+                        ...effect.origEffect.system.costs.map(c => ({
+                            ephKey: effect.id,
+                            key: c.type,
+                            value: c.value,
+                            name: effect.name
+                        }))
+                    ];
+        }
+
         this.render();
     }
 

@@ -1237,12 +1237,14 @@ export default class DhpActor extends Actor {
     }
 
     /**@inheritdoc */
-    *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+    *allApplicableEffects({ noSelfArmor, noTransferArmor, includeEphemerals } = {}) {
         for (const effect of this.effects) {
+            if (!includeEphemerals && effect.type === 'ephemeral') continue; 
             if (!noSelfArmor || effect.type !== 'armor') yield effect;
         }
         for (const item of this.items) {
             for (const effect of item.effects) {
+                if (!includeEphemerals && effect.type === 'ephemeral') continue; 
                 if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
             }
         }

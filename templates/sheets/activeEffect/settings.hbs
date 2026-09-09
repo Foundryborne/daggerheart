@@ -7,7 +7,7 @@
             </legend>
 
             {{#each source.system.costs as | cost |}}
-                {{formGroup ../systemFields.costs.element.fields.key value=cost.key name=(concat "system.costs." @key ".key") localize=true }}
+                {{formGroup ../systemFields.costs.element.fields.type value=cost.type name=(concat "system.costs." @key ".type") localize=true }}
                 {{formGroup ../systemFields.costs.element.fields.value value=cost.value name=(concat "system.costs." @key ".value") localize=true }}
                 <a data-action="removeEphemeralCost" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
             {{/each}}

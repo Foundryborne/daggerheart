@@ -406,7 +406,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     static #onAddEphemeralCost() {
         const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
         const existingCosts = submitData.system.costs ? Object.values(submitData.system.costs) : [];
-        const updatedCosts = [...existingCosts, { key: 'hope', value: 1 }];
+        const updatedCosts = [...existingCosts, { type: 'hope', value: 1 }];
 
         return this.submit({ updateData: { 
             'system.costs': updatedCosts

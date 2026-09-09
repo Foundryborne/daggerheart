@@ -188,7 +188,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             inactives: []
         };
 
-        for (const effect of this.actor.allApplicableEffects({ noTransferArmor: true })) {
+        for (const effect of this.actor.allApplicableEffects({ noTransferArmor: true, includeEphemerals: true })) {
             const list = effect.active ? context.effects.actives : context.effects.inactives;
             list.push(effect);
         }
@@ -243,7 +243,12 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                         doc
                     );
                     config.hasRoll = false;
-                    return action && action.workflow.get('damage').execute(config, null, true);
+                    
+                    if (action) {
+                        await action.workflow.get('damage').execute(config, null, true);
+                        await action.workflow.get('cost').execute(config);
+                        config.resourceUpdates.updateResources();
+                    }
                 }
             },
             {
