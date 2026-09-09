@@ -362,19 +362,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Get the all potentially applicable effects on the actor for the action's RollDialog
      * @param {RollData} rollData The rolldata of the action being performed
-     * @param {DHActor} actor The actor performing the action
+     * @param {DhpActor} actor The actor performing the action
      * @returns {DhActiveEffect[]}
      */
     static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];
 
-        const applicableEffects = await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        const applicableEffects = actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
         return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            const conditionalPassed = !effect.system.conditionals.some(x => 
-                x.constructor.metadata.phase === CONFIG.DH.EFFECTS.conditionalPhases.roll.id &&    
-                !x.test(rollData)
-            );
-
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
             if (conditionalPassed)
                 acc.push(effect);
 

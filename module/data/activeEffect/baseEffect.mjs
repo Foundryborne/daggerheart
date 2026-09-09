@@ -118,14 +118,25 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return true;
     }
 
-    testConditionals(rollData) {
+    /** 
+     * Tests all conditionals of a specific phase and returns if there are no failures
+     * @param {object} rollData
+     * @param {object} [options]
+     * @param {keyof typeof CONFIG.DH.EFFECTS.conditionalPhases} [options.phase] the phase to run on, by default its preparation
+     * @param {(keyof typeof CONFIG.DH.EFFECTS.conditionalFailureModes) | null} [options.failureMode] the failure mode to check, by default its all
+     * @returns if the conditionals of the phase pass
+     */
+    testConditionals(rollData, { 
+        phase = CONFIG.DH.EFFECTS.conditionalPhases.preparation.id, 
+        failureMode = null
+    } = {}) {
         for (const change of this.changes) {
             if (change.isSuppressed) return false;
         }
 
         const conditionalFailed = rollData && this.conditionals.some(x => 
-            x.constructor.metadata.phase === CONFIG.DH.EFFECTS.conditionalPhases.preparation.id && 
-            x.constructor.metadata.failureMode === CONFIG.DH.EFFECTS.conditionalFailureModes.suppress.id &&
+            x.constructor.metadata.phase === phase && 
+            (!failureMode || x.constructor.metadata.failureMode === failureMode) &&
             !x.test(rollData)
         );
 
