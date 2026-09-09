@@ -301,7 +301,8 @@
         },
         "ActiveEffect": {
             "beastform": {},
-            "horde": {}
+            "horde": {},
+            "ephemeral": {}
         },
         "Combat": {
             "combat": {}

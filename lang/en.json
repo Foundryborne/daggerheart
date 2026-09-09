@@ -17,6 +17,7 @@
         "ActiveEffect": {
             "base": "Standard",
             "beastform": "Beastform",
+            "ephemeral": "Ephemeral",
             "horde": "Horde"
         },
         "Actor": {
@@ -234,7 +235,11 @@
                 "hint": "Settings for an optional distance at which this effect should activate",
                 "title": "Range Dependant"
             },
-            "immuneStatusText": "Immunity: {status}"
+            "immuneStatusText": "Immunity: {status}",
+            "Ephemeral": {
+                "costTitle": "Ephemeral Costs",
+                "costKey": "Cost Key"
+            }
         },
         "ACTORS": {
             "Adversary": {

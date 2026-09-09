@@ -11,7 +11,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
-            showItem: DhActiveEffectConfig.#onShowItem
+            showItem: DhActiveEffectConfig.#onShowItem,
+            addEphemeralCost: DhActiveEffectConfig.#onAddEphemeralCost,
+            removeEphemeralCost: DhActiveEffectConfig.#onRemoveEphemeralCost
         }
     };
 
@@ -399,5 +401,26 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         if (!itemId) return;
         const item = fromUuidSync(itemId);
         if (item.visible) item.sheet?.render({ force: true });
+    }
+
+    static #onAddEphemeralCost() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const existingCosts = submitData.system.costs ? Object.values(submitData.system.costs) : [];
+        const updatedCosts = [...existingCosts, { key: 'hope', value: 1 }];
+
+        return this.submit({ updateData: { 
+            'system.costs': updatedCosts
+        }});
+    }
+
+    static #onRemoveEphemeralCost(_event, button) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        if (!submitData.system.costs) return;
+
+        const updatedCosts = Object.values(submitData.system.costs)
+            .filter((_, index) => index !== Number.parseInt(button.dataset.index))
+        return this.submit({ updateData: { 
+            'system.costs': updatedCosts
+        }});
     }
 }

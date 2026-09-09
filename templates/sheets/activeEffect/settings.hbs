@@ -1,56 +1,71 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-    <fieldset class="one-column optional {{#if source.system.stacking}}active{{/if}}">
-        <legend>
-            {{localize "DAGGERHEART.ACTIVEEFFECT.Config.stacking.title"}} 
-            <input type="checkbox" class="stacking-change-checkbox" {{checked source.system.stacking}} />
-        </legend>
+    {{#if (eq source.type 'ephemeral')}}
+        <fieldset class="two-columns">
+            <legend>
+                {{localize "DAGGERHEART.ACTIVEEFFECT.Ephemeral.costTitle"}}
+                <a data-action="addEphemeralCost"><i class="fa-solid fa-plus"></i></a>
+            </legend>
 
-        {{#if source.system.stacking}}
-            <div class="two-columns even full-width">
-                {{formGroup systemFields.stacking.fields.value value=source.system.stacking.value localize=true }}
-                {{formGroup systemFields.stacking.fields.max value=source.system.stacking.max localize=true }}
-            </div>
-        {{/if}}
-    </fieldset>
+            {{#each source.system.costs as | cost |}}
+                {{formGroup ../systemFields.costs.element.fields.key value=cost.key name=(concat "system.costs." @key ".key") localize=true }}
+                {{formGroup ../systemFields.costs.element.fields.value value=cost.value name=(concat "system.costs." @key ".value") localize=true }}
+                <a data-action="removeEphemeralCost" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
+            {{/each}}
+        </fieldset>
+    {{else}}
+        <fieldset class="one-column optional {{#if source.system.stacking}}active{{/if}}">
+            <legend>
+                {{localize "DAGGERHEART.ACTIVEEFFECT.Config.stacking.title"}} 
+                <input type="checkbox" class="stacking-change-checkbox" {{checked source.system.stacking}} />
+            </legend>
 
-    <fieldset class="one-column optional {{#if source.system.rangeDependence}}active{{/if}}">
-        <legend>
-            {{localize "DAGGERHEART.ACTIVEEFFECT.Config.rangeDependence.title"}}
-            <input type="checkbox" class="range-dependence-change-checkbox" {{checked source.system.rangeDependence}} />
-        </legend>
+            {{#if source.system.stacking}}
+                <div class="two-columns even full-width">
+                    {{formGroup systemFields.stacking.fields.value value=source.system.stacking.value localize=true }}
+                    {{formGroup systemFields.stacking.fields.max value=source.system.stacking.max localize=true }}
+                </div>
+            {{/if}}
+        </fieldset>
 
-        {{#if source.system.rangeDependence}}
-            {{formGroup systemFields.rangeDependence.fields.type value=source.system.rangeDependence.type localize=true }}
-            {{formGroup systemFields.rangeDependence.fields.target value=source.system.rangeDependence.target localize=true }}
-            {{formGroup systemFields.rangeDependence.fields.range value=source.system.rangeDependence.range localize=true }}
-        {{/if}}
-    </fieldset>
+        <fieldset class="one-column optional {{#if source.system.rangeDependence}}active{{/if}}">
+            <legend>
+                {{localize "DAGGERHEART.ACTIVEEFFECT.Config.rangeDependence.title"}}
+                <input type="checkbox" class="range-dependence-change-checkbox" {{checked source.system.rangeDependence}} />
+            </legend>
 
-    <fieldset class="one-column">
-        <legend>{{localize "EFFECT.DURATION.Label"}}</legend>
+            {{#if source.system.rangeDependence}}
+                {{formGroup systemFields.rangeDependence.fields.type value=source.system.rangeDependence.type localize=true }}
+                {{formGroup systemFields.rangeDependence.fields.target value=source.system.rangeDependence.target localize=true }}
+                {{formGroup systemFields.rangeDependence.fields.range value=source.system.rangeDependence.range localize=true }}
+            {{/if}}
+        </fieldset>
 
-        {{formGroup systemFields.duration.fields.type value=source.system.duration.type localize=true }}
+        <fieldset class="one-column">
+            <legend>{{localize "EFFECT.DURATION.Label"}}</legend>
 
-        <div class="form-group slim duration-description {{#if (eq source.system.duration.type 'temporary')}}visible{{/if}}">
-            <div class="form-fields">
-                {{formInput systemFields.duration.fields.description value=source.system.duration.description localize=true }}
-            </div>
-        </div>
+            {{formGroup systemFields.duration.fields.type value=source.system.duration.type localize=true }}
 
-        <div class="custom-duration-section">
-            {{formGroup fields.start.fields.time value=source.start.time localize=true }}
-            <div class="form-group slim duration" data-duration>
-                <label class="flexrow" for="{{rootId}}-duration.value">
-                    <span>{{localize "EFFECT.DURATION.Label"}}</span>
-                    <span class="warning" hidden><i class="fa-duotone fa-triangle-exclamation"></i></span>
-                </label>
+            <div class="form-group slim duration-description {{#if (eq source.system.duration.type 'temporary')}}visible{{/if}}">
                 <div class="form-fields">
-                    {{formInput fields.duration.fields.value value=source.duration.value id=(concat rootId "-duration.value")
-                                aria=(object label=(localize "EFFECT.FIELDS.duration.value.label"))}}
-                    {{formInput fields.duration.fields.units value=source.duration.units id=(concat rootId "-duration.units")
-                                options=durationUnits aria=(object label=(localize "EFFECT.FIELDS.duration.units.label")) localize=true }}
+                    {{formInput systemFields.duration.fields.description value=source.system.duration.description localize=true }}
                 </div>
             </div>
-        </div>
-    </fieldset>
+
+            <div class="custom-duration-section">
+                {{formGroup fields.start.fields.time value=source.start.time localize=true }}
+                <div class="form-group slim duration" data-duration>
+                    <label class="flexrow" for="{{rootId}}-duration.value">
+                        <span>{{localize "EFFECT.DURATION.Label"}}</span>
+                        <span class="warning" hidden><i class="fa-duotone fa-triangle-exclamation"></i></span>
+                    </label>
+                    <div class="form-fields">
+                        {{formInput fields.duration.fields.value value=source.duration.value id=(concat rootId "-duration.value")
+                                    aria=(object label=(localize "EFFECT.FIELDS.duration.value.label"))}}
+                        {{formInput fields.duration.fields.units value=source.duration.units id=(concat rootId "-duration.units")
+                                    options=durationUnits aria=(object label=(localize "EFFECT.FIELDS.duration.units.label")) localize=true }}
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    {{/if}}
 </section>
