@@ -199,8 +199,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             ] : [];
             const action = actions.find(x => x.id === config.source.action);
 
-            config.effects = 
-                await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(action, actor);
+            const { base } = game.system.api.data.actions.actionsTypes;
+            config.effects = await base.getActionRelevantEffects(action.getRollData(), actor);
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
         }
     }

@@ -258,8 +258,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
             headerTitle: game.i18n.localize('DAGGERHEART.ACTORS.Adversary.adversaryReactionRoll.headerTitle'),
             effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
                 {
-                    actionType: 'reaction', 
-                    roll: {}
+                    action: {
+                        actionType: 'reaction', 
+                        roll: {}
+                    }
                 }, 
                 this.document
             ),

@@ -223,6 +223,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
             : 1;
         actorData.roll = {};
+        actorData.action = {
+            actionType: this.actionType,
+            damage: this.damage,
+            roll: this.roll
+        };
 
         return actorData;
     }
@@ -250,7 +255,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
-        config.effects = await DHBaseAction.getActionRelevantEffects(this, this.actor);
+        config.effects = await DHBaseAction.getActionRelevantEffects(this.getRollData(), this.actor);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -356,18 +361,18 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Get the all potentially applicable effects on the actor for the action's RollDialog
+     * @param {RollData} rollData The rolldata of the action being performed
      * @param {DHActor} actor The actor performing the action
-     * @param {DHItem|DhActor} effectParent The parent of the effect
      * @returns {DhActiveEffect[]}
      */
-    static async getActionRelevantEffects(action, actor) {
+    static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];
 
         const applicableEffects = await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
         return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
             const conditionalPassed = !effect.system.conditionals.some(x => 
                 x.constructor.metadata.phase === CONFIG.DH.EFFECTS.conditionalPhases.roll.id &&    
-                !x.test(action)
+                !x.test(rollData)
             );
 
             if (conditionalPassed)

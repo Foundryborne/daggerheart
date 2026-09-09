@@ -27,16 +27,17 @@ export default class ActionTypeConditional extends foundry.abstract.DataModel {
         }
     }
 
-    test(dhRollData) {
+    test(rollData) {
         if (!this.actionTypes.size) return true;
-        if (!dhRollData.roll || !dhRollData.actionType) return false;
+
+        const actionType = rollData.action?.actionType;
+        if (!rollData.action?.roll || !actionType) return false;
         
-        const actionType = dhRollData.actionType;
         if (actionType === 'action' && this.actionTypes.has(CONFIG.DH.EFFECTS.actionType.action.id))
             return true;
         if (actionType === 'reaction' && this.actionTypes.has(CONFIG.DH.EFFECTS.actionType.reaction.id))
             return true;
 
-        return this.actionTypes.has(dhRollData.roll.type);
+        return this.actionTypes.has(rollData.action.roll.type);
     }
 }

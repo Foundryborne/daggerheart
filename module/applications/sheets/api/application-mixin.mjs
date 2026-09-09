@@ -527,7 +527,7 @@ export default function DHApplicationMixin(Base) {
                         const action = doc.system.attack;
                         const config = action.prepareConfig(event);
                         config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                            action,
+                            action.getRollData(),
                             this.document
                         );
                         config.hasRoll = false;

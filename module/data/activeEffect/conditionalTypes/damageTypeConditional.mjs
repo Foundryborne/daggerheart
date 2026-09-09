@@ -28,9 +28,9 @@ export default class DamageTypeConditional extends foundry.abstract.DataModel {
         }
     }
 
-    test(actionData) { 
-        if (!actionData.damage) return false;
+    test(rollData) { 
+        if (!rollData.action?.damage) return false;
         
-        return actionData.damage.main.type.has(this.damageType)
+        return rollData.action.damage.main.type.has(this.damageType)
     }
 }

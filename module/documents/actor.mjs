@@ -754,8 +754,10 @@ export default class DhpActor extends Actor {
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
             effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
                 {
-                    actionType: 'action', 
-                    roll: { type: 'trait' }
+                    action: {
+                        actionType: 'action', 
+                        roll: { type: 'trait' }
+                    }
                 }, 
                 this
             ),
