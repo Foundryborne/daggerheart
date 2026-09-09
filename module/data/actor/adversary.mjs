@@ -140,6 +140,97 @@ export default class DhpAdversary extends DhCreature {
         return super.isItemValid(source) || source.type === 'feature';
     }
 
+    _getTags() {
+        const tags = [
+            game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`),
+            `${game.i18n.localize(`DAGGERHEART.CONFIG.AdversaryType.${this.type}.label`)}`,
+            `${game.i18n.localize('DAGGERHEART.GENERAL.difficulty')}: ${this.difficulty}`
+        ];
+        return tags;
+    }
+
+    /** Returns source data for this actor adjusted to a new tier, which can be used to create a new actor. */
+    adjustForTier(tier) {
+        const source = this.parent.toObject(true);
+        return getTierAdjustedAdversary(source, tier);
+    }
+
+    /** @inheritdoc */
+    async _prepareEmbedContext(options) {
+        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+        const attack = this.attack ? {
+            name: this.attack.name,
+            range: _loc(CONFIG.DH.GENERAL.range[this.attack.range]?.label),
+            bonus: signedNumber(this.attack.roll?.bonus),
+            damage: this.attack.getDamageFormula()
+        } : null;
+
+        return {
+            ...(await super._prepareEmbedContext(options)),
+            actor: this.parent,
+            type: _loc(adversaryTypes[this.type]?.label),
+            attack,
+            experiences: Object.values(this.experiences).map(e => ({ name: e.name, value: signedNumber(e.value) }))
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Data Preparation                            */
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    prepareBaseData() {
+        super.prepareBaseData();
+        if (this.attack) {
+            this.attack.roll.isStandardAttack = true;
+        }
+
+        // Ensure type data exists in case it got somehow removed (ex: modules).
+        // Updating the source allows updates not to break when we add the prepared data
+        const typeModel = CONFIG.DH.ACTOR.adversaryTypeModels[this.type];
+        if (typeModel && !this.typeData) {
+            this.typeData = new typeModel();
+            this.updateSource({ typeData: this.typeData.toObject() });
+        }
+
+        if (this.type === 'horde') {
+            // Add backwards compatibility. Consider a deprecation warning at a later date
+            Object.defineProperty(this.attack, 'altDamageFormula', {
+                get: () => {
+                    return Roll.replaceFormulaData(this.typeData.hordeDamage, this.getRollData());
+                }
+            })
+        }
+    }
+
+    /** @inheritdoc */
+    prepareDerivedData() {
+        super.prepareDerivedData();
+
+        // Evolution features may set other features as inactive
+        for (const feature of this.features.filter(x => x.system.featureForm === 'evolution')) {
+            const evolutionActions = feature.system.actions.filter(x => x.type === 'evolution');
+            for (const action of evolutionActions) {
+                const evolutionActive = action.evolution.active;
+                for (const [id, state] of Object.entries(action.evolution.evolutionFeatures)) {
+                    const isEvolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.evolved.id;
+                    const isUnevolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.unevolved.id;
+                    const feature = this.parent.items.get(id);
+                    feature.system.inactive = 
+                        (isEvolvedFeature && !evolutionActive) || (isUnevolvedFeature && evolutionActive);
+                }
+            }
+        }
+
+        // Clamp resources (must be done last to ensure all updates occur)
+        this.clampResources();
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
@@ -151,6 +242,7 @@ export default class DhpAdversary extends DhCreature {
         }
     }
 
+    /** @inheritdoc */
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
 
@@ -199,65 +291,6 @@ export default class DhpAdversary extends DhCreature {
             } else {
                 existingHordeFeature?.delete();
             }
-        }
-    }
-
-    prepareDerivedData() {
-        super.prepareDerivedData();
-        if (this.attack) {
-            this.attack.roll.isStandardAttack = true;
-        }
-
-        // Evolution features may set other features as inactive
-        for (const feature of this.features.filter(x => x.system.featureForm === 'evolution')) {
-            const evolutionActions = feature.system.actions.filter(x => x.type === 'evolution');
-            for (const action of evolutionActions) {
-                const evolutionActive = action.evolution.active;
-                for (const [id, state] of Object.entries(action.evolution.evolutionFeatures)) {
-                    const isEvolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.evolved.id;
-                    const isUnevolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.unevolved.id;
-                    const feature = this.parent.items.get(id);
-                    feature.system.inactive = 
-                        (isEvolvedFeature && !evolutionActive) || (isUnevolvedFeature && evolutionActive);
-                }
-            }
-        }
-
-        // Clamp resources (must be done last to ensure all updates occur)
-        this.clampResources();
-    }
-
-    _getTags() {
-        const tags = [
-            game.i18n.localize(`DAGGERHEART.GENERAL.Tiers.${this.tier}`),
-            `${game.i18n.localize(`DAGGERHEART.CONFIG.AdversaryType.${this.type}.label`)}`,
-            `${game.i18n.localize('DAGGERHEART.GENERAL.difficulty')}: ${this.difficulty}`
-        ];
-        return tags;
-    }
-
-    /** Returns source data for this actor adjusted to a new tier, which can be used to create a new actor. */
-    adjustForTier(tier) {
-        const source = this.parent.toObject(true);
-        return getTierAdjustedAdversary(source, tier);
-    }
-
-    /** @inheritdoc */
-    async _prepareEmbedContext(options) {
-        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
-        const attack = this.attack ? {
-            name: this.attack.name,
-            range: _loc(CONFIG.DH.GENERAL.range[this.attack.range]?.label),
-            bonus: signedNumber(this.attack.roll?.bonus),
-            damage: this.attack.getDamageFormula()
-        } : null;
-
-        return {
-            ...(await super._prepareEmbedContext(options)),
-            actor: this.parent,
-            type: _loc(adversaryTypes[this.type]?.label),
-            attack,
-            experiences: Object.values(this.experiences).map(e => ({ name: e.name, value: signedNumber(e.value) }))
         }
     }
 }
