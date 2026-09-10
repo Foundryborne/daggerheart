@@ -18,7 +18,7 @@ export class ChatDamageData extends foundry.abstract.DataModel {
             return Roll.fromJSON(this.parent.parent._source.rolls[0]).isCritical;
         }
 
-        return false;
+        return undefined;
     }
 
     static defineSchema() {
