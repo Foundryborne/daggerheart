@@ -58,12 +58,13 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                         : 'DAGGERHEART.UI.Countdowns.loop'
                 : null;
             const randomizeValid = !new Roll(countdown.progress.startFormula ?? '').isDeterministic;
-            acc[key] = {
+
+            acc[countdown.type].countdowns[key] = {
                 ...countdown,
-                typeName: game.i18n.localize(CONFIG.DH.GENERAL.countdownTypes[countdown.type].label),
+                typeName: acc[countdown.type].name,
                 progress: {
                     ...countdown.progress,
-                    typeName: game.i18n.localize(
+                    typeName: _loc(
                         CONFIG.DH.GENERAL.countdownProgressionTypes[countdown.progress.type].label
                     )
                 },
@@ -73,7 +74,10 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
             };
 
             return acc;
-        }, {});
+        }, Object.keys(CONFIG.DH.GENERAL.countdownTypes).reduce((acc, type) => {
+            acc[type] = { name: _loc(CONFIG.DH.GENERAL.countdownTypes[type].label), countdowns: {} };
+            return acc;
+        }, {}));
 
         return context;
     }
@@ -156,12 +160,12 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
      * @this CountdownEdit
      * @type {import('@client/applications/_types.mjs').ApplicationClickAction}
      */
-    static #onAddCountdown() {
+    static #onAddCountdown(_event, button) {
         const id = foundry.utils.randomID();
         this.editingCountdowns.add(id);
         this.currentEditCountdown = id;
         this.updateSetting({
-            [`countdowns.${id}`]: DhCountdown.defaultCountdown(null, this.data.hideNewCountdowns)
+            [`countdowns.${id}`]: DhCountdown.defaultCountdown(button.dataset.type, this.data.hideNewCountdowns)
         });
     }
 
