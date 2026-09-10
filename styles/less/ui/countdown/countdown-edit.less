@@ -15,7 +15,8 @@
 
         .dialog-header {
             display: flex;
-            align-items: center;
+            align-items: baseline;
+            justify-content: space-between;
             gap: 8px;
             padding-bottom: 0;
 
@@ -64,7 +65,7 @@
                     border-radius: 6px;
 
                     &.editing {
-                        background: @dark-blue-90;
+                        background: light-dark(@dark-blue-10, @beige-15);
                     }
 
                     .countdown-edit-container {
