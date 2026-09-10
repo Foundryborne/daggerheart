@@ -9,6 +9,15 @@
     color: light-dark(@dark, @beige);
     background-image: url('../assets/parchments/dh-parchment-dark.png');
 
+    .countdown-category {
+        padding-left: 0;
+        padding-right: 0;
+
+        legend {
+            margin-left: 0.75rem;
+        }
+    }
+
     .edit-container {
         display: flex;
         flex-direction: column;
@@ -38,7 +47,7 @@
             .countdowns-container {
                 display: flex;
                 flex-direction: column;
-                gap: 4px;
+                gap: 6px;
 
                 .countdown-edit-outer-container {
                     display: flex;
@@ -46,12 +55,19 @@
                     align-items: flex-start;
                     gap: 8px;
 
+                    &.many-countdowns:not(:last-child) {
+                        border-bottom: 2px solid @color-fieldset-border;
+                        padding-bottom: 6px;
+                    }
+
                     .countdown-edit-container {
                         width: 100%;
                         display: grid;
                         grid-template-columns: 48px 1fr 72px;
                         align-items: center;
                         gap: 8px;
+                        padding-right: 0.75rem;
+                        padding-left: 0.75rem;
 
                         img {
                             width: 52px;
@@ -111,6 +127,8 @@
                     display: flex;
                     flex-direction: column;
                     gap: 2px;
+                    padding-right: 0.75rem;
+                    padding-left: 0.75rem;
 
                     .countdown-edit-subrow {
                         display: flex;
@@ -169,22 +187,6 @@
                             font-size: 18px;
                         }
                     }
-
-                    // .countdown-random-container {
-                    //     width: 100%;
-                    //     display: flex;
-
-                    //     input {
-                    //         border-radius: 6px 0 0 6px;
-                    //         border-right: 0;
-                    //     }
-
-                    //     button {
-                    //         border-radius: 0 6px 6px 0;
-                    //         height: var(--input-height);
-                    //         border: 1px solid white;
-                    //     }
-                    // }
 
                     input,
                     select {

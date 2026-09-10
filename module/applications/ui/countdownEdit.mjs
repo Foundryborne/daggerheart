@@ -59,6 +59,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
                 : null;
             const randomizeValid = !new Roll(countdown.progress.startFormula ?? '').isDeterministic;
 
+            acc[countdown.type].nrCountdowns += 1;
             acc[countdown.type].countdowns[key] = {
                 ...countdown,
                 typeName: acc[countdown.type].name,
@@ -75,7 +76,7 @@ export default class CountdownEdit extends HandlebarsApplicationMixin(Applicatio
 
             return acc;
         }, Object.keys(CONFIG.DH.GENERAL.countdownTypes).reduce((acc, type) => {
-            acc[type] = { name: _loc(CONFIG.DH.GENERAL.countdownTypes[type].label), countdowns: {} };
+            acc[type] = { name: _loc(CONFIG.DH.GENERAL.countdownTypes[type].label), nrCountdowns: 0, countdowns: {} };
             return acc;
         }, {}));
 

@@ -10,7 +10,7 @@
 
         <div class="edit-content">
             {{#each countdowns as | category id | }}
-                <fieldset>
+                <fieldset class="countdown-category">
                     <legend>
                         {{category.name}}
                         <a data-action="addCountdown" data-type="{{id}}"><i class="fa-solid fa-plus"></i></a>
@@ -18,7 +18,7 @@
 
                     <div class="countdowns-container">
                         {{#each category.countdowns as | countdown id |}}
-                            <div class="countdown-edit-outer-container">
+                            <div class="countdown-edit-outer-container {{#if (gt ../nrCountdowns 1)}}many-countdowns{{/if}}">
                                 <div class="countdown-edit-container {{#unless countdown.editing}}viewing{{/unless}}" data-id="{{id}}">
                                     <a data-action="editCountdownImage" id="{{id}}"><img src="{{countdown.img}}" /></a>
                                     {{#unless countdown.editing}} 
