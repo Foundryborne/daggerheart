@@ -217,7 +217,7 @@ export default class DamageRoll extends DHRoll {
                 }
             }
 
-            if (config.isCritical) {
+            if (config.isCritical && config.dialog.configure !== false) {
                 const total = formulaData.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
                 if (total > 0) {
                     formulaData.roll.terms.push(...this.formatModifier(total));
