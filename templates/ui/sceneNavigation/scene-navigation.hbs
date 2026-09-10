@@ -45,7 +45,7 @@
 
 {{#*inline ".scene"}}
 <li class="scene-wrapper">
-    <div class="ui-control flexrow scene{{#if isView}} view{{/if}}" data-scene-id="{{id}}" data-action="viewScene" 
+    <div class="ui-control flexrow scene{{#if isView}} view{{/if}} {{cssClass}}" data-scene-id="{{id}}" data-action="viewScene" 
         {{#if tooltip}}data-tooltip aria-label="{{tooltip}}"{{/if}}>
         <span class="scene-name ellipsis">{{name}}</span>
         {{#if users}}
