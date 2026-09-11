@@ -17,7 +17,112 @@
     "granter": null,
     "featureForm": "passive"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Face Your Fear: Dice",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [
+          {
+            "type": "override",
+            "key": "system.tokens.wizard.faceYourFear",
+            "value": "1d10",
+            "priority": 0,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "xdbUAyo84oAfCuxr",
+      "img": "icons/sundries/gaming/dice-runed-brown.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>Your \"Face Your Fear\" feature extra damage starts at <strong>1d10</strong>.</p><p>It may increase at higher level.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!D3ffFWSXCza4WGcM.xdbUAyo84oAfCuxr"
+    },
+    {
+      "name": "Face Your Fear",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [
+          {
+            "key": "system.bonuses.damage",
+            "type": "add",
+            "value": "@system.tokens.wizard.faceYourFear",
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "XpBGT3JeQFeJGeyq",
+      "img": "icons/magic/light/orb-hand-green.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>When you succeed with Fear on an attack roll, you deal an extra <strong>1d10</strong> magic damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!D3ffFWSXCza4WGcM.XpBGT3JeQFeJGeyq"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!D3ffFWSXCza4WGcM"

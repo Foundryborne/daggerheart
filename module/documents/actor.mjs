@@ -1276,7 +1276,7 @@ export default class DhpActor extends Actor {
     }
 
     /**@inheritdoc */
-    *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+    *allApplicableEffects({ noSelfArmor, noTransferArmor, noHidden } = {}) {
         /** @param {DhActiveEffect} effect */
         const isRemovedByConditional = effect => {
             const { preparation } = CONFIG.DH.EFFECTS.conditionalPhases;
@@ -1286,10 +1286,12 @@ export default class DhpActor extends Actor {
         }
 
         for (const effect of this.effects) {
+            if (noHidden && effect.system.hidden) continue;
             if ((!noSelfArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
         }
         for (const item of this.items) {
             for (const effect of item.effects) {
+                if (noHidden && effect.system.hidden) continue;
                 if (effect.transfer && (!noTransferArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
             }
         }

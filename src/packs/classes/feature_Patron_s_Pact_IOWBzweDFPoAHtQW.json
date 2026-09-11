@@ -78,7 +78,61 @@
     "featureForm": "passive",
     "granter": null
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Patron Die",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [
+          {
+            "type": "dice",
+            "key": "system.tokens.warlock.patronDie",
+            "value": "d6",
+            "diceMode": "override",
+            "priority": 0,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "JrpoWQu1udvr610o",
+      "img": "icons/sundries/gaming/dice-runed-brown.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>Your Patron Die starts at a <strong>d6</strong> and increases to a <strong>d8</strong> at level 5.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!IOWBzweDFPoAHtQW.JrpoWQu1udvr610o"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!IOWBzweDFPoAHtQW"
