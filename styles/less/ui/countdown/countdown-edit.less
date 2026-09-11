@@ -12,17 +12,13 @@
     .edit-container {
         display: flex;
         flex-direction: column;
-        gap: 8px;
 
-        h2 {
-            text-align: center;
-            color: light-dark(@dark, @golden);
-        }
-
-        .header-tools {
+        .dialog-header {
             display: flex;
+            align-items: baseline;
             justify-content: space-between;
-            align-items: center;
+            gap: 8px;
+            padding-bottom: 0;
 
             .hide-tools {
                 white-space: nowrap;
@@ -31,171 +27,176 @@
                 align-items: center;
                 gap: 4px;
             }
-
-            .header-main-button {
-                height: 32px;
-                width: 250px;
-            }
         }
 
         .edit-content {
             display: flex;
             flex-direction: column;
-            gap: 8px;
             overflow-y: auto;
             overflow-x: hidden;
             max-height: 500px;
 
-            .countdown-edit-outer-container {
+            .countdown-category {
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+
+                legend {
+                    margin-left: 0.25rem;
+                    margin-right: 0.25rem;
+
+                    a {
+                        padding: 8px;
+                        margin: -8px;
+                    }
+                }
+            }
+
+            .countdowns-container {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+                gap: 3px;
 
-                .countdown-edit-container {
-                    width: 100%;
-                    display: grid;
-                    grid-template-columns: 48px 1fr 72px;
-                    align-items: center;
+                .countdown-edit-outer-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
                     gap: 8px;
+                    padding: 4px;
+                    border-radius: 6px;
 
-                    img {
-                        width: 52px;
-                        height: 52px;
-                        border-radius: 6px;
+                    &.editing {
+                        background: light-dark(@dark-blue-10, @beige-15);
                     }
 
-                    .countdown-edit-text {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
+                    .countdown-edit-container {
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 48px 1fr 72px;
+                        align-items: center;
                         gap: 8px;
 
-                        .countdown-edit-subtext {
+                        img {
+                            width: 52px;
+                            height: 52px;
+                            border-radius: 6px;
+                        }
+
+                        .countdown-edit-text {
                             display: flex;
-                            align-items: center;
-                            gap: 10px;
+                            flex-direction: column;
+                            justify-content: center;
+                            gap: 8px;
 
-                            .countdown-edit-sub-tag {
-                                padding: 3px 5px;
-                                font-size: var(--font-size-12);
-                                font: @font-body;
+                            .countdown-edit-subtext {
+                                display: flex;
+                                align-items: center;
+                                gap: 10px;
 
-                                background: light-dark(@dark-15, @beige-15);
-                                border: 1px solid light-dark(@dark, @beige);
-                                border-radius: 3px;
-                            }
+                                .countdown-edit-sub-tag {
+                                    padding: 3px 5px;
+                                    font-size: var(--font-size-12);
+                                    font: @font-body;
 
-                            .countdown-edit-loop {
-                                position: relative;
+                                    background: light-dark(@dark-15, @beige-15);
+                                    border: 1px solid light-dark(@dark, @beige);
+                                    border-radius: 3px;
+                                }
 
-                                .loop-marker {
-                                    position: absolute;
-                                    top: -4px;
-                                    font-size: 10px;
+                                .countdown-edit-loop {
+                                    position: relative;
+
+                                    .loop-marker {
+                                        position: absolute;
+                                        top: -4px;
+                                        font-size: 10px;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    .countdown-edit-tools {
+                        .countdown-edit-tools {
+                            display: flex;
+                            gap: 8px;
+
+                            &.same-row {
+                                margin-top: 17.5px;
+                            }
+
+                            a {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+
+                .countdown-edit-row-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+
+                    .countdown-edit-subrow {
                         display: flex;
                         gap: 8px;
+                    }
+                }
 
-                        &.same-row {
-                            margin-top: 17.5px;
+                .countdown-edit-input {
+                    position: relative;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 2px;
+
+                    &.type-input {
+                        min-width: 140px;
+                    }
+
+                    &.looping-input {
+                        min-width: 120px;
+                    }
+
+                    &.tiny {
+                        flex: 0;
+
+                        label {
+                            white-space: nowrap;
                         }
 
-                        a {
-                            font-size: 16px;
+                        input {
+                            min-width: 2.5rem;
                         }
                     }
-                }
-            }
 
-            .countdown-edit-row-container {
-                display: flex;
-                flex-direction: column;
-                gap: 2px;
-
-                .countdown-edit-subrow {
-                    display: flex;
-                    gap: 8px;
-                }
-            }
-
-            .countdown-edit-input {
-                position: relative;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2px;
-
-                &.type-input {
-                    min-width: 140px;
-                }
-
-                &.looping-input {
-                    min-width: 120px;
-                }
-
-                &.tiny {
-                    flex: 0;
-
-                    label {
-                        white-space: nowrap;
+                    .countdown-random-input {
+                        padding-right: var(--input-height);
                     }
 
-                    input {
-                        min-width: 2.5rem;
-                    }
-                }
+                    .countdown-random-button {
+                        position: absolute;
+                        right: 0px;
+                        bottom: 0px;
+                        border-radius: 0 6px 6px 0;
+                        height: var(--input-height);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0 8px;
 
-                .countdown-random-input {
-                    padding-right: var(--input-height);
-                }
+                        &[disabled] {
+                            opacity: 0.5;
+                        }
 
-                .countdown-random-button {
-                    position: absolute;
-                    right: 0px;
-                    bottom: 0px;
-                    border-radius: 0 6px 6px 0;
-                    height: var(--input-height);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 0 8px;
-
-                    &[disabled] {
-                        opacity: 0.5;
+                        i {
+                            font-size: 18px;
+                        }
                     }
 
-                    i {
-                        font-size: 18px;
+                    input,
+                    select {
+                        background: light-dark(@beige, @dark-blue);
+                        color: light-dark(@dark, @beige);
                     }
-                }
-
-                // .countdown-random-container {
-                //     width: 100%;
-                //     display: flex;
-
-                //     input {
-                //         border-radius: 6px 0 0 6px;
-                //         border-right: 0;
-                //     }
-
-                //     button {
-                //         border-radius: 0 6px 6px 0;
-                //         height: var(--input-height);
-                //         border: 1px solid white;
-                //     }
-                // }
-
-                input,
-                select {
-                    background: light-dark(@beige, @dark-blue);
-                    color: light-dark(@dark, @beige);
                 }
             }
         }

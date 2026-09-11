@@ -72,7 +72,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         },
         effect: {
             id: 'effect',
-            template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs',
+            scrollable: ['']
         },
         trigger: {
             id: 'trigger',

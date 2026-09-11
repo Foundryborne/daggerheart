@@ -89,7 +89,7 @@
         {{formField fields.resultBased value=damage.resultBased name=(concat basePath ".resultBased") localize=true classes="checkbox"}}
     {{/if}}
     {{#if (and (not @root.isNPC) @root.hasRoll (not damage.base) damage.resultBased)}}
-        <div class="nest-inputs">
+        <div>
             <fieldset class="one-column">
                 <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}</legend>
                 {{> formula key=damage.applyTo fields=fields.value.fields type=fields.type isBase=damage.base source=damage.value basePath=(concat basePath ".value")}}

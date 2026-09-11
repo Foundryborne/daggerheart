@@ -197,7 +197,7 @@ export default class DamageField extends fields.SchemaField {
     static getFormulaValue(part, data) {
         let formulaValue = part.value;
 
-        if (data.hasRoll && part.resultBased && data.roll.result.duality === -1) return part.valueAlt;
+        if (data.hasRoll && part.resultBased && data.roll.withFear) return part.valueAlt;
 
         const isAdversary = this.actor.type === 'adversary';
         const isHorde = this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id;
