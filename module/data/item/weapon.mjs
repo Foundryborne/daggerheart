@@ -156,10 +156,12 @@ export default class DHWeapon extends BaseDataItem {
             }
 
             await this.parent.deleteEmbeddedDocuments('ActiveEffect', removedEffectsUpdate);
-            changes.system.actions = removedActionsUpdate.reduce((acc, id) => {
-                acc[id] = _del;
-                return acc;
-            }, {});
+            if (removedActionsUpdate.length) {
+                changes.system.actions = removedActionsUpdate.reduce((acc, id) => {
+                    acc[id] = _del;
+                    return acc;
+                }, {});
+            }
 
             const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
             for (let weaponFeature of added) {

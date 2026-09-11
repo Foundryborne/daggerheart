@@ -4,7 +4,7 @@
  */
 .dh-card-header {
     .domain-card-banner {
-        --border-color: @golden;
+        --border-color: @card-trim-color;
         position: absolute;
         width: var(--width);
         top: 0;
@@ -51,7 +51,7 @@
     }
 
     .recall-cost {
-        --border-size: max(1px, calc(var(--width) * 0.066));
+        --border-size: clamp(1px, calc(var(--width) * 0.066), 3px);
         
         position: absolute;
         top: 8px;
@@ -65,7 +65,7 @@
         background-color: lab(8.11897% .811279 -12.254);
         color: white;
         font: bold calc(0.52 * var(--width)) @font-description;
-        border: var(--border-size) solid @golden;
+        border: var(--border-size) solid @card-trim-color;
         border-radius: 50%;
 
         &::after {

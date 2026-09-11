@@ -21,8 +21,8 @@
 
             <div class="selections-outer-container enlarged">
                 <div class="selections-container primary-ancestry-card">
-                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" primaryAncestry altPartialBlock=true secondaryDisabled=secondaryAncestry.uuid mixedAncestry=mixedAncestry }}
-                        {{#if uuid}} 
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" primaryAncestry altPartialBlock=true secondaryDisabled=secondaryAncestry.system mixedAncestry=mixedAncestry }}
+                        {{#if system}} 
                             <div class="ancestry-preview-info-container">
                                 <div class="ancestry-preview-label">{{name}}</div>
                                 <div class="ancestry-preview-features">
@@ -43,7 +43,7 @@
                 {{#if mixedAncestry}}
                     <div class="selections-container secondary-ancestry-card">
                             {{#> "systems/daggerheart/templates/components/card-preview.hbs" secondaryAncestry altPartialBlock=true }}
-                                {{#if uuid}}
+                                {{#if system}}
                                     <div class="ancestry-preview-info-container">
                                         <div class="ancestry-preview-label">{{name}}</div>
                                         <div class="ancestry-preview-features">

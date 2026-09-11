@@ -135,7 +135,12 @@
     "size": "huge",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": {
+      "type": "horde",
+      "hordeHP": 3,
+      "hordeDamage": "1d4+1"
+    }
   },
   "flags": {},
   "_id": "5YgEajn0wa4i85kC",
@@ -234,29 +239,6 @@
   },
   "items": [
     {
-      "name": "Horde",
-      "type": "feature",
-      "_id": "Q7DRbWjHl64CNwag",
-      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
-      "system": {
-        "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
-        "resource": null,
-        "actions": {},
-        "attribution": {},
-        "gmNotes": "",
-        "featureForm": "passive",
-        "granter": null
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!5YgEajn0wa4i85kC.Q7DRbWjHl64CNwag"
-    },
-    {
       "name": "Swashbuckler",
       "type": "feature",
       "_id": "N401rF937fLXMuMA",
@@ -339,51 +321,94 @@
         "compendiumSource": null
       },
       "_key": "!actors.items!5YgEajn0wa4i85kC.N401rF937fLXMuMA"
-    }
-  ],
-  "effects": [
+    },
     {
-      "type": "horde",
+      "type": "feature",
       "name": "Horde",
-      "img": "icons/magic/movement/chevrons-down-yellow.webp",
-      "disabled": true,
-      "_id": "OU05YZwFQffawtna",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "changes": [],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
+        "description": "When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null,
+        "featureForm": "passive",
+        "actorResources": []
       },
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
+      "flags": {
+        "daggerheart": {
+          "hordeFeature": true
+        }
       },
-      "description": "",
-      "tint": "#ffffff",
-      "transfer": false,
-      "statuses": [],
+      "effects": [
+        {
+          "name": "Horde",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "system": {
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "changes": [
+              {
+                "type": "standardAttack",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "@system.typeData.hordeDamage",
+                  "img": null
+                },
+                "priority": 0,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "EVtQtWuC24r0Br9T",
+          "type": "base",
+          "disabled": false,
+          "start": null,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 2,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!5YgEajn0wa4i85kC.SiTT33vaEnoWFErO.EVtQtWuC24r0Br9T"
+        }
+      ],
+      "_id": "SiTT33vaEnoWFErO",
+      "folder": null,
       "sort": 0,
-      "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "start": {
-        "combat": null,
-        "time": 0,
-        "combatant": null,
-        "initiative": null,
-        "round": null,
-        "turn": null
-      },
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!actors.effects!5YgEajn0wa4i85kC.OU05YZwFQffawtna"
+      "_key": "!actors.items!5YgEajn0wa4i85kC.SiTT33vaEnoWFErO"
     }
   ],
+  "effects": [],
   "_key": "!actors!5YgEajn0wa4i85kC"
 }

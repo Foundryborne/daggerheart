@@ -32,11 +32,6 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 initial: true,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.levelupAuto.label'
             }),
-            actionPoints: new fields.BooleanField({
-                required: true,
-                initial: false,
-                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.actionPoints.label'
-            }),
             hordeDamage: new fields.BooleanField({
                 required: true,
                 initial: true,
@@ -131,18 +126,6 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 })
             }),
             roll: new fields.SchemaField({
-                roll: new fields.SchemaField({
-                    gm: new fields.BooleanField({
-                        required: true,
-                        initial: false,
-                        label: 'DAGGERHEART.GENERAL.gm'
-                    }),
-                    players: new fields.BooleanField({
-                        required: true,
-                        initial: false,
-                        label: 'DAGGERHEART.GENERAL.player.plurial'
-                    })
-                }),
                 damage: new fields.SchemaField({
                     gm: new fields.StringField({
                         required: true,
@@ -154,7 +137,7 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                         required: true,
                         initial: 'never',
                         choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
-                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                        label: 'DAGGERHEART.GENERAL.player.plural'
                     })
                 }),
                 save: new fields.SchemaField({
@@ -168,7 +151,7 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                         required: true,
                         initial: 'never',
                         choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
-                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                        label: 'DAGGERHEART.GENERAL.player.plural'
                     })
                 }),
                 damageApply: new fields.SchemaField({
@@ -180,7 +163,7 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     players: new fields.BooleanField({
                         required: true,
                         initial: false,
-                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                        label: 'DAGGERHEART.GENERAL.player.plural'
                     })
                 }),
                 effect: new fields.SchemaField({
@@ -192,7 +175,7 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     players: new fields.BooleanField({
                         required: true,
                         initial: false,
-                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                        label: 'DAGGERHEART.GENERAL.player.plural'
                     })
                 })
             }),

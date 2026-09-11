@@ -46,13 +46,11 @@
             <div class="damage">{{attack.damage}}</div>
         </div>
         {{#if experiences.length}}
-            <div class="row experience-row">
-                <div class="experiences">
-                    <strong>{{localize "DAGGERHEART.GENERAL.Experience.plural"}}:</strong>
-                    {{#each experiences as |exp index|}}
-                        <span>{{exp.name}} {{exp.value}}{{#unless @last}},{{/unless}}</span>
-                    {{/each}}
-                </div>
+            <div class="row experience-row experiences">
+                <strong>{{localize "DAGGERHEART.GENERAL.Experience.plural"}}:</strong>
+                {{#each experiences as |exp index|}}
+                    <span>{{exp.name}} {{exp.value}}{{#unless @last}},{{/unless}}</span>
+                {{/each}}
             </div>
         {{/if}}
     </section>

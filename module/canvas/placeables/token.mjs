@@ -51,7 +51,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.overlay = null;
 
         // Categorize effects
-        const activeEffects = getIconVisibleActiveEffects(Array.from(this.actor?.allApplicableEffects() ?? []));
+        const activeEffects = getIconVisibleActiveEffects(this.actor?.getActiveEffects() ?? [])
         const overlayEffect = activeEffects.findLast(e => e.img && e.getFlag?.('core', 'overlay'));
 
         // Draw effects
@@ -82,7 +82,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const icon = new PIXI.Sprite(tex);
         icon.tint = tint ?? 0xffffff;
 
-        if (effect.system.stacking?.value > 1) {
+        if (effect.system?.stacking?.value > 1) {
             const stackOverlay = new PIXI.Text(effect.system.stacking.value, {
                 fill: '#f3c267',
                 stroke: '#000000',

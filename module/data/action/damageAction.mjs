@@ -1,3 +1,4 @@
+import { nestedReplaceFormulaData } from '../../helpers/utils.mjs';
 import DHBaseAction from './baseAction.mjs';
 import { DamageAltOutcome } from './subDatas/altOutcome.mjs';
 
@@ -72,6 +73,7 @@ export default class DHDamageAction extends DHBaseAction {
     getDamageFormula() {
         if (!this.damage.main) return '';
 
-        return Roll.replaceFormulaData(this.damage.main.value.getFormula(), this.actor?.getRollData() ?? {});
+        const rollData = this.actor?.getRollData() ?? {};
+        return nestedReplaceFormulaData(this.damage.main.value.getFormula(), rollData);
     }
 }

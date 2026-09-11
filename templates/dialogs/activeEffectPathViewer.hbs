@@ -1,0 +1,32 @@
+<div class="paths-main-container">
+    <div class="two-columns">
+        <div class="search-label">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>{{localize "DAGGERHEART.APPLICATIONS.ActiveEffectPathViewer.searchLabel"}}</span>
+        </div>
+        <input type="text" value="{{searchValue}}" class="path-search-input" />
+    </div>
+
+    <div class="paths-container">
+        {{#each pathGroups}}
+            <div class="group-container" data-group="{{this.name}}">
+                <div class="group-label">{{this.name}}</div>
+
+                {{#each this.paths}}
+                    <div class="path-container" data-value="{{this.value}}" data-name="{{this.label}}">
+                        <label class="name-container" {{#if this.hint}}data-tooltip="{{this.hint}}"{{/if}}>
+                            {{this.label}}
+                            {{#if this.hint}}<i class="fa-solid fa-circle-question"></i>{{/if}}
+                        </label>
+                        <a class="key-container" data-action="copyPath" id="{{@root.id}}">
+                            <div class="key-field">
+                                {{this.value}}
+                            </div>
+                            <div class="key-icon"><i class="fa-solid fa-copy"></i></div>
+                        </a>
+                    </div>
+                {{/each}}
+            </div>
+        {{/each}}
+    </div>
+</div>

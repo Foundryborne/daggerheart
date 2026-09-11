@@ -35,3 +35,7 @@ export const folderFlags = {
 export const activeEffectFlags = {
     evolutionMarker: 'evolutionMarker'
 };
+
+export const actorFlags = {
+    hordeFeature: 'hordeFeature'
+};

@@ -144,7 +144,14 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                         base64: false,
                         label: 'Image'
                     }),
-                    description: new fields.HTMLField()
+                    description: new fields.HTMLField(),
+                    color: new fields.ColorField({ 
+                        label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.domains.color.label',
+                        initial: '#000000'
+                    }),
+                    invertText: new fields.BooleanField({ 
+                        label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.domains.invertText.label' 
+                    })
                 })
             ),
             adversaryTypes: new fields.TypedObjectField(

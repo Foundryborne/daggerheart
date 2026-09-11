@@ -1,5 +1,6 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import { getDocFromElement, sortBy } from '../../../helpers/utils.mjs';
+import { getDocFromElement } from '../../../helpers/utils.mjs';
+import { sortBy } from '../../../helpers/functional.mjs';
 import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';

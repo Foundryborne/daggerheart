@@ -3,7 +3,8 @@ import DhDeathMove from '../../dialogs/deathMove.mjs';
 import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getArmorSources, getDocFromElement, getDocFromElementSync, itemAbleRollParse, sortBy } from '../../../helpers/utils.mjs';
+import { getArmorSources, getDocFromElement, getDocFromElementSync, itemAbleRollParse } from '../../../helpers/utils.mjs';
+import { sortBy } from '../../../helpers/functional.mjs';
 
 /** 
  * @import DhCharacter from '../../../data/actor/character.mjs';

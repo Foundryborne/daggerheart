@@ -7,7 +7,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@override */
     get isSuppressed() {
-        if (this.system.isSuppressed === true) return true;
+        if (!this.system.testConditionals(this.actor?.getRollData())) return true;
 
         // If this is a copied effect from an attachment, never suppress it
         // (These effects have attachmentSource metadata)
@@ -279,6 +279,25 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
             if (!this.parent.parent.system.isItemAvailable(this.parent)) {
                 this.transfer = false;
             }
+        }
+    }
+
+    /** @inheritdoc */
+    _displayScrollingStatus(enabled) {
+        const actor = this.target;
+        const tokens = actor.getActiveTokens(true);
+        const text = `${enabled ? '+' : '−'}(${this.name})`;
+        for (const token of tokens) {
+            if (!token.visible || token.document.isSecret) continue;
+            canvas.interface.createScrollingText(token.center, text, {
+                anchor: CONST.TEXT_ANCHOR_POINTS.CENTER,
+                direction: enabled ? CONST.TEXT_ANCHOR_POINTS.TOP : CONST.TEXT_ANCHOR_POINTS.BOTTOM,
+                distance: (2 * token.h),
+                fontSize: 28,
+                stroke: 0x000000,
+                strokeThickness: 4,
+                jitter: 0.25
+            });
         }
     }
 }

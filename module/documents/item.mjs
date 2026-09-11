@@ -409,7 +409,8 @@ export default class DHItem extends foundry.documents.Item {
                 name: latestSource.name,
                 img: latestSource.img,
                 system: _replace(system)
-            }]
+            }],
+            isRefresh: true
         }];
         if (effectCreates.length) {
             batch.push({

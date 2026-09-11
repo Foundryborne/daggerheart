@@ -89,12 +89,21 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
         this.#setupDragging();
         this.#setupResizing();
 
-        const fearPosition = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).fearPosition;
-
         if (options.isFirstRender) this.handleOffset();
         if (!options.force) return;
         
+
+        const appearanceSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+        const { fearPosition, displayFear } = appearanceSettings;
         this.handleStyleElement(fearPosition);
+
+        // Hide the fear tracker if disabled
+        // If we remove it from the DOM, foundry errors, so rely on display: none instead
+        if (displayFear === 'hide') {
+            this.element.style.display = 'none';
+        } else {
+            this.element.style.removeProperty('display');
+        }
 
         switch (fearPosition) {
             case 'topCenter':

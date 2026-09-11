@@ -1,3 +1,5 @@
+import { HordeAdversaryType } from '../data/actor/adversaryTypes/_module.mjs';
+
 export const abilities = {
     agility: {
         id: 'agility',
@@ -151,6 +153,10 @@ export const adversaryTypes = {
     }
 };
 
+export const adversaryTypeModels = {
+    horde: HordeAdversaryType
+}
+
 export const allAdversaryTypes = () => ({
     ...adversaryTypes,
     ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).adversaryTypes
@@ -230,6 +236,19 @@ export const tokenSize = {
         label: 'DAGGERHEART.CONFIG.TokenSize.gargantuan'
     }
 };
+
+export const activeEffectExtraPaths = {
+    adversary: [],
+    character: [
+        { value: '@prof', label: 'DAGGERHEART.GENERAL.proficiency', group: 'TYPES.Actor.character' },
+        { value: '@cast', label: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.cast.label', group: 'TYPES.Actor.character' }
+    ],
+    companion: [],
+    allActors: [
+        { value: '@fear', label: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.fear.label', group: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.allCategory' },
+        { value: '@partySize', label: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.partySize.label', group: 'DAGGERHEART.CONFIG.ActiveEffectExtraPaths.allCategory' }
+    ]
+}
 
 export const levelChoices = {
     attributes: {

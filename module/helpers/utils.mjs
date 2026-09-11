@@ -1,5 +1,6 @@
 import { diceTypes, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
+import { sortBy } from './functional.mjs';
 export * from './functional.mjs';
 
 /**
@@ -766,27 +767,6 @@ export function resetAndRerenderActors() {
 }
 
 /**
- * Returns an array sorted by a function that returns a thing to compare, or an array to compare in order
- * Similar to lodash's sortBy function.
- */
-export function sortBy(arr, fn) {
-    const directCompare = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
-    const cmp = (a, b) => {
-        const resultA = fn(a);
-        const resultB = fn(b);
-        if (Array.isArray(resultA) && Array.isArray(resultB)) {
-            for (let idx = 0; idx < Math.min(resultA.length, resultB.length); idx++) {
-                const result = directCompare(resultA[idx], resultB[idx]);
-                if (result !== 0) return result;
-            }
-            return 0;
-        }
-        return directCompare(resultA, resultB);
-    };
-    return arr.sort(cmp);
-}
-
-/**
  * Creates a proxy that allows retrieval of top data but diverts updates to a different object.
  * Generally used for roll data
  */
@@ -969,4 +949,19 @@ export function getAllResourceLabels() {
         };
         return acc;
     }, {});
+}
+
+/** 
+ * Performs a replace data that reruns if the new result includes @ strings
+ * It only repeats once for efficiency, full recursion would need to track previous results.
+ * This handles the case where lookup looks up a damage formula that also needs to be resolved.
+ * @param {string} formula
+ * @param {object} rollData
+ * @returns {string}
+ */
+export function nestedReplaceFormulaData(formula, rollData) {
+    const replacement = Roll.replaceFormulaData(formula, rollData);
+    return replacement !== formula && replacement.includes('@') 
+        ? Roll.replaceFormulaData(replacement, rollData)
+        : replacement;
 }

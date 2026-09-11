@@ -13,6 +13,11 @@
 });
 
 .application.sheet.daggerheart.actor.dh-style.environment {
+    &:not(.minimized) .window-header .window-title {
+        display: block;
+        opacity: unset;
+    }
+
     .tab {
         overflow-y: auto;
         &.active {

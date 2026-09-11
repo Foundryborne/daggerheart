@@ -8,7 +8,7 @@
             "feature": "Feature",
             "domainCard": "Domain Card",
             "consumable": "Consumable",
-            "loot": "Loot",
+            "loot": "Item",
             "weapon": "Weapon",
             "armor": "Armor",
             "beastform": "Beastform",
@@ -16,8 +16,7 @@
         },
         "ActiveEffect": {
             "base": "Standard",
-            "beastform": "Beastform",
-            "horde": "Horde"
+            "beastform": "Beastform"
         },
         "Actor": {
             "character": "Character",
@@ -228,6 +227,9 @@
                 "stacking": {
                     "title": "Stacking"
                 },
+                "conditionals": {
+                    "title": "Conditionals"
+                },
                 "targetDispositions": "Affected Dispositions"
             },
             "RangeDependance": {
@@ -311,12 +313,15 @@
                     }
                 },
                 "confirmDeleteAttack": "Are you sure you want to delete this adversary's attack?",
+                "changeType": {
+                    "title": "Change Adversary Type",
+                    "content": "You are changing the adversary type, which will delete type specific data. Are you sure you want to do this?"
+                },
                 "Embed": {
                     "attack": "ATK",
-                    "potentialAdversaries": "Potential Adversaries",
                     "thresholds": "Thresholds"
                 },
-                "hordeDamage": "Horde Damage",
+                "hordeDamage": "Horde Damage (Half HP)",
                 "horderHp": "Horde/HP",
                 "adversaryReactionRoll": {
                     "headerTitle": "Adversary Reaction Roll"
@@ -337,6 +342,10 @@
                         "label": "Burden: Ignore",
                         "hint": "Ignore burden rules"
                     }
+                },
+                "comboDieIndex": {
+                    "label": "Combo Die Index",
+                    "hint": "The number of dice sizes your combo die has been raised from 1d4. Add +1 to increase it one size."
                 },
                 "companionFeatures": "Companion Features",
                 "connections": "Connections",
@@ -430,9 +439,6 @@
                 },
                 "noPartner": "No Partner selected"
             },
-            "Embed": {
-
-            },
             "Environment": {
                 "FIELDS": {
                     "description": {
@@ -451,7 +457,12 @@
                         "label": "Type"
                     }
                 },
-                "newAdversary": "New Adversary"
+                "newAdversary": "New Adversary",
+                "Embed": {
+                    "potentialAdversaries": "Potential Adversaries",
+                    "any": "Any",
+                    "special": "Special"
+                }
             },
             "NPC": {
                 "FIELDS": {
@@ -478,6 +489,13 @@
             }
         },
         "APPLICATIONS": {
+            "ActiveEffectPathViewer": {
+                "title": "Active Effect Path Viewer",
+                "searchLabel": "Search Paths",
+                "copyPathNotification": "Copied ActiveEffect path for {name} to clipboard",
+                "macroButtonLabel": "Open Macro",
+                "macroCopyNotification": "A macro to open the Path Viewer has been copied to your clipboard. Paste it in a macro on your hotbar."
+            },
             "Attribution": {
                 "title": "Attribution"
             },
@@ -646,7 +664,8 @@
                     "text": "There is no active Party actor in the world or it's empty. Manually input the number of player characters."
                  },
                  "chatMessageTitle": "GM Consequences",
-                 "chatMessageText": "The GM gains fear"
+                 "chatMessageText": "The GM gains fear",
+                 "activeEffectPathViewer": "Active Effect Path Viewer"
             },
             "DeleteConfirmation": {
                 "title": "Delete {type} - {name}",
@@ -950,6 +969,12 @@
             },
             "MultiActionSelect": {
                 "instructionText": "Select Which Action to Use"
+            },
+            "SettingsSidebar": {
+                "systemLabel": "Game System",
+                "versionLabel": "Version {version}",
+                "wikiLink": "Wiki",
+                "discordLink": "Discord"
             }
         },
         "CLASS": {
@@ -967,6 +992,12 @@
                 "longRest": "Next Long Rest",
                 "session": "Next Session",
                 "custom": "Custom"
+            },
+            "ActiveEffectExtraPaths": {
+                "allCategory": "All Actors",
+                "cast": { "label": "Spellcasting Modifier" },
+                "fear": { "label": "Fear Amount" },
+                "partySize": { "label": "Party Size" }
             },
             "ActionAutomationChoices": {
                 "never": "Never",
@@ -1581,6 +1612,33 @@
                     "autoAppliedByLabel": "Max Stress"
                 }
             },
+            "ConditionalComparator": {
+                "less": "Less Than",
+                "lessEquals": "Less Or Equals",
+                "equals": "Equals",
+                "greaterEquals": "Greater Or Equals",
+                "greater": "Greater Than",
+                "truthy": "Is True",
+                "falsy": "Is False"
+            },
+            "ConditionalFailureMode": {
+                "suppress": "Suppress",
+                "hide": "Hide"
+            },
+            "ConditionalPhase": {
+                "preparation": "Preparation",
+                "roll": "Roll"
+            },
+            "ConditionalType": {
+                "dataCompare": "Data Compare",
+                "weaponRestriction": "Weapon Restriction",
+                "actionType": "Action Type",
+                "damageType": "Damage Type"
+            },
+            "ConditionalWeaponRestrictionType": {
+                "sameWeapon": "Same Weapon",
+                "anyWeapon": "Any Weapon"
+            },
             "CountdownProgressType": {
                 "actionRoll": "Action Roll",
                 "characterAttack": "Character Attack",
@@ -1620,10 +1678,12 @@
             "DamageType": {
                 "physical": {
                     "name": "Physical",
+                    "lowercase": "physical",
                     "abbreviation": "Phy"
                 },
                 "magical": {
                     "name": "Magical",
+                    "lowercase": "magical",
                     "abbreviation": "Mag"
                 },
                 "direct": {
@@ -2797,6 +2857,22 @@
                     }
                 }
             },
+            "Conditionals": {
+                "phase": "Phase",
+                "failureMode": "Failure Mode",
+                "dataCompare": {
+                    "comparator": "Comparator"
+                },
+                "weaponRestriction": {
+                    "weaponType": "Weapon Type"
+                },
+                "actionType": {
+                    "actionTypes": "Action Types"
+                },
+                "damageType": {
+                    "damageType": "Damage Type"
+                }
+            },
             "Duration": {
                 "passive": "Passive",
                 "temporary": "Temporary"
@@ -2956,43 +3032,43 @@
                 "plural": "Domains",
                 "arcana": {
                     "label": "Arcana",
-                    "description": "This is the domain of the innate or instinctual use of magic. Those who walk this path tap into the raw, enigmatic forces of the realms to manipulate both the elements and their own energy. Arcana offers wielders a volatile power, but it is incredibly potent when correctly channeled."
+                    "description": "Arcana is the domain of innate and instinctual magic. Those who choose this path tap into the raw, enigmatic forces of the realms to manipulate both their own energy and the elements. Arcana offers wielders a volatile power, but it is incredibly potent when correctly channeled."
                 },
                 "blade": {
                     "label": "Blade",
-                    "description": "This is the domain of those who dedicate their lives to the mastery of weapons. Whether by blade, bow, or perhaps a more specialized arm, those who follow this path have the skill to cut short the lives of others. Blade requires study and dedication from its followers, in exchange for inexorable power over death."
+                    "description": "Blade is the domain of weapon mastery. Whether by steel, bow, or perhaps a more specialized arm, those who follow this path have the skill to cut short the lives of others. Wielders of Blade dedicate themselves to achieving inexorable power over death."
                 },
                 "bone": {
                     "label": "Bone",
-                    "description": "This is the domain of mastery of swiftness and tactical mastery. Practitioners of this domain have an uncanny control over their own physical abilities, and an eye for predicting the behaviors of others in combat. Bone grants its adherents unparalleled understanding of bodies and their movements in exchange for diligent training."
+                    "description": "Bone is the domain of tactics and the body. Practitioners of this domain have an uncanny control over their own physical abilities and an eye for predicting the behaviors of others in combat. Adherents to Bone gain an unparalleled understanding of bodies and their movements."
                 },
                 "codex": {
                     "label": "Codex",
-                    "description": "This is the domain of intensive magical study. Those who seek magical knowledge turn to the recipes of power recorded in books, on scrolls, etched into walls, or tattooed on bodies. Codex offers a commanding and versatile understanding of magic to those devotees who are willing to seek beyond the common knowledge."
+                    "description": "Codex is the domain of intensive magical study. Those who seek magical knowledge turn to the equations of power recorded in books, written on scrolls, etched into walls, or tattooed on bodies. Codex offers a commanding and versatile understanding of magic to devotees who pursue knowledge beyond the boundaries of common wisdom."
                 },
                 "dread": {
                     "label": "Dread",
-                    "description": "This is the domain of nightmares and fear. Those who choose this path can call forth monstrosities, enfeeble their foes, and channel terrifying magic to destroy their enemies. Dread grants its adherents power over forces most are too afraid to employ."
+                    "description": "Dread is the domain of nightmares and fear. Those who choose this path can call forth monstrosities, enfeeble their foes, and channel terrifying magic to destroy their enemies. Dread grants its adherents power over forces most are too afraid to employ."
                 },
                 "grace": {
                     "label": "Grace",
-                    "description": "This is the domain of charisma. Through rapturous storytelling, clever charm, or a shroud of lies, those who channel this power define the realities of their adversaries, bending perception to their will. Grace offers its wielders raw magnetism and mastery over language."
+                    "description": "Grace is the domain of charisma. Through rapturous storytelling, charming spells, or a shroud of lies, those who channel this power define the realities of their adversaries, bending perception to their will. Grace offers its wielders raw magnetism and mastery over language."
                 },
                 "midnight": {
                     "label": "Midnight",
-                    "description": "This is the domain of shadows and secrecy. Whether by clever tricks, or cloak of night those who channel these forces are practiced in that art of obscurity and there is nothing hidden they cannot reach. Midnight offers practitioners the incredible power to control and create enigmas."
+                    "description": "Midnight is the domain of shadows and secrecy. Whether by clever tricks, deft magic, or the cloak of night, those who channel these forces practice the art of obscurity and can uncover sequestered treasures. Midnight offers practitioners the power to control and create enigmas."
                 },
                 "sage": {
                     "label": "Sage",
-                    "description": "This is the domain of the natural world. Those who walk this path tap into the unfettered power of the earth and its creatures to unleash raw magic. Sage grants its adherents the vitality of a blooming flower and ferocity of a hungry predator."
+                    "description": "Sage is the domain of the natural world. Those who walk this path tap into the unfettered power of the earth and its creatures to unleash raw magic. Sage grants its adherents the vitality of a blooming flower and the ferocity of a ravenous predator."
                 },
                 "splendor": {
                     "label": "Splendor",
-                    "description": "This is the domain of life. Through this magic, followers gain the ability to heal, though such power also grants the wielder some control over death. Splendor offers its disciples the magnificent ability to both give and end life."
+                    "description": "Splendor is the domain of life. Through this magic, followers gain the ability to heal and, to an extent, control death. Splendor offers its disciples the magnificent ability to both give and end life."
                 },
                 "valor": {
                     "label": "Valor",
-                    "description": "This is the domain of protection. Whether through attack or defense, those who choose this discipline channel formidable strength to protect their allies in battle. Valor offers great power to those who raise their shield in defense of others."
+                    "description": "Valor is the domain of protection. Whether through attack or defense, those who choose this discipline channel formidable strength to protect their allies in battle. Valor offers great power to those who raise their shields in defense of others."
                 }
             },
             "Effect": {
@@ -3177,7 +3253,8 @@
                 "triggers": "Triggers",
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
-                "packs": "Packs"
+                "packs": "Packs",
+                "conditionals": "Conditionals"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -3268,6 +3345,7 @@
             "itemResource": "Item Resource",
             "itemQuantity": "Item Quantity",
             "items": "Items",
+            "key": "Key",
             "label": "Label",
             "level": "Level",
             "levelShort": "Lv",
@@ -3294,7 +3372,7 @@
             "partner": "Partner",
             "player": {
                 "single": "Player",
-                "plurial": "Players"
+                "plural": "Players"
             },
             "portrait": "Portrait",
             "preview": "Preview",
@@ -3730,10 +3808,6 @@
                         "label": "Levelup Automation",
                         "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."
                     },
-                    "actionPoints": {
-                        "label": "Action Points",
-                        "hint": "Automatically give and take Action Points as combatants take their turns."
-                    },
                     "hordeDamage": {
                         "label": "Automatic Horde Damage",
                         "hint": "Automatically active horde effect to lower damage when reaching half or lower HP."
@@ -3753,10 +3827,6 @@
                         "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
                     },
                     "roll": {
-                        "roll": {
-                            "label": "Roll",
-                            "hint": "Auto behavior for rolls like Attack, Spellcast, etc."
-                        },
                         "damage": {
                             "label": "Damage/Healing Roll",
                             "hint": "Auto behavior for Damage & Healing rolls after the Attack/Spellcast."
@@ -3828,6 +3898,14 @@
                 "deleteResourceTitle": "Delete Homebrew Resource",
                 "deleteResourceText": "Are you sure you want to delete the resource?",
                 "FIELDS": {
+                    "domains": {
+                        "color": { 
+                            "label": "Banner Color" 
+                        },
+                        "invertText": {
+                            "label": "Invert Text Color"
+                        }
+                    },
                     "maxFear": {
                         "label": "Max Fear"
                     },
@@ -3982,6 +4060,10 @@
                         },
                         "tokens": {
                             "label": "Tokens"
+                        },
+                        "automation": {
+                            "label": "Automation",
+                            "hint": "Automatically give and take Action Points as combatants take their turns."
                         }
                     },
                     "massiveDamage": {
@@ -4163,7 +4245,7 @@
                     "weapons": "Weapons",
                     "armors": "Armors",
                     "consumables": "Consumables",
-                    "loots": "Loot",
+                    "loots": "Items",
                     "transformations": "Transformations"
                 }
             },

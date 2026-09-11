@@ -33,7 +33,8 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
             selectRefreshable: DaggerheartMenu.#onSelectRefreshable,
             refreshActors: DaggerheartMenu.#onRefreshActors,
             createFallCollisionDamage: DaggerheartMenu.#onCreateFallCollisionDamage,
-            rollDowntimeFear: DaggerheartMenu.#onRollDowntimeFear
+            rollDowntimeFear: DaggerheartMenu.#onRollDowntimeFear,
+            showEffectChangePaths: DaggerheartMenu.#onShowEffectChangePaths
         }
     };
 
@@ -126,6 +127,10 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
         if (automation.gm) {
             ui.resources.updateFear(ui.resources.currentFear + fearRoll.total);
         }
+    }
+
+    static async #onShowEffectChangePaths() {
+        game.system.api.macros.showActiveEffectPathViewer();
     }
 
     async getFallbackPartySize() {

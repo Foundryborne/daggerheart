@@ -5,6 +5,7 @@ import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, 
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
+import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
 export default class DhpActor extends Actor {
     parties = new Set();
@@ -134,6 +135,36 @@ export default class DhpActor extends Actor {
                     multiclass: feature.system.multiclassOrigin,
                     identifier: feature.system.identifier
                 };
+            }
+        }
+
+        if (source.type === 'adversary') {
+            for (const effect of (source.effects ?? [])) {
+                if (effect.type === 'horde') {
+                    effect.type = 'base';
+                    effect.disabled = false;
+                    const variantDamage = new DHDamageData(source.system.attack.damage.main);
+                    const hordeDamage = variantDamage.valueAlt.getFormula();
+                    effect.system.changes.push({
+                        type: 'standardAttack',
+                        value: {
+                            name: '',
+                            damageTypes: [],
+                            attackRange: null,
+                            trait: null,
+                            img: null,
+                            damageFormula: hordeDamage
+                        },
+                        phase: 'initial',
+                        priority: 0
+                    });
+                    effect.system.conditionals = [{
+                        type: 'dataCompare',
+                        key: 'system.resources.hitPoints.value',
+                        comparator: 'greaterEquals',
+                        value: '@system.resources.hitPoints.max / 2'
+                    }]
+                }
             }
         }
 
@@ -721,7 +752,15 @@ export default class DhpActor extends Actor {
                 ability: abilityLabel
             }),
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this),
+            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
+                {
+                    action: {
+                        actionType: 'action', 
+                        roll: { type: 'trait' }
+                    }
+                }, 
+                this
+            ),
             roll: {
                 trait: trait,
                 type: 'trait'
@@ -1167,8 +1206,8 @@ export default class DhpActor extends Actor {
         const conditions = CONFIG.DH.GENERAL.conditions();
         const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
         const autoVulnerableActive = this.system.isAutoVulnerableActive;
-        return this.effects
-            .filter(x => !x.disabled)
+        return this.allApplicableEffects()
+            .filter(x => !x.disabled && !x.isSuppressed)
             .reduce((acc, effect) => {
                 /* Could be generalized if needed. Currently just related to Vulnerable */
                 const isAutoVulnerableEffect =
@@ -1238,12 +1277,20 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+        /** @param {DhActiveEffect} effect */
+        const isRemovedByConditional = effect => {
+            const { preparation } = CONFIG.DH.EFFECTS.conditionalPhases;
+            const { hide } = CONFIG.DH.EFFECTS.conditionalFailureModes;
+            const rollData = this.getRollData();
+            return !effect.system.testConditionals(rollData, { phase: preparation.id, failureMode: hide.id });
+        }
+
         for (const effect of this.effects) {
-            if (!noSelfArmor || effect.type !== 'armor') yield effect;
+            if ((!noSelfArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
         }
         for (const item of this.items) {
             for (const effect of item.effects) {
-                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
+                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
             }
         }
     }
@@ -1305,7 +1352,8 @@ export default class DhpActor extends Actor {
                 name: latestSource.name,
                 img: latestSource.img,
                 system: _replace(system)
-            }]
+            }],
+            isRefresh: true
         }];
         if (effectCreates.length) {
             batch.push({

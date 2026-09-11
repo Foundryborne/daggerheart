@@ -341,7 +341,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": true,
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -376,13 +385,14 @@
                 },
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": ""
               },
               "resources": {}
             },
             "target": {
               "type": "any",
-              "amount": null
+              "amount": 1
             },
             "effects": [
               {

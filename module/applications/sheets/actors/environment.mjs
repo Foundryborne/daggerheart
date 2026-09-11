@@ -60,6 +60,10 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         }
     };
 
+    get title() {
+        return this.actor.isToken ? `[${_loc('DOCUMENT.Token')}] ${super.title}` : super.title;
+    }
+
     /**  @inheritdoc */
     _initializeApplicationOptions(options) {
         const applicationOptions = super._initializeApplicationOptions(options);

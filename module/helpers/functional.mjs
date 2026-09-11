@@ -67,3 +67,24 @@ export function keyBy(arr, keyFn) {
         return r;
     }, {})
 }
+
+/**
+ * Returns an array sorted by a function that returns a thing to compare, or an array to compare in order
+ * Similar to lodash's sortBy function.
+ */
+export function sortBy(arr, fn) {
+    const directCompare = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+    const cmp = (a, b) => {
+        const resultA = fn(a);
+        const resultB = fn(b);
+        if (Array.isArray(resultA) && Array.isArray(resultB)) {
+            for (let idx = 0; idx < Math.min(resultA.length, resultB.length); idx++) {
+                const result = directCompare(resultA[idx], resultB[idx]);
+                if (result !== 0) return result;
+            }
+            return 0;
+        }
+        return directCompare(resultA, resultB);
+    };
+    return arr.sort(cmp);
+}
