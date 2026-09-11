@@ -6,6 +6,9 @@ export const customChangeTypes = {
     },
     standardAttack: {
         id: 'standardAttack'
+    },
+    dice: {
+        id: 'dice'
     }
 };
 
@@ -43,6 +46,21 @@ export const activeEffectDurations = {
     custom: {
         id: 'custom',
         label: 'DAGGERHEART.CONFIG.ActiveEffectDuration.custom'
+    }
+};
+
+export const diceMode = {
+    override: {
+        id: 'override',
+        label: 'Override'
+    },
+    upgrade: {
+        id: 'upgrade',
+        label: 'Upgrade'
+    },
+    downgrade: {
+        id: 'downgrade',
+        label: 'Downgrade'
     }
 };
 

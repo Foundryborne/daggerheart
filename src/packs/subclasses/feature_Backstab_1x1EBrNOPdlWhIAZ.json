@@ -16,7 +16,60 @@
     "featureForm": "passive",
     "granter": null
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Backstab",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "type": "dice",
+            "key": "system.tokens.assassin.markedForDeath",
+            "value": "1",
+            "diceMode": "upgrade",
+            "priority": 40,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "HtHG13CqeLoqM98r",
+      "img": "icons/magic/death/weapon-scythe-rune-green.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>Your \"Marked for Death\" feature uses <strong>d8s</strong> instead of d6s.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!1x1EBrNOPdlWhIAZ.HtHG13CqeLoqM98r"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!1x1EBrNOPdlWhIAZ"

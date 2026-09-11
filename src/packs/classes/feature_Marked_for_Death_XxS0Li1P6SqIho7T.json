@@ -111,14 +111,14 @@
           {
             "key": "system.bonuses.damage.physical.dice",
             "type": "add",
-            "value": "(@system.tier)d4",
+            "value": "(@system.tier)@system.tokens.assassin.markedForDeath",
             "priority": null,
             "phase": "initial"
           },
           {
             "key": "system.bonuses.damage.magical.dice",
             "type": "add",
-            "value": "(@system.tier)d4",
+            "value": "(@system.tier)@system.tokens.assassin.markedForDeath",
             "priority": null,
             "phase": "initial"
           }
@@ -160,6 +160,58 @@
         "compendiumSource": null
       },
       "_key": "!items.effects!XxS0Li1P6SqIho7T.DUy0e3sEGIzSdBWA"
+    },
+    {
+      "name": "Marked For Death: Dice",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "type": "dice",
+            "key": "system.tokens.assassin.markedForDeath",
+            "value": "d4",
+            "diceMode": "override",
+            "priority": 0,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "llUmVwLwVMqFUto0",
+      "img": "icons/sundries/gaming/dice-runed-tan.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>When you deal damage to a target you've <em>Marked for Death</em>, add a number of <strong>d4s</strong> equal to your tier to the damage roll.</p><p>The dice size might increase at higher levels.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 0,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!XxS0Li1P6SqIho7T.llUmVwLwVMqFUto0"
     }
   ],
   "sort": 0,
