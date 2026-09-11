@@ -298,6 +298,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 'systems/daggerheart/templates/ui/itemBrowser/itemContainer.hbs',
                 {
                     items: this.items,
+                    tooltipType: this.items[0] instanceof Item ? 'item' : ['environment', 'adversary'].includes(this.items[0]?.type) ? 'actor' : null,
                     menu: this.selectedMenu,
                     formatLabel: this.formatLabel,
                     viewSheet: this.items[0] instanceof Actor

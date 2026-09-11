@@ -11,7 +11,7 @@
 /** Make tooltip container invisible for some types, leaving everything to the child */
 #tooltip,
 .locked-tooltip {
-    &:has(.dh-card) {
+    &:has(.dh-card, .embed) {
         padding: 0;
         background: none;
         backdrop-filter: unset;
@@ -23,9 +23,19 @@
             border-color: light-dark(@dark-80, @beige-80);
         }
     }
+
+    &:has(.embed) {
+        max-width: unset;
+        .embed {
+            width: 24rem;
+            max-height: 90vh;
+            overflow: auto;
+            font-size: var(--font-size-13);
+        }
+    }
 }
-aside[role='tooltip'].locked-tooltip:has(.dh-card) {
-    .dh-card {
+aside[role='tooltip'].locked-tooltip:has(.dh-card, .embed) {
+    .dh-card, .embed {
         box-shadow: 0 0 25px @golden-90;
         border-color: 1px solid light-dark(@dark-blue, @golden);
     }

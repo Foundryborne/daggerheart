@@ -3,6 +3,9 @@
         <div class="name actor-name">{{actor.name}}</div>
         <div class="tier">
             {{localize "DAGGERHEART.GENERAL.Tiers.typed" tier=actor.system.tier type=type}}
+            {{#if (and config.includeAttribution actor.system.attributionLabel)}}
+                <div class="attribution">({{actor.system.attributionLabel}})</div>
+            {{/if}}
         </div>
         <section class="description">{{{description}}}</section>
         <div class="motives">
