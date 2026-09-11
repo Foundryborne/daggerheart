@@ -7,7 +7,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@override */
     get isSuppressed() {
-        if (this.system.isSuppressed === true) return true;
+        if (!this.system.testConditionals(this.actor?.getRollData())) return true;
 
         // If this is a copied effect from an attachment, never suppress it
         // (These effects have attachmentSource metadata)

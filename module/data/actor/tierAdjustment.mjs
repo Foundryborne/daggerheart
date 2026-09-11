@@ -49,11 +49,14 @@ export function getTierAdjustedAdversary(source, tier) {
         const damage = source.system.attack.damage;
         if (!damage?.main) throw new Error('Unexpected missing damage in adversary');
 
-        for (const property of ['value', 'valueAlt']) {
-            const data = damage.main[property];
-            const previousFormula = getFormula(data);
-            const value = calculateAdjustedDamage(previousFormula, 'attack', damageMeta);
-            applyAdjustedDamage(data, value);
+        const previousFormula = getFormula(damage.main.value);
+        const value = calculateAdjustedDamage(previousFormula, 'attack', damageMeta);
+        applyAdjustedDamage(damage.main.value, value);
+
+        if (source.system.typeData?.hordeDamage) {
+            // Update hordes. They don't use "attack" scaling, which attempts to match tier for dice count
+            const value = calculateAdjustedDamage(source.system.typeData.hordeDamage, 'action', damageMeta);
+            source.system.typeData.hordeDamage = getFormula(value);
         }
     } catch (err) {
         ui.notifications.warn('Failed to convert attack damage of adversary');
@@ -88,15 +91,17 @@ export function getTierAdjustedAdversary(source, tier) {
                 const result = [];
                 for (const property of ['value', 'valueAlt']) {
                     const { [property]: data, type: damageType } = action.damage.main;
-                    const previousFormula = getFormula(data);
-                    const isActuallyAttack =
-                        previousFormula === initialAttack.value &&
-                        foundry.utils.equals(damageType.toSorted(), initialAttack.type) &&
-                        !descriptionFormulas.includes(previousFormula);
-                    const type = isActuallyAttack ? 'attack' : 'action';
-                    const value = calculateAdjustedDamage(previousFormula, type, damageMeta);
-                    applyAdjustedDamage(data, value);
-                    result.push({ previousFormula, formula: getFormula(value) });
+                    if (data) {
+                        const previousFormula = getFormula(data);
+                        const isActuallyAttack =
+                            previousFormula === initialAttack.value &&
+                            foundry.utils.equals(damageType.toSorted(), initialAttack.type) &&
+                            !descriptionFormulas.includes(previousFormula);
+                        const type = isActuallyAttack ? 'attack' : 'action';
+                        const value = calculateAdjustedDamage(previousFormula, type, damageMeta);
+                        applyAdjustedDamage(data, value);
+                        result.push({ previousFormula, formula: getFormula(value) });
+                    }
                 }
 
                 // Override text in the description with those values
@@ -121,6 +126,8 @@ export function getTierAdjustedAdversary(source, tier) {
 
 /**
  * Converts a damage object to a new damage range
+ * @param {string} formula the damage formula we are converting
+ * @param {'attack' | 'action'} type the use of the damage. Affects scaling, attack attempts to preserve certain things
  * @returns {{ diceQuantity: number; faces: number; bonus: number }} the adjusted result as a combined term
  * @throws error if the formula is the wrong type
  */
