@@ -3312,7 +3312,7 @@
             "partner": "Partner",
             "player": {
                 "single": "Player",
-                "plurial": "Players"
+                "plural": "Players"
             },
             "portrait": "Portrait",
             "preview": "Preview",
@@ -3767,10 +3767,6 @@
                         "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
                     },
                     "roll": {
-                        "roll": {
-                            "label": "Roll",
-                            "hint": "Auto behavior for rolls like Attack, Spellcast, etc."
-                        },
                         "damage": {
                             "label": "Damage/Healing Roll",
                             "hint": "Auto behavior for Damage & Healing rolls after the Attack/Spellcast."
