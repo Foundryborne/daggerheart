@@ -350,7 +350,7 @@ export default class DHItem extends foundry.documents.Item {
             }
 
             // Remove valueAlt from damage that isn't result based
-            if (action.damage.main && !action.damage.main.resultBased) {
+            if (action.damage?.main && !action.damage.main.resultBased) {
                 action.damage.main.valueAlt = null;
             }
             for (const resource of Object.values(action.damage?.resources ?? {})) {
