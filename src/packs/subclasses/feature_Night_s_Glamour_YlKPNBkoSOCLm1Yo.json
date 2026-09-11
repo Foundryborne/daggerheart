@@ -72,7 +72,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [
     {
@@ -98,7 +99,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "jL8e92ig2yV2KTpJ",
       "type": "base",

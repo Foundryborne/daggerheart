@@ -170,7 +170,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -205,7 +206,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

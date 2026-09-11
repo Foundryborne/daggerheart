@@ -204,7 +204,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "IHLJjpOQyWjmCLAL",
       "img": "icons/magic/unholy/hands-circle-light-green.webp",
@@ -227,7 +228,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "fA2wVTxpDPaTlP9v",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
@@ -280,7 +282,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "OWUM3eFiZrIn0Bjd",
       "img": "icons/magic/unholy/orb-hands-pink.webp",
@@ -340,17 +343,9 @@
                   "applyTo": "hitPoints",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -393,7 +388,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "CL3wPZNOtw6m5WVT",
       "img": "icons/magic/unholy/hand-light-pink.webp",
@@ -411,7 +407,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -449,21 +446,14 @@
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.physical.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": 0,
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.magical.bonus",
-                "type": "add",
-                "value": 0,
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": 0,
                 "priority": null,
@@ -475,7 +465,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ]
+              }
+            ]
           },
           "disabled": false,
           "duration": {
@@ -585,7 +583,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AJdG1krRvixBFCZG",
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
@@ -636,17 +635,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -669,7 +660,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "GUAo44cJCnS1GE9p",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",

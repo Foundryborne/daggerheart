@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Mt5D5PIH7hNVid4I",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -169,7 +171,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "SvtXB2X6a8abxxpB",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
@@ -210,22 +213,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -311,22 +306,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -377,7 +364,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JHpHvFvrJGI2Kwe1",
       "img": "icons/magic/lightning/bolts-forked-large-blue.webp",
@@ -420,16 +408,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -474,7 +454,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "uYDndZAjve1MmeIh",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -496,7 +477,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "OYFU3hLG9WbIEwHc",
           "type": "base",
@@ -593,7 +575,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "nrUpskylAzI4yuyF",
       "img": "icons/creatures/birds/corvid-call-sound-blue.webp",
@@ -616,7 +599,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "QPzhKkqa0ZD50Zem",
       "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
@@ -634,14 +618,7 @@
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": "@system.resources.stress.value",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,
@@ -654,7 +631,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "keCiREQB3vd49k0U",
           "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
@@ -725,16 +703,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -765,7 +735,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "BWJJE4K7vnmEYyE5",
       "img": "icons/magic/lightning/orb-ball-blue.webp",
@@ -789,7 +760,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "ct6djseD8SxVuYOE",
           "img": "icons/magic/lightning/orb-ball-blue.webp",

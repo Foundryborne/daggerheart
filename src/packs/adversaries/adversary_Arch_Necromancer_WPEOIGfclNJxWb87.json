@@ -34,7 +34,6 @@
     },
     "type": "leader",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "aVeeI6FLlefju6FP": {
         "name": "Forbidden Knowledge",
@@ -97,7 +96,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -140,7 +140,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "WPEOIGfclNJxWb87",
@@ -311,7 +312,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "jNmMyq5QI2HNgffy",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
@@ -372,20 +374,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -469,17 +463,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -517,7 +503,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "4EECsXzHFG0RoIg0",
       "img": "icons/magic/unholy/projectile-missile-green.webp",
@@ -536,7 +523,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -616,7 +604,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "XxXOrFovbCz9zFxR",
       "img": "icons/magic/death/undead-zombie-grave-green.webp",
@@ -702,7 +691,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "k4MSykLRoW3qp7Lk",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -754,19 +744,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -829,7 +811,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "FKcuCo0v2U7fVkqq",
       "img": "icons/magic/unholy/hand-claw-fire-green.webp",

@@ -44,7 +44,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "u13fiOMD8B36PkiZ",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",

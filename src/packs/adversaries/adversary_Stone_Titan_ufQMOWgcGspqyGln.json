@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "lei1y42EyJOVlb3Z",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -241,7 +243,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "6Rcg7M3ntTPSqzjG",
       "img": "icons/skills/melee/hand-grip-hammer-spiked-blue.webp",
@@ -269,7 +272,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "zAWo04FkNNOrujcR",
           "type": "base",
@@ -359,7 +363,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Xoddbd1VoPNcLgE5",
       "img": "icons/magic/light/explosion-star-small-blue-yellow.webp",
@@ -374,21 +379,14 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": "@stacks",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
@@ -404,7 +402,15 @@
               "value": 1,
               "max": null
             },
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ]
+              }
+            ]
           },
           "_id": "Hpk6tlMaFn6tTqIo",
           "type": "base",
@@ -471,16 +477,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -520,7 +518,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "L8NmHjefixhO07zx",
       "img": "icons/skills/melee/strike-hammer-destructive-blue.webp",

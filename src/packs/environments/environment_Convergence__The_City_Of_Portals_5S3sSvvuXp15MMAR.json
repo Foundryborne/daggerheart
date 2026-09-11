@@ -73,7 +73,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oqZmYjmq7nHwqK7d",
       "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",
@@ -93,7 +94,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "Sx29pwoNC1prZcY5",
           "type": "base",
@@ -140,7 +142,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "cVL5PXbDsM7wccZf",
       "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
@@ -163,7 +166,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "uYTJYPixVWPMgMjs",
       "img": "icons/commodities/treasure/goblet-coins-gold.webp",
@@ -290,7 +294,8 @@
             "img": "icons/environment/people/infantry-armored.webp"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "LyaalfQw9F2uRj9Z",
       "img": "icons/magic/perception/orb-eye-scrying.webp",
@@ -310,7 +315,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "mzmkBPSEjmqE7dr5",
           "type": "base",
@@ -377,16 +383,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -426,7 +424,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "VaMnxpVawLRSYJs1",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",

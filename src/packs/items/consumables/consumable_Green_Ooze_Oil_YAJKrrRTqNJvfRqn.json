@@ -103,14 +103,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.dice",
-            "type": "add",
-            "value": "1d8",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.secondaryWeapon.dice",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "1d8",
             "priority": null,
@@ -123,7 +116,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "anyWeapon"
+          }
+        ]
       },
       "_id": "0tVi0WsfLu3YzxeE",
       "type": "base",
@@ -181,7 +180,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "X0gyRnn8BECGV6P4",
       "type": "base",

@@ -77,7 +77,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +130,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "@system.traits.agility.value",
             "priority": 21,
@@ -141,7 +142,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "primary"
+          }
+        ]
       },
       "disabled": false,
       "duration": {

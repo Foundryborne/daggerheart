@@ -138,7 +138,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "w8YmhoWPGc66Wrx3",
       "img": "icons/commodities/currency/coins-assorted-mix-copper-silver-gold.webp",
@@ -161,7 +162,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "60uDqt9omFifZ7xd",
       "img": "icons/commodities/treasure/brooch-jeweled-pink.webp",
@@ -292,7 +294,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "56qjiKMoN6S9riI6",
       "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
@@ -315,7 +318,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "l2FzZpR2reVmlkdp",
       "img": "icons/skills/movement/arrow-upward-blue.webp",

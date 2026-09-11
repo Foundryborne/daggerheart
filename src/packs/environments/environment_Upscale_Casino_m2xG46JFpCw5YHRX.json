@@ -78,7 +78,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MPNmu1p3ZwEuZ6rJ",
       "img": "icons/commodities/gems/gem-faceted-rough-yellow.webp",
@@ -106,7 +107,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "BWoPuKUowiiTlElx",
           "type": "base",
@@ -153,7 +155,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "2QOVvFTW4KVgMxbR",
       "img": "icons/commodities/currency/coins-assorted-crown-blue.webp",
@@ -214,7 +217,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "rMprPGv7OHpvpHDQ",
       "img": "icons/skills/social/trading-injustice-scale-gray.webp",
@@ -273,7 +277,8 @@
             ]
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TqjpHgCua41RhPb2",
       "img": "icons/creatures/magical/construct-golem-robot-blue.webp",
@@ -296,7 +301,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "4Cc3XbfEmKWvWHYS",
       "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",

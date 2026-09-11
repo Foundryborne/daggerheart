@@ -66,7 +66,12 @@
       "Why do you act differently when we're alone than when others are around?",
       "What threat have you asked me to watch for, and why are you worried about it?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "folder": null,

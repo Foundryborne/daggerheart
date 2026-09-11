@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "yrjtfPqIJlUDQstX",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -169,7 +171,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Qw2l1ncgoz0uhj6g",
       "img": "icons/magic/nature/moon-crescent.webp",
@@ -193,7 +196,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "ePhg4gf1qZXgXXJ7",
           "img": "icons/magic/nature/moon-crescent.webp",
@@ -253,7 +257,8 @@
           "diceStates": {}
         },
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "NzKWVP0JBnhF6N1O",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
@@ -264,7 +269,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": "ITEM.@system.resource.value",
                 "priority": null,
@@ -277,7 +282,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ]
+              }
+            ]
           },
           "_id": "WSR7EXOKykrozqU1",
           "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
@@ -348,16 +361,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -431,7 +436,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "459aNwv1u6Z96MA8",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -453,7 +459,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "xSq3CQhtc9Zd40ED",
           "type": "base",
@@ -518,22 +525,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -593,7 +592,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "DtkRr84ignZWz1yy",
       "img": "icons/skills/wounds/injury-triple-slash-bleed.webp",

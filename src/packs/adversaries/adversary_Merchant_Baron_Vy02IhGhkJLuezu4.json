@@ -34,7 +34,6 @@
     },
     "type": "social",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "lL8dfULiYdmPhNI0": {
         "name": "Nobility",
@@ -97,7 +96,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -140,7 +140,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "Vy02IhGhkJLuezu4",
@@ -276,17 +277,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -329,7 +322,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "7dxToUpxOyISXXde",
       "img": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
@@ -391,7 +385,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "QnDvERcyaq3XLCjF",
       "img": "icons/environment/people/charge.webp",

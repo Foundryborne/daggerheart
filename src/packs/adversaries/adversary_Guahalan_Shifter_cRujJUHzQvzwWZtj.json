@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -194,7 +195,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "hm59cVjpGREZwPQ8",
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
@@ -209,21 +211,14 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": "@system.resources.stress.value",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,
@@ -236,7 +231,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ]
+              }
+            ]
           },
           "_id": "u3pN1fQjgeY2xk6z",
           "type": "base",
@@ -301,22 +304,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -376,7 +371,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "bKQurrqEhequsRvi",
       "img": "icons/skills/melee/spear-tips-triple-orange.webp",

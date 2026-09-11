@@ -107,7 +107,8 @@
           "description": ""
         },
         "rangeDependence": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "transfer": false,
       "_id": "dzGZkBgtJjQh3JH1",

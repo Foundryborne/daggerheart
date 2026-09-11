@@ -60,7 +60,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "bl1TbrxgkUCOWgMq",
       "img": "icons/magic/light/projectile-halo-teal.webp",
@@ -88,7 +89,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "HBctc4A2WAiZ1BDq",
           "type": "base",
@@ -135,7 +137,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ikYzJk9bR2zcZFZu",
       "img": "icons/magic/perception/eye-tendrils-web-purple.webp",
@@ -158,7 +161,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "NjefAB8evT6E7Klo",
       "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
@@ -199,22 +203,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -274,7 +270,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "9igGCe0LCHvsNmFx",
       "img": "icons/magic/unholy/energy-smoke-pink.webp",
@@ -297,7 +294,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "5MC0kJKB3kjymyUa",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",

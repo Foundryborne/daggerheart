@@ -34,7 +34,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 10,
     "experiences": {},
     "tier": 1,
     "description": "<p>A skittering mass of ordinary rodents moving as one like a ravenous wave.</p>",
@@ -69,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -244,7 +244,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,

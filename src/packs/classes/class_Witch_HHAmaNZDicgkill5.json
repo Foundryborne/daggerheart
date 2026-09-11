@@ -69,7 +69,12 @@
       "I once appeared to you in a dream and shared a vision of the future. What did I tell you?",
       "What do you typically come to me for advice about?"
     ],
-    "isMulticlass": false
+    "isMulticlass": false,
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "flags": {},

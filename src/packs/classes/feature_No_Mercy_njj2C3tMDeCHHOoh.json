@@ -59,7 +59,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -71,7 +72,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.attack.bonus",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": "@stacks",
             "priority": null,
@@ -87,7 +88,15 @@
           "value": 1
         },
         "rangeDependence": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ]
+          }
+        ]
       },
       "disabled": false,
       "duration": {

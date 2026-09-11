@@ -75,7 +75,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "qzroOipCsq0bUcY2",
       "img": "icons/magic/water/wave-water-teal.webp",
@@ -98,7 +99,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "99n3FQmcE0rszkrT",
       "img": "icons/magic/water/orb-water-bubbles-teal.webp",
@@ -121,7 +123,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "3RsgTnVijii6AMbF",
       "img": "icons/commodities/tech/metal-blue.webp",
@@ -187,7 +190,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ThEcedErJouy7fwK",
       "img": "icons/creatures/fish/deepsea-creature-glowing-blue.webp",

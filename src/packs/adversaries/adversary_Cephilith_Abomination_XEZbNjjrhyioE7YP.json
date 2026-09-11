@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -199,7 +200,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MFkY0BD2EhKp9lTo",
       "img": "icons/magic/acid/dissolve-arm-flesh.webp",
@@ -240,22 +242,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -320,7 +314,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "bSG0fOnMCgOFVdpP",
       "img": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
@@ -343,7 +338,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "2PJ338qQ7O8uDiW4",
           "type": "base",
@@ -408,22 +404,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -463,7 +451,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "eNlJcvDxqoyCPtW6",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
@@ -524,7 +513,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "7DSC9gbRVC7j7nKh",
       "img": "icons/commodities/biological/tongue-violet.webp",
@@ -614,7 +604,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "EzVuIjxfpU0ySdyq",
       "img": "icons/creatures/invertebrates/leech-attack-green.webp",
@@ -637,7 +628,8 @@
               "value": 2,
               "max": null
             },
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "XRFLX5qMJco6vnLG",
           "type": "base",

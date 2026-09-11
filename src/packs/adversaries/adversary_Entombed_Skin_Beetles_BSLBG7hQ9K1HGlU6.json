@@ -12,7 +12,6 @@
       "major": 10,
       "severe": 20
     },
-    "hordeHp": 5,
     "resources": {
       "hitPoints": {
         "value": 0,
@@ -80,7 +79,8 @@
           "resultBased": false,
           "fullRestore": false,
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,7 +137,7 @@
     "typeData": {
       "type": "horde",
       "hordeHP": 5,
-      "hordeDamage": "2d4 + 1"
+      "hordeDamage": "2d4+1"
     }
   },
   "items": [
@@ -171,16 +171,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -225,7 +217,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TO8FKfEWHZ29FQh8",
       "img": "icons/creatures/invertebrates/beetle-stag-yellow-green.webp",
@@ -245,7 +238,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "8hHzmmhOU5Ku81eh",
           "type": "base",
@@ -292,13 +286,14 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MyEPx0FSireKIkxb",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 100000,
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -307,7 +302,7 @@
     },
     {
       "type": "feature",
-      "name": "DAGGERHEART.CONFIG.AdversaryType.horde.label",
+      "name": "Horde",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
         "description": "When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.",
@@ -328,6 +323,7 @@
         {
           "name": "Horde",
           "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "showIcon": 2,
           "system": {
             "conditionals": [
               {
@@ -359,7 +355,7 @@
             "stacking": null,
             "targetDispositions": []
           },
-          "_id": "InJy1swvvfsLfVfL",
+          "_id": "ZSx0CutdELvMEqC9",
           "type": "base",
           "disabled": false,
           "start": null,
@@ -373,23 +369,22 @@
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
-          "showIcon": 2,
           "folder": null,
           "sort": 0,
           "flags": {},
           "_stats": {
             "compendiumSource": null
           },
-          "_key": "!actors.items.effects!BSLBG7hQ9K1HGlU6.5LVYG1lSVzMqWbjM.InJy1swvvfsLfVfL"
+          "_key": "!actors.items.effects!BSLBG7hQ9K1HGlU6.IOpIRkeP2rPc8QoX.ZSx0CutdELvMEqC9"
         }
       ],
-      "_id": "5LVYG1lSVzMqWbjM",
+      "_id": "IOpIRkeP2rPc8QoX",
       "folder": null,
       "sort": 0,
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!actors.items!BSLBG7hQ9K1HGlU6.5LVYG1lSVzMqWbjM"
+      "_key": "!actors.items!BSLBG7hQ9K1HGlU6.IOpIRkeP2rPc8QoX"
     }
   ],
   "_id": "BSLBG7hQ9K1HGlU6",

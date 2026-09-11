@@ -12,7 +12,6 @@
       "major": 5,
       "severe": 11
     },
-    "hordeHp": 4,
     "resources": {
       "hitPoints": {
         "value": 0,
@@ -80,7 +79,8 @@
           "resultBased": false,
           "fullRestore": false,
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -204,7 +204,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "zScKH0UIU2MiV0FC",
       "img": "icons/magic/death/skull-energy-light-white.webp",

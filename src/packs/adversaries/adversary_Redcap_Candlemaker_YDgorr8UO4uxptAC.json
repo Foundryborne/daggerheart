@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -155,7 +156,8 @@
           "diceStates": {}
         },
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ogvPI7cMbJiw9fOp",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
@@ -171,7 +173,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "ROVFeyrE1kkZ4Vou",
           "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
@@ -264,7 +267,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oAQweBSYwOqJ3fEx",
       "img": "icons/magic/light/explosion-star-glow-yellow.webp",
@@ -279,14 +283,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": 1,
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": 1,
                 "priority": null,
@@ -301,7 +298,8 @@
             "stacking": null,
             "targetDispositions": [
               -1
-            ]
+            ],
+            "conditionals": []
           },
           "_id": "FRS0L5U1v6w72yju",
           "type": "base",
@@ -366,22 +364,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -432,7 +422,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "tNNiTGb8aRB511zm",
       "img": "icons/magic/fire/projectile-fireball-smoke-strong-orange.webp",

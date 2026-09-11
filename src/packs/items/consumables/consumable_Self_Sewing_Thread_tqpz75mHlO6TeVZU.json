@@ -60,16 +60,8 @@
                   "formula": ""
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           }
         },
@@ -143,16 +135,8 @@
                   "formula": ""
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           }
         },

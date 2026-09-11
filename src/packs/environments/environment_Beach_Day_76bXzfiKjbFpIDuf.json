@@ -26,7 +26,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "32kkC16eXBpiRxkh",
       "img": "icons/environment/wilderness/island.webp",
@@ -87,16 +88,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -124,7 +117,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "BizLkdzVo2YYJdr3",
       "img": "icons/skills/trades/academics-merchant-scribe.webp",
@@ -185,7 +179,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "FRMRgSgEeAt7jT8r",
       "img": "icons/magic/symbols/question-stone-yellow.webp",
@@ -242,7 +237,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "gJSHFvGHs6oVBQtI",
       "img": "icons/equipment/chest/coat-leather-blue.webp",
@@ -262,7 +258,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "hjeRnWtIMLCvBcuj",
           "type": "base",

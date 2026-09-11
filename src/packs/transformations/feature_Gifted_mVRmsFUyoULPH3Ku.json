@@ -11,7 +11,8 @@
     "resource": null,
     "actions": {},
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -20,28 +21,14 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.action.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": 1,
             "priority": null,
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.roll.reaction.bonus",
-            "type": "add",
-            "value": 1,
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": 1,
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.bonus",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": 1,
             "priority": null,
@@ -54,7 +41,16 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "action",
+              "reaction"
+            ]
+          }
+        ]
       },
       "_id": "W38biQnO2uyIhRny",
       "img": "icons/magic/control/buff-luck-fortune-green-gold.webp",

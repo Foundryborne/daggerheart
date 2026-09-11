@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MMbIERlxi7DsVlXx",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -209,7 +211,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "wBfRwWNwBkJALC5s",
       "img": "icons/magic/time/hourglass-tilted-glowing-gold.webp",
@@ -270,7 +273,8 @@
             "range": "veryFar"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "SZKbrbzW9ITQuELW",
       "img": "icons/magic/movement/trail-streak-zigzag-teal.webp",
@@ -331,7 +335,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TubY8u9hJy8MbDEK",
       "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
@@ -392,7 +397,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "VUmRd6qE30M7wy7v",
       "img": "icons/magic/time/arrows-circling-pink.webp",

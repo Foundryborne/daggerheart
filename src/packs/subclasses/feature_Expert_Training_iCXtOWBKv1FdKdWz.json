@@ -15,7 +15,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -36,7 +37,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "rknTONvaUDZ2Yz1W",
       "img": "icons/creatures/mammals/dog-husky-white-blue.webp",

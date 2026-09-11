@@ -74,7 +74,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "FcbTcbTe6fcl5nCe",
       "img": "icons/consumables/drinks/alcohol-beer-stein-wooden-brown.webp",
@@ -102,7 +103,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "RK04BnAuIB0Zsfok",
           "type": "base",
@@ -183,7 +185,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TzDUERd3fb172VxQ",
       "img": "icons/skills/trades/music-notes-sound-blue.webp",
@@ -203,7 +206,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "TwHwZ5p93sXrw5rK",
           "type": "base",
@@ -288,7 +292,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "mXAc4IdKO2ygiPaJ",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",
@@ -369,7 +374,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "fmia9dygKxza9sdK",
       "img": "icons/environment/settlement/watchtower-moonlit-blue.webp",
@@ -384,7 +390,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.action.bonus",
+                "key": "system.bonuses.roll",
                 "type": "subtract",
                 "value": 1,
                 "priority": null,
@@ -397,7 +403,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "action"
+                ]
+              }
+            ]
           },
           "_id": "VRAaCBsJgvFpudss",
           "type": "base",

@@ -94,7 +94,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.attack.bonus",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": 1,
             "priority": null,
@@ -107,7 +107,15 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ]
+          }
+        ]
       },
       "_id": "1thJk2e2snAmyvq3",
       "type": "base",
@@ -158,7 +166,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "oGs7nvr3uO52GVTI",
       "type": "base",

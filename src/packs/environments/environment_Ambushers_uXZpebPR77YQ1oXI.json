@@ -123,7 +123,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "hAGzlRjI3lpadVs7",
       "img": "icons/environment/people/charge.webp",
@@ -185,7 +186,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "b6Qviz1ANG8OrAYq",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",

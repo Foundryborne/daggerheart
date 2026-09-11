@@ -83,7 +83,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Zlo11bOuvioULbVJ",
       "img": "icons/magic/water/wave-water-blue.webp",
@@ -126,16 +127,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -186,7 +179,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "LuFQmRD0fVO3L8e4",
       "img": "icons/consumables/food/plate-fish-bowl-bones-brown.webp",
@@ -283,7 +277,8 @@
             "img": "icons/magic/control/mouth-smile-deception-purple.webp"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "tvisN7BBtyqYfbYm",
       "img": "icons/commodities/currency/coin-engraved-skull-gold.webp",
@@ -378,16 +373,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -438,7 +425,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "A8979rx43bQwftNO",
       "img": "icons/magic/air/wind-weather-sailing-ship.webp",
@@ -514,7 +502,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "7mrJfLzWik833uVN",
       "img": "icons/creatures/magical/spirit-undead-ghost-tan-teal.webp",

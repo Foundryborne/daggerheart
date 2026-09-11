@@ -69,7 +69,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "FOUXRDD4q9YAIe65",
       "img": "icons/magic/time/hourglass-yellow-green.webp",
@@ -89,7 +90,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "mHoqQT10ANKnO3oT",
           "type": "base",
@@ -204,7 +206,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Qc1Mm8cdNfb0fcDg",
       "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
@@ -227,7 +230,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "5dfMCpOvnNNeUpNV",
       "img": "icons/magic/perception/hand-eye-fire-blue.webp",
@@ -250,7 +254,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "X91s1yNbX9BFGthV",
       "img": "icons/magic/perception/hand-eye-pink.webp",
@@ -301,7 +306,8 @@
             ]
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "W6PaWbLiErDCv25u",
       "img": "icons/magic/perception/eye-ringed-glow-angry-teal.webp",

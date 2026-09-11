@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -227,7 +228,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "raqERxpdxTa2On8F",
       "img": "icons/magic/air/fog-gas-smoke-dense-green.webp",
@@ -247,7 +249,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "6z7PQnXHCw3ceCBz",
           "type": "base",
@@ -341,16 +344,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 },
                 "stress": {
                   "base": false,
@@ -367,16 +362,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -409,7 +396,8 @@
             "range": "veryClose"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Ff7a0Meknufbkby8",
       "img": "icons/magic/life/cross-beam-green.webp",
@@ -429,7 +417,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "THgK0K21X6Qm25Wz",
           "type": "base",
@@ -514,7 +503,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "CqMQsFGQ1GR6Auii",
       "img": "icons/magic/nature/mushrooms-fire-glow-blue.webp",
@@ -537,7 +527,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "HazO7wNFjep1jAUz",
       "img": "icons/magic/perception/third-eye-blue-red.webp",

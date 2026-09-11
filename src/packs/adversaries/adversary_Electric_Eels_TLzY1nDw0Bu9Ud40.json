@@ -33,7 +33,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 2,
     "experiences": {},
     "tier": 2,
     "description": "<p>A swarm of eels that encircle and electrocute.</p>",
@@ -69,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -280,20 +280,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "fullRestore": false,
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -336,7 +328,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "u5NL1eUJeAkIEpgt",
       "img": "icons/magic/lightning/bolt-strike-sparks-teal.webp",

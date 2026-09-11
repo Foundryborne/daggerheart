@@ -72,16 +72,7 @@
                   "formula": "@cast"
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null
             }
           }
         },
@@ -110,7 +101,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [
     {
@@ -137,14 +129,14 @@
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.roll.attack.bonus",
+            "key": "system.evasion",
             "type": "add",
             "value": 2,
             "priority": null,
             "phase": "initial"
           },
           {
-            "key": "system.evasion",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": 2,
             "priority": null,
@@ -159,6 +151,14 @@
         "stacking": null,
         "targetDispositions": [
           1
+        ],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ]
+          }
         ]
       },
       "_id": "YMhiEmt31R0s5MH0",

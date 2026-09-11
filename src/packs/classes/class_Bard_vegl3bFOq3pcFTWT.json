@@ -66,7 +66,12 @@
       "What do I do that annoys you?",
       "Why do you grab my hand at night?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "flags": {},

@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ptauqaFcMVrpE1wi",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -178,7 +180,8 @@
           "diceStates": {}
         },
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "rlMfV12Qu1yzBxxe",
       "img": "icons/magic/light/projectile-stars-blue.webp",
@@ -239,7 +242,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "fz0G4in4qWFOpncD",
       "img": "icons/magic/light/projectiles-pink-purple.webp",
@@ -280,22 +284,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -355,7 +351,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "r6du8H8vxnW0WDfb",
       "img": "icons/magic/fire/projectile-fireball-orange-yellow.webp",
@@ -449,7 +446,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1RWw0lwrq0Qpf8jH",
       "img": "icons/magic/control/energy-stream-link-large-blue.webp",

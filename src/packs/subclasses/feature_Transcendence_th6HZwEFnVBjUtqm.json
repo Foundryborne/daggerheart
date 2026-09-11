@@ -54,7 +54,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -76,7 +77,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "zFOpzO3tBJPcZcRc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
@@ -118,7 +120,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "cTgSmxkTi89y6sbc",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
@@ -161,7 +164,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "oWf3iXf4dawdbmzd",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
@@ -196,7 +200,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "2LCF6lSnWFqNiPs5",
       "img": "icons/magic/fire/elemental-fire-flying.webp",

@@ -59,7 +59,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -70,20 +71,6 @@
       "type": "base",
       "system": {
         "changes": [
-          {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": "ORIGIN.@item.resource.value",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.bonus",
-            "type": "add",
-            "value": "ORIGIN.@item.resource.value",
-            "priority": null,
-            "phase": "initial"
-          },
           {
             "key": "system.rules.damageReduction.reduceSeverity.physical",
             "type": "add",
@@ -104,6 +91,13 @@
             "value": 1,
             "priority": null,
             "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage",
+            "type": "add",
+            "value": "ORIGIN.@item.resource.value",
+            "priority": null,
+            "phase": "initial"
           }
         ],
         "duration": {
@@ -111,7 +105,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

@@ -48,7 +48,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "4o45XcMZbTJYJmMH",
       "img": "icons/skills/trades/academics-astronomy-navigation-blue.webp",
@@ -71,7 +72,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ml0hetjckq8NkK7P",
       "img": "icons/sundries/documents/blueprint-magical.webp",
@@ -148,7 +150,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "RuasHmyv0xhIZyyd",
       "img": "icons/magic/control/buff-strength-muscle-damage.webp",
@@ -217,22 +220,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -263,7 +258,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "UkKVWILpbLEpDfpN",
       "img": "icons/magic/holy/saint-glass-portrait-halo.webp",

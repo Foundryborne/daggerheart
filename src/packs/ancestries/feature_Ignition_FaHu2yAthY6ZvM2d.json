@@ -54,7 +54,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [
     {
@@ -66,13 +67,6 @@
       "statuses": [],
       "system": {
         "changes": [
-          {
-            "key": "system.bonuses.damage.primaryWeapon.dice",
-            "type": "add",
-            "value": "1d6",
-            "priority": null,
-            "phase": "initial"
-          },
           {
             "key": "token.light.bright",
             "type": "override",
@@ -86,6 +80,13 @@
             "value": 10,
             "priority": null,
             "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage",
+            "type": "add",
+            "value": "1d6",
+            "priority": null,
+            "phase": "initial"
           }
         ],
         "duration": {
@@ -94,7 +95,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "primary"
+          }
+        ]
       },
       "_id": "YWiD5AGYLBKvajs2",
       "type": "base",

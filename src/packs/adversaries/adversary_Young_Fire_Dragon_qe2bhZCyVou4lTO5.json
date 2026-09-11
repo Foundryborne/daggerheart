@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "CCjwbRFO8lPwUz56",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -169,7 +171,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AyOAvxE5ruRgzuTn",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -192,7 +195,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "XkdQ0bpcZvVAobY7",
       "img": "icons/creatures/abilities/dragon-fire-breath-orange.webp",
@@ -215,7 +219,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AETDJMLedUcefdNe",
       "img": "icons/magic/earth/explosion-lava-stone-red.webp",
@@ -238,7 +243,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "9mHaYwq5ZmXqnA1Z",
       "img": "icons/creatures/reptiles/lizard-mouth-glowing-red.webp",
@@ -261,7 +267,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0NBluEfJGwQWmYTo",
       "img": "icons/magic/fire/flame-burning-embers-yellow.webp",

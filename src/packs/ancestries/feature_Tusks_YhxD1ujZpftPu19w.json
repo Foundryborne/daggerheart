@@ -47,19 +47,11 @@
             "type": [],
             "base": false,
             "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -86,7 +78,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -97,14 +90,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.dice",
-            "type": "add",
-            "value": "1d6",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.dice",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "1d6",
             "priority": null,
@@ -116,7 +102,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": true,
       "duration": {

@@ -76,7 +76,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -128,7 +129,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.primaryWeapon.bonus",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": 1,
             "phase": "initial"
@@ -139,7 +140,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "primary"
+          }
+        ]
       },
       "disabled": false,
       "duration": {

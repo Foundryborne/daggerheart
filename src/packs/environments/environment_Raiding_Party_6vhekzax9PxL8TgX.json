@@ -108,7 +108,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "dnSlfFgkd1LPKYJK",
       "img": "icons/magic/sonic/bell-alarm-red-purple.webp",
@@ -128,7 +129,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "f0Z8uHmEtgydUBUw",
           "type": "base",
@@ -175,7 +177,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "g8rVoim9sVVWOUIF",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",
@@ -216,22 +219,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -300,7 +295,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "8tAazh5aJlCqJd3O",
       "img": "icons/weapons/artillery/cannon-banded.webp",
@@ -415,7 +411,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ncVzTMqGM3EyK7wZ",
       "img": "icons/environment/people/charge.webp",

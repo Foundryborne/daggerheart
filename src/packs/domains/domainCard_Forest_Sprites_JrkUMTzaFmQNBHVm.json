@@ -103,7 +103,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.attack.bonus",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": "+3",
             "priority": null,
@@ -115,7 +115,15 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ]
+          }
+        ]
       },
       "disabled": false,
       "duration": {

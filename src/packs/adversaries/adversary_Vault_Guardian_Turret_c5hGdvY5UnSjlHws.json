@@ -34,7 +34,6 @@
     },
     "type": "ranged",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 3,
     "description": "<p>A massive living turret with reinforced armor and twelve piston-driven mechanical legs.</p>",
@@ -86,7 +85,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,8 @@
     "size": "large",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "c5hGdvY5UnSjlHws",
@@ -246,7 +247,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TwVkBln6URoPHvlC",
       "img": "icons/magic/time/hourglass-brown-orange.webp",
@@ -313,7 +315,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "uwAr6wR4k7ppI2cW",
       "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
@@ -339,7 +342,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -419,7 +423,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "G7qZ9RHPyNns3axX",
       "img": "icons/commodities/tech/cog-brass.webp",
@@ -471,20 +476,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -536,7 +533,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ALDtQci3ktq9cajU",
       "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",

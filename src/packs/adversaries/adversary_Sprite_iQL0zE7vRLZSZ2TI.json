@@ -75,7 +75,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -133,12 +134,12 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
     "criticalThreshold": 20,
     "damageThresholds": {
       "major": 0,
       "severe": 0
-    }
+    },
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "M04qpWw3oAmwebn4",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -217,7 +219,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Uovw42uUT8p4fOub",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
@@ -239,7 +242,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "Rd1B09tEhxNMb0cM",
           "type": "base",
@@ -329,7 +333,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "BeEtOMk2QO2Mxloo",
       "img": "icons/magic/control/silhouette-hold-change-green.webp",
@@ -349,7 +354,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "Nv397pCk0Tcu29vf",
           "type": "base",

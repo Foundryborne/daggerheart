@@ -24,7 +24,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -33,7 +34,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.magical.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "+10",
             "priority": null,
@@ -45,7 +46,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "damageType",
+            "damageType": "magical"
+          }
+        ]
       },
       "_id": "z49V45ir45HGHOBB",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",

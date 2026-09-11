@@ -42,7 +42,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Fq76Ws72FOecLook",
       "img": "icons/creatures/magical/spirit-undead-ghost-blue.webp",
@@ -65,7 +66,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "7NjcuEJmBXwnljrt",
       "img": "icons/magic/perception/third-eye-blue-red.webp",
@@ -145,22 +147,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -192,7 +186,8 @@
             "img": "icons/magic/unholy/orb-contained-pink.webp"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "y76PmjDZYo1JXqnF",
       "img": "icons/magic/perception/eye-ringed-green.webp",
@@ -249,7 +244,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "atXhxNs4Ka7H3wiT",
       "img": "icons/creatures/magical/spirit-undead-horned-blue.webp",
@@ -277,7 +273,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "CICdmS2PoBJoR5YF",
           "type": "base",

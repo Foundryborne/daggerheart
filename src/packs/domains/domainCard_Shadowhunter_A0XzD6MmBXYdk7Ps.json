@@ -36,7 +36,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "A6gMv7TbMu3nV3NT",
       "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
@@ -79,7 +80,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "a1hDCNYDvF4dWt58",
       "img": "icons/skills/targeting/crosshair-bars-yellow.webp",

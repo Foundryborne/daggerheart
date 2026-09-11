@@ -18,7 +18,8 @@
       "recovery": "shortRest",
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-skull"
+      "icon": "fa-solid fa-skull",
+      "diceStates": {}
     },
     "actions": {
       "040T1iKcp84YM2mp": {
@@ -92,21 +93,13 @@
                 "formula": "@scaled8"
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "physical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },

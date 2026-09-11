@@ -146,7 +146,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "7to5Zu0lNycExCQi",
       "img": "icons/skills/social/wave-halt-stop.webp",
@@ -169,7 +170,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oLn3co1mN83OiFWo",
       "img": "icons/tools/instruments/bell-gold.webp",
@@ -192,7 +194,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "cAbSo5VQHxJqJPKm",
       "img": "icons/magic/unholy/silhouette-robe-evil-power.webp",
@@ -215,7 +218,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "QPezCAC18vIc5xRC",
       "img": "icons/environment/people/commoner.webp",
@@ -265,19 +269,11 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -300,7 +296,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "H3LNvVrUbsAkgjni",
       "img": "icons/skills/melee/unarmed-punch-fist-white.webp",

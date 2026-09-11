@@ -80,7 +80,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JEsLZVMosxv2AVR8",
       "img": "icons/equipment/hand/glove-simple-cloth-white.webp",
@@ -103,7 +104,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "XEMJowsrU7kCC4Ys",
       "img": "icons/magic/control/buff-strength-muscle-damage.webp",
@@ -126,7 +128,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AEM0xmcW99tiqKWq",
       "img": "icons/sundries/documents/document-symbol-lightning-brown.webp",
@@ -211,7 +214,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JSaBQv3zwJpDDgXL",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",

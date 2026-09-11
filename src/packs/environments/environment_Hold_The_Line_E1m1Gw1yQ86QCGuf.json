@@ -26,7 +26,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TtbL2KY7QoeCG82g",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
@@ -49,7 +50,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "PLpqyj4fQgYvSdPb",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
@@ -72,7 +74,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ycAtgL8GOU2Igpvz",
       "img": "icons/environment/people/charge.webp",
@@ -95,7 +98,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "vaxu1A87BmoI6UvK",
       "img": "icons/environment/people/charge.webp",

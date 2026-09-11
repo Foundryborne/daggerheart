@@ -12,7 +12,6 @@
       "major": 16,
       "severe": 30
     },
-    "hordeHp": 5,
     "resources": {
       "hitPoints": {
         "value": 0,
@@ -80,7 +79,8 @@
           "resultBased": false,
           "fullRestore": false,
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -191,7 +191,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "6nqgFiYulnF4LVKd",
       "img": "icons/creatures/mammals/bats-movement-flying-black.webp",
@@ -219,7 +220,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "M7HN8sIay2wTVBZW",
           "type": "base",
@@ -286,16 +288,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -335,7 +329,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "BkTf2P6CnWO7dr8d",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",

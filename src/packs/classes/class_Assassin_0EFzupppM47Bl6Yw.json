@@ -70,7 +70,12 @@
       "How did you save me when I was on the brink of death? What have I promised you as repayment?",
       "What secret about myself did I tell you, and how did it change your view of me?"
     ],
-    "isMulticlass": false
+    "isMulticlass": false,
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "flags": {},

@@ -84,7 +84,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "jntVV9Ceu7BuoE3D",
       "img": "icons/skills/wounds/blood-cells-disease-green.webp",
@@ -99,7 +100,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.action.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
@@ -115,7 +116,15 @@
               "value": 1,
               "max": 4
             },
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "action"
+                ]
+              }
+            ]
           },
           "_id": "9OrnpwDvVwqKJ7ET",
           "type": "base",
@@ -196,7 +205,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "qRNnIdS36yJxR2qN",
       "img": "icons/magic/water/water-drop-swirl-blue.webp",
@@ -224,7 +234,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "f2j8t8ARlxNArOHL",
           "type": "base",
@@ -338,7 +349,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JakHh4vcOL94tVgk",
       "img": "icons/magic/nature/plant-sprout-snow-green.webp",
@@ -360,7 +372,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "bmOIoONPXehkUJeH",
           "type": "base",
@@ -445,7 +458,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "d1MwntqkY2eED0jm",
       "img": "icons/magic/light/projectile-smoke-blue-white.webp",

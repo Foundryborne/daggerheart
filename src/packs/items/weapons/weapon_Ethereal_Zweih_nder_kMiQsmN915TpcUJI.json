@@ -131,7 +131,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -177,7 +178,8 @@
         "changes": [],
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "transfer": false,
       "_id": "MnQKsDs3DCwlqUQs",

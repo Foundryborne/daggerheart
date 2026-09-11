@@ -33,7 +33,6 @@
     },
     "type": "social",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "EhtLh4vyQvoZaL83": {
         "name": "Espionage",
@@ -91,7 +90,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "8zlynOhnVA59KpKT",
@@ -282,7 +283,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "csCWQuSqic5ckHeO",
       "img": "icons/magic/perception/orb-eye-scrying.webp",
@@ -371,17 +373,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -419,7 +413,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "UvgVDn0YjISLdKE4",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",

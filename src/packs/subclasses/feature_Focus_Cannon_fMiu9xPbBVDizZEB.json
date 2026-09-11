@@ -31,21 +31,13 @@
                 "formula": ""
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },
@@ -106,7 +98,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [],
   "sort": 0,

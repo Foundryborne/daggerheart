@@ -19,7 +19,8 @@
       "recovery": null,
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": ""
+      "icon": "",
+      "diceStates": {}
     },
     "quantity": 1,
     "actions": {
@@ -123,7 +124,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },

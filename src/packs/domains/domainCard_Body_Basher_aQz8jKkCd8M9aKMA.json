@@ -37,14 +37,7 @@
         },
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.bonus",
-            "type": "add",
-            "value": "@system.traits.strength.value",
-            "priority": 21,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.secondaryWeapon.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "@system.traits.strength.value",
             "priority": 21,
@@ -55,7 +48,13 @@
           "description": ""
         },
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "anyWeapon"
+          }
+        ]
       },
       "disabled": false,
       "duration": {

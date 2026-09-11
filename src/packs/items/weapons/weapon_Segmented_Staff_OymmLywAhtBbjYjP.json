@@ -87,7 +87,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -144,7 +145,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "RjiPqWRWAqJWZ7Eb",
       "type": "base",
@@ -175,7 +177,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": 1,
             "phase": "initial"
@@ -190,7 +192,13 @@
           "description": ""
         },
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "primary"
+          }
+        ]
       },
       "_id": "BZAZ0C3f923xCa9J",
       "type": "base",

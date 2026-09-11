@@ -12,7 +12,6 @@
       "major": 5,
       "severe": 9
     },
-    "hordeHp": 8,
     "resources": {
       "hitPoints": {
         "value": 0,
@@ -80,7 +79,8 @@
           "resultBased": false,
           "fullRestore": false,
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -191,7 +191,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "lKtZDU4j2FDWtF38",
       "img": "icons/magic/light/explosion-glow-spiral-teal.webp",
@@ -215,7 +216,8 @@
             "stacking": null,
             "targetDispositions": [
               1
-            ]
+            ],
+            "conditionals": []
           },
           "_id": "m85gM6jedURrqbFJ",
           "type": "base",
@@ -282,16 +284,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -360,7 +354,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "fPWnXgxGnlfZXyto",
       "img": "icons/magic/light/projectile-smoke-blue-white.webp",

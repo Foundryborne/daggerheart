@@ -51,7 +51,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "qWDojebJXMPIP629",
       "img": "icons/skills/social/diplomacy-handshake.webp",
@@ -94,7 +95,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "i5dnpOxTtWV1J46k",
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",

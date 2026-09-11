@@ -77,7 +77,8 @@
           "value": 2,
           "max": 2
         },
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "AlJJnO4ct2xmzt93",
       "type": "base",

@@ -77,14 +77,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.dice",
-            "type": "add",
-            "value": "(@fear)d6",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.dice",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "(@fear)d6",
             "priority": null,
@@ -97,7 +90,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "dn84Mz9qZxt25RXv",
       "type": "base",

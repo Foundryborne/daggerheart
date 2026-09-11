@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "SEvAYlwvFdLMx0yZ",
       "img": "icons/creatures/abilities/bear-roar-bite-brown.webp",
@@ -221,16 +223,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 },
                 "stress": {
                   "base": false,
@@ -247,16 +241,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -284,7 +270,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ky9NeQ55xa1TdP5j",
       "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
@@ -341,7 +328,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "GmBst1S1DyM4gxZe",
       "img": "icons/creatures/abilities/mouth-teeth-human.webp",
@@ -356,14 +344,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": 6,
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": 6,
                 "priority": null,
@@ -376,7 +357,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "xTbh9Z2C98dKBd0W",
           "type": "base",

@@ -12,7 +12,6 @@
       "major": 25,
       "severe": 45
     },
-    "hordeHp": 10,
     "resources": {
       "hitPoints": {
         "value": 0,
@@ -80,7 +79,8 @@
           "resultBased": false,
           "fullRestore": false,
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -151,7 +151,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "3zPOZ0JIFZ4kplbz",
       "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
@@ -182,7 +183,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "zu8cgiCiqvMPQnSx",
           "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
@@ -251,22 +253,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -326,7 +320,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1yuuNfi8PkpCQC0U",
       "img": "icons/creatures/magical/spirit-undead-ghost-tan-teal.webp",

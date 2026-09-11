@@ -70,20 +70,6 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.bonus",
-            "value": 10,
-            "priority": null,
-            "type": "add",
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.bonus",
-            "value": 10,
-            "priority": null,
-            "type": "add",
-            "phase": "initial"
-          },
-          {
             "key": "system.damageThresholds.severe",
             "value": 8,
             "priority": null,
@@ -96,6 +82,13 @@
             "priority": null,
             "type": "override",
             "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage",
+            "value": 10,
+            "priority": null,
+            "type": "add",
+            "phase": "initial"
           }
         ],
         "duration": {
@@ -104,7 +97,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

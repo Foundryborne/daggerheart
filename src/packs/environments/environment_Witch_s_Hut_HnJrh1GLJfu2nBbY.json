@@ -48,7 +48,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "bukvnYnF0f1Q3tfQ",
       "img": "icons/magic/perception/eye-ringed-green.webp",
@@ -140,7 +141,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "unL0gUNjgkunmigs",
       "img": "icons/commodities/treasure/doll-mummy.webp",
@@ -181,22 +183,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -227,7 +221,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "YEV1VlqmDZZaGekL",
       "img": "icons/skills/toxins/cauldron-pot-bubbles-green.webp",
@@ -303,7 +298,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "pboCL4a49bWsrxLD",
       "img": "icons/skills/movement/arrow-upward-blue.webp",

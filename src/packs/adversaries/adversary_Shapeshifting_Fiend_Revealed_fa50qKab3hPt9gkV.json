@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "EK5pZuDxvOPjmRpF",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -174,7 +176,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ojWa0aodEpnkb9rk",
       "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",
@@ -198,7 +201,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "9JFN23WxLTzAJlTO",
           "img": "icons/creatures/unholy/demon-fire-horned-mask.webp",
@@ -267,22 +271,14 @@
                     "formula": "@system.resources.stress.value"
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": true,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -342,7 +338,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "jQib1ToeFylSCIOj",
       "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
@@ -447,7 +444,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "vavYse3YdfnpjxaD",
       "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
@@ -478,7 +476,8 @@
               "value": 4,
               "max": 4
             },
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "asSNhJ7zBYh20Kbq",
           "type": "base",
@@ -543,22 +542,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -627,7 +618,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "HgYCE5gF4IbxD2ue",
       "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
@@ -688,7 +680,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "VoacJyH0xZfyolpc",
       "img": "icons/magic/movement/portal-vortex-orange.webp",

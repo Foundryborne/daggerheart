@@ -31,21 +31,13 @@
                 "formula": ""
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },
@@ -114,21 +106,13 @@
                 "formula": "(@prof+1)d12 + 4"
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },

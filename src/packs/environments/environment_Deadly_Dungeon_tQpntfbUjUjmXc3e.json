@@ -84,7 +84,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "G6rUp9taBiyUIQvy",
       "img": "icons/environment/wilderness/cave-entrance.webp",
@@ -107,7 +108,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Y8BCsSqUBRNVycHf",
       "img": "icons/commodities/currency/coins-leather-pouch-stone.webp",
@@ -168,7 +170,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1onLVsttc9m0tcfW",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
@@ -209,22 +212,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -255,7 +250,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "PMiyh1YfhcMCnEre",
       "img": "icons/environment/traps/trap-jaw-steel.webp",
