@@ -144,7 +144,7 @@ export default class DhpActor extends Actor {
                     effect.type = 'base';
                     effect.disabled = false;
                     const variantDamage = new DHDamageData(source.system.attack.damage.main);
-                    const hordeDamage = variantDamage.valueAlt?.getFormula();
+                    const hordeDamage = variantDamage.valueAlt?.getFormula() ?? '0';
                     effect.system.changes.push({
                         type: 'standardAttack',
                         value: {
