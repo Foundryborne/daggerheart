@@ -348,6 +348,14 @@ export default class DHItem extends foundry.documents.Item {
                 action.damage.resources.resource.itemId = source._id;
                 delete action.damage.resources.weaponResource;
             }
+
+            // Remove valueAlt from damage that isn't result based
+            if (action.damage.main && !action.damage.main.resultBased) {
+                action.damage.main.valueAlt = null;
+            }
+            for (const resource of Object.values(action.damage?.resources ?? {})) {
+                if (!resource.resultBased) resource.valueAlt = null;
+            }
         }
 
         return super.migrateData(source);

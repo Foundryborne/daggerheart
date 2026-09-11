@@ -14,6 +14,7 @@ import {
     createShallowProxy,
     updateLinkedItemApps
 } from '../../helpers/utils.mjs';
+import { DHActionDiceData } from '../fields/action/damageField.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -247,6 +248,26 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         }
 
         if (changed.system?.actions) {
+            const updateDamage = (changes, originData) => {
+                const resultBased = changes.resultBased ?? originData?.resultBased;
+                changes.valueAlt = resultBased 
+                    ? (changes.valueAlt ?? originData?.valueAlt ?? DHActionDiceData.schema.getInitialValue())
+                    : null;
+            }
+
+            for (const [key, action] of Object.entries(changed.system.actions)) {
+                const existing = this.actions.get(key);
+                if (!action?.damage || !existing) continue;
+
+                if (action.damage.main) {
+                    updateDamage(action.damage.main, existing.damage?.main);
+                }
+                for (const [resource, resourceData] of Object.entries(action.damage.resources ?? {})) {
+                    const existingResource = existing.damage?.resources?.[resource];
+                    updateDamage(resourceData, existingResource);
+                }
+            }
+
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
                 const action = changed.system.actions[key];
                 if (action && Object.keys(action).length === 0) {

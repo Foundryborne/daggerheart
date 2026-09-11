@@ -195,11 +195,9 @@ export default class DamageField extends fields.SchemaField {
      * @returns Formula value object
      */
     static getFormulaValue(part, data) {
-        let formulaValue = part.value;
-
-        if (data.hasRoll && part.resultBased && data.roll.withFear) return part.valueAlt;
-
-        return formulaValue;
+        return data.hasRoll && part.resultBased && data.roll.withFear && part.valueAlt
+            ? part.valueAlt
+            : part.value;
     }
 
     /**
@@ -349,7 +347,7 @@ export class DHResourceData extends foundry.abstract.DataModel {
                 label: 'DAGGERHEART.ACTIONS.Settings.fullRestore.label'
             }),
             value: new fields.EmbeddedDataField(DHActionDiceData),
-            valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
+            valueAlt: new fields.EmbeddedDataField(DHActionDiceData, { nullable: true, initial: null })
         };
     }
 }
