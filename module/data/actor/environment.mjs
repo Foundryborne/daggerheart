@@ -98,7 +98,8 @@ export default class DhEnvironment extends BaseDataActor {
         return {
             ...(await super._prepareEmbedContext(options)),
             type: _loc(environmentTypes[this.type]?.label),
-            potentialAdversaries: adversaryGroups.join(', ')
+            difficulty: this.difficulty || _loc('DAGGERHEART.ACTORS.Environment.Embed.special'),
+            potentialAdversaries: adversaryGroups.join(', ') || _loc('DAGGERHEART.ACTORS.Environment.Embed.any')
         };
     }
 }

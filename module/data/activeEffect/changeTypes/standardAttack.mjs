@@ -56,7 +56,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
     static changeEffect = {
         label: 'Standard Attack',
         defaultPriority: 20,
-        handler: (actor, change, _options, _field, replacementData) => {
+        handler: (actor, change, _options) => {
             if (change.value.name) {
                 foundry.utils.setProperty(
                     actor,
@@ -81,7 +81,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
                 );
             }
 
-            if (change.value.damageTypes) {
+            if (change.value.damageTypes.size) {
                 foundry.utils.setProperty(
                     actor,
                     'system.attack.damage.main.type',

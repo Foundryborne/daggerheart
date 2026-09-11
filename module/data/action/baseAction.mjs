@@ -223,6 +223,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
             : 1;
         actorData.roll = {};
+        actorData.action = {
+            actionType: this.actionType,
+            damage: this.damage,
+            roll: this.roll
+        };
 
         return actorData;
     }
@@ -250,8 +255,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
-        config.effects =
-            await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
+        config.effects = await DHBaseAction.getActionRelevantEffects(this.getRollData(), this.actor);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -357,48 +361,27 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Get the all potentially applicable effects on the actor for the action's RollDialog
-     * @param {DHActor} actor The actor performing the action
-     * @param {DHItem|DhActor} effectParent The parent of the effect
+     * @param {RollData} rollData The rolldata of the action being performed
+     * @param {DhpActor} actor The actor performing the action
      * @returns {DhActiveEffect[]}
      */
-    static async getActionRelevantEffects(actor, effectParent) {
+    static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];
 
-        // Changes on weapon effects are not typically only applicable to show in the roll dialog for the weapon itself 
-        // The exemptions to this rule are listed below
-        const weaponTransferredEffectKeys = [
-            'system.bonuses.roll.spellcast.bonus'
-        ];
-
-        const results = [];
         const applicableEffects = await actor.allApplicableEffects({ 
             noTransferArmor: true, 
             noSelfArmor: true, 
             includeEphemerals: true 
         });
-        for (const effect of [...applicableEffects].filter(e => !e.isSuppressed)) {
-            if (effect.parent.type === 'weapon') {
-                // Effects on weapons only ever apply for the weapon itself (with a few exceptions)
-                const restricted =
-                    effect.parent.system.secondary
-                        // Secondary applies only to other primary weapons
-                        ? effectParent?.type !== 'weapon' || effectParent?.system.secondary
-                        // Primary only applies to itself
-                        : effectParent?.id !== effect.parent.id;
-                if (restricted) {
-                    const sourceChanges = effect._source.system.changes;
-                    const changes = sourceChanges.filter(x => weaponTransferredEffectKeys.includes(x.key));
-                    if (changes.length) {
-                        results.push(effect.clone({ 'system.changes': changes }));
-                    }
-                    continue;
-                }
-            }
+        return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
+            if (conditionalPassed)
+                acc.push(effect);
 
-            results.push(effect);
-        }
-
-        return results;
+            return acc;
+        }, []);
     }
 
     /**

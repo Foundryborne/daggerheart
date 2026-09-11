@@ -88,10 +88,13 @@ export default class DHArmor extends BaseDataItem {
                 actionIds.push(...feature.actionIds);
             }
             await this.parent.deleteEmbeddedDocuments('ActiveEffect', effectIds);
-            changes.system.actions = actionIds.reduce((acc, id) => {
-                acc[id] = _del;
-                return acc;
-            }, {});
+
+            if (actionIds.length) {
+                changes.system.actions = actionIds.reduce((acc, id) => {
+                    acc[id] = _del;
+                    return acc;
+                }, {});
+            }
 
             const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
             for (const feature of added) {

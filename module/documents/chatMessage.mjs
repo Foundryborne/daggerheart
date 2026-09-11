@@ -195,8 +195,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const actor = await foundry.utils.fromUuid(config.source.actor);
             const item = actor?.items.get(config.source.item) ?? null;
             config.resourceUpdates = new ResourceUpdateMap(actor);
-            config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(actor, item);
-            
+            const actions = item ? [
+                ...item.system.actions,
+                ...(item.system.attack?.id === config.source.action ? [item.system.attack] : [])
+            ] : [];
+            const action = actions.find(x => x.id === config.source.action);
+
+            const { base } = game.system.api.data.actions.actionsTypes;
+            config.effects = await base.getActionRelevantEffects(action.getRollData(), actor);
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
             await this.system.action.workflow.get('cost')?.execute(config);
             config.resourceUpdates.updateResources();
