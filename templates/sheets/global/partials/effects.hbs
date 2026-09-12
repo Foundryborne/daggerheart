@@ -18,7 +18,8 @@
                 {{> 'daggerheart.inventory-item'
                     item=data.effect
                     suppressed=data.suppressed
-                    validates=data.validates
+                    invalid=data.invalid
+                    suppressedMessage=data.suppressedMessage
                     type="effect"
                     actorType=(ifThen ../actorType ../actorType @root.document.type)
                     hideResources=true
