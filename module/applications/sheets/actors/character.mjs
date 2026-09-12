@@ -148,7 +148,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         effects: {
             id: 'effects',
             scrollable: ['.effects-sections'],
-            template: 'systems/daggerheart/templates/sheets/actors/character/effects.hbs'
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs'
         }
     };
 

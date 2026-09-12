@@ -167,39 +167,6 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
     }, {});
 };
 
-// Fix on Foundry native formula replacement for DH
-const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
-    /* Inserting global data */
-    const defaultingTypes = [
-        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
-        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
-    ];
-
-    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
-    return nativeReplaceFormulaData(formula, data, { missing, warn });
-};
-
-foundry.utils.setProperty(foundry, 'dice.terms.Die.MODIFIERS.sc', 'selfCorrecting');
-
-/**
- * Return the configured value as result if 1 is rolled
- * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
- * @param {string} modifier     The matched modifier query
- */
-foundry.dice.terms.Die.prototype.selfCorrecting = function (modifier) {
-    const rgx = /(?:sc)([0-9]+)/i;
-    const match = modifier.match(rgx);
-    if (!match) return false;
-    let [target] = match.slice(1);
-    target = parseInt(target);
-    for (const r of this.results) {
-        if (r.result === 1) {
-            r.result = target;
-        }
-    }
-};
-
 export const getDamageKey = damage => {
     return ['none', 'minor', 'major', 'severe', 'massive', 'any'][damage];
 };
@@ -379,10 +346,6 @@ export const itemAbleRollParse = (value, actor, item) => {
     }
 };
 
-export const arraysEqual = (a, b) =>
-    a.length === b.length &&
-    [...new Set([...a, ...b])].every(v => a.filter(e => e === v).length === b.filter(e => e === v).length);
-
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
 
 export function getScrollTextData(actor, resource, key) {
@@ -413,18 +376,6 @@ export function createScrollText(actor, data) {
             });
         });
     }
-}
-
-export function shuffleArray(array) {
-    let currentIndex = array.length;
-    while (currentIndex != 0) {
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
 }
 
 export function itemIsIdentical(a, b) {

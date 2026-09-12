@@ -1,22 +1,4 @@
 <section class='tab {{tabs.effects.cssClass}} {{tabs.effects.id}}' data-tab='{{tabs.effects.id}}'
     data-group='{{tabs.effects.group}}'>
-
-    {{> 'daggerheart.inventory-items'
-        title='DAGGERHEART.GENERAL.activeEffects'
-        type='effect'
-        isGlassy=true
-        collection=effects.actives
-        canCreate=@root.editable
-        hideResources=true
-    }}
-
-    {{> 'daggerheart.inventory-items'
-        title='DAGGERHEART.GENERAL.inactiveEffects'
-        type='effect'
-        disabledEffect=true
-        isGlassy=true
-        collection=effects.inactives
-        canCreate=@root.editable
-        hideResources=true
-    }}
+    {{> "systems/daggerheart/templates/sheets/global/partials/effects.hbs"}}
 </section>

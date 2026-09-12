@@ -190,7 +190,12 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         for (const effect of this.actor.allApplicableEffects({ noTransferArmor: true })) {
             const list = effect.active ? context.effects.actives : context.effects.inactives;
-            list.push(effect);
+            const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();
+            list.push({
+                suppressed: effect.isSuppressed,
+                validates: effect.system.testConditionals(rollData),
+                effect
+            });
         }
     }
 

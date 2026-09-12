@@ -75,6 +75,9 @@ Parameters:
             {{!-- Controls --}}
             {{#unless hideControls}}
                 <div class="controls">
+                    {{#if suppressed}}
+                        <i class="fa-solid fa-warning" data-tooltip="{{ifThen (eq validates false) "This effect is suppressed due to conditionals" "This effect is suppressed"}}"></i>
+                    {{/if}}
                     {{!-- Toggle/Equip buttons --}}
                     {{#if @root.editable}}
                         {{#if (and (eq actorType 'character') (eq type 'weapon'))}}
