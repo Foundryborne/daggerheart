@@ -12,6 +12,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
             showItem: DhActiveEffectConfig.#onShowItem,
+            addEphemeralCost: DhActiveEffectConfig.#onAddEphemeralCost,
+            removeEphemeralCost: DhActiveEffectConfig.#onRemoveEphemeralCost,
             removeConditional: DhActiveEffectConfig.#onRemoveConditional
         }
     };
@@ -423,6 +425,27 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         if (item.visible) item.sheet?.render({ force: true });
     }
 
+    static #onAddEphemeralCost() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const existingCosts = submitData.system.costs ? Object.values(submitData.system.costs) : [];
+        const updatedCosts = [...existingCosts, { type: 'hope', value: 1 }];
+
+        return this.submit({ updateData: { 
+            'system.costs': updatedCosts
+        }});
+    }
+
+    static #onRemoveEphemeralCost(_event, button) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        if (!submitData.system.costs) return;
+
+        const updatedCosts = Object.values(submitData.system.costs)
+            .filter((_, index) => index !== Number.parseInt(button.dataset.index))
+        return this.submit({ updateData: { 
+            'system.costs': updatedCosts
+        }});
+    }
+    
     static #onRemoveConditional(_event, button) {
         const conditionals = this.document.system.conditionals
         const index = Number(button.dataset.index);

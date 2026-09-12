@@ -16,7 +16,8 @@
         },
         "ActiveEffect": {
             "base": "Standard",
-            "beastform": "Beastform"
+            "beastform": "Beastform",
+            "ephemeral": "Ephemeral"
         },
         "Actor": {
             "character": "Character",
@@ -236,7 +237,12 @@
                 "hint": "Settings for an optional distance at which this effect should activate",
                 "title": "Range Dependant"
             },
-            "immuneStatusText": "Immunity: {status}"
+            "immuneStatusText": "Immunity: {status}",
+            "Ephemeral": {
+                "costTitle": "Ephemeral Costs",
+                "costType": "Cost Type",
+                "multipleCostsLabel": "Multiple"
+            }
         },
         "ACTORS": {
             "Adversary": {

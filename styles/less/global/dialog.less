@@ -73,6 +73,7 @@
         flex-wrap: wrap;
 
         .selection-chip {
+            position: relative;
             display: flex;
             align-items: center;
             border-radius: 5px;
@@ -82,6 +83,7 @@
             padding: 5px;
             background: light-dark(@dark-blue-10, @golden-10);
             color: @color-text-emphatic;
+            margin-top: 2px;
 
             .label {
                 font-style: normal;
@@ -92,6 +94,17 @@
 
             &.selected {
                 background: light-dark(@dark-blue-40, @golden-40);
+            }
+
+            .header-label {
+                position: absolute;
+                top: -11px;
+                height: 12px;
+                width: fit-content;
+                font-size: 10px;
+                color: @chip-header-text-color;
+                font-weight: bold;
+                white-space: nowrap;
             }
         }
     }
