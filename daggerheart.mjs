@@ -116,6 +116,39 @@ CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
 CONFIG.debug.triggers = false;
 
+// Fix on Foundry native formula replacement for DH
+const nativeReplaceFormulaData = Roll.replaceFormulaData;
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
+    /* Inserting global data */
+    const defaultingTypes = [
+        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
+        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
+    ];
+
+    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    return nativeReplaceFormulaData(formula, data, { missing, warn });
+};
+
+foundry.utils.setProperty(foundry, 'dice.terms.Die.MODIFIERS.sc', 'selfCorrecting');
+
+/**
+ * Return the configured value as result if 1 is rolled
+ * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
+ * @param {string} modifier     The matched modifier query
+ */
+foundry.dice.terms.Die.prototype.selfCorrecting = function (modifier) {
+    const rgx = /(?:sc)([0-9]+)/i;
+    const match = modifier.match(rgx);
+    if (!match) return false;
+    let [target] = match.slice(1);
+    target = parseInt(target);
+    for (const r of this.results) {
+        if (r.result === 1) {
+            r.result = target;
+        }
+    }
+};
+
 Hooks.once('init', () => {
     game.system.api = {
         applications,

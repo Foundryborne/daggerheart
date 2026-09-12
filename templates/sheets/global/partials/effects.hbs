@@ -1,0 +1,31 @@
+<div class="effects-sections">
+    {{> "fieldset" title="DAGGERHEART.GENERAL.activeEffects" effects=effects.actives}}
+    {{> "fieldset" title="DAGGERHEART.GENERAL.inactiveEffects" effects=effects.inactives disabled=true}}
+</div>
+
+{{#*inline "fieldset"}}
+    <fieldset class="glassy drop-section">
+        <legend>
+            {{localize title}}
+            {{#if @root.editable}}
+                <a data-action="createDoc" data-document-class="ActiveEffect" data-tooltip="{{localize 'DOCUMENT.Create' type=''}}">
+                    <i class="fa-solid fa-plus icon-button" inert></i>
+                </a>
+            {{/if}}
+        </legend>
+        <ul class="items-list">
+            {{#each effects as |data|}}
+                {{> 'daggerheart.inventory-item'
+                    item=data.effect
+                    suppressed=data.suppressed
+                    invalid=data.invalid
+                    suppressedMessage=data.suppressedMessage
+                    type="effect"
+                    actorType=(ifThen ../actorType ../actorType @root.document.type)
+                    hideResources=true
+                    disabled=../disabled
+                }}
+            {{/each}}
+        </ul>
+    </fieldset>
+{{/inline}}

@@ -4380,7 +4380,11 @@
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",
                 "tokenSize": "The token size used on the canvas",
-                "previewTokenHelp": "Left-click to place, right-click to cancel"
+                "previewTokenHelp": "Left-click to place, right-click to cancel",
+                "suppressedEffect": {
+                    "general": "This effect is suppressed",
+                    "invalid": "This effect is suppressed due to conditionals"
+                }
             }
         }
     }
