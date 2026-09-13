@@ -606,6 +606,7 @@ export default function DHApplicationMixin(Base) {
         async _prepareEffectsContext(context, _options) {
             context.effects = {
                 actives: [],
+                ephemerals: [],
                 inactives: []
             };
 
@@ -613,7 +614,9 @@ export default function DHApplicationMixin(Base) {
                 this.document.allApplicableEffects?.({ noTransferArmor: true, includeEphemerals: true })
                 ?? this.document.effects;
             for (const effect of effects) {
-                const list = effect.active ? context.effects.actives : context.effects.inactives;
+                const list = effect.type === 'ephemeral' ?
+                    context.effects.ephemerals : 
+                    (effect.active ? context.effects.actives : context.effects.inactives);
                 const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();
                 const isSuppressed = effect.isSuppressed;
                 const invalid = !effect.system.testConditionals(rollData);
