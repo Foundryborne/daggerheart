@@ -664,7 +664,8 @@ export const diceSetNumbers = {
     prof: 'Proficiency',
     cast: 'Spellcast',
     scale: 'Cost Scaling',
-    flat: 'Flat'
+    flat: 'Flat',
+    custom: 'Custom'
 };
 
 export const diceSoNiceSFXClasses = {
