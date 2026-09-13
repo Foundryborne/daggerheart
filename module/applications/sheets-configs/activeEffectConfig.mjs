@@ -12,7 +12,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
             showItem: DhActiveEffectConfig.#onShowItem,
-            removeConditional: DhActiveEffectConfig.#onRemoveConditional
+            removeConditional: DhActiveEffectConfig.#onRemoveConditional,
+            toggleHideChange: DhActiveEffectConfig.#onToggleHiddenChange
         }
     };
 
@@ -428,5 +429,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const index = Number(button.dataset.index);
         conditionals.splice(index, 1);
         return this.submit({ updateData: { system: { conditionals } } });
+    }
+
+    static #onToggleHiddenChange() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        submitData.system.hidden = !submitData.system.hidden;
+        return this.submit({updateData: {system: { hidden: submitData.system.hidden }}});
     }
 }

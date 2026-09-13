@@ -223,11 +223,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
             : 1;
         actorData.roll = {};
+
         actorData.action = {
             actionType: this.actionType,
             damage: this.damage,
-            roll: this.roll
+            roll: data.roll ?? this.roll
         };
+
+        actorData.message = data.message;
 
         return actorData;
     }
@@ -371,7 +374,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const applicableEffects = actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
         return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
             const conditionalPassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id,
+                failureMode: CONFIG.DH.EFFECTS.conditionalFailureModes.hide.id
             });
             if (conditionalPassed)
                 acc.push(effect);
