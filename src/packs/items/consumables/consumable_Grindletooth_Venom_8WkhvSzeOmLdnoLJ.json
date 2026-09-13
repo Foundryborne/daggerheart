@@ -69,7 +69,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.dice",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "1d6",
             "priority": null,
@@ -81,7 +81,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "damageType",
+            "damageType": "physical"
+          }
+        ]
       },
       "disabled": false,
       "duration": {

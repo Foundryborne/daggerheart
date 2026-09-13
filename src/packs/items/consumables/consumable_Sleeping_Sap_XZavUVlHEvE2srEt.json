@@ -47,17 +47,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": true
+              "valueAlt": null,
+              "fullRestore": true,
+              "itemId": null
             }
           }
         },

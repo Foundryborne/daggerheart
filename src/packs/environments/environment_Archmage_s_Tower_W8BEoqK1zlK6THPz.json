@@ -98,22 +98,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -144,7 +136,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "iuNPkv0BtBWGcx54",
       "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
@@ -185,22 +178,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -264,7 +249,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ioqwvW4AcpTpyybj",
       "img": "icons/skills/trades/academics-book-study-runes.webp",
@@ -279,7 +265,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.spellcast.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": 1,
                 "priority": null,
@@ -292,7 +278,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "spellcast"
+                ]
+              }
+            ]
           },
           "_id": "Dtqtv6rdUecUdkyA",
           "type": "base",
@@ -330,7 +324,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.spellcast.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": 1,
                 "priority": null,
@@ -343,7 +337,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "spellcast"
+                ]
+              }
+            ]
           },
           "_id": "dVzmZQJVHxy0E5xX",
           "type": "base",
@@ -428,7 +430,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "5t3BQ5rmvFLOrZca",
       "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",

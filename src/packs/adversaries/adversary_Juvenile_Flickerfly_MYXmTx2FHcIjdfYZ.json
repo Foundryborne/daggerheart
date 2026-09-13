@@ -34,7 +34,6 @@
     },
     "type": "solo",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 2,
     "description": "<p>A horse-sized insect with iridescent scales and crystalline wings moving faster than the eye can see.</p>",
@@ -87,7 +86,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,8 @@
     "size": "large",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "MYXmTx2FHcIjdfYZ",
@@ -276,7 +277,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "6SnqNCeSEY7Q2tSI",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -358,7 +360,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "PHHEvM6IDFFZ8LSl",
       "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
@@ -384,7 +387,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -488,7 +492,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Bt7MqMkPpPpzWksK",
       "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
@@ -539,17 +544,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 },
                 "hope": {
                   "value": {
@@ -565,17 +562,9 @@
                   "applyTo": "hope",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -667,7 +656,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "EjfM83eVCdcVGC3c",
       "img": "icons/magic/air/fog-gas-smoke-purple.webp",

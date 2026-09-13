@@ -75,7 +75,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -122,12 +123,12 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
     "criticalThreshold": 20,
     "damageThresholds": {
       "major": 0,
       "severe": 0
-    }
+    },
+    "typeData": null
   },
   "items": [
     {
@@ -140,7 +141,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "sblLbyK1aQUa3p6I",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -230,7 +232,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "hI0tXM7hL3Tf3oLs",
       "img": "icons/magic/death/undead-ghost-strike-white.webp",
@@ -252,7 +255,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "F2npLpE2LeXlbcna",
           "type": "base",
@@ -317,22 +321,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": "close"
+                "groupAttack": "close",
+                "itemId": null
               },
               "resources": {}
             },
@@ -392,7 +388,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "FWGH5sUYmjPAyESD",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

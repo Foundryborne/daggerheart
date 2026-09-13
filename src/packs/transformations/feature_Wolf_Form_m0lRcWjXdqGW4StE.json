@@ -54,7 +54,8 @@
       }
     },
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -67,21 +68,14 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.attack.dice",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "1d10",
             "priority": null,
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.damage.physical.dice",
-            "type": "add",
-            "value": "1d10",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.dice",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": "1d10",
             "priority": null,
@@ -94,7 +88,15 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ]
+          }
+        ]
       },
       "_id": "G58SsLg2kER9qcNv",
       "type": "base",

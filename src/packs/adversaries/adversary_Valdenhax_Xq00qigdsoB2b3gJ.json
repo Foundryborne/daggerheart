@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -175,7 +176,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "UHgt0y5mAjYNFkKj",
       "img": "icons/magic/unholy/silhouette-light-fire-blue.webp",
@@ -260,7 +262,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AhT2ysWH9VJvvoZF",
       "img": "icons/magic/unholy/hand-claw-fire-blue.webp",
@@ -345,7 +348,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "p4Uo22O2XtQULFI3",
       "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
@@ -406,7 +410,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "dunAJ7TjJSBEyJHg",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",

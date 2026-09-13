@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MuXns55VF2VDcx3W",
       "img": "icons/skills/melee/strike-weapon-polearm-ice-blue.webp",
@@ -175,7 +177,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "ffN8wagEXv5fbCK1",
           "img": "icons/skills/melee/strike-weapon-polearm-ice-blue.webp",
@@ -273,16 +276,8 @@
                       "formula": "@scale"
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -310,7 +305,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "gMTKOvA2dNM5OAqG",
       "img": "icons/magic/life/heart-cross-strong-purple-orange.webp",
@@ -373,7 +369,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Tzwuda3jxU2ueezY",
       "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-orange.webp",
@@ -396,7 +393,8 @@
             "targetDispositions": [
               1,
               0
-            ]
+            ],
+            "conditionals": []
           },
           "_id": "YheawLsPcTD4FvSC",
           "type": "base",
@@ -490,7 +488,8 @@
             "range": "veryFar"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "IUcJ08ZA1Jb5QEGS",
       "img": "icons/magic/symbols/runes-star-pentagon-orange.webp",

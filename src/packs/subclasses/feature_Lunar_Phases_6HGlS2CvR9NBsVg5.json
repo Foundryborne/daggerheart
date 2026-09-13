@@ -61,7 +61,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [
     {
@@ -70,14 +71,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": 2,
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": 2,
             "priority": null,
@@ -90,7 +84,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "K7xu1KI8zehJ8kkY",
       "img": "icons/magic/nature/moon-crescent.webp",
@@ -148,7 +143,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "7V75lzCjChYmZaZ5",
       "img": "icons/environment/settlement/watchtower-moonlit-blue.webp",
@@ -199,7 +195,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "b60bHY67KMfRJOrU",
       "img": "icons/magic/light/projectile-flare-blue.webp",

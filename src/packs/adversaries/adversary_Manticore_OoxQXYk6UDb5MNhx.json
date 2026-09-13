@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "qsUUBZt6od9imXhv",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -174,7 +176,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ENHHj25Jmzwl8oKn",
       "img": "icons/skills/trades/academics-investigation-puzzles.webp",
@@ -197,7 +200,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "zqDrfCZDk8qNPBSn",
       "img": "icons/creatures/birds/raptor-hawk-flying.webp",
@@ -215,7 +219,7 @@
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": 2,
                 "priority": null,
@@ -228,7 +232,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ]
+              }
+            ]
           },
           "_id": "ohIpDGlDSw6m1QED",
           "img": "icons/commodities/biological/wing-lizard-brown.webp",
@@ -297,22 +309,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -377,7 +381,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "DtEHBkdcv6z3q7x9",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
@@ -405,7 +410,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "Y51fFtW8cqVu0uM1",
           "type": "base",
@@ -470,22 +476,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -550,7 +548,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JkAUCfodIaav6mp2",
       "img": "icons/commodities/biological/stinger-insect-grey.webp",
@@ -572,7 +571,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "wxgYIxwQHUMCaU1E",
           "type": "base",
@@ -662,7 +662,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "jKieOD0PkBx38aQS",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
@@ -685,7 +686,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "wCyKJfNQTx2a62Di",
           "type": "base",

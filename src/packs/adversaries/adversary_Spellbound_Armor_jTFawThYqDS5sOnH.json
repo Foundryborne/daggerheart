@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "6mqb7HLSxw2jRXB5",
       "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
@@ -216,16 +218,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -253,7 +247,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "rioPJyaUZtTHWpa1",
       "img": "icons/creatures/magical/construct-golem-robot-blue.webp",
@@ -361,7 +356,57 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Vulnerable",
+      "description": "While a creature is Vulnerable, all rolls targeting them have advantage.\nA creature who is already Vulnerable can't be made to take the condition again.",
+      "img": "icons/magic/control/silhouette-fall-slip-prone.webp",
+      "statuses": [
+        "vulnerable"
+      ],
+      "flags": {
+        "daggerheart": {
+          "autoApplyFlagId": "auto-vulnerable"
+        }
+      },
+      "_id": "IGcCAL3xlCZpCawM",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "transfer": false,
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.effects!jTFawThYqDS5sOnH.IGcCAL3xlCZpCawM"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!actors!jTFawThYqDS5sOnH"

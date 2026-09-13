@@ -18,7 +18,8 @@
       "recovery": null,
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-ghost"
+      "icon": "fa-solid fa-ghost",
+      "diceStates": {}
     },
     "actions": {
       "KPwMmCHMYD1ByXDt": {
@@ -69,16 +70,7 @@
                   "formula": "@cast"
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null
             }
           }
         },
@@ -107,7 +99,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [],
   "sort": 0,

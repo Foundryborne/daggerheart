@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "suP10DxENd9ZLfss",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -174,7 +176,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "2tZhGrctXW7d3Wn5",
       "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
@@ -205,7 +208,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "uHZW0M3vlRNFppzI",
           "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
@@ -256,7 +260,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "mv1UXfyCZ1inA58c",
       "img": "icons/commodities/metal/mail-scale-steel.webp",
@@ -287,7 +292,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "pMlW6q8CzYzTDBls",
           "img": "icons/commodities/metal/mail-scale-steel.webp",
@@ -405,7 +411,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "j1mUnngeA5NKBgnZ",
       "img": "icons/magic/earth/barrier-stone-brown-green.webp",
@@ -427,7 +434,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "qc2utRaB2sLvGCv0",
           "type": "base",

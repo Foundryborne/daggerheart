@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oiBhMfUNn9bCEdmX",
       "img": "icons/magic/symbols/rune-sigil-black-pink.webp",
@@ -174,7 +176,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "q3k7aTwqNIwjfKTd",
       "img": "icons/magic/symbols/runes-triangle-magenta.webp",
@@ -198,7 +201,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "hd02VKqWhG2Uu0t8",
           "img": "icons/magic/symbols/runes-triangle-magenta.webp",
@@ -311,7 +315,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "SDq4QlTBkrX0v5mZ",
       "img": "icons/magic/control/mouth-smile-deception-purple.webp",
@@ -401,7 +406,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JQ0bdv1Gnb0VD4Gm",
       "img": "icons/magic/death/skull-humanoid-white-red.webp",
@@ -421,7 +427,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "0tULtmVqDsZR60oh",
           "type": "base",
@@ -488,16 +495,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -557,7 +556,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0gsas3oxit5vgG8C",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",

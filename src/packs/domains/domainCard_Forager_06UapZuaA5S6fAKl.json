@@ -41,17 +41,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -116,17 +108,9 @@
               "applyTo": "hope",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -225,17 +209,9 @@
               "applyTo": "hitPoints",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -295,7 +271,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.spellcast.bonus",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": 2,
             "priority": null,
@@ -307,7 +283,15 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "spellcast"
+            ]
+          }
+        ]
       },
       "disabled": false,
       "duration": {

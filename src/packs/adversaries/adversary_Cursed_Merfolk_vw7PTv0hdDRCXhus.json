@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "qa0hFDclsItQPYVs",
       "img": "icons/creatures/fish/fish-bluefin-yellow-blue.webp",
@@ -162,7 +164,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "emz7TWp1nTWNdRYS",
           "img": "icons/creatures/fish/fish-bluefin-yellow-blue.webp",
@@ -215,7 +218,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ZUgXhnNY23yrVGo8",
       "img": "icons/skills/melee/swords-triple-orange.webp",
@@ -226,7 +230,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": 2,
                 "priority": null,
@@ -239,7 +243,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ]
+              }
+            ]
           },
           "_id": "Xxca2rzdme37QDbj",
           "img": "icons/skills/melee/swords-triple-orange.webp",
@@ -345,22 +357,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -421,7 +425,8 @@
             "img": "icons/skills/melee/strike-polearm-light-orange.webp"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "eX0tAOy7TD4wVgEY",
       "img": "icons/commodities/metal/chain-steel.webp",

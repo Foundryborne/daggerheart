@@ -167,7 +167,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "iiHjguQG2aBn9g8i",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -183,7 +184,7 @@
               {
                 "key": "system.rules.dualityRoll.defaultHopeDice",
                 "type": "override",
-                "value": "10",
+                "value": 10,
                 "priority": null,
                 "phase": "initial"
               }
@@ -193,7 +194,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -273,7 +275,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0Rgqw1kUPeJ11ldd",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
@@ -291,7 +294,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -322,14 +326,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage.physical.dice",
-                "type": "add",
-                "value": "1d10",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.dice",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": "1d10",
                 "priority": null,
@@ -341,7 +338,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": true,
           "duration": {
@@ -452,7 +450,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oFfu3hUhp4ta4qwT",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
@@ -475,7 +474,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "WltEUhtYwfnX8WCc",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",

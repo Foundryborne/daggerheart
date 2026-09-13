@@ -33,7 +33,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 3,
     "experiences": {},
     "tier": 4,
     "description": "<p>A large pack of undead, still powerful despite their rotting flesh.</p>",
@@ -69,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -242,7 +242,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "o1qQhASA882Fn9HN",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",
@@ -265,7 +266,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "D1lCoe9WVr6vYuD9",
           "img": "icons/magic/defensive/shield-barrier-blue.webp",
@@ -348,7 +350,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "fCYLZKeTn0YSpVDI",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -410,7 +413,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "d5Vilu9cUub1O6TD",
       "img": "icons/skills/melee/strike-slashes-orange.webp",

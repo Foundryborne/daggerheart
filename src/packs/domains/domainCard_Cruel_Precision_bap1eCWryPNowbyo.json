@@ -32,14 +32,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.bonus",
-            "type": "add",
-            "value": "@system.traits.agility.value",
-            "priority": 21,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.secondaryWeapon.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "@system.traits.agility.value",
             "priority": 21,
@@ -51,7 +44,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "anyWeapon"
+          }
+        ]
       },
       "_id": "t5D10AL2W9LMGsX4",
       "img": "icons/skills/melee/strike-dagger-arcane-pink.webp",
@@ -82,14 +81,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.bonus",
-            "type": "add",
-            "value": "@system.traits.finesse.value",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.secondaryWeapon.bonus",
+            "key": "system.bonuses.damage",
             "type": "add",
             "value": "@system.traits.finesse.value",
             "priority": null,
@@ -101,7 +93,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "anyWeapon"
+          }
+        ]
       },
       "_id": "Ha7c4XgmN5zGMSHG",
       "img": "icons/skills/melee/strike-dagger-arcane-pink.webp",

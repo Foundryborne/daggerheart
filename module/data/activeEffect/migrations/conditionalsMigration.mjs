@@ -10,7 +10,7 @@ export default function conditionalsMigration(source) {
 
         /* Damage Bonus: Gather conditional data and replace outdated changes  */
         const damageTypeIndexes = source.changes.reduce((acc, change, index) => {
-            if (change.key.startsWith('system.bonuses.damage.'))
+            if (change.key?.startsWith('system.bonuses.damage.'))
                 acc.push(index);
 
             return acc;
@@ -36,7 +36,7 @@ export default function conditionalsMigration(source) {
 
         /* Roll Bonus: Gather conditional data and replace outdated changes  */
         const rollChangeIndexes = source.changes.reduce((acc, change, index) => {
-            if (change.key.startsWith('system.bonuses.roll.'))
+            if (change.key?.startsWith('system.bonuses.roll.'))
                 acc.push(index);
 
             return acc;

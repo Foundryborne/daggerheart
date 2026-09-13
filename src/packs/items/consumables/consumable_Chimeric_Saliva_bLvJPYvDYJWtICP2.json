@@ -74,7 +74,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "7FPuCdj1fB3utrnw",
       "type": "base",

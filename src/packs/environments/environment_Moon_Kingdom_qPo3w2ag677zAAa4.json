@@ -69,7 +69,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "EwKS8purdqfLft20",
       "img": "icons/magic/nature/moon-crescent.webp",
@@ -126,7 +127,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "LBPo3tyONcyWo2ap",
       "img": "icons/magic/nature/leaf-glow-triple-teal.webp",
@@ -141,7 +143,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.spellcast.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": 1,
                 "priority": null,
@@ -154,7 +156,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "spellcast"
+                ]
+              }
+            ]
           },
           "_id": "b4fl1uw4coFPlcYk",
           "type": "base",
@@ -219,22 +229,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -265,7 +267,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JbybeL7zwmsLBdgt",
       "img": "icons/commodities/gems/gem-rough-round-pink.webp",
@@ -316,7 +319,8 @@
             ]
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0L199n6Ftdu0Ski7",
       "img": "icons/magic/death/skull-humanoid-crown-white-blue.webp",

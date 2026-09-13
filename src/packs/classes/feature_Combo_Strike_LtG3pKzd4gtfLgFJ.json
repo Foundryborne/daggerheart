@@ -31,21 +31,13 @@
                 "formula": "2d(@system.rules.roll.comboDieFaces)c"
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "physical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },
@@ -86,7 +78,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [],
   "sort": 0,

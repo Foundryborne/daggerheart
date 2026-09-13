@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -194,7 +195,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Yrqv87f6puOCxm10",
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
@@ -209,21 +211,14 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": "@system.resources.stress.value",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.roll",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,
@@ -236,7 +231,15 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ]
+              }
+            ]
           },
           "_id": "Y2srAAKUrL5NN0Qx",
           "type": "base",
@@ -322,7 +325,8 @@
             "range": "veryClose"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "caJPsyCr135shtxb",
       "img": "icons/magic/light/orbs-firefly-hand-yellow.webp",
@@ -392,7 +396,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "7cdY7q2H3EknbG3A",
       "img": "icons/magic/death/undead-ghosts-trio-blue.webp",
@@ -453,7 +458,8 @@
             "range": "veryClose"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "IXX7AivO001xb0DP",
       "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",
