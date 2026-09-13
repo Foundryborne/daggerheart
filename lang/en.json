@@ -201,7 +201,9 @@
                     "short": "(on Success only)"
                 },
                 "cost": {
-                    "stepTooltip": "+{step} per step"
+                    "stepTooltip": "+{step} per step",
+                    "freelyScaleable": "Freely Scaleable",
+                    "scaleMax": "Scale Max"
                 },
                 "summon": {
                     "dropSummonsHere": "Drop Summons Here"
