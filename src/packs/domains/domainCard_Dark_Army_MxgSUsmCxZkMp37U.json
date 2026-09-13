@@ -106,7 +106,7 @@
         "_id": "XljvfpVuTZgMGviJ",
         "systemPath": "actions",
         "baseAction": false,
-        "description": "",
+        "description": "<p>When you deal damage to a target within Very Close range, you can spend any number of tokens to add <strong>1d8</strong> for each token spent to your damage roll.</p>",
         "chatDisplay": true,
         "originItem": {
           "type": "itemCollection"
@@ -138,6 +138,68 @@
         "name": "Deal Damage",
         "range": "",
         "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp"
+      },
+      "8WWs8Fhz0cBFHYRV": {
+        "type": "attack",
+        "damage": {
+          "main": null,
+          "resources": {}
+        },
+        "_id": "8WWs8Fhz0cBFHYRV",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "<p>Additionally, when you take damage, you can spend any number of tokens to reduce the damage by <strong>1d8</strong> for each token spent.</p>",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": true,
+            "key": "resource",
+            "value": 1,
+            "step": 1,
+            "itemId": "MxgSUsmCxZkMp37U"
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "scale",
+            "flatMultiplier": 1,
+            "dice": "d8",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Reduce Damage",
+        "range": "",
+        "img": "icons/magic/defensive/barrier-shield-dome-pink.webp"
       }
     },
     "recallCost": 2,
