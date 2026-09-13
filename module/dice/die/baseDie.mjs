@@ -4,12 +4,12 @@ import { triggerChatRollFx } from '../../helpers/utils.mjs';
 export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
+        sc: 'selfCorrecting',
         c: 'comboDice',
         h: 'hope',
         f: 'fear',
         a: 'advantage',
-        d: 'disadvantage',
-        sc: 'selfCorrecting'
+        d: 'disadvantage'
     };
 
     async rerollResult(resultToReroll) {
