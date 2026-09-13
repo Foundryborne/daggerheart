@@ -43,7 +43,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "BrmEXZ6Nowpg7LRS",
       "img": "icons/equipment/chest/robe-collared-pink.webp",
@@ -66,7 +67,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AkVcdbmlKOIBAkp6",
       "img": "icons/skills/social/diplomacy-handshake.webp",
@@ -89,7 +91,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "4yP8POf2j4QjnB1I",
       "img": "icons/magic/control/fear-fright-white.webp",
@@ -150,7 +153,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "r2uqWKreHwK2Yo16",
       "img": "icons/magic/perception/silhouette-stealth-shadow.webp",

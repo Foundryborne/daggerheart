@@ -34,7 +34,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 2,
     "experiences": {},
     "tier": 2,
     "description": "<p>A group of trained archers bearing massive bows.</p>",
@@ -69,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -278,20 +278,12 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -343,7 +335,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Wuf5y9tJ88BwzLv2",
       "img": "icons/skills/ranged/arrows-flying-triple-brown.webp",
@@ -393,20 +386,12 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -458,7 +443,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ayGHTtyjSuIR4BrV",
       "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",
@@ -494,6 +480,7 @@
         {
           "name": "Horde",
           "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "showIcon": 2,
           "system": {
             "conditionals": [
               {
@@ -519,16 +506,24 @@
               }
             ],
             "duration": {
-              "description": ""
+              "description": "",
+              "type": ""
             },
             "rangeDependence": null,
             "stacking": null,
             "targetDispositions": []
           },
-          "_id": "m3ikBOD5aPrMmQUP",
+          "_id": "66syft7C7E4gicoo",
           "type": "base",
           "disabled": false,
-          "start": null,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
           "duration": {
             "value": null,
             "units": "seconds",
@@ -539,23 +534,22 @@
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
-          "showIcon": 2,
           "folder": null,
           "sort": 0,
           "flags": {},
           "_stats": {
             "compendiumSource": null
           },
-          "_key": "!actors.items.effects!0ts6CGd93lLqGZI5.OzrJGZ3sC6s84Uky.m3ikBOD5aPrMmQUP"
+          "_key": "!actors.items.effects!0ts6CGd93lLqGZI5.UtmaYhXFL7yAqndn.66syft7C7E4gicoo"
         }
       ],
-      "_id": "OzrJGZ3sC6s84Uky",
+      "_id": "UtmaYhXFL7yAqndn",
       "folder": null,
       "sort": 0,
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!actors.items!0ts6CGd93lLqGZI5.OzrJGZ3sC6s84Uky"
+      "_key": "!actors.items!0ts6CGd93lLqGZI5.UtmaYhXFL7yAqndn"
     }
   ],
   "effects": [],

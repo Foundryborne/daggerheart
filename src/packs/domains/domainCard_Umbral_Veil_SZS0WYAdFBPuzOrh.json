@@ -18,7 +18,8 @@
       "recovery": "scene",
       "progression": "increasing",
       "dieFaces": "d4",
-      "icon": "fa-solid fa-skull"
+      "icon": "fa-solid fa-skull",
+      "diceStates": {}
     },
     "actions": {
       "I2Ifm2A6C1fkcQJS": {
@@ -69,16 +70,7 @@
                   "formula": "@fear"
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null
             }
           }
         },

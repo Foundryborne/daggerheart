@@ -11,7 +11,8 @@
     "resource": null,
     "actions": {},
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [],
   "sort": 0,

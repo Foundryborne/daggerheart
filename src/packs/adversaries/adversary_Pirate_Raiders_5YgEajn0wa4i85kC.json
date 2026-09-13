@@ -34,7 +34,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 3,
     "experiences": {
       "a2aFr2x2FEZp7dFx": {
         "name": "Sailor",
@@ -75,7 +74,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -278,17 +278,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -311,11 +303,12 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
-      "sort": 0,
+      "sort": 100000,
       "flags": {},
       "_stats": {
         "compendiumSource": null

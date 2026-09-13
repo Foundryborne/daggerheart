@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "M0xm1RuRp8RKZ9U2",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -174,7 +176,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "4Ujl7ftNG0ZGGRng",
       "img": "icons/magic/life/heart-shadow-red.webp",
@@ -237,7 +240,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "kkVrD8dy2HAdNz3a",
       "img": "icons/creatures/invertebrates/spider-dotted-green.webp",
@@ -261,7 +265,8 @@
             "stacking": null,
             "targetDispositions": [
               1
-            ]
+            ],
+            "conditionals": []
           },
           "_id": "XUB4VupK2GO40Phy",
           "type": "base",
@@ -326,22 +331,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -410,7 +407,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Xgwos3c1kvGSl9yu",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -433,7 +431,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "OdMvmwBr3mD0gwaL",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

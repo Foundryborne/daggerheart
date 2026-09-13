@@ -12,7 +12,6 @@
       "major": 24,
       "severe": 48
     },
-    "hordeHp": 6,
     "resources": {
       "hitPoints": {
         "value": 0,
@@ -80,7 +79,8 @@
           "resultBased": false,
           "fullRestore": false,
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -228,7 +228,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "5oqRLicTNnITxlwx",
       "img": "icons/skills/trades/music-notes-sound-blue.webp",
@@ -239,14 +240,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": "ITEM.@system.resource.value",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": "ITEM.@system.resource.value",
                 "priority": null,
@@ -259,7 +253,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "L8RlbKHHXbb5w318",
           "img": "icons/skills/trades/music-notes-sound-blue.webp",
@@ -293,7 +288,7 @@
         }
       ],
       "folder": null,
-      "sort": 0,
+      "sort": 100000,
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -310,7 +305,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "cOwcBvzgs3GYGxKE",
       "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",

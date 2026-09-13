@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "DPsV47Ah9MHukhVe",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -207,7 +209,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "vI14KIZ1C0GnyQpR",
       "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
@@ -231,7 +234,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "lykN2B07hwfFQz3U",
           "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
@@ -320,16 +324,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -357,7 +353,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "C7cdkWta8kLGaqXn",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -442,7 +439,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Dq0jQoARqtYf1drc",
       "img": "icons/skills/melee/strike-scythe-fire-green.webp",
@@ -520,16 +518,8 @@
                       "formula": "@scale"
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -557,7 +547,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "FHxhsBvJfrWsKGx5",
       "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
@@ -618,7 +609,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "N2eKN7QmOdB1ZBat",
       "img": "icons/magic/unholy/orb-contained-pink.webp",

@@ -311,6 +311,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         if (!template) return null;
 
         const context = await this._prepareEmbedContext(options);
+        context.config = config;
         const content = await foundry.applications.handlebars.renderTemplate(template, context);
         const container = document.createElement('div');
         container.innerHTML = content;

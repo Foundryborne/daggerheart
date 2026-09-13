@@ -107,7 +107,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "v4B2AXAw5ipJ3KG6",
       "type": "base",
@@ -158,7 +159,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "pxrbpDOlTozFmTnr",
       "type": "base",

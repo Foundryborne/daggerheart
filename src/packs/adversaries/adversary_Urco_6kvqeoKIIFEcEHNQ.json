@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -189,16 +190,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -226,7 +219,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "2bWAUEaKjtBcIaeK",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -249,7 +243,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "HiRhDJRDiEhyN6zR",
       "img": "icons/magic/death/skull-humanoid-white-blue.webp",
@@ -260,14 +255,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage.physical.bonus",
-                "type": "add",
-                "value": "@fear",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.bonus",
+                "key": "system.bonuses.damage",
                 "type": "add",
                 "value": "@fear",
                 "priority": null,
@@ -280,7 +268,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "urMEH7p7LN1oSvgT",
           "img": "icons/magic/death/skull-humanoid-white-blue.webp",
@@ -378,16 +367,8 @@
                       "formula": "@scale"
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -462,16 +443,8 @@
                       "formula": "@scale"
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -500,7 +473,8 @@
             "img": "icons/magic/life/cross-beam-green.webp"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "rl4x4HKG3Rv6JdrD",
       "img": "icons/magic/death/skull-flames-white-blue.webp",
@@ -566,7 +540,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "YFUXAwiDBVneRFbU",
       "img": "icons/magic/perception/eye-ringed-glow-angry-teal.webp",
@@ -604,7 +579,8 @@
               "value": 1,
               "max": null
             },
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "uWMHqoOSWJrddNPS",
           "type": "base",

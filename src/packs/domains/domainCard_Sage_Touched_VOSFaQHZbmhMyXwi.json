@@ -128,7 +128,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.spellcast.bonus",
+            "key": "system.bonuses.roll",
             "type": "add",
             "value": "+2",
             "priority": null,
@@ -140,7 +140,15 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "spellcast"
+            ]
+          }
+        ]
       },
       "_id": "7zMpgedPII5GIYUl",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
@@ -186,7 +194,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": true,
       "duration": {
@@ -229,7 +238,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": true,
       "duration": {

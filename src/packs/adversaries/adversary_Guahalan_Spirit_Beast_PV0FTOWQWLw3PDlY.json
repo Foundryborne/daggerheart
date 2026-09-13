@@ -75,7 +75,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -122,12 +123,12 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
     "criticalThreshold": 20,
     "damageThresholds": {
       "major": 0,
       "severe": 0
-    }
+    },
+    "typeData": null
   },
   "items": [
     {
@@ -140,7 +141,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "e0A5dvoGSfLTKUfj",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -163,7 +165,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "W8OXEY1NwUOgVw6N",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -187,7 +190,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "GVMACi81KHiu2huE",
           "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -256,22 +260,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": "close"
+                "groupAttack": "close",
+                "itemId": null
               },
               "resources": {}
             },
@@ -322,7 +318,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oYNpJeGv8B9kysC9",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
@@ -363,22 +360,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -418,7 +407,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MsyovuEmk2sl1ZxU",
       "img": "icons/magic/light/beams-strike-blue.webp",

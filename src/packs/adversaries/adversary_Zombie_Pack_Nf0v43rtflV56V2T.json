@@ -34,7 +34,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 2,
     "experiences": {},
     "tier": 1,
     "description": "<p>A group of shambling corpses instinctively moving together.</p>",
@@ -69,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -283,7 +283,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,

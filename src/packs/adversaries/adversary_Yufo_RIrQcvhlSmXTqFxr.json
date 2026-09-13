@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "YBQ9BpaOeef4iBms",
       "img": "icons/magic/perception/third-eye-blue-red.webp",
@@ -174,7 +176,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "q10WSdhUvw2GY2cy",
       "img": "icons/magic/symbols/triangle-glow-purple.webp",
@@ -264,7 +267,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "9nSzgCYB4d3gbvIj",
       "img": "icons/magic/lightning/projectile-tendrils-red.webp",
@@ -292,7 +296,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "i3PqojBeBweHCumM",
           "type": "base",
@@ -382,7 +387,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "k4M4bnm9yPPLqOfn",
       "img": "icons/magic/acid/dissolve-arm-flesh.webp",
@@ -417,7 +423,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "TlHq918re4n0awjW",
           "type": "base",

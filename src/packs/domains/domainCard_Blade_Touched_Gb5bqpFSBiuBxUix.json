@@ -32,16 +32,16 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.attack.bonus",
+            "key": "system.damageThresholds.severe",
             "type": "add",
-            "value": 2,
+            "value": 4,
             "priority": null,
             "phase": "initial"
           },
           {
-            "key": "system.damageThresholds.severe",
+            "key": "system.bonuses.roll",
             "type": "add",
-            "value": 4,
+            "value": 2,
             "priority": null,
             "phase": "initial"
           }
@@ -51,7 +51,15 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ]
+          }
+        ]
       },
       "_id": "fBpLkCWGsB8MbymR",
       "img": "icons/skills/melee/strike-sword-slashing-red.webp",
