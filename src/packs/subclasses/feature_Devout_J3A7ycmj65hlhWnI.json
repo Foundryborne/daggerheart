@@ -17,7 +17,61 @@
     "granter": null,
     "featureForm": "passive"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Devout",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [
+          {
+            "key": "system.tokens.seraph.sparingTouch",
+            "type": "add",
+            "value": 1,
+            "priority": 20,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": [],
+        "hidden": false
+      },
+      "_id": "98haOhpQEZe9jeNF",
+      "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>When you roll your Prayer Dice, you can roll an additional die and discard the lowest result. Additionally, you can use your \"Sparing Touch\" feature twice instead of once per long rest.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!J3A7ycmj65hlhWnI.98haOhpQEZe9jeNF"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!J3A7ycmj65hlhWnI"

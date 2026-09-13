@@ -17,7 +17,60 @@
     "granter": null,
     "featureForm": "passive"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Fueled By Fear",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [
+          {
+            "key": "system.tokens.wizard.faceYourFear",
+            "type": "override",
+            "value": "2d10",
+            "priority": 50,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "AnvnRta8Oseoay7f",
+      "img": "icons/magic/symbols/rune-sigil-hook-white-red.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>The extra magic damage from your \"Face Your Fear\" feature increases to <strong>2d10</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!hNqLf3zEfKRzSbvq.AnvnRta8Oseoay7f"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!hNqLf3zEfKRzSbvq"

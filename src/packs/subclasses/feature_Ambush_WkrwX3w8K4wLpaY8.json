@@ -23,11 +23,10 @@
       "system": {
         "changes": [
           {
-            "type": "dice",
+            "type": "override",
             "key": "system.tokens.assassin.markedForDeath",
-            "value": "1",
-            "diceMode": "upgrade",
-            "priority": 40,
+            "value": "d6",
+            "priority": 50,
             "phase": "initial"
           }
         ],

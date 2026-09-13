@@ -167,10 +167,9 @@
       "system": {
         "changes": [
           {
-            "type": "dice",
+            "type": "override",
             "key": "system.tokens.assassin.markedForDeath",
             "value": "d4",
-            "diceMode": "override",
             "priority": 0,
             "phase": "initial"
           }

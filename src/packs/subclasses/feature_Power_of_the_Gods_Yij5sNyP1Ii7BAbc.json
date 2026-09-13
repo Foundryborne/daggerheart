@@ -17,7 +17,61 @@
     "granter": null,
     "featureForm": "passive"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Power Of The Gods",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [
+          {
+            "key": "system.tokens.seraph.wingsOfLight",
+            "type": "override",
+            "value": "d12",
+            "priority": 50,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": [],
+        "hidden": false
+      },
+      "_id": "ZyvRnQ7hwgL7sQFq",
+      "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>While flying, you deal an extra 1d12 damage instead of 1d8 from your \"Wings of Light\" feature.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!Yij5sNyP1Ii7BAbc.ZyvRnQ7hwgL7sQFq"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!Yij5sNyP1Ii7BAbc"
