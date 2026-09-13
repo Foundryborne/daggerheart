@@ -84,6 +84,10 @@ export const conditionalTypes = {
     damageType: {
         id: 'damageType',
         label: 'DAGGERHEART.CONFIG.ConditionalType.damageType'
+    },
+    status: {
+        id: 'status',
+        label: 'DAGGERHEART.CONFIG.ConditionalType.status'
     }
 };
 
