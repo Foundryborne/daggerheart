@@ -828,7 +828,10 @@ export default function DHApplicationMixin(Base) {
                 delete data.system;
             }
 
-            const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
+            const doc = !type ? 
+                await cls.createDialog(data, { parent }) :
+                await cls.create(data, { parent, renderSheet: !event.shiftKey });
+
             if (parentIsItem && type === 'feature') {
                 await this.document.update({
                     'system.features': this.document.system.toObject().features.concat(doc.uuid)

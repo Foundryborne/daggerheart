@@ -40,4 +40,11 @@ export default class EphemeralEffect extends BaseEffect {
             tooltip: this.costs.map(x => _loc(costTypes[x.type].label)).join(', ') 
         }
     }
+
+    static getDefaultObject(options = {}) {
+        return {
+            ...super.getDefaultObject(options),
+            type: 'ephemeral'
+        }
+    }
 }

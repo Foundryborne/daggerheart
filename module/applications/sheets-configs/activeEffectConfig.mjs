@@ -202,6 +202,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const partContext = await super._preparePartContext(partId, context);
         switch (partId) {
             case 'header':
+                const localizationType = this.document.type.capitalize();
+                partContext.effectSubTypeLabel = _loc(`DAGGERHEART.ACTIVEEFFECT.${localizationType}.subtitle`);
+                partContext.effectSubTypeTooltip = _loc(`DAGGERHEART.ACTIVEEFFECT.${localizationType}.subtitleTooltip`);
                 const originItem = this.document?.item ?? await fromUuid(this.document.origin);
                 if (originItem) {
                     partContext.originItem = originItem.item ?? (originItem instanceof Item ? originItem : null);
