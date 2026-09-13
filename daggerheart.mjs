@@ -116,6 +116,20 @@ CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
 CONFIG.debug.triggers = false;
 
+// Fix on Foundry native formula replacement for DH
+// @todo: this should maybe be roll data bolt ons
+const nativeReplaceFormulaData = Roll.replaceFormulaData;
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
+    /* Inserting global data */
+    const defaultingTypes = [
+        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
+        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
+    ];
+
+    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    return nativeReplaceFormulaData(formula, data, { missing, warn });
+};
+
 Hooks.once('init', () => {
     game.system.api = {
         applications,

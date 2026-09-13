@@ -32,7 +32,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         header: { template: 'systems/daggerheart/templates/sheets/actors/companion/header.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/actors/companion/details.hbs' },
         effects: {
-            template: 'systems/daggerheart/templates/sheets/actors/companion/effects.hbs',
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
             scrollable: ['.effects-sections']
         }
     };

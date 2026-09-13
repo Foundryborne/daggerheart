@@ -60,7 +60,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
             scrollable: ['.feature-section']
         },
         effects: {
-            template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
             scrollable: ['.effects-sections']
         },
         notes: {
