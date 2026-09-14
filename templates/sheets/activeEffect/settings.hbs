@@ -1,15 +1,17 @@
-<section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+<section class="tab settings {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
     {{#if (eq source.type 'ephemeral')}}
-        <fieldset class="two-columns">
+        <fieldset class="one-column">
             <legend>
                 {{localize "DAGGERHEART.ACTIVEEFFECT.Ephemeral.costTitle"}}
                 <a data-action="addEphemeralCost"><i class="fa-solid fa-plus"></i></a>
             </legend>
 
             {{#each source.system.costs as | cost |}}
-                {{formGroup ../systemFields.costs.element.fields.type value=cost.type name=(concat "system.costs." @key ".type") localize=true }}
-                {{formGroup ../systemFields.costs.element.fields.value value=cost.value name=(concat "system.costs." @key ".value") localize=true }}
-                <a data-action="removeEphemeralCost" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
+                <div class="ephemeral-container">
+                    {{formGroup ../systemFields.costs.element.fields.type value=cost.type name=(concat "system.costs." @key ".type") localize=true }}
+                    {{formGroup ../systemFields.costs.element.fields.value value=cost.value name=(concat "system.costs." @key ".value") localize=true }}
+                    <a data-action="removeEphemeralCost" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
+                </div>
             {{/each}}
         </fieldset>
     {{else}}
