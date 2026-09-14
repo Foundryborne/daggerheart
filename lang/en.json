@@ -1633,7 +1633,8 @@
                 "dataCompare": "Data Compare",
                 "weaponRestriction": "Weapon Restriction",
                 "actionType": "Action Type",
-                "damageType": "Damage Type"
+                "damageType": "Damage Type",
+                "status": "Status Restriction"
             },
             "ConditionalWeaponRestrictionType": {
                 "sameWeapon": "Same Weapon",
@@ -3396,6 +3397,7 @@
             "situationalBonus": "Situational Bonus",
             "searchPlaceholder": "Search...",
             "spent": "Spent",
+            "status": "Status",
             "step": "Step",
             "stress": "Stress",
             "subclasses": "Subclasses",
