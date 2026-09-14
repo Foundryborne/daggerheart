@@ -88,7 +88,7 @@ export default class DhCharacter extends DhCreature {
             }),
             attack: new ActionField({
                 initial: {
-                    name: 'DAGGERHEART.GENERAL.unarmedAttack',
+                    name: _loc('DAGGERHEART.GENERAL.unarmedAttack'),
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
