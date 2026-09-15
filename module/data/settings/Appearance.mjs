@@ -130,6 +130,9 @@ export default class DhAppearance extends foundry.abstract.DataModel {
 
     /** Invoked by the setting when data changes */
     handleChange() {
+        // Update setting early so re-render attempts pull it
+        game.system.settings.appearance = this;
+
         if (ui.resources) {
             if (this.displayFear === 'hide') {
                 ui.resources.close({ allowed: true });

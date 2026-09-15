@@ -2811,6 +2811,7 @@
             }
         },
         "EFFECTS": {
+            "AddChange": "Add Change",
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
@@ -2824,6 +2825,7 @@
             },
             "ChangeTypes": {
                 "armor": {
+                    "name": "Armor",
                     "FIELDS": {
                         "value": {
                             "current": {

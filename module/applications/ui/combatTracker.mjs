@@ -134,7 +134,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     getDefeatedId(combatant) {
         if (!combatant.actor) return CONFIG.specialStatusEffects.DEFEATED;
 
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         return settings[`${combatant.actor.type}Default`];
     }
 

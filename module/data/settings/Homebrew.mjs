@@ -221,6 +221,9 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
 
     /** Invoked by the setting when data changes */
     handleChange() {
+        // Update setting early so re-render attempts pull it
+        game.system.settings.homebrew = this;
+
         if (this.maxFear) {
             if (ui.resources) ui.resources.render({ force: true });
         }

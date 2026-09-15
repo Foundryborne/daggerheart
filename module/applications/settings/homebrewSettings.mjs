@@ -6,11 +6,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export default class DhHomebrewSettings extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor() {
         super({});
-
-        this.settings = new DhHomebrew(
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject()
-        );
-
+        this.settings = new DhHomebrew(game.system.settings.homebrew.toObject());
         this.selected = this.#getDefaultAdversaryType();
     }
 

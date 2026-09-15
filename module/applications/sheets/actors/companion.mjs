@@ -91,7 +91,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             ...foundry.utils.deepClone(partner.system.resources),
             fear: {
                 value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                max: game.system.settings.homebrew.maxFear,
                 reversed: false
             }
         };

@@ -46,7 +46,7 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
     /**@inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        context.levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        context.levelupAuto = game.system.settings.automation.levelupAuto;
 
         return context;
     }

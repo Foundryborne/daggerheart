@@ -1005,8 +1005,7 @@ export const armorFeatures = {
 };
 
 export const allArmorFeatures = () => {
-    const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
-        .armorFeatures;
+    const homebrewFeatures = game.system.settings.homebrew.itemFeatures.armorFeatures;
     return {
         ...armorFeatures,
         ...Object.keys(homebrewFeatures).reduce((acc, key) => {
@@ -2598,7 +2597,7 @@ export const weaponFeatures = {
 };
 
 export const allWeaponFeatures = () => {
-    const homebrewFeatures = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).itemFeatures
+    const homebrewFeatures = game.system.settings.homebrew.itemFeatures
         .weaponFeatures;
 
     return {
