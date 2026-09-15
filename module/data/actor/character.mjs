@@ -673,7 +673,7 @@ export default class DhCharacter extends DhCreature {
                 : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                     tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
                 ).tier;
-        if (game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto) {
+        if (game.system.settings.automation.levelupAuto) {
             for (let levelKey in this.levelData.levelups) {
                 const level = this.levelData.levelups[levelKey];
 

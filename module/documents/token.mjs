@@ -59,7 +59,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         const allowed = await super._preCreateOperation(documents, operation, user);
         if (allowed === false) return false;
 
-        const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+        const tokenSizes = game.system.settings.homebrew.tokenSizes;
         for (const document of documents) {
             const actor = document.actor;
             if (actor?.system.metadata.usesSize) {
@@ -90,7 +90,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
                 activeGM &&
                 game.user.id === activeGM.id
             ) {
-                const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+                const tokenSizes = game.system.settings.homebrew.tokenSizes;
                 const tokenSize = tokenSizes[update.system.size];
                 if (tokenSize !== this.width || tokenSize !== this.height || tokenSize !== this.depth) {
                     this.parent?.syncTokenDimensions(this, update.system.size);
@@ -117,7 +117,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
         let height = data.height ?? this.height;
 
         if (this.actor?.system.metadata.usesSize) {
-            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+            const tokenSizes = game.system.settings.homebrew.tokenSizes;
             const tokenSize = tokenSizes[this.actor.system.size];
             if (tokenSize && this.actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
                 width = tokenSize ?? width;

@@ -290,6 +290,7 @@ Hooks.once('init', () => {
     handlebarsRegistration();
 
     game.system.settings = {
+        appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
         automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
         homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
     };
@@ -475,7 +476,7 @@ const updateActorsRangeDependentEffects = async token => {
 };
 
 const updateAllRangeDependentEffects = async () => {
-    const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
+    const effectsAutomation = game.system.settings.automation.effects;
     if (!effectsAutomation.rangeDependent) return;
 
     const tokens = canvas.scene?.tokens;

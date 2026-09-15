@@ -18,8 +18,7 @@ export default class BaseRoll extends foundry.dice.Roll {
             const hopeRoll = this.dice.find(x => x.modifiers.includes('h'));
             const fearRoll = this.dice.find(x => x.modifiers.includes('f'));
             if (hopeRoll && fearRoll) {
-                const diceSoNice = 
-                    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+                const diceSoNice = game.system.settings.appearance.diceSoNiceData;
                 const isCritical = hopeRoll.total === fearRoll.total;
                 hopeRoll.options.sfx = getDiceSoNiceSFX({ 
                     critical: isCritical, 

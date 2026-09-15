@@ -58,11 +58,11 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
     }
 
     get maxFear() {
-        return game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear;
+        return game.system.settings.homebrew.maxFear;
     }
 
     get fearPosition() {
-        return game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).fearPosition;
+        return game.system.settings.appearance.fearPosition;
     }
 
     /* -------------------------------------------- */
@@ -71,7 +71,7 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
 
     /** @override */
     async _prepareContext(_options) {
-        const display = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).displayFear,
+        const display = game.system.settings.appearance.displayFear,
             current = this.currentFear,
             max = this.maxFear,
             percent = (current / max) * 100,
@@ -91,10 +91,8 @@ export default class FearTracker extends HandlebarsApplicationMixin(ApplicationV
 
         if (options.isFirstRender) this.handleOffset();
         if (!options.force) return;
-        
 
-        const appearanceSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-        const { fearPosition, displayFear } = appearanceSettings;
+        const { fearPosition, displayFear } = game.system.settings.appearance;
         this.handleStyleElement(fearPosition);
 
         // Hide the fear tracker if disabled
