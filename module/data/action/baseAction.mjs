@@ -368,7 +368,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];
 
-        const applicableEffects = actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        const applicableEffects = await actor.allApplicableEffects({ 
+            noTransferArmor: true, 
+            noSelfArmor: true, 
+            includeEphemerals: true 
+        });
         return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
             const conditionalPassed = effect.system.testConditionals(rollData, { 
                 phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
