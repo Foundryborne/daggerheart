@@ -118,6 +118,13 @@ export class ActionField extends foundry.data.fields.ObjectField {
 
         return sourceData;
     }
+
+    getInitialValue(source) {
+        source = super.getInitialValue(source);
+        const cls = this.getModel(source);
+        if (cls) return cls.cleanData(source);
+        return source;
+    }
 }
 
 /* -------------------------------------------- */
