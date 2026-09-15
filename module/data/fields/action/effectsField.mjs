@@ -129,10 +129,8 @@ export default class EffectsField extends fields.ArrayField {
      */
     static getAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.players)
+            (game.user.isGM && game.system.settings.automation.roll.effect.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.effect.players)
         );
     }
 }

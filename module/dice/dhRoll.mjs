@@ -134,8 +134,7 @@ export default class DHRoll extends BaseRoll {
             config.actionChatMessageHandled = true;
         }
 
-        const reloadSetting = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).reload;
+        const reloadSetting = game.system.settings.automation.reload;
         const useReload = 
             item?.system.hasReload && 
             action?.type === 'attack' && 
@@ -176,7 +175,7 @@ export default class DHRoll extends BaseRoll {
         if (!this._evaluated) return;
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
-        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const automationSettings = game.system.settings.automation;
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,

@@ -60,7 +60,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         if (!actor) return null;
 
         // If there is support for embeds, use that instead.
-        const theme = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
+        const theme = game.system.settings.appearance.tooltipCardTheme;
         const embed = actor instanceof Actor ? await actor.system.toEmbed({ includeAttribution: true, theme }) : null;
         if (embed) {
             if (embed instanceof HTMLCollection) {
@@ -156,7 +156,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         if (!item) return null;
 
         // If there is support for embeds, use that instead.
-        const cardTheme = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
+        const cardTheme = game.system.settings.appearance.tooltipCardTheme;
         const embed = item instanceof Item ? await item.system.toEmbed({ theme: cardTheme }) : null;
         if (item instanceof Item && embed) {
             if (embed instanceof HTMLCollection) {
@@ -334,9 +334,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     async #activateRest(element, options) {
         const isShortRest = element.dataset.tooltip?.startsWith('#shortRest#');
         const key = element.dataset.tooltip.slice(isShortRest ? 11 : 10);
-        const moves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves[
-            element.dataset.restType
-        ].moves;
+        const moves = game.system.settings.homebrew.restMoves[element.dataset.restType].moves;
         const move = moves[key];
         const description = await foundry.applications.ux.TextEditor.enrichHTML(move.description);
         const html = await foundry.applications.handlebars.renderTemplate(

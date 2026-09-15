@@ -202,7 +202,7 @@ export const healingTypes = {
 };
 
 export const defeatedConditions = () => {
-    const defeated = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+    const defeated = game.system.settings.automation.defeated;
     return Object.keys(defeatedConditionChoices).reduce((acc, key) => {
         const choice = defeatedConditionChoices[key];
         acc[key] = {
@@ -736,7 +736,7 @@ export const daggerheartDiceAnimationEvents = {
 };
 
 export const getDiceSoNiceSFX = sfxOptions => {
-    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+    const diceSoNice = game.system.settings.appearance.diceSoNiceData;
     const criticalAnimationData = diceSoNice.sfx.critical;
     if (sfxOptions.critical && criticalAnimationData.class) {
         return {

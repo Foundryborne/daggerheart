@@ -176,18 +176,14 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         const allowed = await super._preUpdate(changed, options, userId);
         if (allowed === false) return false;
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        if (
-            autoSettings.resourceScrollTexts &&
-            this.parent.actor?.type === 'character' &&
-            this.parent.actor.system.resources.armor
-        ) {
+        const actor = this.parent.actor;
+        const resourceScrollTexts = game.system.settings.automation.resourceScrollTexts;
+        if (resourceScrollTexts && actor?.type === 'character' && actor.system.resources.armor) {
             const armorEffect = changed.system?.changes?.find(x => x.type === 'armor');
-            const newArmorTotal =
-                armorEffect?.value?.current + (this.parent.actor.system.armor?.system?.armor?.current ?? 0);
+            const newArmorTotal = armorEffect?.value?.current + (actor.system.armor?.system?.armor?.current ?? 0);
 
-            if (armorEffect && newArmorTotal !== this.parent.actor.system.armorScore.value) {
-                const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
+            if (armorEffect && newArmorTotal !== actor.system.armorScore.value) {
+                const armorData = getScrollTextData(actor, { value: newArmorTotal }, 'armor');
                 options.scrollingTextData = [armorData];
             }
         }

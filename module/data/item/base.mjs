@@ -234,7 +234,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         addLinkedItemsDiff(changed.system?.features, this.features, options);
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const autoSettings = game.system.settings.automation;
         const armorChanged =
             changed.system?.armor?.current !== undefined && changed.system.armor.current !== this.armor.current;
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {

@@ -812,7 +812,7 @@ export async function triggerChatRollFx(rolls, options = { whisper: false, blind
 }
 
 export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
-    const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+    const { hopeFear } = game.system.settings.automation;
     return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
 }
 
@@ -874,7 +874,7 @@ export function getAllResources() {
         }
     }
 
-    const homebrew = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+    const homebrew = game.system.settings.homebrew.toObject();
     const homebrewResources = Object.values(homebrew.resources).reduce((acc, category) => {
         for (const [key, resource] of Object.entries(category.resources)) {
             acc[key] = resource;

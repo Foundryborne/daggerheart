@@ -123,7 +123,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
 
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
 
-        const automation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
+        const automation = game.system.settings.automation.hopeFear;
         if (automation.gm) {
             ui.resources.updateFear(ui.resources.currentFear + fearRoll.total);
         }
