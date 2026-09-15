@@ -288,6 +288,11 @@ Hooks.once('init', () => {
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
     handlebarsRegistration();
+
+    game.system.settings = {
+        automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
+        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
+    };
     
     // Firefox can't handle mixed unit calcs until the nightly (156)
     // Until then, they must be fixed size

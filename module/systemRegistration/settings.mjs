@@ -85,7 +85,10 @@ const registerMenuSettings = () => {
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation, {
         scope: 'world',
         config: false,
-        type: DhAutomation
+        type: DhAutomation,
+        onChange: value => {
+            value.handleChange();
+        }
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming, {

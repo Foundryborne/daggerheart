@@ -16,6 +16,7 @@ import DhAutomation from './module/data/settings/Automation.mjs';
 import FearTracker from './module/applications/ui/fearTracker.mjs';
 import DhCountdowns from './module/data/countdowns.mjs';
 import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
+import DhHomebrew from './module/data/settings/Homebrew.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
@@ -113,6 +114,14 @@ declare module '@client/packages/system.mjs' {
             dice: typeof dice,
             fields: typeof fields
         };
+        /** 
+         * Various cached versions of settings that are reassigned in the handleChange handlers.
+         * Using these avoids the data model re-validated and re-initializing 
+         */
+        settings: {
+            automation: DhAutomation;
+            homebrew: DhHomebrew;
+        }
     }
 }
 
