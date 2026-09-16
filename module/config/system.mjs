@@ -12,6 +12,7 @@ import * as HOOKS from './hooksConfig.mjs';
 import * as TRIGGER from './triggerConfig.mjs';
 import * as ITEMBROWSER from './itemBrowserConfig.mjs';
 import * as LOOKUP from './lookupConfig.mjs';
+import * as DSN_COLORSETS from './dsnColorsets.mjs';
 
 /** @type {"daggerheart"} */
 export const SYSTEM_ID = 'daggerheart';
@@ -28,6 +29,7 @@ export const SYSTEM = {
     EFFECTS,
     ACTIONS,
     FLAGS,
+    DSN_COLORSETS,
     HOOKS,
     TRIGGER,
     ITEMBROWSER,

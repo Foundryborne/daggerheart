@@ -1,4 +1,3 @@
-import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 
 export default class BaseDie extends foundry.dice.terms.Die {
@@ -40,26 +39,6 @@ export default class BaseDie extends foundry.dice.terms.Die {
         return css;
     }
 
-    /* -------------------------------------------- */
-    /*  Modifier Logic                              */
-    /* -------------------------------------------- */
-
-    async hope() {
-        this.#setDualityDiePreset('hope');
-    }
-
-    async fear() {
-        this.#setDualityDiePreset('fear');
-    }
-
-    async advantage() {
-        this.#setDualityDiePreset('advantage');
-    }
-
-    async disadvantage() {
-        this.#setDualityDiePreset('disadvantage');
-    }
-
     /**
      * Return the configured value as result if 1 is rolled
      * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
@@ -76,16 +55,6 @@ export default class BaseDie extends foundry.dice.terms.Die {
                 r.result = target;
             }
         }
-    }
-
-    async #setDualityDiePreset(dualityType) {
-        if (!game.dice3d) return;
-
-        const diceSoNice = game.system.settings.appearance.diceSoNiceData;
-        const dualityDie = diceSoNice[dualityType];
-        if (!dualityDie) return;
-
-        this.options = await getDiceSoNicePreset(dualityDie, this.denomination);
     }
 
     async comboDice() {

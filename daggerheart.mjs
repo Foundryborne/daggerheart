@@ -21,6 +21,7 @@ import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
 import { pick } from './module/helpers/utils.mjs';
+import { dhColorsets, getDiceRoles } from './module/config/dsnColorsets.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -406,11 +407,23 @@ Hooks.on('ready', async () => {
         });
     }
 
+    CONFIG.DH.DSN_COLORSETS.systemDefaults.hope = 'daggerheart-green-set';
+    CONFIG.DH.DSN_COLORSETS.systemDefaults.fear = 'daggerheart-purple-set';
+    CONFIG.DH.DSN_COLORSETS.systemDefaults.advantage = 'daggerheart-green-set';
+    CONFIG.DH.DSN_COLORSETS.systemDefaults.disadvantage = 'daggerheart-black-set';
 
     runMigrations();
 });
 
-Hooks.once('dicesoniceready', () => {});
+Hooks.once('diceSoNiceReady', dice3d => {
+    for (const colorset of dhColorsets) {
+        dice3d.addColorset(colorset);
+    }
+
+    for (const diceRole of getDiceRoles()) {
+        dice3d.addRole(diceRole, { package: CONFIG.DH.id });
+    }
+});
 
 Hooks.on('openDetachedWindow', (_, window) => {
     enricherRenderSetup(window.document);

@@ -13,3 +13,4 @@ export * as itemBrowserConfig from './itemBrowserConfig.mjs';
 export * as triggerConfig from './triggerConfig.mjs';
 export * as resourceConfig from './resourceConfig.mjs';
 export * as lookupConfig from './lookupConfig.mjs';
+export * as dsnColorsetsConfig from './dsnColorsets.mjs';

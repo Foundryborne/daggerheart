@@ -1706,6 +1706,20 @@
                     "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
             },
+            "DiceSoNice": {
+                "colorsets": {
+                    "hope": "Hope Default",
+                    "fear": "Fear Default",
+                    "advantage": "Advantage Default",
+                    "disadvantage": "Disadvantage Default"
+                },
+                "diceRoles": {
+                    "hope": "Hope Dice",
+                    "fear": "Fear Dice",
+                    "advantage": "Advantage Dice",
+                    "disadvantage": "Disadvantage Dice"
+                }
+            },
             "DomainCardTypes": {
                 "ability": "Ability",
                 "spell": "Spell",
