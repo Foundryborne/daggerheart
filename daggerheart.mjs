@@ -407,11 +407,6 @@ Hooks.on('ready', async () => {
         });
     }
 
-    CONFIG.DH.DSN_COLORSETS.systemDefaults.hope = 'daggerheart-green-set';
-    CONFIG.DH.DSN_COLORSETS.systemDefaults.fear = 'daggerheart-purple-set';
-    CONFIG.DH.DSN_COLORSETS.systemDefaults.advantage = 'daggerheart-green-set';
-    CONFIG.DH.DSN_COLORSETS.systemDefaults.disadvantage = 'daggerheart-black-set';
-
     runMigrations();
 });
 
