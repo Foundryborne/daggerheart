@@ -4,6 +4,7 @@ import { triggerChatRollFx } from '../../helpers/utils.mjs';
 export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
+        sc: 'selfCorrecting',
         c: 'comboDice',
         h: 'hope',
         f: 'fear',
@@ -59,10 +60,28 @@ export default class BaseDie extends foundry.dice.terms.Die {
         this.#setDualityDiePreset('disadvantage');
     }
 
+    /**
+     * Return the configured value as result if 1 is rolled
+     * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
+     * @param {string} modifier     The matched modifier query
+     */
+    async selfCorrecting(modifier) {
+        const rgx = /(?:sc)([0-9]+)/i;
+        const match = modifier.match(rgx);
+        if (!match) return false;
+        let [target] = match.slice(1);
+        target = parseInt(target);
+        for (const r of this.results) {
+            if (r.result === 1) {
+                r.result = target;
+            }
+        }
+    }
+
     async #setDualityDiePreset(dualityType) {
         if (!game.dice3d) return;
 
-        const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
+        const diceSoNice = game.system.settings.appearance.diceSoNiceData;
         const dualityDie = diceSoNice[dualityType];
         if (!dualityDie) return;
 

@@ -118,7 +118,7 @@ export default class RegisteredTriggers extends Map {
 
     async runTrigger(trigger, currentActor, ...args) {
         const updates = [];
-        const triggerSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).triggers;
+        const triggerSettings = game.system.settings.automation.triggers;
         if (!triggerSettings.enabled) return updates;
 
         const dualityTrigger = this.get(trigger);

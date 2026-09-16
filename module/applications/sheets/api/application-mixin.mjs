@@ -586,9 +586,39 @@ export default function DHApplicationMixin(Base) {
             context.source = this.document;
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
-            context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+            context.settings = game.system.settings.appearance;
 
             return context;
+        }
+
+        /**
+         * Prepare render context for the Effect part.
+         * @param {ApplicationRenderContext} context
+         * @param {ApplicationRenderOptions} options
+         * @returns {Promise<void>}
+         * @protected
+         */
+        async _prepareEffectsContext(context, _options) {
+            context.effects = {
+                actives: [],
+                inactives: []
+            };
+
+            const effects = this.document.allApplicableEffects?.({ noTransferArmor: true }) ?? this.document.effects;
+            for (const effect of effects) {
+                const list = effect.active ? context.effects.actives : context.effects.inactives;
+                const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();
+                const isSuppressed = effect.isSuppressed;
+                const invalid = !effect.system.testConditionals(rollData);
+                list.push({
+                    effect,
+                    isSuppressed,
+                    invalid,
+                    suppressedMessage: isSuppressed
+                        ? _loc(`DAGGERHEART.UI.Tooltip.suppressedEffect.${invalid ? 'invalid' : 'general'}`)
+                        : null
+                });
+            }
         }
 
         /* -------------------------------------------- */

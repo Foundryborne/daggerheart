@@ -116,6 +116,20 @@ CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
 CONFIG.debug.triggers = false;
 
+// Fix on Foundry native formula replacement for DH
+// @todo: this should maybe be roll data bolt ons
+const nativeReplaceFormulaData = Roll.replaceFormulaData;
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
+    /* Inserting global data */
+    const defaultingTypes = [
+        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
+        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
+    ];
+
+    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    return nativeReplaceFormulaData(formula, data, { missing, warn });
+};
+
 Hooks.once('init', () => {
     game.system.api = {
         applications,
@@ -288,8 +302,17 @@ Hooks.once('init', () => {
 });
 
 Hooks.on('i18nInit', () => {
+    // Setup references to avoid continual recreation every access, and also simplify access
+    // These are updated in the onChange events.
+    // Occurs in i18nInit so that localization in default values work correctly
+    game.system.settings = {
+        appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
+        automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
+        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
+    };
+
     // Setup homebrew resources
-    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).refreshConfig();
+    game.system.settings.homebrew.refreshConfig();
 });
 
 Hooks.on('setup', () => {
@@ -456,7 +479,7 @@ const updateActorsRangeDependentEffects = async token => {
 };
 
 const updateAllRangeDependentEffects = async () => {
-    const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
+    const effectsAutomation = game.system.settings.automation.effects;
     if (!effectsAutomation.rangeDependent) return;
 
     const tokens = canvas.scene?.tokens;

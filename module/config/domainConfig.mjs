@@ -73,16 +73,10 @@ export const domains = {
     }
 };
 
-export const allDomains = () => ({
-    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains,
-    ...domains
-});
+export const allDomains = () => ({ ...game.system.settings.homebrew.domains, ...domains });
 
 export const orderedDomains = () => {
-    const all = {
-        ...domains,
-        ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains
-    };
+    const all = allDomains();
     return Object.values(all).sort((a, b) => game.i18n.localize(a.label).localeCompare(game.i18n.localize(b.label)));
 };
 

@@ -116,25 +116,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         return context;
     }
 
-    /**
-     * Prepare render context for the Effect part.
-     * @param {ApplicationRenderContext} context
-     * @param {ApplicationRenderOptions} options
-     * @returns {Promise<void>}
-     * @protected
-     */
-    async _prepareEffectsContext(context, _options) {
-        context.effects = {
-            actives: [],
-            inactives: []
-        };
-
-        for (const effect of this.item.effects) {
-            const list = effect.active ? context.effects.actives : context.effects.inactives;
-            list.push(effect);
-        }
-    }
-
     /** @inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);

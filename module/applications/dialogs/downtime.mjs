@@ -9,9 +9,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         this.actor = actor;
         this.shortrest = shortrest;
 
-        this.moveData = foundry.utils.deepClone(
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves
-        );
+        this.moveData = foundry.utils.deepClone(game.system.settings.homebrew.restMoves);
         this.nrChoices = {
             shortRest: {
                 taken: 0,

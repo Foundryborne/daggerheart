@@ -74,10 +74,7 @@ export const registerSocketHooks = () => {
                         CONFIG.DH.SETTINGS.gameSettings.Resources.Fear,
                         Math.max(
                             0,
-                            Math.min(
-                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                                data.data
-                            )
+                            Math.min(game.system.settings.homebrew.maxFear, data.data)
                         )
                     );
                     break;

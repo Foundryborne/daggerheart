@@ -293,8 +293,7 @@ export default class DhpActor extends Actor {
         // Because we have to filter out possibly removed ones, 
         const features = this.itemTypes.feature;
         const featureProvidedResources = features.flatMap(f => Array.from(f.system.actorResources));
-        const homebrewResources = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+        const homebrewResources = game.system.settings.homebrew.toObject();
         const applicableHomebrewResources = homebrewResources.resources[this.type]?.resources ?? {};
 
         const resourceKeys = Object.keys(this.system._source.resources); 
@@ -382,7 +381,7 @@ export default class DhpActor extends Actor {
 
             await this.update({ 'system.levelData.level.changed': Math.min(newLevel, maxLevel) });
         } else {
-            const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+            const levelupAuto = game.system.settings.automation.levelupAuto;
 
             const usedLevel = Math.max(newLevel, 1);
             if (newLevel < 1) {
@@ -500,7 +499,7 @@ export default class DhpActor extends Actor {
     }
 
     async levelUp(levelupData) {
-        const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        const levelupAuto = game.system.settings.automation.levelupAuto;
         const getStatsWithSource = document => ({ ...(document._stats ?? {}), compendiumSource: document.uuid });
 
         const levelups = {};
@@ -1048,7 +1047,7 @@ export default class DhpActor extends Actor {
                             valueFunc(
                                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
                                 r,
-                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear
+                                game.system.settings.homebrew.maxFear
                             )
                         );
                         break;
@@ -1105,7 +1104,9 @@ export default class DhpActor extends Actor {
         if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {
             return 4;
         }
-        return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
+
+        const { major, severe } = this.system.damageThresholds;
+        return (severe && damage >= severe) ? 3 : (major && damage >= major) ? 2 : 1;
     }
 
     convertStressDamageToHP(resources) {
@@ -1122,7 +1123,7 @@ export default class DhpActor extends Actor {
     }
 
     async toggleDefeated(defeatedState) {
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         const { deathMove, unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
         const defeatedConditions = new Set([deathMove.id, unconscious.id, defeated.id, dead.id]);
         if (!defeatedState) {
@@ -1139,7 +1140,7 @@ export default class DhpActor extends Actor {
     }
 
     async setDeathMoveDefeated(defeatedIconId) {
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         const actorDefault = settings[`${this.type}Default`];
         if (!settings.enabled || !settings.enabled || !actorDefault || actorDefault === defeatedIconId) return;
 

@@ -84,8 +84,7 @@ export class ActionField extends foundry.data.fields.ObjectField {
         if (!(typeof value === 'object')) value = {};
         value = super._cleanType(value, options, _state);
         const cls = this.getModel(value);
-        if (cls) return cls.cleanData(value, options, _state);
-        return value;
+        return cls?.cleanData(value, options, _state) ?? value;
     }
 
     /* -------------------------------------------- */
@@ -117,6 +116,12 @@ export class ActionField extends foundry.data.fields.ObjectField {
         }
 
         return sourceData;
+    }
+
+    getInitialValue(source) {
+        source = super.getInitialValue(source);
+        const cls = this.getModel(source);
+        return cls?.cleanData(source) ?? source;
     }
 }
 

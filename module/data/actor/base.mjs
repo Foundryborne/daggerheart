@@ -207,7 +207,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const autoSettings = game.system.settings.automation;
         if (changes.system?.resources && autoSettings.resourceScrollTexts) {
             const textData = Object.keys(changes.system.resources).reduce((acc, key) => {
                 const resource = changes.system.resources[key];

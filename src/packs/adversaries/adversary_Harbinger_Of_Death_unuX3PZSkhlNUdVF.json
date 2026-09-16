@@ -398,7 +398,7 @@
               {
                 "scalable": false,
                 "key": "fear",
-                "value": 1,
+                "value": 2,
                 "itemId": null,
                 "step": null,
                 "consumeOnSuccess": false
