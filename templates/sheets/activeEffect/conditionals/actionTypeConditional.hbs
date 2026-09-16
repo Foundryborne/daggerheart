@@ -2,6 +2,9 @@
     <div class="conditional-inner-container">
         <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
         {{formGroup model.fields.actionTypes value=this.actionTypes name=(concat "system.conditionals." @key ".actionTypes") localize=true blank=false }}
+        {{#with (lookup conditionalSubTypes this.type) as | subTypes |}}
+            {{formGroup ../model.fields.subType choices=subTypes value=../subType name=(concat "system.conditionals." @../key ".subType") localize=true blank=false }}
+        {{/with}}
     </div>
 
     <a class="form-row-icon" data-action="removeConditional" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>

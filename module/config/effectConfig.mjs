@@ -1,3 +1,5 @@
+import { abilities } from './actorConfig.mjs';
+
 export const customChangeTypes = {
     armor: {
         id: 'armor',
@@ -160,5 +162,11 @@ export const actionType = {
     spellcast: {
         id: 'spellcast',
         label: 'DAGGERHEART.GENERAL.Roll.spellcast'
+    }
+}
+
+export const actionTypeSubtypes = {
+    trait: {
+        ...abilities
     }
 }

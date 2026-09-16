@@ -1069,6 +1069,10 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.accelerator.effects.accelerator.description',
                         img: 'icons/magic/movement/trail-streak-impact-blue.webp',
                         system: {
+                            conditionals: [{
+                                type: 'weaponRestriction',
+                                weaponType: 'sameWeapon' 
+                            }],
                             changes: [
                                 {
                                     key: 'system.proficiency',
@@ -1160,9 +1164,13 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.bonded.effects.damage.description',
                 img: 'icons/magic/symbols/chevron-elipse-circle-blue.webp',
                 system: {
+                    conditionals: [{
+                        type: 'weaponRestriction',
+                        weaponType: 'primary'    
+                    }],
                     changes: [
                         {
-                            key: 'system.bonuses.damage.primaryWeapon.bonus',
+                            key: 'system.bonuses.damage.bonus',
                             type: 'add',
                             value: '@system.levelData.level.current'
                         }
@@ -1289,9 +1297,13 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.catalytic.effects.catalytic.description',
                         img: 'icons/magic/control/sihouette-hold-beam-green.webp',
                         system: {
+                            conditionals: [{
+                                type: 'actionType',
+                                actionTypes: ['action']    
+                            }],
                             changes: [
                                 {
-                                    key: 'system.bonuses.roll.attack.bonus',
+                                    key: 'system.bonuses.roll.bonus',
                                     type: 'add',
                                     value: 3
                                 }
@@ -1327,6 +1339,10 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.charged.description',
                         img: 'icons/magic/lightning/claws-unarmed-strike-teal.webp',
                         system: {
+                            conditionals: [{
+                                type: 'actionType',
+                                actionTypes: ['action']    
+                            }],
                             changes: [
                                 {
                                     key: 'system.proficiency',
@@ -2214,9 +2230,13 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.persuasive.effects.persuasive.description',
                         img: 'icons/magic/control/hypnosis-mesmerism-eye.webp',
                         system: {
+                            conditionals: [{
+                                type: 'actionType',
+                                actionTypes: ['trait']
+                            }],
                             changes: [
                                 {
-                                    key: 'system.traits.presence.value',
+                                    key: 'system.bonuses.roll.value',
                                     type: 'add',
                                     value: '2'
                                 }
@@ -2321,17 +2341,23 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.reliable.effects.reliable.description',
                 img: 'icons/skills/melee/strike-sword-slashing-red.webp',
                 system: {
+                    conditionals: [
+                        {
+                            type: 'weaponRestriction',
+                            weaponType: 'sameWeapon'    
+                        },
+                        {
+                            type: 'actionType',
+                            actionTypes: ['attack']
+                        }
+                    ],
                     changes: [
                         {
                             key: 'system.bonuses.roll.bonus',
                             type: 'add',
                             value: 1
                         }
-                    ],
-                    conditionals: [{
-                        type: 'weaponRestriction',
-                        weaponType: 'sameWeapon'    
-                    }]
+                    ]
                 }
             }
         ]
