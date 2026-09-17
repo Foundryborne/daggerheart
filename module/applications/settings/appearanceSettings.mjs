@@ -59,11 +59,9 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         const context = await super._prepareContext(options);
         if (options.isFirstRender) {
             this.setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-            this.globalOverrides = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.GlobalOverrides);
         }
 
         context.setting = this.setting;
-        context.globalOverrides = this.globalOverrides;
         context.fields = this.setting.schema.fields;
 
         context.isGM = game.user.isGM;
