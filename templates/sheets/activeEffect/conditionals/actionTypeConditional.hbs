@@ -1,4 +1,9 @@
-<div class="two-columns even">
-    {{formGroup model.fields.actionTypes value=this.actionTypes name=(concat "system.conditionals." @key ".actionTypes") localize=true blank=true }}
-    {{formGroup model.fields.traits value=this.traits name=(concat "system.conditionals." @key ".traits") localize=true blank=true }}
+<div class="conditional-container">
+    <div class="conditional-inner-container">
+        <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
+        {{formGroup model.fields.actionTypes value=this.actionTypes name=(concat "system.conditionals." @key ".actionTypes") localize=true blank=false }}
+        {{formGroup model.fields.traits value=this.traits name=(concat "system.conditionals." @key ".traits") localize=true blank=true }}
+    </div>
+
+    <a class="form-row-icon" data-action="removeConditional" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
 </div>

@@ -131,9 +131,13 @@
       "_id": "hrJJzzepVs2BPYf5",
       "type": "base",
       "system": {
+        "conditionals": [{
+          "type": "actionType",
+          "traits": ["presence"]
+        }],
         "changes": [
           {
-            "key": "system.traits.presence.value",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 2,
             "phase": "initial"
@@ -144,8 +148,7 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": [],
-        "conditionals": []
+        "targetDispositions": []
       },
       "disabled": false,
       "duration": {
