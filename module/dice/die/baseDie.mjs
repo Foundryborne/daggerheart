@@ -20,6 +20,8 @@ export default class BaseDie extends foundry.dice.terms.Die {
     }
 
     setDualityTriggers() {
+        if (!(this._root instanceof game.system.api.dice.DualityRoll)) return;
+        
         const { dHope, dFear, isCritical } = this._root;
         if (dHope.total === undefined || dFear.total === undefined) return;
 
