@@ -11,7 +11,15 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         tagifyConfigs: [
             {
                 selector: '.features-input',
-                options: () => CONFIG.DH.ITEM.orderedWeaponFeatures(),
+                options: async () => {
+                    const options = CONFIG.DH.ITEM.orderedWeaponFeatures();
+                    const TextEditor = foundry.applications.ux.TextEditor;
+                    for (const option of options) {
+                        // Descriptions may use Lookup's with fallback values, which we want to show
+                        option.description = await TextEditor.enrichHTML(_loc(option.description));
+                    }
+                    return options;
+                },
                 callback: WeaponSheet.#onFeatureSelect
             }
         ]
