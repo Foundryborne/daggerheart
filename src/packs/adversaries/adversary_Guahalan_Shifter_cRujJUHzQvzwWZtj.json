@@ -237,7 +237,8 @@
                 "type": "actionType",
                 "actionTypes": [
                   "attack"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

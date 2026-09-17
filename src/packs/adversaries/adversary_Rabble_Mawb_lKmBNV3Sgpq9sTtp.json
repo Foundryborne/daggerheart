@@ -296,7 +296,8 @@
                 "actionTypes": [
                   "reaction",
                   "action"
-                ]
+                ],
+                "traits": []
               }
             ]
           },
@@ -366,7 +367,8 @@
                 "actionTypes": [
                   "action",
                   "reaction"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

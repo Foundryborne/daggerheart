@@ -171,22 +171,13 @@
       "description": "Gain a +2 bonus to the Presence roll",
       "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
       "system": {
-<<<<<<< Updated upstream
-        "conditionals": [{
-          "type": "actionType",
-          "traits": ["presence"]
-        }],
-=======
         "conditionals": [
           {
             "type": "actionType",
-            "traits": [
-              "presence"
-            ],
-            "actionTypes": []
+            "actionTypes": [],
+            "traits": []
           }
         ],
->>>>>>> Stashed changes
         "changes": [
           {
             "key": "system.bonuses.roll.bonus",

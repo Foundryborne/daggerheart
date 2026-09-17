@@ -48,7 +48,8 @@
             "actionTypes": [
               "action",
               "reaction"
-            ]
+            ],
+            "traits": []
           }
         ]
       },
