@@ -85,7 +85,6 @@ export default class DHArmor extends BaseDataItem {
                 CONFIG.DH.ITEM.allArmorFeatures
             );
         }
-
     }
 
     /** @inheritDoc */
