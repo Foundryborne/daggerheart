@@ -42,7 +42,7 @@ const typeSettingsMap = {
  *
  * @typedef {object} TagifyConfig
  * @property {String} selector - The CSS selector for get the element to transform into a tag input
- * @property {Record<string, TagOption> | (() => Record<string, TagOption>)} options - Available tag options as key-value pairs
+ * @property {Record<string, TagOption> | (() => Record<string, TagOption> | Promise<Record<string, TagOption>>)} options - Available tag options as key-value pairs
  * @property {TagChangeCallback} callback - Callback function triggered when tags change
  * @property {TagifyOptions} [tagifyOptions={}] - Additional configuration for Tagify
  *
@@ -291,7 +291,7 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
-            this._createTagifyElements(this.options.tagifyConfigs);
+            await this._createTagifyElements(this.options.tagifyConfigs);
 
             for (const d of this.options.dragDrop) {
                 new foundry.applications.ux.DragDrop.implementation({
@@ -330,10 +330,10 @@ export default function DHApplicationMixin(Base) {
          * @throws {Error} If required properties are missing in config objects
          * @param {TagifyConfig[]} tagConfigs
          */
-        _createTagifyElements(tagConfigs) {
+        async _createTagifyElements(tagConfigs) {
             if (!Array.isArray(tagConfigs)) throw new TypeError('tagConfigs must be an array');
 
-            tagConfigs.forEach(config => {
+            for (const config of tagConfigs) {
                 try {
                     const { selector, options, callback, tagifyOptions = {} } = config;
 
@@ -348,14 +348,14 @@ export default function DHApplicationMixin(Base) {
                         throw new Error(`Element not found with selector: ${selector}`);
                     }
                     // Resolve dynamic options if function provided
-                    const resolvedOptions = typeof options === 'function' ? options.call(this) : options;
+                    const resolvedOptions = typeof options === 'function' ? await options.call(this) : options;
 
                     // Initialize Tagify
                     tagifyElement(element, resolvedOptions, callback.bind(this), tagifyOptions);
                 } catch (error) {
                     console.error('Error initializing Tagify:', error);
                 }
-            });
+            }
         }
 
         /* -------------------------------------------- */

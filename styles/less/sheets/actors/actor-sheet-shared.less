@@ -23,6 +23,8 @@
         width: 100%;
         object-fit: cover;
         object-position: top center;
+        /** Prevent nearest neighbor downsampling in chrome when there is a large difference in aspect ratio with object-fit cover */
+        will-change: transform;
     }
 
     .token-tag {
