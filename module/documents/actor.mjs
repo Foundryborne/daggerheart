@@ -755,7 +755,7 @@ export default class DhpActor extends Actor {
                 {
                     action: {
                         actionType: 'action', 
-                        roll: { type: 'trait' }
+                        roll: { type: 'trait', trait: trait }
                     }
                 }, 
                 this

@@ -2862,8 +2862,7 @@
                     "weaponType": "Weapon Type"
                 },
                 "actionType": {
-                    "actionTypes": "Action Types",
-                    "subType": "Subtype"
+                    "actionTypes": "Action Types"
                 },
                 "damageType": {
                     "damageType": "Damage Type"

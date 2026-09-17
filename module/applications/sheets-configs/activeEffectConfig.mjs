@@ -230,7 +230,6 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 break;
             case 'conditionals': 
                 partContext.conditionalOptions = CONFIG.DH.EFFECTS.conditionalTypes;
-                partContext.actionTypeSubtypes = CONFIG.DH.EFFECTS.actionTypeSubtypes;
 
                 break;
             case 'changes':
