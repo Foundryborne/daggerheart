@@ -21,7 +21,7 @@ import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
 import { pick } from './module/helpers/utils.mjs';
-import { dhColorsets, getDiceRoles } from './module/config/dsnColorsets.mjs';
+import { dhTriggers, dhColorsets, getDiceRoles } from './module/config/dsnConfig.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -411,6 +411,10 @@ Hooks.on('ready', async () => {
 });
 
 Hooks.once('diceSoNiceReady', dice3d => {
+    for (const trigger of dhTriggers) {
+        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids);
+    }
+
     for (const colorset of dhColorsets) {
         dice3d.addColorset(colorset);
     }

@@ -1718,6 +1718,9 @@
                     "fear": "Fear Dice",
                     "advantage": "Advantage Dice",
                     "disadvantage": "Disadvantage Dice"
+                },
+                "triggers": {
+                  "dualityRoll": { "label": "Duality Roll" }  
                 }
             },
             "DomainCardTypes": {
@@ -4021,26 +4024,7 @@
                 "appearance": {
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "duality": "Duality Rolls",
-                    "diceSoNice": {
-                        "title": "Dice So Nice",
-                        "hint": "Coloration of Duality dice if the Dice So Nice module is used.",
-                        "foreground": "Foreground",
-                        "background": "Background",
-                        "outline": "Outline",
-                        "edge": "Edge",
-                        "texture": "Texture",
-                        "colorset": "Theme",
-                        "material": "Material",
-                        "system": "Dice Preset",
-                        "font": "Font",
-                        "critical": "Duality Critical Animation",
-                        "muted": "Muted",
-                        "diceAppearance": "Dice Appearance",
-                        "animations": "Animations",
-                        "defaultAnimations": "Set Animations As Player Defaults",
-                        "previewAnimation": "Preview Animation"
-                    }
+                    "duality": "Duality Rolls"
                 },
                 "variantRules": {
                     "title": "Variant Rules",

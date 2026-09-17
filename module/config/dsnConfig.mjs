@@ -100,3 +100,18 @@ export const getDiceRoles = () => ([
         defaults: { global: { colorset: colorsetDefaults.disadvantage, system: systemDefaults.disadvantage }}
     }
 ]);
+
+export const dualityTrigger = {
+    name: 'daggerheart-duality-trigger', 
+    label: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.label',
+    ids: ['hope', 'fear', 'critical'],
+    sfxTriggers: { 
+        critical: { id: 'daggerheart-duality-trigger', result: 'critical' },
+        hope: { id: 'daggerheart-duality-trigger', result: 'hope' },
+        fear: { id: 'daggerheart-duality-trigger', result: 'fear' }     
+    }
+};
+
+
+
+export const dhTriggers = [dualityTrigger];

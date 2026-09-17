@@ -11,6 +11,28 @@ export default class BaseDie extends foundry.dice.terms.Die {
         d: 'disadvantage'
     };
 
+    hope() {
+        this.setDualityTriggers();
+    }
+
+    fear() {
+        this.setDualityTriggers();
+    }
+
+    setDualityTriggers() {
+        const { dHope, dFear, isCritical } = this._root;
+        if (dHope.total === undefined || dFear.total === undefined) return;
+
+        if (isCritical) {
+            dHope.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.critical;
+            dFear.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.critical;
+        } else if (dHope.total > dFear.total) {
+            dHope.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.hope;
+        } else if (dHope.total < dFear.total) {
+            dFear.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.fear;
+        }
+    }
+
     async rerollResult(resultToReroll) {
         const resultIndex = Number(resultToReroll);
         const result = this.results[resultIndex];
