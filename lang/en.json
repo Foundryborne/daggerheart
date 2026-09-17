@@ -4385,7 +4385,8 @@
                 "previewTokenHelp": "Left-click to place, right-click to cancel",
                 "suppressedEffect": {
                     "general": "This effect is suppressed",
-                    "invalid": "This effect is suppressed due to conditionals"
+                    "invalid": "This effect is suppressed due to conditionals",
+                    "unequipped": "This effect is suppressed because this item is not equipped"
                 }
             }
         }

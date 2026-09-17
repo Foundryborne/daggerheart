@@ -610,12 +610,13 @@ export default function DHApplicationMixin(Base) {
                 const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();
                 const isSuppressed = effect.isSuppressed;
                 const invalid = !effect.system.testConditionals(rollData);
+                const unequipped = effect.item?.system.equipped === false;
                 list.push({
                     effect,
                     isSuppressed,
                     invalid,
                     suppressedMessage: isSuppressed
-                        ? _loc(`DAGGERHEART.UI.Tooltip.suppressedEffect.${invalid ? 'invalid' : 'general'}`)
+                        ? _loc(`DAGGERHEART.UI.Tooltip.suppressedEffect.${invalid ? 'invalid' : unequipped ? 'unequipped' : 'general'}`)
                         : null
                 });
             }
