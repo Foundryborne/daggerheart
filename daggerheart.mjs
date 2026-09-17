@@ -289,15 +289,14 @@ Hooks.once('init', () => {
     RegisterHandlebarsHelpers.registerHelpers();
     handlebarsRegistration();
     
-    // Firefox can't handle mixed unit calcs until the nightly (156)
-    // Until then, they must be fixed size
+    // Firefox can't handle mixed unit calcs until the nightly (158).
+    // That said, it may release without the fix (this happened on version 156 as well)
+    // Until we verify that its fine on the current release, we can't add the version check
     const userAgent = navigator.userAgent ?? '';
     const firefoxVersionMatch = userAgent.match(/\bFirefox\/(\d+\.\d+)\b/);
     if (firefoxVersionMatch) {
-        const version = Number(firefoxVersionMatch[1]);
-        if (version < 156) {
-            document.body.classList.add('dh-old-firefox-cards');
-        }
+        // const version = Number(firefoxVersionMatch[1]);
+        document.body.classList.add('dh-old-firefox-cards');
     }
 });
 
