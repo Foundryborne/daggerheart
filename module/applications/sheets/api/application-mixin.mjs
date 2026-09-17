@@ -291,7 +291,7 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
-            this._createTagifyElements(this.options.tagifyConfigs);
+            await this._createTagifyElements(this.options.tagifyConfigs);
 
             for (const d of this.options.dragDrop) {
                 new foundry.applications.ux.DragDrop.implementation({
