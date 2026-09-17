@@ -1,6 +1,6 @@
 import { MigrationHandlerBase } from './base.mjs';
 
-/** Migrates action point automation to be part of the variant rule settings */
+/** Migrates DiceSoNice animations that used to be defined within the system to the DSN user.flags instead */
 export class Migration_2_10_0 extends MigrationHandlerBase {
     /** @inheritdoc */
     version = '2.10.0';
