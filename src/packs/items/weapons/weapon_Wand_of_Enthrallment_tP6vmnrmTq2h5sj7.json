@@ -175,7 +175,7 @@
           {
             "type": "actionType",
             "actionTypes": [],
-            "traits": []
+            "traits": ["presence"]
           }
         ],
         "changes": [
