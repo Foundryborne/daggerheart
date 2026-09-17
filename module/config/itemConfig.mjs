@@ -210,9 +210,13 @@ export const armorFeatures = {
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.channeling.effects.channeling.description',
                 img: 'icons/magic/symbols/rune-sigil-horned-blue.webp',
                 system: {       
+                    conditionals: [{
+                        type: 'actionType',
+                        actionTypes: ['spellcast']
+                    }],
                     changes: [
                         {
-                            key: 'system.bonuses.roll.spellcast',
+                            key: 'system.bonuses.roll.bonus',
                             type: 'add',
                             value: '1'
                         }
@@ -782,12 +786,7 @@ export const armorFeatures = {
                 system: {
                     changes: [
                         {
-                            key: 'system.bonuses.damage.primaryWeapon.dice',
-                            type: 'add',
-                            value: '1d4'
-                        },
-                        {
-                            key: 'system.bonuses.damage.secondaryWeapon.dice',
+                            key: 'system.bonuses.damage.dice',
                             type: 'add',
                             value: '1d4'
                         }
@@ -1069,10 +1068,12 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.accelerator.effects.accelerator.description',
                         img: 'icons/magic/movement/trail-streak-impact-blue.webp',
                         system: {
-                            conditionals: [{
-                                type: 'weaponRestriction',
-                                weaponType: 'sameWeapon' 
-                            }],
+                            conditionals: [
+                                {
+                                    type: 'weaponRestriction',
+                                    weaponType: 'sameWeapon' 
+                                }
+                            ],
                             changes: [
                                 {
                                     key: 'system.proficiency',
@@ -1166,7 +1167,7 @@ export const weaponFeatures = {
                 system: {
                     conditionals: [{
                         type: 'weaponRestriction',
-                        weaponType: 'primary'    
+                        weaponType: 'sameWeapon'    
                     }],
                     changes: [
                         {
@@ -1299,7 +1300,7 @@ export const weaponFeatures = {
                         system: {
                             conditionals: [{
                                 type: 'actionType',
-                                actionTypes: ['action']    
+                                actionTypes: ['attack']    
                             }],
                             changes: [
                                 {
@@ -1339,10 +1340,16 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.charged.description',
                         img: 'icons/magic/lightning/claws-unarmed-strike-teal.webp',
                         system: {
-                            conditionals: [{
-                                type: 'actionType',
-                                actionTypes: ['action']    
-                            }],
+                            conditionals: [
+                                {
+                                    type: 'weaponRestriction',
+                                    weaponType: 'primary'
+                                }, 
+                                {
+                                    type: 'actionType',
+                                    actionTypes: ['attack']    
+                                }
+                            ],
                             changes: [
                                 {
                                     key: 'system.proficiency',
@@ -1550,9 +1557,13 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.doubleDuty.effects.doubleDuty.description',
                 img: 'icons/skills/melee/sword-shield-stylized-white.webp',
                 system: {
+                    conditionals: [{
+                        type: 'weaponRestriction',
+                        weaponType: 'primary'
+                    }],
                     changes: [
                         {
-                            key: 'system.bonuses.damage.primaryWeapon.bonus',
+                            key: 'system.bonuses.damage.bonus',
                             type: 'add',
                             value: '1'
                         }
@@ -1722,9 +1733,13 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.focused.effects.focused.description',
                 img: 'icons/magic/light/orb-shadow-blue.webp',
                 system: {
+                    conditionals: [{
+                        type: 'weaponRestriction',
+                        weaponType: 'primary'
+                    }],
                     changes: [
                         {
-                            key: 'system.bonuses.damage.primaryWeapon.bonus',
+                            key: 'system.bonuses.damage.bonus',
                             type: 'add',
                             value: 1
                         }
@@ -1762,6 +1777,16 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.followUp.effects.followUp.description',
                         img: 'icons/skills/melee/strike-sword-steel-yellow.webp',
                         system: {
+                            conditionals: [
+                                {
+                                    type: 'weaponRestriction',
+                                    weaponType: 'primary'                            
+                                },
+                                {
+                                    type: 'actionType',
+                                    actionTypes: ['attack']
+                                }
+                            ],
                             changes: [
                                 {
                                     key: 'system.proficiency',
@@ -2175,9 +2200,13 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.description',
                 img: 'icons/skills/melee/weapons-crossed-swords-yellow-teal.webp',
                 system: {
+                    conditionals: [{
+                        type: 'weaponRestriction',
+                        weaponType: 'primary'
+                    }],
                     changes: [
                         {
-                            key: 'system.bonuses.damage.primaryWeapon.bonus',
+                            key: 'system.bonuses.damage.bonus',
                             type: 'add',
                             value: 'ITEM.@system.tier + 1'
                         }
@@ -2232,11 +2261,11 @@ export const weaponFeatures = {
                         system: {
                             conditionals: [{
                                 type: 'actionType',
-                                actionTypes: ['trait']
+                                traits: ['presence']
                             }],
                             changes: [
                                 {
-                                    key: 'system.bonuses.roll.value',
+                                    key: 'system.bonuses.roll.bonus',
                                     type: 'add',
                                     value: '2'
                                 }
@@ -2460,14 +2489,20 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.sharpwing.effects.sharpwing.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.sharpwing.effects.sharpwing.description',
                 img: 'icons/weapons/swords/sword-winged-pink.webp',
-                changes: [
-                    {
-                        key: 'system.bonuses.damage.primaryWeapon.bonus',
-                        type: 'add',
-                        value: '@system.traits.agility.value',
-                        priority: 21
-                    }
-                ]
+                system: {
+                    conditionals: [{
+                        type: 'weaponRestriction',
+                        weaponType: 'sameWeapon' 
+                    }],
+                    changes: [
+                        {
+                            key: 'system.bonuses.damage.bonus',
+                            type: 'add',
+                            value: '@system.traits.agility.value',
+                            priority: 21
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2545,13 +2580,25 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.trusty.effects.trusty.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.trusty.effects.trusty.description',
                 img: 'icons/skills/melee/sword-twirl-orange.webp',
-                changes: [
-                    {
-                        key: 'system.bonuses.roll.primaryWeapon.bonus',
-                        type: 'add',
-                        value: 1
-                    }
-                ]
+                system: {
+                    conditionals: [
+                        {
+                            type: 'weaponRestriction',
+                            weaponType: 'primary'
+                        },
+                        {
+                            type: 'actionType',
+                            actionTypes: ['attack']
+                        }
+                    ],
+                    changes: [
+                        {
+                            key: 'system.bonuses.roll.bonus',
+                            type: 'add',
+                            value: 1
+                        }
+                    ]
+                }
             }
         ]
     },
