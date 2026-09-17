@@ -87,6 +87,7 @@ export default class DhCharacter extends DhCreature {
                 })
             }),
             attack: new ActionField({
+                type: 'attack',
                 persisted: false,
                 initial: () => ({
                     name: _loc('DAGGERHEART.GENERAL.unarmedAttack'),
