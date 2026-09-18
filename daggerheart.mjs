@@ -543,7 +543,7 @@ Hooks.on('getSceneControlButtons', controls => {
         name: 'changeSceneDarknessLevel',
         title: 'CONTROLS.ChangeSceneDarknessLevel',
         icon: 'fa-solid fa-circle-half-stroke',
-        visible: game.user.isGM,
+        visible: game.user.isGM && !canvas.scene?.environment.darknessLock,
         toggle: true,
         active: false,
         onChange: () => {
