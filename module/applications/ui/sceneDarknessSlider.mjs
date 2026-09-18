@@ -35,9 +35,12 @@ export class SceneDarknessSlider extends HandlebarsApplicationMixin(ApplicationV
 
         // Adjust position of this application's window
         const bounds = ui.controls.element.querySelector('button[data-tool="changeSceneDarknessLevel"]')?.getBoundingClientRect();
+        const thisBounds = this.element.getBoundingClientRect();
         if (bounds) {
             element.style.left = `${bounds.right + 8}px`;
-            element.style.top = `${bounds.top}px`; // shift it a bit down so that the tooltip doesn't obscure
+            
+            const heightDiff = thisBounds ? thisBounds.height - bounds.height : 0;
+            element.style.top = `${bounds.top - heightDiff / 2}px`; // shift it a bit down so that the tooltip doesn't obscure
         }
 
         const slider = element.querySelector('range-picker');
