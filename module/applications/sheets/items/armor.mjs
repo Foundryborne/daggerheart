@@ -71,6 +71,12 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 'system.armorFeatures': selectedOptions.map(x => ({ value: x.value })) });
+        const document = this.document;
+        await document.update({ 
+            'system.armorFeatures': selectedOptions.map(x => ({
+                ...(document.system._source.armorFeatures?.find(f => f.value === x.value) ?? {}),
+                value: x.value
+            }))
+        });
     }
 }
