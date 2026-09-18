@@ -177,7 +177,10 @@ export function ActionMixin(Base) {
                 const sheet = new this.constructor.metadata.sheetClass(this);
                 this.constructor._sheets.set(this.uuid, sheet);
             }
-            return this.constructor._sheets.get(this.uuid);
+            const sheet = this.constructor._sheets.get(this.uuid);
+            sheet.action = this; // reference might be stale, so we replace it with the action (in case uuid retrieval internally fails)
+            return sheet;
+
         }
 
         get inCollection() {
