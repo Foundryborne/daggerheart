@@ -21,7 +21,7 @@ export class Migration_2_10_0_Refresh extends MigrationHandlerBase {
             for (const [idx, effectId] of feature.effectIds.entries()) {
                 const effect = effects.find(e => e._id === effectId);
                 const relatedEffect = latestEffects.find(e => e._id === relatedFeature.effectIds?.[idx]);
-                if (effect && relatedEffect) {
+                if (effect && relatedEffect && effect.name === relatedEffect.name) {
                     effect.system.conditionals = relatedEffect.system.conditionals;
                 }
             }
