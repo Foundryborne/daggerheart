@@ -18,14 +18,13 @@ export class Migration_2_10_0_Refresh extends MigrationHandlerBase {
             const relatedFeature = latest.system[featureKey]?.find(f => f.value == feature.value);
             if (!relatedFeature) continue;
 
-            const disabledStatuses = effects.filter(e => feature.effectIds?.includes(e._id)).map(e => e.disabled);
-            effects = effects.filter(e => !feature.effectIds?.includes(e._id));
-            feature.effectIds = [...relatedFeature.effectIds];
-            const newEffects = latestEffects.filter(e => relatedFeature.effectIds.includes(e._id));
-            for (const [idx, disabled] of disabledStatuses.entries()) {
-                if (newEffects[idx]) newEffects[idx].disabled = disabled;
+            for (const [idx, effectId] of feature.effectIds.entries()) {
+                const effect = effects.find(e => e._id === effectId);
+                const relatedEffect = latestEffects.find(e => e._id === relatedFeature.effectIds?.[idx]);
+                if (effect && relatedEffect) {
+                    effect.system.conditionals = relatedEffect.system.conditionals;
+                }
             }
-            effects = [...effects, ...newEffects];
         }
 
         return { _id: item._id, effects };

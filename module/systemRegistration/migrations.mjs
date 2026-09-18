@@ -347,7 +347,7 @@ export async function runMigrations() {
         new Migration_2_9_3(),
         new Migration_2_10_0_DSN(),
         new Migration_2_10_0_Refresh()
-    ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, lastMigrationVersion));
+    ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, '2.9.5'));
 
     for (const handler of migrations) {
         await handler.migrate();
