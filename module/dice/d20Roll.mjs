@@ -199,10 +199,8 @@ export default class D20Roll extends DHRoll {
 
         if (this.constructor.name === 'D20Roll') {
             const { gmRollTrigger } = CONFIG.DH.DICESONICE;
-            if (this.d20) {
-                if (this.isCritical) {
-                    this.d20.options.sfx = gmRollTrigger.sfxTriggers.critical;
-                }
+            if (this.d20 && this.isCritical) {
+                this.d20.options.sfx = gmRollTrigger.sfxTriggers.critical;
             }
         }
 
