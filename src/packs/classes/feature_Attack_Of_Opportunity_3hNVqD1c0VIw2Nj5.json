@@ -7,7 +7,60 @@
   "system": {
     "description": "<p>If an adversary within Melee range attempts to leave that range, make a reaction roll using a trait of your choice against their Difficulty. Choose one effect on a success, or two if you critically succeed:</p><ul><li><p>They can't move from where they are.</p></li><li><p>You deal damage to them equal to your primary weapon's damage.</p></li><li><p>You move with them.</p></li></ul>",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "SOuw91PqJqsFJUVO": {
+        "type": "attack",
+        "damage": {
+          "main": null,
+          "resources": {}
+        },
+        "_id": "SOuw91PqJqsFJUVO",
+        "systemPath": "actions",
+        "baseAction": false,
+        "description": "",
+        "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "reaction",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Reaction Roll",
+        "range": ""
+      }
+    },
     "attribution": {
       "source": "Daggerheart SRD",
       "page": null,
