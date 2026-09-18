@@ -123,14 +123,15 @@
   "effects": [
     {
       "name": "Focused",
-      "description": "+1 to primary weapon damage to targets within Very Close range.",
+      "description": "<p>+1 to primary weapon damage to targets within Very Close range.</p>",
       "img": "icons/magic/light/orb-shadow-blue.webp",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": 1,
+            "priority": null,
             "phase": "initial"
           }
         ],
@@ -140,7 +141,8 @@
           "type": "withinRange"
         },
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "stacking": null,
         "targetDispositions": [],
@@ -154,7 +156,14 @@
       "_id": "urUpY16MvP1UGWyK",
       "type": "base",
       "disabled": false,
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "duration": {
         "value": null,
         "units": "seconds",
