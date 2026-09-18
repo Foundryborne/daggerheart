@@ -69,12 +69,14 @@ export class MigrationHandlerBase {
         const updateItem = async item => {
             const itemUpdate = await this.updateItemSource(item);
             if (itemUpdate) {
+                batch.push(...this.#processEffectUpdates(item, itemUpdate));
                 const itemAction = {
                     action: 'update',
                     documentName: 'Item',
-                    updates: [itemUpdate]
+                    updates: [itemUpdate],
+                    parent: item.parent,
+                    pack: item.pack
                 };
-                if (item.isEmbedded) itemAction.parent = item.actor;
                 batch.push(itemAction);
             }
 
@@ -88,7 +90,8 @@ export class MigrationHandlerBase {
                     action: 'update',
                     documentName: 'ActiveEffect',
                     updates: effectUpdates,
-                    parent: item
+                    parent: item,
+                    pack: item.pack
                 });
             }
         };
@@ -96,10 +99,13 @@ export class MigrationHandlerBase {
         const updateActor = async actor => {
             const actorUpdate = await this.updateActorSource(actor);
             if (actorUpdate) {
+                batch.push(...this.#processEffectUpdates(actor, actorUpdate));
                 batch.push({
                     action: 'update',
                     documentName: 'Actor',
-                    updates: [actorUpdate]
+                    updates: [actorUpdate],
+                    parent: actor.parent,
+                    pack: actor.pack
                 });
             }
 
@@ -117,7 +123,8 @@ export class MigrationHandlerBase {
                     action: 'update',
                     documentName: 'ActiveEffect',
                     updates: aeUpdates,
-                    parent: actor
+                    parent: actor,
+                    pack: actor.pack
                 });
             }
         }
@@ -134,5 +141,43 @@ export class MigrationHandlerBase {
 
         await foundry.documents.modifyBatch(batch);
         progress.advance({ by: finalUpdateProgress });
+    }
+
+    #processEffectUpdates(actorOrItem, update) {
+        if (!update.effects) return [];
+        const batch = [];
+        const idsInUpdate = update.effects.map(e => e._id);
+        const toDelete = actorOrItem.effects.filter(e => !idsInUpdate.includes(e._id));
+        const toCreate = update.effects.filter(e => !actorOrItem.effects.has(e._id));
+        const toUpdate = update.effects.filter(e => actorOrItem.effects.has(e._id));
+        if (toDelete.length) {
+            batch.push({
+                action: 'delete',
+                documentName: 'ActiveEffect',
+                parent: actorOrItem,
+                pack: actorOrItem.pack,
+                ids: toDelete.map(e => e._id)
+            });
+        }
+        if (toCreate.length) {
+            batch.push({
+                action: 'create',
+                documentName: 'ActiveEffect',
+                parent: actorOrItem,
+                pack: actorOrItem.pack,
+                data: toCreate
+            });
+        }
+        if (toUpdate.length) {
+            batch.push({
+                action: 'update',
+                documentName: 'ActiveEffect',
+                parent: actorOrItem,
+                pack: actorOrItem.pack,
+                updates: toUpdate
+            });
+        }
+        delete update.effects;
+        return batch;
     }
 }

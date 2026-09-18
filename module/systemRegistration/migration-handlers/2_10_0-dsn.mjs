@@ -1,7 +1,7 @@
 import { MigrationHandlerBase } from './base.mjs';
 
 /** Migrates DiceSoNice animations that used to be defined within the system to the DSN user.flags instead */
-export class Migration_2_10_0 extends MigrationHandlerBase {
+export class Migration_2_10_0_DSN extends MigrationHandlerBase {
     /** @inheritdoc */
     version = '2.10.0';
 
@@ -39,7 +39,7 @@ export class Migration_2_10_0 extends MigrationHandlerBase {
         migrateTrigger('fear', rawAppearanceData.diceSoNice.fear.sfx.higher);
         migrateTrigger('critical', rawAppearanceData.diceSoNice.sfx.critical);
 
-        game.user.setFlag('dice-so-nice', 'sfxList', sfxList);
+        await game.user.setFlag('dice-so-nice', 'sfxList', sfxList);
     }
 }
 
