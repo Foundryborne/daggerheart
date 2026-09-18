@@ -205,6 +205,15 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             };
         }
 
+        if (context.source.roll) {
+            context.rollTraits = Object.entries(CONFIG.DH.ACTIONS.rollTypeTraits).reduce((acc, [key, value]) => {
+                if (!context.source.roll.type || !value.rollTypes || value.rollTypes.includes(context.source.roll.type))
+                    acc[key] = value;
+
+                return acc;
+            }, {});
+        }
+
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;

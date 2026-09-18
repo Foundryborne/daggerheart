@@ -8,7 +8,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
             trait: new fields.StringField({
                 nullable: true,
                 initial: null,
-                choices: CONFIG.DH.ACTOR.abilities,
+                choices: CONFIG.DH.ACTIONS.rollTypeTraits,
                 label: 'DAGGERHEART.GENERAL.Trait.single'
             }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
@@ -98,11 +98,16 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 
     get rollTrait() {
         if (this.parent?.actor?.type !== 'character') return null;
+
+        const { spellcast, attack, trait, reaction } = CONFIG.DH.GENERAL.rollTypes;
+        const spellcastTrait = this.parent.actor?.system?.spellcastModifierTrait?.key;
         switch (this.type) {
-            case CONFIG.DH.GENERAL.rollTypes.spellcast.id:
-                return this.parent.actor?.system?.spellcastModifierTrait?.key ?? 'agility';
-            case CONFIG.DH.GENERAL.rollTypes.attack.id:
-            case CONFIG.DH.GENERAL.rollTypes.trait.id:
+            case spellcast.id:
+                return spellcastTrait;
+            case reaction.id:
+                return this.trait === 'spellcast' ? spellcastTrait : this.trait;
+            case attack.id:
+            case trait.id:
                 return this.useDefault || !this.trait
                     ? (this.parent.item.system.attack?.roll?.trait ?? 'agility')
                     : this.trait;
