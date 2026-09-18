@@ -13,6 +13,8 @@ export default function conditionalsMigration(source) {
         const newDamageData = [];
         for (let i = 0; i < source.changes.length; i++) {
             const change = source.changes[i];
+            if (!change.key) continue;
+
             const match = change.key.match(/system\.bonuses\.damage\.([^.]*)\.(bonus|dice)/);
             if (!match?.length) continue;
 
@@ -25,6 +27,8 @@ export default function conditionalsMigration(source) {
 
         for (const index of damageTypeIndexes) {
             const change = source.changes[index];
+            if (!change.key) continue;
+
             const match = change.key.match(/system\.bonuses\.damage\.([^.]*)/);
             if (!match?.length) continue;
 
@@ -44,6 +48,8 @@ export default function conditionalsMigration(source) {
         const newRollData = [];
         for (let i = 0; i < source.changes.length; i++) {
             const change = source.changes[i];
+            if (!change.key) continue;
+
             const match = change.key.match(/system\.bonuses\.roll\.([^.]*)\.(bonus|dice)/);
             if (!match?.length) continue;
 
@@ -56,6 +62,8 @@ export default function conditionalsMigration(source) {
         
         for (const index of rollChangeIndexes) {
             const change = source.changes[index];
+            if (!change.key) continue;
+
             const match = change.key.match(/system\.bonuses\.roll\.([^.]*)/);
             if (!match?.length) continue;
 
