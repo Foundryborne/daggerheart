@@ -46,9 +46,7 @@ export class SceneDarknessSlider extends HandlebarsApplicationMixin(ApplicationV
         const slider = element.querySelector('range-picker');
         slider?.addEventListener('change', () => {
             const value = Number(slider.value);
-            const duration = value > canvas.scene.environment.darknessLevel
-                ? CONFIG.Canvas.darknessToDaylightAnimationMS
-                : CONFIG.Canvas.daylightToDarknessAnimationMS;
+            const duration = 3000; // perhaps make configurable
             canvas.scene.update(
                 { 'environment.darknessLevel': value },
                 { animateDarkness: Math.round(duration * Math.abs(canvas.scene.environment.darknessLevel - value)) }
