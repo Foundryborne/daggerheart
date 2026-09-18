@@ -77,7 +77,8 @@
             "type": "actionType",
             "actionTypes": [
               "spellcast"
-            ]
+            ],
+            "traits": []
           }
         ]
       },

@@ -8,7 +8,15 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         tagifyConfigs: [
             {
                 selector: '.features-input',
-                options: () => CONFIG.DH.ITEM.orderedArmorFeatures(),
+                options: async () => {
+                    const options = CONFIG.DH.ITEM.orderedArmorFeatures();
+                    const TextEditor = foundry.applications.ux.TextEditor;
+                    for (const option of options) {
+                        // Descriptions may use Lookup's with fallback values, which we want to show
+                        option.description = await TextEditor.enrichHTML(_loc(option.description));
+                    }
+                    return options;
+                },
                 callback: ArmorSheet.#onFeatureSelect
             }
         ]
@@ -63,6 +71,12 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 'system.armorFeatures': selectedOptions.map(x => ({ value: x.value })) });
+        const document = this.document;
+        await document.update({ 
+            'system.armorFeatures': selectedOptions.map(x => ({
+                ...(document.system._source.armorFeatures?.find(f => f.value === x.value) ?? {}),
+                value: x.value
+            }))
+        });
     }
 }

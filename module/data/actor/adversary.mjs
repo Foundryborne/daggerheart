@@ -68,6 +68,7 @@ export default class DhpAdversary extends DhCreature {
                 ...commonActorRules()
             }, { persisted: false }),
             attack: new ActionField({
+                type: 'attack',
                 nullable: true,
                 initial: {
                     name: 'Attack',

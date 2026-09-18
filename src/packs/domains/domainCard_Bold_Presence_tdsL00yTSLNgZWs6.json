@@ -108,7 +108,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.traits.presence.value",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": "@system.traits.strength.value",
             "priority": null,
@@ -122,7 +122,15 @@
         "rangeDependence": null,
         "stacking": null,
         "targetDispositions": [],
-        "conditionals": []
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [],
+            "traits": [
+              "presence"
+            ]
+          }
+        ]
       },
       "disabled": false,
       "duration": {

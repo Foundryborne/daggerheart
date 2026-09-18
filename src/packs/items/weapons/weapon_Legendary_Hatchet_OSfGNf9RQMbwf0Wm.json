@@ -15,7 +15,7 @@
     "resource": null,
     "quantity": 1,
     "actions": {
-      "34yvGDZAT7vkFa0t": {
+      "sE7LyJkbAZMXTGH3": {
         "type": "effect",
         "chatDisplay": true,
         "name": "Follow-Up",
@@ -37,11 +37,11 @@
         ],
         "effects": [
           {
-            "_id": "A5rQQbMPkkQzJncG",
+            "_id": "r37xG24Qrx3q4ObR",
             "onSave": false
           }
         ],
-        "_id": "34yvGDZAT7vkFa0t",
+        "_id": "sE7LyJkbAZMXTGH3",
         "systemPath": "actions",
         "baseAction": false,
         "originItem": {
@@ -66,10 +66,10 @@
       {
         "value": "followUp",
         "effectIds": [
-          "A5rQQbMPkkQzJncG"
+          "r37xG24Qrx3q4ObR"
         ],
         "actionIds": [
-          "34yvGDZAT7vkFa0t"
+          "sE7LyJkbAZMXTGH3"
         ]
       }
     ],
@@ -171,6 +171,19 @@
       "description": "You have a +1 bonus to your Proficiency for this attack.",
       "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
       "system": {
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "primary"
+          },
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ],
+            "traits": []
+          }
+        ],
         "changes": [
           {
             "key": "system.proficiency",
@@ -184,11 +197,10 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": [],
-        "conditionals": []
+        "targetDispositions": []
       },
       "transfer": false,
-      "_id": "A5rQQbMPkkQzJncG",
+      "_id": "r37xG24Qrx3q4ObR",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -207,7 +219,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!OSfGNf9RQMbwf0Wm.A5rQQbMPkkQzJncG"
+      "_key": "!items.effects!OSfGNf9RQMbwf0Wm.r37xG24Qrx3q4ObR"
     }
   ],
   "sort": 0,

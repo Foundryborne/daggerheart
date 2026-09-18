@@ -8,6 +8,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         super({});
 
         this.action = action;
+        this.actionUuid = action.uuid; // store uuid to avert stale references in render
         this.openSection = null;
         this.openTrigger = this.action.triggers.length > 0 ? 0 : null;
     }
@@ -157,6 +158,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options, 'action');
+
+        // Load in action to avert possible stale actions
+        if (this.actionUuid) {
+            this.action = await fromUuid(this.actionUuid) ?? this.action;
+        }
+
         context.source = this.action.toObject(true);
         context.action = this.action;
         context.allResources = getAllResources();

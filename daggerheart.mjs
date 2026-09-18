@@ -21,6 +21,7 @@ import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
 import { pick } from './module/helpers/utils.mjs';
+import { dhTriggers, dhColorsets, getDiceRoles } from './module/config/dsnConfig.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -288,28 +289,30 @@ Hooks.once('init', () => {
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
     handlebarsRegistration();
+    
+    // Firefox can't handle mixed unit calcs until the nightly (158).
+    // That said, it may release without the fix (this happened on version 156 as well)
+    // Until we verify that its fine on the current release, we can't add the version check
+    const userAgent = navigator.userAgent ?? '';
+    const firefoxVersionMatch = userAgent.match(/\bFirefox\/(\d+\.\d+)\b/);
+    if (firefoxVersionMatch) {
+        // const version = Number(firefoxVersionMatch[1]);
+        document.body.classList.add('dh-old-firefox-cards');
+    }
+});
 
+Hooks.on('i18nInit', () => {
+    // Setup references to avoid continual recreation every access, and also simplify access
+    // These are updated in the onChange events.
+    // Occurs in i18nInit so that localization in default values work correctly
     game.system.settings = {
         appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
         automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
         homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
     };
-    
-    // Firefox can't handle mixed unit calcs until the nightly (156)
-    // Until then, they must be fixed size
-    const userAgent = navigator.userAgent ?? '';
-    const firefoxVersionMatch = userAgent.match(/\bFirefox\/(\d+\.\d+)\b/);
-    if (firefoxVersionMatch) {
-        const version = Number(firefoxVersionMatch[1]);
-        if (version < 156) {
-            document.body.classList.add('dh-old-firefox-cards');
-        }
-    }
-});
 
-Hooks.on('i18nInit', () => {
     // Setup homebrew resources
-    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).refreshConfig();
+    game.system.settings.homebrew.refreshConfig();
 });
 
 Hooks.on('setup', () => {
@@ -403,11 +406,22 @@ Hooks.on('ready', async () => {
         });
     }
 
-
     runMigrations();
 });
 
-Hooks.once('dicesoniceready', () => {});
+Hooks.once('diceSoNiceReady', dice3d => {
+    for (const trigger of dhTriggers) {
+        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids);
+    }
+
+    for (const colorset of dhColorsets) {
+        dice3d.addColorset(colorset);
+    }
+
+    for (const diceRole of getDiceRoles()) {
+        dice3d.addRole(diceRole, { package: CONFIG.DH.id });
+    }
+});
 
 Hooks.on('openDetachedWindow', (_, window) => {
     enricherRenderSetup(window.document);

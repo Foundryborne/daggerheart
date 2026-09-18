@@ -284,7 +284,8 @@
                 "type": "actionType",
                 "actionTypes": [
                   "spellcast"
-                ]
+                ],
+                "traits": []
               }
             ]
           },
@@ -343,7 +344,8 @@
                 "type": "actionType",
                 "actionTypes": [
                   "spellcast"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

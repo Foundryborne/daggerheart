@@ -176,10 +176,6 @@ export const actionType = {
         id: 'attack',
         label: 'DAGGERHEART.GENERAL.Roll.attack'
     },
-    trait: {
-        id: 'trait',
-        label: 'DAGGERHEART.GENERAL.Roll.trait'
-    },
     spellcast: {
         id: 'spellcast',
         label: 'DAGGERHEART.GENERAL.Roll.spellcast'

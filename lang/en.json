@@ -1723,6 +1723,23 @@
                     "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
             },
+            "DiceSoNice": {
+                "colorsets": {
+                    "hope": "Hope Default",
+                    "fear": "Fear Default",
+                    "advantage": "Advantage Default",
+                    "disadvantage": "Disadvantage Default"
+                },
+                "diceRoles": {
+                    "hope": "Hope Dice",
+                    "fear": "Fear Dice",
+                    "advantage": "Advantage Dice",
+                    "disadvantage": "Disadvantage Dice"
+                },
+                "triggers": {
+                  "dualityRoll": { "label": "Duality Roll" }  
+                }
+            },
             "DomainCardTypes": {
                 "ability": "Ability",
                 "spell": "Spell",
@@ -4025,26 +4042,7 @@
                 "appearance": {
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "duality": "Duality Rolls",
-                    "diceSoNice": {
-                        "title": "Dice So Nice",
-                        "hint": "Coloration of Duality dice if the Dice So Nice module is used.",
-                        "foreground": "Foreground",
-                        "background": "Background",
-                        "outline": "Outline",
-                        "edge": "Edge",
-                        "texture": "Texture",
-                        "colorset": "Theme",
-                        "material": "Material",
-                        "system": "Dice Preset",
-                        "font": "Font",
-                        "critical": "Duality Critical Animation",
-                        "muted": "Muted",
-                        "diceAppearance": "Dice Appearance",
-                        "animations": "Animations",
-                        "defaultAnimations": "Set Animations As Player Defaults",
-                        "previewAnimation": "Preview Animation"
-                    }
+                    "duality": "Duality Rolls"
                 },
                 "variantRules": {
                     "title": "Variant Rules",
@@ -4403,7 +4401,8 @@
                 "previewTokenHelp": "Left-click to place, right-click to cancel",
                 "suppressedEffect": {
                     "general": "This effect is suppressed",
-                    "invalid": "This effect is suppressed due to conditionals"
+                    "invalid": "This effect is suppressed due to conditionals",
+                    "unequipped": "This effect is suppressed because this item is not equipped"
                 }
             }
         }

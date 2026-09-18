@@ -87,8 +87,10 @@ export default class DhCharacter extends DhCreature {
                 })
             }),
             attack: new ActionField({
-                initial: {
-                    name: 'DAGGERHEART.GENERAL.unarmedAttack',
+                type: 'attack',
+                persisted: false,
+                initial: () => ({
+                    name: _loc('DAGGERHEART.GENERAL.unarmedAttack'),
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
@@ -115,7 +117,7 @@ export default class DhCharacter extends DhCreature {
                             }
                         }
                     }
-                }
+                })
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({

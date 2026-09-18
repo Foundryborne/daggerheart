@@ -122,7 +122,8 @@
                 "type": "actionType",
                 "actionTypes": [
                   "action"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

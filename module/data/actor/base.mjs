@@ -220,6 +220,16 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             options.scrollingTextData = textData;
         }
 
+        // If the actor name matches the proto token (if linked or non-canvas) or token (if unlinked), also update the token.
+        // This is often due to reflavoring or a character name chosen later.
+        const actor = this.parent;
+        const isNameChanged = changes.name && actor.name !== changes.name;
+        const prototypeName = actor.prototypeToken?.name;
+        const isPrototypeNameChanging = changes.prototypeToken?.name && changes.prototypeToken?.name !== prototypeName;
+        if (!actor.token && isNameChanged && actor.name === prototypeName && !isPrototypeNameChanging) {
+            changes.prototypeToken = foundry.utils.mergeObject(changes.prototypeToken ?? {}, { name: changes.name });
+        }
+
         if (changes.system?.resources) {
             const defeatedSettings = game.settings.get(
                 CONFIG.DH.id,

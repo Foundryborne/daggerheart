@@ -1,7 +1,7 @@
 const weaponKeys = ['primaryWeapon', 'secondaryWeapon'];
 
 export default function conditionalsMigration(source) {
-    if (!source.conditionals) {
+    if (source.conditionals === undefined && source.changes) {
         source.conditionals = [];
 
         const damageTypes = new Set();
