@@ -561,7 +561,13 @@ Hooks.on('getSceneControlButtons', controls => {
     }
     
     controls.lighting.tools = newLightingTools;
-})
+});
+
+Hooks.on('activateSceneControls', controls => {
+    if (controls.control.name !== 'lighting') {
+        ui.sceneDarknessSlider.close();
+    }
+});
 
 /** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */
 Hooks.on('renderDialogV2', (dialog, html) => {
