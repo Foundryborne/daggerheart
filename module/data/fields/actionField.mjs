@@ -180,7 +180,6 @@ export function ActionMixin(Base) {
             const sheet = this.constructor._sheets.get(this.uuid);
             sheet.action = this; // reference might be stale, so we replace it with the action (in case uuid retrieval internally fails)
             return sheet;
-
         }
 
         get inCollection() {
