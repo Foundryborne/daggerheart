@@ -1886,6 +1886,9 @@
                 "spellcast": {
                     "name": "SpellCast"
                 },
+                "reaction": {
+                    "name": "Reaction"
+                },
                 "diceSet": {
                     "name": "Dice Set"
                 }
@@ -3412,6 +3415,7 @@
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
             "searchPlaceholder": "Search...",
+            "spellcastTrait": "Spellcast Trait",
             "spent": "Spent",
             "step": "Step",
             "stress": "Stress",

@@ -17,9 +17,9 @@
         <div class="nest-inputs">
             {{#unless (eq source.type 'spellcast')}}
                 {{#if @root.isNPC}}
-                    {{formField fields.bonus label="DAGGERHEART.GENERAL.Modifier.single" name="roll.bonus" value=source.bonus placeholder=@root.baseAttackBonus disabled=(not source.type) localize=true}}
+                    {{formField fields.bonus label="DAGGERHEART.GENERAL.Modifier.single" name="roll.bonus" value=source.bonus placeholder=(ifThen (eq source.type 'reaction') '' @root.baseAttackBonus) disabled=(not source.type) localize=true}}
                 {{else}}
-                    {{formField fields.trait label="DAGGERHEART.GENERAL.Trait.single" name="roll.trait" value=source.trait localize=true disabled=(not source.type)}}
+                    {{formField fields.trait label="DAGGERHEART.GENERAL.Trait.single" choices=@root.rollTraits name="roll.trait" value=source.trait localize=true disabled=(not source.type)}}
                 {{/if}}
             {{/unless}}
             {{formField fields.difficulty label="DAGGERHEART.GENERAL.difficulty" name="roll.difficulty" value=source.difficulty localize=true disabled=(not source.type)}}

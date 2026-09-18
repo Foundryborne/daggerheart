@@ -262,9 +262,9 @@
             },
             "effects": [],
             "roll": {
-              "type": null,
+              "type": "reaction",
               "trait": null,
-              "difficulty": null,
+              "difficulty": 10,
               "bonus": null,
               "advState": "neutral",
               "diceRolling": {
@@ -277,7 +277,7 @@
               "useDefault": false
             },
             "save": {
-              "trait": "agility",
+              "trait": null,
               "difficulty": 10,
               "damageMod": "none"
             },
