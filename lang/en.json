@@ -16,7 +16,8 @@
         },
         "ActiveEffect": {
             "base": "Standard",
-            "beastform": "Beastform"
+            "beastform": "Beastform",
+            "ephemeral": "Ephemeral"
         },
         "Actor": {
             "character": "Character",
@@ -230,13 +231,29 @@
                 "conditionals": {
                     "title": "Conditionals"
                 },
-                "targetDispositions": "Affected Dispositions"
+                "targetDispositions": "Affected Dispositions",
+                "settingsCreateTitle": "Create Active Effect Type"
             },
             "RangeDependance": {
                 "hint": "Settings for an optional distance at which this effect should activate",
                 "title": "Range Dependant"
             },
-            "immuneStatusText": "Immunity: {status}"
+            "immuneStatusText": "Immunity: {status}",
+            "Base": {
+                "subtitle": "Active Effect",
+                "subtitleTooltip": ""
+            },
+            "Beastform": {
+                "subtitle": "Beastform Effect",
+                "subtitleTooltip": "A beastform effect's presence on a character keeps the beastform transformation active."
+            },
+            "Ephemeral": {
+                "subtitle": "Ephemeral Effect",
+                "subtitleTooltip": "Ephemeral Effects are options presented during roll dialogs instead of always being applied. They can have costs associated with using them.",
+                "costTitle": "Ephemeral Costs",
+                "costType": "Cost Type",
+                "multipleCostsLabel": "Multiple"
+            }
         },
         "ACTORS": {
             "Adversary": {
@@ -3318,6 +3335,7 @@
             "dualityDice": "Duality Dice",
             "dualityRoll": "Duality Roll",
             "effect": "Effect",
+            "ephemeralEffects": "Ephemeral Effects",
             "enabled": "Enabled",
             "evasion": "Evasion",
             "equipment": "Equipment",

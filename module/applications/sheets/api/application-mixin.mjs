@@ -531,7 +531,12 @@ export default function DHApplicationMixin(Base) {
                             this.document
                         );
                         config.hasRoll = false;
-                        return action && action.workflow.get('damage').execute(config, null, true);
+
+                        if (action) {
+                            await action.workflow.get('damage').execute(config, null, true);
+                            await action.workflow.get('cost').execute(config);
+                            config.resourceUpdates.updateResources();
+                        }
                     }
                 });
 
@@ -601,12 +606,17 @@ export default function DHApplicationMixin(Base) {
         async _prepareEffectsContext(context, _options) {
             context.effects = {
                 actives: [],
+                ephemerals: [],
                 inactives: []
             };
 
-            const effects = this.document.allApplicableEffects?.({ noTransferArmor: true }) ?? this.document.effects;
+            const effects = 
+                this.document.allApplicableEffects?.({ noTransferArmor: true, includeEphemerals: true })
+                ?? this.document.effects;
             for (const effect of effects) {
-                const list = effect.active ? context.effects.actives : context.effects.inactives;
+                const list = effect.type === 'ephemeral' ?
+                    context.effects.ephemerals : 
+                    (effect.active ? context.effects.actives : context.effects.inactives);
                 const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();
                 const isSuppressed = effect.isSuppressed;
                 const invalid = !effect.system.testConditionals(rollData);
@@ -822,7 +832,10 @@ export default function DHApplicationMixin(Base) {
                 delete data.system;
             }
 
-            const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
+            const doc = !type ? 
+                await cls.createDialog(data, { parent }) :
+                await cls.create(data, { parent, renderSheet: !event.shiftKey });
+
             if (parentIsItem && type === 'feature') {
                 await this.document.update({
                     'system.features': this.document.system.toObject().features.concat(doc.uuid)

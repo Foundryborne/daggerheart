@@ -215,15 +215,40 @@ export default class SettingFeatureConfig extends HandlebarsApplicationMixin(App
     }
 
     static async addEffect() {
-        const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
+        const typeChoices = {
+            BaseEffect: 'TYPES.ActiveEffect.base',
+            EphemeralEffect: 'TYPES.ActiveEffect.ephemeral'
+        };
+        const content = new foundry.data.fields.StringField({
+            label: _loc('DAGGERHEART.GENERAL.type'),
+            choices: typeChoices,
+            required: true
+        }).toFormGroup({}, { name: 'type', localize: true }).outerHTML;
 
-        await this.updateMove({
-            [`${this.movePath}.effects`]: [
-                ...currentEffects,
-                game.system.api.data.activeEffects.BaseEffect.getDefaultObject()
-            ]
+        const callback = async (_, button) => {
+            const type = button.form.elements.type.value;
+            if (!type) return;
+            
+            const currentEffects = foundry.utils.getProperty(this.settings, `${this.movePath}.effects`);
+            await this.updateMove({
+                [`${this.movePath}.effects`]: [
+                    ...currentEffects,
+                    game.system.api.data.activeEffects[type].getDefaultObject()
+                ]
+            });
+            this.render();
+        };
+
+        await foundry.applications.api.DialogV2.prompt({
+            content: content,
+            rejectClose: false,
+            modal: true,
+            ok: { callback: callback.bind(this) },
+            window: {
+                title: _loc('DAGGERHEART.ACTIVEEFFECT.Config.settingsCreateTitle')
+            },
+            position: { width: 400 }
         });
-        this.render();
     }
 
     async updateMove(update) {

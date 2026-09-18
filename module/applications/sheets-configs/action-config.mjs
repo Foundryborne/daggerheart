@@ -12,6 +12,13 @@ export default class DHActionConfig extends DHActionBaseConfig {
         }
     };
 
+    
+    /** @inheritDoc */
+    _onFirstRender(context, options) {
+        super._onFirstRender(context, options);
+        this.item.apps[this.id] = this;
+    }
+
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         if (this.action.effects) context.effects = this.action.effects.map(e => this.item.effects.get(e._id));
@@ -23,12 +30,14 @@ export default class DHActionConfig extends DHActionBaseConfig {
     static async addEffect(event) {
         const { areaIndex } = event.target.dataset;
         if (!this.action.effects) return;
+
         const data = this.action.toObject();
         const effectData = game.system.api.data.activeEffects.BaseEffect.getDefaultObject({
             transfer: false
         });
-
-        const [created] = await this.item.createEmbeddedDocuments('ActiveEffect', [effectData]);
+        const created = 
+            await CONFIG.ActiveEffect.documentClass.createDialog(effectData, { parent: this.item, transfer: false });
+        if (!created) return;
 
         if (areaIndex !== undefined) data.areas[areaIndex].effects.push(created._id);
         else data.effects.push({ _id: created._id });

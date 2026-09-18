@@ -52,6 +52,10 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         );
     }
 
+    get actor() {
+        return this.config?.data?.parent;
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.config = CONFIG.DH;
@@ -76,6 +80,24 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
         context.damageOptions = this.config.damageOptions;
         context.rangeOptions = CONFIG.DH.GENERAL.groupAttackRange;
+
+        if (this.config.costs?.length) {
+            const updatedCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(
+                this.action ?? { actor: this.actor },
+                this.config.costs
+            );
+            context.costs = updatedCosts.map(x => ({
+                ...x,
+                label: x.itemId
+                    ? this.action.parent.parent.name
+                    : game.i18n.localize(CONFIG.DH.GENERAL.abilityCosts[x.key].label)
+            }));
+            context.canRoll = game.system.api.fields.ActionFields.CostField.hasCost.call(
+                this.action ?? { actor: this.actor },
+                updatedCosts
+            );
+            this.config.data.scale = this.config.costs[0].total;
+        }
 
         return context;
     }
@@ -121,7 +143,24 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     }
 
     static toggleSelectedEffect(_event, button) {
-        this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
+        const effect = this.selectedEffects[button.dataset.key];
+        effect.selected = !effect.selected;
+
+        if (effect.origEffect.type === 'ephemeral') {
+            this.config.costs =
+                this.config.costs.some(c => c.ephKey === effect.id)
+                    ? this.config.costs.filter(x => x.ephKey !== effect.id)
+                    : [
+                        ...this.config.costs,
+                        ...effect.origEffect.system.costs.map(c => ({
+                            ephKey: effect.id,
+                            key: c.type,
+                            value: c.value,
+                            name: effect.name
+                        }))
+                    ];
+        }
+
         this.render();
     }
 
