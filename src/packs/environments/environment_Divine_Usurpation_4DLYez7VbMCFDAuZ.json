@@ -446,7 +446,7 @@
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": 0,
                 "priority": null,

@@ -266,7 +266,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
@@ -337,7 +337,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,

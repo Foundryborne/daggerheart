@@ -68,7 +68,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.dice",
             "type": "add",
             "value": "1d10",
             "priority": null,

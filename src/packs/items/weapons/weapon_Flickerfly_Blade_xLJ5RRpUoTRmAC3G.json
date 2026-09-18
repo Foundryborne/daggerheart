@@ -130,7 +130,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "@system.traits.agility.value",
             "priority": 21,

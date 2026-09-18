@@ -117,7 +117,7 @@
           {
             "key": "system.bonuses.roll",
             "type": "add",
-            "value": "+2",
+            "value": "2",
             "priority": null,
             "phase": "initial"
           }
@@ -167,9 +167,9 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
-            "value": "+3",
+            "value": "3",
             "priority": null,
             "phase": "initial"
           }
