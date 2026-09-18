@@ -28,7 +28,8 @@
         }
     },
     "CONTROLS": {
-        "inFront": "In Front"
+        "inFront": "In Front",
+        "ChangeSceneDarknessLevel": "Change Scene Darkness Level"
     },
     "SCENE": {
         "TABS": {

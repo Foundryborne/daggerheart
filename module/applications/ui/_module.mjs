@@ -9,3 +9,4 @@ export { default as DhSceneNavigation } from './sceneNavigation.mjs';
 export { ItemBrowser } from './itemBrowser.mjs';
 export { default as DhProgress } from './progress.mjs';
 export { default as DhGamePause } from './gamePause.mjs';
+export { SceneDarknessSlider } from './sceneDarknessSlider.mjs';
