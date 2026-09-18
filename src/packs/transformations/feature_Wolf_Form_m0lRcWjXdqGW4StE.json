@@ -75,7 +75,7 @@
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.dice",
             "type": "add",
             "value": "1d10",
             "priority": null,
