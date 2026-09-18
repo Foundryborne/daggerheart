@@ -72,7 +72,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "LgyMzjLLV8C02XUt",
       "img": "icons/commodities/gems/gem-fragments-blue.webp",
@@ -100,7 +101,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "fCKrezLHtPnXqWmg",
           "type": "base",
@@ -165,22 +167,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -249,7 +243,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "njOwlE1SWd2fsBtP",
       "img": "icons/skills/movement/arrows-up-trio-red.webp",
@@ -292,16 +287,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -361,7 +348,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oQR35SLZzSVAnqTB",
       "img": "icons/skills/movement/portal-silhouette-pink.webp",
@@ -442,7 +430,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "cQ6riYtHFwRCbezK",
       "img": "icons/commodities/gems/gem-faceted-tapered-blue.webp",
@@ -473,7 +462,8 @@
               "value": 1,
               "max": null
             },
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "GTqln5JzZkKBd9cA",
           "type": "base",
@@ -558,7 +548,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "5M5cYkCt4K8w0vJI",
       "img": "icons/magic/control/fear-fright-white.webp",

@@ -16,8 +16,7 @@
         },
         "ActiveEffect": {
             "base": "Standard",
-            "beastform": "Beastform",
-            "horde": "Horde"
+            "beastform": "Beastform"
         },
         "Actor": {
             "character": "Character",
@@ -29,7 +28,8 @@
         }
     },
     "CONTROLS": {
-        "inFront": "In Front"
+        "inFront": "In Front",
+        "ChangeSceneDarknessLevel": "Change Scene Darkness Level"
     },
     "SCENE": {
         "TABS": {
@@ -228,6 +228,9 @@
                 "stacking": {
                     "title": "Stacking"
                 },
+                "conditionals": {
+                    "title": "Conditionals"
+                },
                 "targetDispositions": "Affected Dispositions"
             },
             "RangeDependance": {
@@ -311,11 +314,15 @@
                     }
                 },
                 "confirmDeleteAttack": "Are you sure you want to delete this adversary's attack?",
+                "changeType": {
+                    "title": "Change Adversary Type",
+                    "content": "You are changing the adversary type, which will delete type specific data. Are you sure you want to do this?"
+                },
                 "Embed": {
                     "attack": "ATK",
                     "thresholds": "Thresholds"
                 },
-                "hordeDamage": "Horde Damage",
+                "hordeDamage": "Horde Damage (Half HP)",
                 "horderHp": "Horde/HP",
                 "adversaryReactionRoll": {
                     "headerTitle": "Adversary Reaction Roll"
@@ -1606,6 +1613,33 @@
                     "autoAppliedByLabel": "Max Stress"
                 }
             },
+            "ConditionalComparator": {
+                "less": "Less Than",
+                "lessEquals": "Less Or Equals",
+                "equals": "Equals",
+                "greaterEquals": "Greater Or Equals",
+                "greater": "Greater Than",
+                "truthy": "Is True",
+                "falsy": "Is False"
+            },
+            "ConditionalFailureMode": {
+                "suppress": "Suppress",
+                "hide": "Hide"
+            },
+            "ConditionalPhase": {
+                "preparation": "Preparation",
+                "roll": "Roll"
+            },
+            "ConditionalType": {
+                "dataCompare": "Data Compare",
+                "weaponRestriction": "Weapon Restriction",
+                "actionType": "Action Type",
+                "damageType": "Damage Type"
+            },
+            "ConditionalWeaponRestrictionType": {
+                "sameWeapon": "Same Weapon",
+                "anyWeapon": "Any Weapon"
+            },
             "CountdownProgressType": {
                 "actionRoll": "Action Roll",
                 "characterAttack": "Character Attack",
@@ -1645,10 +1679,12 @@
             "DamageType": {
                 "physical": {
                     "name": "Physical",
+                    "lowercase": "physical",
                     "abbreviation": "Phy"
                 },
                 "magical": {
                     "name": "Magical",
+                    "lowercase": "magical",
                     "abbreviation": "Mag"
                 },
                 "direct": {
@@ -1669,6 +1705,24 @@
                 "blazeOfGlory": {
                     "name": "Blaze Of Glory",
                     "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
+                }
+            },
+            "DiceSoNice": {
+                "colorsets": {
+                    "hope": "Hope Default",
+                    "fear": "Fear Default",
+                    "advantage": "Advantage Default",
+                    "disadvantage": "Disadvantage Default"
+                },
+                "diceRoles": {
+                    "hope": "Hope Dice",
+                    "fear": "Fear Dice",
+                    "advantage": "Advantage Dice",
+                    "disadvantage": "Disadvantage Dice"
+                },
+                "triggers": {
+                  "dualityRoll": { "label": "Duality Roll" },
+                  "gmRoll": { "label": "GM Roll" }
                 }
             },
             "DomainCardTypes": {
@@ -2776,6 +2830,7 @@
             }
         },
         "EFFECTS": {
+            "AddChange": "Add Change",
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
@@ -2789,6 +2844,7 @@
             },
             "ChangeTypes": {
                 "armor": {
+                    "name": "Armor",
                     "FIELDS": {
                         "value": {
                             "current": {
@@ -2813,6 +2869,22 @@
                         "name": "Attack Name",
                         "trait": "Attack Trait"
                     }
+                }
+            },
+            "Conditionals": {
+                "phase": "Phase",
+                "failureMode": "Failure Mode",
+                "dataCompare": {
+                    "comparator": "Comparator"
+                },
+                "weaponRestriction": {
+                    "weaponType": "Weapon Type"
+                },
+                "actionType": {
+                    "actionTypes": "Action Types"
+                },
+                "damageType": {
+                    "damageType": "Damage Type"
                 }
             },
             "Duration": {
@@ -3195,7 +3267,8 @@
                 "triggers": "Triggers",
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
-                "packs": "Packs"
+                "packs": "Packs",
+                "conditionals": "Conditionals"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -3286,6 +3359,7 @@
             "itemResource": "Item Resource",
             "itemQuantity": "Item Quantity",
             "items": "Items",
+            "key": "Key",
             "label": "Label",
             "level": "Level",
             "levelShort": "Lv",
@@ -3312,7 +3386,7 @@
             "partner": "Partner",
             "player": {
                 "single": "Player",
-                "plurial": "Players"
+                "plural": "Players"
             },
             "portrait": "Portrait",
             "preview": "Preview",
@@ -3767,10 +3841,6 @@
                         "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
                     },
                     "roll": {
-                        "roll": {
-                            "label": "Roll",
-                            "hint": "Auto behavior for rolls like Attack, Spellcast, etc."
-                        },
                         "damage": {
                             "label": "Damage/Healing Roll",
                             "hint": "Auto behavior for Damage & Healing rolls after the Attack/Spellcast."
@@ -3956,26 +4026,7 @@
                 "appearance": {
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "duality": "Duality Rolls",
-                    "diceSoNice": {
-                        "title": "Dice So Nice",
-                        "hint": "Coloration of Duality dice if the Dice So Nice module is used.",
-                        "foreground": "Foreground",
-                        "background": "Background",
-                        "outline": "Outline",
-                        "edge": "Edge",
-                        "texture": "Texture",
-                        "colorset": "Theme",
-                        "material": "Material",
-                        "system": "Dice Preset",
-                        "font": "Font",
-                        "critical": "Duality Critical Animation",
-                        "muted": "Muted",
-                        "diceAppearance": "Dice Appearance",
-                        "animations": "Animations",
-                        "defaultAnimations": "Set Animations As Player Defaults",
-                        "previewAnimation": "Preview Animation"
-                    }
+                    "duality": "Duality Rolls"
                 },
                 "variantRules": {
                     "title": "Variant Rules",
@@ -4331,7 +4382,12 @@
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",
                 "tokenSize": "The token size used on the canvas",
-                "previewTokenHelp": "Left-click to place, right-click to cancel"
+                "previewTokenHelp": "Left-click to place, right-click to cancel",
+                "suppressedEffect": {
+                    "general": "This effect is suppressed",
+                    "invalid": "This effect is suppressed due to conditionals",
+                    "unequipped": "This effect is suppressed because this item is not equipped"
+                }
             }
         }
     }

@@ -207,7 +207,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const autoSettings = game.system.settings.automation;
         if (changes.system?.resources && autoSettings.resourceScrollTexts) {
             const textData = Object.keys(changes.system.resources).reduce((acc, key) => {
                 const resource = changes.system.resources[key];
@@ -218,6 +218,16 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
                 return acc;
             }, []);
             options.scrollingTextData = textData;
+        }
+
+        // If the actor name matches the proto token (if linked or non-canvas) or token (if unlinked), also update the token.
+        // This is often due to reflavoring or a character name chosen later.
+        const actor = this.parent;
+        const isNameChanged = changes.name && actor.name !== changes.name;
+        const prototypeName = actor.prototypeToken?.name;
+        const isPrototypeNameChanging = changes.prototypeToken?.name && changes.prototypeToken?.name !== prototypeName;
+        if (!actor.token && isNameChanged && actor.name === prototypeName && !isPrototypeNameChanging) {
+            changes.prototypeToken = foundry.utils.mergeObject(changes.prototypeToken ?? {}, { name: changes.name });
         }
 
         if (changes.system?.resources) {
@@ -311,6 +321,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         if (!template) return null;
 
         const context = await this._prepareEmbedContext(options);
+        context.config = config;
         const content = await foundry.applications.handlebars.renderTemplate(template, context);
         const container = document.createElement('div');
         container.innerHTML = content;

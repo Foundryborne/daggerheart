@@ -4,7 +4,7 @@
     color: var(--dh-embed-color-text);
     border: 2px solid var(--dh-embed-color-border);
     border-radius: 12px;
-    padding: var(--spacer-8) 0;
+    padding: var(--spacer-12) 0;
     line-height: 1.2;
 
     header.main {    
@@ -15,18 +15,26 @@
         font-size: 1.5em;
         text-transform: uppercase;
         font-weight: 900;
-        line-height: 1.47;
+        line-height: 1;
+        margin-bottom: 0.15em;
     }
 
     .tier {
         font-size: 1.125em;
         font-style: italic;
         font-weight: 600;
-        line-height: 1.25;
+
+        .attribution {
+            display: inline;
+            font-weight: 500;
+            font-size: 0.888em;
+            color: @color-text-subtle;
+        }
     }
 
     .description {
         font-style: italic;
+        margin-bottom: 0.0625rem;
         p {
             margin: 0;
         }
@@ -97,8 +105,11 @@
         .typography();
         --paragraph-spacing: 0.25em;
 
-        padding-left: 1ch;     
-        margin-bottom: 0.25em;
+        padding-left: 1ch;
+
+        &:not(:last-child) {
+            margin-bottom: 0.25em;
+        }
 
         &.grouped {
             border-top: 1px dashed var(--dh-embed-color-border);

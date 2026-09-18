@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -164,22 +165,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -230,7 +223,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1NsdEyGbRIVsyUtw",
       "img": "icons/skills/melee/strike-morningstar-gray.webp",
@@ -271,22 +265,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -326,7 +312,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "kk2cwy2BB3qVqEYK",
       "img": "icons/skills/melee/hand-grip-hammer-spiked-blue.webp",
@@ -387,7 +374,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "iIv8oE9H4wuyg0Jy",
       "img": "icons/magic/control/fear-fright-monster-red.webp",

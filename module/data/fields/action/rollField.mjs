@@ -142,8 +142,6 @@ export default class RollField extends fields.EmbeddedDataField {
     prepareConfig(config) {
         if (!config.hasRoll) return;
 
-        config.dialog.configure = RollField.getAutomation() ? !config.dialog.configure : config.dialog.configure;
-
         const roll = {
             baseModifiers: this.roll.getModifier(),
             label: 'Attack',
@@ -156,18 +154,5 @@ export default class RollField extends fields.EmbeddedDataField {
         if (this.roll.type === 'diceSet' || !this.hasRoll) roll.lite = true;
 
         config.roll = roll;
-    }
-
-    /**
-     * Return the automation setting for execute method for current user role
-     * @returns {boolean} If execute should be triggered automatically
-     */
-    static getAutomation() {
-        return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.players)
-        );
     }
 }

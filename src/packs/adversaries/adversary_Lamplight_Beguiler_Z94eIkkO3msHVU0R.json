@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -194,7 +195,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "rD4dK5rbkMggavMU",
       "img": "icons/environment/people/commoner.webp",
@@ -214,7 +216,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "Znw9Vf9GrfXm6g8N",
           "type": "base",
@@ -323,7 +326,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "nbzoUABWDwUdGkFE",
       "img": "icons/magic/life/heart-red-blue.webp",
@@ -364,22 +368,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -444,7 +440,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "XDqv8pIUqp8LW0Sh",
       "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
@@ -464,7 +461,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "JfAXMYK3fSKste6M",
           "type": "base",

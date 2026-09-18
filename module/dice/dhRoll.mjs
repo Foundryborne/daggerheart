@@ -134,8 +134,7 @@ export default class DHRoll extends BaseRoll {
             config.actionChatMessageHandled = true;
         }
 
-        const reloadSetting = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).reload;
+        const reloadSetting = game.system.settings.automation.reload;
         const useReload = 
             item?.system.hasReload && 
             action?.type === 'attack' && 
@@ -176,7 +175,7 @@ export default class DHRoll extends BaseRoll {
         if (!this._evaluated) return;
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
-        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const automationSettings = game.system.settings.automation;
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
@@ -355,8 +354,20 @@ export default class DHRoll extends BaseRoll {
         const changeKeys = this.getActionChangeKeys();
         return (
             this.options.effects?.reduce((acc, effect) => {
+                const item = this.options.data.parent?.items?.get?.(this.options.source.item) ?? null;
+                const actions = item ? [
+                    ...item.system.actions,
+                    ...(item.system.attack?.id === this.options.source.action ? [item.system.attack] : [])
+                ] : [];
+                const action = actions.find(x => x.id === this.options.source.action);
+
+                const isConditionalBlocked = action &&
+                    (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.test(action.getRollData()));
                 // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
-                if ((effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))) {
+                if (
+                    !isConditionalBlocked && 
+                    (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
+                ) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,

@@ -175,23 +175,14 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         });
     }
 
-    /**
-     * Prepare render context for the Effect part.
-     * @param {ApplicationRenderContext} context
-     * @param {ApplicationRenderOptions} options
-     * @returns {Promise<void>}
-     * @protected
-     */
-    async _prepareEffectsContext(context, _options) {
-        context.effects = {
-            actives: [],
-            inactives: []
-        };
+    /** @inheritdoc */
+    _prepareEffectsContext(context, options) {
+        super._prepareEffectsContext(context, options);
 
-        for (const effect of this.actor.allApplicableEffects({ noTransferArmor: true })) {
-            const list = effect.active ? context.effects.actives : context.effects.inactives;
-            list.push(effect);
-        }
+        // Filter out effects from unequipped gear
+        context.effects.inactives = context.effects.inactives.filter(({ effect, isSuppressed }) =>
+            !isSuppressed || !effect.transfer || effect.parent?.system.equipped !== false
+        );
     }
 
     /** Add support for input content editables */
@@ -239,8 +230,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                         action = doc?.system?.attack ?? doc;
                     const config = action.prepareConfig(event);
                     config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                        this.document,
-                        doc
+                        doc.getRollData(),
+                        this.document
                     );
                     config.hasRoll = false;
                     return action && action.workflow.get('damage').execute(config, null, true);

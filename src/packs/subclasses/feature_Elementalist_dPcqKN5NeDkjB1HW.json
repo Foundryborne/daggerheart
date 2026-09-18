@@ -102,7 +102,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -114,9 +115,9 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.action.bonus",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
-            "value": "+2",
+            "value": "2",
             "priority": null,
             "phase": "initial"
           }
@@ -126,7 +127,16 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "action"
+            ],
+            "traits": []
+          }
+        ]
       },
       "disabled": false,
       "duration": {
@@ -157,16 +167,9 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.magical.bonus",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
-            "value": "+3",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": "+3",
+            "value": "3",
             "priority": null,
             "phase": "initial"
           }
@@ -176,7 +179,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

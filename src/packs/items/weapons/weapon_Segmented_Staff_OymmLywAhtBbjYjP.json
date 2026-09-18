@@ -23,8 +23,8 @@
       {
         "value": "doubleDuty",
         "effectIds": [
-          "RjiPqWRWAqJWZ7Eb",
-          "BZAZ0C3f923xCa9J"
+          "DQ783nkboRdHiAdK",
+          "iNCNhj2WdjpeJ0WX"
         ],
         "actionIds": []
       }
@@ -87,7 +87,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -126,56 +127,15 @@
       "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
       "img": "icons/skills/melee/sword-shield-stylized-white.webp",
       "system": {
-        "changes": [
+        "conditionals": [
           {
-            "type": "armor",
-            "value": {
-              "current": 0,
-              "max": "1",
-              "damageThresholds": null,
-              "interaction": "none"
-            },
-            "priority": 20,
-            "phase": "initial"
+            "type": "weaponRestriction",
+            "weaponType": "primary"
           }
         ],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
-      },
-      "_id": "RjiPqWRWAqJWZ7Eb",
-      "type": "base",
-      "disabled": false,
-      "start": null,
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "showIcon": 1,
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!items.effects!OymmLywAhtBbjYjP.RjiPqWRWAqJWZ7Eb"
-    },
-    {
-      "name": "Double Duty",
-      "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
-      "img": "icons/skills/melee/sword-shield-stylized-white.webp",
-      "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": 1,
             "phase": "initial"
@@ -192,7 +152,7 @@
         "stacking": null,
         "targetDispositions": []
       },
-      "_id": "BZAZ0C3f923xCa9J",
+      "_id": "DQ783nkboRdHiAdK",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -212,7 +172,55 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!OymmLywAhtBbjYjP.BZAZ0C3f923xCa9J"
+      "_key": "!items.effects!OymmLywAhtBbjYjP.DQ783nkboRdHiAdK"
+    },
+    {
+      "name": "Double Duty",
+      "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
+      "img": "icons/skills/melee/sword-shield-stylized-white.webp",
+      "_id": "iNCNhj2WdjpeJ0WX",
+      "system": {
+        "changes": [
+          {
+            "type": "armor",
+            "value": {
+              "max": "1",
+              "current": 0,
+              "damageThresholds": null,
+              "interaction": "none"
+            },
+            "priority": 20,
+            "phase": "initial"
+          }
+        ],
+        "conditionals": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "type": "base",
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!OymmLywAhtBbjYjP.iNCNhj2WdjpeJ0WX"
     }
   ],
   "sort": 0,

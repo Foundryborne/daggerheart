@@ -14,7 +14,8 @@
     "resource": null,
     "actions": {},
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [
     {
@@ -51,7 +52,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "bGHd7NfUn4fL6u1g",
       "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",

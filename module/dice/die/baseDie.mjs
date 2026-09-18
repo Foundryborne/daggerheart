@@ -1,15 +1,39 @@
-import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 
 export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
+        sc: 'selfCorrecting',
         c: 'comboDice',
         h: 'hope',
         f: 'fear',
         a: 'advantage',
         d: 'disadvantage'
     };
+
+    hope() {
+        this.setDualityTriggers();
+    }
+
+    fear() {
+        this.setDualityTriggers();
+    }
+
+    setDualityTriggers() {
+        if (!(this._root instanceof game.system.api.dice.DualityRoll)) return;
+        
+        const { dHope, dFear, isCritical } = this._root;
+        if (dHope.total === undefined || dFear.total === undefined) return;
+
+        if (isCritical) {
+            dHope.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.critical;
+            dFear.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.critical;
+        } else if (dHope.total > dFear.total) {
+            dHope.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.hope;
+        } else if (dHope.total < dFear.total) {
+            dFear.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.fear;
+        }
+    }
 
     async rerollResult(resultToReroll) {
         const resultIndex = Number(resultToReroll);
@@ -39,34 +63,22 @@ export default class BaseDie extends foundry.dice.terms.Die {
         return css;
     }
 
-    /* -------------------------------------------- */
-    /*  Modifier Logic                              */
-    /* -------------------------------------------- */
-
-    async hope() {
-        this.#setDualityDiePreset('hope');
-    }
-
-    async fear() {
-        this.#setDualityDiePreset('fear');
-    }
-
-    async advantage() {
-        this.#setDualityDiePreset('advantage');
-    }
-
-    async disadvantage() {
-        this.#setDualityDiePreset('disadvantage');
-    }
-
-    async #setDualityDiePreset(dualityType) {
-        if (!game.dice3d) return;
-
-        const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
-        const dualityDie = diceSoNice[dualityType];
-        if (!dualityDie) return;
-
-        this.options = await getDiceSoNicePreset(dualityDie, this.denomination);
+    /**
+     * Return the configured value as result if 1 is rolled
+     * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
+     * @param {string} modifier     The matched modifier query
+     */
+    async selfCorrecting(modifier) {
+        const rgx = /(?:sc)([0-9]+)/i;
+        const match = modifier.match(rgx);
+        if (!match) return false;
+        let [target] = match.slice(1);
+        target = parseInt(target);
+        for (const r of this.results) {
+            if (r.result === 1) {
+                r.result = target;
+            }
+        }
     }
 
     async comboDice() {

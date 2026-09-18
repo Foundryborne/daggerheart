@@ -74,7 +74,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "KudBK6FBt61ZuaCf",
       "img": "icons/magic/air/wind-tornado-funnel-damage-blue.webp",
@@ -150,7 +151,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "QvkOrklI6GjzD96R",
       "img": "icons/magic/air/wind-tornado-wall-blue.webp",
@@ -170,7 +172,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "St1oj5HlmKYKFYM4",
           "type": "base",
@@ -235,22 +238,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -319,7 +314,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "YbTId6KRLXisM3sB",
       "img": "icons/magic/air/wind-tornado-funnel-blue-grey.webp",
@@ -402,7 +398,8 @@
             "img": "icons/magic/water/pseudopod-swirl-blue.webp"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TlX8yI5OWVmOK3cF",
       "img": "icons/magic/lightning/orb-ball-spiral-blue.webp",
@@ -425,7 +422,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0pdHjCFHlKIvNU23",
       "img": "icons/skills/wounds/injury-face-impact-orange.webp",

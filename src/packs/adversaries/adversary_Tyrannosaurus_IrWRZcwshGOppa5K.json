@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -217,7 +218,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "VZcHBueL3e8hLcN4",
       "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
@@ -258,22 +260,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -333,7 +327,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "k1RdR8MHtgtN65RM",
       "img": "icons/magic/earth/barrier-stone-explosion-debris.webp",
@@ -376,16 +371,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -425,7 +412,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "spgPPiDI0yt1sqbP",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",

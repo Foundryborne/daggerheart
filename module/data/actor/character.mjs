@@ -66,7 +66,7 @@ export default class DhCharacter extends DhCreature {
             ),
             gold: new GoldField({
                 initial: () => {
-                    const homebrew = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew);
+                    const homebrew = game.system.settings.homebrew;
                     const { coins, handfuls, bags, chests } = homebrew.currency;
                     return {
                         coins: coins.enabled ? coins.initialAmount : 0,
@@ -87,8 +87,10 @@ export default class DhCharacter extends DhCreature {
                 })
             }),
             attack: new ActionField({
-                initial: {
-                    name: 'DAGGERHEART.GENERAL.unarmedAttack',
+                type: 'attack',
+                persisted: false,
+                initial: () => ({
+                    name: _loc('DAGGERHEART.GENERAL.unarmedAttack'),
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
@@ -115,26 +117,13 @@ export default class DhCharacter extends DhCreature {
                             }
                         }
                     }
-                }
+                })
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
-                roll: new fields.SchemaField({
-                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
-                    spellcast: bonusField('DAGGERHEART.GENERAL.Roll.spellcast'),
-                    trait: bonusField('DAGGERHEART.GENERAL.Roll.trait'),
-                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
-                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction'),
-                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.primaryWeaponAttack'),
-                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.secondaryWeaponAttack')
-                }),
-                damage: new fields.SchemaField({
-                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
-                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage'),
-                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon'),
-                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.secondaryWeapon')
-                }),
-                healing: bonusField('DAGGERHEART.GENERAL.Healing.healingAmount'),
+                roll: bonusField('DAGGERHEART.GENERAL.roll'),
+                damage: bonusField('DAGGERHEART.GENERAL.damage'),
+                healing: bonusField('DAGGERHEART.GENERAL.healing'),
                 range: new fields.SchemaField({
                     weapon: new fields.NumberField({
                         integer: true,
@@ -437,7 +426,7 @@ export default class DhCharacter extends DhCreature {
 
     get loadoutSlot() {
         const loadoutCount = this.domainCards.loadout?.length ?? 0;
-        const worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout;
+        const worldSetting = game.system.settings.homebrew.maxLoadout;
         const limit = worldSetting + this.bonuses.maxLoadout;
 
         return {
@@ -686,7 +675,7 @@ export default class DhCharacter extends DhCreature {
                 : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                     tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
                 ).tier;
-        if (game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto) {
+        if (game.system.settings.automation.levelupAuto) {
             for (let levelKey in this.levelData.levelups) {
                 const level = this.levelData.levelups[levelKey];
 
@@ -747,7 +736,7 @@ export default class DhCharacter extends DhCreature {
                 : this.levelData.level.current * severeThresholdMulitplier
         };
 
-        const globalHopeMax = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxHope;
+        const globalHopeMax = game.system.settings.homebrew.maxHope;
         this.resources.hope.max = globalHopeMax;
         this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
 

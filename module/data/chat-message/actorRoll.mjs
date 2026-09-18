@@ -89,7 +89,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     get actionItem() {
         switch (this.source.originItem.type) {
             case CONFIG.DH.ITEM.originItemType.restMove:
-                const restMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves;
+                const restMoves = game.system.settings.homebrew.restMoves;
                 return Array.from(foundry.utils.getProperty(restMoves, `${this.source.originItem.itemPath}`).actions)[
                     this.source.originItem.actionIndex
                 ];

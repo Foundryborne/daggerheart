@@ -34,7 +34,6 @@
     },
     "type": "skulk",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "JB2mFGRwgG2NIob8": {
         "name": "Keen Senses",
@@ -91,7 +90,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "wNzeuQLfLUMvgHlQ",
@@ -272,19 +273,11 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -327,7 +320,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -386,19 +380,11 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -446,7 +432,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [
         {
@@ -463,7 +450,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {

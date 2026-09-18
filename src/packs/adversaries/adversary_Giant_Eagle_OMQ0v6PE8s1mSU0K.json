@@ -34,7 +34,6 @@
     },
     "type": "skulk",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 2,
     "description": "<p>A giant bird of prey with blood-stained talons.</p>",
@@ -100,7 +99,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,8 @@
     "size": "large",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "prototypeToken": {
@@ -235,7 +236,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "wdNrstuoh4MFShYG",
       "img": "icons/creatures/birds/raptor-hawk-flying.webp",
@@ -258,7 +260,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "odAyKY0BSAkcO3Dd",
           "img": "icons/creatures/birds/raptor-hawk-flying.webp",
@@ -340,19 +343,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -400,7 +395,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MabIQE1Kjn60j08J",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -419,7 +415,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -498,19 +495,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -558,7 +547,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "NEOQ0E9AGSSIDm4v",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
@@ -576,7 +566,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -648,19 +639,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -683,7 +666,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "jY0ynjYvbS6E3NgJ",
       "img": "icons/skills/movement/arrow-down-pink.webp",

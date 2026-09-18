@@ -57,17 +57,9 @@
               "applyTo": "hitPoints",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -141,17 +133,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -193,7 +177,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [],
   "sort": 0,

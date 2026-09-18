@@ -19,7 +19,6 @@
     },
     "type": "skulk",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "difficulty": 11,
     "tier": 1,
@@ -72,7 +71,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,8 @@
     "size": "tiny",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "1fkLQXVtmILqfJ44",
@@ -268,19 +269,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -303,7 +296,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,

@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "uO2wALRyMQMyoqlO",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -187,22 +189,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {
                 "hitPoints": {
@@ -220,16 +214,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -323,7 +309,8 @@
             "img": "icons/magic/death/skull-energy-light-white.webp"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "l6LkfJH42kh3P2hm",
       "img": "icons/skills/melee/strike-axe-energy-pink.webp",
@@ -345,7 +332,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "8UvQGEI82P5OvqJ2",
           "type": "base",
@@ -431,7 +419,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "TCJ1CG5eNfGuxrsG",
       "img": "icons/magic/death/undead-skeleton-worn-blue.webp",
@@ -472,22 +461,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -552,7 +533,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "yZG0sINlKXLMaYlB",
       "img": "icons/magic/movement/trail-streak-impact-blue.webp",
@@ -574,7 +556,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "KPdvW2jbVU1RxOXz",
           "type": "base",
@@ -659,7 +642,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
       "effects": [
@@ -682,7 +666,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "lykN2B07hwfFQz3U",
           "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",

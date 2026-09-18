@@ -195,18 +195,9 @@ export default class DamageField extends fields.SchemaField {
      * @returns Formula value object
      */
     static getFormulaValue(part, data) {
-        let formulaValue = part.value;
-
-        if (data.hasRoll && part.resultBased && data.roll.withFear) return part.valueAlt;
-
-        const isAdversary = this.actor.type === 'adversary';
-        const isHorde = this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id;
-        if (isAdversary && isHorde && this.roll?.isStandardAttack) {
-            const hasHordeDamage = this.actor.effects.find(x => x.type === 'horde');
-            if (hasHordeDamage && !hasHordeDamage.disabled) return part.valueAlt;
-        }
-
-        return formulaValue;
+        return data.hasRoll && part.resultBased && data.roll.withFear && part.valueAlt
+            ? part.valueAlt
+            : part.value;
     }
 
     /**
@@ -247,10 +238,8 @@ export default class DamageField extends fields.SchemaField {
      */
     static getAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.players)
+            (game.user.isGM && game.system.settings.automation.roll.damage.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.damage.players)
         );
     }
 
@@ -260,10 +249,8 @@ export default class DamageField extends fields.SchemaField {
      */
     static getApplyAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.players)
+            (game.user.isGM && game.system.settings.automation.roll.damageApply.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.damageApply.players)
         );
     }
 
@@ -356,7 +343,7 @@ export class DHResourceData extends foundry.abstract.DataModel {
                 label: 'DAGGERHEART.ACTIONS.Settings.fullRestore.label'
             }),
             value: new fields.EmbeddedDataField(DHActionDiceData),
-            valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
+            valueAlt: new fields.EmbeddedDataField(DHActionDiceData, { nullable: true, initial: null })
         };
     }
 }

@@ -34,7 +34,6 @@
     },
     "type": "social",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "omqadwvxPY4xsd7K": {
         "name": "Socialite",
@@ -91,7 +90,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "CBBuEXAlLKFMJdjg",
@@ -282,17 +283,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -340,7 +333,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [
         {
@@ -357,7 +351,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -448,7 +443,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,

@@ -55,7 +55,8 @@
       }
     },
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -73,7 +74,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "E3nMTwKEtVGuqaqS",
       "type": "base",

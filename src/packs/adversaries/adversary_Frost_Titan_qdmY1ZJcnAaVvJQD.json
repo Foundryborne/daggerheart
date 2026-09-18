@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "jcUKQh9HyQ3Sysn4",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -194,16 +196,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -277,7 +271,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "UhGyp4zqdXYhXeQj",
       "img": "icons/commodities/bones/horn-drinking-white.webp",
@@ -299,7 +294,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "c62wrfqQ6rtHWOUz",
           "type": "base",
@@ -364,22 +360,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -439,7 +427,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "lxMzWFQOIpidX094",
       "img": "icons/creatures/abilities/bull-head-horns-glowing.webp",
@@ -500,7 +489,8 @@
             "range": "veryClose"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "bpPjEZDSWM7hE6mt",
       "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
@@ -523,7 +513,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "k679eYeZNOLxd9Dz",
       "img": "icons/commodities/treasure/brooch-gold-ruby.webp",

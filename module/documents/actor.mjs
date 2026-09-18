@@ -5,6 +5,7 @@ import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, 
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
+import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
 export default class DhpActor extends Actor {
     parties = new Set();
@@ -137,6 +138,36 @@ export default class DhpActor extends Actor {
             }
         }
 
+        if (source.type === 'adversary') {
+            for (const effect of (source.effects ?? [])) {
+                if (effect.type === 'horde') {
+                    effect.type = 'base';
+                    effect.disabled = false;
+                    const variantDamage = new DHDamageData(source.system.attack.damage.main);
+                    const hordeDamage = variantDamage.valueAlt?.getFormula() ?? '0';
+                    effect.system.changes.push({
+                        type: 'standardAttack',
+                        value: {
+                            name: '',
+                            damageTypes: [],
+                            attackRange: null,
+                            trait: null,
+                            img: null,
+                            damageFormula: hordeDamage
+                        },
+                        phase: 'initial',
+                        priority: 0
+                    });
+                    effect.system.conditionals = [{
+                        type: 'dataCompare',
+                        key: 'system.resources.hitPoints.value',
+                        comparator: 'greaterEquals',
+                        value: '@system.resources.hitPoints.max / 2'
+                    }]
+                }
+            }
+        }
+
         return super.migrateData(source);
     }
 
@@ -262,8 +293,7 @@ export default class DhpActor extends Actor {
         // Because we have to filter out possibly removed ones, 
         const features = this.itemTypes.feature;
         const featureProvidedResources = features.flatMap(f => Array.from(f.system.actorResources));
-        const homebrewResources = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+        const homebrewResources = game.system.settings.homebrew.toObject();
         const applicableHomebrewResources = homebrewResources.resources[this.type]?.resources ?? {};
 
         const resourceKeys = Object.keys(this.system._source.resources); 
@@ -351,7 +381,7 @@ export default class DhpActor extends Actor {
 
             await this.update({ 'system.levelData.level.changed': Math.min(newLevel, maxLevel) });
         } else {
-            const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+            const levelupAuto = game.system.settings.automation.levelupAuto;
 
             const usedLevel = Math.max(newLevel, 1);
             if (newLevel < 1) {
@@ -469,7 +499,7 @@ export default class DhpActor extends Actor {
     }
 
     async levelUp(levelupData) {
-        const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        const levelupAuto = game.system.settings.automation.levelupAuto;
         const getStatsWithSource = document => ({ ...(document._stats ?? {}), compendiumSource: document.uuid });
 
         const levelups = {};
@@ -721,7 +751,15 @@ export default class DhpActor extends Actor {
                 ability: abilityLabel
             }),
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this),
+            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
+                {
+                    action: {
+                        actionType: 'action', 
+                        roll: { type: 'trait', trait: trait }
+                    }
+                }, 
+                this
+            ),
             roll: {
                 trait: trait,
                 type: 'trait'
@@ -1009,7 +1047,7 @@ export default class DhpActor extends Actor {
                             valueFunc(
                                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
                                 r,
-                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear
+                                game.system.settings.homebrew.maxFear
                             )
                         );
                         break;
@@ -1066,7 +1104,9 @@ export default class DhpActor extends Actor {
         if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {
             return 4;
         }
-        return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
+
+        const { major, severe } = this.system.damageThresholds;
+        return (severe && damage >= severe) ? 3 : (major && damage >= major) ? 2 : 1;
     }
 
     convertStressDamageToHP(resources) {
@@ -1083,7 +1123,7 @@ export default class DhpActor extends Actor {
     }
 
     async toggleDefeated(defeatedState) {
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         const { deathMove, unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
         const defeatedConditions = new Set([deathMove.id, unconscious.id, defeated.id, dead.id]);
         if (!defeatedState) {
@@ -1100,7 +1140,7 @@ export default class DhpActor extends Actor {
     }
 
     async setDeathMoveDefeated(defeatedIconId) {
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         const actorDefault = settings[`${this.type}Default`];
         if (!settings.enabled || !settings.enabled || !actorDefault || actorDefault === defeatedIconId) return;
 
@@ -1167,8 +1207,8 @@ export default class DhpActor extends Actor {
         const conditions = CONFIG.DH.GENERAL.conditions();
         const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
         const autoVulnerableActive = this.system.isAutoVulnerableActive;
-        return this.effects
-            .filter(x => !x.disabled)
+        return this.allApplicableEffects()
+            .filter(x => !x.disabled && !x.isSuppressed)
             .reduce((acc, effect) => {
                 /* Could be generalized if needed. Currently just related to Vulnerable */
                 const isAutoVulnerableEffect =
@@ -1238,12 +1278,20 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+        /** @param {DhActiveEffect} effect */
+        const isRemovedByConditional = effect => {
+            const { preparation } = CONFIG.DH.EFFECTS.conditionalPhases;
+            const { hide } = CONFIG.DH.EFFECTS.conditionalFailureModes;
+            const rollData = this.getRollData();
+            return !effect.system.testConditionals(rollData, { phase: preparation.id, failureMode: hide.id });
+        }
+
         for (const effect of this.effects) {
-            if (!noSelfArmor || effect.type !== 'armor') yield effect;
+            if ((!noSelfArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
         }
         for (const item of this.items) {
             for (const effect of item.effects) {
-                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
+                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
             }
         }
     }
@@ -1305,7 +1353,8 @@ export default class DhpActor extends Actor {
                 name: latestSource.name,
                 img: latestSource.img,
                 system: _replace(system)
-            }]
+            }],
+            isRefresh: true
         }];
         if (effectCreates.length) {
             batch.push({

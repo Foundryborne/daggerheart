@@ -60,7 +60,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
             scrollable: ['.feature-section']
         },
         effects: {
-            template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
             scrollable: ['.effects-sections']
         },
         notes: {
@@ -251,11 +251,20 @@ export default class AdversarySheet extends DHBaseActorSheet {
      * Performs a reaction roll for an Adversary.
      * @type {ApplicationClickAction}
      */
-    static #reactionRoll(event) {
+    static async #reactionRoll(event) {
         const config = {
             event,
             title: game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll'),
             headerTitle: game.i18n.localize('DAGGERHEART.ACTORS.Adversary.adversaryReactionRoll.headerTitle'),
+            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
+                {
+                    action: {
+                        actionType: 'reaction', 
+                        roll: {}
+                    }
+                }, 
+                this.document
+            ),
             roll: {
                 type: 'trait'
             },

@@ -34,7 +34,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 2,
     "experiences": {},
     "tier": 2,
     "description": "<p>A group of trained archers bearing massive bows.</p>",
@@ -69,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,12 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": {
+      "type": "horde",
+      "hordeHP": 2,
+      "hordeDamage": "1d6+3"
+    }
   },
   "flags": {},
   "_id": "0ts6CGd93lLqGZI5",
@@ -228,29 +233,6 @@
   },
   "items": [
     {
-      "name": "Horde",
-      "type": "feature",
-      "system": {
-        "description": "<p>When the @Lookup[@name] has marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
-        "resource": null,
-        "actions": {},
-        "attribution": {},
-        "gmNotes": "",
-        "featureForm": "passive",
-        "granter": null
-      },
-      "_id": "uPwtE9d63PHtQitG",
-      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!0ts6CGd93lLqGZI5.uPwtE9d63PHtQitG"
-    },
-    {
       "name": "Focused Volley",
       "type": "feature",
       "system": {
@@ -296,20 +278,12 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -361,7 +335,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Wuf5y9tJ88BwzLv2",
       "img": "icons/skills/ranged/arrows-flying-triple-brown.webp",
@@ -411,20 +386,12 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -476,7 +443,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ayGHTtyjSuIR4BrV",
       "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",
@@ -488,51 +456,102 @@
         "compendiumSource": null
       },
       "_key": "!actors.items!0ts6CGd93lLqGZI5.ayGHTtyjSuIR4BrV"
-    }
-  ],
-  "effects": [
+    },
     {
-      "type": "horde",
+      "type": "feature",
       "name": "Horde",
-      "img": "icons/magic/movement/chevrons-down-yellow.webp",
-      "disabled": true,
-      "_id": "bq8hTzQoCXmA3xad",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "changes": [],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": []
+        "description": "When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null,
+        "featureForm": "passive",
+        "actorResources": []
       },
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
+      "flags": {
+        "daggerheart": {
+          "hordeFeature": true
+        }
       },
-      "description": "",
-      "tint": "#ffffff",
-      "transfer": false,
-      "statuses": [],
+      "effects": [
+        {
+          "name": "Horde",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "showIcon": 2,
+          "system": {
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "changes": [
+              {
+                "type": "standardAttack",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "@system.typeData.hordeDamage",
+                  "img": null
+                },
+                "priority": 0,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "66syft7C7E4gicoo",
+          "type": "base",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!0ts6CGd93lLqGZI5.UtmaYhXFL7yAqndn.66syft7C7E4gicoo"
+        }
+      ],
+      "_id": "UtmaYhXFL7yAqndn",
+      "folder": null,
       "sort": 0,
-      "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "start": {
-        "combat": null,
-        "time": 0,
-        "combatant": null,
-        "initiative": null,
-        "round": null,
-        "turn": null
-      },
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!actors.effects!0ts6CGd93lLqGZI5.bq8hTzQoCXmA3xad"
+      "_key": "!actors.items!0ts6CGd93lLqGZI5.UtmaYhXFL7yAqndn"
     }
   ],
+  "effects": [],
   "_key": "!actors!0ts6CGd93lLqGZI5"
 }

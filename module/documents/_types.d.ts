@@ -6,6 +6,7 @@ import EmbeddedCollection from '@common/abstract/embedded-collection.mjs';
 import DHToken from './token.mjs';
 import Actor from '@client/documents/actor.mjs';
 import Item from '@client/documents/item.mjs';
+import BaseEffect from '../data/activeEffect/baseEffect.mjs';
 
 declare module './actor.mjs' {
     export default interface DhpActor<T extends BaseDataActor = BaseDataActor> extends Actor {
@@ -35,5 +36,11 @@ declare module './item.mjs' {
             compendiumSource?: string;
             duplicateSource?: string;
         }
+    }
+}
+
+declare module './activeEffect.mjs' {
+    export default interface DhActiveEffect extends foundry.documents.ActiveEffect {
+        system: BaseEffect;
     }
 }

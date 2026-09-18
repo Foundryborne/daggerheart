@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -218,7 +219,8 @@
             "range": "melee"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "15egsMZB5SaStcBh",
       "img": "icons/commodities/materials/material-webbing.webp",
@@ -241,7 +243,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "1f1SHhGdOPjDhswm",
           "type": "base",
@@ -331,7 +334,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "c4cCwB00RC5qrOSN",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -359,7 +363,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "taWTSGGug8ETDBmi",
           "type": "base",

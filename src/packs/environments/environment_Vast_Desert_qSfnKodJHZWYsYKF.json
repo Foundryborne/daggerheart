@@ -75,7 +75,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1Cg2NBQwZfDHDtud",
       "img": "icons/environment/wilderness/cave-entrance-rocky.webp",
@@ -127,16 +128,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 },
                 "stress": {
                   "base": false,
@@ -153,16 +146,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -193,7 +178,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1S8CU4cFoFynMX0N",
       "img": "icons/consumables/drinks/wine-amphora-cup-gray.webp",
@@ -250,7 +236,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "XGtU0hcWUO1rJqSV",
       "img": "icons/skills/trades/academics-merchant-scribe.webp",
@@ -278,7 +265,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "GyRQC1Dw5uF6bbZr",
           "type": "base",
@@ -363,7 +351,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "UNqxbFMJLvgK8bSY",
       "img": "icons/magic/lightning/bolt-forked-teal.webp",
@@ -404,22 +393,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -496,22 +477,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -562,7 +535,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "sloexssGIEhCz3R0",
       "img": "icons/magic/air/wind-tornado-funnel-green.webp",

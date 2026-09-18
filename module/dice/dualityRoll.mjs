@@ -205,30 +205,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     getActionChangeKeys() {
-        const changeKeys = new Set([`system.bonuses.roll.${this.options.actionType}`]);
-
-        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
-            changeKeys.add(`system.bonuses.roll.${this.options.roll.type}`);
-        }
-
-        if (
-            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
-            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
-        ) {
-            changeKeys.add(`system.bonuses.roll.attack`);
-        }
-
-        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait]) {
-            if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.spellcast.id)
-                changeKeys.add('system.bonuses.roll.trait');
-        }
-
-        const weapons = ['primaryWeapon', 'secondaryWeapon'];
-        weapons.forEach(w => {
-            if (this.options.source.item && this.options.source.item === this.data[w]?.id)
-                changeKeys.add(`system.bonuses.roll.${w}`);
-        });
-
+        const changeKeys = new Set(['system.bonuses.roll']);
         return changeKeys;
     }
 
@@ -339,12 +316,8 @@ export default class DualityRoll extends D20Roll {
     }
 
     static async dualityUpdate(config) {
-        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        if (
-            automationSettings.countdownAutomation &&
-            config.actionType !== 'reaction' &&
-            !config.skips?.updateCountdowns
-        ) {
+        const countdownAutomation = game.system.settings.automation.countdownAutomation;
+        if (countdownAutomation && config.actionType !== 'reaction' && !config.skips?.updateCountdowns) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
 
             if (config.roll.result.duality === -1) {

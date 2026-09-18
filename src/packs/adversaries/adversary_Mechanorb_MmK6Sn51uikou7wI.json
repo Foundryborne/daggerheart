@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "nGj2O5gEwfZWJyYi",
       "img": "icons/commodities/tech/electronics-tech-sensor-steel-blue.webp",
@@ -169,7 +171,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "r2jnaUwHvPBQKDmg",
       "img": "icons/commodities/tech/levers-colored.webp",

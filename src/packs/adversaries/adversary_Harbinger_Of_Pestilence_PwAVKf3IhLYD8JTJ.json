@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -217,7 +218,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JIjSpCGXzAyayyGP",
       "img": "icons/magic/unholy/orb-colllecting-energy-green.webp",
@@ -245,7 +247,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "WYScx3su3JfFwfWq",
           "type": "base",
@@ -310,22 +313,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -374,7 +369,8 @@
             "range": "veryFar"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "i5rQALLMNFdptbVX",
       "img": "icons/creatures/invertebrates/wasp-swarm-tan.webp",
@@ -415,22 +411,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -490,7 +478,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "2BcaxW4N8lAM3rqF",
       "img": "icons/creatures/amphibians/frog-water-teal.webp",
@@ -551,7 +540,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "aQQZlLwA8OOXCJPW",
       "img": "icons/magic/death/undead-zombie-grave-green.webp",
@@ -612,7 +602,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",
       "effects": [
@@ -635,7 +626,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "lykN2B07hwfFQz3U",
           "img": "icons/magic/death/undead-mammal-fire-breath-pink.webp",

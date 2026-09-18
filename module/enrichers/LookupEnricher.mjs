@@ -1,3 +1,4 @@
+import { nestedReplaceFormulaData } from '../helpers/utils.mjs';
 import { parseInlineParams } from './parser.mjs';
 
 /**
@@ -24,7 +25,7 @@ export function DhLookupEnricher(match, { rollData }) {
     }
     
     // Perform lookup/replacement, and handle lookup tables
-    const lookupText = Roll.replaceFormulaData(String(params.formula), rollData);
+    const lookupText = nestedReplaceFormulaData(String(params.formula), rollData);
     if (table && lookupText in table.entries) {
         let entry = table.entries[lookupText];
         const adjustment = params.adjustment ? Number(params.adjustment) : null;

@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Ku1IguoeLopi1W50",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -194,16 +196,8 @@
                       "formula": ""
                     }
                   },
-                  "valueAlt": {
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  }
+                  "valueAlt": null,
+                  "itemId": null
                 }
               }
             },
@@ -243,7 +237,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "YqANVDSnjcVCK5vm",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -266,7 +261,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "f5nHfI6lZtudtZ3j",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -297,7 +293,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "Kk4cbk8xFxBIobxI",
           "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -366,22 +363,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
                 "type": [
                   "magical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -450,7 +439,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MXC78VtfVHw6pQ5e",
       "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
@@ -512,7 +502,8 @@
             "range": "far"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "DKl9G56DwWpLVblv",
       "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
@@ -589,7 +580,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "SGaUcNeQ3Y7F0Tlf",
       "img": "icons/creatures/magical/spirit-poison-smoke-green.webp",
@@ -609,7 +601,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "thBjAMP3WaNYxyJp",
           "type": "base",

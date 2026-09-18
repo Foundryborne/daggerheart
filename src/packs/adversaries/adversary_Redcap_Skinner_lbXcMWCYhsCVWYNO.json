@@ -75,7 +75,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -128,12 +129,12 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
     "criticalThreshold": 20,
     "damageThresholds": {
       "major": 0,
       "severe": 0
-    }
+    },
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Mgkt4CpQBU2OyWmz",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -187,22 +189,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": "melee"
+                "groupAttack": "melee",
+                "itemId": null
               },
               "resources": {}
             },
@@ -233,7 +227,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "jaLGm9PxB6KvVTlI",
       "img": "icons/skills/melee/strikes-sword-triple-gray.webp",
@@ -274,22 +269,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": "close"
+                "groupAttack": "close",
+                "itemId": null
               },
               "resources": {}
             },
@@ -349,7 +336,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "6nEBkyA013PMWpGj",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",

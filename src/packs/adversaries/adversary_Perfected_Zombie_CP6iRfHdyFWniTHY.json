@@ -34,7 +34,6 @@
     },
     "type": "bruiser",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 4,
     "description": "<p>A towering, muscular zombie with magically infused strength and skill.</p>",
@@ -87,7 +86,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,8 @@
     "size": "large",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "CP6iRfHdyFWniTHY",
@@ -265,17 +266,9 @@
                   "applyTo": "hope",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -307,7 +300,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "xyz5d7QISdB5X5ey",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
@@ -330,7 +324,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0viJMAsPBNLq2azj",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
@@ -391,20 +386,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -461,7 +448,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "CKy2r6FguyTSO9Fm",
       "img": "icons/skills/melee/strike-axe-energy-pink.webp",
@@ -480,7 +468,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": true,
           "duration": {
@@ -560,7 +549,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "hWxjmdc1O5J1otLM",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",

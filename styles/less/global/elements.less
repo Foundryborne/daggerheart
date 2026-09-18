@@ -170,10 +170,13 @@
     multi-select {
         position: relative;
         height: 34px;
+        padding-right: 2ch;
+        
         .tags {
             justify-content: flex-start;
             margin: 4px;
             height: inherit;
+            gap: 0.125rem;
             .tag {
                 padding: 0.3rem 0.5rem;
                 color: @color-text-emphatic;
@@ -360,6 +363,14 @@
         legend {
             font-weight: bold;
             color: @color-text-emphatic;
+
+            &.with-select {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
 
             &.with-icon {
                 display: flex;

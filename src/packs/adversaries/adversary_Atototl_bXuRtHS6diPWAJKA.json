@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -151,7 +152,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "y5zfcEnGcTaBtOcF",
       "img": "icons/creatures/birds/raptor-hawk-flying.webp",
@@ -174,7 +176,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "46qqHZuEI7P7ZXt8",
       "img": "icons/magic/symbols/runes-carved-stone-green.webp",
@@ -259,7 +262,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "lkBmArrMEvBpaKYQ",
       "img": "icons/magic/air/wind-tornado-spiral-blue-gray.webp",

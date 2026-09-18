@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -146,7 +147,8 @@
         "gmNotes": "",
         "resource": null,
         "actions": {},
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "RWMgJTJU5adTtpXS",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -209,7 +211,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "3xBKHT3vHPmXoIDH",
       "img": "icons/equipment/chest/breastplate-banded-steel-grey.webp",
@@ -240,7 +243,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "IeHRd0HSjeDWmMkB",
           "img": "icons/equipment/chest/breastplate-banded-steel-grey.webp",
@@ -309,22 +313,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -393,7 +389,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "W0YS8rMhgEQQMFRF",
       "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
@@ -472,7 +469,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "c89I2BlpU2nQyWji",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
@@ -515,7 +513,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "7D0zNvZQ6H8srwEo",
           "type": "base",
@@ -600,7 +599,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "tOz9yigrsPXyrPiK",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",

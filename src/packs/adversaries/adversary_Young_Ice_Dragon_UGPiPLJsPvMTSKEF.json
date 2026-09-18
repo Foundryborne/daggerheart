@@ -34,7 +34,6 @@
     },
     "type": "solo",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "oDHcTUnAM2YeYfHp": {
         "name": "Protect What Is Mine",
@@ -91,7 +90,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,8 @@
     "size": "huge",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "UGPiPLJsPvMTSKEF",
@@ -282,7 +283,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "lsHoXHZ452axhyEr",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -333,17 +335,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -366,7 +360,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "UHptE40G4tLBvKTN",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -389,7 +384,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JkazCieIEBNqytiy",
       "img": "icons/magic/death/skull-energy-light-white.webp",
@@ -450,20 +446,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -520,7 +508,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "QV2ytK4b1VWF71OS",
       "img": "icons/magic/water/projectiles-ice-faceted-shard-salvo-blue.webp",
@@ -538,7 +527,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -658,7 +648,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "CcRTxCDCJskiu3fI",
       "img": "icons/magic/water/barrier-ice-wall-snow.webp",
@@ -677,7 +668,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -755,17 +747,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -793,7 +777,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "nXZHOfcYvjg3YMNU",
       "img": "icons/commodities/leather/scales-blue.webp",
@@ -820,7 +805,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -896,17 +882,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -944,7 +922,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "QHdJgT2fvwqquyf7",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

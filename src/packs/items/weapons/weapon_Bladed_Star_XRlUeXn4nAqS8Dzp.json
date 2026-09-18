@@ -15,7 +15,7 @@
     "resource": null,
     "quantity": 1,
     "actions": {},
-    "tier": 1,
+    "tier": 3,
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
@@ -84,7 +84,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
