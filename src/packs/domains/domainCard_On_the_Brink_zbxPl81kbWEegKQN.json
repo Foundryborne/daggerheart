@@ -40,16 +40,24 @@
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
         "targetDispositions": [],
-        "conditionals": []
+        "conditionals": [
+          {
+            "type": "dataCompare",
+            "key": "system.resources.hitPoints.value",
+            "comparator": "equals",
+            "value": "@system.resources.hitPoints.max - 2"
+          }
+        ]
       },
       "_id": "UJTsJlnhi5Zi0XQ2",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "value": null,
         "units": "seconds",
@@ -65,7 +73,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!zbxPl81kbWEegKQN.UJTsJlnhi5Zi0XQ2"
