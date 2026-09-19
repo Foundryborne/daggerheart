@@ -89,7 +89,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     #getRulesData(baseActor, action) {
-        const actor = baseActor.getClone(action);
+        const actor = baseActor.getActionClone(action);
 
         const maxArmorUsed = actor.system.rules.damageReduction.maxArmorMarked;
         const increasePerArmorMark = actor.system.rules.damageReduction.increasePerArmorMark;
