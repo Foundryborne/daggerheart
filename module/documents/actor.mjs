@@ -112,15 +112,6 @@ export default class DhpActor extends Actor {
         }, 0);
     }
 
-    /**
-     * All actual documents should have a UUID. We prevent activeEffect change application if it's a temporary document from a clone.
-     */
-    prepareEmbeddedDocuments() {
-        if (this.uuid) {
-            super.prepareEmbeddedDocuments();
-        }
-    }
-
     /* -------------------------------------------- */
 
     /** @inheritDoc */
@@ -225,36 +216,30 @@ export default class DhpActor extends Actor {
     }
 
     /**
-     * Makes a clone fo the actor with only ActiveEffects that pass their conditionals applied.
+     * Makes a clone for the actor with only ActiveEffects that pass their conditionals applied.
      * @param {BaseAction} action The action relevant to needing the data
      * @returns {DhpActor}
      */
     getClone(action) {
         const rollData = (action ?? this).getRollData();
-        const applicableEffects = this.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
-        const effects = 
-            [...applicableEffects].filter(e => !e.disabled && !e.isSuppressed).reduce((acc, effect) => {          
-                const conditionalRollPassed = effect.system.testConditionals(rollData, { 
-                    phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
-                });
-                const conditionalPreparePassed = effect.system.testConditionals(rollData, { 
-                    phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id 
-                }); 
-                if (conditionalRollPassed && conditionalPreparePassed)
-                    acc.push(effect);
+        const effectFilter = effect => {
+            const conditionalRollPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
+            const conditionalPreparePassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id 
+            }); 
 
-                return acc;
-            }, []);
+            return !effect.disabled && !effect.isSuppressed && conditionalRollPassed && conditionalPreparePassed;
+        }   
 
-        const actor = this.clone();
-        for (const effect of effects) {
-            for (const baseChange of effect.system.changes) {
-                const change = foundry.utils.deepClone(baseChange);
-                change.effect = effect;
-                game.system.api.documents.DhActiveEffect.applyChange(
-                    actor, change, { replacementData: rollData });
-            }
-        }
+        const actor = this.clone({
+            effects: this.effects.filter(effectFilter).map(e => e.toObject(true)),
+            items: this.items.map(x => ({
+                ...x.toObject(),
+                effects: x.effects.filter(effectFilter).map(e => e.toObject(true))
+            }))
+        }, { keepId: true });
 
         return actor;
     }
