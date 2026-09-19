@@ -194,6 +194,19 @@ export default class D20Roll extends DHRoll {
         return (this._formula = this.constructor.getFormula(this.terms));
     }
 
+    async evaluate(options) {
+        const result = await super.evaluate(options);
+
+        if (this.constructor.name === 'D20Roll') {
+            const { gmRollTrigger } = CONFIG.DH.DICESONICE;
+            if (this.d20 && this.isCritical) {
+                this.d20.options.sfx = gmRollTrigger.sfxTriggers.critical;
+            }
+        }
+
+        return result;
+    }
+
     async reroll(options) {
         const result = await super.reroll(options);
         if (this instanceof game.system.api.dice.DualityRoll) return result;

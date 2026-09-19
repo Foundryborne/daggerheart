@@ -1860,6 +1860,10 @@ export const weaponFeatures = {
                         description: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.actions.greed.description',
                         img: 'icons/commodities/currency/coins-crown-stack-gold.webp',
                         system: {
+                            conditionals: [{
+                                type: 'weaponRestriction',
+                                weaponType: 'sameWeapon'
+                            }],
                             changes: [
                                 {
                                     key: 'system.proficiency',

@@ -123,14 +123,14 @@
   "effects": [
     {
       "name": "Sharpwing",
-      "description": "Gain a bonus to your damage rolls equal to your Agility.",
+      "description": "<p>Gain a bonus to your damage rolls equal to your Agility.</p>",
       "img": "icons/weapons/swords/sword-winged-pink.webp",
       "_id": "jMIrOhpPUncn7dWg",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "@system.traits.agility.value",
             "priority": 21,
@@ -138,7 +138,8 @@
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
@@ -146,7 +147,7 @@
         "conditionals": [
           {
             "type": "weaponRestriction",
-            "weaponType": "primary"
+            "weaponType": "sameWeapon"
           }
         ]
       },
@@ -165,7 +166,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!xLJ5RRpUoTRmAC3G.jMIrOhpPUncn7dWg"

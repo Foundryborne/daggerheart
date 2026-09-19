@@ -32,7 +32,7 @@
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "@system.levelData.level.current",
             "priority": null,

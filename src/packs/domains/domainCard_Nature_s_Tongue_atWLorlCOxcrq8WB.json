@@ -132,9 +132,9 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
-            "value": "+2",
+            "value": "2",
             "priority": null,
             "phase": "initial"
           }

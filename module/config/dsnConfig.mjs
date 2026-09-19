@@ -112,6 +112,14 @@ export const dualityTrigger = {
     }
 };
 
+export const gmRollTrigger = {
+    name: 'daggerheart-gm-roll-trigger', 
+    label: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.gmRoll.label',
+    ids: ['critical'],
+    sfxTriggers: { 
+        critical: { id: 'daggerheart-gm-roll-trigger', result: 'critical' }    
+    }
+};
 
 
-export const dhTriggers = [dualityTrigger];
+export const dhTriggers = [dualityTrigger, gmRollTrigger];

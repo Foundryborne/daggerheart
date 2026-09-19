@@ -72,7 +72,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": "@stacks",
             "priority": null,

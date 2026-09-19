@@ -15,7 +15,7 @@
       {
         "value": "reliable",
         "effectIds": [
-          "LvxPAfrKuRfgubGV"
+          "Ah2Fgx3T8aARNa4N"
         ],
         "actionIds": []
       }
@@ -123,33 +123,50 @@
   "effects": [
     {
       "name": "Reliable",
-      "description": "+1 to attack rolls",
+      "description": "<p>+1 to attack rolls</p>",
       "img": "icons/skills/melee/strike-sword-slashing-red.webp",
-      "_id": "LvxPAfrKuRfgubGV",
-      "type": "base",
       "system": {
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "sameWeapon"
+          },
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ],
+            "traits": []
+          }
+        ],
         "changes": [
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 1,
+            "priority": null,
             "phase": "initial"
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": [],
-        "conditionals": [
-          {
-            "type": "weaponRestriction",
-            "weaponType": "primary"
-          }
-        ]
+        "targetDispositions": []
       },
+      "_id": "Ah2Fgx3T8aARNa4N",
+      "type": "base",
       "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "duration": {
         "value": null,
         "units": "seconds",
@@ -159,15 +176,14 @@
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "showIcon": 1,
+      "folder": null,
       "sort": 0,
       "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!items.effects!q382JqMkqLaaFLIr.LvxPAfrKuRfgubGV"
+      "_key": "!items.effects!q382JqMkqLaaFLIr.Ah2Fgx3T8aARNa4N"
     }
   ],
   "sort": 0,

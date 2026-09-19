@@ -221,7 +221,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": 4,
                 "priority": null,

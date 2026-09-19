@@ -168,7 +168,7 @@
   "effects": [
     {
       "name": "Follow-Up",
-      "description": "You have a +1 bonus to your Proficiency for this attack.",
+      "description": "<p>You have a +1 bonus to your Proficiency for this attack.</p>",
       "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
       "system": {
         "conditionals": [
@@ -189,11 +189,13 @@
             "key": "system.proficiency",
             "type": "add",
             "value": 1,
+            "priority": null,
             "phase": "initial"
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
@@ -203,7 +205,14 @@
       "_id": "cLwG6tOV7LaFZDiF",
       "type": "base",
       "disabled": false,
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "duration": {
         "value": null,
         "units": "seconds",

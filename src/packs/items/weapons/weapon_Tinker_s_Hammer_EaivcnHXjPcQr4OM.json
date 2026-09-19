@@ -123,19 +123,21 @@
   "effects": [
     {
       "name": "Trusty",
-      "description": "+1 to attack rolls made with your primary weapon.",
+      "description": "<p>+1 to attack rolls made with your primary weapon.</p>",
       "img": "icons/skills/melee/sword-twirl-orange.webp",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 1,
+            "priority": null,
             "phase": "initial"
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
@@ -144,13 +146,27 @@
           {
             "type": "weaponRestriction",
             "weaponType": "primary"
+          },
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ],
+            "traits": []
           }
         ]
       },
       "_id": "RuT7WwcbaHVqK6it",
       "type": "base",
       "disabled": false,
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "duration": {
         "value": null,
         "units": "seconds",

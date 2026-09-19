@@ -381,6 +381,10 @@ Hooks.on('ready', async () => {
     ui.effectsDisplay = new CONFIG.ui.effectsDisplay();
     ui.effectsDisplay.render({ force: true });
 
+    // Create Scene Darkness slider and add to `Scenes` apps list so that it will re-render on scene update
+    ui.sceneDarknessSlider = new applications.ui.SceneDarknessSlider();
+    game.scenes.apps.push(ui.sceneDarknessSlider);
+
     if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
         ui.compendiumBrowser = new applications.ui.ItemBrowser();
 
@@ -532,6 +536,37 @@ Hooks.on('canvasTearDown', canvas => {
 /* Non actor-linked Actors should register the triggers of their tokens on a readied scene */
 Hooks.on('canvasReady', canas => {
     game.system.registeredTriggers.registerSceneTriggers(canvas.scene);
+});
+
+Hooks.on('getSceneControlButtons', controls => {
+    const sceneDarknessTool = {
+        name: 'changeSceneDarknessLevel',
+        title: 'CONTROLS.ChangeSceneDarknessLevel',
+        icon: 'fa-solid fa-circle-half-stroke',
+        visible: game.user.isGM && !canvas.scene?.environment.darknessLock,
+        toggle: true,
+        active: false,
+        onChange: () => {
+            ui.sceneDarknessSlider.toggleVisibility();
+        }
+    }
+    
+    const lightingControls = controls.lighting;
+    const newLightingTools = {};
+    for (const [key, value] of Object.entries(lightingControls.tools)) {
+        if (key === 'day') {
+            newLightingTools[sceneDarknessTool.name] = sceneDarknessTool;
+        }
+        newLightingTools[key] = value;
+    }
+    
+    controls.lighting.tools = newLightingTools;
+});
+
+Hooks.on('activateSceneControls', controls => {
+    if (controls.control.name !== 'lighting') {
+        ui.sceneDarknessSlider.close();
+    }
 });
 
 /** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */

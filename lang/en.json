@@ -28,7 +28,8 @@
         }
     },
     "CONTROLS": {
-        "inFront": "In Front"
+        "inFront": "In Front",
+        "ChangeSceneDarknessLevel": "Change Scene Darkness Level"
     },
     "SCENE": {
         "TABS": {
@@ -1720,7 +1721,8 @@
                     "disadvantage": "Disadvantage Dice"
                 },
                 "triggers": {
-                  "dualityRoll": { "label": "Duality Roll" }  
+                  "dualityRoll": { "label": "Duality Roll" },
+                  "gmRoll": { "label": "GM Roll" }
                 }
             },
             "DomainCardTypes": {
