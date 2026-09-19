@@ -112,6 +112,15 @@ export default class DhpActor extends Actor {
         }, 0);
     }
 
+    /**
+     * All actual documents should have a UUID. We prevent activeEffect change application if it's a temporary document from a clone.
+     */
+    prepareEmbeddedDocuments() {
+        if (this.uuid) {
+            super.prepareEmbeddedDocuments();
+        }
+    }
+
     /* -------------------------------------------- */
 
     /** @inheritDoc */
@@ -213,6 +222,41 @@ export default class DhpActor extends Actor {
             throw new Error(`The key ${id} does not exist in the ${embeddedName} Collection`);
         }
         return doc;
+    }
+
+    /**
+     * Makes a clone fo the actor with only ActiveEffects that pass their conditionals applied.
+     * @param {BaseAction} action The action relevant to needing the data
+     * @returns {DhpActor}
+     */
+    getClone(action) {
+        const rollData = (action ?? this).getRollData();
+        const applicableEffects = this.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        const effects = 
+            [...applicableEffects].filter(e => !e.disabled && !e.isSuppressed).reduce((acc, effect) => {          
+                const conditionalRollPassed = effect.system.testConditionals(rollData, { 
+                    phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+                });
+                const conditionalPreparePassed = effect.system.testConditionals(rollData, { 
+                    phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id 
+                }); 
+                if (conditionalRollPassed && conditionalPreparePassed)
+                    acc.push(effect);
+
+                return acc;
+            }, []);
+
+        const actor = this.clone();
+        for (const effect of effects) {
+            for (const baseChange of effect.system.changes) {
+                const change = foundry.utils.deepClone(baseChange);
+                change.effect = effect;
+                game.system.api.documents.DhActiveEffect.applyChange(
+                    actor, change, { replacementData: rollData });
+            }
+        }
+
+        return actor;
     }
 
     /**@inheritdoc */
@@ -858,7 +902,7 @@ export default class DhpActor extends Actor {
         return canUseArmor || canUseStress || hasReduceSeverity || hasThresholdImmunity;
     }
 
-    async takeDamage(args, isDirect = false) {
+    async takeDamage(args, actionUuid = null, isDirect = false) {
         args = this.#parseDamageArgs(args);
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args) === false) return null;
 
@@ -889,6 +933,7 @@ export default class DhpActor extends Actor {
                     'armorSlot',
                     {
                         actorId: this.uuid,
+                        actionUuid: actionUuid,
                         damage: hpDamage.value,
                         type: [...hpDamage.damageTypes]
                     },
@@ -909,11 +954,10 @@ export default class DhpActor extends Actor {
                     }
                 }
             } else if (this.type === 'adversary') {
-                const reducedSeverity = hpDamage.damageTypes.reduce((value, curr) => {
-                    return Math.max(this.system.rules.damageReduction.reduceSeverity[curr], value);
-                }, 0);
+                const cloneData = this.getClone(await fromUuid(actionUuid));
+                const reducedSeverity = cloneData.system.rules.damageReduction.reduceSeverity;
                 hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
-                if (this.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
+                if (cloneData.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
                     hpDamage.value = Math.max(0, hpDamage.value - 1);
                 }
             }

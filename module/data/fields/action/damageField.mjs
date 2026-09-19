@@ -128,7 +128,7 @@ export default class DamageField extends fields.SchemaField {
 
                 damagePromises.push(
                     actor
-                        .takeDamage(configDamage, config.isDirect)
+                        .takeDamage(configDamage, this.uuid, config.isDirect)
                         .then(updates => { 
                             const resistanceData = 
                                 token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes ?? []);
