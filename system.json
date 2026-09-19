@@ -11,6 +11,13 @@
     "url": "https://github.com/Foundryborne/daggerheart",
     "manifest": "https://raw.githubusercontent.com/Foundryborne/daggerheart/v14/system.json",
     "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.10.1/system.zip",
+    "media": [
+      {
+        "type": "setup",
+        "url": "systems/daggerheart/assets/icons/FoundryBorneBadgeFullColor.png",
+        "thumbnail": "systems/daggerheart/assets/icons/FoundryBorneBadgeFullColor.png"
+      }
+    ],
     "authors": [
         {
             "name": "WBHarry"
