@@ -246,7 +246,7 @@ export default class DhActor extends Actor {
      * @param {BaseAction} action The action relevant to needing the data
      * @returns {DhActor}
      */
-    getClone(action) {
+    getActionClone(action) {
         const rollData = (action ?? this).getRollData();
         const effectFilter = effect => {
             const conditionalRollPassed = effect.system.testConditionals(rollData, { 
@@ -938,7 +938,7 @@ export default class DhActor extends Actor {
                     else updates.push({ value: stressSpent, key: 'stress' });
                 }
             } else if (this.type === 'adversary') {
-                const cloneData = this.getClone(await fromUuid(actionUuid));
+                const cloneData = this.getActionClone(await fromUuid(actionUuid));
                 const reducedSeverity = cloneData.system.rules.damageReduction.reduceSeverity;
                 hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
                 if (cloneData.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
