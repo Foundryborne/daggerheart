@@ -10,7 +10,7 @@
     "tier": 4,
     "equipped": false,
     "secondary": false,
-    "burden": "oneHanded",
+    "burden": "twoHanded",
     "weaponFeatures": [
       {
         "value": "destructive",

@@ -1,3 +1,5 @@
+import FormulaField from '../formulaField.mjs';
+
 const fields = foundry.data.fields;
 
 export class DHActionRollData extends foundry.abstract.DataModel {
@@ -12,7 +14,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 label: 'DAGGERHEART.GENERAL.Trait.single'
             }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
-            bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
+            bonus: new FormulaField({ nullable: true, initial: null }),
             advState: new fields.StringField({
                 choices: CONFIG.DH.ACTIONS.advantageState,
                 initial: 'neutral',

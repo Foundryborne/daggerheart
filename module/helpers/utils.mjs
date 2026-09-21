@@ -11,9 +11,10 @@ export * from './functional.mjs';
  * @param {unknown} value
  * @returns {string}
  */
-export function signedNumber(value) {
+export function signedNumber(value, { zero } = {}) {
     const number = Number(value);
-    return number >= 0 ? `+${value}` : String(value);
+    if (number === 0) return `${zero ?? ''}${value}`;
+    return number > 0 ? `+${value}` : String(value);
 }
 
 export function rollCommandToJSON(text) {
@@ -245,7 +246,7 @@ export const adjustRange = (rangeVal, decrease) => {
 
 /**
  *
- * @param {DhActor} actor - The actor for which all tokens will run a data update.
+ * @param {DhpActor} actor - The actor for which all tokens will run a data update.
  * @param {string} update - The data update to be applied to all tokens.
  * @param {func} updateToken - Optional, specific data update for the non-prototype tokens as a function using the token data. Useful to handle wildcard images where each token has a different image but the prototype has a wildcard path.
  */
