@@ -507,10 +507,13 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             combat.turns
                 ?.filter(x => x.actor?.isNPC && x.token.disposition === CONST.TOKEN_DISPOSITIONS.HOSTILE)
                 ?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
-        const characters = combat.turns?.filter(x => !x.isNPC && x.actor) ?? [];
+        
+        const activePartyActors = game.actors.find(x => x.type === 'party' && x.system.active)?.system.partyMembers ?? [];
+        const activePartyCharacters = activePartyActors.filter(x => Boolean(x) && x.type === 'character');
+        const charactersInCombat = combat.turns?.filter(x => !x.isNPC && x.actor) ?? [];
+        const nrCharacters = charactersInCombat.length ? charactersInCombat.length : activePartyCharacters.length;
 
-        const nrCharacters = characters.length;
-        const currentBP = AdversaryBPPerEncounter(adversaries, characters);
+        const currentBP = AdversaryBPPerEncounter(adversaries, nrCharacters);
         const maxBP = combat.system.extendedBattleToggles.reduce(
             (acc, toggle) => acc + toggle.category,
             BaseBPPerEncounter(nrCharacters)
