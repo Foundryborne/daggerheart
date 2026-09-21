@@ -1,4 +1,4 @@
-import { getDocFromElement } from '../../../helpers/utils.mjs';
+import { getDocFromElement, signedNumber } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import { prepareFeatureData } from '../sheet-helpers.mjs';
 
@@ -121,7 +121,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 break;
             case 'sidebar':
                 const attackBonus = this.document.system.attack.roll.bonus;
-                context.attackBonus = !attackBonus ? '-' : (Number.isInteger(attackBonus) ? `${attackBonus >= 0 ? '+' : '-'}${attackBonus}` : `+${attackBonus}`);
+                context.attackBonus = !attackBonus ? '-' : (Number.isNumeric(attackBonus) ? signedNumber(attackBonus, { zero: '+' }) : `+${attackBonus}`);
                 break;
             case 'features': 
                 await this._prepareFeaturesContext(context, options);
