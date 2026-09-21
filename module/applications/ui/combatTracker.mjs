@@ -45,7 +45,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
                 .find(x => x.active)
                 ?.system?.extendedBattleToggles?.reduce((acc, toggle) => (acc ?? 0) + toggle.category, null) ?? null;
 
-        const activePartyActors = game.actors.find(x => x.type === 'party' && x.system.active)?.system.partyMembers ?? [];
+        const activePartyActors = game.actors.party?.system.partyMembers ?? [];
         const activePartyCharacters = activePartyActors.filter(x => Boolean(x) && x.type === 'character');
         const nrCharacters = context.allCharacters.length ? context.allCharacters.length : activePartyCharacters.length;
 
