@@ -355,11 +355,11 @@ export default class DualityRoll extends D20Roll {
                 foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
             }
 
-            if (this.options.actionType === 'reaction') return;
-
-            const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
-            const actor = await foundry.utils.fromUuid(this.options.source.actor);
-            updateResourcesForDualityReroll(oldDuality, newDuality, actor);
+            if (this.options.actionType !== 'reaction') {
+                const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
+                const actor = await foundry.utils.fromUuid(this.options.source.actor);
+                updateResourcesForDualityReroll(oldDuality, newDuality, actor);
+            }
         }
 
         return rerolled;
