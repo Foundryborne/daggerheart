@@ -37,20 +37,13 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             return acc;
         }, []);
 
-        const { 
-            stress, 
-            maxArmorUsed, 
-            increasePerArmorMark,
-            availableStressReductions, 
-            reduceSeverity, 
-            thresholdImmunities } = this.#getRulesData(actor, action);
-
-        this.marks = { armor, stress };
-        this.maxArmorUsed = maxArmorUsed;
-        this.increasePerArmorMark = increasePerArmorMark;
-        this.availableStressReductions = availableStressReductions;
-        this.reduceSeverity = reduceSeverity;
-        this.thresholdImmunities = thresholdImmunities;
+        const rules = this.#getRulesData(actor, action);
+        this.marks = { armor, stress: rules.stress };
+        this.maxArmorUsed = rules.maxArmorUsed;
+        this.increasePerArmorMark = rules.increasePerArmorMark;
+        this.availableStressReductions = rules.availableStressReductions;
+        this.reduceSeverity = rules.reduceSeverity;
+        this.thresholdImmunities = rules.thresholdImmunities;
     }
 
     static DEFAULT_OPTIONS = {
