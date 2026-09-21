@@ -333,15 +333,6 @@ export default class DualityRoll extends D20Roll {
         await DualityRoll.addDualityResourceUpdates(config);
 
         if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
-
-        const rollResult = config.roll.success || config.targets?.some(t => t.hit),
-            looseSpotlight = !rollResult || config.roll.result.duality === -1;
-
-        if (looseSpotlight && game.combat?.active) {
-            const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
-            if (currentCombatant && currentCombatant.actorId == config.data.id)
-                ui.combat.setCombatantSpotlight(currentCombatant.id);
-        }
     }
 
     async reroll(options) {
