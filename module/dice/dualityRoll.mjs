@@ -331,8 +331,6 @@ export default class DualityRoll extends D20Roll {
         }
 
         await DualityRoll.addDualityResourceUpdates(config);
-
-        if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
     }
 
     async reroll(options) {
