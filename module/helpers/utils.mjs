@@ -11,7 +11,7 @@ export * from './functional.mjs';
  * @param {unknown} value
  * @returns {string}
  */
-export function signedNumber(value, { zero } = {}) {
+export function signedNumber(value, { zero = '+' } = {}) {
     const number = Number(value);
     if (number === 0) return `${zero ?? ''}${value}`;
     return number > 0 ? `+${value}` : String(value);

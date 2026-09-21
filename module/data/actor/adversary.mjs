@@ -187,7 +187,7 @@ export default class DhpAdversary extends DhCreature {
             this.updateSource({ typeData: this.typeData.toObject() });
         }
 
-        if (this.type === 'horde') {
+        if (this.type === 'horde' && this.attack) {
             // Add backwards compatibility. Consider a deprecation warning at a later date
             Object.defineProperty(this.attack, 'altDamageFormula', {
                 get: () => {
