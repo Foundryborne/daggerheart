@@ -278,8 +278,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             for (const key of Object.keys(flatDamageKeys)) {
                 if (key === 'hitPoints' && source.hasDamage && !source.hasHealing) {
                     source.damage.main = getRoll('hitPoints');
-                } 
-                else {
+                } else {
                     source.damage.resources[key] = getRoll(key);
                 }
             }

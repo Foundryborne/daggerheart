@@ -6,6 +6,7 @@ import stylistic from '@stylistic/eslint-plugin';
 
 /** @type {Partial<RulesConfig>} */
 export const stylisticRules = {
+    '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     '@stylistic/indent': [
         'error',
         4,
@@ -25,15 +26,16 @@ export const stylisticRules = {
     '@stylistic/quote-props': ['error', 'as-needed'],
     '@stylistic/array-bracket-newline': ['error', 'consistent'],
     '@stylistic/key-spacing': 'error',
-    '@stylistic/comma-dangle': ['error', 'never'],
+    '@stylistic/comma-dangle': ['error', 'never'], // todo: swap to comma dangling when we're ready for the conflicts
     '@stylistic/space-in-parens': ['error', 'never'],
-    '@stylistic/space-infix-ops': 2,
-    '@stylistic/keyword-spacing': 2,
-    '@stylistic/semi-spacing': 2,
-    '@stylistic/no-multi-spaces': 2,
-    '@stylistic/no-extra-semi': 2,
-    '@stylistic/no-whitespace-before-property': 2,
-    '@stylistic/space-unary-ops': 2
+    '@stylistic/space-infix-ops': ['error'],
+    '@stylistic/keyword-spacing': ['error'],
+    '@stylistic/semi-spacing': ['error'],
+    '@stylistic/no-multi-spaces': ['error'],
+    '@stylistic/no-extra-semi': ['error'],
+    '@stylistic/no-whitespace-before-property': ['error'],
+    '@stylistic/no-multiple-empty-lines': ['error'],
+    '@stylistic/space-unary-ops': ['error']
 };
 
 export default defineConfig([
