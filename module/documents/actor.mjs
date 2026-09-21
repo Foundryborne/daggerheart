@@ -814,14 +814,12 @@ export default class DhpActor extends Actor {
         if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
         const existing = [];
 
-        // Find the effect with the static _id of the status effect
         if (status._id) {
+            // Find the effect with the static _id of the status effect
             const effect = this.effects.get(status._id);
             if (effect) existing.push(effect.id);
-        }
-
-        // If no static _id, find all effects that have this status
-        else {
+        } else {
+            // If no static _id, find all effects that have this status
             for (const effect of this.effects) {
                 if (effect.statuses.has(status.id)) existing.push(effect.id);
             }
