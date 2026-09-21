@@ -223,14 +223,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.rules.damageReduction.reduceSeverity.magical",
-                "type": "override",
-                "value": 1,
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.rules.damageReduction.reduceSeverity.physical",
+                "key": "system.rules.damageReduction.reduceSeverity",
                 "type": "override",
                 "value": 1,
                 "priority": null,
