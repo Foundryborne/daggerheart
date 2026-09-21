@@ -879,7 +879,13 @@ export default class DhActor extends Actor {
         return canUseArmor || canUseStress || hasReduceSeverity || hasThresholdImmunity;
     }
 
-    async takeDamage(args, actionUuid = null, isDirect = false) {
+    /**
+     * Hnadling of the actor taking damage
+     * @param {Object} args 
+     * @param {{ actionUuid: string, isDirect: bool  }} params 
+     * @returns { Object }
+     */
+    async takeDamage(args, { actionUuid = null, isDirect = false } = {}) {
         args = this.#parseDamageArgs(args);
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args) === false) return null;
 
@@ -931,10 +937,10 @@ export default class DhActor extends Actor {
                     }
                 }
             } else if (this.type === 'adversary') {
-                const cloneData = this.getActionClone(await fromUuid(actionUuid));
-                const reducedSeverity = cloneData.system.rules.damageReduction.reduceSeverity;
+                const actorClone = this.getActionClone(await fromUuid(actionUuid));
+                const reducedSeverity = actorClone.system.rules.damageReduction.reduceSeverity;
                 hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
-                if (cloneData.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
+                if (actorClone.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
                     hpDamage.value = Math.max(0, hpDamage.value - 1);
                 }
             }
