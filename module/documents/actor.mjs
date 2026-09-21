@@ -886,7 +886,7 @@ export default class DhpActor extends Actor {
     }
 
     /**
-     * Hnadling of the actor taking damage
+     * Handling of the actor taking damage
      * @param {Object} args 
      * @param {{ actionUuid: string, isDirect: bool  }} params 
      * @returns { Object }
