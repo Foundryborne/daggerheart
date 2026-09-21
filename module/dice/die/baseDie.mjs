@@ -165,22 +165,18 @@ export default class BaseDie extends foundry.dice.terms.Die {
             this.number = this.results.filter(x => x.active).length;
         };
 
-        /* (1) Rerolling any of the last two dice might introduce new results */
         const isFinalHigher = 
             rerollGroupingIndex === resultGroupingIndexes.length - 1 && rerolledResult.result >= previousResult?.result;
         const isSemifinalLower = 
             rerollGroupingIndex === resultGroupingIndexes.length - 2 && rerolledResult.result < nextResult?.result;
         if (isFinalHigher || isSemifinalLower) {
-            return await this.rollComboDice({
-                rerollStartIndex: rerollGroupingIndex
-            });
-        }
-        /* (2) Rerolling a subsequent dice might invalidate later dice which should then be dropped */
-        else if (rerolledResult.result < previousResult?.result){
+            /* (1) Rerolling any of the last two dice might introduce new results */
+            return await this.rollComboDice({ rerollStartIndex: rerollGroupingIndex });
+        } else if (rerolledResult.result < previousResult?.result){
+            /* (2) Rerolling a subsequent dice might invalidate later dice which should then be dropped */
             dropDice(false);
-        }
-        /* (3) Rerolling a preceeding dice might invalidate later dice which should then be dropped */
-        else if (rerolledResult.result >= nextResult?.result) {
+        } else if (rerolledResult.result >= nextResult?.result) {
+            /* (3) Rerolling a preceeding dice might invalidate later dice which should then be dropped */
             dropDice(true);
         }
 

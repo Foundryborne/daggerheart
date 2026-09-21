@@ -594,30 +594,32 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     static injectSidebarButton(html) {
-        if (!game.user.isGM) return;
-
         const config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
         const actorFolders = Object.values(config).filter(c => c.documentName === 'Actor').map(c => c.id);
         const itemFolders = Object.values(config).filter(c => c.documentName === 'Item').map(c => c.id);
 
         const sectionId = html.dataset.tab;
         const menus = {
-            actors: {
+            actors: game.user.isGM ? {
                 folder: 'adversaries',
                 render: {
                     folders: actorFolders
                 }
-            },
+            } : null,
             items: {
                 folder: 'equipments',
                 render: {
                     folders: itemFolders.filter(i => i !== 'features')
                 }
             },
-            compendium: {}
+            compendium: {
+                render: {
+                    folders: game.user.isGM ? null : itemFolders
+                }
+            }
         };
 
-        if (Object.keys(menus).includes(sectionId)) {
+        if (menus[sectionId]) {
             const headerActions = html.querySelector('.header-actions');
 
             const button = document.createElement('button');
