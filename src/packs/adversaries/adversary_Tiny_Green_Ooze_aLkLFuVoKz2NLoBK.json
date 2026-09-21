@@ -109,7 +109,7 @@
     },
     "damageThresholds": {
       "major": 4,
-      "severe": 4
+      "severe": 0
     },
     "resources": {
       "hitPoints": {

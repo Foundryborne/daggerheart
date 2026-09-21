@@ -81,7 +81,7 @@
       "chatDisplay": false,
       "systemPath": "attack",
       "type": "attack",
-      "range": "melee",
+      "range": "veryClose",
       "target": {
         "type": "any",
         "amount": 1

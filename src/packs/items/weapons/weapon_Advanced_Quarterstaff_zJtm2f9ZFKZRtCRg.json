@@ -25,7 +25,7 @@
         "amount": 1
       },
       "roll": {
-        "trait": "finesse",
+        "trait": "instinct",
         "type": "attack",
         "difficulty": null,
         "bonus": null,

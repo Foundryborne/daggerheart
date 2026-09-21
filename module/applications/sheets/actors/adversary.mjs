@@ -119,6 +119,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
                 break;
+            case 'sidebar':
+                const attackBonus = this.document.system.attack.roll.bonus;
+                context.attackBonus = !attackBonus ? '-' : (Number.isInteger(attackBonus) ? `${attackBonus >= 0 ? '+' : '-'}${attackBonus}` : `+${attackBonus}`);
+                break;
             case 'features': 
                 await this._prepareFeaturesContext(context, options);
                 break;

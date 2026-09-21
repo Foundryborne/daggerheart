@@ -57,7 +57,7 @@
             "multiplier": "prof",
             "dice": "d6",
             "flatMultiplier": 1,
-            "bonus": 7,
+            "bonus": 6,
             "custom": {
               "enabled": false,
               "formula": ""
