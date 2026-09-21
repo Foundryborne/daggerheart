@@ -161,6 +161,12 @@
             "path": "packs/adversaries.db",
             "type": "Actor",
             "private": false,
+            "ownership":{
+                "GAMEMASTER": "OWNER",
+                "ASSISTANT": "OWNER",
+                "TRUSTED": "NONE",
+                "PLAYER":"NONE"
+            },
             "flags": {}
         },
         {
@@ -170,6 +176,12 @@
             "path": "packs/environments.db",
             "type": "Actor",
             "private": false,
+            "ownership":{
+                "GAMEMASTER": "OWNER",
+                "ASSISTANT": "OWNER",
+                "TRUSTED": "NONE",
+                "PLAYER":"NONE"
+            },
             "flags": {}
         },
         {
