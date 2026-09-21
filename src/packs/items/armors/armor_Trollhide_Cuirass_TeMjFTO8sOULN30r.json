@@ -90,7 +90,7 @@
     },
     "baseThresholds": {
       "major": 11,
-      "severe": 26
+      "severe": 23
     },
     "armorFeatures": [
       {

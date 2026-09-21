@@ -33,7 +33,13 @@
     },
     "type": "bruiser",
     "notes": "",
-    "experiences": {},
+    "experiences": {
+      "SmT41lk9EmP69J4c": {
+        "name": "Forest Knowledge",
+        "value": 3,
+        "description": ""
+      }
+    },
     "tier": 3,
     "description": "<p>A sturdy animate old-growth tree.</p>",
     "attack": {

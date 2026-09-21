@@ -93,7 +93,7 @@
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "ORIGIN.@item.resource.value",
             "priority": null,

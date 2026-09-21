@@ -37,7 +37,7 @@
         },
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "@system.traits.strength.value",
             "priority": 21,

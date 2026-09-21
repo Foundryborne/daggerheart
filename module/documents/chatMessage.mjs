@@ -1,4 +1,3 @@
-import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
@@ -192,17 +191,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const config = foundry.utils.deepClone(this.system);
         config.event = event;
         if (this.system.action) {
-            const actor = await foundry.utils.fromUuid(config.source.actor);
-            const item = actor?.items.get(config.source.item) ?? null;
-            config.resourceUpdates = new ResourceUpdateMap(actor);
-            const actions = item ? [
-                ...item.system.actions,
-                ...(item.system.attack?.id === config.source.action ? [item.system.attack] : [])
-            ] : [];
-            const action = actions.find(x => x.id === config.source.action);
-
             const { base } = game.system.api.data.actions.actionsTypes;
-            config.effects = await base.getActionRelevantEffects(action.getRollData(), actor);
+            config.effects = await base.getActionRelevantEffects(
+                this.system.action.getRollData({ message: this }), 
+                this.system.actionActor);
+
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
             await this.system.action.workflow.get('cost')?.execute(config);
             config.resourceUpdates.updateResources();

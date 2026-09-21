@@ -29,7 +29,8 @@
         }
     },
     "CONTROLS": {
-        "inFront": "In Front"
+        "inFront": "In Front",
+        "ChangeSceneDarknessLevel": "Change Scene Darkness Level"
     },
     "SCENE": {
         "TABS": {
@@ -1737,7 +1738,8 @@
                     "disadvantage": "Disadvantage Dice"
                 },
                 "triggers": {
-                  "dualityRoll": { "label": "Duality Roll" }  
+                  "dualityRoll": { "label": "Duality Roll" },
+                  "gmRoll": { "label": "GM Roll" }
                 }
             },
             "DomainCardTypes": {
@@ -4014,7 +4016,7 @@
                 },
                 "spotlight": {
                     "name": "Spotlight Combatant",
-                    "hint": "Move the spotlight to a hovered or selected token that's present in an active encounter"
+                    "hint": "Move the spotlight to a hovered or selected token"
                 }
             },
             "Menu": {

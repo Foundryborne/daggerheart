@@ -128,7 +128,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "ITEM.@system.tier + 1",
             "phase": "initial"

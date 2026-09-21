@@ -25,11 +25,7 @@
             </div>
             <div class="status-number">
                 <div class='status-value armor-slots'>
-                    {{#if source.system.attack.roll.bonus includeZero=true}}
-                    <p>{{numberFormat source.system.attack.roll.bonus sign=true}}</p>
-                    {{else}}
-                    <p>-</p>
-                    {{/if}}
+                    <p>{{attackBonus}}</p>
                 </div>
                 <div class="status-label">
                     <h4>{{localize "DAGGERHEART.GENERAL.attack"}}</h4>

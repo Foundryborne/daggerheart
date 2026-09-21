@@ -41,7 +41,7 @@
       "name": "Massive Pseudopod",
       "range": "veryClose",
       "roll": {
-        "bonus": 4,
+        "bonus": "2d4",
         "type": "attack",
         "trait": null,
         "difficulty": null,
