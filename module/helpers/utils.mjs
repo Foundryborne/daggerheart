@@ -11,9 +11,10 @@ export * from './functional.mjs';
  * @param {unknown} value
  * @returns {string}
  */
-export function signedNumber(value) {
+export function signedNumber(value, { zero } = {}) {
     const number = Number(value);
-    return number >= 0 ? `+${value}` : String(value);
+    if (number === 0) return `${zero ?? ''}${value}`;
+    return number > 0 ? `+${value}` : String(value);
 }
 
 export function rollCommandToJSON(text) {
@@ -167,39 +168,6 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
     }, {});
 };
 
-// Fix on Foundry native formula replacement for DH
-const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
-    /* Inserting global data */
-    const defaultingTypes = [
-        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
-        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
-    ];
-
-    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
-    return nativeReplaceFormulaData(formula, data, { missing, warn });
-};
-
-foundry.utils.setProperty(foundry, 'dice.terms.Die.MODIFIERS.sc', 'selfCorrecting');
-
-/**
- * Return the configured value as result if 1 is rolled
- * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
- * @param {string} modifier     The matched modifier query
- */
-foundry.dice.terms.Die.prototype.selfCorrecting = function (modifier) {
-    const rgx = /(?:sc)([0-9]+)/i;
-    const match = modifier.match(rgx);
-    if (!match) return false;
-    let [target] = match.slice(1);
-    target = parseInt(target);
-    for (const r of this.results) {
-        if (r.result === 1) {
-            r.result = target;
-        }
-    }
-};
-
 export const getDamageKey = damage => {
     return ['none', 'minor', 'major', 'severe', 'massive', 'any'][damage];
 };
@@ -278,7 +246,7 @@ export const adjustRange = (rangeVal, decrease) => {
 
 /**
  *
- * @param {DhActor} actor - The actor for which all tokens will run a data update.
+ * @param {DhpActor} actor - The actor for which all tokens will run a data update.
  * @param {string} update - The data update to be applied to all tokens.
  * @param {func} updateToken - Optional, specific data update for the non-prototype tokens as a function using the token data. Useful to handle wildcard images where each token has a different image but the prototype has a wildcard path.
  */
@@ -379,10 +347,6 @@ export const itemAbleRollParse = (value, actor, item) => {
     }
 };
 
-export const arraysEqual = (a, b) =>
-    a.length === b.length &&
-    [...new Set([...a, ...b])].every(v => a.filter(e => e === v).length === b.filter(e => e === v).length);
-
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
 
 export function getScrollTextData(actor, resource, key) {
@@ -413,18 +377,6 @@ export function createScrollText(actor, data) {
             });
         });
     }
-}
-
-export function shuffleArray(array) {
-    let currentIndex = array.length;
-    while (currentIndex != 0) {
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
 }
 
 export function itemIsIdentical(a, b) {
@@ -861,7 +813,7 @@ export async function triggerChatRollFx(rolls, options = { whisper: false, blind
 }
 
 export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
-    const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+    const { hopeFear } = game.system.settings.automation;
     return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
 }
 
@@ -923,7 +875,7 @@ export function getAllResources() {
         }
     }
 
-    const homebrew = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+    const homebrew = game.system.settings.homebrew.toObject();
     const homebrewResources = Object.values(homebrew.resources).reduce((acc, category) => {
         for (const [key, resource] of Object.entries(category.resources)) {
             acc[key] = resource;

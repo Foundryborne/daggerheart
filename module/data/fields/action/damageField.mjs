@@ -238,10 +238,8 @@ export default class DamageField extends fields.SchemaField {
      */
     static getAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.players)
+            (game.user.isGM && game.system.settings.automation.roll.damage.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.damage.players)
         );
     }
 
@@ -251,10 +249,8 @@ export default class DamageField extends fields.SchemaField {
      */
     static getApplyAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.players)
+            (game.user.isGM && game.system.settings.automation.roll.damageApply.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.damageApply.players)
         );
     }
 

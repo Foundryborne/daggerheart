@@ -72,7 +72,9 @@ export class ActionsField extends foundry.data.fields.TypedObjectField {
  */
 export class ActionField extends foundry.data.fields.ObjectField {
     getModel(value) {
-        return game.system.api.models.actions.actionsTypes[value?.type] ?? null;
+        return this.options.nullable && !value 
+            ? null
+            : game.system.api.models.actions.actionsTypes[this.options.type ?? value?.type] ?? null;
     }
 
     /* -------------------------------------------- */
@@ -83,9 +85,11 @@ export class ActionField extends foundry.data.fields.ObjectField {
 
         if (!(typeof value === 'object')) value = {};
         value = super._cleanType(value, options, _state);
-        const cls = this.getModel(value);
-        if (cls) return cls.cleanData(value, options, _state);
-        return value;
+        if (this.options.type) {
+            value.type = this.options.type;
+        }
+        
+        return this.getModel(value)?.cleanData(value, options, _state) ?? value;
     }
 
     /* -------------------------------------------- */
@@ -117,6 +121,12 @@ export class ActionField extends foundry.data.fields.ObjectField {
         }
 
         return sourceData;
+    }
+
+    getInitialValue(source) {
+        source = super.getInitialValue(source);
+        const cls = this.getModel(source);
+        return cls?.cleanData(source) ?? source;
     }
 }
 
@@ -167,7 +177,9 @@ export function ActionMixin(Base) {
                 const sheet = new this.constructor.metadata.sheetClass(this);
                 this.constructor._sheets.set(this.uuid, sheet);
             }
-            return this.constructor._sheets.get(this.uuid);
+            const sheet = this.constructor._sheets.get(this.uuid);
+            sheet.action = this; // reference might be stale, so we replace it with the action (in case uuid retrieval internally fails)
+            return sheet;
         }
 
         get inCollection() {

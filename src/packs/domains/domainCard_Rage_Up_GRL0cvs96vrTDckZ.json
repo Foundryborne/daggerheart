@@ -79,7 +79,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "2*@system.traits.strength.value*@stacks",
             "priority": 21,
@@ -134,7 +134,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "value": "4*@system.traits.strength.value",
             "priority": 21,
             "type": "add",

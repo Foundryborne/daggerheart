@@ -75,7 +75,7 @@
           },
           "applyTo": "hitPoints",
           "type": [
-            "physical"
+            "magical"
           ],
           "resultBased": false,
           "valueAlt": {

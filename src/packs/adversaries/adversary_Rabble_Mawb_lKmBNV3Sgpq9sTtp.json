@@ -266,14 +266,14 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.roll",
+                "key": "system.bonuses.roll.bonus",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
@@ -296,7 +296,8 @@
                 "actionTypes": [
                   "reaction",
                   "action"
-                ]
+                ],
+                "traits": []
               }
             ]
           },
@@ -336,14 +337,14 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.roll",
+                "key": "system.bonuses.roll.bonus",
                 "type": "add",
                 "value": "@stacks",
                 "priority": null,
@@ -366,7 +367,8 @@
                 "actionTypes": [
                   "action",
                   "reaction"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

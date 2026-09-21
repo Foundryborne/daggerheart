@@ -95,7 +95,7 @@
       "damage": {
         "main": {
           "type": [
-            "physical"
+            "magical"
           ],
           "value": {
             "multiplier": "prof",
@@ -164,7 +164,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 3,
             "phase": "initial"
@@ -181,7 +181,8 @@
             "type": "actionType",
             "actionTypes": [
               "attack"
-            ]
+            ],
+            "traits": []
           }
         ]
       },

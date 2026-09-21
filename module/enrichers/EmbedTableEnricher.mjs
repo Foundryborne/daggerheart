@@ -222,8 +222,6 @@ const rowsByItemType = {
     }
 }
 
-
-
 function createErrorMessage(message) {
     const div = createHtmlElement('div', { text: message })
     div.classList.add('error');

@@ -75,6 +75,11 @@ Parameters:
             {{!-- Controls --}}
             {{#unless hideControls}}
                 <div class="controls">
+                    {{#if (and (not item.disabled) suppressedMessage)}}
+                        <span class="suppressed" data-tooltip="{{suppressedMessage}}">
+                            <i class="fa-solid fa-warning" inert></i>
+                        </span>
+                    {{/if}}
                     {{!-- Toggle/Equip buttons --}}
                     {{#if @root.editable}}
                         {{#if (and (eq actorType 'character') (eq type 'weapon'))}}

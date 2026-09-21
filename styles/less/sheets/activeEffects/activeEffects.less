@@ -14,7 +14,7 @@
     }
 
     .form-row-icon {
-        margin-top: 14px;
+        margin-top: 24px;
     }
 
     .duration-description {
@@ -30,20 +30,26 @@
     .tab.conditionals {
         .conditional-container {
             display: flex;
-            align-items: center;
             gap: 4px;
+            width: 100%;
 
             .conditional-inner-container {
                 display: flex;
-                align-items: center;
                 gap: 4px;
+                width: 100%;
 
                 .form-group {
                     display: block;
                     
+                    multi-select {
+                        min-height: 34px;
+                        height: -webkit-fill-available;
+                    }
+
                     label {
                         line-height: normal;
                         color: inherit;
+                        white-space: nowrap;
                     }
                 }
             }
@@ -133,6 +139,17 @@
                         background: inherit;
                     }
                 }
+            }
+        }
+
+        .add-change {
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            margin-top: 1rem;
+            gap: var(--spacer-8);
+            select {
+                flex: 0 1 fit-content;
             }
         }
     }

@@ -10,7 +10,7 @@
     "difficulty": 11,
     "damageThresholds": {
       "major": 5,
-      "severe": 5
+      "severe": 0
     },
     "resources": {
       "hitPoints": {

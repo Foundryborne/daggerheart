@@ -58,7 +58,7 @@
       }
     },
     "recallCost": 2,
-    "type": "ability",
+    "type": "spell",
     "inVault": false,
     "vaultActive": false,
     "loadoutIgnore": false,
@@ -77,7 +77,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "(@fear)d6",
             "priority": null,

@@ -28,7 +28,8 @@
         }
     },
     "CONTROLS": {
-        "inFront": "In Front"
+        "inFront": "In Front",
+        "ChangeSceneDarknessLevel": "Change Scene Darkness Level"
     },
     "SCENE": {
         "TABS": {
@@ -1707,6 +1708,24 @@
                     "description": "Your character embraces death and goes out in a blaze of glory. Take one final action. It automatically critically succeeds (with GM approval), and then you cross through the veil of death. NOTE: A Blaze of Glory effect has been added to your character. Any Duality Roll will automatically be a critical."
                 }
             },
+            "DiceSoNice": {
+                "colorsets": {
+                    "hope": "Hope Default",
+                    "fear": "Fear Default",
+                    "advantage": "Advantage Default",
+                    "disadvantage": "Disadvantage Default"
+                },
+                "diceRoles": {
+                    "hope": "Hope Dice",
+                    "fear": "Fear Dice",
+                    "advantage": "Advantage Dice",
+                    "disadvantage": "Disadvantage Dice"
+                },
+                "triggers": {
+                  "dualityRoll": { "label": "Duality Roll" },
+                  "gmRoll": { "label": "GM Roll" }
+                }
+            },
             "DomainCardTypes": {
                 "ability": "Ability",
                 "spell": "Spell",
@@ -2812,6 +2831,7 @@
             }
         },
         "EFFECTS": {
+            "AddChange": "Add Change",
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
@@ -2825,6 +2845,7 @@
             },
             "ChangeTypes": {
                 "armor": {
+                    "name": "Armor",
                     "FIELDS": {
                         "value": {
                             "current": {
@@ -3985,7 +4006,7 @@
                 },
                 "spotlight": {
                     "name": "Spotlight Combatant",
-                    "hint": "Move the spotlight to a hovered or selected token that's present in an active encounter"
+                    "hint": "Move the spotlight to a hovered or selected token"
                 }
             },
             "Menu": {
@@ -4013,26 +4034,7 @@
                 "appearance": {
                     "label": "Appearance Settings",
                     "hint": "Modify the look of various parts of the system",
-                    "duality": "Duality Rolls",
-                    "diceSoNice": {
-                        "title": "Dice So Nice",
-                        "hint": "Coloration of Duality dice if the Dice So Nice module is used.",
-                        "foreground": "Foreground",
-                        "background": "Background",
-                        "outline": "Outline",
-                        "edge": "Edge",
-                        "texture": "Texture",
-                        "colorset": "Theme",
-                        "material": "Material",
-                        "system": "Dice Preset",
-                        "font": "Font",
-                        "critical": "Duality Critical Animation",
-                        "muted": "Muted",
-                        "diceAppearance": "Dice Appearance",
-                        "animations": "Animations",
-                        "defaultAnimations": "Set Animations As Player Defaults",
-                        "previewAnimation": "Preview Animation"
-                    }
+                    "duality": "Duality Rolls"
                 },
                 "variantRules": {
                     "title": "Variant Rules",
@@ -4388,7 +4390,12 @@
                 "immune": "Immune",
                 "middleClick": "[Middle Click] Keep tooltip view",
                 "tokenSize": "The token size used on the canvas",
-                "previewTokenHelp": "Left-click to place, right-click to cancel"
+                "previewTokenHelp": "Left-click to place, right-click to cancel",
+                "suppressedEffect": {
+                    "general": "This effect is suppressed",
+                    "invalid": "This effect is suppressed due to conditionals",
+                    "unequipped": "This effect is suppressed because this item is not equipped"
+                }
             }
         }
     }

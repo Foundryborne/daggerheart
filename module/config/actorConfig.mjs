@@ -157,10 +157,7 @@ export const adversaryTypeModels = {
     horde: HordeAdversaryType
 }
 
-export const allAdversaryTypes = () => ({
-    ...adversaryTypes,
-    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).adversaryTypes
-});
+export const allAdversaryTypes = () => ({ ...adversaryTypes, ...game.system.settings.homebrew.adversaryTypes });
 
 export const environmentTypes = {
     exploration: {

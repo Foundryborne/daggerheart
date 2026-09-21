@@ -69,7 +69,7 @@ export default class DHSummonField extends fields.SchemaField {
         }
 
         const actor = await getWorldActor(baseActor);
-        const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+        const tokenSizes = game.system.settings.homebrew.tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
         // Update token. Avoid using recursive: false, since that prevents animations

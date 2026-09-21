@@ -235,14 +235,14 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.roll",
+                "key": "system.bonuses.roll.bonus",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,
@@ -261,7 +261,8 @@
                 "type": "actionType",
                 "actionTypes": [
                   "attack"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

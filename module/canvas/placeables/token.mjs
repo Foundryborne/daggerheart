@@ -24,16 +24,14 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const isTurn = game.combat?.combatant?.tokenId === this.id;
         const markerActive = markersEnabled && turnIsSet ? isTurn : spotlighted;
 
-        // Activate a Turn Marker
         if (markerActive) {
+            // Activate a Turn Marker
             if (!this.turnMarker)
                 this.turnMarker = this.addChildAt(new foundry.canvas.placeables.tokens.TokenTurnMarker(this), 0);
             canvas.tokens.turnMarkers.add(this);
             this.turnMarker.draw();
-        }
-
-        // Remove a Turn Marker
-        else if (this.turnMarker) {
+        } else if (this.turnMarker) {
+            // Remove a Turn Marker
             canvas.tokens.turnMarkers.delete(this);
             this.turnMarker.destroy();
             this.turnMarker = null;
@@ -176,7 +174,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         super._onHoverIn(event, options);
 
         // Check if the setting is enabled
-        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).showTokenDistance;
+        const setting = game.system.settings.appearance.showTokenDistance;
         if (setting === 'never' || (setting === 'encounters' && !game.combat?.started)) return;
 
         // Check if this token isn't invisible and is actually being hovered

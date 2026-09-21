@@ -32,7 +32,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         header: { template: 'systems/daggerheart/templates/sheets/actors/companion/header.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/actors/companion/details.hbs' },
         effects: {
-            template: 'systems/daggerheart/templates/sheets/actors/companion/effects.hbs',
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
             scrollable: ['.effects-sections']
         }
     };
@@ -91,7 +91,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             ...foundry.utils.deepClone(partner.system.resources),
             fear: {
                 value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                max: game.system.settings.homebrew.maxFear,
                 reversed: false
             }
         };

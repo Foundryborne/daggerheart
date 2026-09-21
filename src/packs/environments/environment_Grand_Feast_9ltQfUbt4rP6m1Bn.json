@@ -390,7 +390,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll",
+                "key": "system.bonuses.roll.bonus",
                 "type": "subtract",
                 "value": 1,
                 "priority": null,
@@ -409,7 +409,8 @@
                 "type": "actionType",
                 "actionTypes": [
                   "action"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

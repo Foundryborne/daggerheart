@@ -39,7 +39,7 @@ export default class CostField extends fields.ArrayField {
                 ...foundry.utils.deepClone(actor.system.resources),
                 fear: {
                     value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                    max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                    max: game.system.settings.homebrew.maxFear,
                     reversed: false
                 }
             };

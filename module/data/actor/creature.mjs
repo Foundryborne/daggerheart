@@ -37,8 +37,7 @@ export default class DhCreature extends BaseDataActor {
     }
 
     get availableExtraResources() {
-        const homebrewResources = 
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject();
+        const homebrewResources = game.system.settings.homebrew.toObject();
         const applicableHomebrewResources = homebrewResources.resources[this.metadata.type]?.resources ?? {};
         
         return {
@@ -51,12 +50,8 @@ export default class DhCreature extends BaseDataActor {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;
 
-        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        if (
-            automationSettings.vulnerableAutomation &&
-            this.parent.type !== 'companion' &&
-            typeof changes.system?.resources?.stress?.value === 'number'
-        ) {
+        const vulnerableAutomation = game.system.settings.automation.vulnerableAutomation;
+        if (vulnerableAutomation && this.parent.type !== 'companion' && typeof changes.system?.resources?.stress?.value === 'number') {
             const { name, description, img, autoApplyFlagId } = CONFIG.DH.GENERAL.conditions().vulnerable;
             const autoEffects = this.parent.effects.filter(
                 x => x.flags.daggerheart?.autoApplyFlagId === autoApplyFlagId

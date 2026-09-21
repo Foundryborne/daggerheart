@@ -103,9 +103,9 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
-            "value": "+3",
+            "value": "3",
             "priority": null,
             "phase": "initial"
           }
@@ -121,7 +121,8 @@
             "type": "actionType",
             "actionTypes": [
               "attack"
-            ]
+            ],
+            "traits": []
           }
         ]
       },

@@ -6,7 +6,50 @@
   "img": "icons/weapons/wands/wand-skull-feathers.webp",
   "system": {
     "description": "",
-    "actions": {},
+    "actions": {
+      "weRZBt9v1kjNh6wI": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Persuade",
+        "description": "Before you make a Presence Roll, you can mark a Stress to gain a +2 bonus to the result.",
+        "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "effects": [
+          {
+            "_id": "mlgTXtMVMC83kUaZ",
+            "onSave": false
+          }
+        ],
+        "_id": "weRZBt9v1kjNh6wI",
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        }
+      }
+    },
     "tier": 2,
     "equipped": false,
     "secondary": false,
@@ -15,10 +58,10 @@
       {
         "value": "persuasive",
         "effectIds": [
-          "hrJJzzepVs2BPYf5"
+          "mlgTXtMVMC83kUaZ"
         ],
         "actionIds": [
-          "vqTZBX2RHTG1h6hz"
+          "weRZBt9v1kjNh6wI"
         ]
       }
     ],
@@ -127,13 +170,19 @@
       "name": "Persuasive",
       "description": "Gain a +2 bonus to the Presence roll",
       "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-      "transfer": false,
-      "_id": "hrJJzzepVs2BPYf5",
-      "type": "base",
       "system": {
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [],
+            "traits": [
+              "presence"
+            ]
+          }
+        ],
         "changes": [
           {
-            "key": "system.traits.presence.value",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 2,
             "phase": "initial"
@@ -144,10 +193,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": [],
-        "conditionals": []
+        "targetDispositions": []
       },
+      "transfer": false,
+      "_id": "mlgTXtMVMC83kUaZ",
+      "type": "base",
       "disabled": false,
+      "start": null,
       "duration": {
         "value": null,
         "units": "seconds",
@@ -156,15 +208,14 @@
       },
       "tint": "#ffffff",
       "statuses": [],
+      "showIcon": 1,
+      "folder": null,
       "sort": 0,
       "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!items.effects!tP6vmnrmTq2h5sj7.hrJJzzepVs2BPYf5"
+      "_key": "!items.effects!tP6vmnrmTq2h5sj7.mlgTXtMVMC83kUaZ"
     }
   ],
   "sort": 0,

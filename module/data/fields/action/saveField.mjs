@@ -150,10 +150,8 @@ export default class SaveField extends fields.SchemaField {
      */
     static getAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.save.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.save.players)
+            (game.user.isGM && game.system.settings.automation.roll.save.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.save.players)
         );
     }
 

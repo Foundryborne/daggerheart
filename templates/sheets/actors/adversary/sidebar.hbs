@@ -25,11 +25,7 @@
             </div>
             <div class="status-number">
                 <div class='status-value armor-slots'>
-                    {{#if source.system.attack.roll.bonus includeZero=true}}
-                    <p>{{numberFormat source.system.attack.roll.bonus sign=true}}</p>
-                    {{else}}
-                    <p>-</p>
-                    {{/if}}
+                    <p>{{attackBonus}}</p>
                 </div>
                 <div class="status-label">
                     <h4>{{localize "DAGGERHEART.GENERAL.attack"}}</h4>
@@ -49,9 +45,9 @@
         <div class="status-section">
             <div class="threshold-section">
                 <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
-                <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
+                <h4 class="threshold-value">{{ifThen document.system.damageThresholds.major document.system.damageThresholds.major '-'}}</h4>
                 <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
-                <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
+                <h4 class="threshold-value">{{ifThen document.system.damageThresholds.severe document.system.damageThresholds.severe '-'}}</h4>
                 <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
             </div>
         </div>

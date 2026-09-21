@@ -79,7 +79,7 @@
             }
           },
           "includeBase": false,
-          "direct": false,
+          "direct": true,
           "itemId": null
         },
         "resources": {}
