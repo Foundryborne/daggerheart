@@ -197,6 +197,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 this.system.actionActor);
 
             await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
+            await this.system.action.workflow.get('cost')?.execute(config);
+            config.resourceUpdates.updateResources();
         }
     }
 

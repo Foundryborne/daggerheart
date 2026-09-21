@@ -374,7 +374,7 @@ export default class DHRoll extends BaseRoll {
                         description: effect.description,
                         changes: effect.system.changes,
                         origEffect: effect,
-                        selected: !effect.disabled
+                        selected: !effect.disabled && effect.type !== 'ephemeral'
                     };
                 }
 
