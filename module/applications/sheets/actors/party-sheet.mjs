@@ -66,9 +66,6 @@ export default class PartySheet extends DHBaseActorSheet {
         }
     };
 
-    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary', 'npc'];
-    static DICE_ROLL_ACTOR_TYPES = ['character'];
-
     async _onRender(context, options) {
         await super._onRender(context, options);
         this._createFilterMenus();
@@ -541,15 +538,18 @@ export default class PartySheet extends DHBaseActorSheet {
     /** @inheritdoc */
     async _onDropActor(event, document) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (document instanceof DhActor && PartySheet.ALLOWED_ACTOR_TYPES.includes(document.type)) {
+        const ALLOWED_ACTOR_TYPES = this.document.system.constructor.ALLOWED_ACTOR_TYPES;
+        if (document instanceof DhActor && ALLOWED_ACTOR_TYPES.includes(document.type)) {
             const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
             if (currentMembers.includes(data.uuid)) {
-                return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));
+                return ui.notifications.warn(_loc('DAGGERHEART.UI.Notifications.duplicateCharacter'));
             }
 
             await this.document.update({ 'system.partyMembers': [...currentMembers, document.uuid] });
         } else {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyCharactersInPartySheet'));
+            const allowedTypesList = ALLOWED_ACTOR_TYPES.map(a => _loc(`TYPES.Actor.${a}`));
+            const allowedTypes = game.i18n.getListFormatter({ type: 'disjunction' }).format(allowedTypesList);
+            ui.notifications.warn(_loc('DAGGERHEART.UI.Notifications.limitedActorsInPartySheet', { allowedTypes }));
         }
 
         return null;
