@@ -177,7 +177,9 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
     _onHoverOut(...args) {
         super._onHoverOut(...args);
-        this.#showDistanceHover(false);
+        if (!this.layer.highlightObjects) {
+            this.#showDistanceHover(false);
+        }
     }
 
     _refreshState() {
@@ -186,9 +188,12 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.#showDistanceHover(isHover);
     }
 
+    /**
+     * Show distance hover tooltip
+     */
     #showDistanceHover(show = true) {
         if (!show) {
-            document.querySelector(`.token-hover-distance[data-uuid="${this.document.uuid}"]`)?.remove();
+            document.querySelector(`#measurement .token-hover-distance[data-uuid="${this.document.uuid}"]`)?.remove();
             return;
         }
 
@@ -219,26 +224,34 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const distanceResult = DhMeasuredTemplate.getRangeLabels(originToken.distanceTo(this), ranges);
         const distanceLabel = `${distanceResult.distance} ${distanceResult.units}`.trim();
 
-        // Create the element
-        const element = document.createElement('div');
-        element.dataset.uuid = this.document.uuid;
-        element.classList.add('token-hover-distance', 'waypoint-label', 'last');
-        const ruler = document.createElement('i');
-        ruler.classList.add('fa-solid', 'fa-ruler');
-        element.appendChild(ruler);
-        const labelEl = document.createElement('span');
-        labelEl.classList.add('total-measurement');
-        labelEl.textContent = distanceLabel;
-        element.appendChild(labelEl);
+        // Create or retrieve the existing element.
+        const existing = document.querySelector(`#measurement .token-hover-distance[data-uuid="${this.document.uuid}"]`);
+        const element = existing ?? document.createElement('div');
+        const center = this.getCenterPoint();
 
         // Position the element and add to the DOM
-        const center = this.getCenterPoint();
         element.style.setProperty('--transformY', 'calc(-100% - 10px)');
         element.style.setProperty('--position-y', `${this.y}px`);
         element.style.setProperty('--position-x', `${center.x}px`);
         element.style.setProperty('--ui-scale', String(canvas.dimensions.uiScale));
-        document.querySelector(`.token-hover-distance[data-uuid="${this.document.uuid}"]`)?.remove();
-        document.querySelector('#measurement').appendChild(element);
+
+        if (!existing) {
+            // Create the element and add to the dom
+            element.dataset.uuid = this.document.uuid;
+            element.classList.add('token-hover-distance', 'waypoint-label', 'last');
+            const ruler = document.createElement('i');
+            ruler.classList.add('fa-solid', 'fa-ruler');
+            element.appendChild(ruler);
+            const labelEl = document.createElement('span');
+            labelEl.classList.add('total-measurement');
+            labelEl.textContent = distanceLabel;
+            element.appendChild(labelEl);
+            document.querySelector('#measurement').appendChild(element);
+        } else {
+            // Update the label of the existing element
+            const measurement = element.querySelector('span.total-measurement');
+            if (measurement) measurement.textContent = distanceLabel;
+        }
     }
 
     /** Returns the point at which a line starting at origin and ending at destination intersects the edge of the bounds */
