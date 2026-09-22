@@ -172,6 +172,25 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
     _onHoverIn(event, options) {
         super._onHoverIn(event, options);
+        this.#showDistanceHover();
+    }
+
+    _onHoverOut(...args) {
+        super._onHoverOut(...args);
+        this.#showDistanceHover(false);
+    }
+
+    _refreshState() {
+        super._refreshState();
+        const isHover = this.hover || this.layer.highlightObjects;
+        this.#showDistanceHover(isHover);
+    }
+
+    #showDistanceHover(show = true) {
+        if (!show) {
+            document.querySelector(`.token-hover-distance[data-uuid="${this.document.uuid}"]`)?.remove();
+            return;
+        }
 
         // Check if the setting is enabled
         const setting = game.system.settings.appearance.showTokenDistance;
@@ -179,13 +198,17 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         // Check if this token isn't invisible and is actually being hovered
         const isTokenValid =
+            this.document.uuid &&
             this.visible &&
-            this.hover &&
+            (this.hover || this.layer.highlightObjects) &&
             !this.isPreview &&
             !this.document.isSecret &&
             !this.controlled &&
             !this.animation;
-        if (!isTokenValid) return;
+        if (!isTokenValid) {
+            this.#showDistanceHover(false);
+            return;
+        }
 
         // Ensure we have a single controlled token
         const originToken = canvas.tokens.controlled[0];
@@ -198,8 +221,8 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         // Create the element
         const element = document.createElement('div');
-        element.id = 'token-hover-distance';
-        element.classList.add('waypoint-label', 'last');
+        element.dataset.uuid = this.document.uuid;
+        element.classList.add('token-hover-distance', 'waypoint-label', 'last');
         const ruler = document.createElement('i');
         ruler.classList.add('fa-solid', 'fa-ruler');
         element.appendChild(ruler);
@@ -214,13 +237,8 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         element.style.setProperty('--position-y', `${this.y}px`);
         element.style.setProperty('--position-x', `${center.x}px`);
         element.style.setProperty('--ui-scale', String(canvas.dimensions.uiScale));
-        document.querySelector('#token-hover-distance')?.remove();
+        document.querySelector(`.token-hover-distance[data-uuid="${this.document.uuid}"]`)?.remove();
         document.querySelector('#measurement').appendChild(element);
-    }
-
-    _onHoverOut(...args) {
-        super._onHoverOut(...args);
-        document.querySelector('#token-hover-distance')?.remove();
     }
 
     /** Returns the point at which a line starting at origin and ending at destination intersects the edge of the bounds */
