@@ -73,8 +73,12 @@ export const rollTypeTraits = {
     ...abilities,
     spellcast: {
         id: 'spellcast',
-        label: 'DAGGERHEART.GENERAL.spellcastTrait',
+        label: 'DAGGERHEART.CONFIG.TraitsSpecial.spellcast',
         rollTypes: ['reaction']
+    },
+    highest: {
+        id: 'highest',
+        label: 'DAGGERHEART.CONFIG.TraitsSpecial.highest'
     }
 };
 
