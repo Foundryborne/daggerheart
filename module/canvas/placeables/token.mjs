@@ -170,11 +170,13 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         return Math.min(distance, distance > adjacencyBuffer ? Infinity : canvas.grid.distance);
     }
 
+    /** @inheritdoc */
     _onHoverIn(event, options) {
         super._onHoverIn(event, options);
         this.#showDistanceHover();
     }
 
+    /** @inheritdoc */
     _onHoverOut(...args) {
         super._onHoverOut(...args);
         if (!this.layer.highlightObjects) {
@@ -182,6 +184,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         }
     }
 
+    /** @inheritdoc */
     _refreshState() {
         super._refreshState();
         const isHover = this.hover || this.layer.highlightObjects;
@@ -189,7 +192,9 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
     }
 
     /**
-     * Show distance hover tooltip
+     * Show or hide distance hover tooltip. 
+     * Despite the given paramter, it performs the necessary checks to see if its valid to show.
+     * @param {boolean} [show] whether to show the hover or whether to hide
      */
     #showDistanceHover(show = true) {
         if (!show) {
