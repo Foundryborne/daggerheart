@@ -614,10 +614,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     /**
      * Handles the logic of dropped actors on summon actions
-     * @param {game.system.api.documents.DhpActor} actor 
+     * @param {game.system.api.documents.DhActor} actor 
      */
     async onSummonDrop(actor) {
-        if (!(actor instanceof game.system.api.documents.DhpActor)) {
+        if (!(actor instanceof game.system.api.documents.DhActor)) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.summon.invalidDrop'));
             return;
         }
@@ -637,10 +637,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
 
     /**
      * Handles the logic of dropped actors on transform actions
-     * @param {game.system.api.documents.DhpActor} actor 
+     * @param {game.system.api.documents.DhActor} actor 
      */
     async onTransformDrop(actor) {
-        if (!(actor instanceof game.system.api.documents.DhpActor)) {
+        if (!(actor instanceof game.system.api.documents.DhActor)) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.ACTIONS.TYPES.transform.invalidDrop'));
             return;
         }

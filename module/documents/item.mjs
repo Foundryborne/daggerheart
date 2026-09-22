@@ -5,7 +5,7 @@ import { fromUuids, keyBy, pick } from '../helpers/utils.mjs';
  * Override and extend the basic Item implementation.
  * @extends {foundry.documents.Item}
  */
-export default class DHItem extends foundry.documents.Item {
+export default class DhItem extends foundry.documents.Item {
     /** 
      * Returns the uuid of the original item this item was derived from, 
      * or its own uuid if its a compendium item or not derived from a source item.

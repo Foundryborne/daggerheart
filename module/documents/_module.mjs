@@ -1,5 +1,5 @@
-export { default as DhpActor } from './actor.mjs';
-export { default as DHItem } from './item.mjs';
+export { default as DhActor } from './actor.mjs';
+export { default as DhItem } from './item.mjs';
 export { default as DhpCombat } from './combat.mjs';
 export { default as DHCombatant } from './combatant.mjs';
 export { default as DhActiveEffect } from './activeEffect.mjs';

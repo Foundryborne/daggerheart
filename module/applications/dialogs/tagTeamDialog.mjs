@@ -4,7 +4,6 @@ import { MemberData } from '../../data/tagTeamData.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import PartySheet from '../sheets/actors/party.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -15,7 +14,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         this.usesTagTeamHopeCost = true;
         this.party = party;
         this.partyMembers = party.system.partyMembers
-            .filter(x => PartySheet.DICE_ROLL_ACTOR_TYPES.includes(x.type))
+            .filter(x => party.system.constructor.DICE_ROLL_ACTOR_TYPES.includes(x.type))
             .map(member => ({
                 ...member.toObject(),
                 uuid: member.uuid,
@@ -531,6 +530,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const memberData = this.party.system.tagTeam.members[memberKey];
         const action = await foundry.utils.fromUuid(memberData.rollChoice);
+        const { base } = game.system.api.data.actions.actionsTypes;
         const config = {
             ...memberData.rollData.options,
             dialog: {
@@ -540,7 +540,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 createMessage: true,
                 resources: true,
                 triggers: true
-            }
+            },
+            effects: await base.getActionRelevantEffects(action.getRollData(), actor)
         };
 
         await action.workflow.get('damage').execute(config, null, true);

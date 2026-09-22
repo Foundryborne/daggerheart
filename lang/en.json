@@ -3703,7 +3703,7 @@
                         "label": "Show Foundry Status Effects"
                     },
                     "showTokenDistance": {
-                        "label": "Show Token Distance on Hover",
+                        "label": "Show Token Distance on Highlight",
                         "choices": {
                             "always": "Always",
                             "encounters": "Encounters",
@@ -4280,7 +4280,7 @@
                 "cardTooHighLevel": "The card is too high level!",
                 "duplicateCard": "You cannot select the same card more than once.",
                 "duplicateCharacter": "This actor is already registered in the party members list.",
-                "onlyCharactersInPartySheet": "You can only drag characters, companions and adversaries to the party sheet.",
+                "limitedActorsInPartySheet": "You can only drag actors of type {allowedTypes} to the party sheet.",
                 "notPrimary": "The weapon is not a primary weapon!",
                 "notSecondary": "The weapon is not a secondary weapon!",
                 "itemTooHighTier": "The item must be from Tier1",

@@ -129,7 +129,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return Item the action is attached too.
-     * @returns {DHItem}
+     * @returns {DhItem}
      */
     get item() {
         if (!this.parent.parent && this.systemPath)
@@ -362,8 +362,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Get the all potentially applicable effects on the actor for the action's RollDialog
      * @param {RollData} rollData The rolldata of the action being performed
-     * @param {DhpActor} actor The actor performing the action
-     * @returns {DhActiveEffect[]}
+     * @param {DhActor} actor The actor performing the action
+     * @returns {Promise<DhActiveEffect[]>}
      */
     static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];

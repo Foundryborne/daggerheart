@@ -1,4 +1,4 @@
-import DHItem from '../../documents/item.mjs';
+import DhItem from '../../documents/item.mjs';
 
 declare global {
     /** Options used to control the results of an item's getEnrichedDescription() function */
@@ -13,6 +13,6 @@ declare global {
 
 declare module './base.mjs' {
     export default interface BaseDataItem extends foundry.abstract.TypeDataModel {
-        parent: DHItem<this>;
+        parent: DhItem<this>;
     }
 }

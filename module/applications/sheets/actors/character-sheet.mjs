@@ -14,7 +14,7 @@ import { sortBy } from '../../../helpers/functional.mjs';
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction 
  */
 
-/** @extends {DHBaseActorSheet<DhpActor<DhCharacter>>} */
+/** @extends {DHBaseActorSheet<DhActor<DhCharacter>>} */
 export default class CharacterSheet extends DHBaseActorSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {

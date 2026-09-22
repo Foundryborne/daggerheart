@@ -5,7 +5,7 @@ import FormulaField from '../fields/formulaField.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @import DHItem from '../../documents/item.mjs';
+ * @import DhItem from '../../documents/item.mjs';
  * @import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
  */
 
@@ -196,7 +196,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      * Checks if an item is available for use, such as multiclass features being disabled
      * on a character.
      *
-     * @param {DHItem} item The item being checked for availability
+     * @param {DhItem} item The item being checked for availability
      * @return {boolean} whether the item is available
      */
     isItemAvailable(item) {
