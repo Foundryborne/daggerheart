@@ -97,20 +97,21 @@ export class DHActionRollData extends foundry.abstract.DataModel {
     }
 
     get rollTrait() {
-        if (this.parent?.actor?.type !== 'character') return null;
+        const actor = this.parent?.actor;
+        if (actor?.type !== 'character') return null;
 
         const { spellcast, attack, trait, reaction } = CONFIG.DH.GENERAL.rollTypes;
-        const spellcastTrait = this.parent.actor?.system?.spellcastModifierTrait?.key;
+        const spellcastTrait = actor.system?.spellcastModifierTrait?.key;
         switch (this.type) {
             case spellcast.id:
                 return spellcastTrait;
             case reaction.id:
-                return this.trait === 'spellcast' ? spellcastTrait : this.trait;
+                return actor.system.resolveTrait(this.trait);
             case attack.id:
             case trait.id:
                 return this.useDefault || !this.trait
                     ? (this.parent.item.system.attack?.roll?.trait ?? 'agility')
-                    : this.trait;
+                    : actor.system.resolveTrait(this.trait);
             default:
                 return null;
         }

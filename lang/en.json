@@ -1998,6 +1998,10 @@
                     }
                 }
             },
+            "TraitsSpecial": {
+                "spellcast": "Spellcast Trait",
+                "highest": "Best Trait"
+            },
             "Triggers": {
                 "postDamageReduction": {
                     "label": "After Damage Reduction"
