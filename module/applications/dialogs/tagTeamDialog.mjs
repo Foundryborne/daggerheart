@@ -4,7 +4,7 @@ import { MemberData } from '../../data/tagTeamData.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import PartySheet from '../sheets/actors/party.mjs';
+import PartySheet from '../sheets/actors/party-sheet.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 

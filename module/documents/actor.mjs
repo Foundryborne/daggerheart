@@ -7,7 +7,7 @@ import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
-export default class DhpActor extends Actor {
+export default class DhActor extends Actor {
     parties = new Set();
 
     #scrollTextQueue = [];
@@ -215,69 +215,10 @@ export default class DhpActor extends Actor {
         return doc;
     }
 
-    /**@inheritdoc */
-    async _preCreate(data, options, user) {
-        if ((await super._preCreate(data, options, user)) === false) return false;
-        const update = {};
-
-        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
-        if (this.system.metadata.usesSize && !data.system?.size) {
-            Object.assign(update, {
-                system: {
-                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
-                }
-            });
-        }
-
-        // Configure prototype token settings
-        if (['character', 'companion', 'party'].includes(this.type)) {
-            Object.assign(update, {
-                prototypeToken: {
-                    sight: { enabled: true },
-                    actorLink: true,
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
-
-        if (this.type === 'npc') {
-            Object.assign(update, {
-                prototypeToken: {
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
-
-        this.updateSource(update);
-    }
-
     /** Perform a render, debounced in order to prevent overloading repeat render requests */
     renderDebounced = foundry.utils.debounce(options => {
         return this.render(options);
     }, 10);
-
-    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
-        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
-        
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-
-        if (collection === 'items') {
-            if (game.user.id === userId) {
-                this._cleanupOptionalResources();
-            }
-        }
-    }
-
-    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
-        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
-        if (collection === 'items') {
-            if (game.user.id === userId) {
-                this._cleanupOptionalResources();
-            }
-        }
-    }
 
     /**
      * Cleanup of any optional resources on the actor that are no longer available.
@@ -310,36 +251,6 @@ export default class DhpActor extends Actor {
                     return r;
                 }, {})
             });
-        }
-    }
-
-    _preUpdate(changed, options, user) {
-        return super._preUpdate(changed, options, user);
-    }
-
-    _onUpdate(changes, options, userId) {
-        super._onUpdate(changes, options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-    }
-
-    async _preDelete(options, user) {
-        if ((await super._preDelete(options, user)) === false) return false;
-
-        if (this.prototypeToken.actorLink) {
-            game.system.registeredTriggers.unregisterItemTriggers(this.items);
-        } else {
-            for (const token of this.getActiveTokens()) {
-                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
-            }
-        }
-    }
-
-    _onDelete(options, userId) {
-        super._onDelete(options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
         }
     }
 
@@ -1403,6 +1314,99 @@ export default class DhpActor extends Actor {
             if (batch.length) await foundry.documents.modifyBatch(batch);
         } else {
             return batch;
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+    
+    /**@inheritdoc */
+    async _preCreate(data, options, user) {
+        if ((await super._preCreate(data, options, user)) === false) return false;
+        const update = {};
+
+        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
+        if (this.system.metadata.usesSize && !data.system?.size) {
+            Object.assign(update, {
+                system: {
+                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
+                }
+            });
+        }
+
+        // Configure prototype token settings
+        if (['character', 'companion', 'party'].includes(this.type)) {
+            Object.assign(update, {
+                prototypeToken: {
+                    sight: { enabled: true },
+                    actorLink: true,
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        if (this.type === 'npc') {
+            Object.assign(update, {
+                prototypeToken: {
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        this.updateSource(update);
+    }
+
+    _preUpdate(changed, options, user) {
+        return super._preUpdate(changed, options, user);
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    async _preDelete(options, user) {
+        if ((await super._preDelete(options, user)) === false) return false;
+
+        if (this.prototypeToken.actorLink) {
+            game.system.registeredTriggers.unregisterItemTriggers(this.items);
+        } else {
+            for (const token of this.getActiveTokens()) {
+                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
+            }
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
+        }
+    }
+
+    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
         }
     }
 }

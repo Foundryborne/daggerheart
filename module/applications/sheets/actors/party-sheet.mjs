@@ -5,7 +5,7 @@ import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
-import DhpActor from '../../../documents/actor.mjs';
+import DhActor from '../../../documents/actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -541,7 +541,7 @@ export default class PartySheet extends DHBaseActorSheet {
     /** @inheritdoc */
     async _onDropActor(event, document) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (document instanceof DhpActor && PartySheet.ALLOWED_ACTOR_TYPES.includes(document.type)) {
+        if (document instanceof DhActor && PartySheet.ALLOWED_ACTOR_TYPES.includes(document.type)) {
             const currentMembers = this.document.system.partyMembers.map(x => x.uuid);
             if (currentMembers.includes(data.uuid)) {
                 return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCharacter'));

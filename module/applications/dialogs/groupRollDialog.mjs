@@ -1,7 +1,7 @@
 import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
-import PartySheet from '../sheets/actors/party.mjs';
+import PartySheet from '../sheets/actors/party-sheet.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 

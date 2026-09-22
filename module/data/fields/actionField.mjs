@@ -167,8 +167,8 @@ export function ActionMixin(Base) {
         }
 
         get uuid() {
-            const isItem = this.item instanceof game.system.api.documents.DHItem;
-            const isActor = this.item instanceof game.system.api.documents.DhpActor;
+            const isItem = this.item instanceof game.system.api.documents.DhItem;
+            const isActor = this.item instanceof game.system.api.documents.DhActor;
             return isItem || isActor ? `${this.item.uuid}.${this.documentName}.${this.id}` : null;
         }
 

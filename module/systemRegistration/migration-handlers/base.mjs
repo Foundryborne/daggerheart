@@ -1,5 +1,5 @@
 /** 
- * @import DHItem from "../../documents/item.mjs";
+ * @import DhItem from "../../documents/item.mjs";
 * @import DhActor from "../../documents/actor.mjs";
  */
 /** 
@@ -16,7 +16,7 @@ export class MigrationHandlerBase {
     /**
      * Gets change data for an active effect's source, or null if no changes
      * @param {object} effectSource 
-     * @param {DHItem} item 
+     * @param {DhItem} item 
      * @returns {Promise<object>}
      * @protected
      */

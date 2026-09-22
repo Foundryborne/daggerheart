@@ -3,7 +3,7 @@ import DHBaseActorSheet from '../api/base-actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
-export default class DhpEnvironment extends DHBaseActorSheet {
+export default class EnvironmentSheet extends DHBaseActorSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['environment'],
@@ -22,8 +22,8 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             ]
         },
         actions: {
-            toggleResourceDice: DhpEnvironment.#toggleResourceDice,
-            handleResourceDice: DhpEnvironment.#handleResourceDice
+            toggleResourceDice: EnvironmentSheet.#toggleResourceDice,
+            handleResourceDice: EnvironmentSheet.#handleResourceDice
         },
         dragDrop: [
             {
