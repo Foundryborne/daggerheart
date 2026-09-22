@@ -3703,7 +3703,7 @@
                         "label": "Show Foundry Status Effects"
                     },
                     "showTokenDistance": {
-                        "label": "Show Token Distance on Hover",
+                        "label": "Show Token Distance on Highlight",
                         "choices": {
                             "always": "Always",
                             "encounters": "Encounters",
