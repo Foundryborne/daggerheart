@@ -94,7 +94,8 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         let effect;
         if (element.dataset.uuid) {
             const effectItem = await foundry.utils.fromUuid(element.dataset.uuid);
-            const effectData = effectItem.toObject();
+            const effectData = effectItem?.toObject();
+            if (!effectData) return; // May be mid removal
 
             effect = {
                 ...effectData,
