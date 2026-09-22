@@ -27,7 +27,8 @@ declare global {
     // For actual use such as instanceof, an import is still required
     type DhItem<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DhItem<T>>;
     type DhActor<T extends BaseDataActor = BaseDataActor> = InstanceType<typeof documents.DhActor<T>>;
-
+    type DhActiveEffect = InstanceType<typeof documents.DhActiveEffect>;
+    
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.
      * When key actions or events occur, a "hook" is defined where user-defined callback functions can execute.

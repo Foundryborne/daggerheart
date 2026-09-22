@@ -530,6 +530,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const memberData = this.party.system.tagTeam.members[memberKey];
         const action = await foundry.utils.fromUuid(memberData.rollChoice);
+        const { base } = game.system.api.data.actions.actionsTypes;
         const config = {
             ...memberData.rollData.options,
             dialog: {
@@ -539,7 +540,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 createMessage: true,
                 resources: true,
                 triggers: true
-            }
+            },
+            effects: await base.getActionRelevantEffects(action.getRollData(), actor)
         };
 
         await action.workflow.get('damage').execute(config, null, true);

@@ -353,6 +353,8 @@ export default class DHRoll extends BaseRoll {
     bonusEffectBuilder() {
         const changeKeys = this.getActionChangeKeys();
         return (
+            // todo: improve safety. When used improperly, effects is a list of data, not active effects
+            // it can be worked around provisionarily by using getActionRelevantEffects()
             this.options.effects?.reduce((acc, effect) => {
                 const item = this.options.data.parent?.items?.get?.(this.options.source.item) ?? null;
                 const actions = item ? [

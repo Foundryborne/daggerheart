@@ -363,7 +363,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * Get the all potentially applicable effects on the actor for the action's RollDialog
      * @param {RollData} rollData The rolldata of the action being performed
      * @param {DhActor} actor The actor performing the action
-     * @returns {DhActiveEffect[]}
+     * @returns {Promise<DhActiveEffect[]>}
      */
     static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];
