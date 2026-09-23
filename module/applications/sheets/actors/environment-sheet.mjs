@@ -60,6 +60,7 @@ export default class EnvironmentSheet extends DHBaseActorSheet {
         }
     };
 
+    /** @inheritdoc */
     get title() {
         return this.actor.isToken ? `[${_loc('DOCUMENT.Token')}] ${super.title}` : super.title;
     }

@@ -7,7 +7,7 @@ import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import DhActor from '../../../documents/actor.mjs';
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/** @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
 export default class PartySheet extends DHBaseActorSheet {
     constructor(options) {
@@ -39,7 +39,12 @@ export default class PartySheet extends DHBaseActorSheet {
             tagTeamRoll: PartySheet.#onTagTeamRoll,
             groupRoll: PartySheet.#onGroupRoll
         },
-        dragDrop: [{ dragSelector: '[data-item-id]', dropSelector: null }]
+        dragDrop: [
+            {
+                dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
+                dropSelector: null
+            }
+        ]
     };
 
     /**@override */

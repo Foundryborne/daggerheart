@@ -8,8 +8,13 @@ import Actor from '@client/documents/actor.mjs';
 import Item from '@client/documents/item.mjs';
 import BaseEffect from '../data/activeEffect/baseEffect.mjs';
 
+// ClientDocument is not exposed by foundry, and mixin props are not part of the normal types
+interface ClientDocument {
+    get isOwner(): boolean;
+}
+
 declare module './actor.mjs' {
-    export default interface DhActor<T extends BaseDataActor = BaseDataActor> extends Actor {
+    export default interface DhActor<T extends BaseDataActor = BaseDataActor> extends ClientDocument, Actor {
         name: string;
         img: string;
         system: T;
@@ -25,7 +30,7 @@ declare module './actor.mjs' {
 }
 
 declare module './item.mjs' {
-    export default interface DhItem<T extends BaseDataItem = BaseDataItem> extends Item {
+    export default interface DhItem<T extends BaseDataItem = BaseDataItem> extends ClientDocument, Item {
         name: string;
         img: string;
         parent: DhActor;
