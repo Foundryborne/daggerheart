@@ -1829,6 +1829,13 @@
                 "checkboxSelections": "Checkboxes",
                 "minCost": "Minimum Boxes Picked"
             },
+            "OutcomeType": {
+                "default": "Default Outcome",
+                "successHope": "Success/ Hope",
+                "successFear": "Success/ Fear",
+                "failureHope": "Failure/ Hope",
+                "failureFear": "Failure/ Fear"
+            },
             "Range": {
                 "self": {
                     "name": "Self",
