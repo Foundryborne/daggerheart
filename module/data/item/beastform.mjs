@@ -126,8 +126,9 @@ export default class DHBeastform extends BaseDataItem {
         const tokenPath = usesDynamicToken ? beastform.system.tokenRingImg : beastform.system.tokenImg;
         const usesWildcard = tokenPath.includes('*');
         if (usesWildcard) {
-            const filePicker = new foundry.applications.apps.FilePicker.implementation(tokenPath);
-            const { files } = await foundry.applications.apps.FilePicker.implementation.browse(
+            const FilePicker = foundry.applications.apps.FilePicker.implementation;
+            const filePicker = new FilePicker({ current: tokenPath });
+            const { files } = await FilePicker.browse(
                 filePicker.activeSource,
                 tokenPath,
                 {
@@ -205,9 +206,7 @@ export default class DHBeastform extends BaseDataItem {
 
         const autoTokenSize =
             this.tokenSize.size !== 'custom'
-                ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes[
-                    this.tokenSize.size
-                ]
+                ? game.system.settings.homebrew.tokenSizes[this.tokenSize.size]
                 : null;
         const width = autoTokenSize ?? this.tokenSize.width;
         const height = autoTokenSize ?? this.tokenSize.height;
@@ -229,11 +228,11 @@ export default class DHBeastform extends BaseDataItem {
             }
         };
         const tokenUpdate = token => {
-            let x = null,
-                y = null;
-            if (token.object?.scene?.grid) {
+            let x = token.x;
+            let y = token.y;
+            if (token.scene?.grid) {
                 const positionData = game.system.api.documents.DhToken.getSnappedPositionInSquareGrid(
-                    token.object.scene.grid,
+                    token.scene.grid,
                     { x: token.x, y: token.y, elevation: token.elevation },
                     width ?? token.width,
                     height ?? token.height

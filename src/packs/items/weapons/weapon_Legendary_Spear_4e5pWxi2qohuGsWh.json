@@ -19,7 +19,7 @@
       "baseAction": true,
       "systemPath": "attack",
       "type": "attack",
-      "range": "melee",
+      "range": "veryClose",
       "target": {
         "type": "any",
         "amount": 1
@@ -69,7 +69,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -104,7 +105,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 50,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

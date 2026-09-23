@@ -9,3 +9,4 @@ export { default as Feature } from './feature.mjs';
 export { default as Loot } from './loot.mjs';
 export { default as Subclass } from './subclass.mjs';
 export { default as Weapon } from './weapon.mjs';
+export { default as Transformation } from './transformation.mjs';

@@ -32,7 +32,7 @@
     "impulses": "Bar crossing, carry away the unready, divide the land",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 106,
+      "page": null,
       "artist": ""
     }
   },
@@ -136,14 +136,14 @@
       "name": "Dangerous Crossing",
       "type": "feature",
       "system": {
-        "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-l7tHfgFFOGdvlnll\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-VF0r7nXxQlmuwMpj\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+        "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-l7tHfgFFOGdvlnll\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><section class=\"secret\" id=\"secret-VF0r7nXxQlmuwMpj\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
         "resource": null,
         "actions": {
           "91HPIEEcVKPQ5qqn": {
             "type": "countdown",
             "_id": "91HPIEEcVKPQ5qqn",
             "systemPath": "actions",
-            "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-aKJuTbAZaPUFxoiE\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><p></p><section class=\"secret\" id=\"secret-GSYTFIq8J3k2a4Ww\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+            "description": "<p>Crossing the river requires the party to complete a <em>Progress Countdown (4)</em>.</p><section class=\"secret\" id=\"secret-aKJuTbAZaPUFxoiE\"><p>A PC who rolls a failure with Fear is immediately targeted by the \"Undertow\" action without requiring a Fear to be spent on the feature.</p></section><section class=\"secret\" id=\"secret-GSYTFIq8J3k2a4Ww\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -183,7 +183,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "4ILX7BCinmsGqrJM",
       "img": "icons/magic/water/wave-water-blue.webp",
@@ -244,19 +245,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -304,7 +297,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "WsNoSwwtv0r80BMj",
       "img": "icons/magic/water/wave-water-teal.webp",
@@ -312,7 +306,6 @@
         {
           "name": "Undertow",
           "img": "icons/magic/water/wave-water-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.t4cdqTfzcqP3H1vJ.Item.WsNoSwwtv0r80BMj",
           "transfer": false,
           "_id": "T0ouSQyR8cVpAn79",
           "type": "base",
@@ -324,7 +317,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -413,7 +407,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "SDTS3LOPMVJOt1S1",
       "img": "icons/creatures/reptiles/snake-fangs-bite-green-yellow.webp",

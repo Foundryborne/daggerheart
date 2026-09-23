@@ -43,18 +43,18 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 15,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Ocean Master",
       "img": "icons/creatures/fish/fish-bioluminous-blue.webp",
-      "origin": "Item.5UbOIcuLE5Z3ViAm",
       "transfer": false,
       "_id": "6GBczj8REkDmgX2Q",
       "type": "base",
@@ -66,7 +66,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

@@ -227,7 +227,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 127,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -243,21 +243,13 @@
     {
       "name": "Never Upstaged (1 token)",
       "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
       "transfer": false,
       "_id": "C6e1T2oEx6PFoRUP",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": "+5",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.bonus",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "+5",
             "priority": null,
@@ -269,7 +261,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -294,21 +287,13 @@
     {
       "name": "Never Upstaged (2 tokens)",
       "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
       "transfer": false,
       "_id": "bMMxsBungVYB1rI8",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.magical.bonus",
-            "type": "add",
-            "value": "+10",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.physical.bonus",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "+10",
             "priority": null,
@@ -320,7 +305,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -345,21 +331,13 @@
     {
       "name": "Never Upstaged (3 tokens)",
       "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
       "transfer": false,
       "_id": "tsQRbrurzi8iqs0o",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.magical.bonus",
-            "type": "add",
-            "value": "+15",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.physical.bonus",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "+15",
             "priority": null,
@@ -371,7 +349,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -396,21 +375,13 @@
     {
       "name": "Never Upstaged (4 tokens)",
       "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
       "transfer": false,
       "_id": "3eTaSgHlmNDcymnW",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.magical.bonus",
-            "type": "add",
-            "value": "+20",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.physical.bonus",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "+20",
             "priority": null,
@@ -422,7 +393,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

@@ -1,15 +1,17 @@
 <div class="daggerheart chat domain-card">
-    <img class="card-img" src="{{item.img}}" />
+    <div class="card-img dh-card-header" >
+        <img src="{{item.img}}" />
+    </div>
     <details class="domain-card-move">
         <summary class="domain-card-header">
             <div class="domain-label">
-                <h2 class="title">{{item.name}}</h2>
+                <div class="title">{{item.name}}</div>
                 {{#if item.tags}}
-                    <ul class="tags">
+                    <div class="tags">
                         {{#each item.tags as |tag|}}
-                            <li class="tag"><span>{{tag}}</span></li>
+                            <div class="tag">{{tag}}</div>
                         {{/each}}
-                    </ul>
+                    </div>
                 {{/if}}
             </div>
             {{#if description}}

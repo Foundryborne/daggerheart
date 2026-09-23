@@ -156,10 +156,11 @@ export default class ArmorChange extends foundry.abstract.DataModel {
         const maxParse = actor ? itemAbleRollParse(this.value.max, actor, this.parent.parent.parent) : null;
         const maxRoll = maxParse ? new Roll(maxParse).evaluateSync() : null;
         const maxEvaluated = maxRoll ? (maxRoll.isDeterministic ? maxRoll.total : null) : null;
+        const max = maxEvaluated ?? this.value.max;
 
         return {
             current: this.value.current,
-            max: maxEvaluated ?? this.value.max
+            max: typeof max === 'number' ? Math.max(0, max) : max
         };
     }
 

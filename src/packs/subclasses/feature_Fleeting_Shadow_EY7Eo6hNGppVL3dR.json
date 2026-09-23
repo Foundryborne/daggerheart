@@ -10,12 +10,13 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 19,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -36,7 +37,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "hsEwoHkNr2qVwm2H",
       "img": "icons/magic/unholy/projectile-flame-white-purple.webp",
@@ -47,8 +49,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your “Shadow Stepper” feature to move within Very Far range.</p>",
-      "origin": null,
+      "description": "<p>Gain a permanent +1 bonus to your Evasion. You can use your \"Shadow Stepper\" feature to move within Very Far range.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

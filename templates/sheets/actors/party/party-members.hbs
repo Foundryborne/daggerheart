@@ -4,7 +4,7 @@
     data-group='{{tabs.partyMembers.group}}'
 >
 
-    <div class="actions-section">
+    <div class="actions-section {{#if isGM}}centered{{/if}}">
         <button data-action="tagTeamRoll" class="{{#if tagTeamActive}}active-action{{/if}}">
             <i class="fa-solid fa-user-group"></i>
             <span>{{localize "DAGGERHEART.APPLICATIONS.TagTeamSelect.title"}}</span>
@@ -13,14 +13,16 @@
             <i class="fa-solid fa-users"></i>
             <span>{{localize "DAGGERHEART.APPLICATIONS.GroupRollSelect.title"}}</span>
         </button>
-        <button data-action="triggerRest"  data-action="triggerRest" data-type="shortRest">
-            <i class="fa-solid fa-utensils"></i>
-            <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}</span>
-        </button>
-        <button data-action="triggerRest"  data-type="longRest">
-            <i class="fa-solid fa-bed"></i>
-            <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}</span>
-        </button>
+        {{#if isGM}}
+            <button data-action="triggerRest" data-type="shortRest">
+                <i class="fa-solid fa-utensils"></i>
+                <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}</span>
+            </button>
+            <button data-action="triggerRest"  data-type="longRest">
+                <i class="fa-solid fa-bed"></i>
+                <span>{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}</span>
+            </button>
+        {{/if}}
     </div>
 
     <ul class="actors-list{{#unless @root.showStats}} limited{{/unless}}">

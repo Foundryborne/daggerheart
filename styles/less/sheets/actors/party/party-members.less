@@ -9,11 +9,14 @@
     .actions-section {
         display: flex;
         align-items: center;
-        justify-content: center;
         padding: 10px;
         margin-bottom: 10px;
         gap: 20px;
         background-color: light-dark(@dark-blue-10, @golden-10);
+
+        &.centered {
+            justify-content: center;
+        }
 
         button {
             span {

@@ -11,7 +11,7 @@
     "type": "ability",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 132,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -51,7 +51,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "qWDojebJXMPIP629",
       "img": "icons/skills/social/diplomacy-handshake.webp",
@@ -63,7 +64,6 @@
         "expired": false
       },
       "description": "<p>You have advantage on action rolls to de-escalate violent situations or convince someone to follow your lead.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -95,7 +95,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "i5dnpOxTtWV1J46k",
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
@@ -107,7 +108,6 @@
         "expired": false
       },
       "description": "<p>When all of your Stress slots are marked, you gain a +1 bonus to your Proficiency for damage rolls.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

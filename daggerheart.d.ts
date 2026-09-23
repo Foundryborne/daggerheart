@@ -16,6 +16,8 @@ import DhAutomation from './module/data/settings/Automation.mjs';
 import FearTracker from './module/applications/ui/fearTracker.mjs';
 import DhCountdowns from './module/data/countdowns.mjs';
 import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
+import DhHomebrew from './module/data/settings/Homebrew.mjs';
+import DhAppearance from './module/data/settings/Appearance.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
@@ -23,9 +25,10 @@ import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
 declare global {
     // These are convenience types for common imported things. This allows them to be used in JSDoc directly
     // For actual use such as instanceof, an import is still required
-    type DHItem<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DHItem<T>>;
-    type DhpActor<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DhpActor<T>>;
-
+    type DhItem<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DhItem<T>>;
+    type DhActor<T extends BaseDataActor = BaseDataActor> = InstanceType<typeof documents.DhActor<T>>;
+    type DhActiveEffect = InstanceType<typeof documents.DhActiveEffect>;
+    
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.
      * When key actions or events occur, a "hook" is defined where user-defined callback functions can execute.
@@ -113,12 +116,22 @@ declare module '@client/packages/system.mjs' {
             dice: typeof dice,
             fields: typeof fields
         };
+        /** 
+         * Various cached versions of settings that are reassigned in the handleChange handlers.
+         * Using these avoids the data model re-validated and re-initializing 
+         */
+        settings: {
+            appearance: DhAppearance;
+            automation: DhAutomation;
+            homebrew: DhHomebrew;
+        }
     }
 }
 
 declare module '@client/helpers/client-settings.mjs' {
     // Add explicit typed overrides for auto complete. These require /** @type {"string"} on the vars themselves to work */
     export default interface ClientSettings {
+        get(namespace: 'daggerheart', key: typeof gameSettings.appearance): DhAutomation;
         get(namespace: 'daggerheart', key: typeof gameSettings.Automation): DhAutomation;
         get(namespace: 'daggerheart', key: typeof gameSettings.Homebrew): DhHomebrew;
         get(namespace: 'daggerheart', key: typeof gameSettings.Countdowns): DhCountdowns;

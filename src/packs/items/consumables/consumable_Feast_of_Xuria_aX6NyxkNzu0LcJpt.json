@@ -36,8 +36,8 @@
             "hitPoints": {
               "value": {
                 "custom": {
-                  "enabled": true,
-                  "formula": "@system.resources.hitPoints.max"
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "prof",
                 "flatMultiplier": 1,
@@ -47,23 +47,15 @@
               "applyTo": "hitPoints",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": true,
+              "itemId": null
             },
             "stress": {
               "value": {
                 "custom": {
-                  "enabled": true,
-                  "formula": "@system.resources.stress.max"
+                  "enabled": false,
+                  "formula": ""
                 },
                 "multiplier": "prof",
                 "flatMultiplier": 1,
@@ -73,17 +65,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": true,
+              "itemId": null
             },
             "hope": {
               "value": {
@@ -99,17 +83,9 @@
               "applyTo": "hope",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -147,14 +123,14 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 6400000,
   "flags": {},
   "_key": "!items!aX6NyxkNzu0LcJpt"
 }

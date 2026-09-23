@@ -33,7 +33,6 @@
     },
     "type": "standard",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "e3LDEyTI4bAQgRKI": {
         "name": "Copycat",
@@ -91,7 +90,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,13 +129,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 86,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "ChwwVqowFw8hJQwT",
@@ -243,7 +244,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "nCIGFPFOKzyznL0O",
       "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
@@ -266,7 +268,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "3QLH2EEtcUEZolFz",
           "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
@@ -278,7 +281,6 @@
             "expired": false
           },
           "description": "<p>The Experiment is resistant to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -311,7 +313,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1fE6xo8yIOmZkGNE",
       "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -334,7 +337,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "eGB9G0ljYCcdGbOx",
           "img": "icons/skills/melee/strike-slashes-orange.webp",
@@ -346,7 +350,6 @@
             "expired": false
           },
           "description": "<p>When a target the Failed Experiment attacks has other adversaries within Very Close range, the Failed Experiment deals double damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -418,7 +421,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "g0h3Zo6xqgfSlyxi",
       "img": "icons/skills/melee/strike-slashes-red.webp",

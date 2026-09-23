@@ -44,18 +44,18 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 9,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Rally",
       "img": "icons/tools/instruments/drum-hand-tan.webp",
-      "origin": "Compendium.daggerheart.classes.Item.Y7waM3ljoRLyk38N",
       "transfer": false,
       "_id": "FrSJH9vzDHkFGYQL",
       "type": "base",
@@ -74,7 +74,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

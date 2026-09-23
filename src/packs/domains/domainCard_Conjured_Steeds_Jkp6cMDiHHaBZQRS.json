@@ -56,7 +56,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 131,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -73,30 +73,22 @@
     {
       "name": "Riding",
       "img": "icons/creatures/mammals/goat-horned-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.Jkp6cMDiHHaBZQRS",
       "transfer": false,
       "_id": "cNSlGBGPKKBNnlH8",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.attack.bonus",
+            "key": "system.bonuses.damage.bonus",
+            "type": "add",
+            "value": "2",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": -2,
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.dice",
-            "type": "add",
-            "value": "+2",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": "+2",
             "priority": null,
             "phase": "initial"
           }
@@ -106,7 +98,16 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ],
+            "traits": []
+          }
+        ]
       },
       "disabled": false,
       "duration": {
@@ -115,7 +116,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>Creatures riding a steed gain a −2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
+      "description": "<p>Creatures riding a steed gain a -2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

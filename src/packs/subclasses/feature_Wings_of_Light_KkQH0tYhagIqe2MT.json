@@ -92,34 +92,27 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 21,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Wings of Light",
       "img": "icons/magic/light/projectile-beam-yellow.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.KkQH0tYhagIqe2MT",
       "transfer": false,
       "_id": "PfCwuVbKLxhnrm9X",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.dice",
+            "key": "system.bonuses.damage.dice",
             "type": "add",
-            "value": "+1d8",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.dice",
-            "type": "add",
-            "value": "+1d8",
+            "value": "1d8",
             "priority": null,
             "phase": "initial"
           }
@@ -129,7 +122,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

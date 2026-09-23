@@ -56,7 +56,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 122,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -73,14 +73,13 @@
     {
       "name": "Deft Maneuvers",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",
-      "origin": "Compendium.daggerheart.domains.Item.dc4rAXlv95srZUct",
       "transfer": true,
       "_id": "gEDGcbsgWY2D2nOo",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.attack.bonus",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 1,
             "priority": null,
@@ -92,7 +91,16 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ],
+            "traits": []
+          }
+        ]
       },
       "disabled": true,
       "duration": {

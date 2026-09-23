@@ -1,11 +1,11 @@
 import ActionSelectionDialog from '../applications/dialogs/actionSelectionDialog.mjs';
-import { fromUuids, keyBy } from '../helpers/utils.mjs';
+import { fromUuids, keyBy, pick } from '../helpers/utils.mjs';
 
 /**
  * Override and extend the basic Item implementation.
  * @extends {foundry.documents.Item}
  */
-export default class DHItem extends foundry.documents.Item {
+export default class DhItem extends foundry.documents.Item {
     /** 
      * Returns the uuid of the original item this item was derived from, 
      * or its own uuid if its a compendium item or not derived from a source item.
@@ -14,6 +14,52 @@ export default class DHItem extends foundry.documents.Item {
     get sourceUuid() {
         const isCompendium = this._id && this.pack && !this.isEmbedded;
         return isCompendium ? this.uuid : this._stats.compendiumSource ?? this._stats.duplicateSource ?? this.uuid;
+    }
+
+    /**
+     * Returns the uuid of the item that is used for refreshing.
+     * This isn't necessarily the sourceUuid. Compendium items don't have a refresh source.
+     * @returns {string | null} the uuid to refresh from, or null if it can't be refreshed
+     */
+    get refreshSourceUuid() {
+        // no refreshing compendium items
+        // ancestry items also aren't refreshable
+        if (this.pack || this.type === 'ancestry') return null;
+
+        const actor = this.actor;
+        if (['adversary', 'environment'].includes(actor?.type)) {
+            const uuid = `${actor.refreshSourceUuid}.Item.${this.id}`;
+            return uuid.startsWith('Compendium.') ? uuid : null;
+        }
+        
+        return this._stats.compendiumSource?.startsWith('Compendium.') ? this._stats.compendiumSource : null;
+    }
+
+    /**
+     * Determine if this item is classified as an inventory item based on its metadata.
+     * @returns {boolean} Returns `true` if the item is an inventory item.
+     */
+    get isInventoryItem() {
+        return this.system.metadata.isInventoryItem ?? false;
+    }
+
+    /** 
+     * Returns true if the item can be used
+     * @returns {boolean}
+     */
+    get usable() {
+        const actor = this.actor;
+        const pack = actor?.pack ? game.packs.get(actor.pack) : null;
+        const hasActions = this.system.actionsList?.size || this.system.actionsList?.length;
+        const isValidType = actor?.type === 'character' || this.type === 'feature';
+        return !pack?.locked && this.isOwner && isValidType && hasActions;
+    }
+
+    /** Returns true if the item has a description, usually if there is a description field, or if there are item features */
+    get hasDescription() {
+        return Boolean(this.system.description) 
+            || Boolean(this.system.itemFeatures?.length)
+            || (Boolean(this.system.gmNotes) && game.user.isGM);
     }
 
     /** @inheritDoc */
@@ -38,7 +84,7 @@ export default class DHItem extends foundry.documents.Item {
         }
         return doc;
     }
-
+    
     static async createDocuments(sources, operation) {
         // Ensure that items being created are valid to the actor its being added to
         const actor = operation.parent;
@@ -49,7 +95,14 @@ export default class DHItem extends foundry.documents.Item {
             const actorType = _loc(`TYPES.Actor.${actor.type}`);
             ui.notifications.error('DAGGERHEART.ACTORS.Base.CannotAddType', { format: { itemType, actorType } });
         }
+        
+        // Beastform already manages its features creation
+        if (addedType !== 'beastform') await this.prepareGrantedItems(actor, sources, operation);
 
+        return super.createDocuments(sources, operation);
+    }
+
+    static async prepareGrantedItems(actor, sources, operation) {
         // If the item grants any features, include them and set the granter flags
         // If keepId is false, set random ids and from then on switch keepId to true
         const grantingItems = actor ? sources.filter(s => s.system?.features?.length) : [];
@@ -93,8 +146,14 @@ export default class DHItem extends foundry.documents.Item {
                 );
             }
         }
+    }
 
-        return super.createDocuments(sources, operation);
+    static async deleteDocuments(ids = [], operation = {}) {
+        const allIds = operation.parent ? ids.flatMap(id => (
+            [id, ...operation.parent.items.get(id).system.getLinkedItems().map(x => x.id)]
+        )) : ids;
+
+        return super.deleteDocuments(allIds, operation);
     }
 
     /* -------------------------------------------- */
@@ -113,26 +172,6 @@ export default class DHItem extends foundry.documents.Item {
         return data;
     }
 
-    /**
-     * Determine if this item is classified as an inventory item based on its metadata.
-     * @returns {boolean} Returns `true` if the item is an inventory item.
-     */
-    get isInventoryItem() {
-        return this.system.metadata.isInventoryItem ?? false;
-    }
-
-    /** Returns true if the item can be used */
-    get usable() {
-        const actor = this.actor;
-        const pack = actor?.pack ? game.packs.get(actor.pack) : null;
-        const hasActions = this.system.actionsList?.size || this.system.actionsList?.length;
-        const isValidType = actor?.type === 'character' || this.type === 'feature';
-        return !pack?.locked && this.isOwner && isValidType && hasActions;
-    }
-
-    get hasDescription() {
-        return Boolean(this.system.description) || Boolean(this.system.itemFeatures?.length);
-    }
 
     /** @inheritdoc */
     static async createDialog(data = {}, createOptions = {}, options = {}, renderOptions) {
@@ -302,6 +341,116 @@ export default class DHItem extends foundry.documents.Item {
             documentClass.migrateDocumentData(source);
         }
 
+        for (const action of Object.values(source.system?.actions ?? {})) {
+            if (action.damage?.resources?.weaponResource) {
+                action.damage.resources.resource = action.damage.resources.weaponResource;
+                action.damage.resources.resource.applyTo = CONFIG.DH.GENERAL.healingTypes.resource.id;
+                action.damage.resources.resource.itemId = source._id;
+                delete action.damage.resources.weaponResource;
+            }
+
+            // Remove valueAlt from damage that isn't result based
+            if (action.damage?.main && !action.damage.main.resultBased) {
+                action.damage.main.valueAlt = null;
+            }
+            for (const resource of Object.values(action.damage?.resources ?? {})) {
+                if (!resource.resultBased) resource.valueAlt = null;
+            }
+        }
+
         return super.migrateData(source);
+    }
+
+    /** 
+     * Refreshes this item's data and effects using information from the compendium.
+     * @param {options} [options]
+     * @param {boolean} [options.save] if set to false, returns the batch data to perform the operation instead of doing it
+     */
+    async refreshFromCompendium({ save = true, latest } = {}) {
+        latest ??= await fromUuid(this.refreshSourceUuid);
+        if (!latest) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.doesNotExist'));
+        }
+        if (latest.type !== this.type) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidType'));
+        }
+
+        // Get system data, preserving certain properties
+        const currentSource = this.toObject(true);
+        const latestSource = latest.toObject(true);
+        const system = foundry.utils.mergeObject(latestSource.system, pick(currentSource.system, [
+            // General
+            'gmNotes',
+            // domain cards
+            'inVault',
+            // inventory items
+            'quantity',
+            'equipped',
+            // features
+            'granter',
+            // subclass (and class)
+            'featureState',
+            'isMulticlass'
+        ]), { recursive: false });
+
+        // Handle Effects
+        const effectsToDelete = this.effects.filter(e => !latest.effects.has(e.id)).map(i => i.id);
+        const effectUpdates = [];
+        const effectCreates = [];
+        for (const effectSource of latestSource.effects) {
+            const existingEffect = this.effects.get(effectSource._id)?.toObject(true);
+            if (!existingEffect) {
+                effectCreates.push(effectSource);
+            } else {
+                effectUpdates.push(foundry.utils.mergeObject(effectSource, pick(existingEffect, ['disabled'])))
+            }
+        }
+
+        /** @type {foundry.abstract.types.DatabaseWriteOperation[]} */
+        const batch = [{
+            parent: this.parent,
+            documentName: this.documentName,
+            pack: this.pack,
+            action: 'update',
+            updates: [{
+                _id: this._id,
+                name: latestSource.name,
+                img: latestSource.img,
+                system: _replace(system)
+            }],
+            isRefresh: true
+        }];
+        if (effectCreates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'create',
+                data: effectCreates,
+                keepId: true
+            });
+        }
+        if (effectUpdates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'update',
+                updates: effectUpdates,
+                recursive: false,
+                diff: false
+            });
+        }
+        if (effectsToDelete.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'delete',
+                ids: effectsToDelete
+            });
+        }
+        if (save) {
+            if (batch.length) await foundry.documents.modifyBatch(batch);
+        } else {
+            return batch;
+        }
     }
 }

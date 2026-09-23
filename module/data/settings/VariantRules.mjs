@@ -15,6 +15,11 @@ export default class DhVariantRules extends foundry.abstract.DataModel {
                     integer: true,
                     initial: 3,
                     label: 'DAGGERHEART.SETTINGS.VariantRules.FIELDS.actionTokens.tokens.label'
+                }),
+                automation: new fields.BooleanField({
+                    required: true,
+                    initial: false,
+                    label: 'DAGGERHEART.SETTINGS.VariantRules.FIELDS.actionTokens.automation.label'
                 })
             }),
             rangeMeasurement: new fields.SchemaField({

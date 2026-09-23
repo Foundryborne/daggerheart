@@ -1,0 +1,69 @@
+<fieldset class="custom-resource-container">
+    <legend>
+        {{label}}
+        <a data-action="removeActorResource" data-actor-type="{{actorType}}" data-resource-key="{{key}}"><i class="fa-solid fa-trash"></i></a>
+    </legend>
+
+    <div class="nest-inputs">
+        {{#if fields.initial}}
+            {{formField fields.initial value=this.initial name=(concat basePath "initial") classes="vertical" localize=true }}
+        {{/if}}
+        {{#if fields.value}}
+            {{formField fields.value value=this.value name=(concat basePath "value") classes="vertical" localize=true }}
+        {{/if}}
+        {{formField fields.max value=this.max name=(concat basePath "max") classes="vertical" localize=true }}
+    </div>
+
+    <div class="resource-icons-container">
+        <div class="resource-icon-container" data-actor-type="{{actorType}}" data-resource-key="{{key}}" data-image-key="full">
+            {{#with fields.images.fields.full.fields}}
+                <div class="resource-icon-title-container">
+                    <div class="resource-icon-title">
+                        <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.resources.filledIcon"}}</span>
+                        <a data-action="resetActorResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                    </div>
+                </div>
+                <div class="resource-icon-content">
+                    {{#if ../images.full.isIcon}}
+                        {{formInput this.value value=../images.full.value name=(concat ../basePath "images.full.value") localize=true }}
+                    {{else}}
+                        <div class="form-fields">
+                            <file-picker name="{{concat ../basePath "images.full.value"}}" value="{{../images.full.value}}" type="image"></file-picker>
+                        </div>
+                    {{/if}}
+
+                    <div class="icons-container">
+                        {{formGroup this.isIcon value=../images.full.isIcon name="" classes="path-field" localize=true }}
+                        {{formGroup this.noColorFilter value=../images.full.noColorFilter name=(concat ../basePath "images.full.noColorFilter") localize=true }}
+                        {{formGroup this.opacity value=../images.full.opacity name=(concat ../basePath "images.full.opacity") localize=true}}
+                    </div>
+                </div>
+            {{/with}}
+        </div>
+        <div class="resource-icon-container" data-actor-type="{{actorType}}" data-resource-key="{{key}}" data-image-key="empty">
+            {{#with fields.images.fields.empty.fields}}
+                <div class="resource-icon-title-container">
+                    <div class="resource-icon-title">
+                        <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.resources.emptyIcon"}}</span>
+                        <a data-action="resetActorResourceImage"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                    </div>
+                </div>
+                <div class="resource-icon-content">
+                    {{#if ../images.empty.isIcon}}
+                        {{formInput this.value value=../images.empty.value name=(concat ../basePath "images.empty.value") localize=true }}
+                    {{else}}
+                        <div class="form-fields">
+                            <file-picker name="{{concat ../basePath "images.empty.value"}}" value="{{../images.empty.value}}" type="image"></file-picker>
+                        </div>
+                    {{/if}}
+
+                    <div class="icons-container">
+                        {{formGroup this.isIcon value=../images.empty.isIcon name="" classes="path-field" localize=true }}
+                        {{formGroup this.noColorFilter value=../images.empty.noColorFilter name=(concat ../basePath "images.empty.noColorFilter") localize=true }}
+                        {{formGroup this.opacity value=../images.empty.opacity name=(concat ../basePath "images.empty.opacity") localize=true}}
+                    </div>
+                </div>
+            {{/with}}
+        </div>
+    </div>
+</fieldset>

@@ -11,6 +11,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         actions: {
             addExperience: this.#onAddExperience,
             removeExperience: this.#onRemoveExperience,
+            addAttack: this.#onAddAttack,
+            removeAttack: this.#onRemoveAttack,
             addDamage: this.#onAddDamage,
             removeDamage: this.#onRemoveDamage
         }
@@ -64,8 +66,28 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         }));
         featureGroups[1].features.push(...features.filter(f => !featureFormsTypes.includes(f.system.featureForm)));
         context.featureGroups = featureGroups;
+        context.typeDataFields = this.document.system.typeData ? 
+            context.systemFields.typeData.types[this.document.system.typeData.type]?.fields : null;
 
         return context;
+    }
+
+    async _processSubmitData(event, form, submitData, options) {
+        // If the user is changing type, they may risk deleting certain data. Warn if that will happen.
+        const actor = this.actor;
+        if (actor.system.typeData && submitData.system?.type && submitData.system?.type !== actor.system.type) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: _loc('DAGGERHEART.ACTORS.Adversary.changeType.title')
+                },
+                content: _loc('DAGGERHEART.ACTORS.Adversary.changeType.content')
+            });
+            if (!confirm) {
+                this.render();
+                return;
+            }
+        }
+        return super._processSubmitData(event, form, submitData, options);
     }
 
     /* -------------------------------------------- */
@@ -124,5 +146,33 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         this.actor.update({
             'system.attack.damage.main': null
         });
+    }
+
+    /**
+     * @this DHAdversarySettings 
+     * @type {ApplicationClickAction}
+     */
+    static #onAddAttack() {
+        this.actor.update({
+            'system.attack': _replace(this.document.system.schema.fields.attack.getInitialValue())
+        })
+    }
+
+    /**
+     * @this DHAdversarySettings 
+     * @type {ApplicationClickAction}
+     */
+    static async #onRemoveAttack(event) {
+        const confirm = event.shiftKey 
+            || await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: _loc('COMMON.AreYouSure')
+                },
+                content: _loc('DAGGERHEART.ACTORS.Adversary.confirmDeleteAttack')
+            });
+
+        if (confirm) {
+            this.actor.update({ 'system.attack': null });
+        }
     }
 }

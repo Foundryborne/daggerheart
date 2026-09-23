@@ -1,4 +1,5 @@
 import { abilities } from '../../config/actorConfig.mjs';
+import { getAllResources } from '../../helpers/utils.mjs';
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -90,7 +91,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                 ...x,
                 label: x.itemId
                     ? this.action.parent.parent.name
-                    : game.i18n.localize(CONFIG.DH.GENERAL.abilityCosts[x.key].label)
+                    : game.i18n.localize(getAllResources()[x.key].label)
             }));
             context.canRoll = game.system.api.fields.ActionFields.CostField.hasCost.call(
                 this.action ?? { actor: this.actor },

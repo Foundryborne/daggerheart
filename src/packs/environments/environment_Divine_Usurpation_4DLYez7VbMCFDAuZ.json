@@ -24,7 +24,7 @@
     "impulses": "Collect power, overawe, silence dissent",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 110,
+      "page": null,
       "artist": ""
     }
   },
@@ -204,7 +204,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "IHLJjpOQyWjmCLAL",
       "img": "icons/magic/unholy/hands-circle-light-green.webp",
@@ -227,7 +228,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "fA2wVTxpDPaTlP9v",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
@@ -280,7 +282,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "OWUM3eFiZrIn0Bjd",
       "img": "icons/magic/unholy/orb-hands-pink.webp",
@@ -340,17 +343,9 @@
                   "applyTo": "hitPoints",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -393,7 +388,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "CL3wPZNOtw6m5WVT",
       "img": "icons/magic/unholy/hand-light-pink.webp",
@@ -401,7 +397,6 @@
         {
           "name": "Godslayer",
           "img": "icons/magic/unholy/hand-light-pink.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.4DLYez7VbMCFDAuZ.Item.CL3wPZNOtw6m5WVT",
           "transfer": false,
           "_id": "znFFS76Nopwb8Yi7",
           "type": "base",
@@ -412,7 +407,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -437,7 +433,6 @@
         {
           "name": "Godslayer",
           "img": "icons/magic/unholy/hand-light-pink.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.4DLYez7VbMCFDAuZ.Item.CL3wPZNOtw6m5WVT",
           "transfer": false,
           "_id": "i3KYskkA9D4GHbXi",
           "type": "base",
@@ -451,21 +446,14 @@
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.physical.bonus",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": 0,
                 "priority": null,
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage.magical.bonus",
-                "type": "add",
-                "value": 0,
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.roll.attack.bonus",
+                "key": "system.bonuses.roll.bonus",
                 "type": "add",
                 "value": 0,
                 "priority": null,
@@ -477,7 +465,16 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": [
+              {
+                "type": "actionType",
+                "actionTypes": [
+                  "attack"
+                ],
+                "traits": []
+              }
+            ]
           },
           "disabled": false,
           "duration": {
@@ -486,7 +483,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god.</p><section class=\"secret\" id=\"secret-BLw5aVqkkCtUQXnk\"><p><em>Which god meets their end? What are their last words? How does the Usurper’s new stolen power manifest?</em></p></section>",
+          "description": "<p>Increase their Difficulty, damage, attack modifier, or give them a new feature from the slain god.</p><section class=\"secret\" id=\"secret-BLw5aVqkkCtUQXnk\"><p><em>Which god meets their end? What are their last words? How does the Usurper's new stolen power manifest?</em></p></section>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -587,7 +584,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AJdG1krRvixBFCZG",
       "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
@@ -638,17 +636,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -671,7 +661,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "GUAo44cJCnS1GE9p",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",

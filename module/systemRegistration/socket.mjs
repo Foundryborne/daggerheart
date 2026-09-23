@@ -1,5 +1,4 @@
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
-import PartySheet from '../applications/sheets/actors/party.mjs';
 
 export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
@@ -16,7 +15,7 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
             Hooks.call(socketEvent.Refresh, data);
             break;
         case socketEvent.DowntimeTrigger:
-            PartySheet.downtimeMoveQuery(data);
+            Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.downtimeTrigger, data);
             break;
         case socketEvent.TagTeamStart:
             Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, data);
@@ -75,10 +74,7 @@ export const registerSocketHooks = () => {
                         CONFIG.DH.SETTINGS.gameSettings.Resources.Fear,
                         Math.max(
                             0,
-                            Math.min(
-                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                                data.data
-                            )
+                            Math.min(game.system.settings.homebrew.maxFear, data.data)
                         )
                     );
                     break;

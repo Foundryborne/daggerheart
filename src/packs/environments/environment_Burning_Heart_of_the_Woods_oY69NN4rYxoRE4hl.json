@@ -35,7 +35,7 @@
     "impulses": "Beat out an uncanny rhythm for all to follow, corrupt the woods",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 108,
+      "page": null,
       "artist": ""
     }
   },
@@ -145,7 +145,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "hU32a8QZy62gdLGc",
       "img": "icons/magic/unholy/beams-impact-pink.webp",
@@ -168,7 +169,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "nrwEMjdl5F86oES9",
       "img": "icons/magic/unholy/projectile-smoke-trail-pink.webp",
@@ -250,7 +252,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "1aOeMMX0XuDtZbbB",
       "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
@@ -258,7 +261,6 @@
         {
           "name": "Grasping Vines",
           "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.oY69NN4rYxoRE4hl.Item.1aOeMMX0XuDtZbbB",
           "transfer": false,
           "_id": "gCkqvBUljsOsYacB",
           "type": "base",
@@ -270,7 +272,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -350,20 +353,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -415,7 +410,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "JKFkDvwUOP35Tsr1",
       "img": "icons/creatures/magical/construct-face-stone-pink.webp",
@@ -467,19 +463,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": true,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -542,7 +530,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "kYxuTZjH7HDUGeWh",
       "img": "icons/magic/air/fog-gas-smoke-brown.webp",

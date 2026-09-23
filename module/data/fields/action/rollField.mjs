@@ -1,3 +1,5 @@
+import FormulaField from '../formulaField.mjs';
+
 const fields = foundry.data.fields;
 
 export class DHActionRollData extends foundry.abstract.DataModel {
@@ -12,7 +14,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 label: 'DAGGERHEART.GENERAL.Trait.single'
             }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
-            bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
+            bonus: new FormulaField({ nullable: true, initial: null }),
             advState: new fields.StringField({
                 choices: CONFIG.DH.ACTIONS.advantageState,
                 initial: 'neutral',
@@ -87,7 +89,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 if (this.type === CONFIG.DH.GENERAL.rollTypes.attack.id)
                     modifiers.push({
                         label: 'Bonus to Hit',
-                        value: this.bonus ?? this.parent.actor.system.attack.roll.bonus ?? 0
+                        value: this.bonus ?? this.parent.actor.system.attack?.roll.bonus ?? 0
                     });
                 break;
             default:
@@ -142,8 +144,6 @@ export default class RollField extends fields.EmbeddedDataField {
     prepareConfig(config) {
         if (!config.hasRoll) return;
 
-        config.dialog.configure = RollField.getAutomation() ? !config.dialog.configure : config.dialog.configure;
-
         const roll = {
             baseModifiers: this.roll.getModifier(),
             label: 'Attack',
@@ -156,18 +156,5 @@ export default class RollField extends fields.EmbeddedDataField {
         if (this.roll.type === 'diceSet' || !this.hasRoll) roll.lite = true;
 
         config.roll = roll;
-    }
-
-    /**
-     * Return the automation setting for execute method for current user role
-     * @returns {boolean} If execute should be triggered automatically
-     */
-    static getAutomation() {
-        return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.players)
-        );
     }
 }

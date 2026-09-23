@@ -28,7 +28,7 @@
     "impulses": "Buy low, and sell high, tempt and tantalize with wares from near and far",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 104,
+      "page": null,
       "artist": ""
     }
   },
@@ -138,7 +138,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "w8YmhoWPGc66Wrx3",
       "img": "icons/commodities/currency/coins-assorted-mix-copper-silver-gold.webp",
@@ -161,7 +162,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "60uDqt9omFifZ7xd",
       "img": "icons/commodities/treasure/brooch-jeweled-pink.webp",
@@ -292,7 +294,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "56qjiKMoN6S9riI6",
       "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
@@ -309,13 +312,14 @@
       "name": "Crowd Closes In",
       "type": "feature",
       "system": {
-        "description": "<p> When one of the PCs splits from the group, the crowds shift and cut them off  from the party.</p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd's movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
+        "description": "<p>When one of the PCs splits from the group, the crowds shift and cut them off  from the party.</p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd's movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
         "resource": null,
         "actions": {},
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "l2FzZpR2reVmlkdp",
       "img": "icons/skills/movement/arrow-upward-blue.webp",

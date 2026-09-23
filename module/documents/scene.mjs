@@ -28,7 +28,7 @@ export default class DhScene extends Scene {
 
     /** Retrieve size and clear size-sync batch, make updates. */
     #processSyncBatch = foundry.utils.debounce(() => {
-        const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+        const tokenSizes = game.system.settings.homebrew.tokenSizes;
         const entries = this.#sizeSyncBatch
             .entries()
             .toArray()

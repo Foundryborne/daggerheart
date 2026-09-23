@@ -54,7 +54,7 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -63,14 +63,13 @@
     {
       "name": "Mythic Dust",
       "img": "icons/commodities/materials/bowl-powder-grey.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.Zsh2AvZr8EkGtLyw",
       "transfer": false,
       "_id": "L68lFhuWdS3ppDxR",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.magical.dice",
+            "key": "system.bonuses.damage.dice",
             "type": "add",
             "value": "1d12",
             "priority": null,
@@ -82,7 +81,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "damageType",
+            "damageType": "magical"
+          }
+        ]
       },
       "disabled": false,
       "duration": {
@@ -106,7 +111,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 6200000,
   "flags": {},
   "_key": "!items!Zsh2AvZr8EkGtLyw"
 }

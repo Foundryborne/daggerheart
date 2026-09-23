@@ -1,3 +1,4 @@
+import { nestedReplaceFormulaData } from '../../helpers/utils.mjs';
 import DHDamageAction from './damageAction.mjs';
 
 export default class DHAttackAction extends DHDamageAction {
@@ -9,32 +10,11 @@ export default class DHAttackAction extends DHDamageAction {
 
     prepareData() {
         super.prepareData();
-        if (this.item?.system?.attack) {
-            if (this.damage.main?.includeBase) {
-                const baseDamage = this.getParentHitPointDamage();
-                if (baseDamage) {
-                    if (!this.damage.main) {
-                        this.damage.main = baseDamage;
-                    } else {
-                        for (const type of baseDamage.type) this.damage.main.type.add(type);
 
-                        this.damage.main.value.custom = {
-                            enabled: true,
-                            formula: `${baseDamage.value.getFormula()} + ${this.damage.main.value.getFormula()}`
-                        };
-                    }
-                }
-            }
-            
-            if (this.roll.useDefault) {
-                this.roll.trait = this.item.system.attack.roll.trait;
-                this.roll.type = 'attack';
-            }
+        if (this.roll.useDefault) {
+            this.roll.trait = this.item.system.attack.roll.trait;
+            this.roll.type = 'attack';
         }
-    }
-
-    getParentHitPointDamage() {
-        return this.item?.system?.attack.damage.main;
     }
 
     get damageFormula() {
@@ -42,13 +22,6 @@ export default class DHAttackAction extends DHDamageAction {
         if (!hitPointsPart) return '0';
 
         return hitPointsPart.value.getFormula();
-    }
-
-    get altDamageFormula() {
-        const hitPointsPart = this.damage.main;
-        if (!hitPointsPart) return '0';
-
-        return hitPointsPart.valueAlt.getFormula();
     }
 
     async use(event, options) {
@@ -94,10 +67,8 @@ export default class DHAttackAction extends DHDamageAction {
         if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
-        const useAltDamage = this.actor?.effects?.find(x => x.type === 'horde')?.active;
-        for (const { value, valueAlt, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
-            const usedValue = useAltDamage ? valueAlt : value;
-            const damageString = Roll.replaceFormulaData(usedValue.getFormula(), this.actor?.getRollData() ?? {});
+        for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
+            const damageString = nestedReplaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
             const str = damageString
                 ? damageString
                 : game.i18n.format('DAGGERHEART.GENERAL.missingX', {

@@ -13,7 +13,9 @@
  */
 
 import { getScrollTextData } from '../../helpers/utils.mjs';
-import { changeTypes } from './_module.mjs';
+import { changeTypes } from './changeTypes/_module.mjs'
+import { conditionalTypes } from './conditionalTypes/_module.mjs';
+import { migrations } from './migrations/_module.mjs';
 
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
@@ -56,6 +58,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                 }),
                 description: new fields.HTMLField({ label: 'DAGGERHEART.GENERAL.description' })
             }),
+            conditionals: new fields.ArrayField(new fields.TypedSchemaField(conditionalTypes)),
             rangeDependence: new fields.SchemaField({
                 type: new fields.StringField({
                     required: true,
@@ -115,11 +118,29 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         return true;
     }
 
-    get isSuppressed() {
+    /** 
+     * Tests all conditionals of a specific phase and returns if there are no failures
+     * @param {object} rollData
+     * @param {object} [options]
+     * @param {keyof typeof CONFIG.DH.EFFECTS.conditionalPhases} [options.phase] the phase to run on, by default its preparation
+     * @param {(keyof typeof CONFIG.DH.EFFECTS.conditionalFailureModes) | null} [options.failureMode] the failure mode to check, by default its all
+     * @returns if the conditionals of the phase pass
+     */
+    testConditionals(rollData, { 
+        phase = CONFIG.DH.EFFECTS.conditionalPhases.preparation.id, 
+        failureMode = null
+    } = {}) {
         for (const change of this.changes) {
-            if (change.isSuppressed) return true;
+            if (change.isSuppressed) return false;
         }
-        return false;
+
+        const conditionalFailed = rollData && this.conditionals.some(x => 
+            x.constructor.metadata.phase === phase && 
+            (!failureMode || x.constructor.metadata.failureMode === failureMode) &&
+            !x.test(rollData)
+        );
+
+        return !rollData || !conditionalFailed; 
     }
 
     get armorChange() {
@@ -155,18 +176,14 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
         const allowed = await super._preUpdate(changed, options, userId);
         if (allowed === false) return false;
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        if (
-            autoSettings.resourceScrollTexts &&
-            this.parent.actor?.type === 'character' &&
-            this.parent.actor.system.resources.armor
-        ) {
+        const actor = this.parent.actor;
+        const resourceScrollTexts = game.system.settings.automation.resourceScrollTexts;
+        if (resourceScrollTexts && actor?.type === 'character' && actor.system.resources.armor) {
             const armorEffect = changed.system?.changes?.find(x => x.type === 'armor');
-            const newArmorTotal =
-                armorEffect?.value?.current + (this.parent.actor.system.armor?.system?.armor?.current ?? 0);
+            const newArmorTotal = armorEffect?.value?.current + (actor.system.armor?.system?.armor?.current ?? 0);
 
-            if (armorEffect && newArmorTotal !== this.parent.actor.system.armorScore.value) {
-                const armorData = getScrollTextData(this.parent.actor, { value: newArmorTotal }, 'armor');
+            if (armorEffect && newArmorTotal !== actor.system.armorScore.value) {
+                const armorData = getScrollTextData(actor, { value: newArmorTotal }, 'armor');
                 options.scrollingTextData = [armorData];
             }
         }
@@ -180,9 +197,9 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     }
 
     static migrateData(source) {
-        if (source.rangeDependence?.enabled === false) {
-            source.rangeDependence = null;
-        }
+        for (const migration of migrations) {
+            migration(source);
+        } 
 
         return super.migrateData(source);
     }

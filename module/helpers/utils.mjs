@@ -1,58 +1,20 @@
 import { diceTypes, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
+import { sortBy } from './functional.mjs';
+export * from './functional.mjs';
 
 /**
- * @import DhpActor from '../documents/actor.mjs';
+ * @import DhActor from '../documents/actor.mjs';
  */
-
-/** Given an object, returns a new object with the keys listed in keys */
-export function pick(obj, keys) {
-    return keys.reduce((r, k) => {
-        r[k] = obj[k];
-        return r;
-    }, {});
-}
-
-/** Given an object, returns a new object with the keys not listed in keys */
-export function omit(obj, keys) {
-    const keysAsString = keys.map(k => String(k));
-    return Object.keys(obj).reduce((r, k) => {
-        if (!keysAsString.includes(k)) {
-            r[k] = obj[k];
-        }
-        return r;
-    }, {});
-}
 
 /** 
- * Given an object, returns a new object with each value altered by a transform function
- * @template {string} K
- * @template V
- * @template R
- * @param {Record<K, V>} obj object to transform
- * @param {(value: V, index: number) => R} transform mapping function
- * @returns {Record<K, R>} new object with mapped values
+ * @param {unknown} value
+ * @returns {string}
  */
-export function mapValues(obj, transform) {
-    return Object.entries(obj).reduce((r, [k, v], index) => {
-        r[k] = transform(v, index);
-        return r;
-    }, {});
-}
-
-/**
- * Given an array, creates an object that references each element by a key gen function
- * @template T
- * @template K
- * @param {T[]} arr 
- * @param {(value: T) => K} keyFn 
- * @returns {Record<K, T>}
- */
-export function keyBy(arr, keyFn) {
-    return arr.reduce((r, current) => {
-        r[keyFn(current)] = current;
-        return r;
-    }, {})
+export function signedNumber(value, { zero = '+' } = {}) {
+    const number = Number(value);
+    if (number === 0) return `${zero ?? ''}${value}`;
+    return number > 0 ? `+${value}` : String(value);
 }
 
 export function rollCommandToJSON(text) {
@@ -206,39 +168,6 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
     }, {});
 };
 
-// Fix on Foundry native formula replacement for DH
-const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
-    /* Inserting global data */
-    const defaultingTypes = [
-        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
-        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
-    ];
-
-    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
-    return nativeReplaceFormulaData(formula, data, { missing, warn });
-};
-
-foundry.utils.setProperty(foundry, 'dice.terms.Die.MODIFIERS.sc', 'selfCorrecting');
-
-/**
- * Return the configured value as result if 1 is rolled
- * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
- * @param {string} modifier     The matched modifier query
- */
-foundry.dice.terms.Die.prototype.selfCorrecting = function (modifier) {
-    const rgx = /(?:sc)([0-9]+)/i;
-    const match = modifier.match(rgx);
-    if (!match) return false;
-    let [target] = match.slice(1);
-    target = parseInt(target);
-    for (const r of this.results) {
-        if (r.result === 1) {
-            r.result = target;
-        }
-    }
-};
-
 export const getDamageKey = damage => {
     return ['none', 'minor', 'major', 'severe', 'massive', 'any'][damage];
 };
@@ -257,6 +186,27 @@ export const damageKeyToNumber = key => {
         any: 5
     }[key];
 };
+
+/**
+ * Shorthand for creating an html element with certain properties as shorthand
+ * @template {keyof HTMLElementTagNameMap} T
+ * @param {T} tagName 
+ * @returns {HTMLElementTagNameMap[T]}
+ */
+export function createHtmlElement(tagName, { text = null, html = null, className = null, attributes, data }) {
+    const tag = document.createElement(tagName);
+    if (text) tag.textContent = text;
+    if (html) tag.innerHTML = html;
+    if (className) tag.classList.add(...className.split(' '));
+    for (const [key, value] of Object.entries(attributes ?? {})) {
+        tag.setAttribute(key, value);
+    }
+    for (const [key, value] of Object.entries(data ?? {})) {
+        if (value === null || value === undefined) continue;
+        tag.dataset[key] = String(value);
+    }
+    return tag;
+}
 
 export default function constructHTMLButton({
     label,
@@ -378,7 +328,7 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
 export function updateLinkedItemApps(options, sheet) {
     for (const featureUuid of [...(options.toUnlink ?? []), ...(options.toLink ?? [])]) {
         const doc = foundry.utils.fromUuidSync(featureUuid);
-        if (doc) doc.apps[sheet.id] = sheet;
+        if (doc?.apps) doc.apps[sheet.id] = sheet;
     }
 }
 
@@ -396,10 +346,6 @@ export const itemAbleRollParse = (value, actor, item) => {
         return '';
     }
 };
-
-export const arraysEqual = (a, b) =>
-    a.length === b.length &&
-    [...new Set([...a, ...b])].every(v => a.filter(e => e === v).length === b.filter(e => e === v).length);
 
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
 
@@ -431,18 +377,6 @@ export function createScrollText(actor, data) {
             });
         });
     }
-}
-
-export function shuffleArray(array) {
-    let currentIndex = array.length;
-    while (currentIndex != 0) {
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
 }
 
 export function itemIsIdentical(a, b) {
@@ -728,7 +662,7 @@ export function getArmorSources(actor) {
         // Get the origin item. Since the actor is already loaded, it should already be cached
         // Consider the relative function versions if this causes an issue
         const origin = doc.origin ? foundry.utils.fromUuidSync(doc.origin) : doc;
-        const useParentName = doc.parent && !(doc.parent instanceof Actor);
+        const useParentName = doc.parent && !(doc.parent instanceof Actor) && doc.parent.type !== 'armor';
         const name = doc.origin || !useParentName ? doc.name : doc.parent.name;
 
         return {
@@ -782,27 +716,6 @@ export function resetAndRerenderActors() {
         actor.reset();
         actor.render();
     }
-}
-
-/**
- * Returns an array sorted by a function that returns a thing to compare, or an array to compare in order
- * Similar to lodash's sortBy function.
- */
-export function sortBy(arr, fn) {
-    const directCompare = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
-    const cmp = (a, b) => {
-        const resultA = fn(a);
-        const resultB = fn(b);
-        if (Array.isArray(resultA) && Array.isArray(resultB)) {
-            for (let idx = 0; idx < Math.min(resultA.length, resultB.length); idx++) {
-                const result = directCompare(resultA[idx], resultB[idx]);
-                if (result !== 0) return result;
-            }
-            return 0;
-        }
-        return directCompare(resultA, resultB);
-    };
-    return arr.sort(cmp);
 }
 
 /**
@@ -900,7 +813,7 @@ export async function triggerChatRollFx(rolls, options = { whisper: false, blind
 }
 
 export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
-    const { hopeFear } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+    const { hopeFear } = game.system.settings.automation;
     return (!game.user.isGM || options.gmAsPlayer) ? hopeFear.players : hopeFear.gm; 
 }
 
@@ -908,8 +821,8 @@ export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
  * Returns the given actor if its a world actor, 
  * finds a world actor equivalent, 
  * or imports the actor and returns the imported actor.
- * @param {DhpActor} baseActor 
- * @returns {Promise<DhpActor>} a world actor
+ * @param {DhActor} baseActor 
+ * @returns {Promise<DhActor>} a world actor
  */
 export async function getWorldActor(baseActor) {
     if (baseActor.inCompendium) {
@@ -921,7 +834,7 @@ export async function getWorldActor(baseActor) {
         if (worldActorCopy) return worldActorCopy;
 
         const baseActorData = baseActor;
-        return await game.system.api.documents.DhpActor.create({ 
+        return await game.system.api.documents.DhActor.create({ 
             ...baseActorData, 
             _stats: { 
                 ...baseActorData._stats, 
@@ -931,4 +844,76 @@ export async function getWorldActor(baseActor) {
     }
 
     return baseActor;
+}
+
+/**
+ * Get all possible resources. 
+ * This combines the possible resources for all actor types and adds both optional resources and homebrew resources.
+ * @returns { Map<string, Object> } 
+ */
+export function getAllResources() {
+    const actorResources = {
+        ...CONFIG.DH.RESOURCE.companion.all,
+        ...CONFIG.DH.RESOURCE.adversary.all,
+        ...CONFIG.DH.RESOURCE.character.all
+    }
+
+    const additionalResources = {
+        armor: {
+            id: 'armor',
+            label: 'DAGGERHEART.CONFIG.HealingType.armor.name',
+            group: 'TYPES.Actor.character'
+        },
+        fear: {
+            id: 'fear',
+            label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
+            group: 'TYPES.Actor.adversary'
+        },
+        resource: {
+            id: 'resource',
+            label: 'DAGGERHEART.GENERAL.Resource.single'
+        }
+    }
+
+    const homebrew = game.system.settings.homebrew.toObject();
+    const homebrewResources = Object.values(homebrew.resources).reduce((acc, category) => {
+        for (const [key, resource] of Object.entries(category.resources)) {
+            acc[key] = resource;
+        }
+
+        return acc;
+    }, {});
+
+    return {
+        ...actorResources,
+        ...additionalResources,
+        ...homebrewResources,
+        ...CONFIG.DH.RESOURCE.optionalResources
+    }
+}
+
+export function getAllResourceLabels() {
+    return Object.entries(getAllResources()).reduce((acc, [key, data]) => {
+        const configData = CONFIG.DH.GENERAL.healingTypes[key];
+        acc[key] = {
+            ...data,
+            inChatRoll: configData ? _loc(`DAGGERHEART.CONFIG.HealingType.${key}.inChatRoll`) : data.label
+        };
+        return acc;
+    }, {});
+}
+
+/** 
+ * Performs a replace data that reruns if the new result includes @ strings
+ * It only repeats once for efficiency, full recursion would need to track previous results.
+ * This handles the case where lookup looks up a damage formula that also needs to be resolved.
+ * @param {string} formula
+ * @param {object} rollData
+ * @returns {string}
+ */
+export function nestedReplaceFormulaData(formula, rollData) {
+    const replacement = Roll.replaceFormulaData(formula, rollData);
+    return replacement !== formula && replacement.includes('@') 
+        ? Roll.replaceFormulaData(replacement, rollData)
+        : replacement;
 }

@@ -54,18 +54,18 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 16,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Nemesis",
       "img": "icons/magic/unholy/silhouette-robe-evil-power.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.DPKmipNRlSAMs2Cg",
       "transfer": false,
       "_id": "JoBFHkhLbm4JyuZm",
       "type": "base",
@@ -76,7 +76,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

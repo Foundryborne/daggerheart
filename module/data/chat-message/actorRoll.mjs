@@ -89,7 +89,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     get actionItem() {
         switch (this.source.originItem.type) {
             case CONFIG.DH.ITEM.originItemType.restMove:
-                const restMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves;
+                const restMoves = game.system.settings.homebrew.restMoves;
                 return Array.from(foundry.utils.getProperty(restMoves, `${this.source.originItem.itemPath}`).actions)[
                     this.source.originItem.actionIndex
                 ];
@@ -122,6 +122,14 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     get hasUnfinishedSaves() {
         return this.hasSave && !this.targeting.usingSelect && this.currentHitTargets.some(x => !x.saveResult);
+    }
+
+    /** 
+     * Returns if the roll would apply any effects
+     * @returns {boolean}
+     */
+    get appliesEffects() {
+        return this.hasEffect && !this.action?.evolution;
     }
 
     /**
@@ -270,8 +278,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             for (const key of Object.keys(flatDamageKeys)) {
                 if (key === 'hitPoints' && source.hasDamage && !source.hasHealing) {
                     source.damage.main = getRoll('hitPoints');
-                } 
-                else {
+                } else {
                     source.damage.resources[key] = getRoll(key);
                 }
             }

@@ -11,7 +11,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
-            showItem: DhActiveEffectConfig.#onShowItem
+            showItem: DhActiveEffectConfig.#onShowItem,
+            removeConditional: DhActiveEffectConfig.#onRemoveConditional,
+            addCustomChange: DhActiveEffectConfig.#onAddCustomChange,
+            removeCustomChange: DhActiveEffectConfig.#onRemoveCustomChange
         }
     };
 
@@ -19,6 +22,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         header: { template: 'systems/daggerheart/templates/sheets/activeEffect/header.hbs' },
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
+        conditionals: { template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs' },
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
@@ -33,6 +37,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             tabs: [
                 { id: 'details', icon: 'fa-solid fa-book' },
                 { id: 'settings', icon: 'fa-solid fa-bars', label: 'DAGGERHEART.GENERAL.Tabs.settings' },
+                { id: 'conditionals', icon: 'fa-solid fa-sliders', label: 'DAGGERHEART.GENERAL.Tabs.conditionals' },
                 { id: 'changes', icon: 'fa-solid fa-gears' }
             ],
             initial: 'details',
@@ -46,14 +51,15 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
      */
     static getChangeChoices() {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty', 'DhNPC'];
+        const ignoredRuleKeys = ['standardAttack'];
 
-        const getAllLeaves = (root, group, parentPath = '') => {
+        const getAllLeaves = (root, group, ignoredKeys = [], parentPath = '') => {
             const leaves = [];
             const rootKey = `${parentPath ? `${parentPath}.` : ''}${root.name}`;
             for (const field of Object.values(root.fields)) {
                 if (field instanceof foundry.data.fields.SchemaField)
-                    leaves.push(...getAllLeaves(field, group, rootKey));
-                else
+                    leaves.push(...getAllLeaves(field, group, ignoredKeys, rootKey));
+                else if (!ignoredKeys.includes(field.name))
                     leaves.push({
                         value: `${rootKey}.${field.name}`,
                         label: game.i18n.localize(field.label),
@@ -64,6 +70,19 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
             return leaves;
         };
+
+        const extraChoices = Object.entries(CONFIG.DH.ACTOR.activeEffectExtraPaths).reduce((acc, [key, paths]) => {
+            acc[key] = paths.map(x => ({
+                ...x,
+                label: _loc(x.label),
+                hint: x.hint ? _loc(x.hint) : null,
+                group: _loc(x.group),
+                isFullPath: true
+            }));
+
+            return acc;
+        }, {});
+
         return Object.keys(game.system.api.models.actors).reduce((acc, key) => {
             if (ignoredActorKeys.includes(key)) return acc;
 
@@ -95,12 +114,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             });
 
             const bonuses = getAllLeaves(model.schema.fields.bonuses, group);
-            const rules = getAllLeaves(model.schema.fields.rules, group);
+            const rules = getAllLeaves(model.schema.fields.rules, group, ignoredRuleKeys);
+            const extra = extraChoices[model.metadata.type];
 
-            acc.push(...bars, ...values, ...rules, ...bonuses);
+            acc.push(...extra, ...bars, ...values, ...rules, ...bonuses);
 
             return acc;
-        }, []);
+        }, extraChoices.allActors);
     }
 
     _attachPartListeners(partId, htmlElement, options) {
@@ -145,7 +165,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     return itemElement;
                 },
                 onSelect: function (item) {
-                    element.value = `system.${item.value}`;
+                    element.value = item.isFullPath ? item.value : `system.${item.value}`;
                 },
                 click: e => e.fetch(),
                 customize: function (_input, _inputRect, container) {
@@ -155,14 +175,14 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             });
         });
 
+        htmlElement.querySelector('.conditional-select-input')
+            ?.addEventListener('change', this.#onAddConditional.bind(this));
+
         htmlElement.querySelector('.stacking-change-checkbox')
             ?.addEventListener('change', this.#onStackingChangeToggle.bind(this));
 
         htmlElement.querySelector('.range-dependence-change-checkbox')
             ?.addEventListener('change', this.#onRangeDependenceChangeToggle.bind(this));
-
-        for (const element of htmlElement.querySelectorAll('.typed-change-checkbox'))
-            element.addEventListener('change', this.#onTypedChangeToggle.bind(this));
 
         htmlElement.querySelector('.armor-damage-thresholds-checkbox')
             ?.addEventListener('change', this.#onArmorDamageThresholdToggle.bind(this));
@@ -179,9 +199,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         const partContext = await super._preparePartContext(partId, context);
         switch (partId) {
             case 'header':
-                const originItem = this.document?.item && this.document?.transfer ? this.document.item
-                    : fromUuidSync(this.document.origin);
-                if (originItem) partContext.originItem = originItem.item ?? originItem;
+                const originItem = this.document?.item ?? await fromUuid(this.document.origin);
+                if (originItem) {
+                    partContext.originItem = originItem.item ?? (originItem instanceof Item ? originItem : null);
+                }
                 break;
             case 'details':
                 partContext.isItemEffect = partContext.isItemEffect || this.options.isSetting;
@@ -207,6 +228,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     group: CONST.ACTIVE_EFFECT_TIME_DURATION_UNITS.includes(value) ? groups.time : groups.combat
                 }));
                 break;
+            case 'conditionals': 
+                partContext.conditionalOptions = CONFIG.DH.EFFECTS.conditionalTypes;
+                break;
             case 'changes':
                 const typedChanges = this.document.changes.reduce((acc, change, index) => {
                     if (change.single) acc[change.type] = { ...change, index };
@@ -215,10 +239,19 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 }, {});
                 partContext.changes = partContext.changes.filter(c => !!c);
                 partContext.typedChanges = typedChanges;
+                partContext.creatableTypes = ['armor', 'standardAttack']
+                    .filter(t => !typedChanges[t])
+                    .map(t => ({ value: t, label: _loc(CONFIG.DH.EFFECTS.customChangeTypes[t]?.label) }));
                 break;
         }
 
         return partContext;
+    }
+
+    #onAddConditional(event) {
+        const conditionals = [...this.document.system.conditionals, { type: event.target.value }];
+        event.target.value = '';
+        return this.submit({ updateData: { system: { conditionals } } });
     }
 
     #onStackingChangeToggle(event) {
@@ -243,37 +276,6 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 : null
         };
         return this.submit({ updateData: { system: systemData } });
-    }
-
-    #onTypedChangeToggle(event) {
-        const { type, index } = event.target.dataset;
-        if (event.target.checked) {
-            this.addCustomChange(type);
-        } else {
-            this.removeCustomChange(index);
-        }
-    }
-
-    /**
-     * Add a customChangeType to the changes list
-     * @param {string} type a key from game.system.api.data.activeEffects.changeTypes
-     */
-    addCustomChange(type) {
-        const changeType = game.system.api.data.activeEffects.changeTypes[type];
-        if (!changeType) return;
-
-        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
-        const changes = Object.values(submitData.system?.changes ?? {});
-        changes.push(changeType.getInitialValue());
-        return this.submit({ updateData: { system: { changes } } });
-    }
-
-    removeCustomChange(indexString) {
-        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
-        const changes = Object.values(submitData.system.changes);
-        const index = Number(indexString);
-        changes.splice(index, 1);
-        return this.submit({ updateData: { system: { changes } } });
     }
 
     #onArmorDamageThresholdToggle(event) {
@@ -337,6 +339,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             if (event.target.value === 'temporary') durationDescription.classList.add('visible');
             else durationDescription.classList.remove('visible');
         }
+
+        const conditionalComparatorMatch = event.target.name.match(/system.conditionals.\d.comparator/);
+        if (conditionalComparatorMatch) {
+            const parent = event.target.closest('[data-index]');
+            const comparator = CONFIG.DH.EFFECTS.conditionalComparators[event.target.value];
+            parent.querySelector('.conditional-value').hidden = comparator.ignoresValue;
+        }
     }
 
     /** @inheritDoc */
@@ -377,11 +386,57 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             app.render({ force: true });
         });
     }
-
-    static #onShowItem(event, button) {
+    
+    /**
+     * Handles viewing an item linked from the effect header
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
+    static #onShowItem(_event, button) {
         const { itemId } = button.dataset;
         if (!itemId) return;
         const item = fromUuidSync(itemId);
         if (item.visible) item.sheet?.render({ force: true });
+    }
+
+    /**
+     * Hadnles removing a conditional
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
+    static #onRemoveConditional(_event, button) {
+        const conditionals = this.document.system.conditionals
+        const index = Number(button.dataset.index);
+        conditionals.splice(index, 1);
+        return this.submit({ updateData: { system: { conditionals } } });
+    }
+
+    /**
+     * Handles adding a custom change type
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
+    static #onAddCustomChange() {
+        const select = this.element.querySelector('.change-type');
+        const changeType = game.system.api.data.activeEffects.changeTypes[select?.value];
+        if (!changeType) return;
+
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        changes.push(changeType.getInitialValue());
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    /**
+     * Handles removing a custom change type
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+    */
+    static #onRemoveCustomChange(event) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system.changes);
+        const index = Number(event.target.dataset.index);
+        changes.splice(index, 1);
+        return this.submit({ updateData: { system: { changes } } });
     }
 }

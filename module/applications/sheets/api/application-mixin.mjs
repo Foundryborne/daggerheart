@@ -42,7 +42,7 @@ const typeSettingsMap = {
  *
  * @typedef {object} TagifyConfig
  * @property {String} selector - The CSS selector for get the element to transform into a tag input
- * @property {Record<string, TagOption> | (() => Record<string, TagOption>)} options - Available tag options as key-value pairs
+ * @property {Record<string, TagOption> | (() => Record<string, TagOption> | Promise<Record<string, TagOption>>)} options - Available tag options as key-value pairs
  * @property {TagChangeCallback} callback - Callback function triggered when tags change
  * @property {TagifyOptions} [tagifyOptions={}] - Additional configuration for Tagify
  *
@@ -73,7 +73,7 @@ const typeSettingsMap = {
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
-        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+        #nonHeaderAttribution = ['ancestry', 'community', 'domainCard'];
 
         /**
          * @param {DHSheetV2Configuration} [options={}]
@@ -100,7 +100,8 @@ export default function DHApplicationMixin(Base) {
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#onAddNewItem,
                 browseItem: DHSheetV2.#onBrowseItem,
-                editAttribution: DHSheetV2.#editAttribution
+                editAttribution: DHSheetV2.#editAttribution,
+                configureLevelUpOptions: DHSheetV2.#configureLevelUpOptions
             },
             contextMenus: [
                 {
@@ -120,6 +121,16 @@ export default function DHApplicationMixin(Base) {
                     }
                 }
             ],
+            window: {
+                controls: [
+                    {
+                        icon: 'fa-solid fa-angles-up fa-fw',
+                        label: 'DAGGERHEART.UI.Tooltip.configureLevelupOptions',
+                        action: 'configureLevelUpOptions',
+                        visible: DHSheetV2.#hasLevelUpOptions
+                    }
+                ]
+            },
             dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
         };
@@ -128,12 +139,8 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const hideAttribution = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.appearance
-            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
@@ -143,16 +150,16 @@ export default function DHApplicationMixin(Base) {
             return frame;
         }
 
+        static #hasLevelUpOptions() {
+            return this.document.system.metadata.hasLevelUpOptions;
+        }
+
         /**
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const hideAttribution = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.appearance
-            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
 
@@ -284,7 +291,7 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
-            this._createTagifyElements(this.options.tagifyConfigs);
+            await this._createTagifyElements(this.options.tagifyConfigs);
 
             for (const d of this.options.dragDrop) {
                 new foundry.applications.ux.DragDrop.implementation({
@@ -323,10 +330,10 @@ export default function DHApplicationMixin(Base) {
          * @throws {Error} If required properties are missing in config objects
          * @param {TagifyConfig[]} tagConfigs
          */
-        _createTagifyElements(tagConfigs) {
+        async _createTagifyElements(tagConfigs) {
             if (!Array.isArray(tagConfigs)) throw new TypeError('tagConfigs must be an array');
 
-            tagConfigs.forEach(config => {
+            for (const config of tagConfigs) {
                 try {
                     const { selector, options, callback, tagifyOptions = {} } = config;
 
@@ -341,14 +348,14 @@ export default function DHApplicationMixin(Base) {
                         throw new Error(`Element not found with selector: ${selector}`);
                     }
                     // Resolve dynamic options if function provided
-                    const resolvedOptions = typeof options === 'function' ? options.call(this) : options;
+                    const resolvedOptions = typeof options === 'function' ? await options.call(this) : options;
 
                     // Initialize Tagify
                     tagifyElement(element, resolvedOptions, callback.bind(this), tagifyOptions);
                 } catch (error) {
                     console.error('Error initializing Tagify:', error);
                 }
-            });
+            }
         }
 
         /* -------------------------------------------- */
@@ -516,12 +523,12 @@ export default function DHApplicationMixin(Base) {
                         return doc?.isOwner && hasDamage;
                     },
                     onClick: async (event, target) => {
-                        const doc = await getDocFromElement(target),
-                            action = doc?.system?.attack ?? doc;
+                        const doc = await getDocFromElement(target);
+                        const action = doc.system.attack;
                         const config = action.prepareConfig(event);
                         config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                            this.document,
-                            doc
+                            action.getRollData(),
+                            this.document
                         );
                         config.hasRoll = false;
                         return action && action.workflow.get('damage').execute(config, null, true);
@@ -579,8 +586,40 @@ export default function DHApplicationMixin(Base) {
             context.source = this.document;
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
-            context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+            context.settings = game.system.settings.appearance;
+
             return context;
+        }
+
+        /**
+         * Prepare render context for the Effect part.
+         * @param {ApplicationRenderContext} context
+         * @param {ApplicationRenderOptions} options
+         * @returns {Promise<void>}
+         * @protected
+         */
+        async _prepareEffectsContext(context, _options) {
+            context.effects = {
+                actives: [],
+                inactives: []
+            };
+
+            const effects = this.document.allApplicableEffects?.({ noTransferArmor: true }) ?? this.document.effects;
+            for (const effect of effects) {
+                const list = effect.active ? context.effects.actives : context.effects.inactives;
+                const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();
+                const isSuppressed = effect.isSuppressed;
+                const invalid = !effect.system.testConditionals(rollData);
+                const unequipped = effect.item?.system.equipped === false;
+                list.push({
+                    effect,
+                    isSuppressed,
+                    invalid,
+                    suppressedMessage: isSuppressed
+                        ? _loc(`DAGGERHEART.UI.Tooltip.suppressedEffect.${invalid ? 'invalid' : unequipped ? 'unequipped' : 'general'}`)
+                        : null
+                });
+            }
         }
 
         /* -------------------------------------------- */
@@ -730,6 +769,10 @@ export default function DHApplicationMixin(Base) {
          */
         static async #editAttribution() {
             new game.system.api.applications.dialogs.AttributionDialog(this.document).render({ force: true });
+        }
+
+        static async #configureLevelUpOptions() {
+            new game.system.api.applications.dialogs.LevelupOptionsDialog(this.document).render({ force: true });
         }
 
         /**

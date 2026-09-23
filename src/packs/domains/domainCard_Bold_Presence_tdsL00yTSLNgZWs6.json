@@ -85,7 +85,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -102,14 +102,13 @@
     {
       "name": "Bold Presence",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.tdsL00yTSLNgZWs6",
       "transfer": false,
       "_id": "2XEYhuAcRGTtqvED",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.traits.presence.value",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": "@system.traits.strength.value",
             "priority": null,
@@ -122,7 +121,16 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [],
+            "traits": [
+              "presence"
+            ]
+          }
+        ]
       },
       "disabled": false,
       "duration": {

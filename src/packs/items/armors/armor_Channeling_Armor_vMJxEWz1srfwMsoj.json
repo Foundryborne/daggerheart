@@ -28,7 +28,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 57,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -45,7 +45,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.spellcast",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 1,
             "phase": "initial"
@@ -56,7 +56,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -65,7 +66,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

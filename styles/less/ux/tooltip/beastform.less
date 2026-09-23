@@ -1,0 +1,45 @@
+.dh-style.tooltip .beastform-tooltip-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    .tags.advantages {
+        width: 100%;
+        padding: 5px 10px;
+        position: relative;
+        
+        .tag {
+            background: @green-10;
+            color: @green;
+            border-color: @green;
+        }
+    }
+
+    .tooltip-tags {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding: 0 10px;
+        position: relative;
+
+        .tooltip-tag {
+            display: flex;
+            gap: 6px;
+            flex-direction: column;
+
+            .tooltip-tag-label-container {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                img {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+}

@@ -8,7 +8,9 @@
  *  images {
  *    full { value, isIcon, noColorFilter }
  *    empty { value, isIcon noColorFilter }
- *  }
+ *  },
+ *  isOptional,
+ *  isExtra
  */
 
 const characterBaseResources = Object.freeze({
@@ -62,6 +64,33 @@ const companionBaseResources = Object.freeze({
         label: 'DAGGERHEART.GENERAL.stress'
     }
 });
+
+export const optionalResources = {
+    favor: {
+        id: 'favor',
+        initial: 3,
+        max: 6,
+        label: 'DAGGERHEART.CONFIG.Resources.optionalResources.favor',
+        images: {
+            full: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 1 },
+            empty: { value: 'fa-solid fa-spaghetti-monster-flying', isIcon: true, opacity: 0.6 }
+        },
+        isOptional: true,
+        isExtra: true
+    },
+    focus: {
+        id: 'focus',
+        initial: 0,
+        max: 6,
+        label: 'DAGGERHEART.CONFIG.Resources.optionalResources.focus',
+        images: {
+            full: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 1 },
+            empty: { value: 'fa-solid fa-yin-yang', isIcon: true, opacity: 0.6 }
+        },
+        isOptional: true,
+        isExtra: true
+    }
+};
 
 export const character = {
     base: characterBaseResources,

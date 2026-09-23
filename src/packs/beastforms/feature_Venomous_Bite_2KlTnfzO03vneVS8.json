@@ -43,18 +43,18 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 13,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Poisoned",
       "img": "icons/creatures/abilities/fang-tooth-poison-green.webp",
-      "origin": "Item.O4IphLKL9ICiNwQR",
       "transfer": false,
       "_id": "TTyAKKoUCoYXSMs4",
       "type": "base",
@@ -66,7 +66,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

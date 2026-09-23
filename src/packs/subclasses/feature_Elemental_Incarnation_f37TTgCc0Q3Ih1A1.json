@@ -49,19 +49,11 @@
             ],
             "base": false,
             "resultBased": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -188,17 +180,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -268,18 +252,18 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 11,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Elemental Incarnation (Earth)",
       "img": "icons/magic/earth/construct-stone.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
       "transfer": false,
       "_id": "7xyUtUbBk5jbNnqY",
       "type": "base",
@@ -305,7 +289,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -330,7 +315,6 @@
     {
       "name": "Elemental Incarnation (Air)",
       "img": "icons/magic/air/fog-gas-smoke-dense-white.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
       "transfer": false,
       "_id": "3ck6CeapLxQVjE2W",
       "type": "base",
@@ -349,7 +333,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -374,7 +359,6 @@
     {
       "name": "Elemental Incarnation (Water)",
       "img": "icons/magic/water/wave-water-blue.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
       "transfer": false,
       "_id": "Jy6dpEbzkZ2eRDf5",
       "type": "base",
@@ -385,7 +369,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -410,7 +395,6 @@
     {
       "name": "Elemental Incarnation (Fire)",
       "img": "icons/magic/fire/elemental-fire-flying.webp",
-      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
       "transfer": false,
       "_id": "ANle8tuOEZIevTWv",
       "type": "base",
@@ -421,7 +405,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

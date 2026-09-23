@@ -1,0 +1,26 @@
+{
+  "name": "Demigod",
+  "type": "transformation",
+  "_id": "F3zNFGDbtnnvl3QO",
+  "img": "icons/magic/control/control-influence-rally-purple.webp",
+  "system": {
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null,
+      "artist": ""
+    },
+    "description": "<p>Demigods are mortal creatures whose veins flow with the blood of the gods.</p>",
+    "gmNotes": "",
+    "features": [
+      "Compendium.daggerheart.transformations.Item.mVRmsFUyoULPH3Ku",
+      "Compendium.daggerheart.transformations.Item.S03wpIyK6S6qENlu"
+    ],
+    "questions": "<ul><li><p>Your divinity has affected an aspect of your appearance. In what way do you look different from others?</p></li><li><p>Who bestowed demigod status upon you, and what trial did you complete to earn this gift?</p></li><li><p>You were made fun of as a child for your divine parentage. Why?</p></li><li><p>Why was the knowledge that you are a demigod kept from you for many years? Who kept this secret?</p></li><li><p>You have an obligation you must fulfill due to the immortal blood that runs in your veins. What is this duty?</p></li><li><p>In what way did your divinity initially manifest? Why did it surprise you?</p></li></ul>",
+    "loreReference": "demigod"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!F3zNFGDbtnnvl3QO"
+}

@@ -4,9 +4,12 @@ import { commonActorRules } from './base.mjs';
 import DhCreature from './creature.mjs';
 import { bonusField } from '../fields/actorField.mjs';
 import { getTierAdjustedAdversary } from './tierAdjustment.mjs';
+import { signedNumber } from '../../helpers/utils.mjs';
 
 export default class DhpAdversary extends DhCreature {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
+
+    static embedTemplate = 'systems/daggerheart/templates/components/actor-embed/adversary.hbs';
 
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -33,15 +36,12 @@ export default class DhpAdversary extends DhCreature {
                 choices: CONFIG.DH.ACTOR.allAdversaryTypes,
                 initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
+            typeData: new fields.TypedSchemaField(CONFIG.DH.ACTOR.adversaryTypeModels, 
+                { nullable: true, initial: null }
+            ),
             motivesAndTactics: new fields.StringField(),
             notes: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
-            hordeHp: new fields.NumberField({
-                required: true,
-                initial: 1,
-                integer: true,
-                label: 'DAGGERHEART.GENERAL.hordeHp'
-            }),
             criticalThreshold: new fields.NumberField({
                 required: true,
                 integer: true,
@@ -68,6 +68,8 @@ export default class DhpAdversary extends DhCreature {
                 ...commonActorRules()
             }, { persisted: false }),
             attack: new ActionField({
+                type: 'attack',
+                nullable: true,
                 initial: {
                     name: 'Attack',
                     img: 'icons/skills/melee/blood-slash-foam-red.webp',
@@ -102,15 +104,8 @@ export default class DhpAdversary extends DhCreature {
                 })
             ),
             bonuses: new fields.SchemaField({
-                roll: new fields.SchemaField({
-                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
-                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
-                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction')
-                }),
-                damage: new fields.SchemaField({
-                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
-                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
-                })
+                roll: bonusField('DAGGERHEART.GENERAL.roll'),
+                damage: bonusField('DAGGERHEART.GENERAL.damage')
             }, { persisted: false })
         };
     }
@@ -123,7 +118,12 @@ export default class DhpAdversary extends DhCreature {
     /* -------------------------------------------- */
 
     get attackBonus() {
-        return this.attack.roll.bonus;
+        return this.attack?.roll.bonus ?? null;
+    }
+
+    get attackDamageType() {
+        const type = this.attack?.damage.main.type.first();
+        return type ? _loc(CONFIG.DH.GENERAL.damageTypes[type].lowercase) : '<No Damage Type>';
     }
 
     get features() {
@@ -132,64 +132,6 @@ export default class DhpAdversary extends DhCreature {
 
     isItemValid(source) {
         return super.isItemValid(source) || source.type === 'feature';
-    }
-
-    async _preUpdate(changes, options, user) {
-        const allowed = await super._preUpdate(changes, options, user);
-        if (allowed === false) return false;
-
-        if (this.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-            const autoHordeDamage = game.settings.get(
-                CONFIG.DH.id,
-                CONFIG.DH.SETTINGS.gameSettings.Automation
-            ).hordeDamage;
-            if (autoHordeDamage && changes.system?.resources?.hitPoints?.value !== undefined) {
-                const hordeActiveEffect = this.parent.effects.find(x => x.type === 'horde');
-                if (hordeActiveEffect) {
-                    const halfHP = Math.ceil(this.resources.hitPoints.max / 2);
-                    const newHitPoints = changes.system.resources.hitPoints.value;
-                    const previouslyAboveHalf = this.resources.hitPoints.value < halfHP;
-                    const loweredBelowHalf = previouslyAboveHalf && newHitPoints >= halfHP;
-                    const raisedAboveHalf = !previouslyAboveHalf && newHitPoints < halfHP;
-                    if (loweredBelowHalf) {
-                        await hordeActiveEffect.update({ disabled: false });
-                    } else if (raisedAboveHalf) {
-                        await hordeActiveEffect.update({ disabled: true });
-                    }
-                }
-            }
-        }
-    }
-
-    _onUpdate(changes, options, userId) {
-        super._onUpdate(changes, options, userId);
-
-        if (game.user.id === userId) {
-            if (changes.system?.type) {
-                const existingHordeEffect = this.parent.effects.find(x => x.type === 'horde');
-                if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-                    if (!existingHordeEffect)
-                        this.parent.createEmbeddedDocuments('ActiveEffect', [
-                            {
-                                type: 'horde',
-                                name: game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
-                                img: 'icons/magic/movement/chevrons-down-yellow.webp',
-                                disabled: true
-                            }
-                        ]);
-                } else {
-                    existingHordeEffect?.delete();
-                }
-            }
-        }
-    }
-
-    prepareDerivedData() {
-        super.prepareDerivedData();
-        this.attack.roll.isStandardAttack = true;
-
-        // Clamp resources (must be done last to ensure all updates occur)
-        this.resources.clamp();
     }
 
     _getTags() {
@@ -205,5 +147,144 @@ export default class DhpAdversary extends DhCreature {
     adjustForTier(tier) {
         const source = this.parent.toObject(true);
         return getTierAdjustedAdversary(source, tier);
+    }
+
+    /** @inheritdoc */
+    async _prepareEmbedContext(options) {
+        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+        const attack = this.attack ? {
+            name: this.attack.name,
+            range: _loc(CONFIG.DH.GENERAL.range[this.attack.range]?.label),
+            bonus: signedNumber(this.attack.roll?.bonus),
+            damage: this.attack.getDamageFormula()
+        } : null;
+
+        return {
+            ...(await super._prepareEmbedContext(options)),
+            actor: this.parent,
+            type: _loc(adversaryTypes[this.type]?.label),
+            attack,
+            experiences: Object.values(this.experiences).map(e => ({ name: e.name, value: signedNumber(e.value) }))
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Data Preparation                            */
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    prepareBaseData() {
+        super.prepareBaseData();
+        if (this.attack) {
+            this.attack.roll.isStandardAttack = true;
+        }
+
+        // Ensure type data exists in case it got somehow removed (ex: modules).
+        // Updating the source allows updates not to break when we add the prepared data
+        const typeModel = CONFIG.DH.ACTOR.adversaryTypeModels[this.type];
+        if (typeModel && !this.typeData) {
+            this.typeData = new typeModel();
+            this.updateSource({ typeData: this.typeData.toObject() });
+        }
+
+        if (this.type === 'horde' && this.attack) {
+            // Add backwards compatibility. Consider a deprecation warning at a later date
+            Object.defineProperty(this.attack, 'altDamageFormula', {
+                get: () => {
+                    return Roll.replaceFormulaData(this.typeData.hordeDamage, this.getRollData());
+                }
+            })
+        }
+    }
+
+    /** @inheritdoc */
+    prepareDerivedData() {
+        super.prepareDerivedData();
+
+        // Evolution features may set other features as inactive
+        for (const feature of this.features.filter(x => x.system.featureForm === 'evolution')) {
+            const evolutionActions = feature.system.actions.filter(x => x.type === 'evolution');
+            for (const action of evolutionActions) {
+                const evolutionActive = action.evolution.active;
+                for (const [id, state] of Object.entries(action.evolution.evolutionFeatures)) {
+                    const isEvolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.evolved.id;
+                    const isUnevolvedFeature = state === CONFIG.DH.ACTIONS.evolutionStates.unevolved.id;
+                    const feature = this.parent.items.get(id);
+                    feature.system.inactive = 
+                        (isEvolvedFeature && !evolutionActive) || (isUnevolvedFeature && evolutionActive);
+                }
+            }
+        }
+
+        // Clamp resources (must be done last to ensure all updates occur)
+        this.clampResources();
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
+        if (allowed === false) return false;
+
+        if (changes.system?.type && changes.system.type !== this.type) {
+            const newType = CONFIG.DH.ACTOR.adversaryTypeModels[changes.system.type] ?? null;
+            const newTypeData = newType ? (new newType()).toObject() : null;
+            changes.system.typeData = newTypeData;
+        }
+    }
+
+    /** @inheritdoc */
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        if (game.user.id === userId && changes.system?.type && !options?.isRefresh) {
+            const existingHordeFeature = 
+                this.parent.items.find(x => x.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.actorFlags.hordeFeature));
+            if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+                if (!existingHordeFeature) {
+                    const hordeEffectData = {
+                        name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                        img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                        showIcon: 2,
+                        system: {
+                            conditionals: [{
+                                type: 'dataCompare',
+                                key: 'system.resources.hitPoints.value',
+                                comparator: 'greaterEquals',
+                                value: '@system.resources.hitPoints.max / 2'
+                            }],
+                            changes: [{
+                                type: 'standardAttack',
+                                value: {
+                                    name: '',
+                                    damageTypes: [],
+                                    attackRange: null,
+                                    trait: null,
+                                    damageFormula: '@system.typeData.hordeDamage',
+                                    img: null
+                                },
+                                priority: 0
+                            }]
+                        }
+                    };
+                    this.parent.createEmbeddedDocuments('Item', [{
+                        type: 'feature',
+                        featureForm: CONFIG.DH.ITEM.featureForm.passive,
+                        name: _loc('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                        img: 'icons/creatures/magical/humanoid-silhouette-aliens-green.webp',
+                        system: {
+                            description: `When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.`
+                        },
+                        flags: { [CONFIG.DH.id]: { [CONFIG.DH.FLAGS.actorFlags.hordeFeature]: true } },
+                        effects: [hordeEffectData]
+                    }]);
+                }
+            } else {
+                existingHordeFeature?.delete();
+            }
+        }
     }
 }

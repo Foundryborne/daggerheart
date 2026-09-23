@@ -7,12 +7,14 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
+import { simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
 import {
     addLinkedItemsDiff,
     getScrollTextData,
     createShallowProxy,
     updateLinkedItemApps
 } from '../../helpers/utils.mjs';
+import { DHActionDiceData } from '../fields/action/damageField.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -109,7 +111,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Convenient access to the item's actor, if it exists.
-     * @returns {DhpActor | null}
+     * @returns {DhActor | null}
      */
     get actor() {
         return this.parent.actor;
@@ -124,7 +126,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     get itemFeatures() {
-        return [];
+        return this.actor?.items.filter(i => i.system.granterItem === this.parent) ?? [];
     }
 
     get attributionLabel() {
@@ -136,27 +138,29 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Augments the description for the item with type specific info to display. Implemented in applicable item subtypes.
-     * @param {ItemDescriptionOptions} [options] - Options that modify the styling of the rendered template.
+     * @param {ItemDescriptionConfig} [options] Options that modify the styling of the rendered template.
+     * @param {import('@client/applications/ux/text-editor.mjs').EnrichmentOptions} [config] Options for enrichHTML
      * @returns {Promise<{ prefix: string | null; value: string | null; suffix: string | null }>}
      */
-    async getDescriptionData(options) {
+    async getDescriptionData(options, config) {
         return { prefix: null, value: this.description, suffix: null };
     }
 
     /**
      * Gets the enriched and augmented description for the item.
-     * @param {ItemDescriptionOptions} [options] - Options that modify the styling of the rendered template.
+     * @param {ItemDescriptionConfig} [config] Options that modify the styling of the rendered template.
+     * @param {import('@client/applications/ux/text-editor.mjs').EnrichmentOptions} [config] Options for enrichHTML
      * @returns {Promise<string>}
      */
-    async getEnrichedDescription(options = {}) {
+    async getEnrichedDescription(config = {}, options = {}) {
         if (!this.metadata.hasDescription) return '';
-        options.gmNotes ??= true;
-        options.type ??= 'sheet';
+        config.gmNotes ??= true;
+        config.type ??= 'sheet';
 
-        const { prefix, value, suffix } = await this.getDescriptionData(options);
-        const separator = options.type === 'tooltip' ? '\n' : '\n<hr>\n';
+        const { prefix, value, suffix } = await this.getDescriptionData(config, options);
+        const separator = config.type === 'embed' ? '\n' : '\n<hr>\n';
         let fullDescription = [prefix, value, suffix].filter(p => !!p).join(separator);
-        if (this.gmNotes && options.gmNotes) {
+        if (this.gmNotes && config.gmNotes) {
             const gmNotesElement = document.createElement('section');
             gmNotesElement.classList.add('gm-notes-section');
             gmNotesElement.dataset.visibility = 'gm';
@@ -166,12 +170,21 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             gmNotesElement.innerHTML = header.outerHTML + this.gmNotes;
             fullDescription += gmNotesElement.outerHTML;
         }
-
+        if (config.type === 'embed') {
+            fullDescription = simplifyDescriptionForEmbed(fullDescription);
+        }
         return await foundry.applications.ux.TextEditor.implementation.enrichHTML(fullDescription, {
-            relativeTo: this.parent,
+            ...options,
+            relativeTo: options.relativeTo ?? this.parent,
             rollData: this.getRollData(),
-            secrets: this.parent.isOwner
+            secrets: options.secrets ?? this.parent.isOwner
         });
+    }
+
+    getLinkedItems() {
+        if (!this.actor) return [];
+
+        return this.actor.items.filter(x => x.system.granter?.id === this.parent.id);
     }
 
     /**
@@ -221,7 +234,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         addLinkedItemsDiff(changed.system?.features, this.features, options);
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const autoSettings = game.system.settings.automation;
         const armorChanged =
             changed.system?.armor?.current !== undefined && changed.system.armor.current !== this.armor.current;
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
@@ -235,6 +248,26 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         }
 
         if (changed.system?.actions) {
+            const updateDamage = (changes, originData) => {
+                const resultBased = changes.resultBased ?? originData?.resultBased;
+                changes.valueAlt = resultBased 
+                    ? (changes.valueAlt ?? originData?.valueAlt ?? DHActionDiceData.schema.getInitialValue())
+                    : null;
+            }
+
+            for (const [key, action] of Object.entries(changed.system.actions)) {
+                const existing = this.actions.get(key);
+                if (!action?.damage || !existing) continue;
+
+                if (action.damage.main) {
+                    updateDamage(action.damage.main, existing.damage?.main);
+                }
+                for (const [resource, resourceData] of Object.entries(action.damage.resources ?? {})) {
+                    const existingResource = existing.damage?.resources?.[resource];
+                    updateDamage(resourceData, existingResource);
+                }
+            }
+
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
                 const action = changed.system.actions[key];
                 if (action && Object.keys(action).length === 0) {

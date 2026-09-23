@@ -1,0 +1,18 @@
+{
+  "type": "loot",
+  "name": "Scrying stone",
+  "folder": "fH3jYKRK0AOYFaTx",
+  "_id": "l787jY8NXcccj6GA",
+  "img": "icons/commodities/treasure/crystal-ball-blue-purple.webp",
+  "system": {
+    "attribution": {},
+    "description": "",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!l787jY8NXcccj6GA"
+}

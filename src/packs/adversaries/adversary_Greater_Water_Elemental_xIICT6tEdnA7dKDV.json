@@ -34,7 +34,6 @@
     },
     "type": "support",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 3,
     "description": "<p>A huge living wave that crashes down upon enemies.</p>",
@@ -87,7 +86,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -123,13 +123,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 93,
+      "page": null,
       "artist": ""
     },
     "size": "gargantuan",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "xIICT6tEdnA7dKDV",
@@ -275,19 +276,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -335,7 +328,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "B8ZrtRCZrwwwWJOE",
       "img": "icons/magic/water/projectile-icecicle-glowing.webp",
@@ -343,7 +337,6 @@
         {
           "name": "Water Jet",
           "img": "icons/magic/water/projectile-icecicle-glowing.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.B8ZrtRCZrwwwWJOE",
           "transfer": false,
           "_id": "WYqjt1tVqPEdVV5l",
           "type": "base",
@@ -362,7 +355,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -480,7 +474,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "bcwFQeuU6ZfIGjau",
       "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
@@ -488,7 +483,6 @@
         {
           "name": "Drowning Embrace",
           "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.bcwFQeuU6ZfIGjau",
           "transfer": true,
           "_id": "X8NF2OB23mSpDvlx",
           "type": "base",
@@ -500,7 +494,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -590,7 +585,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "BGE42W1XPd0vpimR",
       "img": "icons/magic/water/tendrils-ice-thorns.webp",

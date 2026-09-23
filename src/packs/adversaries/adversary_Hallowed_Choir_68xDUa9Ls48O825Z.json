@@ -1,0 +1,507 @@
+{
+  "type": "adversary",
+  "name": "Hallowed Choir",
+  "folder": "7XHlANCPz18yvl5L",
+  "system": {
+    "type": "horde",
+    "description": "<p>A heavenly host of winged humanoids whose song calls forth tears of religious awe.</p>",
+    "tier": 4,
+    "motivesAndTactics": "Drown out disbelief, raise voices",
+    "difficulty": 17,
+    "damageThresholds": {
+      "major": 24,
+      "severe": 48
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 7
+      },
+      "stress": {
+        "value": 0,
+        "max": 6
+      }
+    },
+    "attack": {
+      "name": "Choral Blast",
+      "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+      "_id": "qHEFFbkvLvbm9VmI",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "far",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "bonus": 2,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "main": {
+          "value": {
+            "dice": "d10",
+            "bonus": 0,
+            "multiplier": "flat",
+            "flatMultiplier": 4,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "valueAlt": {
+            "dice": "d10",
+            "bonus": 0,
+            "multiplier": "flat",
+            "flatMultiplier": 2,
+            "custom": {
+              "enabled": false,
+              "formula": ""
+            }
+          },
+          "type": [
+            "magical"
+          ],
+          "base": false,
+          "applyTo": "hitPoints",
+          "resultBased": false,
+          "fullRestore": false,
+          "includeBase": false,
+          "direct": false,
+          "itemId": null
+        },
+        "resources": {}
+      },
+      "baseAction": false,
+      "description": "",
+      "originItem": {
+        "type": "itemCollection"
+      },
+      "actionType": "action",
+      "triggers": [],
+      "areas": [],
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null,
+        "consumeOnSuccess": false
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "experiences": {
+      "CVm00cg54kyn1m1K": {
+        "name": "Music",
+        "value": 2,
+        "description": ""
+      }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": null
+    },
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "size": "huge",
+    "advantageSources": [],
+    "disadvantageSources": [],
+    "notes": "",
+    "criticalThreshold": 20,
+    "typeData": {
+      "type": "horde",
+      "hordeHP": 4,
+      "hordeDamage": "2d10"
+    }
+  },
+  "items": [
+    {
+      "name": "Celestial Coda",
+      "type": "feature",
+      "system": {
+        "featureForm": "passive",
+        "description": "<p>Countdown (Loop 3). The Choir's divine song builds on itself with each refrain. When the Choir first appears, activate the countdown. It ticks down when a PC gains a Hope. When it triggers, place a token on this stat block. The Choir gains a bonus to its damage rolls equal to the number of tokens on this stat block.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "",
+          "recovery": null,
+          "progression": "increasing",
+          "dieFaces": "d4",
+          "icon": "fa-solid fa-music",
+          "diceStates": {}
+        },
+        "actions": {
+          "TqM6TJH5SOvsh2yf": {
+            "type": "countdown",
+            "name": "Start Countdown",
+            "countdown": [
+              {
+                "name": "Celestial Coda",
+                "type": "encounter",
+                "hidden": false,
+                "img": "icons/skills/trades/music-notes-sound-blue.webp",
+                "progress": {
+                  "looping": "looping",
+                  "type": "custom",
+                  "startFormula": "3",
+                  "current": 1,
+                  "start": 1
+                },
+                "ownership": {}
+              }
+            ],
+            "_id": "TqM6TJH5SOvsh2yf",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "range": ""
+          },
+          "bZlfk7RkpgKFKAnx": {
+            "type": "effect",
+            "_id": "bZlfk7RkpgKFKAnx",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "<p>When it triggers, place a token on this stat block. The Choir gains a bonus to its damage rolls equal to the number of tokens on this stat block.</p>",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Trigger Countdown",
+            "range": ""
+          }
+        },
+        "granter": null,
+        "actorResources": []
+      },
+      "_id": "5oqRLicTNnITxlwx",
+      "img": "icons/skills/trades/music-notes-sound-blue.webp",
+      "effects": [
+        {
+          "name": "Celestial Coda",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.bonuses.damage.bonus",
+                "type": "add",
+                "value": "ITEM.@system.resource.value",
+                "priority": null,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": "",
+              "type": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": [],
+            "conditionals": []
+          },
+          "_id": "L8RlbKHHXbb5w318",
+          "img": "icons/skills/trades/music-notes-sound-blue.webp",
+          "disabled": false,
+          "start": {
+            "time": 0,
+            "combat": null,
+            "combatant": null,
+            "initiative": null,
+            "round": null,
+            "turn": null
+          },
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "<p>The Choir gains a bonus to its damage rolls equal to the number of tokens on this stat block.</p>",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!68xDUa9Ls48O825Z.5oqRLicTNnITxlwx.L8RlbKHHXbb5w318"
+        }
+      ],
+      "folder": null,
+      "sort": 100000,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!68xDUa9Ls48O825Z.5oqRLicTNnITxlwx"
+    },
+    {
+      "name": "Aural Assault",
+      "type": "feature",
+      "system": {
+        "featureForm": "action",
+        "description": "<p>The Choir unleashes its built-up divine energy in a single burst, clearing all tokens from this stat block. Deal <strong>1d12</strong> direct magic damage to each enemy within Close range for each token cleared.</p>",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null,
+        "actorResources": []
+      },
+      "_id": "cOwcBvzgs3GYGxKE",
+      "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!68xDUa9Ls48O825Z.cOwcBvzgs3GYGxKE"
+    },
+    {
+      "type": "feature",
+      "name": "Horde",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "system": {
+        "description": "When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null,
+        "featureForm": "passive",
+        "actorResources": []
+      },
+      "flags": {
+        "daggerheart": {
+          "hordeFeature": true
+        }
+      },
+      "effects": [
+        {
+          "name": "Horde",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "system": {
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "changes": [
+              {
+                "type": "standardAttack",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "@system.typeData.hordeDamage",
+                  "img": null
+                },
+                "priority": 0,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "MrlQeFY9eq8pEIyk",
+          "type": "base",
+          "disabled": false,
+          "start": null,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 2,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!68xDUa9Ls48O825Z.G1eSLlU2Qr7ZIPTH.MrlQeFY9eq8pEIyk"
+        }
+      ],
+      "_id": "G1eSLlU2Qr7ZIPTH",
+      "folder": null,
+      "sort": 0,
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!68xDUa9Ls48O825Z.G1eSLlU2Qr7ZIPTH"
+    }
+  ],
+  "_id": "68xDUa9Ls48O825Z",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+  "prototypeToken": {
+    "name": "Hallowed Choir",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!actors!68xDUa9Ls48O825Z"
+}

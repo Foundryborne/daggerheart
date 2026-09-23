@@ -10,12 +10,13 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 27,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -38,7 +39,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -48,7 +50,6 @@
         "expired": false
       },
       "description": "<p>When you would take Severe damage, you can mark a Stress to mark 1 fewer Hit Points.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

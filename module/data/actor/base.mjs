@@ -1,10 +1,11 @@
+import { prepareFeatureData, simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
 
 /**
- * @import DHItem from '../../documents/item.mjs';
+ * @import DhItem from '../../documents/item.mjs';
  * @import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
  */
 
@@ -195,7 +196,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      * Checks if an item is available for use, such as multiclass features being disabled
      * on a character.
      *
-     * @param {DHItem} item The item being checked for availability
+     * @param {DhItem} item The item being checked for availability
      * @return {boolean} whether the item is available
      */
     isItemAvailable(item) {
@@ -206,7 +207,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const autoSettings = game.system.settings.automation;
         if (changes.system?.resources && autoSettings.resourceScrollTexts) {
             const textData = Object.keys(changes.system.resources).reduce((acc, key) => {
                 const resource = changes.system.resources[key];
@@ -217,6 +218,16 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
                 return acc;
             }, []);
             options.scrollingTextData = textData;
+        }
+
+        // If the actor name matches the proto token (if linked or non-canvas) or token (if unlinked), also update the token.
+        // This is often due to reflavoring or a character name chosen later.
+        const actor = this.parent;
+        const isNameChanged = changes.name && actor.name !== changes.name;
+        const prototypeName = actor.prototypeToken?.name;
+        const isPrototypeNameChanging = changes.prototypeToken?.name && changes.prototypeToken?.name !== prototypeName;
+        if (!actor.token && isNameChanged && actor.name === prototypeName && !isPrototypeNameChanging) {
+            changes.prototypeToken = foundry.utils.mergeObject(changes.prototypeToken ?? {}, { name: changes.name });
         }
 
         if (changes.system?.resources) {
@@ -251,5 +262,72 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         super._onUpdate(changes, options, userId);
 
         if (options.scrollingTextData) this.parent.queueScrollText(options.scrollingTextData);
+    }
+
+    /**
+     * Internal method to create a context for toEmbed(), which is passed to the template.
+     * @param {object} [options] enrichment options
+     * @returns {Promise<object>}
+     * @protected
+     */
+    async _prepareEmbedContext(options = {}) {
+        const actor = this.parent;
+        const { TextEditor } = foundry.applications.ux;
+        const description = await TextEditor.implementation.enrichHTML(this.description, {
+            secrets: true,
+            relativeTo: actor,
+            ...options
+        });
+
+        async function prepareFeatureViewData(f) {
+            const simplified = simplifyDescriptionForEmbed(f.system.description);
+            return {
+                name: f.name,
+                featureForm: _loc(CONFIG.DH.ITEM.featureForm[f.system.featureForm]),
+                description: await TextEditor.implementation.enrichHTML(simplified, {
+                    secrets: true,
+                    relativeTo: actor,
+                    rollData: f.getRollData(),
+                    ...options
+                }),
+                children: []
+            };
+        }
+
+        // Make every feature with child features have their own section
+        // We don't handle recursive features here
+        const featureContext = prepareFeatureData(actor);
+        const topLevel = await Promise.all(
+            featureContext.filter(f => !f.childFeatures.length).map(f => prepareFeatureViewData(f.feature))
+        );
+        const grouped = await Promise.all(
+            featureContext.filter(f => f.childFeatures.length).map(async f => ({
+                ...(await prepareFeatureViewData(f.feature)),
+                children: await Promise.all(f.childFeatures.map(f => prepareFeatureViewData(f.feature)))
+            }))
+        )
+        const featureGroups = [...topLevel, ...grouped];
+
+        return {
+            actor,
+            description,
+            featureGroups
+        };
+    }
+
+    /** @inheritdoc */
+    async toEmbed(config = {}, options = {}) {
+        const template = this.constructor.embedTemplate;
+        if (!template) return null;
+
+        const context = await this._prepareEmbedContext(options);
+        context.config = config;
+        const content = await foundry.applications.handlebars.renderTemplate(template, context);
+        const container = document.createElement('div');
+        container.innerHTML = content;
+        if (['dark', 'light'].includes(config.theme)) {
+            container.children[0].classList.add('themed', `theme-${config.theme}`);
+        }
+        return container.children;
     }
 }

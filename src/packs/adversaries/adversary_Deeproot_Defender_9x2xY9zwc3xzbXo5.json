@@ -34,7 +34,6 @@
     },
     "type": "bruiser",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "8ThlnO2VRVTMnfzP": {
         "name": "Huge",
@@ -91,7 +90,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -128,13 +128,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 76,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "9x2xY9zwc3xzbXo5",
@@ -272,17 +273,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -314,7 +307,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -341,7 +335,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": true,
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -364,25 +367,18 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
             "target": {
               "type": "any",
-              "amount": null
+              "amount": 1
             },
             "effects": [
               {
@@ -424,13 +420,13 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [
         {
           "name": "Grab and Drag",
           "img": "icons/magic/nature/root-vine-entangled-hand.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.9x2xY9zwc3xzbXo5.Item.rreGFW5TbhUoZf2T",
           "transfer": false,
           "_id": "F3E7fiz01AbF2kr5",
           "type": "base",
@@ -442,7 +438,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {

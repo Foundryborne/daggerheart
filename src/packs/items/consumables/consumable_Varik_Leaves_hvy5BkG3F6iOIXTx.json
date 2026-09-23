@@ -47,17 +47,9 @@
               "applyTo": "hope",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -95,14 +87,14 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 60,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 8600000,
   "flags": {},
   "_key": "!items!hvy5BkG3F6iOIXTx"
 }

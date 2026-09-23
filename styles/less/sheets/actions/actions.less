@@ -28,6 +28,49 @@
         }
     }
 
+    .evolution-section {
+        .evolution-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+            .evolution-resources {
+                display: flex;
+                flex-direction: column;
+
+                .evolution-resource {
+                    display: flex;
+                    align-items: center;
+                    gap: 2px;
+
+                    .resource-title {
+                        font-size: var(--font-size-18);
+                    }
+                }
+            }
+
+            .evolution-features {
+                table {
+                    margin: 0;
+                }
+            }
+        }
+        
+        fieldset {
+            width: 100%;
+        }
+
+        .subtitle {
+            font-size: var(--font-size-20);
+            color: @color-text-emphatic;
+        }
+    }
+
+    .full-width-section {
+        width: 100%;
+    }
+
     .actor-drop-line {
         display: flex;
         align-items: center;

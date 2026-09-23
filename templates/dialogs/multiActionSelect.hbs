@@ -1,0 +1,12 @@
+<div class="multi-action-container">
+    <div class="actions-instructions">{{localize "DAGGERHEART.APPLICATIONS.MultiActionSelect.instructionText"}}</div>
+
+    <div class="actions-container">
+        {{#each actions as | action |}}
+            <a class="action-container" data-action="chooseAction" data-action-id="{{action.id}}" data-tooltip="#item#{{action.uuid}}">
+                <img src="{{action.img}}" />
+                <span>{{action.name}}</span>
+            </a>
+        {{/each}}
+    </div>
+</div>

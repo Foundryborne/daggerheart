@@ -9,6 +9,7 @@ import DHLoot from './loot.mjs';
 import DHSubclass from './subclass.mjs';
 import DHWeapon from './weapon.mjs';
 import DHBeastform from './beastform.mjs';
+import DHTransformation from './transformation.mjs';
 
 export {
     DHAncestry,
@@ -21,7 +22,8 @@ export {
     DHLoot,
     DHSubclass,
     DHWeapon,
-    DHBeastform
+    DHBeastform,
+    DHTransformation
 };
 
 export const config = {
@@ -35,5 +37,6 @@ export const config = {
     loot: DHLoot,
     subclass: DHSubclass,
     weapon: DHWeapon,
-    beastform: DHBeastform
+    beastform: DHBeastform,
+    transformation: DHTransformation
 };

@@ -48,7 +48,7 @@
     "examples": "Elephant, Mammoth, Rhinoceros, etc.",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 14,
+      "page": null,
       "artist": ""
     }
   },
@@ -109,7 +109,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -119,7 +120,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

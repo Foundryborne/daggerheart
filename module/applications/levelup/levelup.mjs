@@ -100,7 +100,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         const context = await super._prepareContext(_options);
         context.levelup = this.levelup;
         context.tabs = this._getTabs(this.constructor.TABS);
-        context.levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        context.levelupAuto = game.system.settings.automation.levelupAuto;
 
         return context;
     }
@@ -338,7 +338,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 minCost: Number(button.dataset.cost),
                 amount: button.dataset.amount ? Number(button.dataset.amount) : null,
                 value: button.dataset.value,
-                type: button.dataset.type
+                type: button.dataset.type,
+                subType: button.dataset.subType
             };
 
             if (button.dataset.type === 'domainCard') {

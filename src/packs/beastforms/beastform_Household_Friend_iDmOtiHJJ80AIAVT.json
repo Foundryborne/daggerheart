@@ -44,7 +44,7 @@
     "examples": "Cat, Dog, Rabbit, etc.",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 12,
+      "page": null,
       "artist": ""
     }
   },
@@ -92,7 +92,7 @@
                 "physical"
               ],
               "attackRange": "melee",
-              "trait": "presence",
+              "trait": "instinct",
               "damageFormula": "@profd6",
               "img": "icons/magic/nature/wolf-paw-glow-small-teal-blue.webp"
             },
@@ -105,7 +105,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -115,7 +116,6 @@
         "expired": false
       },
       "description": "",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

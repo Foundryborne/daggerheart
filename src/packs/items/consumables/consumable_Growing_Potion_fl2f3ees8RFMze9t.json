@@ -54,7 +54,7 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -63,7 +63,6 @@
     {
       "name": "Growing Potion",
       "img": "icons/consumables/potions/potion-bottle-corked-labeled-green.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.fl2f3ees8RFMze9t",
       "transfer": false,
       "_id": "YEGd74Lssj7rCmpF",
       "type": "base",
@@ -90,7 +89,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -121,7 +121,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 8200000,
   "flags": {},
   "_key": "!items!fl2f3ees8RFMze9t"
 }

@@ -8,12 +8,13 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 14,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -43,7 +44,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -53,7 +55,6 @@
         "expired": false
       },
       "description": "<p>You gain a +2 bonus to all your damage thresholds.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

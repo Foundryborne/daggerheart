@@ -48,19 +48,11 @@
               "magical"
             ],
             "base": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -103,14 +95,14 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 9600000,
   "flags": {},
   "_key": "!items!nQTo6mNoPTEVBtkm"
 }

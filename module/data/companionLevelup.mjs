@@ -246,7 +246,7 @@ export class DhCompanionLevelup extends foundry.abstract.DataModel {
                     const checkboxes = [...Array(option.checkboxSelections).keys()].flatMap(index => {
                         const checkboxNr = index + 1;
                         const checkboxData = selections[tierKey]?.[optionKey]?.[checkboxNr];
-                        const checkbox = { ...option, checkboxNr, tier: tierKey };
+                        const checkbox = { ...option, checkboxNr, tier: tierKey, option: optionKey };
 
                         if (checkboxData) {
                             checkbox.level = checkboxData.level;

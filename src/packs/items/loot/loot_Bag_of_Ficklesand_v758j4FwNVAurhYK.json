@@ -68,7 +68,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 59,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -77,7 +77,6 @@
     {
       "name": "Bag of Ficklesand",
       "img": "icons/containers/bags/pouch-cloth-tan.webp",
-      "origin": "Compendium.daggerheart.loot.Item.v758j4FwNVAurhYK",
       "transfer": false,
       "_id": "Ouq3xWzj5rf6olVs",
       "type": "base",
@@ -88,7 +87,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

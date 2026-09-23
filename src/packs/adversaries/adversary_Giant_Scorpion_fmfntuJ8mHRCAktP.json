@@ -34,7 +34,6 @@
     },
     "type": "bruiser",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "SZtO9UTincKiOlC4": {
         "name": "Camouflage",
@@ -92,7 +91,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,13 +129,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 76,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "fmfntuJ8mHRCAktP",
@@ -272,9 +273,9 @@
                     "enabled": false,
                     "formula": ""
                   },
-                  "flatMultiplier": 1,
-                  "dice": "d12",
-                  "bonus": 2,
+                  "flatMultiplier": 0,
+                  "dice": "d6",
+                  "bonus": 0,
                   "multiplier": "flat"
                 },
                 "applyTo": "hitPoints",
@@ -283,19 +284,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
-                "includeBase": false,
+                "valueAlt": null,
+                "includeBase": true,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -338,7 +332,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -365,7 +360,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": true,
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -390,19 +394,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -450,13 +447,13 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [
         {
           "name": "Poisoned",
           "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.fmfntuJ8mHRCAktP.Item.lANiDkxxth2sGacT",
           "transfer": false,
           "_id": "oILkLJlGNZl7KI1R",
           "type": "base",
@@ -468,7 +465,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -546,17 +544,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -594,7 +584,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,

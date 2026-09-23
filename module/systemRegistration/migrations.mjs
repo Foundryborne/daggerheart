@@ -1,9 +1,18 @@
 import { defaultRestOptions } from '../config/generalConfig.mjs';
+import { getAllResources } from '../helpers/utils.mjs';
 import { Migration_2_5_2 } from './migration-handlers/2_5_2.mjs';
 import { Migration_2_6_0 } from './migration-handlers/2_6_0.mjs';
-import { Migration_2_8_0 } from './migration-handlers/2_8_0.mjs';
+import { Migration_2_8_0_hotfix } from './migration-handlers/2_8_0-hotfix.mjs';
+import { Migration_2_9_1 } from './migration-handlers/2_9_1.mjs';
+import { Migration_2_9_3 } from './migration-handlers/2_9_3.mjs';
+import { Migration_2_10_0_DSN } from './migration-handlers/2_10_0-dsn.mjs';
+import { Migration_2_10_0_Refresh } from './migration-handlers/2_10_0-refresh.mjs';
 
 export async function runMigrations() {
+    // All migrations here are meant for the active gm to run. 
+    // If we ever need to migrate client settings, split into a new function
+    if (!game.user.isActiveGM) return;
+    
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = game.system.version;
 
@@ -126,7 +135,7 @@ export async function runMigrations() {
             actor.items.filter(x => x.system?.metadata?.hasActions)
         );
 
-        const validCostKeys = Object.keys(CONFIG.DH.GENERAL.abilityCosts);
+        const validCostKeys = Object.keys(getAllResources());
         for (let item of [...worldItems, ...worldActorItems, ...compendiumItems]) {
             for (let action of item.system.actions) {
                 const resourceCostIndexes = Object.keys(action.cost).reduce(
@@ -333,7 +342,11 @@ export async function runMigrations() {
     const migrations = [
         new Migration_2_5_2(),
         new Migration_2_6_0(),
-        new Migration_2_8_0()
+        new Migration_2_8_0_hotfix(),
+        new Migration_2_9_1(),
+        new Migration_2_9_3(),
+        new Migration_2_10_0_DSN(),
+        new Migration_2_10_0_Refresh()
     ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, lastMigrationVersion));
 
     for (const handler of migrations) {

@@ -40,6 +40,7 @@ export default class AncestrySheet extends DHHeritageSheet {
      * @param {DragEvent} event - The drag event
      */
     async _onDrop(event) {
+        const TextEditor = foundry.applications.ux.TextEditor;
         const data = TextEditor.getDragEventData(event);
         if (data.type === 'ActiveEffect') return super._onDrop(event);
 

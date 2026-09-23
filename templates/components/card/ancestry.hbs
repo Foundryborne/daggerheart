@@ -1,0 +1,15 @@
+<div class="dh-card ancestry">
+    <header class="dh-card-header">
+        <img class="portrait" src="{{item.img}}"/>
+    </header>
+    <article>
+        <section class="trim">
+            <div class="type">{{localize "TYPES.Item.ancestry"}}</div>
+        </section>
+        <header class="name">{{item.name}}</header>
+        <section class="dh-card-description description">
+            {{{description}}}
+        </section>
+        {{> "systems/daggerheart/templates/components/card/_attribution.hbs" item=item}}
+    </article>
+</div>

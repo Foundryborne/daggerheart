@@ -1,0 +1,350 @@
+import { getDocFromElement, signedNumber } from '../../../helpers/utils.mjs';
+import DHBaseActorSheet from '../api/base-actor.mjs';
+import { prepareFeatureData } from '../sheet-helpers.mjs';
+
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+
+export default class AdversarySheet extends DHBaseActorSheet {
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = {
+        classes: ['adversary'],
+        position: { width: 645, height: 750 },
+        window: {
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
+        },
+        actions: {
+            toggleHitPoints: AdversarySheet.#toggleHitPoints,
+            toggleStress: AdversarySheet.#toggleStress,
+            reactionRoll: AdversarySheet.#reactionRoll,
+            toggleResourceDice: AdversarySheet.#toggleResourceDice,
+            handleResourceDice: AdversarySheet.#handleResourceDice,
+            advanceResourceDie: AdversarySheet.#advanceResourceDie
+        },
+        dragDrop: [
+            {
+                dragSelector: '[data-item-id][draggable="true"], [data-item-id] [draggable="true"]',
+                dropSelector: null
+            }
+        ],
+        contextMenus: [
+            {
+                handler: DHBaseActorSheet.getBaseAttackContextOptions,
+                selector: '[data-item-uuid][data-type="attack"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            }
+        ]
+    };
+
+    static PARTS = {
+        limited: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/limited.hbs',
+            scrollable: ['.limited-container']
+        },
+        sidebar: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs',
+            scrollable: ['.shortcut-items-section']
+        },
+        header: { template: 'systems/daggerheart/templates/sheets/actors/adversary/header.hbs' },
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs',
+            scrollable: ['.feature-section']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects-sections']
+        },
+        notes: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs',
+            scrollable: ['.editor-content']
+        }
+    };
+
+    /** @inheritdoc */
+    static TABS = {
+        primary: {
+            tabs: [{ id: 'features' }, { id: 'effects' }, { id: 'notes' }],
+            initial: 'features',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
+        }
+    };
+
+    /**  @inheritdoc */
+    _initializeApplicationOptions(options) {
+        const applicationOptions = super._initializeApplicationOptions(options);
+
+        if (applicationOptions.document.testUserPermission(game.user, 'LIMITED', { exact: true })) {
+            applicationOptions.position.width = 360;
+            applicationOptions.position.height = 'auto';
+        }
+
+        return applicationOptions;
+    }
+
+    /**@inheritdoc */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.systemFields.attack.fields = game.system.api.models.actions.actionsTypes.attack.schema.fields;
+
+        context.resources = Object.keys(this.document.system.resources).reduce((acc, key) => {
+            acc[key] = this.document.system.resources[key];
+            return acc;
+        }, {});
+        const maxResource = Math.max(context.resources.hitPoints.max, context.resources.stress.max);
+        context.resources.hitPoints.emptyPips =
+            context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
+        context.resources.stress.emptyPips =
+            context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
+
+        return context;
+    }
+
+    /**@inheritdoc */
+    async _preparePartContext(partId, context, options) {
+        context = await super._preparePartContext(partId, context, options);
+        switch (partId) {
+            case 'header':
+            case 'limited':
+                await this._prepareHeaderContext(context, options);
+
+                const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+                context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
+                break;
+            case 'sidebar':
+                const attackBonus = this.document.system.attack.roll.bonus;
+                context.attackBonus = !attackBonus ? '-' : (Number.isNumeric(attackBonus) ? signedNumber(attackBonus, { zero: '+' }) : `+${attackBonus}`);
+                break;
+            case 'features': 
+                await this._prepareFeaturesContext(context, options);
+                break;
+            case 'notes':
+                await this._prepareNotesContext(context, options);
+                break;
+        }
+        return context;
+    }
+
+    /** @inheritdoc */
+    _prepareTabs(group) {
+        const result = super._prepareTabs(group);
+        if (group === 'primary') {
+            result.notes.empty = !this.document.system.notes?.trim();
+        }
+        return result;
+    }
+
+    /**@inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        for (const element of htmlElement.querySelectorAll('.inventory-item-resource')) {
+            element.addEventListener('change', this.updateItemResource.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
+        }
+
+        
+        htmlElement.querySelectorAll('.item-resource.die').forEach(element => {
+            element.addEventListener('contextmenu', this.lowerResourceDie.bind(this));
+        });
+    }
+
+    /**
+     * Prepare render context for the Biography part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareNotesContext(context, _options) {
+        const { system } = this.document;
+        const { TextEditor } = foundry.applications.ux;
+
+        const paths = {
+            notes: 'notes'
+        };
+
+        for (const [key, path] of Object.entries(paths)) {
+            const value = foundry.utils.getProperty(system, path);
+            context[key] = {
+                field: system.schema.getField(path),
+                value,
+                enriched: await TextEditor.implementation.enrichHTML(value, {
+                    secrets: this.document.isOwner,
+                    relativeTo: this.document
+                })
+            };
+        }
+    }
+
+    /**
+     * Prepare render context for the Header part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareHeaderContext(context, _options) {
+        const { system } = this.document;
+        const { TextEditor } = foundry.applications.ux;
+
+        context.description = await TextEditor.implementation.enrichHTML(system.description, {
+            secrets: this.document.isOwner,
+            relativeTo: this.document
+        });
+    }
+
+    /**
+     * Prepare render context for the Features part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareFeaturesContext(context, _options) {
+        const featureData = prepareFeatureData(this.document);
+        context.features = [];
+        context.evolutionFeatures = [];
+        for (const { feature, childFeatures } of featureData) {
+            if (childFeatures.length) {
+                context.evolutionFeatures.push(feature);
+            } else {
+                context.features.push(feature);
+            }
+
+            for (const data of childFeatures) {
+                context.evolutionFeatures.push(data.feature);
+            }
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
+
+    /**
+     * Toggles hitpoint resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHitPoints(_, button) {
+        const hitPointsValue = Number.parseInt(button.dataset.value);
+        const newValue =
+            this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
+        await this.document.update({ 'system.resources.hitPoints.value': newValue });
+    }
+
+    /**
+     * Toggles stress resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleStress(_, button) {
+        const StressValue = Number.parseInt(button.dataset.value);
+        const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
+        await this.document.update({ 'system.resources.stress.value': newValue });
+    }
+
+    /**
+     * Performs a reaction roll for an Adversary.
+     * @type {ApplicationClickAction}
+     */
+    static async #reactionRoll(event) {
+        const config = {
+            event,
+            title: game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll'),
+            headerTitle: game.i18n.localize('DAGGERHEART.ACTORS.Adversary.adversaryReactionRoll.headerTitle'),
+            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
+                {
+                    action: {
+                        actionType: 'reaction', 
+                        roll: {}
+                    }
+                }, 
+                this.document
+            ),
+            roll: {
+                type: 'trait'
+            },
+            actionType: 'reaction',
+            hasRoll: true,
+            data: this.actor.getRollData()
+        };
+
+        this.actor.diceRoll(config);
+    }
+
+    /**
+     * Toggle the used state of a resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleResourceDice(event, target) {
+        const item = await getDocFromElement(target);
+
+        const { dice } = event.target.closest('.item-resource').dataset;
+        const diceState = item.system.resource.diceStates[dice];
+
+        await item.update({
+            [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
+        });
+    }
+
+    /**
+     * Handle the roll values of resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async #handleResourceDice(_, target) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
+        if (!rollValues) return;
+
+        await item.update({
+            'system.resource.diceStates': rollValues.reduce((acc, state, index) => {
+                acc[index] = { value: state.value, used: state.used };
+                return acc;
+            }, {})
+        });
+    }
+
+    static #advanceResourceDie(_, target) {
+        this.updateResourceDie(target, true);
+    }
+
+    lowerResourceDie(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.updateResourceDie(event.target, false);
+    }
+
+    async updateResourceDie(target, advance) {
+        const item = await getDocFromElement(target);
+        if (!item) return;
+
+        const advancedValue = item.system.resource.value + (advance ? 1 : -1);
+        await item.update({
+            'system.resource.value': Math.min(advancedValue, Number(item.system.resource.dieFaces.split('d')[1]))
+        });
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Listener Actions                */
+    /* -------------------------------------------- */
+
+    async updateItemResource(event) {
+        const item = await getDocFromElement(event.currentTarget);
+        if (!item) return;
+
+        const max = event.currentTarget.max ? Number(event.currentTarget.max) : null;
+        const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
+        await item.update({ 'system.resource.value': value });
+        this.render();
+    }
+}

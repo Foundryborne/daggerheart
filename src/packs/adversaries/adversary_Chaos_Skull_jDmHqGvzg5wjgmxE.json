@@ -34,7 +34,6 @@
     },
     "type": "ranged",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 2,
     "description": "<p>A floating humanoid skull animated by scintillating magic.</p>",
@@ -86,7 +85,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -123,13 +123,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 85,
+      "page": null,
       "artist": ""
     },
     "size": "tiny",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "jDmHqGvzg5wjgmxE",
@@ -237,7 +238,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "m6uPm4vujrUjSFPw",
       "img": "icons/magic/air/fog-gas-smoke-blue-gray.webp",
@@ -260,7 +262,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "k6iaQVfMZhrpwYQj",
           "img": "icons/magic/air/fog-gas-smoke-blue-gray.webp",
@@ -271,8 +274,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>The Skull levitates several feet off the ground and can’t be <em>Restrained</em>.</p>",
-          "origin": null,
+          "description": "<p>The Skull levitates several feet off the ground and can't be <em>Restrained</em>.</p>",
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -305,7 +307,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "LNVlf1BeqC3XyTrV",
       "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
@@ -328,7 +331,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "4rj6PM0AGrrlbxSc",
           "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
@@ -340,7 +344,6 @@
             "expired": false
           },
           "description": "<p>The Skull is resistant to magic damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -411,20 +414,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -476,7 +471,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Zn25zBr96y1hrmnr",
       "img": "icons/magic/lightning/bolt-strike-purple.webp",
@@ -527,17 +523,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -580,7 +568,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "urXRi4bdBfvl8U6K",
       "img": "icons/magic/control/sihouette-hold-beam-green.webp",

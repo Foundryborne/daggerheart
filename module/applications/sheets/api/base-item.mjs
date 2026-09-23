@@ -1,3 +1,4 @@
+import autocomplete from 'autocompleter';
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
@@ -5,7 +6,7 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 
 /**
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction *
- * @import DHItem from '../../../documents/item.mjs';
+ * @import DhItem from '../../../documents/item.mjs';
  /
 
 /**
@@ -30,11 +31,13 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             submitOnChange: true
         },
         actions: {
+            showPortraitArtwork: DHBaseItemSheet.#onShowPortraitArtwork,
             addFeature: DHBaseItemSheet.#addFeature,
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
             removeResource: DHBaseItemSheet.#removeResource,
-            editGMNote: DHBaseItemSheet.#onEditGMNote
+            editGMNote: DHBaseItemSheet.#onEditGMNote,
+            refreshFromCompendium: DHBaseItemSheet.#onRefreshFromCompendium
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.drop-section' },
@@ -64,18 +67,29 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         }
     };
 
+    /** @inheritdoc */
+    _getHeaderControls() {
+        const controls = super._getHeaderControls();
+        controls.push({
+            icon: 'fa-solid fa-image',
+            label: 'ITEM.ViewArt',
+            action: 'showPortraitArtwork'
+        });
+
+        if (this.item.refreshSourceUuid) {
+            controls.push({
+                label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
+                icon: 'fa-solid fa-arrow-rotate-left',
+                action: 'refreshFromCompendium'
+            });
+        }
+
+        return controls;
+    }
+
     /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
-
-    /**@inheritdoc */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
-
-        return context;
-    }
 
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
@@ -102,22 +116,38 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         return context;
     }
 
-    /**
-     * Prepare render context for the Effect part.
-     * @param {ApplicationRenderContext} context
-     * @param {ApplicationRenderOptions} options
-     * @returns {Promise<void>}
-     * @protected
-     */
-    async _prepareEffectsContext(context, _options) {
-        context.effects = {
-            actives: [],
-            inactives: []
-        };
+    /** @inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
 
-        for (const effect of this.item.effects) {
-            const list = effect.active ? context.effects.actives : context.effects.inactives;
-            list.push(effect);
+        
+        htmlElement.querySelector('img.profile')
+            ?.addEventListener('contextmenu', DHBaseItemSheet.#onShowPortraitArtwork.bind(this));
+
+        // If the item supports lore references, add autocomplete
+        const loreRefElement = htmlElement.querySelector('input[name="system.loreReference"]');
+        const choiceKeys = Object.keys(CONFIG.DH.lore[this.item.type] ?? {});
+        if (loreRefElement && choiceKeys) {
+            const choices = choiceKeys.map(k => ({ value: k, label: k }));
+            autocomplete({
+                input: loreRefElement,
+                fetch: function (text, update) {
+                    if (!text) {
+                        update(choices);
+                    } else {
+                        text = text.toLowerCase();
+                        update(choices.filter(n => n.label.toLowerCase().includes(text)));
+                    }
+                },
+                onSelect: item => {
+                    this.item.update({ 'system.loreReference': String(item.value) });
+                },
+                click: e => e.fetch(),
+                customize: function (_input, _inputRect, container) {
+                    container.style.zIndex = foundry.applications.api.ApplicationV2._maxZ;
+                },
+                minLength: 0
+            })
         }
     }
 
@@ -162,6 +192,12 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
+
+    static #onShowPortraitArtwork() {
+        const { ImagePopout } = foundry.applications.apps;
+        const {img, name, uuid} = this.document;
+        new ImagePopout({src: img, uuid, window: {title: name}}).render({force: true});
+    }
 
     /**
      * Add a new feature to the item, prompting the user for its type.
@@ -303,7 +339,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * @param {DragEvent} event 
-     * @param {DHItem} item 
+     * @param {DhItem} item 
      */
     async _onDropItem(event, item) {
         const target = event.target.closest('fieldset.drop-section');
@@ -393,6 +429,19 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         window.setTimeout(() => {
             if (wasHidden) editor.classList.add('hide-if-inactive');
         }, 0);
+    }
+
+    /** @this DHBaseItemSheet */
+    static async #onRefreshFromCompendium() {
+        const refresh = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title')
+            },
+            content: _loc('DAGGERHEART.ITEMS.Base.Refresh.AreYouSure')
+        });
+        if (refresh) {
+            this.document.refreshFromCompendium();
+        }
     }
 
     /** @inheritdoc */

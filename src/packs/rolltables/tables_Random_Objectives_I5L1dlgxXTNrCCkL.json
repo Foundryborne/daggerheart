@@ -330,7 +330,7 @@
   ],
   "replacement": true,
   "displayRoll": true,
-  "folder": null,
+  "folder": "94bFJP3btPxvbpqP",
   "flags": {
     "daggerheart": {
       "formulaName": "Roll Formula",
@@ -347,6 +347,6 @@
   },
   "formula": "1d12",
   "_id": "I5L1dlgxXTNrCCkL",
-  "sort": 400000,
+  "sort": 300000,
   "_key": "!tables!I5L1dlgxXTNrCCkL"
 }

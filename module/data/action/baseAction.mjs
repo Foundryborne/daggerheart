@@ -1,4 +1,3 @@
-import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
@@ -109,6 +108,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         /* Fallback to feature description */
         this.description = this.description || this.parent?.description;
+
+        this.isGrouped = false; // Wether a MultiAction has removed it from being an available action button.
     }
 
     /**
@@ -128,7 +129,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return Item the action is attached too.
-     * @returns {DHItem}
+     * @returns {DhItem}
      */
     get item() {
         if (!this.parent.parent && this.systemPath)
@@ -151,12 +152,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
-     * @returns {DhpActor | null}
+     * @returns {CONFIG.Actor.documentClass | null}
      */
     get actor() {
-        return this.item instanceof DhpActor
+        return this.item instanceof CONFIG.Actor.documentClass
             ? this.item
-            : this.item?.parent instanceof DhpActor
+            : this.item?.parent instanceof CONFIG.Actor.documentClass
                 ? this.item.parent
                 : null;
     }
@@ -183,12 +184,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      */
     static getSourceConfig(parent) {
         const updateSource = {};
-        if (parent?.parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
+
+        const { attack, damage } = game.system.api.models.actions.actionsTypes;
+        if (this === attack || this === damage) {
             updateSource['damage'] = { includeBase: true };
-            updateSource['range'] = parent?.attack?.range;
-            updateSource['roll'] = {
-                useDefault: true
-            };
+        }
+        
+        if (this === attack) {
+            if (parent?.parent?.type === 'weapon') {
+                updateSource['range'] = parent?.attack?.range;
+                updateSource['roll'] = {
+                    useDefault: true
+                };
+            }
         } else {
             if (parent?.trait) {
                 updateSource['roll'] = {
@@ -215,6 +223,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
             : 1;
         actorData.roll = {};
+        actorData.action = {
+            actionType: this.actionType,
+            damage: this.damage,
+            roll: this.roll
+        };
 
         return actorData;
     }
@@ -242,8 +255,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         let config = this.prepareConfig(event, configOptions);
         if (!config) return;
 
-        config.effects =
-            await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this.actor, this.item);
+        config.effects = await DHBaseAction.getActionRelevantEffects(this.getRollData(), this.actor);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -349,44 +361,23 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Get the all potentially applicable effects on the actor for the action's RollDialog
-     * @param {DHActor} actor The actor performing the action
-     * @param {DHItem|DhActor} effectParent The parent of the effect
-     * @returns {DhActiveEffect[]}
+     * @param {RollData} rollData The rolldata of the action being performed
+     * @param {DhActor} actor The actor performing the action
+     * @returns {Promise<DhActiveEffect[]>}
      */
-    static async getActionRelevantEffects(actor, effectParent) {
+    static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];
 
-        // Changes on weapon effects are not typically only applicable to show in the roll dialog for the weapon itself 
-        // The exemptions to this rule are listed below
-        const weaponTransferredEffectKeys = [
-            'system.bonuses.roll.spellcast.bonus'
-        ];
+        const applicableEffects = actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
+            if (conditionalPassed)
+                acc.push(effect);
 
-        const results = [];
-        const applicableEffects = await actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
-        for (const effect of [...applicableEffects].filter(e => !e.isSuppressed)) {
-            if (effect.parent.type === 'weapon') {
-                // Effects on weapons only ever apply for the weapon itself (with a few exceptions)
-                const restricted =
-                    effect.parent.system.secondary
-                        // Secondary applies only to other primary weapons
-                        ? effectParent?.type !== 'weapon' || effectParent?.system.secondary
-                        // Primary only applies to itself
-                        : effectParent?.id !== effect.parent.id;
-                if (restricted) {
-                    const sourceChanges = effect._source.system.changes;
-                    const changes = sourceChanges.filter(x => weaponTransferredEffectKeys.includes(x.key));
-                    if (changes.length) {
-                        results.push(effect.clone({ 'system.changes': changes }));
-                    }
-                    continue;
-                }
-            }
-
-            results.push(effect);
-        }
-
-        return results;
+            return acc;
+        }, []);
     }
 
     /**

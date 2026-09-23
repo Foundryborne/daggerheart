@@ -20,6 +20,8 @@ import {
 import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
+import { pick } from './module/helpers/utils.mjs';
+import { dhTriggers, dhColorsets, getDiceRoles } from './module/config/dsnConfig.mjs';
 
 CONFIG.DH = SYSTEM;
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -45,11 +47,11 @@ CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
 
 CONFIG.Folder.documentClass = documents.DhFolder;
 
-CONFIG.Actor.documentClass = documents.DhpActor;
+CONFIG.Actor.documentClass = documents.DhActor;
 CONFIG.Actor.dataModels = models.actors.config;
 CONFIG.Actor.collection = collections.DhActorCollection;
 
-CONFIG.Item.documentClass = documents.DHItem;
+CONFIG.Item.documentClass = documents.DhItem;
 CONFIG.Item.dataModels = models.items.config;
 
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
@@ -106,6 +108,7 @@ CONFIG.ui.hotbar = applications.ui.DhHotbar;
 CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
 CONFIG.ui.actors = applications.sidebar.DhActorDirectory;
 CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
+CONFIG.ui.settings = applications.sidebar.DhSettings;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
 CONFIG.ui.pause = applications.ui.DhGamePause;
@@ -113,6 +116,20 @@ CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
 CONFIG.debug.triggers = false;
+
+// Fix on Foundry native formula replacement for DH
+// @todo: this should maybe be roll data bolt ons
+const nativeReplaceFormulaData = Roll.replaceFormulaData;
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
+    /* Inserting global data */
+    const defaultingTypes = [
+        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
+        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
+    ];
+
+    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    return nativeReplaceFormulaData(formula, data, { missing, warn });
+};
 
 Hooks.once('init', () => {
     game.system.api = {
@@ -198,6 +215,11 @@ Hooks.once('init', () => {
         makeDefault: true,
         label: sheetLabel('TYPES.Item.beastform')
     });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Transformation, {
+        types: ['transformation'],
+        makeDefault: true,
+        label: sheetLabel('TYPES.Item.transformation')
+    });
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
     Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Character, {
@@ -247,7 +269,7 @@ Hooks.once('init', () => {
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,
         {
-            types: ['base', 'beastform', 'horde'],
+            types: ['base', 'beastform'],
             makeDefault: true,
             label: sheetLabel('DOCUMENT.ActiveEffect')
         }
@@ -266,13 +288,31 @@ Hooks.once('init', () => {
 
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
-
-    return handlebarsRegistration();
+    handlebarsRegistration();
+    
+    // Firefox can't handle mixed unit calcs until the nightly (158).
+    // That said, it may release without the fix (this happened on version 156 as well)
+    // Until we verify that its fine on the current release, we can't add the version check
+    const userAgent = navigator.userAgent ?? '';
+    const firefoxVersionMatch = userAgent.match(/\bFirefox\/(\d+\.\d+)\b/);
+    if (firefoxVersionMatch) {
+        // const version = Number(firefoxVersionMatch[1]);
+        document.body.classList.add('dh-old-firefox-cards');
+    }
 });
 
 Hooks.on('i18nInit', () => {
+    // Setup references to avoid continual recreation every access, and also simplify access
+    // These are updated in the onChange events.
+    // Occurs in i18nInit so that localization in default values work correctly
+    game.system.settings = {
+        appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
+        automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
+        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
+    };
+
     // Setup homebrew resources
-    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).refreshConfig();
+    game.system.settings.homebrew.refreshConfig();
 });
 
 Hooks.on('setup', () => {
@@ -322,10 +362,14 @@ Hooks.on('setup', () => {
             value: [...actorCommon.value, 'evasion', 'levelData.level.current']
         }
     };
+
+    // Setup enricher on window
+    enricherRenderSetup(window.document);
 });
 
 Hooks.on('ready', async () => {
     const appearanceSettings = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
+    const homebrewSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew);
     ui.resources = new CONFIG.ui.resources();
     if (appearanceSettings.displayFear !== 'hide') ui.resources.render({ force: true });
 
@@ -336,6 +380,10 @@ Hooks.on('ready', async () => {
 
     ui.effectsDisplay = new CONFIG.ui.effectsDisplay();
     ui.effectsDisplay.render({ force: true });
+
+    // Create Scene Darkness slider and add to `Scenes` apps list so that it will re-render on scene update
+    ui.sceneDarknessSlider = new applications.ui.SceneDarknessSlider();
+    game.scenes.apps.push(ui.sceneDarknessSlider);
 
     if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
         ui.compendiumBrowser = new applications.ui.ItemBrowser();
@@ -351,24 +399,37 @@ Hooks.on('ready', async () => {
         }
     }
 
+    // Remove any homebrew domains that is a core domain (or at least any configured as such)
+    const coreDomains = Object.keys(CONFIG.DH.DOMAIN.domains);
+    const homebrewDomains = Object.keys(homebrewSettings.domains);
+    if (homebrewDomains.some(d => coreDomains.includes(d))) {
+        const validKeys = homebrewDomains.filter(d => !coreDomains.includes(d));
+        game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, {
+            ...homebrewSettings.toObject(true),
+            domains: pick(homebrewSettings.domains, validKeys)
+        });
+    }
+
     runMigrations();
 });
 
-Hooks.once('dicesoniceready', () => {});
+Hooks.once('diceSoNiceReady', dice3d => {
+    for (const trigger of dhTriggers) {
+        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids);
+    }
 
-Hooks.on('renderChatMessageHTML', (document, element) => {
-    enricherRenderSetup(element);
-    const cssClass = document.flags?.daggerheart?.cssClass;
-    if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
+    for (const colorset of dhColorsets) {
+        dice3d.addColorset(colorset);
+    }
+
+    for (const diceRole of getDiceRoles()) {
+        dice3d.addRole(diceRole, { package: CONFIG.DH.id });
+    }
 });
 
-Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {
-    enricherRenderSetup(element);
-});
-
-Hooks.on('renderHandlebarsApplication', (_, element) => {
-    enricherRenderSetup(element);
-});
+Hooks.on('openDetachedWindow', (_, window) => {
+    enricherRenderSetup(window.document);
+})
 
 Hooks.on(CONFIG.DH.HOOKS.hooksConfig.tagTeamStart, async data => {
     if (data.openForAllPlayers && data.partyId) {
@@ -393,6 +454,8 @@ Hooks.on(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, async data => {
         await dialog.render({ force: true });
     }
 });
+
+Hooks.on(CONFIG.DH.HOOKS.hooksConfig.downtimeTrigger, applications.sheets.actors.Party.downtimeMoveQuery);
 
 const updateActorsRangeDependentEffects = async token => {
     if (!token) return;
@@ -431,7 +494,7 @@ const updateActorsRangeDependentEffects = async token => {
 };
 
 const updateAllRangeDependentEffects = async () => {
-    const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
+    const effectsAutomation = game.system.settings.automation.effects;
     if (!effectsAutomation.rangeDependent) return;
 
     const tokens = canvas.scene?.tokens;
@@ -475,13 +538,44 @@ Hooks.on('canvasReady', canas => {
     game.system.registeredTriggers.registerSceneTriggers(canvas.scene);
 });
 
+Hooks.on('getSceneControlButtons', controls => {
+    const sceneDarknessTool = {
+        name: 'changeSceneDarknessLevel',
+        title: 'CONTROLS.ChangeSceneDarknessLevel',
+        icon: 'fa-solid fa-circle-half-stroke',
+        visible: game.user.isGM && !canvas.scene?.environment.darknessLock,
+        toggle: true,
+        active: false,
+        onChange: () => {
+            ui.sceneDarknessSlider.toggleVisibility();
+        }
+    }
+    
+    const lightingControls = controls.lighting;
+    const newLightingTools = {};
+    for (const [key, value] of Object.entries(lightingControls.tools)) {
+        if (key === 'day') {
+            newLightingTools[sceneDarknessTool.name] = sceneDarknessTool;
+        }
+        newLightingTools[key] = value;
+    }
+    
+    controls.lighting.tools = newLightingTools;
+});
+
+Hooks.on('activateSceneControls', controls => {
+    if (controls.control.name !== 'lighting') {
+        ui.sceneDarknessSlider.close();
+    }
+});
+
 /** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */
 Hooks.on('renderDialogV2', (dialog, html) => {
     if (!html.classList.contains('dialog')) return;
     const cls = html.classList.contains('item-create')
-        ? documents.DHItem.implementation
+        ? documents.DhItem.implementation
         : html.classList.contains('actor-create')
-            ? documents.DhpActor.implementation
+            ? documents.DhActor.implementation
             : null;
     if (!cls) return;
 
@@ -495,7 +589,6 @@ Hooks.on('renderDialogV2', (dialog, html) => {
     if (!defaultEntity) {
         nameInput.placeholder = cls.defaultName({});
         const emptyOption = document.createElement('option');
-        emptyOption.value = defaultEntity;
         emptyOption.selected = true;
         select.required = true;
         select.prepend(emptyOption);
@@ -506,6 +599,24 @@ Hooks.on('renderDialogV2', (dialog, html) => {
             }
         });
     } else {
+        const { pack, parent } = dialog.options;
+        nameInput.placeholder = cls.defaultName({ type: defaultEntity, pack, parent });
         select.querySelector(`option[value=${defaultEntity}]`).selected = true;
+    }
+});
+
+Hooks.on('renderRollResolver', (document, html) => {
+    for (const [termId, data] of document.fulfillable) {
+        const dualityLabel = 
+            data.term.modifiers.includes('h') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.hope`) }) : 
+                data.term.modifiers.includes('f') ? _loc(`DAGGERHEART.GENERAL.rollWith`, { roll: _loc(`DAGGERHEART.GENERAL.fear`) }) : 
+                    null;
+
+        if (!dualityLabel) continue;
+        
+        const legend = html.querySelector(`.input-grid[data-term-id=${termId}] legend`);
+        if (!legend) continue;
+        
+        legend.childNodes[0].nodeValue = `${dualityLabel} `;
     }
 });

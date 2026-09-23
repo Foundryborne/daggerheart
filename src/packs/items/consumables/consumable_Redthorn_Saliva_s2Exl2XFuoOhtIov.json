@@ -54,7 +54,7 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -63,14 +63,13 @@
     {
       "name": "Redthorn Saliva",
       "img": "icons/commodities/materials/slime-thick-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.s2Exl2XFuoOhtIov",
       "transfer": false,
       "_id": "tWf00ezdpxQQLuZ1",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.dice",
+            "key": "system.bonuses.damage.dice",
             "type": "add",
             "value": "1d12",
             "priority": null,
@@ -82,7 +81,13 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "damageType",
+            "damageType": "physical"
+          }
+        ]
       },
       "disabled": false,
       "duration": {
@@ -106,7 +111,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 10300000,
   "flags": {},
   "_key": "!items!s2Exl2XFuoOhtIov"
 }

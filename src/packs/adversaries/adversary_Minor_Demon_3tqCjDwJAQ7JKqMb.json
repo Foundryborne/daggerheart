@@ -34,7 +34,6 @@
     },
     "type": "solo",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 1,
     "description": "<p>A crimson-hued creature from the Circles Below, consumed by rage against all mortals.</p>",
@@ -86,7 +85,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -123,13 +123,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 79,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "3tqCjDwJAQ7JKqMb",
@@ -278,7 +279,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -329,17 +331,9 @@
                   "applyTo": "hope",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -371,7 +365,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -432,20 +427,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -497,7 +484,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -507,68 +495,6 @@
         "compendiumSource": null
       },
       "_key": "!actors.items!3tqCjDwJAQ7JKqMb.lA7vcvS7oGT9NTSy"
-    },
-    {
-      "name": "Reaper",
-      "type": "feature",
-      "_id": "bpLBGTW1DmXPgIcx",
-      "img": "icons/magic/death/skull-energy-light-white.webp",
-      "system": {
-        "description": "<p>Before rolling damage for the @Lookup[@name]'s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the @Lookup[@name]'s current number of marked HP.</p>",
-        "resource": null,
-        "actions": {
-          "vZq3iaJrMzLYbqQN": {
-            "type": "effect",
-            "_id": "vZq3iaJrMzLYbqQN",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "stress",
-                "value": 1,
-                "step": null,
-                "itemId": null,
-                "consumeOnSuccess": false
-              }
-            ],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null,
-              "consumeOnSuccess": false
-            },
-            "effects": [],
-            "target": {
-              "type": "self",
-              "amount": null
-            },
-            "name": "Mark Stress",
-            "img": "icons/magic/death/skull-energy-light-white.webp",
-            "range": "",
-            "baseAction": false,
-            "originItem": {
-              "type": "itemCollection"
-            },
-            "triggers": [],
-            "areas": []
-          }
-        },
-        "featureForm": "reaction",
-        "attribution": {},
-        "gmNotes": "",
-        "granter": null
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!3tqCjDwJAQ7JKqMb.bpLBGTW1DmXPgIcx"
     },
     {
       "name": "Momentum",
@@ -610,17 +536,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -658,7 +576,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -668,6 +587,95 @@
         "compendiumSource": null
       },
       "_key": "!actors.items!3tqCjDwJAQ7JKqMb.w400aHTlADxDihpt"
+    },
+    {
+      "name": "Reaper",
+      "type": "feature",
+      "system": {
+        "featureForm": "reaction",
+        "attribution": {},
+        "description": "<p>Before rolling damage for the Demon's attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the Demon's current number of marked HP.</p>",
+        "gmNotes": "",
+        "resource": null,
+        "actions": {
+          "wa3C0SNaa8lnPSXA": {
+            "type": "damage",
+            "damage": {
+              "main": {
+                "base": false,
+                "applyTo": "hitPoints",
+                "resultBased": false,
+                "fullRestore": false,
+                "value": {
+                  "multiplier": "flat",
+                  "flatMultiplier": 1,
+                  "dice": "d6",
+                  "bonus": null,
+                  "custom": {
+                    "enabled": true,
+                    "formula": "@system.resources.hitPoints.value"
+                  }
+                },
+                "valueAlt": null,
+                "includeBase": true,
+                "direct": false,
+                "type": [
+                  "physical"
+                ],
+                "groupAttack": "",
+                "itemId": null
+              },
+              "resources": {}
+            },
+            "_id": "wa3C0SNaa8lnPSXA",
+            "systemPath": "actions",
+            "baseAction": false,
+            "description": "",
+            "chatDisplay": true,
+            "originItem": {
+              "type": "itemCollection"
+            },
+            "actionType": "action",
+            "triggers": [],
+            "areas": [],
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null,
+                "consumeOnSuccess": false
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "range": ""
+          }
+        },
+        "granter": null,
+        "actorResources": []
+      },
+      "_id": "eLyKKVmRPE8yRwTx",
+      "img": "icons/magic/death/skull-energy-light-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": -100000,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!3tqCjDwJAQ7JKqMb.eLyKKVmRPE8yRwTx"
     }
   ],
   "effects": [],

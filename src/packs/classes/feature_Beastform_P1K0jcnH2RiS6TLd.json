@@ -52,12 +52,13 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 10,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [],
   "sort": 200000,

@@ -45,19 +45,11 @@
             "applyTo": "hitPoints",
             "type": [],
             "base": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -113,18 +105,18 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 13,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Trampled",
       "img": "icons/skills/wounds/injury-pain-body-orange.webp",
-      "origin": "Item.7GMu72UEQ1LIIJAN",
       "transfer": false,
       "_id": "LkekG4IngVW9rFjI",
       "type": "base",
@@ -136,7 +128,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

@@ -49,14 +49,14 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 11500000,
   "flags": {},
   "_key": "!items!yJkwz4AP6yhGo8Vj"
 }

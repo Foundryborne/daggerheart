@@ -1,6 +1,6 @@
 {
   "folder": "fJQhss1obELmJ7cK",
-  "name": "Warden’s Protection",
+  "name": "Warden's Protection",
   "type": "feature",
   "_id": "2F1bUFY80oce97C9",
   "img": "icons/magic/nature/barrier-shield-wood-vines.webp",
@@ -39,17 +39,9 @@
               "applyTo": "hitPoints",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -78,7 +70,7 @@
         "range": "",
         "areas": [
           {
-            "name": "Warden’s Protection",
+            "name": "Warden's Protection",
             "type": "placed",
             "shape": "emanation",
             "size": "close",
@@ -95,12 +87,13 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 11,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [],
   "sort": 300000,

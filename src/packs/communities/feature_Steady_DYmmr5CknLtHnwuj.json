@@ -10,12 +10,13 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 33,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -53,7 +54,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -63,7 +65,6 @@
         "expired": false
       },
       "description": "<p>You have advantage on rolls to traverse dangerous cliffs and ledges, navigate harsh environments, and use your survival knowledge.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

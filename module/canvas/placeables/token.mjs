@@ -24,16 +24,14 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const isTurn = game.combat?.combatant?.tokenId === this.id;
         const markerActive = markersEnabled && turnIsSet ? isTurn : spotlighted;
 
-        // Activate a Turn Marker
         if (markerActive) {
+            // Activate a Turn Marker
             if (!this.turnMarker)
                 this.turnMarker = this.addChildAt(new foundry.canvas.placeables.tokens.TokenTurnMarker(this), 0);
             canvas.tokens.turnMarkers.add(this);
             this.turnMarker.draw();
-        }
-
-        // Remove a Turn Marker
-        else if (this.turnMarker) {
+        } else if (this.turnMarker) {
+            // Remove a Turn Marker
             canvas.tokens.turnMarkers.delete(this);
             this.turnMarker.destroy();
             this.turnMarker = null;
@@ -51,7 +49,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         this.effects.overlay = null;
 
         // Categorize effects
-        const activeEffects = getIconVisibleActiveEffects(Array.from(this.actor?.allApplicableEffects() ?? []));
+        const activeEffects = getIconVisibleActiveEffects(this.actor?.getActiveEffects() ?? [])
         const overlayEffect = activeEffects.findLast(e => e.img && e.getFlag?.('core', 'overlay'));
 
         // Draw effects
@@ -82,7 +80,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const icon = new PIXI.Sprite(tex);
         icon.tint = tint ?? 0xffffff;
 
-        if (effect.system.stacking?.value > 1) {
+        if (effect.system?.stacking?.value > 1) {
             const stackOverlay = new PIXI.Text(effect.system.stacking.value, {
                 fill: '#f3c267',
                 stroke: '#000000',
@@ -172,22 +170,55 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         return Math.min(distance, distance > adjacencyBuffer ? Infinity : canvas.grid.distance);
     }
 
+    /** @inheritdoc */
     _onHoverIn(event, options) {
         super._onHoverIn(event, options);
+        this.#showDistanceHover();
+    }
+
+    /** @inheritdoc */
+    _onHoverOut(...args) {
+        super._onHoverOut(...args);
+        if (!this.layer.highlightObjects) {
+            this.#showDistanceHover(false);
+        }
+    }
+
+    /** @inheritdoc */
+    _refreshState() {
+        super._refreshState();
+        const isHover = this.hover || this.layer.highlightObjects;
+        this.#showDistanceHover(isHover);
+    }
+
+    /**
+     * Show or hide distance hover tooltip. 
+     * Despite the given paramter, it performs the necessary checks to see if its valid to show.
+     * @param {boolean} [show] whether to show the hover or whether to hide
+     */
+    #showDistanceHover(show = true) {
+        if (!show) {
+            document.querySelector(`#measurement .token-hover-distance[data-uuid="${this.document.uuid}"]`)?.remove();
+            return;
+        }
 
         // Check if the setting is enabled
-        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).showTokenDistance;
+        const setting = game.system.settings.appearance.showTokenDistance;
         if (setting === 'never' || (setting === 'encounters' && !game.combat?.started)) return;
 
         // Check if this token isn't invisible and is actually being hovered
         const isTokenValid =
+            this.document.uuid &&
             this.visible &&
-            this.hover &&
+            (this.hover || this.layer.highlightObjects) &&
             !this.isPreview &&
             !this.document.isSecret &&
             !this.controlled &&
             !this.animation;
-        if (!isTokenValid) return;
+        if (!isTokenValid) {
+            this.#showDistanceHover(false);
+            return;
+        }
 
         // Ensure we have a single controlled token
         const originToken = canvas.tokens.controlled[0];
@@ -198,31 +229,34 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const distanceResult = DhMeasuredTemplate.getRangeLabels(originToken.distanceTo(this), ranges);
         const distanceLabel = `${distanceResult.distance} ${distanceResult.units}`.trim();
 
-        // Create the element
-        const element = document.createElement('div');
-        element.id = 'token-hover-distance';
-        element.classList.add('waypoint-label', 'last');
-        const ruler = document.createElement('i');
-        ruler.classList.add('fa-solid', 'fa-ruler');
-        element.appendChild(ruler);
-        const labelEl = document.createElement('span');
-        labelEl.classList.add('total-measurement');
-        labelEl.textContent = distanceLabel;
-        element.appendChild(labelEl);
+        // Create or retrieve the existing element.
+        const existing = document.querySelector(`#measurement .token-hover-distance[data-uuid="${this.document.uuid}"]`);
+        const element = existing ?? document.createElement('div');
+        const center = this.getCenterPoint();
 
         // Position the element and add to the DOM
-        const center = this.getCenterPoint();
         element.style.setProperty('--transformY', 'calc(-100% - 10px)');
         element.style.setProperty('--position-y', `${this.y}px`);
         element.style.setProperty('--position-x', `${center.x}px`);
         element.style.setProperty('--ui-scale', String(canvas.dimensions.uiScale));
-        document.querySelector('#token-hover-distance')?.remove();
-        document.querySelector('#measurement').appendChild(element);
-    }
 
-    _onHoverOut(...args) {
-        super._onHoverOut(...args);
-        document.querySelector('#token-hover-distance')?.remove();
+        if (!existing) {
+            // Create the element and add to the dom
+            element.dataset.uuid = this.document.uuid;
+            element.classList.add('token-hover-distance', 'waypoint-label', 'last');
+            const ruler = document.createElement('i');
+            ruler.classList.add('fa-solid', 'fa-ruler');
+            element.appendChild(ruler);
+            const labelEl = document.createElement('span');
+            labelEl.classList.add('total-measurement');
+            labelEl.textContent = distanceLabel;
+            element.appendChild(labelEl);
+            document.querySelector('#measurement').appendChild(element);
+        } else {
+            // Update the label of the existing element
+            const measurement = element.querySelector('span.total-measurement');
+            if (measurement) measurement.textContent = distanceLabel;
+        }
     }
 
     /** Returns the point at which a line starting at origin and ending at destination intersects the edge of the bounds */

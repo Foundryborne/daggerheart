@@ -5,14 +5,26 @@
             {{#times resource.max}}
                 <span class='resource-value' data-action='toggleResource' data-value="{{add this 1}}" data-resource="{{resource.id}}">
                     {{#if resource.fullIcon.isIcon}}
-                        <i class='{{resource.fullIcon.value}} full {{#unless (gte ../value (add this 1))}}hidden{{/unless}}'></i>
+                        <i 
+                            class='{{resource.fullIcon.value}} full {{#unless (gte ../value (add this 1))}}hidden{{/unless}}' 
+                            {{#unless (eq resoure.fullIcon.opacity 1)}}style="{{concat "opacity: " resource.fullIcon.opacity ";"}}"{{/unless}}
+                        ></i>
                     {{else}}
-                        <img src="{{resource.fullIcon.value}}" class="full {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#unless (gte ../value (add this 1))}}hidden{{/unless}}" />
+                        <img 
+                            src="{{resource.fullIcon.value}}" class="full {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#unless (gte ../value (add this 1))}}hidden{{/unless}}" 
+                            {{#unless (eq resoure.fullIcon.opacity 1)}}style="{{concat "opacity: " resource.fullIcon.opacity ";"}}"{{/unless}}
+                        />
                     {{/if}}
                     {{#if resource.emptyIcon.isIcon}}
-                        <i class='{{resource.emptyIcon.value}} empty {{#if (gte ../value (add this 1))}}hidden{{/if}}'></i>
+                        <i 
+                            class='{{resource.emptyIcon.value}} empty {{#if (gte ../value (add this 1))}}hidden{{/if}}' 
+                            {{#unless (eq resoure.emptyIcon.opacity 1)}}style="{{concat "opacity: " resource.emptyIcon.opacity ";"}}"{{/unless}}
+                        ></i>
                     {{else}}
-                        <img src="{{resource.emptyIcon.value}}" class="empty {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#if (gte ../value (add this 1))}}hidden{{/if}}" />
+                        <img 
+                            src="{{resource.emptyIcon.value}}" class="empty {{#unless resource.fullIcon.noColorFilter}}filter{{else}}non-transparent{{/unless}} {{#if (gte ../value (add this 1))}}hidden{{/if}}" 
+                            {{#unless (eq resoure.emptyIcon.opacity 1)}}style="{{concat "opacity: " resource.emptyIcon.opacity ";"}}"{{/unless}}
+                        />
                     {{/if}}
                 </span>
             {{/times}}

@@ -54,7 +54,7 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -63,7 +63,6 @@
     {
       "name": "Shrinking Potion",
       "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.HGixKenQwhyRAYNk",
       "transfer": false,
       "_id": "yaRLd7eHWYm2MHRM",
       "type": "base",
@@ -90,7 +89,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -121,7 +121,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 3400000,
   "flags": {},
   "_key": "!items!HGixKenQwhyRAYNk"
 }

@@ -54,7 +54,7 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -63,7 +63,6 @@
     {
       "name": "Major Control Potion",
       "img": "icons/consumables/potions/bottle-round-corked-blue.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.80s1FLmTLtohZ5GH",
       "transfer": false,
       "_id": "YOgojNdjARXUUrky",
       "type": "base",
@@ -82,7 +81,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -106,7 +106,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 1600000,
   "flags": {},
   "_key": "!items!80s1FLmTLtohZ5GH"
 }

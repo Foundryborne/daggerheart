@@ -10,12 +10,13 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 17,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -36,7 +37,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "bKOuMxhB2Jth3j2T",
       "img": "icons/creatures/mammals/wolf-howl-moon-gray.webp",
@@ -48,7 +50,6 @@
         "expired": false
       },
       "description": "<p>Choose two additional level-up options for your companion.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -90,6 +90,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
                             checkboxSelections: new fields.NumberField({ required: true, integer: true }),
                             minCost: new fields.NumberField({ required: true, integer: true }),
                             type: new fields.StringField({ required: true, choices: LevelOptionType }),
+                            subType: new fields.StringField({ nullable: true }),
                             value: new fields.NumberField({ integer: true }),
                             amount: new fields.NumberField({ integer: true })
                         })
@@ -242,7 +243,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
                     const checkboxes = [...Array(option.checkboxSelections).keys()].flatMap(index => {
                         const checkboxNr = index + 1;
                         const checkboxData = selections[tierKey]?.[optionKey]?.[checkboxNr];
-                        const checkbox = { ...option, checkboxNr, tier: tierKey };
+                        const checkbox = { ...option, checkboxNr, tier: tierKey, option: optionKey };
 
                         if (checkboxData) {
                             checkbox.level = checkboxData.level;
@@ -343,7 +344,8 @@ export class DhLevelupLevel extends foundry.abstract.DataModel {
                         value: new fields.StringField(),
                         data: new fields.ArrayField(new fields.StringField()),
                         secondaryData: new fields.TypedObjectField(new fields.StringField()),
-                        type: new fields.StringField({ required: true })
+                        type: new fields.StringField({ required: true }),
+                        subType: new fields.StringField({ nullable: true })
                     })
                 )
             )

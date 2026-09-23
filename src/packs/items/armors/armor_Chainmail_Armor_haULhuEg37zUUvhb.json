@@ -28,7 +28,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 56,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -56,7 +56,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -65,7 +66,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

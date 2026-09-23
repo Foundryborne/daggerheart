@@ -34,7 +34,6 @@
     },
     "type": "skulk",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "ZUMG6p8iB73HY73o": {
         "name": "Intrusion",
@@ -92,7 +91,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,13 +129,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 78,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "XF4tYTq9nPJAy2ox",
@@ -274,19 +275,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -329,7 +322,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -387,13 +381,13 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [
         {
           "name": "Cloaked",
           "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.XF4tYTq9nPJAy2ox.Item.ILIogeKbYioPutRw",
           "transfer": false,
           "_id": "w5VTwlHmUjl8XCQ4",
           "type": "base",
@@ -412,7 +406,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -421,7 +416,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+          "description": "<p>Become <em>Hidden</em> until after the Shadow's next attack. Attacks made while Hidden from this feature have advantage.</p>",
           "tint": "#ffffff",
           "statuses": [
             "hidden"

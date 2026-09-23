@@ -42,19 +42,11 @@
               "physical"
             ],
             "base": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -144,7 +136,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 130,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -161,7 +153,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "Xh0wrgRUuYpwChBU",
       "type": "base",
@@ -173,7 +164,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -207,7 +199,6 @@
     {
       "name": "Restrained",
       "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
-      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "2xzOqTaPJQzGqFJv",
       "type": "base",
@@ -219,7 +210,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

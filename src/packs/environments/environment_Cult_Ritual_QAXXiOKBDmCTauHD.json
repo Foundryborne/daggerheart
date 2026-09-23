@@ -23,7 +23,7 @@
     "impulses": "Profane the land, unite the Mortal Realm with the Circles Below",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 106,
+      "page": null,
       "artist": ""
     }
   },
@@ -167,7 +167,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "iiHjguQG2aBn9g8i",
       "img": "icons/magic/unholy/orb-contained-pink.webp",
@@ -175,7 +176,6 @@
         {
           "name": "Desecrated Ground",
           "img": "icons/magic/unholy/orb-contained-pink.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.iiHjguQG2aBn9g8i",
           "transfer": false,
           "_id": "8yNIw8Y7rfMdOqWC",
           "type": "base",
@@ -184,7 +184,7 @@
               {
                 "key": "system.rules.dualityRoll.defaultHopeDice",
                 "type": "override",
-                "value": "d10",
+                "value": 10,
                 "priority": null,
                 "phase": "initial"
               }
@@ -194,7 +194,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -274,7 +275,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0Rgqw1kUPeJ11ldd",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
@@ -282,7 +284,6 @@
         {
           "name": "Blashemous Might",
           "img": "icons/magic/unholy/orb-swirling-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.0Rgqw1kUPeJ11ldd",
           "transfer": false,
           "_id": "dYQBQq1xIysM0qLo",
           "type": "base",
@@ -293,7 +294,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -318,21 +320,13 @@
         {
           "name": "Blashemous Might - Damage",
           "img": "icons/magic/unholy/orb-swirling-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.0Rgqw1kUPeJ11ldd",
           "transfer": false,
           "_id": "Hxw5lXE77bGzuaOu",
           "type": "base",
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage.physical.dice",
-                "type": "add",
-                "value": "1d10",
-                "priority": null,
-                "phase": "initial"
-              },
-              {
-                "key": "system.bonuses.damage.magical.dice",
+                "key": "system.bonuses.damage.dice",
                 "type": "add",
                 "value": "1d10",
                 "priority": null,
@@ -344,7 +338,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": true,
           "duration": {
@@ -455,7 +450,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oFfu3hUhp4ta4qwT",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
@@ -478,7 +474,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "WltEUhtYwfnX8WCc",
       "img": "icons/skills/wounds/blood-drip-droplet-red.webp",

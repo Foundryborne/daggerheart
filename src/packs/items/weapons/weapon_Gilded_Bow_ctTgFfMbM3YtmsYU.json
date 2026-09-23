@@ -77,7 +77,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -112,7 +113,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 49,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -140,7 +141,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -149,7 +151,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -43,17 +43,44 @@ class DhLevelTier extends foundry.abstract.DataModel {
     }
 }
 
-class DhLevelOption extends foundry.abstract.DataModel {
+export class DhLevelOption extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 
         return {
-            label: new fields.StringField({ required: true }),
-            checkboxSelections: new fields.NumberField({ required: true, integer: true, initial: 1 }),
-            minCost: new fields.NumberField({ required: true, integer: true, initial: 1 }),
-            type: new fields.StringField({ required: true, choices: LevelOptionType }),
-            value: new fields.NumberField({ integer: true }),
-            amount: new fields.NumberField({ integer: true })
+            label: new fields.StringField({
+                required: true,
+                label: 'DAGGERHEART.GENERAL.label'
+            }),
+            checkboxSelections: new fields.NumberField({
+                required: true,
+                integer: true,
+                initial: 1,
+                label: 'DAGGERHEART.CONFIG.LevelupData.checkboxSelections'
+            }),
+            minCost: new fields.NumberField({
+                required: true,
+                integer: true,
+                initial: 1,
+                label: 'DAGGERHEART.CONFIG.LevelupData.minCost'
+            }),
+            type: new fields.StringField({
+                required: true,
+                choices: LevelOptionType,
+                label: 'DAGGERHEART.GENERAL.type'
+            }),
+            subType: new fields.StringField({
+                nullable: true,
+                label: 'DAGGERHEART.GENERAL.subType'
+            }),
+            value: new fields.NumberField({
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.value'
+            }),
+            amount: new fields.NumberField({
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.amount'
+            })
         };
     }
 }
@@ -161,6 +188,13 @@ export const LevelOptionType = {
     multiclass: {
         id: 'multiclass',
         label: 'Multiclass'
+    },
+    dice: {
+        id: 'dice',
+        label: 'Increase Dice Size',
+        subTypes: {
+            comboDieIndex: { key: 'comboDieIndex', label: 'Permanently increase your Combo Die by one step (d4 to d6, d6 to d8, etc.).' }
+        }
     },
     ...CompanionLevelOptionType
 };

@@ -12,3 +12,5 @@ export { default as RollField } from './rollField.mjs';
 export { default as MacroField } from './macroField.mjs';
 export { default as SummonField } from './summonField.mjs';
 export { default as TransformField } from './transformField.mjs';
+export { default as EvolutionField } from './evolutionField.mjs';
+export { default as GroupedField } from './groupedField.mjs';

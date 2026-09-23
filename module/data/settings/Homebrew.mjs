@@ -144,7 +144,14 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                         base64: false,
                         label: 'Image'
                     }),
-                    description: new fields.HTMLField()
+                    description: new fields.HTMLField(),
+                    color: new fields.ColorField({ 
+                        label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.domains.color.label',
+                        initial: '#000000'
+                    }),
+                    invertText: new fields.BooleanField({ 
+                        label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.domains.invertText.label' 
+                    })
                 })
             ),
             adversaryTypes: new fields.TypedObjectField(
@@ -214,6 +221,9 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
 
     /** Invoked by the setting when data changes */
     handleChange() {
+        // Update setting early so re-render attempts pull it
+        game.system.settings.homebrew = this;
+
         if (this.maxFear) {
             if (ui.resources) ui.resources.render({ force: true });
         }
@@ -282,7 +292,7 @@ export class Resource extends foundry.abstract.DataModel {
     };
 }
 
-const imageIconField = defaultValue =>
+export const imageIconField = defaultValue =>
     new foundry.data.fields.SchemaField(
         {
             value: new foundry.data.fields.StringField({
@@ -298,6 +308,14 @@ const imageIconField = defaultValue =>
                 required: true,
                 initial: false,
                 label: 'DAGGERHEART.SETTINGS.Homebrew.FIELDS.resources.resources.noColorFilter.label'
+            }),
+            opacity: new foundry.data.fields.NumberField({
+                required: true,
+                initial: 1,
+                min: 0.1,
+                step: 0.1,
+                max: 1,
+                label: 'DAGGERHEART.GENERAL.opacity'
             })
         },
         { required: true }

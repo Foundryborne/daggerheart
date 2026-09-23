@@ -53,12 +53,12 @@
     "isMulticlass": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 15,
+      "page": null,
       "artist": ""
     },
     "backgroundQuestions": [
       "Who from your community did you fail to protect, and why do you still think of them?",
-      "You’ve been tasked with protecting something important and delivering\nit somewhere dangerous. What is it, and where does it need to go?",
+      "You've been tasked with protecting something important and delivering\nit somewhere dangerous. What is it, and where does it need to go?",
       "You consider an aspect of yourself to be a weakness. What is it, and how has it affected you?"
     ],
     "connections": [
@@ -66,7 +66,12 @@
       "What small gift did you give me that you notice I always carry with me?",
       "What lie have you told me about yourself that I absolutely believe?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "folder": null,

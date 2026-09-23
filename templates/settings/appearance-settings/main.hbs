@@ -1,4 +1,4 @@
-<section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+<section>
     {{formGroup
     fields.useResourcePips
     value=setting.useResourcePips
@@ -24,8 +24,8 @@
     value=setting.showTokenDistance
     localize=true}}
     {{formGroup
-    fields.hideAttribution
-    value=setting.hideAttribution
+    fields.tooltipCardTheme
+    value=setting.tooltipCardTheme
     localize=true}}
 
     <fieldset>

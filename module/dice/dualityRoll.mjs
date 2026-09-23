@@ -12,9 +12,7 @@ export default class DualityRoll extends D20Roll {
         this.rallyChoices = this.setRallyChoices();
         this.guaranteedCritical = options.guaranteedCritical;
 
-        const advantageFaces = data.rules?.roll?.defaultAdvantageDice
-            ? Number.parseInt(data.rules.roll.defaultAdvantageDice)
-            : 6;
+        const advantageFaces = data.rules?.roll?.advantageFaces ? Number.parseInt(data.rules.roll.advantageFaces) : 6;
         this.advantageFaces = Number.isNaN(advantageFaces) ? 6 : advantageFaces;
     }
 
@@ -207,30 +205,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     getActionChangeKeys() {
-        const changeKeys = new Set([`system.bonuses.roll.${this.options.actionType}`]);
-
-        if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.attack.id) {
-            changeKeys.add(`system.bonuses.roll.${this.options.roll.type}`);
-        }
-
-        if (
-            this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
-            (this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id && this.options.hasDamage)
-        ) {
-            changeKeys.add(`system.bonuses.roll.attack`);
-        }
-
-        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait]) {
-            if (this.options.roll.type !== CONFIG.DH.GENERAL.rollTypes.spellcast.id)
-                changeKeys.add('system.bonuses.roll.trait');
-        }
-
-        const weapons = ['primaryWeapon', 'secondaryWeapon'];
-        weapons.forEach(w => {
-            if (this.options.source.item && this.options.source.item === this.data[w]?.id)
-                changeKeys.add(`system.bonuses.roll.${w}`);
-        });
-
+        const changeKeys = new Set(['system.bonuses.roll']);
         return changeKeys;
     }
 
@@ -287,7 +262,7 @@ export default class DualityRoll extends D20Roll {
         );
         if (dualityUpdates?.length) updates.push(...dualityUpdates);
 
-        if (config.roll.result.duality === -1) {
+        if (config.roll.result.duality === -1 && config.actionType === 'action') {
             const fearUpdates = await game.system.registeredTriggers.runTrigger(
                 CONFIG.DH.TRIGGER.triggers.fearRoll.id,
                 roll.data?.parent,
@@ -341,12 +316,8 @@ export default class DualityRoll extends D20Roll {
     }
 
     static async dualityUpdate(config) {
-        const automationSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
-        if (
-            automationSettings.countdownAutomation &&
-            config.actionType !== 'reaction' &&
-            !config.skips?.updateCountdowns
-        ) {
+        const countdownAutomation = game.system.settings.automation.countdownAutomation;
+        if (countdownAutomation && config.actionType !== 'reaction' && !config.skips?.updateCountdowns) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
 
             if (config.roll.result.duality === -1) {
@@ -360,17 +331,6 @@ export default class DualityRoll extends D20Roll {
         }
 
         await DualityRoll.addDualityResourceUpdates(config);
-
-        if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
-
-        const rollResult = config.roll.success || config.targets?.some(t => t.hit),
-            looseSpotlight = !rollResult || config.roll.result.duality === -1;
-
-        if (looseSpotlight && game.combat?.active) {
-            const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
-            if (currentCombatant && currentCombatant.actorId == config.data.id)
-                ui.combat.setCombatantSpotlight(currentCombatant.id);
-        }
     }
 
     async reroll(options) {
@@ -384,11 +344,11 @@ export default class DualityRoll extends D20Roll {
                 foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
             }
 
-            if (this.options.actionType === 'reaction') return;
-
-            const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
-            const actor = await foundry.utils.fromUuid(this.options.source.actor);
-            updateResourcesForDualityReroll(oldDuality, newDuality, actor);
+            if (this.options.actionType !== 'reaction') {
+                const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
+                const actor = await foundry.utils.fromUuid(this.options.source.actor);
+                updateResourcesForDualityReroll(oldDuality, newDuality, actor);
+            }
         }
 
         return rerolled;

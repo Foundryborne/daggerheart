@@ -3,6 +3,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import { addLinkedItemsDiff, fromUuids, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { DhLevelOption } from '../levelTier.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -10,7 +11,8 @@ export default class DHClass extends BaseDataItem {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.class',
             type: 'class',
-            hasDescription: true
+            hasDescription: true,
+            hasLevelUpOptions: true
         });
     }
 
@@ -50,7 +52,13 @@ export default class DHClass extends BaseDataItem {
             }),
             backgroundQuestions: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             connections: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
-            isMulticlass: new fields.BooleanField({ initial: false })
+            isMulticlass: new fields.BooleanField({ initial: false }),
+            levelupOptionTiers: new fields.TypedObjectField(
+                new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelOption)),
+                {
+                    initial: { 2: {}, 3: {}, 4: {} }
+                }
+            )
         };
     }
 
@@ -90,7 +98,7 @@ export default class DHClass extends BaseDataItem {
 
     async _preCreate(data, options, user) {
         if (this.actor?.type === 'character') {
-            const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+            const levelupAuto = game.system.settings.automation.levelupAuto;
             if (levelupAuto) {
                 const path = data.system.isMulticlass ? 'system.multiclass.value' : 'system.class.value';
                 if (foundry.utils.getProperty(this.actor, path)) {
@@ -150,7 +158,7 @@ export default class DHClass extends BaseDataItem {
         if (allowed === false) return false;
 
         if (changed.system?.domains) {
-            const maxDomains = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxDomains;
+            const maxDomains = game.system.settings.homebrew.maxDomains;
             if (changed.system.domains.length > maxDomains) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.domainMaxReached'));
                 return false;
@@ -180,6 +188,11 @@ export default class DHClass extends BaseDataItem {
         super._onUpdate(changed, options, userId);
 
         updateLinkedItemApps(options, this.parent.sheet);
+    }
+
+    prepareDerivedData() {
+        super.prepareDerivedData();
+        this.subclassItem = this.actor?.items.find(i => i.type === 'subclass' && i.system.linkedClass === this.parent.sourceUuid);
     }
 
     /**@inheritdoc */

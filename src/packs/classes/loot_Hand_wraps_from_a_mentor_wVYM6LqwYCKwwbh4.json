@@ -1,0 +1,18 @@
+{
+  "type": "loot",
+  "name": "Hand wraps from a mentor",
+  "folder": "FJE5JPUcM6xKvQuR",
+  "_id": "wVYM6LqwYCKwwbh4",
+  "img": "icons/commodities/cloth/cloth-scraps-plain.webp",
+  "system": {
+    "attribution": {},
+    "description": "",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!wVYM6LqwYCKwwbh4"
+}

@@ -10,12 +10,13 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 28,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -45,7 +46,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -55,7 +57,6 @@
         "expired": false
       },
       "description": "<p>During a rest, you can drop into a trance to choose an additional downtime move.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -34,7 +34,6 @@
     },
     "type": "solo",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "eKUUFzoQT0trztAH": {
         "name": "Stealth",
@@ -92,7 +91,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,13 +129,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 88,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "8mJYMpbLTb8qIOrr",
@@ -282,7 +283,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "OqE6hBijxAkn5gIm",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -340,7 +342,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "NepVGKOo1lHYjA1F",
       "img": "icons/magic/light/explosion-star-glow-orange.webp",
@@ -348,7 +351,6 @@
         {
           "name": "Glowing",
           "img": "icons/magic/light/explosion-star-glow-orange.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.8mJYMpbLTb8qIOrr.Item.NepVGKOo1lHYjA1F",
           "transfer": false,
           "_id": "bYBrgiSwHwYfQyjn",
           "type": "base",
@@ -368,7 +370,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -377,7 +380,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p>You Glow until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against you have advantage.</p>",
+          "description": "<p>You Glow until the end of the scene and can't become <em>Hidden</em>. Attack rolls made against you have advantage.</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -420,7 +423,16 @@
             "description": "",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [],
+            "cost": [
+              {
+                "consumeOnSuccess": true,
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "itemId": null,
+                "step": null
+              }
+            ],
             "uses": {
               "value": null,
               "max": "",
@@ -445,19 +457,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {
                 "stress": {
@@ -474,17 +479,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -527,7 +524,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "9SO2ov36lFH2YV0S",
       "img": "icons/creatures/reptiles/snake-fangs-bite-green.webp",
@@ -653,7 +651,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "047o6OtNlUwLG1H1",
       "img": "icons/magic/earth/strike-body-stone-crumble.webp",
@@ -704,17 +703,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -752,7 +743,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "IRIaFxFughjXVu0Y",
       "img": "icons/skills/melee/strike-weapons-orange.webp",

@@ -155,12 +155,14 @@ export const damageTypes = {
     physical: {
         id: 'physical',
         label: 'DAGGERHEART.CONFIG.DamageType.physical.name',
+        lowercase: 'DAGGERHEART.CONFIG.DamageType.physical.lowercase',
         abbreviation: 'DAGGERHEART.CONFIG.DamageType.physical.abbreviation',
         icon: 'fa-hand-fist'
     },
     magical: {
         id: 'magical',
         label: 'DAGGERHEART.CONFIG.DamageType.magical.name',
+        lowercase: 'DAGGERHEART.CONFIG.DamageType.magical.lowercase',
         abbreviation: 'DAGGERHEART.CONFIG.DamageType.magical.abbreviation',
         icon: 'fa-wand-sparkles'
     }
@@ -192,15 +194,15 @@ export const healingTypes = {
         label: 'DAGGERHEART.CONFIG.HealingType.fear.name',
         abbreviation: 'DAGGERHEART.CONFIG.HealingType.fear.abbreviation'
     },
-    weaponResource: {
-        id: 'weaponResource',
-        label: 'DAGGERHEART.CONFIG.HealingType.weaponResource.name',
-        abbreviation: 'DAGGERHEART.CONFIG.HealingType.weaponResource.abbreviation'
+    resource: {
+        id: 'resource',
+        label: 'DAGGERHEART.CONFIG.HealingType.resource.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.resource.abbreviation'
     }
 };
 
 export const defeatedConditions = () => {
-    const defeated = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+    const defeated = game.system.settings.automation.defeated;
     return Object.keys(defeatedConditionChoices).reduce((acc, key) => {
         const choice = defeatedConditionChoices[key];
         acc[key] = {
@@ -665,63 +667,6 @@ export const diceSetNumbers = {
     flat: 'Flat'
 };
 
-export const diceSoNiceSFXClasses = {
-    PlayAnimationBright: {
-        id: 'PlayAnimationBright',
-        label: 'DICESONICE.PlayAnimationBright'
-    },
-    PlayAnimationDark: {
-        id: 'PlayAnimationDark',
-        label: 'DICESONICE.PlayAnimationDark'
-    },
-    PlayAnimationOutline: {
-        id: 'PlayAnimationOutline',
-        label: 'DICESONICE.PlayAnimationOutline'
-    },
-    PlayAnimationImpact: {
-        id: 'PlayAnimationImpact',
-        label: 'DICESONICE.PlayAnimationImpact'
-    },
-    // PlayConfettiStrength1: {
-    //     id: 'PlayConfettiStrength1',
-    //     label: 'DICESONICE.PlayConfettiStrength1'
-    // },
-    // PlayConfettiStrength2: {
-    //     id: 'PlayConfettiStrength2',
-    //     label: 'DICESONICE.PlayConfettiStrength2'
-    // },
-    // PlayConfettiStrength3: {
-    //     id: 'PlayConfettiStrength3',
-    //     label: 'DICESONICE.PlayConfettiStrength3'
-    // },
-    PlayAnimationThormund: {
-        id: 'PlayAnimationThormund',
-        label: 'DICESONICE.PlayAnimationThormund'
-    },
-    PlayAnimationParticleSpiral: {
-        id: 'PlayAnimationParticleSpiral',
-        label: 'DICESONICE.PlayAnimationParticleSpiral'
-    },
-    PlayAnimationParticleSparkles: {
-        id: 'PlayAnimationParticleSparkles',
-        label: 'DICESONICE.PlayAnimationParticleSparkles'
-    },
-    PlayAnimationParticleVortex: {
-        id: 'PlayAnimationParticleVortex',
-        label: 'DICESONICE.PlayAnimationParticleVortex'
-    },
-    PlaySoundEpicWin: {
-        id: 'PlaySoundEpicWin',
-        label: 'DICESONICE.PlaySoundEpicWin'
-    },
-    PlaySoundEpicFail: {
-        id: 'PlaySoundEpicFail',
-        label: 'DICESONICE.PlaySoundEpicFail'
-    }
-    // "PlaySoundCustom",
-    // "PlayMacro"
-};
-
 export const daggerheartDiceAnimationEvents = {
     critical: {
         id: 'critical',
@@ -731,53 +676,6 @@ export const daggerheartDiceAnimationEvents = {
         id: 'higher',
         label: 'DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.higher.name'
     }
-};
-
-export const getDiceSoNiceSFX = sfxOptions => {
-    const diceSoNice = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).diceSoNiceData;
-    const criticalAnimationData = diceSoNice.sfx.critical;
-    if (sfxOptions.critical && criticalAnimationData.class) {
-        return {
-            specialEffect: criticalAnimationData.class,
-            options: { ...criticalAnimationData.options }
-        };
-    }
-
-    if (sfxOptions.higher && sfxOptions.data.higher) {
-        return {
-            specialEffect: sfxOptions.data.higher.class,
-            options: { ...sfxOptions.data.higher.options }
-        };
-    }
-
-    return {};
-};
-
-export const getDiceSoNicePreset = async (type, faces) => {
-    const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
-    if (!system) {
-        ui.notifications.error(
-            game.i18n.format('DAGGERHEART.UI.Notifications.noDiceSystem', {
-                system: game.dice3d.DiceFactory.systems.get(type.system).name,
-                faces: faces
-            })
-        );
-        return;
-    }
-
-    if (system.modelFile && !system.modelLoaded) {
-        await system.loadModel(game.dice3d.DiceFactory.loaderGLTF);
-    } else {
-        await system.loadTextures();
-    }
-
-    return {
-        modelFile: system.modelFile,
-        appearance: {
-            ...system.appearance,
-            ...type
-        }
-    };
 };
 
 export const refreshTypes = {

@@ -41,17 +41,9 @@
               "applyTo": "armor",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -88,7 +80,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
     },
     "domainTouched": 4,
@@ -124,7 +116,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "Ma8Zp005QYKPWIEN",
       "img": "icons/magic/control/control-influence-rally-purple.webp",
@@ -136,7 +129,6 @@
         "expired": false
       },
       "description": "<ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Armor Score</p></li><li class=\"vertical-card-list-found\"><p>When you mark 1 or more Hit Points without marking an Armor Slot, clear an Armor Slot.</p></li></ul>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

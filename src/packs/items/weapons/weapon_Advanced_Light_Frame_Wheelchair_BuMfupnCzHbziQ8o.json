@@ -76,7 +76,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -111,7 +112,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 54,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",

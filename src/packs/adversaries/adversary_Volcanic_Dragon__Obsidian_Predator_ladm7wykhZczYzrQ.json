@@ -22,7 +22,6 @@
     "type": "solo",
     "notes": "",
     "difficulty": 19,
-    "hordeHp": 1,
     "damageThresholds": {
       "major": 33,
       "severe": 65
@@ -94,7 +93,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -130,13 +130,14 @@
     "motivesAndTactics": "Defend lair, dive-bomb, fly, hunt, intimidate",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 100,
+      "page": null,
       "artist": ""
     },
     "size": "gargantuan",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Obsidian Predator",
@@ -280,7 +281,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "hnr2drwGFJAXRJLo",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -303,7 +305,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oN5za5NKi2qAXJ0e",
       "img": "icons/commodities/biological/wing-green.webp",
@@ -326,7 +329,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "8o8yG73ZfrZ3hb5i",
           "img": "icons/commodities/biological/wing-green.webp",
@@ -338,7 +342,6 @@
             "expired": false
           },
           "description": "<p>While flying, the Obsidian Predator gains a +3 bonus to their Difficulty.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -371,7 +374,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "rh4cZ8EKTUmZ7Y6T",
       "img": "icons/commodities/leather/scale-chitin-grey.webp",
@@ -394,7 +398,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "Jr9SlkRnkroulYhy",
           "img": "icons/commodities/leather/scale-chitin-grey.webp",
@@ -406,7 +411,6 @@
             "expired": false
           },
           "description": "<p>The Obsidian Predator is resistant to physical damage.</p>",
-          "origin": null,
           "tint": "#ffffff",
           "transfer": true,
           "statuses": [],
@@ -433,7 +437,7 @@
       "name": "Avalanche Tail",
       "type": "feature",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the @Lookup[@name] succeeds against take <strong>4d6+4</strong> physical damage and are knocked.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Obsidian Predator succeeds against take <strong>4d6+4</strong> physical damage and are knocked back to Far range and <em>Vulnerable</em> until their next roll with Hope.</p>",
         "resource": null,
         "actions": {
           "23y0BoufIgNq62j9": {
@@ -466,20 +470,12 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -536,7 +532,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "8bMOItTuL7PfAYcJ",
       "img": "icons/creatures/abilities/tail-swipe-green.webp",
@@ -544,7 +541,6 @@
         {
           "name": "Avalanche Tail",
           "img": "icons/creatures/abilities/tail-swipe-green.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.ladm7wykhZczYzrQ.Item.8bMOItTuL7PfAYcJ",
           "transfer": false,
           "_id": "qtIaAZDW8QsjILgb",
           "type": "base",
@@ -555,7 +551,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -564,7 +561,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p> <em>Vulnerable</em> until your next roll with Hope.</p>",
+          "description": "<p><em>Vulnerable</em> until your next roll with Hope.</p>",
           "tint": "#ffffff",
           "statuses": [
             "vulnerable"
@@ -627,20 +624,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {
                 "stress": {
@@ -657,17 +646,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 },
                 "hope": {
                   "value": {
@@ -683,17 +664,9 @@
                   "applyTo": "hope",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -745,7 +718,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "5wLxyaWJuUhkx1EX",
       "img": "icons/creatures/reptiles/dragon-winged-blue.webp",
@@ -799,7 +773,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "5llfnRwO7mfzDFgT",
       "img": "icons/magic/fire/flame-burning-eye.webp",

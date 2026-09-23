@@ -36,7 +36,7 @@
     "impulses": "Provide opportunities for adventurers, nurture community",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 105,
+      "page": null,
       "artist": ""
     }
   },
@@ -140,13 +140,14 @@
       "name": "What's the Talk of the Town?",
       "type": "feature",
       "system": {
-        "description": "<p>A PC can ask the bartender, staff , or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.</p><ul><li><p>A fascinating rumor with a connection to a PC's background</p></li><li><p>A promising job for the party involving a nearby threat or situation</p></li><li><p>Local folklore that relates to something they've seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
+        "description": "<p>A PC can ask the bartender, staff, or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.</p><ul><li><p>A fascinating rumor with a connection to a PC's background</p></li><li><p>A promising job for the party involving a nearby threat or situation</p></li><li><p>Local folklore that relates to something they've seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
         "resource": null,
         "actions": {},
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "7to5Zu0lNycExCQi",
       "img": "icons/skills/social/wave-halt-stop.webp",
@@ -169,7 +170,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "oLn3co1mN83OiFWo",
       "img": "icons/tools/instruments/bell-gold.webp",
@@ -186,13 +188,14 @@
       "name": "Mysterious Stranger",
       "type": "feature",
       "system": {
-        "description": "<p> Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What's their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
+        "description": "<p>Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What's their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
         "resource": null,
         "actions": {},
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "cAbSo5VQHxJqJPKm",
       "img": "icons/magic/unholy/silhouette-robe-evil-power.webp",
@@ -215,7 +218,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "QPezCAC18vIc5xRC",
       "img": "icons/environment/people/commoner.webp",
@@ -265,19 +269,11 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -300,7 +296,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "H3LNvVrUbsAkgjni",
       "img": "icons/skills/melee/unarmed-punch-fist-white.webp",

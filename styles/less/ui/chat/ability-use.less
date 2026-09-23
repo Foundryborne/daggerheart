@@ -45,8 +45,14 @@
         .card-img {
             width: 100%;
             height: 180px;
-            mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 90%, transparent 100%);
-            object-fit: cover;
+            mask-image: linear-gradient(0deg, transparent 0%, black 4px, black calc(100% - 4px), transparent 100%);
+            object-fit: cover; // backwards compat, this used to be the img
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         details[open] {
@@ -68,8 +74,9 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                margin: 8px;
+                margin: 4px 8px 8px 8px;
                 gap: 5px;
+                min-height: 2rem;
 
                 .domain-label {
                     display: flex;
@@ -78,9 +85,10 @@
                     gap: 5px;
 
                     .title {
-                        font-size: var(--font-size-20);
+                        font: 700 var(--font-size-20)/1 @font-subtitle;
                         color: @golden;
-                        font-weight: 700;
+                        text-box: trim-both cap alphabetic;
+                        padding-top: 4px;
                     }
 
                     .tags {
@@ -102,6 +110,10 @@
                             border-radius: 3px;
                         }
                     }
+                }
+
+                .fa-chevron-down {
+                    text-box: trim-both cap alphabetic;
                 }
             }
         }

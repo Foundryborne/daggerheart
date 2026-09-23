@@ -14,7 +14,7 @@
     "inVault": false,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -50,7 +50,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "FCsgz7Tdsw6QUzBs",
       "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
@@ -70,7 +71,6 @@
         "expired": false
       },
       "description": "<p>You have a base Armor Score of 3 + your Strength.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

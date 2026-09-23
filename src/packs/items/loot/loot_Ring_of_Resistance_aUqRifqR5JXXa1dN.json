@@ -44,7 +44,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 59,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -53,7 +53,6 @@
     {
       "name": "Ring of Resistance",
       "img": "icons/equipment/finger/ring-shield-silver.webp",
-      "origin": "Compendium.daggerheart.loot.Item.aUqRifqR5JXXa1dN",
       "transfer": false,
       "_id": "Sj7uGf560T7u4rlX",
       "type": "base",
@@ -79,7 +78,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

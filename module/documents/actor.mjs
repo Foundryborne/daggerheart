@@ -1,12 +1,13 @@
 import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
+import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
-export default class DhpActor extends Actor {
+export default class DhActor extends Actor {
     parties = new Set();
 
     #scrollTextQueue = [];
@@ -30,6 +31,73 @@ export default class DhpActor extends Actor {
         return this.system.metadata.isNPC;
     }
 
+    /**
+     * Returns the uuid of the actor that is used for refreshing.
+     * This isn't necessarily the sourceUuid. Compendium items don't have a refresh source.
+     * @returns {string | null} the uuid to refresh from, or null if it can't be refreshed
+     */
+    get refreshSourceUuid() {
+        const hasCompendiumSource = this._stats.compendiumSource?.startsWith('Compendium.');
+        return !this.pack && hasCompendiumSource && ['adversary', 'environment'].includes(this.type)
+            ? this._stats.compendiumSource
+            : null;
+    }
+
+    /** @inheritDoc */
+    _initializeSource(source, options = {}) {
+        source = super._initializeSource(source, options);
+        if (source.type !== 'adversary') return source;
+
+        const pack = game.packs.get(options.pack);
+        if (!source._id || !pack || !game.compendiumArt.enabled) return source;
+
+        const uuid = pack.getUuid(source._id);
+        const artData = game.compendiumArt.get(uuid);
+        const evolutionEntries = Object.entries(artData?.evolutions ?? {});
+        if (evolutionEntries?.length) {
+            for (const [featureId, actionData] of evolutionEntries) {
+                const feature = source.items.find(x => x._id === featureId);
+                if (!feature) continue;
+
+                /**
+                 * Currently assuming 1x evolution action on an evolution feature. 
+                 * If this changes, add parsing for <featureId>/<actionId> 
+                 */
+                const action = Object.values(feature.system.actions).find(x => x.type === 'evolution');
+                if (!action || !actionData.token) continue;
+
+                if (!action.evolution.tokenOverride) action.evolution.tokenOverride = { dynamicToken: {} };
+                
+                const { texture, ring } = actionData.token;
+                if (texture?.src) 
+                    action.evolution.tokenOverride.tokenImage = texture.src;
+                if (texture?.scale)
+                    action.evolution.tokenOverride.tokenScale = texture.scale;
+
+                if (ring?.subject?.texture)
+                    action.evolution.tokenOverride.dynamicToken.image = ring.subject.texture;
+                if (ring?.subject?.scale)
+                    action.evolution.tokenOverride.dynamicToken.scale = ring.subject.scale;
+                if (ring?.colors?.ring) 
+                    action.evolution.tokenOverride.dynamicToken.ring = ring.colors.ring;
+                if (ring?.colors?.background) 
+                    action.evolution.tokenOverride.dynamicToken.background = ring.colors.background;
+                if (ring?.effects?.length) {
+                    const validEffects = ring.effects.filter(x => Boolean(CONFIG.DH.ACTIONS.dynamicEffects[x]));
+                    const invalidEffects = ring.effects.filter(x => !CONFIG.DH.ACTIONS.dynamicEffects[x]);
+                    if (invalidEffects.length) 
+                        ui.notifications.warn(`Invalid DynamicToken effects were supplied to evolution feature ${actionData.name} (${invalidEffects.join(', ')})`);
+
+                    if (validEffects.length)
+                        action.evolution.tokenOverride.dynamicToken.effects = validEffects;
+                }
+                       
+            }
+        }  
+
+        return source;
+    }
+
     prepareData() {
         super.prepareData();
 
@@ -50,7 +118,8 @@ export default class DhpActor extends Actor {
     static migrateData(source) {
         if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
 
-        if (source.type === 'character') {
+        // Migrate feature granter stuff. source.items usually only exists the first time, not on subsequent updates
+        if (source.type === 'character' && source.items) {
             for (const feature of source.items.filter(x => x.type === 'feature' && x.system.originItemType)) {
                 if (feature.system.granter?.id) continue;
 
@@ -66,6 +135,36 @@ export default class DhpActor extends Actor {
                     multiclass: feature.system.multiclassOrigin,
                     identifier: feature.system.identifier
                 };
+            }
+        }
+
+        if (source.type === 'adversary') {
+            for (const effect of (source.effects ?? [])) {
+                if (effect.type === 'horde') {
+                    effect.type = 'base';
+                    effect.disabled = false;
+                    const variantDamage = new DHDamageData(source.system.attack.damage.main);
+                    const hordeDamage = variantDamage.valueAlt?.getFormula() ?? '0';
+                    effect.system.changes.push({
+                        type: 'standardAttack',
+                        value: {
+                            name: '',
+                            damageTypes: [],
+                            attackRange: null,
+                            trait: null,
+                            img: null,
+                            damageFormula: hordeDamage
+                        },
+                        phase: 'initial',
+                        priority: 0
+                    });
+                    effect.system.conditionals = [{
+                        type: 'dataCompare',
+                        key: 'system.resources.hitPoints.value',
+                        comparator: 'greaterEquals',
+                        value: '@system.resources.hitPoints.max / 2'
+                    }]
+                }
             }
         }
 
@@ -92,6 +191,8 @@ export default class DhpActor extends Actor {
         const folder = collection?.get(data.folder) ?? null;
         options.defaultEntity = folder?.getDefaultEntity(); // used in hook
         options.classes = [options.classes ?? [], 'actor-create'].flat(); // handled in hook
+        options.parent = createOptions?.parent;
+        options.pack = createOptions?.pack;
         return super.createDialog(data, createOptions, options, renderOptions);
     }
 
@@ -114,77 +215,42 @@ export default class DhpActor extends Actor {
         return doc;
     }
 
-    /**@inheritdoc */
-    async _preCreate(data, options, user) {
-        if ((await super._preCreate(data, options, user)) === false) return false;
-        const update = {};
-
-        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
-        if (this.system.metadata.usesSize && !data.system?.size) {
-            Object.assign(update, {
-                system: {
-                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
-                }
-            });
-        }
-
-        // Configure prototype token settings
-        if (['character', 'companion', 'party'].includes(this.type)) {
-            Object.assign(update, {
-                prototypeToken: {
-                    sight: { enabled: true },
-                    actorLink: true,
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
-
-        if (this.type === 'npc') {
-            Object.assign(update, {
-                prototypeToken: {
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
-
-        this.updateSource(update);
-    }
-
     /** Perform a render, debounced in order to prevent overloading repeat render requests */
     renderDebounced = foundry.utils.debounce(options => {
         return this.render(options);
     }, 10);
 
-    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
-        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-    }
+    /**
+     * Cleanup of any optional resources on the actor that are no longer available.
+     * @param {string[]} featureIds 
+     * @param {string[]} possibleRemovedResources 
+     * @returns {Promise<unknown> | void}
+     * @protected
+     */
+    _cleanupOptionalResources() {
+        if (!(this.type in CONFIG.DH.RESOURCE)) return;
 
-    _onUpdate(changes, options, userId) {
-        super._onUpdate(changes, options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-    }
+        // Get features and homebrew resources that are valid
+        // Because we have to filter out possibly removed ones, 
+        const features = this.itemTypes.feature;
+        const featureProvidedResources = features.flatMap(f => Array.from(f.system.actorResources));
+        const homebrewResources = game.system.settings.homebrew.toObject();
+        const applicableHomebrewResources = homebrewResources.resources[this.type]?.resources ?? {};
 
-    async _preDelete(options, user) {
-        if ((await super._preDelete(options, user)) === false) return false;
+        const resourceKeys = Object.keys(this.system._source.resources); 
+        const keysToDelete = resourceKeys.filter(key => 
+            !((key in CONFIG.DH.RESOURCE[this.type].base) 
+                || featureProvidedResources.includes(key)
+                || (key in applicableHomebrewResources))
+        );
 
-        if (this.prototypeToken.actorLink) {
-            game.system.registeredTriggers.unregisterItemTriggers(this.items);
-        } else {
-            for (const token of this.getActiveTokens()) {
-                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
-            }
-        }
-    }
-
-    _onDelete(options, userId) {
-        super._onDelete(options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
+        if (keysToDelete.length) {
+            return this.update({ 
+                'system.resources': keysToDelete.reduce((r, k) => {
+                    r[k] = _del;
+                    return r;
+                }, {})
+            });
         }
     }
 
@@ -226,7 +292,7 @@ export default class DhpActor extends Actor {
 
             await this.update({ 'system.levelData.level.changed': Math.min(newLevel, maxLevel) });
         } else {
-            const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+            const levelupAuto = game.system.settings.automation.levelupAuto;
 
             const usedLevel = Math.max(newLevel, 1);
             if (newLevel < 1) {
@@ -344,7 +410,7 @@ export default class DhpActor extends Actor {
     }
 
     async levelUp(levelupData) {
-        const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        const levelupAuto = game.system.settings.automation.levelupAuto;
         const getStatsWithSource = document => ({ ...(document._stats ?? {}), compendiumSource: document.uuid });
 
         const levelups = {};
@@ -596,7 +662,15 @@ export default class DhpActor extends Actor {
                 ability: abilityLabel
             }),
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(this),
+            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
+                {
+                    action: {
+                        actionType: 'action', 
+                        roll: { type: 'trait', trait: trait }
+                    }
+                }, 
+                this
+            ),
             roll: {
                 trait: trait,
                 type: 'trait'
@@ -622,14 +696,12 @@ export default class DhpActor extends Actor {
         if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
         const existing = [];
 
-        // Find the effect with the static _id of the status effect
         if (status._id) {
+            // Find the effect with the static _id of the status effect
             const effect = this.effects.get(status._id);
             if (effect) existing.push(effect.id);
-        }
-
-        // If no static _id, find all effects that have this status
-        else {
+        } else {
+            // If no static _id, find all effects that have this status
             for (const effect of this.effects) {
                 if (effect.statuses.has(status.id)) existing.push(effect.id);
             }
@@ -779,7 +851,11 @@ export default class DhpActor extends Actor {
         }
         
         for (const u of updates) {
-            u.value = u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value;
+            const shouldFlip = (
+                u.key === 'fear' || 
+                (this.system?.resources?.[u.key] && !this.system.resources[u.key].isReversed)
+            );
+            u.value = shouldFlip ? u.value * -1 : u.value;
         }
 
         await this.modifyResource(updates);
@@ -795,12 +871,13 @@ export default class DhpActor extends Actor {
 
         const updates = args.resourceUpdates;
         for (const u of updates) {
-            if (u.key === CONFIG.DH.GENERAL.healingTypes.weaponResource.id) continue;
-            const shouldFlip = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false);
+            const shouldFlip = !(
+                u.key === 'fear' || 
+                u.key === 'resource' || 
+                (this.system?.resources?.[u.key] && !this.system.resources[u.key].isReversed)
+            );
             u.value = shouldFlip ? u.value * -1 : u.value;
         }
-
-        this.convertResourceHealingToReload(updates);
 
         await this.modifyResource(updates);
 
@@ -818,7 +895,9 @@ export default class DhpActor extends Actor {
         const resourceUpdates = Object.entries(args.resources ?? {}).map(([key, damage]) => ({
             key,
             value: typeof damage === 'number' ? damage : damage?.total ?? 0,
-            clear: typeof damage === 'number' ? false : !!damage?.options?.fullRestore
+            clear: typeof damage === 'number' ? false : !!damage?.options?.fullRestore,
+            itemId: typeof damage === 'number' ? null : damage?.options?.itemId,
+            target: typeof damage === 'number' ? null : damage?.options?.target
         }));
 
         return { main, resourceUpdates };
@@ -857,8 +936,8 @@ export default class DhpActor extends Actor {
             armor: { target: this.system.armor, resources: {} },
             items: {}
         };
-
-        resources.forEach(r => {
+        
+        for (const r of resources) {
             if (r.itemId) {
                 const { path, value } = game.system.api.fields.ActionFields.CostField.getItemIdCostUpdate(r);
                 updates.items[`${r.itemId}-${r.key}`] = {
@@ -867,7 +946,7 @@ export default class DhpActor extends Actor {
                 };
             } else {
                 const valueFunc = (base, resource, baseMax) => {
-                    if (resource.clear) return baseMax && base.inverted ? baseMax : 0;
+                    if (resource.clear) return baseMax && !base.isReversed ? baseMax : 0;
 
                     return (base.value ?? base) + resource.value;
                 };
@@ -876,7 +955,8 @@ export default class DhpActor extends Actor {
                         ui.resources.updateFear(
                             valueFunc(
                                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                                r
+                                r,
+                                game.system.settings.homebrew.maxFear
                             )
                         );
                         break;
@@ -897,7 +977,7 @@ export default class DhpActor extends Actor {
                         break;
                 }
             }
-        });
+        }
 
         Object.keys(updates).forEach(async key => {
             const u = updates[key];
@@ -921,6 +1001,8 @@ export default class DhpActor extends Actor {
                 }
             }
         });
+
+        return this;
     }
 
     convertDamageToThreshold(damage) {
@@ -931,23 +1013,9 @@ export default class DhpActor extends Actor {
         if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {
             return 4;
         }
-        return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
-    }
 
-    convertResourceHealingToReload(updates) {
-        const resourceIndex = updates.findIndex(u => u.key === CONFIG.DH.GENERAL.healingTypes.weaponResource.id);
-        if (resourceIndex === -1) return;
-        const [reload] = updates.splice(resourceIndex, 1);
-        const weapons = this.items.filter(i => i.type === 'weapon' && i.system.equipped && i.system.resource);
-        for (const weapon of weapons) {
-            updates.push({
-                key: CONFIG.DH.GENERAL.itemAbilityCosts.resource.id,
-                value: reload.value,
-                clear: reload.clear,
-                itemId: weapon.id,
-                target: weapon
-            });
-        }
+        const { major, severe } = this.system.damageThresholds;
+        return (severe && damage >= severe) ? 3 : (major && damage >= major) ? 2 : 1;
     }
 
     convertStressDamageToHP(resources) {
@@ -964,7 +1032,7 @@ export default class DhpActor extends Actor {
     }
 
     async toggleDefeated(defeatedState) {
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         const { deathMove, unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions();
         const defeatedConditions = new Set([deathMove.id, unconscious.id, defeated.id, dead.id]);
         if (!defeatedState) {
@@ -981,7 +1049,7 @@ export default class DhpActor extends Actor {
     }
 
     async setDeathMoveDefeated(defeatedIconId) {
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         const actorDefault = settings[`${this.type}Default`];
         if (!settings.enabled || !settings.enabled || !actorDefault || actorDefault === defeatedIconId) return;
 
@@ -1048,8 +1116,8 @@ export default class DhpActor extends Actor {
         const conditions = CONFIG.DH.GENERAL.conditions();
         const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
         const autoVulnerableActive = this.system.isAutoVulnerableActive;
-        return this.effects
-            .filter(x => !x.disabled)
+        return this.allApplicableEffects()
+            .filter(x => !x.disabled && !x.isSuppressed)
             .reduce((acc, effect) => {
                 /* Could be generalized if needed. Currently just related to Vulnerable */
                 const isAutoVulnerableEffect =
@@ -1119,17 +1187,226 @@ export default class DhpActor extends Actor {
 
     /**@inheritdoc */
     *allApplicableEffects({ noSelfArmor, noTransferArmor } = {}) {
+        /** @param {DhActiveEffect} effect */
+        const isRemovedByConditional = effect => {
+            const { preparation } = CONFIG.DH.EFFECTS.conditionalPhases;
+            const { hide } = CONFIG.DH.EFFECTS.conditionalFailureModes;
+            const rollData = this.getRollData();
+            return !effect.system.testConditionals(rollData, { phase: preparation.id, failureMode: hide.id });
+        }
+
         for (const effect of this.effects) {
-            if (!noSelfArmor || effect.type !== 'armor') yield effect;
+            if ((!noSelfArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
         }
         for (const item of this.items) {
             for (const effect of item.effects) {
-                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor')) yield effect;
+                if (effect.transfer && (!noTransferArmor || effect.type !== 'armor') && !isRemovedByConditional(effect)) yield effect;
             }
         }
     }
 
-    applyActiveEffects(phase) {
-        super.applyActiveEffects(phase);
+    /** 
+     * Refreshes this actor's data, effects, and items using information from the compendium.
+     * @param {options} [options]
+     * @param {boolean} [options.save] if set to false, returns the batch data to perform the operation instead of doing it
+     */
+    async refreshFromCompendium({ save = true } = {}) {
+        const latest = await fromUuid(this.refreshSourceUuid);
+        if (!latest) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.doesNotExist'));
+        }
+        if (latest.type !== this.type) {
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidType'));
+        }
+        if (latest.system.tier !== this.system.tier) {
+            // An adversary that has been re-tiered is not eligible for refresh
+            return ui.notifications.error(_loc('DAGGERHEART.ITEMS.Base.Refresh.Error.invalidTier'));
+        }
+
+        const currentSource = this.toObject(true);
+        const latestSource = latest.toObject(true);
+        const system = foundry.utils.mergeObject(latestSource.system, {
+            notes: currentSource.system.notes || latestSource.system.notes
+        });
+
+        // Handle Effects
+        const effectsToDelete = this.effects.filter(e => !latest.effects.has(e.id)).map(i => i.id);
+        const effectUpdates = [];
+        const effectCreates = [];
+        for (const effectSource of latestSource.effects) {
+            const existingEffect = this.effects.get(effectSource._id)?.toObject(true);
+            if (!existingEffect) {
+                effectCreates.push(effectSource);
+            } else {
+                effectUpdates.push(foundry.utils.mergeObject(effectSource, pick(existingEffect, ['disabled'])))
+            }
+        }
+
+        // Hnadle Items
+        const itemsToDelete = this.items.filter(e => !latest.items.has(e.id)).map(i => i.id);
+        const itemCreates = latestSource.items.filter(i => !this.items.has(i._id));
+        const batchFromItems = (await Promise.all(
+            this.items
+                .filter(i => latest.items.has(i.id))
+                .map(i => i.refreshFromCompendium({ save: false, latest: latest.items.get(i.id) }))
+        )).flat();
+
+        /** @type {foundry.abstract.types.DatabaseWriteOperation[]} */
+        const batch = [{
+            parent: this.parent,
+            documentName: this.documentName,
+            pack: this.pack,
+            action: 'update',
+            updates: [{
+                _id: this._id,
+                name: latestSource.name,
+                img: latestSource.img,
+                system: _replace(system)
+            }],
+            isRefresh: true
+        }];
+        if (effectCreates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'create',
+                data: effectCreates,
+                keepId: true
+            });
+        }
+        if (effectUpdates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'update',
+                updates: effectUpdates,
+                recursive: false,
+                diff: false
+            });
+        }
+        if (effectsToDelete.length) {
+            batch.push({
+                parent: this,
+                documentName: 'ActiveEffect',
+                action: 'delete',
+                ids: effectsToDelete
+            });
+        }
+        if (itemCreates.length) {
+            batch.push({
+                parent: this,
+                documentName: 'Item',
+                action: 'create',
+                data: itemCreates,
+                keepId: true
+            });
+        }
+        if (itemsToDelete.length) {
+            batch.push({
+                parent: this,
+                documentName: 'Item',
+                action: 'delete',
+                ids: itemsToDelete
+            });
+        }
+        batch.push(...batchFromItems);
+        if (save) {
+            if (batch.length) await foundry.documents.modifyBatch(batch);
+        } else {
+            return batch;
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+    
+    /**@inheritdoc */
+    async _preCreate(data, options, user) {
+        if ((await super._preCreate(data, options, user)) === false) return false;
+        const update = {};
+
+        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
+        if (this.system.metadata.usesSize && !data.system?.size) {
+            Object.assign(update, {
+                system: {
+                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
+                }
+            });
+        }
+
+        // Configure prototype token settings
+        if (['character', 'companion', 'party'].includes(this.type)) {
+            Object.assign(update, {
+                prototypeToken: {
+                    sight: { enabled: true },
+                    actorLink: true,
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        if (this.type === 'npc') {
+            Object.assign(update, {
+                prototypeToken: {
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        this.updateSource(update);
+    }
+
+    _preUpdate(changed, options, user) {
+        return super._preUpdate(changed, options, user);
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    async _preDelete(options, user) {
+        if ((await super._preDelete(options, user)) === false) return false;
+
+        if (this.prototypeToken.actorLink) {
+            game.system.registeredTriggers.unregisterItemTriggers(this.items);
+        } else {
+            for (const token of this.getActiveTokens()) {
+                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
+            }
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
+        }
+    }
+
+    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
+        }
     }
 }

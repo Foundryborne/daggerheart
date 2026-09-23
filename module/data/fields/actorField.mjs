@@ -63,38 +63,6 @@ class ResourcesField extends fields.TypedObjectField {
         return value;
     }
 
-    /** Initializes the original source data, returning prepared data */
-    initialize(...args) {
-        const data = super.initialize(...args);
-        const resources = CONFIG.DH.RESOURCE[this.actorType].all;
-        for (const [key, value] of Object.entries(data)) {
-            // TypedObjectField only calls _validateKey when persisting, so we also call it here
-            if (!this._validateKey(key)) {
-                delete value[key];
-                continue;
-            }
-
-            // Add basic prepared data.
-            const resource = resources[key];
-            value.label = resource.label;
-            value.isReversed = resources[key].reverse;
-            value.max = typeof resource.max === 'number' ? (value.max ?? resource.max) : null;
-        }
-        Object.defineProperty(data, 'clamp', {
-            value: function () {
-                for (const key of Object.keys(this)) {
-                    const resource = this[key];
-                    if (typeof resource?.max === 'number') {
-                        resource.value = Math.clamp(resource.value, 0, resource.max);
-                    }
-                }
-            },
-            enumerable: false
-        });
-
-        return data;
-    }
-
     /**
      * Foundry bar attributes are unable to handle finding the schema field nor the label normally.
      * This returns the element if its a valid resource key and overwrites the element's label for that retrieval.

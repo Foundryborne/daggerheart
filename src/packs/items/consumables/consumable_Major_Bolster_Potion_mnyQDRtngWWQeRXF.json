@@ -54,7 +54,7 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 61,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -63,7 +63,6 @@
     {
       "name": "Major Bolster Potion",
       "img": "icons/consumables/potions/potion-jar-corked-orange.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.mnyQDRtngWWQeRXF",
       "transfer": false,
       "_id": "3PfXBJy0ZjLBDAIn",
       "type": "base",
@@ -82,7 +81,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -106,7 +106,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 9300000,
   "flags": {},
   "_key": "!items!mnyQDRtngWWQeRXF"
 }

@@ -24,7 +24,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         actions: {
             openSettings: DHBaseActorSheet.#openSettings,
             sendExpToChat: DHBaseActorSheet.#sendExpToChat,
-            increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true)
+            increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true),
+            groupActionSelect: DHBaseActorSheet.#groupActionSelect,
+            refreshFromCompendium: DHBaseActorSheet.#onRefreshFromCompendium
         },
         contextMenus: [
             {
@@ -61,6 +63,26 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         return limitedOnly ? this.document.system.metadata.hasLimitedView : viewPermission;
     }
 
+    /** @inheritdoc */
+    _getHeaderControls() {
+        const controls = super._getHeaderControls();
+        controls.push({
+            icon: 'fa-solid fa-image',
+            label: 'SIDEBAR.CharArt',
+            action: 'showPortraitArtwork'
+        });
+
+        if (!this.actor.isToken && this.actor.refreshSourceUuid) {
+            controls.push({
+                label: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title'),
+                icon: 'fa-solid fa-arrow-rotate-left',
+                action: 'refreshFromCompendium'
+            });
+        }
+
+        return controls;
+    }
+
     /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
@@ -69,12 +91,11 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.isNPC = this.document.isNPC;
+        context.isToken = this.document.isToken;
         context.useResourcePips = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.appearance
         ).useResourcePips;
-        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
-            .hideAttribution;
 
         // Prepare inventory data
         if (this.document.system.metadata.hasInventory) {
@@ -142,6 +163,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
+        htmlElement.querySelector('.portrait > img, img.profile')
+            ?.addEventListener('contextmenu', DHBaseActorSheet.#onDisplayPortraitArtwork.bind(this));
+
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
             element.addEventListener('click', e => e.stopPropagation());
@@ -151,23 +175,14 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         });
     }
 
-    /**
-     * Prepare render context for the Effect part.
-     * @param {ApplicationRenderContext} context
-     * @param {ApplicationRenderOptions} options
-     * @returns {Promise<void>}
-     * @protected
-     */
-    async _prepareEffectsContext(context, _options) {
-        context.effects = {
-            actives: [],
-            inactives: []
-        };
+    /** @inheritdoc */
+    _prepareEffectsContext(context, options) {
+        super._prepareEffectsContext(context, options);
 
-        for (const effect of this.actor.allApplicableEffects({ noTransferArmor: true })) {
-            const list = effect.active ? context.effects.actives : context.effects.inactives;
-            list.push(effect);
-        }
+        // Filter out effects from unequipped gear
+        context.effects.inactives = context.effects.inactives.filter(({ effect, isSuppressed }) =>
+            !isSuppressed || !effect.transfer || effect.parent?.system.equipped !== false
+        );
     }
 
     /** Add support for input content editables */
@@ -215,8 +230,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                         action = doc?.system?.attack ?? doc;
                     const config = action.prepareConfig(event);
                     config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                        this.document,
-                        doc
+                        doc.getRollData(),
+                        this.document
                     );
                     config.hasRoll = false;
                     return action && action.workflow.get('damage').execute(config, null, true);
@@ -233,6 +248,12 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /* -------------------------------------------- */
     /*  Application Listener Actions                */
     /* -------------------------------------------- */
+
+    static #onDisplayPortraitArtwork() {
+        const { ImagePopout } = foundry.applications.apps;
+        const {img, name, uuid} = this.document;
+        new ImagePopout({src: img, uuid, window: {title: name}}).render({force: true});
+    }
 
     async updateItemQuantity(event) {
         const item = await getDocFromElement(event.currentTarget);
@@ -300,6 +321,24 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         const newValue = (action.uses.value ?? 0) + (increase ? 1 : -1);
         await action.update({ 'uses.value': Math.min(Math.max(newValue, 0), action.uses.max ?? 0) });
+    }
+
+    static async #groupActionSelect(event, button) {
+        const action = await fromUuid(button.dataset.itemUuid);
+        action.use(event, { groupAction: { forceSelect: true }});
+    }
+
+    /** @this DHBaseActorSheet */
+    static async #onRefreshFromCompendium() {
+        const refresh = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: _loc('DAGGERHEART.ITEMS.Base.Refresh.Title')
+            },
+            content: _loc('DAGGERHEART.ITEMS.Base.Refresh.AreYouSure')
+        });
+        if (refresh) {
+            this.document.refreshFromCompendium();
+        }
     }
 
     /* -------------------------------------------- */

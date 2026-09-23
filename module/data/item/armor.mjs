@@ -1,4 +1,5 @@
 import BaseDataItem from './base.mjs';
+import { updateItemFeatures } from './helpers.mjs';
 
 export default class DHArmor extends BaseDataItem {
     /** @inheritDoc */
@@ -76,73 +77,13 @@ export default class DHArmor extends BaseDataItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        const changedArmorFeatures = changes.system?.armorFeatures ?? [];
-        const removedFeatures = this.armorFeatures.filter(x => changedArmorFeatures.every(y => y.value !== x.value));
         if (changes.system?.armorFeatures) {
-            const added = changedArmorFeatures.filter(x => this.armorFeatures.every(y => y.value !== x.value));
-
-            const effectIds = [];
-            const actionIds = [];
-            for (var feature of removedFeatures) {
-                effectIds.push(...feature.effectIds);
-                actionIds.push(...feature.actionIds);
-            }
-            await this.parent.deleteEmbeddedDocuments('ActiveEffect', effectIds);
-            changes.system.actions = actionIds.reduce((acc, id) => {
-                acc[id] = _del;
-                return acc;
-            }, {});
-
-            const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
-            for (const feature of added) {
-                const featureData = allFeatures[feature.value];
-                if (featureData.effects?.length > 0) {
-                    const embeddedItems = await this.parent.createEmbeddedDocuments(
-                        'ActiveEffect',
-                        featureData.effects.map(effect => ({
-                            ...effect,
-                            name: game.i18n.localize(effect.name),
-                            description: game.i18n.localize(effect.description)
-                        }))
-                    );
-                    feature.effectIds = embeddedItems.map(x => x.id);
-                }
-
-                const newActions = {};
-                if (featureData.actions?.length > 0 || featureData.actions?.size > 0) {
-                    for (let action of featureData.actions) {
-                        const embeddedEffects = await this.parent.createEmbeddedDocuments(
-                            'ActiveEffect',
-                            (action.effects ?? []).map(effect => ({
-                                ...effect,
-                                transfer: false,
-                                name: game.i18n.localize(effect.name),
-                                description: game.i18n.localize(effect.description)
-                            }))
-                        );
-                        feature.effectIds = [...(feature.effectIds ?? []), ...embeddedEffects.map(x => x.id)];
-
-                        const cls = game.system.api.models.actions.actionsTypes[action.type];
-                        const actionId = foundry.utils.randomID();
-                        newActions[actionId] = new cls(
-                            {
-                                ...cls.getSourceConfig(this),
-                                ...action,
-                                type: action.type,
-                                _id: actionId,
-                                name: game.i18n.localize(action.name),
-                                description: game.i18n.localize(action.description),
-                                effects: embeddedEffects.map(x => ({ _id: x.id })),
-                                systemPath: 'actions'
-                            },
-                            { parent: this }
-                        );
-                    }
-                }
-
-                changes.system.actions = newActions;
-                feature.actionIds = Object.keys(newActions);
-            }
+            await updateItemFeatures(
+                this.parent,
+                changes,
+                'armorFeatures',
+                CONFIG.DH.ITEM.allArmorFeatures
+            );
         }
     }
 

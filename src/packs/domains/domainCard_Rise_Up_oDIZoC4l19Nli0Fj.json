@@ -41,17 +41,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -88,7 +80,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -120,7 +112,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "ulQpnnRFwW4BwMlE",
       "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-teal-purple.webp",
@@ -132,7 +125,6 @@
         "expired": false
       },
       "description": "<p>Gain a bonus to your Severe threshold equal to your Proficiency.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

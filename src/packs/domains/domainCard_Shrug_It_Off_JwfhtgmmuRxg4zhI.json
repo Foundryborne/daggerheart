@@ -75,7 +75,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 134,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -107,7 +107,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "5DTQDVU8Jy5Nnp5V",
       "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
@@ -119,7 +120,6 @@
         "expired": false
       },
       "description": "<p>When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

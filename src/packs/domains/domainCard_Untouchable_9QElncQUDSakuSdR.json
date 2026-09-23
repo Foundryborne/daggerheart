@@ -11,7 +11,7 @@
     "type": "ability",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 122,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -44,7 +44,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "H8hazlQe4Wj4JFO6",
       "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
@@ -56,7 +57,6 @@
         "expired": false
       },
       "description": "<p>Gain a bonus to your Evasion equal to half your Agility.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

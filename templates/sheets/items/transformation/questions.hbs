@@ -1,0 +1,9 @@
+<section
+    class='tab {{tabs.questions.cssClass}} {{tabs.questions.id}}'
+    data-tab='{{tabs.questions.id}}'
+    data-group='{{tabs.questions.group}}'
+>
+    <div class="questions-container">
+        {{formInput systemFields.questions value=document.system.questions enriched=enrichedQuestions toggled=true }}
+    </div>
+</section>

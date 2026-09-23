@@ -1,0 +1,29 @@
+<section class="tab scrollable {{tab.cssClass}} {{tab.id}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <div class="tier-tools">
+        <select class="option-type-select">
+            {{selectOptions optionTypes selected=selectedOption blank=""}}
+        </select>
+        <button data-action="addTierOption" data-tier="{{tab.tier}}" {{#unless selectedOption}}disabled{{/unless}}>{{localize "Add Levelup Option"}}</button>
+    </div>
+    {{#with (lookup levelupOptionTiers tab.tier)}}
+        {{#unless (empty this)}}
+            {{#each this as |option key|}}
+                <fieldset>
+                    <legend><a data-action="removeTierOption" data-tier="{{../../tab.tier}}" data-key="{{key}}"><i class="fa-solid fa-trash"></i></a></legend>
+
+                    <div class="tier-container">
+                        {{formGroup @root.fields.label value=option.label name=(concat "system.levelupOptionTiers." ../../tab.tier "." key ".label") localize=true }}
+                        {{formGroup @root.fields.type value=option.type name=(concat "system.levelupOptionTiers." ../../tab.tier "." key ".type") localize=true }}
+                        <div class="nest-inputs">
+                            {{formGroup @root.fields.checkboxSelections value=option.checkboxSelections name=(concat "system.levelupOptionTiers." ../../tab.tier "." key ".checkboxSelections") localize=true }}
+                            {{formGroup @root.fields.minCost value=option.minCost name=(concat "system.levelupOptionTiers." ../../tab.tier "." key ".minCost") localize=true }}
+                            {{#if option.typeData}}
+                                {{formGroup @root.fields.subType value=option.subType name=(concat "system.levelupOptionTiers." ../../tab.tier "." key ".subType") choices=option.typeData.subTypes  localize=true }}
+                            {{/if}}
+                        </div>
+                    </div>
+                </fieldset>
+            {{/each}}
+        {{/unless}}
+    {{/with}}
+</section>

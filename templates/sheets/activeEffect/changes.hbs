@@ -14,25 +14,34 @@
         {{/each}}
     </ol>
 
-    <fieldset class="typed-change-container armor-change-container optional {{#if typeChanges.armor}}active{{/if}}">
-        <legend>
-            {{localize "DAGGERHEART.GENERAL.armor"}} 
-            <input type="checkbox" class="typed-change-checkbox" data-index="{{typedChanges.armor.index}}" data-type="armor" {{checked typedChanges.armor}} />
-        </legend>
-
-        {{#if typedChanges.armor}}
+    {{#if typedChanges.armor}}
+        <fieldset class="typed-change-container armor-change-container optional">
+            <legend>
+                {{localize "DAGGERHEART.GENERAL.armor"}} 
+                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{typedChanges.armor.index}}" data-type="armor"></a>
+            </legend>
             {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs" typedChanges.armor fields=@root.systemFields.changes.element.types.armor.fields}}
-        {{/if}}
-    </fieldset>
+        </fieldset>
+    {{/if}}
 
-    <fieldset class="typed-change-container optional {{#if typeChanges.standardAttack}}active{{/if}}">
-        <legend>
-            {{localize "DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.name"}} 
-            <input type="checkbox" class="typed-change-checkbox" data-index="{{typedChanges.standardAttack.index}}" data-type="standardAttack" {{checked typedChanges.standardAttack}} />
-        </legend>
-
-        {{#if typedChanges.standardAttack}}
+    {{#if typedChanges.standardAttack}}
+        <fieldset class="typed-change-container optional {{#if typeChanges.standardAttack}}active{{/if}}">
+            <legend>
+                {{localize "DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.name"}} 
+                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{typedChanges.standardAttack.index}}" data-type="standardAttack"></a>
+            </legend>
             {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/standardAttack.hbs" typedChanges.standardAttack fields=@root.systemFields.changes.element.types.standardAttack.fields}}
-        {{/if}}
-    </fieldset>
+        </fieldset>
+    {{/if}}
+
+    {{#if creatableTypes}}
+        <div class="add-change">
+            <select class="change-type">
+                {{selectOptions creatableTypes}}
+            </select>
+            <button type="button" data-action="addCustomChange">
+                <i class="fa-solid fa-plus" inert></i> {{localize "DAGGERHEART.EFFECTS.AddChange"}}
+            </button>
+        </div>
+    {{/if}}
 </section>

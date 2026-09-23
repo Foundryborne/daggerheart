@@ -54,7 +54,7 @@
     "consumeOnUse": true,
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 62,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -63,7 +63,6 @@
     {
       "name": "Blinding Orb",
       "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.eAXHdzA5qNPldOpn",
       "transfer": false,
       "_id": "nryJhrF26hyFQUxH",
       "type": "base",
@@ -75,7 +74,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -108,7 +108,7 @@
     }
   ],
   "folder": null,
-  "sort": 0,
+  "sort": 7500000,
   "flags": {},
   "_key": "!items!eAXHdzA5qNPldOpn"
 }

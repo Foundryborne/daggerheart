@@ -54,37 +54,23 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 15,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
       "name": "Unstoppable",
       "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
-      "origin": "Compendium.daggerheart.classes.Item.PnD2UCgzIlwX6cY3",
       "transfer": false,
       "_id": "xzQtFSuDS48kUdAZ",
       "type": "base",
       "system": {
         "changes": [
-          {
-            "key": "system.bonuses.damage.physical.bonus",
-            "type": "add",
-            "value": "ORIGIN.@item.resource.value",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.bonus",
-            "type": "add",
-            "value": "ORIGIN.@item.resource.value",
-            "priority": null,
-            "phase": "initial"
-          },
           {
             "key": "system.rules.damageReduction.reduceSeverity.physical",
             "type": "add",
@@ -105,6 +91,13 @@
             "value": 1,
             "priority": null,
             "phase": "initial"
+          },
+          {
+            "key": "system.bonuses.damage.bonus",
+            "type": "add",
+            "value": "ORIGIN.@item.resource.value",
+            "priority": null,
+            "phase": "initial"
           }
         ],
         "duration": {
@@ -112,7 +105,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

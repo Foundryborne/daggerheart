@@ -112,10 +112,7 @@ export default class DhCompanion extends DhCreature {
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
-                damage: new fields.SchemaField({
-                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
-                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
-                })
+                damage: bonusField('DAGGERHEART.GENERAL.damage')
             }, { persisted: false })
         };
     }
@@ -181,7 +178,7 @@ export default class DhCompanion extends DhCreature {
         }
 
         // Clamp resources (must be done last to ensure all updates occur)
-        this.resources.clamp();
+        this.clampResources();
     }
 
     async _preUpdate(changes, options, userId) {

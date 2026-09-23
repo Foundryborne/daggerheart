@@ -33,7 +33,6 @@
     },
     "type": "social",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "fyxxzdL62j1SpRM4": {
         "name": "History",
@@ -97,7 +96,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -134,13 +134,14 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 94,
+      "page": null,
       "artist": ""
     },
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "yx0vK2yfNVZKWUUi",
@@ -248,7 +249,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "iYHCYTJzZbw5f0pF",
       "img": "icons/commodities/treasure/crown-gold-satin-gems-red.webp",
@@ -310,7 +312,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "9K7C1PR4Q6QrUjjb",
       "img": "icons/environment/people/charge.webp",
@@ -383,7 +386,7 @@
             "type": "healing",
             "_id": "QnZoH9LjJvKl5YcF",
             "systemPath": "actions",
-            "description": "<p>The @Lookup[@name] has a reason to rally the nation to war and the support to act on that reason. You gain <span class=\"inline-roll roll\" data-mode=\"roll\" data-flavor=\"\" data-formula=\"1d4\" data-tooltip-text=\"1d4\" style=\"box-sizing: border-box; cursor: pointer; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(11, 10, 19, 0.9); border-color: rgb(129, 107, 102); border-style: solid; border-width: 0.8px; border-image: none 100% / 1 / 0 stretch; border-radius: 2px; color: rgb(239, 230, 216); margin: -1px 0px; padding: 1px 4px 0px; white-space: nowrap; word-break: break-all; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">1d4 Fear.</p>",
+            "description": "<p>The @Lookup[@name] has a reason to rally the nation to war and the support to act on that reason. You gain 1d4 Fear.</p>",
             "chatDisplay": true,
             "originItem": {
               "type": "itemCollection"
@@ -413,17 +416,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -458,7 +453,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "kA5NZTdiknsh7wxp",
       "img": "icons/sundries/scrolls/scroll-bound-sealed-red-tan.webp",

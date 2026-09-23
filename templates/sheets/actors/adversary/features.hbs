@@ -1,15 +1,30 @@
 <section class='tab {{tabs.features.cssClass}} {{tabs.features.id}}' data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'>
     <div class="feature-section items-list">
-        {{#each @root.features as |item|}}
+        {{#each @root.features as |feature|}}
             {{> "daggerheart.inventory-item"
-                item=item
+                item=feature
                 type="feature"
+                inactive=feature.system.inactive
                 actorType=@root.document.type
                 hideContextMenu=true
                 hideModifyControls=true
                 showActions=@root.editable
             }}
         {{/each}}
+        {{#if @root.evolutionFeatures}}
+            <div class="evolution-section"></div>
+            {{#each @root.evolutionFeatures as |feature|}}
+                {{> "daggerheart.inventory-item"
+                    item=feature
+                    type="feature"
+                    inactive=feature.system.inactive
+                    actorType=@root.document.type
+                    hideContextMenu=true
+                    hideModifyControls=true
+                    showActions=@root.editable
+                }}
+            {{/each}}
+        {{/if}}
     </div>
 </section>

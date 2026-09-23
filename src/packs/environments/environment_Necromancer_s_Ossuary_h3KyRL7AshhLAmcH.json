@@ -1,5 +1,5 @@
 {
-  "name": "Necromancer’s Ossuary",
+  "name": "Necromancer's Ossuary",
   "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "IKumu5HTLqONLYqb",
@@ -21,7 +21,7 @@
     "impulses": "Confound intruders, delve into secrets best left buried, manifest unlife, unleash a tide of undead",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 111,
+      "page": null,
       "artist": ""
     }
   },
@@ -29,7 +29,7 @@
   "_id": "h3KyRL7AshhLAmcH",
   "sort": 3400000,
   "prototypeToken": {
-    "name": "Necromancer’s Ossuary",
+    "name": "Necromancer's Ossuary",
     "displayName": 0,
     "actorLink": false,
     "width": 1,
@@ -159,17 +159,9 @@
                   "applyTo": "hope",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -192,7 +184,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "SJo1Pw0fE4vKnisr",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
@@ -215,7 +208,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Egi337jsYlldHzEH",
       "img": "icons/sundries/documents/document-symbol-skull-tan.webp",
@@ -265,20 +259,12 @@
                 "type": [],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -330,7 +316,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "asSGMUdf4gG4PO8F",
       "img": "icons/magic/death/bones-crossed-gray.webp",
@@ -407,7 +394,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "mnpqMpYCjdlwtvBp",
       "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
@@ -469,7 +457,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "chJRXNg5zyTGbcG5",
       "img": "icons/magic/death/undead-zombie-grave-green.webp",

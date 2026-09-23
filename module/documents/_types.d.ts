@@ -1,18 +1,19 @@
 import BaseDataActor from '../data/actor/base.mjs'
-import DHItem from './item.mjs';
+import DhItem from './item.mjs';
 import BaseDataItem from '../data/item/base.mjs';
 import DhActiveEffect from './activeEffect.mjs';
 import EmbeddedCollection from '@common/abstract/embedded-collection.mjs';
 import DHToken from './token.mjs';
 import Actor from '@client/documents/actor.mjs';
 import Item from '@client/documents/item.mjs';
+import BaseEffect from '../data/activeEffect/baseEffect.mjs';
 
 declare module './actor.mjs' {
-    export default interface DhpActor<T extends BaseDataActor = BaseDataActor> extends Actor {
+    export default interface DhActor<T extends BaseDataActor = BaseDataActor> extends Actor {
         name: string;
         img: string;
         system: T;
-        items: EmbeddedCollection<DHItem>;
+        items: EmbeddedCollection<DhItem>;
         effects: EmbeddedCollection<DhActiveEffect>;
         get token(): DHToken | null;
 
@@ -24,12 +25,22 @@ declare module './actor.mjs' {
 }
 
 declare module './item.mjs' {
-    export default interface DHItem<T extends BaseDataItem = BaseDataItem> extends Item {
+    export default interface DhItem<T extends BaseDataItem = BaseDataItem> extends Item {
         name: string;
         img: string;
-        parent: DhpActor;
-        actor: DhpActor;
+        parent: DhActor;
+        actor: DhActor;
         system: T;
         effects: EmbeddedCollection<DhActiveEffect>;
+        _stats: {
+            compendiumSource?: string;
+            duplicateSource?: string;
+        }
+    }
+}
+
+declare module './activeEffect.mjs' {
+    export default interface DhActiveEffect extends foundry.documents.ActiveEffect {
+        system: BaseEffect;
     }
 }

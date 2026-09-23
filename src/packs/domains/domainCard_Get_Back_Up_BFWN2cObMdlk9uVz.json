@@ -12,7 +12,7 @@
     "actions": {},
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 121,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -44,7 +44,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "aV3KUHtXXR86PRMh",
       "img": "icons/magic/control/silhouette-aura-energy.webp",
@@ -56,7 +57,6 @@
         "expired": false
       },
       "description": "<p>When you take Severe damage, you can <strong>mark a Stress</strong> to reduce the severity by one threshold.</p>",
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -30,7 +30,7 @@
     "impulses": "Draw in the curious, echo the past",
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 103,
+      "page": null,
       "artist": ""
     }
   },
@@ -44,7 +44,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
+      "src": "icons/environment/wilderness/cave-entrance-rocky.webp",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "fit": "contain",
@@ -113,7 +113,7 @@
       "effects": 0,
       "subject": {
         "scale": 1,
-        "texture": null
+        "texture": "icons/environment/wilderness/cave-entrance-vulcano.webp"
       }
     },
     "turnMarker": {
@@ -140,7 +140,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "MX4q2xxuWts9gBfT",
       "img": "icons/environment/wilderness/cave-entrance.webp",
@@ -192,20 +193,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -262,7 +255,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "maK5OyfrOxcjCoPt",
       "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
@@ -270,7 +264,6 @@
         {
           "name": "Barbed Vines",
           "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
-          "origin": "Compendium.daggerheart.environments.Actor.pGEdzdLkqYtBhxnG.Item.maK5OyfrOxcjCoPt",
           "transfer": false,
           "_id": "LSeftEwgBbXXkLw3",
           "type": "base",
@@ -278,11 +271,12 @@
             "changes": [],
             "duration": {
               "type": "temporary",
-              "description": "<p>Until you’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>"
+              "description": "<p>Until you're freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>"
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -291,7 +285,7 @@
             "expiry": null,
             "expired": false
           },
-          "description": "<p><em>Restrained</em> lasts until you’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>",
+          "description": "<p><em>Restrained</em> lasts until you're freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>",
           "tint": "#ffffff",
           "statuses": [
             "restrained"
@@ -368,7 +362,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "uG5A2XQuUcPsXzgP",
       "img": "icons/magic/nature/hand-weapon-wood-bark-brown.webp",
@@ -421,7 +416,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "3kkkbnWEvXk5TPK8",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",

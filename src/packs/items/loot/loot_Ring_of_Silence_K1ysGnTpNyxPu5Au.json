@@ -53,7 +53,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 59,
+      "page": null,
       "artist": ""
     },
     "gmNotes": ""
@@ -62,7 +62,6 @@
     {
       "name": "Ring of Silence",
       "img": "icons/equipment/finger/ring-ball-purple.webp",
-      "origin": "Compendium.daggerheart.loot.Item.K1ysGnTpNyxPu5Au",
       "transfer": false,
       "_id": "9JSLRu7amQ4iuIO7",
       "type": "base",
@@ -73,7 +72,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

@@ -1,0 +1,18 @@
+{
+  "type": "loot",
+  "name": "Carving that symbolizes your patron",
+  "folder": "Vl6GJVat2bYF3bAB",
+  "_id": "c1jomE48GRyNeXMY",
+  "img": "icons/magic/symbols/mask-yellow-orange.webp",
+  "system": {
+    "attribution": {},
+    "description": "",
+    "gmNotes": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!c1jomE48GRyNeXMY"
+}

@@ -42,19 +42,11 @@
               "magical"
             ],
             "base": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -221,19 +213,11 @@
               "physical"
             ],
             "base": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -275,7 +259,7 @@
     },
     "attribution": {
       "source": "Daggerheart SRD",
-      "page": 124,
+      "page": null,
       "artist": ""
     },
     "gmNotes": "",
@@ -292,7 +276,6 @@
     {
       "name": "Tava's Armor",
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
-      "origin": "Compendium.daggerheart.domains.Item.YtZzYBtR0yLPPA93",
       "transfer": false,
       "_id": "ptYT10JZ2WJHvFMd",
       "type": "base",
@@ -316,7 +299,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -325,7 +309,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>+1 bonus to your Armor Score until your next rest, or the caster cast's Tava’s Armor again.</p>",
+      "description": "<p>+1 bonus to your Armor Score until your next rest, or the caster cast's Tava's Armor again.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,

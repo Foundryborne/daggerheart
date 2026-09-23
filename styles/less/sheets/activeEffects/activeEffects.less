@@ -13,6 +13,10 @@
         }
     }
 
+    .form-row-icon {
+        margin-top: 24px;
+    }
+
     .duration-description {
         height: 0;
         overflow: hidden;
@@ -20,6 +24,35 @@
 
         &.visible {
             height: 100px;
+        }
+    }
+
+    .tab.conditionals {
+        .conditional-container {
+            display: flex;
+            gap: 4px;
+            width: 100%;
+
+            .conditional-inner-container {
+                display: flex;
+                gap: 4px;
+                width: 100%;
+
+                .form-group {
+                    display: block;
+                    
+                    multi-select {
+                        min-height: 34px;
+                        height: -webkit-fill-available;
+                    }
+
+                    label {
+                        line-height: normal;
+                        color: inherit;
+                        white-space: nowrap;
+                    }
+                }
+            }
         }
     }
 
@@ -101,6 +134,17 @@
                         background: inherit;
                     }
                 }
+            }
+        }
+
+        .add-change {
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            margin-top: 1rem;
+            gap: var(--spacer-8);
+            select {
+                flex: 0 1 fit-content;
             }
         }
     }

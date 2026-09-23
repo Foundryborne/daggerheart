@@ -44,7 +44,12 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             this.combats
                 .find(x => x.active)
                 ?.system?.extendedBattleToggles?.reduce((acc, toggle) => (acc ?? 0) + toggle.category, null) ?? null;
-        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(context.allCharacters.length) + modifierBP;
+
+        const activePartyActors = game.actors.party?.system.partyMembers ?? [];
+        const activePartyCharacters = activePartyActors.filter(x => Boolean(x) && x.type === 'character');
+        const nrCharacters = context.allCharacters.length ? context.allCharacters.length : activePartyCharacters.length;
+
+        const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(nrCharacters) + modifierBP;
         const currentBP = AdversaryBPPerEncounter(context.adversaries, context.allCharacters);
 
         Object.assign(context, {
@@ -134,7 +139,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     getDefeatedId(combatant) {
         if (!combatant.actor) return CONFIG.specialStatusEffects.DEFEATED;
 
-        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const settings = game.system.settings.automation.defeated;
         return settings[`${combatant.actor.type}Default`];
     }
 
@@ -209,7 +214,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
                 await updateCountdowns(CONFIG.DH.GENERAL.countdownProgressionTypes.spotlight.id);
             }
 
-            const autoPoints = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).actionPoints;
+            const autoPoints = 
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).actionTokens.automation;
             if (autoPoints) {
                 update.system.actionTokens = Math.max(combatant.system.actionTokens - 1, 0);
             }

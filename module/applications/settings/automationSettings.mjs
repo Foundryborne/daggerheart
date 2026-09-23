@@ -5,10 +5,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export default class DhAutomationSettings extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor() {
         super({});
-
-        this.settings = new DhAutomation(
-            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).toObject()
-        );
+        this.settings = new DhAutomation(game.system.settings.automation.toObject());
     }
 
     get title() {
