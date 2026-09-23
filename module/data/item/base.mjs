@@ -111,7 +111,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Convenient access to the item's actor, if it exists.
-     * @returns {DhpActor | null}
+     * @returns {DhActor | null}
      */
     get actor() {
         return this.parent.actor;

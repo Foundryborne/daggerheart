@@ -47,11 +47,11 @@ CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
 
 CONFIG.Folder.documentClass = documents.DhFolder;
 
-CONFIG.Actor.documentClass = documents.DhpActor;
+CONFIG.Actor.documentClass = documents.DhActor;
 CONFIG.Actor.dataModels = models.actors.config;
 CONFIG.Actor.collection = collections.DhActorCollection;
 
-CONFIG.Item.documentClass = documents.DHItem;
+CONFIG.Item.documentClass = documents.DhItem;
 CONFIG.Item.dataModels = models.items.config;
 
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
@@ -573,9 +573,9 @@ Hooks.on('activateSceneControls', controls => {
 Hooks.on('renderDialogV2', (dialog, html) => {
     if (!html.classList.contains('dialog')) return;
     const cls = html.classList.contains('item-create')
-        ? documents.DHItem.implementation
+        ? documents.DhItem.implementation
         : html.classList.contains('actor-create')
-            ? documents.DhpActor.implementation
+            ? documents.DhActor.implementation
             : null;
     if (!cls) return;
 

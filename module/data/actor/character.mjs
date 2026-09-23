@@ -339,7 +339,7 @@ export default class DhCharacter extends DhCreature {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
-    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
+    /** @returns {{ value?: DhItem; subclass?: DhItem }} */
     get class() {
         const value = this.parent.items.find(x => x.type === 'class' && !x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && !x.system.isMulticlass);
@@ -350,7 +350,7 @@ export default class DhCharacter extends DhCreature {
         };
     }
 
-    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
+    /** @returns {{ value?: DhItem; subclass?: DhItem }} */
     get multiclass() {
         const value = this.parent.items.find(x => x.type === 'class' && x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && x.system.isMulticlass);

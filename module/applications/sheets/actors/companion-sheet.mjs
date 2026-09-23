@@ -3,14 +3,14 @@ import DHBaseActorSheet from '../api/base-actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
-export default class DhCompanionSheet extends DHBaseActorSheet {
+export default class CompanionSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['actor', 'companion'],
         position: { width: 340 },
         actions: {
-            toggleStress: DhCompanionSheet.#toggleStress,
-            actionRoll: DhCompanionSheet.#actionRoll,
-            levelManagement: DhCompanionSheet.#levelManagement
+            toggleStress: CompanionSheet.#toggleStress,
+            actionRoll: CompanionSheet.#actionRoll,
+            levelManagement: CompanionSheet.#levelManagement
         },
         contextMenus: [
             {
@@ -62,7 +62,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         await this.document.update({ 'system.resources.stress.value': newValue });
     }
 
-    /** @this {DhCompanionSheet} **/
+    /** @this {CompanionSheet} **/
     static async #actionRoll(event) {
         const partner = this.actor.system.partner;
         if (!partner) return ui.notifications.warn('DAGGERHEART.UI.Notifications.partnerRequired', { localize: true });

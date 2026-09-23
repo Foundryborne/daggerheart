@@ -51,7 +51,7 @@
       "damage": {
         "main": {
           "type": [
-            "magical"
+            "physical"
           ],
           "value": {
             "multiplier": "prof",

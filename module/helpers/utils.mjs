@@ -4,16 +4,17 @@ import { sortBy } from './functional.mjs';
 export * from './functional.mjs';
 
 /**
- * @import DhpActor from '../documents/actor.mjs';
+ * @import DhActor from '../documents/actor.mjs';
  */
 
 /** 
  * @param {unknown} value
  * @returns {string}
  */
-export function signedNumber(value) {
+export function signedNumber(value, { zero = '+' } = {}) {
     const number = Number(value);
-    return number >= 0 ? `+${value}` : String(value);
+    if (number === 0) return `${zero ?? ''}${value}`;
+    return number > 0 ? `+${value}` : String(value);
 }
 
 export function rollCommandToJSON(text) {
@@ -245,7 +246,7 @@ export const adjustRange = (rangeVal, decrease) => {
 
 /**
  *
- * @param {DhpActor} actor - The actor for which all tokens will run a data update.
+ * @param {DhActor} actor - The actor for which all tokens will run a data update.
  * @param {string} update - The data update to be applied to all tokens.
  * @param {func} updateToken - Optional, specific data update for the non-prototype tokens as a function using the token data. Useful to handle wildcard images where each token has a different image but the prototype has a wildcard path.
  */
@@ -820,8 +821,8 @@ export function shouldUseHopeFearAutomation(options = { gmAsPlayer: true }) {
  * Returns the given actor if its a world actor, 
  * finds a world actor equivalent, 
  * or imports the actor and returns the imported actor.
- * @param {DhpActor} baseActor 
- * @returns {Promise<DhpActor>} a world actor
+ * @param {DhActor} baseActor 
+ * @returns {Promise<DhActor>} a world actor
  */
 export async function getWorldActor(baseActor) {
     if (baseActor.inCompendium) {
@@ -833,7 +834,7 @@ export async function getWorldActor(baseActor) {
         if (worldActorCopy) return worldActorCopy;
 
         const baseActorData = baseActor;
-        return await game.system.api.documents.DhpActor.create({ 
+        return await game.system.api.documents.DhActor.create({ 
             ...baseActorData, 
             _stats: { 
                 ...baseActorData._stats, 

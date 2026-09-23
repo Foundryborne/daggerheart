@@ -1,6 +1,6 @@
 export const BaseBPPerEncounter = nrCharacters => 3 * nrCharacters + 2;
 
-export const AdversaryBPPerEncounter = (adversaries, characters) => {
+export const AdversaryBPPerEncounter = (adversaries, nrCharacters) => {
     const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
     return adversaries
         .reduce((acc, adversary) => {
@@ -19,7 +19,7 @@ export const AdversaryBPPerEncounter = (adversaries, characters) => {
             const type = adversaryTypes[adversary.type];
             const bpCost = type.bpCost ?? 0;
             if (type.partyAmountPerBP) {
-                acc += characters.length === 0 ? 0 : Math.ceil(entry.nr / characters.length);
+                acc += nrCharacters === 0 ? 0 : Math.ceil(entry.nr / nrCharacters);
             } else {
                 acc += bpCost * entry.nr;
             }

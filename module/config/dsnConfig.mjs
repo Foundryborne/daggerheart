@@ -56,10 +56,10 @@ export const colorsetDefaults = {
 };
 
 export const systemDefaults = {
-    hope: undefined,
-    fear: undefined,
-    advantage: undefined,
-    disadvantage: undefined
+    hope: 'standard',
+    fear: 'standard',
+    advantage: 'standard',
+    disadvantage: 'standard'
 }
 
 export const getDiceRoles = () => ([

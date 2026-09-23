@@ -6,7 +6,7 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 
 /**
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction *
- * @import DHItem from '../../../documents/item.mjs';
+ * @import DhItem from '../../../documents/item.mjs';
  /
 
 /**
@@ -339,7 +339,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * @param {DragEvent} event 
-     * @param {DHItem} item 
+     * @param {DhItem} item 
      */
     async _onDropItem(event, item) {
         const target = event.target.closest('fieldset.drop-section');

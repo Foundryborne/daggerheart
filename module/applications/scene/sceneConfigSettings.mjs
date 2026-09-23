@@ -72,10 +72,10 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
         }
 
         const item = await foundry.utils.fromUuid(data.uuid);
-        if (item instanceof game.system.api.documents.DhpActor && item.type === 'environment') {
+        if (item instanceof game.system.api.documents.DhActor && item.type === 'environment') {
             let sceneUuid = data.uuid;
             if (item.pack) {
-                const inWorldActor = await game.system.api.documents.DhpActor.create([item.toObject()]);
+                const inWorldActor = await game.system.api.documents.DhActor.create([item.toObject()]);
                 if (!inWorldActor.length) return;
                 sceneUuid = inWorldActor[0].uuid;
             }

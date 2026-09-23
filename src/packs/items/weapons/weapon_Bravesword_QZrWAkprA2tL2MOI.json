@@ -50,7 +50,7 @@
       "damage": {
         "main": {
           "value": {
-            "dice": "d10",
+            "dice": "d12",
             "bonus": 7,
             "multiplier": "prof",
             "flatMultiplier": 1,

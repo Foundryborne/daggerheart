@@ -33,7 +33,13 @@
     },
     "type": "bruiser",
     "notes": "",
-    "experiences": {},
+    "experiences": {
+      "KqhNrmipHiSGyVzY": {
+        "name": "Navigation",
+        "value": 2,
+        "description": ""
+      }
+    },
     "tier": 2,
     "description": "<p>A massive bull-headed firbolg with a quick temper.</p>",
     "motivesAndTactics": "Consume, gore, navigate, overpower, pursue",

@@ -1,4 +1,5 @@
-import { getDocFromElement, itemIsIdentical } from '../../../helpers/utils.mjs';
+import { getDocFromElement } from '../../../helpers/utils.mjs';
+import { GMUpdateEvent, socketEvent } from '../../../systemRegistration/socket.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -53,14 +54,14 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
     /**@returns {DHBaseActorSettings|null} */
     get settingSheet() {
-        const SheetClass = this.document.system.metadata.settingSheet;
+        const SheetClass = this.document.metadata.settingSheet;
         return (this.#settingSheet ??= SheetClass ? new SheetClass({ document: this.document }) : null);
     }
 
     get isVisible() {
         const viewPermission = this.document.testUserPermission(game.user, this.options.viewPermission);
         const limitedOnly = this.document.testUserPermission(game.user, this.options.viewPermission, { exact: true });
-        return limitedOnly ? this.document.system.metadata.hasLimitedView : viewPermission;
+        return limitedOnly ? this.document.metadata.hasLimitedView : viewPermission;
     }
 
     /** @inheritdoc */
@@ -98,7 +99,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         ).useResourcePips;
 
         // Prepare inventory data
-        if (this.document.system.metadata.hasInventory) {
+        if (this.document.metadata.hasInventory) {
             context.inventory = {
                 currencies: {},
                 weapons: this.document.itemTypes.weapon.sort((a, b) => a.sort - b.sort),
@@ -136,7 +137,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
     _configureRenderParts(options) {
         const parts = super._configureRenderParts(options);
-        if (!this.document.system.metadata.hasLimitedView) return parts;
+        if (!this.document.metadata.hasLimitedView) return parts;
 
         if (this.document.testUserPermission(game.user, 'LIMITED', { exact: true })) return { limited: parts.limited };
 
@@ -152,7 +153,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         await super._onRender(context, options);
 
         if (
-            this.document.system.metadata.hasLimitedView &&
+            this.document.metadata.hasLimitedView &&
             this.document.testUserPermission(game.user, 'LIMITED', { exact: true })
         ) {
             this.element.classList = `${this.element.classList} limited`;
@@ -351,6 +352,23 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         if (data.type === 'Currency' && ['character', 'party'].includes(this.document.type)) {
             const originActor = await foundry.utils.fromUuid(data.originActor);
             if (!originActor || originActor.uuid === this.document.uuid) return;
+            
+            // Check if we can transfer here first, or if the actor type permits it otherwise
+            const canTransferHere = 
+                (this.document.isOwner || this.document.metadata.transferrableWithoutOwner) &&
+                (originActor.isOwner || originActor.metadata.transferrableWithoutOwner);
+            const requiresGM = !(originActor.isOwner && this.document.isOwner);
+            if (!canTransferHere) {
+                return ui.notifications.error(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.lackingItemTransferPermission', {
+                        user: game.user.name,
+                        target: this.document.name
+                    })
+                );
+            } else if (requiresGM && !game.users.activeGM) {
+                return ui.notifications.error(_loc('DAGGERHEART.UI.Notifications.gmRequired'));
+            }
+            
             const currency = data.currency;
             const quantity = await game.system.api.applications.dialogs.ItemTransferDialog.configure({
                 originActor,
@@ -358,10 +376,32 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 currency
             });
             if (quantity) {
-                originActor.update({
-                    [`system.gold.${currency}`]: Math.max(0, originActor.system.gold[currency] - quantity)
-                });
-                this.document.update({ [`system.gold.${currency}`]: this.document.system.gold[currency] + quantity });
+                const newOriginValue = Math.max(0, originActor.system.gold[currency] - quantity);
+                const newTargetValue = this.document.system.gold[currency] + quantity;
+                if (requiresGM && !game.users.activeGM) {
+                    // The GM might have gone offline by the time the option was chosen
+                    ui.notifications.warn(_loc('DAGGERHEART.UI.Notifications.gmRequired'));
+                } else if (!requiresGM) {
+                    originActor.update({ [`system.gold.${currency}`]: newOriginValue });
+                    this.document.update({ [`system.gold.${currency}`]: newTargetValue });
+                } else {
+                    game.socket.emit(`system.${CONFIG.DH.id}`, {
+                        action: socketEvent.GMUpdate,
+                        data: {
+                            action: GMUpdateEvent.UpdateDocument,
+                            data: { [`system.gold.${currency}`]: newOriginValue },
+                            uuid: originActor.uuid
+                        }
+                    });
+                    game.socket.emit(`system.${CONFIG.DH.id}`, {
+                        action: socketEvent.GMUpdate,
+                        data: {
+                            action: GMUpdateEvent.UpdateDocument,
+                            data: { [`system.gold.${currency}`]: newTargetValue },
+                            uuid: this.document.uuid
+                        }
+                    });
+                }
             }
             return;
         }
@@ -371,14 +411,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
     async _onDropItem(event, item) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        const targetActor = this.document;
         const originActor = item.actor;
-        if (!originActor || originActor.uuid === this.document.uuid || !this.document.system.metadata.hasInventory) {
+        if (!originActor || originActor.uuid === this.document.uuid || !this.document.metadata.hasInventory) {
             return super._onDropItem(event, item);
         }
 
-        /* Handling transfer of inventoryItems */
-        if (item.system.metadata.isInventoryItem) {
-            if (!this.document.testUserPermission(game.user, 'OWNER', { exact: true })) {
+        if (item.metadata.isInventoryItem) {
+            const needsOwner = !targetActor.metadata.transferrableWithoutOwner;
+            if (!targetActor.isOwner && needsOwner) {
                 return ui.notifications.error(
                     game.i18n.format('DAGGERHEART.UI.Notifications.lackingItemTransferPermission', {
                         user: game.user.name,
@@ -395,69 +436,11 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     item,
                     targetActor: this.document
                 });
-                return this.#transferItem(actorItem, quantityTransferred);
+                return targetActor.transferItem({ item: actorItem, quantity: quantityTransferred });
             } else {
-                return this.#transferItem(actorItem, availableQuantity);
+                return targetActor.transferItem({ item: actorItem, quantity: availableQuantity });
             }
         }
-    }
-
-    /**
-     * Helper to perform the actual transfer of an item to this actor, including stack/unstack logic based on target quantifiability.
-     * Make sure item is the actor item before calling this method or there will be issues
-     */
-    async #transferItem(item, quantity) {
-        const originActor = item.actor;
-        const targetActor = this.document;
-        const allowStacking = targetActor.system.metadata.quantifiable?.includes(item.type);
-
-        const batch = [];
-
-        // First add/update the item to the target actor
-        const existing = allowStacking ? targetActor.items.find(x => itemIsIdentical(x, item)) : null;
-        if (existing) {
-            batch.push({
-                action: 'update',
-                documentName: 'Item',
-                parent: targetActor,
-                updates: [{ _id: existing.id, 'system.quantity': existing.system.quantity + quantity }]
-            });
-        } else {
-            const itemsToCreate = [];
-            if (allowStacking) {
-                itemsToCreate.push(foundry.utils.mergeObject(item.toObject(true), { system: { quantity } }));
-            } else {
-                const createData = new Array(Math.max(1, quantity))
-                    .fill(0)
-                    .map(() => foundry.utils.mergeObject(item.toObject(), { system: { quantity: 1 } }));
-                itemsToCreate.push(...createData);
-            }
-            batch.push({
-                action: 'create',
-                documentName: 'Item',
-                parent: targetActor,
-                data: itemsToCreate
-            });
-        }
-
-        // Remove the item from the original actor (by either deleting it, or updating its quantity)
-        if (quantity >= item.system.quantity) {
-            batch.push({
-                action: 'delete',
-                documentName: 'Item',
-                parent: originActor,
-                ids: [item.id]
-            });
-        } else {
-            batch.push({
-                action: 'update',
-                documentName: 'Item',
-                parent: originActor,
-                updates: [{ _id: item.id, 'system.quantity': item.system.quantity - quantity }]
-            });
-        }
-
-        return foundry.documents.modifyBatch(batch);
     }
 
     /**

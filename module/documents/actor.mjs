@@ -1,17 +1,25 @@
-import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick, itemIsIdentical } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
-export default class DhpActor extends Actor {
+export default class DhActor extends Actor {
     parties = new Set();
 
     #scrollTextQueue = [];
     #scrollTextInterval;
+
+    /**
+     * Shorthand getter for this system's metadata, but with a type safe fallback in case of a custom actor type.
+     * @returns {import('../data/actor/base.mjs').ActorDataModelMetadata}
+     */
+    get metadata() {
+        return this.system?.metadata ?? {};
+    }
 
     /**
      * Return the first Actor active owner.
@@ -41,6 +49,14 @@ export default class DhpActor extends Actor {
         return !this.pack && hasCompendiumSource && ['adversary', 'environment'].includes(this.type)
             ? this._stats.compendiumSource
             : null;
+    }
+
+    get rollClass() {
+        return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
+    }
+
+    get baseSaveDifficulty() {
+        return this.system.difficulty ?? 10;
     }
 
     /** @inheritDoc */
@@ -215,69 +231,10 @@ export default class DhpActor extends Actor {
         return doc;
     }
 
-    /**@inheritdoc */
-    async _preCreate(data, options, user) {
-        if ((await super._preCreate(data, options, user)) === false) return false;
-        const update = {};
-
-        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
-        if (this.system.metadata.usesSize && !data.system?.size) {
-            Object.assign(update, {
-                system: {
-                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
-                }
-            });
-        }
-
-        // Configure prototype token settings
-        if (['character', 'companion', 'party'].includes(this.type)) {
-            Object.assign(update, {
-                prototypeToken: {
-                    sight: { enabled: true },
-                    actorLink: true,
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
-
-        if (this.type === 'npc') {
-            Object.assign(update, {
-                prototypeToken: {
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
-
-        this.updateSource(update);
-    }
-
     /** Perform a render, debounced in order to prevent overloading repeat render requests */
     renderDebounced = foundry.utils.debounce(options => {
         return this.render(options);
     }, 10);
-
-    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
-        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
-        
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-
-        if (collection === 'items') {
-            if (game.user.id === userId) {
-                this._cleanupOptionalResources();
-            }
-        }
-    }
-
-    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
-        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
-        if (collection === 'items') {
-            if (game.user.id === userId) {
-                this._cleanupOptionalResources();
-            }
-        }
-    }
 
     /**
      * Cleanup of any optional resources on the actor that are no longer available.
@@ -310,36 +267,6 @@ export default class DhpActor extends Actor {
                     return r;
                 }, {})
             });
-        }
-    }
-
-    _preUpdate(changed, options, user) {
-        return super._preUpdate(changed, options, user);
-    }
-
-    _onUpdate(changes, options, userId) {
-        super._onUpdate(changes, options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-    }
-
-    async _preDelete(options, user) {
-        if ((await super._preDelete(options, user)) === false) return false;
-
-        if (this.prototypeToken.actorLink) {
-            game.system.registeredTriggers.unregisterItemTriggers(this.items);
-        } else {
-            for (const token of this.getActiveTokens()) {
-                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
-            }
-        }
-    }
-
-    _onDelete(options, userId) {
-        super._onDelete(options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
         }
     }
 
@@ -771,14 +698,6 @@ export default class DhpActor extends Actor {
         return await this.diceRoll(config);
     }
 
-    get rollClass() {
-        return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
-    }
-
-    get baseSaveDifficulty() {
-        return this.system.difficulty ?? 10;
-    }
-
     /** @inheritDoc */
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
         const status = CONFIG.statusEffects.find(e => e.id === statusId);
@@ -823,6 +742,81 @@ export default class DhpActor extends Actor {
         rollData.fear = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear);
 
         return rollData;
+    }
+
+    /**
+     * Helper to perform the actual transfer of an item to this actor, including stack/unstack logic based on target quantifiability.
+     * Make sure item is the actor item before calling this method or there will be issues
+     */
+    async transferItem({ item, quantity }) {
+        const originActor = item.actor;
+        const targetActor = this;
+        if (!originActor) {
+            // Todo: eventually support unowned items as well. These would simply just resolve stacking rules
+            throw new Error('transferItem can only be called on embedded items');
+        }
+
+        if (!originActor.isOwner || !targetActor.isOwner) {
+            if (!game.users.activeGM) {
+                ui.notifications.error(_loc('DAGGERHEART.UI.Notifications.gmRequired'));
+            } else {
+                await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                    action: socketEvent.TransferItem,
+                    data: { item: item.uuid, targetActor: this.uuid, quantity }
+                });
+            }
+
+            return;
+        }
+
+        const batch = [];
+
+        // First add/update the item to the target actor
+        const allowStacking = targetActor.system.metadata.quantifiable?.includes(item.type);
+        const existing = allowStacking ? targetActor.items.find(x => itemIsIdentical(x, item)) : null;
+        if (existing) {
+            batch.push({
+                action: 'update',
+                documentName: 'Item',
+                parent: targetActor,
+                updates: [{ _id: existing.id, 'system.quantity': existing.system.quantity + quantity }]
+            });
+        } else {
+            const itemsToCreate = [];
+            if (allowStacking) {
+                itemsToCreate.push(foundry.utils.mergeObject(item.toObject(true), { system: { quantity } }));
+            } else {
+                const createData = new Array(Math.max(1, quantity))
+                    .fill(0)
+                    .map(() => foundry.utils.mergeObject(item.toObject(), { system: { quantity: 1 } }));
+                itemsToCreate.push(...createData);
+            }
+            batch.push({
+                action: 'create',
+                documentName: 'Item',
+                parent: targetActor,
+                data: itemsToCreate
+            });
+        }
+
+        // Remove the item from the original actor (by either deleting it, or updating its quantity)
+        if (quantity >= item.system.quantity) {
+            batch.push({
+                action: 'delete',
+                documentName: 'Item',
+                parent: originActor,
+                ids: [item.id]
+            });
+        } else {
+            batch.push({
+                action: 'update',
+                documentName: 'Item',
+                parent: originActor,
+                updates: [{ _id: item.id, 'system.quantity': item.system.quantity - quantity }]
+            });
+        }
+
+        return foundry.documents.modifyBatch(batch);
     }
 
     /** 
@@ -1403,6 +1397,111 @@ export default class DhpActor extends Actor {
             if (batch.length) await foundry.documents.modifyBatch(batch);
         } else {
             return batch;
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+    
+    /**@inheritdoc */
+    async _preCreate(data, options, user) {
+        if ((await super._preCreate(data, options, user)) === false) return false;
+        const update = {};
+
+        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
+        if (this.system.metadata.usesSize && !data.system?.size) {
+            foundry.utils.mergeObject(update, {
+                system: {
+                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
+                }
+            })
+        }
+
+        // Set the ones actor linked by default
+        if (['character', 'companion', 'party', 'environment', 'loot'].includes(this.type)) {
+            foundry.utils.mergeObject(update, { prototypeToken: { actorLink: true } });
+        }
+
+        // Configure prototype token settings
+        if (['character', 'companion', 'party'].includes(this.type)) {
+            foundry.utils.mergeObject(update, {
+                prototypeToken: {
+                    sight: { enabled: true },
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        if (this.type === 'loot') {
+            foundry.utils.mergeObject(update, {
+                ownership: {
+                    default: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
+                }
+            })
+        }
+
+        if (this.type === 'npc') {
+            foundry.utils.mergeObject(update, {
+                prototypeToken: {
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        this.updateSource(update);
+    }
+
+    _preUpdate(changed, options, user) {
+        return super._preUpdate(changed, options, user);
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    async _preDelete(options, user) {
+        if ((await super._preDelete(options, user)) === false) return false;
+
+        if (this.prototypeToken.actorLink) {
+            game.system.registeredTriggers.unregisterItemTriggers(this.items);
+        } else {
+            for (const token of this.getActiveTokens()) {
+                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
+            }
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
+        }
+    }
+
+    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
         }
     }
 }

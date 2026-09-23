@@ -5,7 +5,7 @@ import FormulaField from '../fields/formulaField.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @import DHItem from '../../documents/item.mjs';
+ * @import DhItem from '../../documents/item.mjs';
  * @import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
  */
 
@@ -102,6 +102,12 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
  * @property {string} type - The system type that this data model represents.
  * @property {Boolean} isNPC - This data model represents a NPC?
  * @property {typeof DHBaseActorSettings} settingSheet - The sheet class used to render the settings UI for this actor type.
+ * @property {boolean} hasResistances
+ * @property {boolean} hasAttribution
+ * @property {boolean} hasLimitedView
+ * @property {boolean} useSize whether token size configuration is valid at the actor level for this actor type
+ * @property {boolean} hasInventory whether this actor supports inventory items a display of them. A gold field will still be necessary.
+ * @property {boolean} transferrableWithoutOwner if true, item transfers done by players without permissions will be sent to the GM
  */
 
 /** Base actor type data model for all actors in Daggerheart */
@@ -117,11 +123,12 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             hasAttribution: false,
             hasLimitedView: true,
             usesSize: false,
-            hasInventory: false
+            hasInventory: false,
+            transferrableWithoutOwner: false
         };
     }
 
-    /**@returns {ActorDataModelMetadata}*/
+    /** @returns {ActorDataModelMetadata} */
     get metadata() {
         return this.constructor.metadata;
     }
@@ -196,7 +203,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      * Checks if an item is available for use, such as multiclass features being disabled
      * on a character.
      *
-     * @param {DHItem} item The item being checked for availability
+     * @param {DhItem} item The item being checked for availability
      * @return {boolean} whether the item is available
      */
     isItemAvailable(item) {

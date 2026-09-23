@@ -9,7 +9,8 @@ export default class DhParty extends BaseDataActor {
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             hasInventory: true,
-            quantifiable: ['weapon', 'armor', 'loot', 'consumable']
+            quantifiable: ['weapon', 'armor', 'loot', 'consumable'],
+            transferrableWithoutOwner: true
         });
     }
 
@@ -34,7 +35,9 @@ export default class DhParty extends BaseDataActor {
 
     /**@inheritdoc */
     static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/actors/dark-squad.svg';
-
+    static ALLOWED_ACTOR_TYPES = ['character', 'companion', 'adversary', 'npc'];
+    static DICE_ROLL_ACTOR_TYPES = ['character'];
+    
     /* -------------------------------------------- */
 
     prepareBaseData() {
@@ -48,6 +51,10 @@ export default class DhParty extends BaseDataActor {
         }
     }
 
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+    
     _onCreate(data, options, userId) {
         super._onCreate(data, options, userId);
 

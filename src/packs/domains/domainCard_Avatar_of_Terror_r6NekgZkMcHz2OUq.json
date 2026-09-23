@@ -58,7 +58,7 @@
       }
     },
     "recallCost": 2,
-    "type": "ability",
+    "type": "spell",
     "inVault": false,
     "vaultActive": false,
     "loadoutIgnore": false,

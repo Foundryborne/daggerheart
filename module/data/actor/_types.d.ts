@@ -1,14 +1,14 @@
-import DhpActor from '../../documents/actor.mjs'
+import DhActor from '../../documents/actor.mjs'
 import DhCharacter from './character.mjs';
 
 declare module './base.mjs' {
     export default interface BaseDataActor {
-        parent: DhpActor<this>;
+        parent: DhActor<this>;
     }
 }
 
 declare module './companion.mjs' {
     export default interface DhCompanion {
-        partner: DhpActor<DhCharacter>;
+        partner: DhActor<DhCharacter>;
     }
 }

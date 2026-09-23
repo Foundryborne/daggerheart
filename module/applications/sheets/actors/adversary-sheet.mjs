@@ -1,4 +1,4 @@
-import { getDocFromElement } from '../../../helpers/utils.mjs';
+import { getDocFromElement, signedNumber } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import { prepareFeatureData } from '../sheet-helpers.mjs';
 
@@ -118,6 +118,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
+                break;
+            case 'sidebar':
+                const attackBonus = this.document.system.attack.roll.bonus;
+                context.attackBonus = !attackBonus ? '-' : (Number.isNumeric(attackBonus) ? signedNumber(attackBonus, { zero: '+' }) : `+${attackBonus}`);
                 break;
             case 'features': 
                 await this._prepareFeaturesContext(context, options);
