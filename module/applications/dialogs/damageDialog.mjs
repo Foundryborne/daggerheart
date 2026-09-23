@@ -27,6 +27,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         },
         actions: {
             toggleSelectedEffect: this.toggleSelectedEffect,
+            updateDamageType: DamageDialog.#onUpdateDamageType,
             updateGroupAttack: this.updateGroupAttack,
             toggleCritical: this.toggleCritical,
             submitRoll: this.submitRoll
@@ -76,6 +77,25 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
         context.damageOptions = this.config.damageOptions;
         context.rangeOptions = CONFIG.DH.GENERAL.groupAttackRange;
+        
+        if (this.config.canChooseDamageType) {
+            const previousDamageType = 
+                game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.previousDamageTypeChoice);
+            context.selectedDamageTypes = 
+                previousDamageType ? new Set([previousDamageType]) : damageFormula.damageTypes;  
+
+            context.canChooseDamageType = true;
+            context.damageTypesChoices = Object.entries(CONFIG.DH.GENERAL.damageTypes).reduce((acc, [key, data]) => {
+                acc[key] = {
+                    ...data,
+                    selected: context.selectedDamageTypes.has(key)
+                };
+
+                return acc;
+            }, {});
+        } else {
+            context.selectedDamageTypes = damageFormula.damageTypes;
+        }
 
         return context;
     }
@@ -125,6 +145,17 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
+    static #onUpdateDamageType(_, button) {
+        this.config.damageFormula.damageTypes = new Set([button.dataset.type]);
+        game.user.setFlag(
+            CONFIG.DH.id, 
+            CONFIG.DH.FLAGS.userFlags.previousDamageTypeChoice, 
+            button.dataset.type
+        );
+
+        this.render();
+    }
+
     static async submitRoll() {
         /* Sideeffect occuring in constructFormulas that sets this.config.isCritical to the false value. Can remove the below if it can be prevented */
         const sideEffectSafeIsCritical = this.config.isCritical;
@@ -142,6 +173,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
         this.config.damageFormula = damageFormula;
         this.config.resourceFormulas = resourceFormulas;
+
         await this.close({ submitted: true });
     }
 
