@@ -1634,7 +1634,8 @@
                 "dataCompare": "Data Compare",
                 "weaponRestriction": "Weapon Restriction",
                 "actionType": "Action Type",
-                "damageType": "Damage Type"
+                "damageType": "Damage Type",
+                "duality": "Duality"
             },
             "ConditionalWeaponRestrictionType": {
                 "sameWeapon": "Same Weapon",
@@ -2892,6 +2893,9 @@
                 },
                 "damageType": {
                     "damageType": "Damage Type"
+                },
+                "duality": {
+                    "dualityType": "Duality Result"
                 }
             },
             "Duration": {
@@ -2916,7 +2920,11 @@
                 "attachHint": "Drop items here to attach them",
                 "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
             },
-            "OriginTag": "Origin: {name}"
+            "OriginTag": "Origin: {name}",
+            "hidden": {
+                "label": "Hidden",
+                "hint": "Should the effect be hidden from the actor's effects tab?"
+            }
         },
         "GENERAL": {
             "Ability": {
