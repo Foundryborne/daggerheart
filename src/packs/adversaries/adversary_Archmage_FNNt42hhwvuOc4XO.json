@@ -204,9 +204,13 @@
         "gmNotes": "",
         "resource": null,
         "actions": {
-          "jelFlcnlLnzydTae": {
-            "type": "effect",
-            "_id": "jelFlcnlLnzydTae",
+          "C88MnltJZ7bZPI5n": {
+            "type": "attack",
+            "damage": {
+              "main": null,
+              "resources": {}
+            },
+            "_id": "C88MnltJZ7bZPI5n",
             "systemPath": "actions",
             "baseAction": false,
             "description": "",
@@ -233,10 +237,30 @@
               "recovery": null,
               "consumeOnSuccess": false
             },
-            "effects": [],
             "target": {
               "type": "any",
               "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "scale",
+                "flatMultiplier": 1,
+                "dice": "d4",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
             },
             "name": "Spend Fear",
             "range": "far"

@@ -170,7 +170,8 @@
                     "dice": "Dice Type",
                     "flatMultiplier": "Flat Multiplier",
                     "multiplier": "Dice Number",
-                    "threshold": "Threshold"
+                    "threshold": "Threshold",
+                    "custom": "Custom Formula"
                 }
             },
             "Settings": {
