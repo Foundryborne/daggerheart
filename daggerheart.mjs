@@ -308,7 +308,8 @@ Hooks.on('i18nInit', () => {
     game.system.settings = {
         appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
         automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
-        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
+        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew),
+        variantRules: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
     };
 
     // Setup homebrew resources

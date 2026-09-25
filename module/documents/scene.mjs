@@ -1,12 +1,16 @@
 export default class DhScene extends Scene {
+    /** 
+     * Resolves the settings between the scene settings and global settings, preferring scene settings.
+     * @returns {{ enabled: boolean; melee: number; veryClose: number; close: number; far: number }} */
     get rangeSettings() {
-        const { custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
+        const { custom, disable } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
         const sceneMeasurements = this.flags.daggerheart?.rangeMeasurement;
-        const globalMeasurements = game.settings.get(
-            CONFIG.DH.id,
-            CONFIG.DH.SETTINGS.gameSettings.variantRules
-        ).rangeMeasurement;
-        return sceneMeasurements?.setting === custom.id ? sceneMeasurements : globalMeasurements;
+        const globalMeasurements = game.system.settings.variantRules.rangeMeasurement;
+        return sceneMeasurements?.setting === disable.id
+            ? { enabled: false, ...globalMeasurements }
+            : sceneMeasurements?.setting === custom.id 
+                ? sceneMeasurements
+                : globalMeasurements;
     }
 
     /** A map of `TokenDocument` IDs embedded in this scene long with new dimensions from actor size-category changes */

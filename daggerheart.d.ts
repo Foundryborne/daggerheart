@@ -161,6 +161,7 @@ declare module '@client/packages/system.mjs' {
             appearance: DhAppearance;
             automation: DhAutomation;
             homebrew: DhHomebrew;
+            variantRules: DhVariantRules;
         }
     }
 }
