@@ -1,4 +1,4 @@
-import { getIconVisibleActiveEffects } from '../../helpers/utils.mjs';
+import { getIconVisibleActiveEffects, measureExact } from '../../helpers/utils.mjs';
 import DhMeasuredTemplate from './measuredTemplate.mjs';
 
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
@@ -110,8 +110,11 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
      * Returns the distance from this token to another token object.
      * This value is corrected to handle alternate token sizes and other grid types
      * according to the diagonal rules.
+     * @param {DhTokenPlaceable} target the target we're measuring too
+     * @param {object} [options]
+     * @param {boolean} [options.exact] whether to ignore grid diagonal setting and use exact measurements
      */
-    distanceTo(target) {
+    distanceTo(target, { exact = false } = {}) {
         if (!canvas.ready) return NaN;
         if (this === target) return 0;
 
@@ -149,6 +152,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         }
 
         // Compute what the closest grid space of each token is, then compute that distance
+        // Gridless is handled earlier, so if exact is set, grid diagonals are ignored in favor of 
         const originEdge = this.#getEdgeBoundary(thisBounds, originPoint, targetPoint);
         const targetEdge = this.#getEdgeBoundary(targetBounds, originPoint, targetPoint);
         const adjustedOriginPoint = originEdge
@@ -157,17 +161,40 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
                 y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
             })
             : originPoint;
-        const adjustDestinationPoint = targetEdge
+        const adjustedDestinationPoint = targetEdge
             ? canvas.grid.getTopLeftPoint({
                 x: targetEdge.x + Math.sign(targetPoint.x - targetEdge.x),
                 y: targetEdge.y + Math.sign(targetPoint.y - targetEdge.y)
             })
             : targetPoint;
-        const distance = canvas.grid.measurePath([
-            { ...adjustedOriginPoint, elevation: 0 },
-            { ...adjustDestinationPoint, elevation }
-        ]).distance;
+        const distance = exact
+            ? measureExact(
+                adjustedOriginPoint, 
+                { ...adjustedDestinationPoint, z: elevation },
+                { grid: canvas.grid }
+            )
+            : canvas.grid.measurePath([
+                { ...adjustedOriginPoint, elevation: 0 },
+                { ...adjustedDestinationPoint, elevation }
+            ]).distance;
         return Math.min(distance, distance > adjacencyBuffer ? Infinity : canvas.grid.distance);
+    }
+
+    /** 
+     * Checks if the target token is within range
+     * @param {DhTokenPlaceable} target
+     * @param {keyof typeof CONFIG.DH.GENERAL.range} range
+     */
+    isWithinRange(target, range) {
+        const settings = canvas.scene?.rangeSettings;
+        if (!settings) return false;
+
+        if (range === 'veryFar') return true;
+
+        const maxDistance = settings[range];
+        const distance = this.distanceTo(target, { exact: true });
+        const roundedDistance = Math.round(distance / canvas.grid.distance) * canvas.grid.distance;
+        return roundedDistance < maxDistance;
     }
 
     /** @inheritdoc */
@@ -225,8 +252,9 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         if (!originToken || canvas.tokens.controlled.length > 1) return;
 
         // Determine the actual range
-        const ranges = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
-        const distanceResult = DhMeasuredTemplate.getRangeLabels(originToken.distanceTo(this), ranges);
+        const ranges = canvas.scene.rangeSettings;
+        const exact = ranges.enabled;
+        const distanceResult = DhMeasuredTemplate.getRangeLabels(originToken.distanceTo(this, { exact }), ranges);
         const distanceLabel = `${distanceResult.distance} ${distanceResult.units}`.trim();
 
         // Create or retrieve the existing element.

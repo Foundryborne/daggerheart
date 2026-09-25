@@ -2,13 +2,17 @@
     "compilerOptions": {
         "module": "es2022",
         "target": "es2022",
+        "allowJs": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "skipLibCheck": true,
         "paths": {
             "@client/*": ["./foundry/client/*"],
             "@common/*": ["./foundry/common/*"]
         }
     },
     "exclude": ["node_modules", "**/node_modules/*"],
-    "include": ["daggerheart.mjs", "foundry/client/client.mjs", "daggerheart.d.ts", "module/**/*.d.ts"],
+    "include": ["daggerheart.mjs", "foundry/client/client.mjs", "foundry/common/global.d.mts", "daggerheart.d.ts", "module/**/*.d.ts"],
     "typeAcquisition": {
         "include": ["jquery"]
     }

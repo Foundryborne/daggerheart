@@ -1,7 +1,3 @@
-import '@client/global.mjs';
-import '@common/global.mjs';
-import '@common/primitives/global.mjs';
-import Canvas from '@client/canvas/board.mjs';
 import { ResourceUpdateMap } from './module/data/action/baseAction.mjs';
 
 import * as applications from './module/applications/_module.mjs';
@@ -18,6 +14,22 @@ import DhCountdowns from './module/data/countdowns.mjs';
 import DhEffectsDisplay from './module/applications/ui/effectsDisplay.mjs';
 import DhHomebrew from './module/data/settings/Homebrew.mjs';
 import DhAppearance from './module/data/settings/Appearance.mjs';
+import DhVariantRules from './module/data/settings/VariantRules.mjs';
+import BaseDataItem from './module/data/item/base.mjs';
+import BaseDataActor from './module/data/actor/base.mjs';
+
+// Used to refine the foundry global types (with overrides)
+import * as PixiGraphicsSmooth from '@pixi/graphics-smooth';
+import * as PixiParticles from '@pixi/particle-emitter';
+import * as handlebars from 'handlebars';
+import PixiJS from 'pixi.js';
+import * as SocketIO from 'socket.io-client';
+import Canvas from '@client/canvas/board.mjs';
+import * as globalFoundry from '@client/client.mjs';
+import * as globalConfig from '@client/config.mjs';
+import Game from '@client/game.mjs';
+import Localization from '@client/helpers/localization.mjs';
+import * as globalUI from '@client/ui.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
@@ -35,17 +47,13 @@ declare global {
      * This class manages the registration and execution of hooked callback functions.
      */
     class Hooks extends foundry.helpers.Hooks {}
-    const fromUuid = foundry.utils.fromUuid;
-    const fromUuidSync = foundry.utils.fromUuidSync;
+    const fromUuid: typeof foundry.utils.fromUuid;
+    const fromUuidSync: typeof foundry.utils.fromUuidSync;
     /**
      * A representation of a color in hexadecimal format.
      * This class provides methods for transformations and manipulations of colors.
      */
     class Color extends foundry.utils.Color {}
-    /**
-     * The singleton game canvas
-     */
-    const canvas: Canvas;
 
     const ActiveEffect: foundry.documents.ActiveEffect;
     const Actor: foundry.documents.Actor;
@@ -59,7 +67,7 @@ declare global {
     const TokenDocument: foundry.documents.TokenDocument;
     const RollTable: foundry.documents.RollTable;
 
-    const Collection: foundry.utils.Collection;
+    const Collection: typeof foundry.utils.Collection;
     const FormDataExtended: foundry.applications.ux.FormDataExtended;
     /** @deprecated */
     const TextEditor: foundry.applications.ux.TextEditor;
@@ -105,6 +113,32 @@ declare global {
     }
 }
 
+// A copy of foundry/client/global.d.mts with dheart specific overrides
+declare module 'pixi.js' {
+    export import LegacyGraphics = PixiJS.Graphics;
+    export import smooth = PixiGraphicsSmooth;
+    export import particles = PixiParticles;
+}
+
+declare global {
+    namespace globalThis {
+        export import CONFIG = globalConfig;
+        export import Handlebars = handlebars;
+        export import PIXI = PixiJS;
+        export import ProseMirror = globalFoundry.prosemirror;
+        export import foundry = globalFoundry;
+        export import getDocumentClass = globalFoundry.utils.getDocumentClass;
+        export import io = SocketIO;
+        export import ui = globalUI;
+
+        const canvas: Omit<Canvas, 'scene'> & {
+            get scene(): documents.DhScene | null;
+        };
+        const game: Game;
+        const _loc: Localization['localize'];
+    }
+}
+
 declare module '@client/packages/system.mjs' {
     export default interface System {
         api: {
@@ -124,6 +158,7 @@ declare module '@client/packages/system.mjs' {
             appearance: DhAppearance;
             automation: DhAutomation;
             homebrew: DhHomebrew;
+            variantRules: DhVariantRules;
         }
     }
 }
@@ -135,6 +170,7 @@ declare module '@client/helpers/client-settings.mjs' {
         get(namespace: 'daggerheart', key: typeof gameSettings.Automation): DhAutomation;
         get(namespace: 'daggerheart', key: typeof gameSettings.Homebrew): DhHomebrew;
         get(namespace: 'daggerheart', key: typeof gameSettings.Countdowns): DhCountdowns;
+        get(namespace: 'daggerheart', key: typeof gameSettings.variantRules): DhVariantRules;
         get(namespace: 'daggerheart', key: string): unknown;
     }
 }

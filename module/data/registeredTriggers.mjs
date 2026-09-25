@@ -28,9 +28,10 @@ export default class RegisteredTriggers extends Map {
             if (
                 !registerOverride &&
                 !action.actor.prototypeToken.actorLink &&
-                (!(action.actor.parent instanceof game.system.api.documents.DhToken) || !action.actor.parent?.uuid)
-            )
+                !action.actor.token?.uuid
+            ) {
                 continue;
+            }
 
             const triggers = {};
             for (const trigger of action.triggers) {

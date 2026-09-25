@@ -331,7 +331,7 @@ export default class DhItem extends foundry.documents.Item {
 
         game.system.registeredTriggers.unregisterTriggers(triggerKeys, this.uuid);
 
-        if (this.actor && !(this.actor.parent instanceof game.system.api.documents.DhToken)) {
+        if (this.actor && !(this.actor.parent instanceof game.system.api.documents.DhTokenDocument)) {
             for (const token of this.actor.getActiveTokens()) {
                 game.system.registeredTriggers.unregisterTriggers(triggerKeys, `${token.document.uuid}.${this.uuid}`);
             }
