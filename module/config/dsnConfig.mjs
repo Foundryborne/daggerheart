@@ -106,9 +106,9 @@ export const dualityTrigger = {
     label: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.label',
     ids: ['hope', 'fear', 'critical'],
     sfxTriggers: { 
-        critical: { id: 'daggerheart-duality-trigger', result: 'critical' },
-        hope: { id: 'daggerheart-duality-trigger', result: 'hope' },
-        fear: { id: 'daggerheart-duality-trigger', result: 'fear' }     
+        critical: { id: 'daggerheart-duality-trigger', result: { id: 'critical', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.results.critical' } },
+        hope: { id: 'daggerheart-duality-trigger', result: { id: 'hope', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.results.hope' } },
+        fear: { id: 'daggerheart-duality-trigger', result: { id: 'fear', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.results.fear' } }     
     }
 };
 
@@ -117,7 +117,7 @@ export const gmRollTrigger = {
     label: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.gmRoll.label',
     ids: ['critical'],
     sfxTriggers: { 
-        critical: { id: 'daggerheart-gm-roll-trigger', result: 'critical' }    
+        critical: { id: 'daggerheart-gm-roll-trigger', result: { id: 'critical', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.gmRoll.results.critical' } }    
     }
 };
 
