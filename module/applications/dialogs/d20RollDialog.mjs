@@ -133,6 +133,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.formula = this.roll.constructFormula(this.config);
             if (this.actor?.system?.traits) context.abilities = this.getTraitModifiers();
 
+            context.showReaction = !this.config.skips?.reaction && context.rollType !== 'FateRoll';
             context.isReaction = this.config.actionType === 'reaction';
         }
 

@@ -1,9 +1,11 @@
 <header class="dialog-header">
     <div class="dialog-header-inner">
         <h1>{{ifThen rollConfig.headerTitle rollConfig.headerTitle rollConfig.title}}</h1>
-        <div class="reaction-chip {{#if isReaction}}selected{{/if}}" data-action="toggleReaction">
-            <span><i class="{{ifThen isReaction "fa-solid" "fa-regular"}} fa-circle"></i></span>
-            <span class="label">{{localize "DAGGERHEART.GENERAL.reactionRoll"}}</span>
-        </div>
+        {{#if showReaction}}
+            <div class="reaction-chip {{#if isReaction}}selected{{/if}}" data-action="toggleReaction">
+                <span><i class="{{ifThen isReaction "fa-solid" "fa-regular"}} fa-circle"></i></span>
+                <span class="label">{{localize "DAGGERHEART.GENERAL.reactionRoll"}}</span>
+            </div>
+        {{/if}}
     </div>
 </header>
