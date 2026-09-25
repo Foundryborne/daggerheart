@@ -194,7 +194,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const maxDistance = settings[range];
         const distance = this.distanceTo(target, { exact: true });
         const roundedDistance = Math.round(distance / canvas.grid.distance) * canvas.grid.distance;
-        return roundedDistance < maxDistance;
+        return roundedDistance <= maxDistance;
     }
 
     /** @inheritdoc */
