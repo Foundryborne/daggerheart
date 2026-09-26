@@ -38,6 +38,9 @@
             }
         }
     },
+    "SETTINGS": {
+        "GridDiagonalsL": "Configure how diagonal distance is measured on square and hexagonal grids. The number in parentheses defines the length of diagonals in units of grid spaces under each option. This option has no effect on daggerheart range measurements (close/far/etc)."
+    },
     "DAGGERHEART": {
         "CharacterSheet": "Character Sheet",
         "ACTIONS": {

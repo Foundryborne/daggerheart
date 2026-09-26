@@ -78,7 +78,10 @@ const registerMenuSettings = () => {
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules, {
         scope: 'world',
         config: false,
-        type: DhVariantRules
+        type: DhVariantRules,
+        onChange: value => {    
+            value.handleChange();
+        }
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation, {

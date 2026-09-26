@@ -1,4 +1,4 @@
-export default class DHToken extends CONFIG.Token.documentClass {
+export default class DHTokenDocument extends CONFIG.Token.documentClass {
     /**@inheritdoc */
     static getTrackedAttributeChoices(attributes, typeKey) {
         attributes = attributes || this.getTrackedAttributes();
@@ -132,9 +132,9 @@ export default class DHToken extends CONFIG.Token.documentClass {
 
         // Square grid
         let snapped;
-        if (grid.isSquare) snapped = DHToken.getSnappedPositionInSquareGrid(grid, unsnapped, width, height);
+        if (grid.isSquare) snapped = DHTokenDocument.getSnappedPositionInSquareGrid(grid, unsnapped, width, height);
         // Hexagonal grid
-        else snapped = DHToken.getSnappedPositionInHexagonalGrid(grid, unsnapped, width, height, shape);
+        else snapped = DHTokenDocument.getSnappedPositionInHexagonalGrid(grid, unsnapped, width, height, shape);
         return { x: snapped.x, y: snapped.y, elevation };
     }
 
@@ -192,7 +192,7 @@ export default class DHToken extends CONFIG.Token.documentClass {
     //#region CopyPasta for mean private methods that have to be duplicated
     static getSnappedPositionInHexagonalGrid(grid, position, width, height, shape) {
         // Hexagonal shape
-        const hexagonalShape = DHToken.#getHexagonalShape(width, height, shape, grid.columns);
+        const hexagonalShape = DHTokenDocument.#getHexagonalShape(width, height, shape, grid.columns);
         if (hexagonalShape) {
             const offsetX = hexagonalShape.anchor.x * grid.sizeX;
             const offsetY = hexagonalShape.anchor.y * grid.sizeY;
@@ -218,12 +218,12 @@ export default class DHToken extends CONFIG.Token.documentClass {
 
         // TODO: can we set a max of 2^13 on width and height so that we may use an integer key?
         const key = `${width},${height},${shape}${columns ? 'C' : 'R'}`;
-        let data = DHToken.#hexagonalShapes.get(key);
+        let data = DHTokenDocument.#hexagonalShapes.get(key);
         if (data) return data;
 
         if (columns) {
             // Hexagon symmetry
-            const rowData = DHToken.#getHexagonalShape(height, width, shape, false);
+            const rowData = DHTokenDocument.#getHexagonalShape(height, width, shape, false);
             if (!rowData) return null;
 
             // Transpose the offsets/points of the shape in row orientation
@@ -260,16 +260,16 @@ export default class DHToken extends CONFIG.Token.documentClass {
             };
         } else if (shape <= CONST.TOKEN_SHAPES.TRAPEZOID_2) {
             // Hexagonal ellipse or trapezoid
-            data = DHToken.#createHexagonalEllipseOrTrapezoid(width, height, shape);
+            data = DHTokenDocument.#createHexagonalEllipseOrTrapezoid(width, height, shape);
         } else if (shape <= CONST.TOKEN_SHAPES.RECTANGLE_2) {
             // Hexagonal rectangle
-            data = DHToken.#createHexagonalRectangle(width, height, shape);
+            data = DHTokenDocument.#createHexagonalRectangle(width, height, shape);
         }
 
         // Cache the shape
         if (data) {
             foundry.utils.deepFreeze(data);
-            DHToken.#hexagonalShapes.set(key, data);
+            DHTokenDocument.#hexagonalShapes.set(key, data);
         }
 
         return data;

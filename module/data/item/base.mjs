@@ -279,7 +279,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
             game.system.registeredTriggers.unregisterTriggers(triggersToRemove, this.parent.uuid);
 
-            if (this.parent.parent && !(this.parent.parent.token instanceof game.system.api.documents.DhToken)) {
+            const actor = this.actor;
+            if (actor && !(actor?.token instanceof game.system.api.documents.DhTokenDocument)) {
                 for (const token of this.parent.parent.getActiveTokens()) {
                     game.system.registeredTriggers.unregisterTriggers(
                         triggersToRemove,

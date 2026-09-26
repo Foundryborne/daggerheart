@@ -231,7 +231,7 @@ export default class DHBeastform extends BaseDataItem {
             let x = token.x;
             let y = token.y;
             if (token.scene?.grid) {
-                const positionData = game.system.api.documents.DhToken.getSnappedPositionInSquareGrid(
+                const positionData = game.system.api.documents.DhTokenDocument.getSnappedPositionInSquareGrid(
                     token.scene.grid,
                     { x: token.x, y: token.y, elevation: token.elevation },
                     width ?? token.width,

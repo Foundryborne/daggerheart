@@ -917,3 +917,22 @@ export function nestedReplaceFormulaData(formula, rollData) {
         ? Roll.replaceFormulaData(replacement, rollData)
         : replacement;
 }
+
+/** 
+ * Measures an exact distance between two parts of x/y/z coords.
+ * @param {{x?: number; y?: number; z?: number}} pointA
+ * @param {{x?: number; y?: number; z?: number}} pointB
+ * @param {object} [options]
+ * @param {foundry.grid.BaseGrid} [options.grid] If given, convert to units for this grid
+ * @returns {number} the exact distance between two points ignoring diagonal settings 
+ */
+export function measureExact(pointA, pointB, { grid = null } = {}) {
+    const size = grid?.size ?? 1;
+    const cost = grid?.distance ?? 1;
+
+    return Math.sqrt(
+        Math.pow(((pointA.x ?? 0) - (pointB.x ?? 0)) / size, 2) +
+        Math.pow(((pointA.y ?? 0) - (pointB.y ?? 0)) / size, 2) +
+        Math.pow((pointA.z ?? 0) - (pointB.z ?? 0), 2)
+    ) * cost;
+}
