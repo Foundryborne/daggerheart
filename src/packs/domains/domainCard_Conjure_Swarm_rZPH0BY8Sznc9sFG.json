@@ -234,22 +234,16 @@
       "system": {
         "changes": [
           {
-            "key": "system.rules.damageReduction.reduceSeverity.magical",
+            "key": "system.rules.damageReduction.reduceSeverity",
+            "type": "add",
             "value": 1,
             "priority": null,
-            "type": "add",
-            "phase": "initial"
-          },
-          {
-            "key": "system.rules.damageReduction.reduceSeverity.physical",
-            "value": 1,
-            "priority": null,
-            "type": "add",
             "phase": "initial"
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
@@ -263,7 +257,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "",
+      "description": "<p>When you next take damage, reduce the severity by one threshold.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -271,7 +265,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!rZPH0BY8Sznc9sFG.dImnF8ZT2rVybiIP"
