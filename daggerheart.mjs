@@ -415,7 +415,7 @@ Hooks.on('ready', async () => {
 
 Hooks.once('diceSoNiceReady', dice3d => {
     for (const trigger of dhTriggers) {
-        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids);
+        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids.map(x => ({ ...x, name: _loc(x.name) })));
     }
 
     for (const colorset of dhColorsets) {

@@ -1721,8 +1721,20 @@
                     "disadvantage": "Disadvantage Dice"
                 },
                 "triggers": {
-                  "dualityRoll": { "label": "Duality Roll" },
-                  "gmRoll": { "label": "GM Roll" }
+                    "dualityRoll": { 
+                        "label": "Duality Roll",
+                        "results": {
+                            "hope": "With Hope",
+                            "fear": "With Fear",
+                            "critical": "Critical"
+                        } 
+                    },
+                    "gmRoll": {  
+                        "label": "GM Roll",
+                        "results": {
+                            "critical": "Critical"
+                        }
+                    }
                 }
             },
             "DomainCardTypes": {
