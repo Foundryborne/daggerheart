@@ -73,7 +73,7 @@ export default class DhpAdversary extends DhCreature {
                 initial: {
                     name: 'Attack',
                     img: 'icons/skills/melee/blood-slash-foam-red.webp',
-                    _id: foundry.utils.randomID(),
+                    _id: CONFIG.DH.ACTOR.standardAttackId,
                     systemPath: 'attack',
                     chatDisplay: false,
                     type: 'attack',
