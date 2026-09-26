@@ -57,6 +57,8 @@ export const abilities = {
     }
 };
 
+export const standardAttackId = '000BASEATTACK000';
+
 export const featureProperties = {
     agility: {
         name: 'DAGGERHEART.CONFIG.Traits.agility.name',

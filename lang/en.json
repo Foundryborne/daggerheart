@@ -1888,6 +1888,9 @@
                 "spellcast": {
                     "name": "SpellCast"
                 },
+                "reaction": {
+                    "name": "Reaction"
+                },
                 "diceSet": {
                     "name": "Dice Set"
                 }
@@ -1994,6 +1997,10 @@
                         "comprehend": "Comprehend"
                     }
                 }
+            },
+            "TraitsSpecial": {
+                "spellcast": "Spellcast Trait",
+                "highest": "Best Trait"
             },
             "Triggers": {
                 "postDamageReduction": {
@@ -3414,6 +3421,7 @@
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
             "searchPlaceholder": "Search...",
+            "spellcastTrait": "Spellcast Trait",
             "spent": "Spent",
             "step": "Step",
             "stress": "Stress",

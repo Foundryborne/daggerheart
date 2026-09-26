@@ -6,7 +6,15 @@ import { fromUuids, keyBy, pick } from '../helpers/utils.mjs';
  * @extends {foundry.documents.Item}
  */
 export default class DhItem extends foundry.documents.Item {
-    /** 
+    /**
+     * Shorthand getter for this system's metadata, but with a type safe fallback in case of a custom item type.
+     * @returns {import('../data/item/base.mjs').ItemDataModelMetadata}
+     */
+    get metadata() {
+        return this.system?.metadata ?? {};
+    }
+
+    /**
      * Returns the uuid of the original item this item was derived from, 
      * or its own uuid if its a compendium item or not derived from a source item.
      * @returns {string}

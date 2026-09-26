@@ -1,6 +1,6 @@
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 
-export function handleSocketEvent({ action = null, data = {} } = {}) {
+export async function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
         case socketEvent.GMUpdate:
             Hooks.callAll(socketEvent.GMUpdate, data);
@@ -22,6 +22,17 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
             break;
         case socketEvent.GroupRollStart:
             Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, data);
+            break;
+        case socketEvent.TransferItem: {
+            // Transfer events only occur when a player needs to request a GM update, so using a hook would be inconsistent
+            if (game.user.isActiveGM) {
+                const item = await fromUuid(data.item);
+                const targetActor = await fromUuid(data.targetActor);
+                if (!item || !targetActor) return;
+                targetActor.transferItem({ item, quantity: Number(data.quantity || 1) });
+            }
+            break;
+        }
     }
 }
 
@@ -32,7 +43,8 @@ export const socketEvent = {
     DhpFearUpdate: 'DhFearUpdate',
     DowntimeTrigger: 'DowntimeTrigger',
     TagTeamStart: 'DhTagTeamStart',
-    GroupRollStart: 'DhGroupRollStart'
+    GroupRollStart: 'DhGroupRollStart',
+    TransferItem: 'DhTransferItem'
 };
 
 export const GMUpdateEvent = {

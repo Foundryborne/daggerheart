@@ -12,7 +12,7 @@ export default class DHAttackAction extends DHDamageAction {
         super.prepareData();
 
         if (this.roll.useDefault) {
-            this.roll.trait = this.item.system.attack.roll.trait;
+            this.roll.trait = this.item.system.attack?.roll.trait; // weapons only
             this.roll.type = 'attack';
         }
     }

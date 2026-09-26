@@ -780,6 +780,10 @@ export const rollTypes = {
         label: 'DAGGERHEART.CONFIG.RollTypes.trait.name',
         playerOnly: true
     },
+    reaction: {
+        id: 'reaction',
+        label: 'DAGGERHEART.CONFIG.RollTypes.reaction.name'
+    },
     diceSet: {
         id: 'diceSet',
         label: 'DAGGERHEART.CONFIG.RollTypes.diceSet.name'

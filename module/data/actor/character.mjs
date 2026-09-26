@@ -92,7 +92,7 @@ export default class DhCharacter extends DhCreature {
                 initial: () => ({
                     name: _loc('DAGGERHEART.GENERAL.unarmedAttack'),
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
-                    _id: foundry.utils.randomID(),
+                    _id: CONFIG.DH.ACTOR.standardAttackId,
                     systemPath: 'attack',
                     chatDisplay: false,
                     type: 'attack',
@@ -502,6 +502,23 @@ export default class DhCharacter extends DhCreature {
         } else {
             return false;
         }
+    }
+
+    /** 
+     * Given a trait from the rollTypes collections, resolves what trait that is for this actor.
+     * For most actors, it is null, and only has a value for characters
+     * @param {keyof typeof CONFIG.DH.ACTIONS.rollTypeTraits} trait
+     */
+    resolveTrait(trait) {
+        if (trait === 'highest') {
+            let highest = 'strength';
+            for (const [key, value] of Object.entries(this.traits)) {
+                highest = value.value > this.traits[highest].value ? key : highest;
+            }
+            return highest;
+        }
+
+        return trait === 'spellcast' ? this.spellcastModifierTrait?.key ?? null : trait;
     }
 
     async updateArmorValue({ value: armorChange = 0, clear = false }) {

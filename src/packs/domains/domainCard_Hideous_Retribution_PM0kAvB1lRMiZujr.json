@@ -74,8 +74,8 @@
         },
         "effects": [],
         "roll": {
-          "type": "spellcast",
-          "trait": null,
+          "type": "reaction",
+          "trait": "spellcast",
           "difficulty": null,
           "bonus": null,
           "advState": "neutral",

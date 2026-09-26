@@ -1,3 +1,5 @@
+import { abilities } from './actorConfig.mjs';
+
 export const actionTypes = {
     attack: {
         id: 'attack',
@@ -64,6 +66,19 @@ export const actionTypes = {
         name: 'DAGGERHEART.ACTIONS.TYPES.transform.name',
         icon: 'fa-dragon',
         tooltip: 'DAGGERHEART.ACTIONS.TYPES.transform.tooltip'
+    }
+};
+
+export const rollTypeTraits = {
+    ...abilities,
+    spellcast: {
+        id: 'spellcast',
+        label: 'DAGGERHEART.CONFIG.TraitsSpecial.spellcast',
+        rollTypes: ['reaction']
+    },
+    highest: {
+        id: 'highest',
+        label: 'DAGGERHEART.CONFIG.TraitsSpecial.highest'
     }
 };
 
