@@ -282,35 +282,37 @@ export function ActionMixin(Base) {
         }
 
         async toChat(origin, config) {
+            const actor = this.actor;
+            const item = this.item;
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
                 origin: origin,
                 action: {
                     name: this.name,
-                    img: this.baseAction ? this.parent.parent.img : this.img,
+                    img: this.baseAction ? item.img : this.img,
                     tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'],
                     areas: this.areas,
                     summon: config?.summonData
                 },
                 source: {
-                    actor: this.actor.uuid,
-                    item: this.item.id,
+                    actor: actor?.uuid,
+                    item: item.id,
                     action: this.id
                 },
                 itemOrigin: this.item,
-                description: this.description || (this.item instanceof Item ? this.item.system.description : '')
+                description: this.description || (item ? item.system.description : '')
             };
 
             const speaker = cls.getSpeaker();
             const msg = {
                 type: 'abilityUse',
                 user: game.user.id,
-                actor: { name: this.actor.name, img: this.actor.img },
+                actor: actor ? { name: actor.name, img: actor.img } : undefined,
                 author: this.author,
                 speaker: {
                     speaker,
-                    actor: speaker.actor ?? this.actor
+                    actor: speaker.actor ?? actor
                 },
                 title: game.i18n.localize('DAGGERHEART.UI.Chat.action.title'),
                 system: systemData,

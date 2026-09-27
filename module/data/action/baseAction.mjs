@@ -170,7 +170,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     get usable() {
         const actor = this.actor;
         const pack = actor?.pack ? game.packs.get(actor.pack) : null;
-        return !pack?.locked && this.isOwner;
+        return Boolean(actor) && !pack?.locked && this.isOwner;
     }
 
     static getRollType(parent) {
