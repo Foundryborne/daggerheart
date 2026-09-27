@@ -24,9 +24,9 @@ declare module './actor.mjs' {
         get token(): DhTokenDocument | null;
 
         /** @inheritdoc */
-        getActiveTokens(linked?: boolean, document?: boolean): (DhTokenDocument | foundry.canvas.placeables.Token)[];
+        getActiveTokens(linked?: boolean, document?: boolean): (DhTokenDocument | DhTokenPlaceable)[];
         getActiveTokens(linked?: boolean, document: true): DhTokenDocument[];
-        getActiveTokens(linked?: boolean, document: false): foundry.canvas.placeables.Token[];
+        getActiveTokens(linked?: boolean, document: false): DhTokenPlaceable[];
     }
 }
 

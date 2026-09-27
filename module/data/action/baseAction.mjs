@@ -152,7 +152,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
-     * @returns {CONFIG.Actor.documentClass | null}
+     * @returns {DhActor | null}
      */
     get actor() {
         return this.item instanceof CONFIG.Actor.documentClass

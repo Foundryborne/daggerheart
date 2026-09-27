@@ -30,6 +30,7 @@ import * as globalFoundry from '@client/client.mjs';
 import Game from '@client/game.mjs';
 import Localization from '@client/helpers/localization.mjs';
 import * as globalUI from '@client/ui.mjs';
+import DhTokenLayer from './module/canvas/tokens.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
@@ -134,6 +135,7 @@ declare global {
 
         const canvas: Omit<Canvas, 'scene'> & {
             get scene(): documents.DhScene | null;
+            get tokens(): DhTokenLayer;
         };
         const game: Game;
         const _loc: Localization['localize'];
