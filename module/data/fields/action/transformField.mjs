@@ -52,7 +52,7 @@ export default class DHSummonField extends fields.SchemaField {
         const controlledMatchingTokens = canvas.tokens.controlled
             .filter(x => x.actor && x.actor.uuid === this.actor.uuid)
             .map(x => x.document);
-        /** @type {typeof game.system.api.documents.DhToken | null} */
+        /** @type {typeof game.system.api.documents.DhTokenDocument | null} */
         const token = this.actor.token ?? (
             activeTokens.length === 1 ? activeTokens[0] :
                 (controlledMatchingTokens.length === 1 ? controlledMatchingTokens[0] : null)

@@ -80,7 +80,7 @@ CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-r
 
 CONFIG.Scene.documentClass = documents.DhScene;
 
-CONFIG.Token.documentClass = documents.DhToken;
+CONFIG.Token.documentClass = documents.DhTokenDocument;
 CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
 CONFIG.Token.rulerClass = placeables.DhTokenRuler;

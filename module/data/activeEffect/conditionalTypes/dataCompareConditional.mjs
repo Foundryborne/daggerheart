@@ -1,6 +1,5 @@
-import { conditionalFailureModes, conditionalPhases } from '../../../config/effectConfig.mjs';
+import { conditionalFailureModes, conditionalPhases, conditionalTypes } from '../../../config/effectConfig.mjs';
 import FormulaField from '../../fields/formulaField.mjs';
-import { conditionalTypes } from './_module.mjs';
 
 export default class DataCompareConditional extends foundry.abstract.DataModel {
     static get metadata() {

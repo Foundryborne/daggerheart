@@ -1,5 +1,3 @@
-import DHToken from './token.mjs';
-
 export default class DhScene extends Scene {
     get rangeSettings() {
         const { custom } = CONFIG.DH.GENERAL.sceneRangeMeasurementSetting;
@@ -37,13 +35,12 @@ export default class DhScene extends Scene {
                 const width = size !== CONFIG.DH.ACTOR.tokenSize.custom.id ? tokenSize : prototypeSize.width;
                 const height = size !== CONFIG.DH.ACTOR.tokenSize.custom.id ? tokenSize : prototypeSize.height;
                 const depth = size !== CONFIG.DH.ACTOR.tokenSize.custom.id ? tokenSize : prototypeSize.depth;
-                const updatedPosition = DHToken.getSnappedPositionInSquareGrid(this.grid, position, width, height);
                 return {
                     _id,
                     width,
                     height,
                     depth,
-                    ...updatedPosition
+                    ...CONFIG.Token.documentClass.getSnappedPositionInSquareGrid(this.grid, position, width, height)
                 };
             });
         this.#sizeSyncBatch.clear();
