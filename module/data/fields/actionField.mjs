@@ -304,16 +304,12 @@ export function ActionMixin(Base) {
                 description: this.description || (item ? item.system.description : '')
             };
 
-            const speaker = cls.getSpeaker();
             const msg = {
                 type: 'abilityUse',
                 user: game.user.id,
                 actor: actor ? { name: actor.name, img: actor.img } : undefined,
                 author: this.author,
-                speaker: {
-                    speaker,
-                    actor: speaker.actor ?? actor
-                },
+                speaker: cls.getSpeaker({ actor }),
                 title: game.i18n.localize('DAGGERHEART.UI.Chat.action.title'),
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(

@@ -306,8 +306,8 @@ export default class DhItem extends foundry.documents.Item {
         const msg = {
             type: 'abilityUse',
             user: game.user.id,
-            actor: item.parent,
-            speaker: cls.getSpeaker(),
+            actor: item.actor,
+            speaker: cls.getSpeaker({ actor: item.actor }),
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
