@@ -12,7 +12,7 @@ export default class DHEvolutionAction extends DHBaseAction {
         }
     }
     
-    /** @returns {typeof game.system.api.documents.DhToken | null} */
+    /** @returns {DhTokenDocument | null} */
     #getMatchingToken() {
         const activeTokens = this.actor.getActiveTokens(false, true);
         const controlledMatchingTokens = canvas.tokens.controlled

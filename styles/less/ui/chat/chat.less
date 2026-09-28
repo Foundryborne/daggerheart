@@ -646,11 +646,11 @@
                 .dice-tooltip {
                     .wrapper {
                         gap: 0;
+                        margin-bottom: 4px;
 
-                        div.empty-text {
-                            font-size: 18px;
+                        .empty-text {
+                            font-size: var(--font-size-18);
                             height: 40px;
-                            margin-bottom: 5px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -801,10 +801,10 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                margin: 8px 8px 0;
+                margin: 4px 4px 0;
                 padding-bottom: 5px;
                 width: -webkit-fill-available;
-                gap: 5px;
+                gap: 6px;
                 border-bottom: 1px solid @golden;
 
                 &:hover {
@@ -823,7 +823,6 @@
                 .action-header {
                     display: flex;
                     flex-direction: column;
-                    gap: 5px;
                     color: @beige;
 
                     .title {
@@ -848,7 +847,14 @@
         }
 
         .description {
-            padding: 8px;
+            padding: 8px 4px;
+
+            p:first-child {
+                margin-top: 0;
+            }
+            p:last-child {
+                margin-bottom: 0;
+            }
 
             .summons-header {
                 font-size: var(--font-size-14);

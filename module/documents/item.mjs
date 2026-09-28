@@ -306,8 +306,8 @@ export default class DhItem extends foundry.documents.Item {
         const msg = {
             type: 'abilityUse',
             user: game.user.id,
-            actor: item.parent,
-            speaker: cls.getSpeaker(),
+            actor: item.actor,
+            speaker: cls.getSpeaker({ actor: item.actor }),
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
@@ -331,7 +331,7 @@ export default class DhItem extends foundry.documents.Item {
 
         game.system.registeredTriggers.unregisterTriggers(triggerKeys, this.uuid);
 
-        if (this.actor && !(this.actor.parent instanceof game.system.api.documents.DhToken)) {
+        if (this.actor && !(this.actor.parent instanceof TokenDocument)) {
             for (const token of this.actor.getActiveTokens()) {
                 game.system.registeredTriggers.unregisterTriggers(triggerKeys, `${token.document.uuid}.${this.uuid}`);
             }

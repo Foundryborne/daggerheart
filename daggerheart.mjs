@@ -80,7 +80,7 @@ CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-r
 
 CONFIG.Scene.documentClass = documents.DhScene;
 
-CONFIG.Token.documentClass = documents.DhToken;
+CONFIG.Token.documentClass = documents.DhTokenDocument;
 CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
 CONFIG.Token.rulerClass = placeables.DhTokenRuler;
@@ -308,7 +308,8 @@ Hooks.on('i18nInit', () => {
     game.system.settings = {
         appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
         automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
-        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
+        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew),
+        variantRules: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
     };
 
     // Setup homebrew resources
@@ -415,7 +416,7 @@ Hooks.on('ready', async () => {
 
 Hooks.once('diceSoNiceReady', dice3d => {
     for (const trigger of dhTriggers) {
-        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids);
+        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids.map(x => ({ ...x, name: _loc(x.name) })));
     }
 
     for (const colorset of dhColorsets) {

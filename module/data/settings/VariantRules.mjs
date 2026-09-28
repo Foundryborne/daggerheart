@@ -54,4 +54,8 @@ export default class DhVariantRules extends foundry.abstract.DataModel {
             })
         };
     }
+
+    handleChange() {
+        game.system.settings.variantRules = this;
+    }
 }

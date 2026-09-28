@@ -1,3 +1,4 @@
+import { measureExact } from '../../helpers/utils.mjs';
 import DhMeasuredTemplate from '../placeables/measuredTemplate.mjs';
 
 export default class DhpRuler extends foundry.canvas.interaction.Ruler {
@@ -5,10 +6,15 @@ export default class DhpRuler extends foundry.canvas.interaction.Ruler {
         const context = super._getWaypointLabelContext(waypoint, state);
         if (!context) return;
 
-        const range = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
-
+        // If range measurement is enabled, use its measurement instead of anything else
+        const range = canvas.scene.rangeSettings;
         if (range.enabled) {
-            const result = DhMeasuredTemplate.getRangeLabels(waypoint.measurement.distance.toNearest(0.01), range);
+            const distance = measureExact(
+                { x: waypoint.x, y: waypoint.y, z: waypoint.elevation },
+                { x: waypoint.previous.x, y: waypoint.previous.y, z: waypoint.previous.z},
+                { grid: canvas.grid }
+            );
+            const result = DhMeasuredTemplate.getRangeLabels(distance, range);
             context.cost = { total: result.distance, units: result.units };
             context.distance = { total: result.distance, units: result.units };
         }
