@@ -1,8 +1,9 @@
+import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
 import TriggerField from '../fields/triggerField.mjs';
-import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
+import { RollConfig } from '../../dice/config.mjs';
 
 const fields = foundry.data.fields;
 
@@ -253,10 +254,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     async use(event, configOptions = {}) {
         if (!this.actor) throw new Error('An Action can\'t be used outside of an Actor context.');
 
-        let config = this.prepareConfig(event, configOptions);
+        let config = await this.prepareConfig(event, configOptions);
         if (!config) return;
-
-        config.effects = await DHBaseAction.getActionRelevantEffects(this.getRollData(), this.actor);
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -283,102 +282,33 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Create the basic config common to every action type
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {object}
+     * @returns {RollConfig}
      */
     prepareBaseConfig(event, configOptions = {}) {
         const isActor = this.item instanceof CONFIG.Actor.documentClass;
         const actionTitle = game.i18n.localize(this.name);
         const itemTitle = isActor || this.item.name === actionTitle ? '' : `${this.item.name} - `;
 
-        const config = {
+        // We can't initialize the roll config yet as other field types will want to make their own modifications
+        return new RollConfig({
             event,
-            title: `${itemTitle}${actionTitle}`,
-            source: {
-                item: this.item._id,
-                originItem: this.originItem,
-                action: this._id,
-                actor: this.actor.uuid
-            },
-            dialog: {},
-            actionType: this.actionType,
-            hasRoll: this.hasRoll,
-            hasDamage: this.hasDamage,
-            hasHealing: this.hasHealing,
-            hasEffect: this.hasEffect,
-            hasSave: this.hasSave,
-            onSave: this.save?.damageMod,
-            selectedMessageMode: game.settings.get('core', 'messageMode'),
-            data: this.getRollData(),
-            evaluate: this.hasRoll,
-            resourceUpdates: new ResourceUpdateMap(this.actor),
-            targetUuid: this.targetUuid,
-            ...configOptions,
-            skips: {
-                resources: false,
-                triggers: false,
-                createMessage: false,
-                updateCountdowns: false,
-                reaction: false,
-                ...(configOptions.skips ?? {})
-            }
-        };
-
-        if (this.damage) {
-            config.isDirect = !!this.damage.main?.direct;
-
-            const groupAttackTokens = this.damage.main?.groupAttack
-                ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
-                    this.actor.id,
-                    this.damage.main.groupAttack
-                )
-                : null;
-
-            config.damageOptions = {
-                groupAttack: this.damage.main?.groupAttack
-                    ? {
-                        numAttackers: Math.max(groupAttackTokens.length, 1),
-                        range: this.damage.main.groupAttack
-                    }
-                    : null
-            };
-        }
-
-        DHBaseAction.applyKeybindings(config);
-        return config;
+            action: this,
+            title: `${itemTitle}${actionTitle}`
+        });
     }
 
     /**
      * Create the config for that action used for its workflow
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {object}
+     * @returns {Promise<RollConfig>}
      */
-    prepareConfig(event, configOptions = {}) {
+    async prepareConfig(event, configOptions = {}) {
         const config = this.prepareBaseConfig(event, configOptions);
         for (const clsField of Object.values(this.schema.fields)) {
             if (clsField?.prepareConfig) if (clsField.prepareConfig.call(this, config) === false) return false;
         }
+        await config.initialize();
         return config;
-    }
-
-    /**
-     * Get the all potentially applicable effects on the actor for the action's RollDialog
-     * @param {RollData} rollData The rolldata of the action being performed
-     * @param {DhActor} actor The actor performing the action
-     * @returns {Promise<DhActiveEffect[]>}
-     */
-    static async getActionRelevantEffects(rollData, actor) {
-        if (!actor) return [];
-
-        const applicableEffects = actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
-        return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            const conditionalPassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
-            });
-            if (conditionalPassed)
-                acc.push(effect);
-
-            return acc;
-        }, []);
     }
 
     /**
@@ -406,14 +336,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 (config.message ?? config.parent).update({ 'system.successConsumed': true });
             }, 50);
         }
-    }
-
-    /**
-     * Set if a configuration dialog must be shown or not if a special keyboard key is pressed.
-     * @param {object} config Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
-     */
-    static applyKeybindings(config) {
-        config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
     }
 
     /**
@@ -487,5 +409,3 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         }
     }
 }
-
-
