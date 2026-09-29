@@ -51,33 +51,6 @@ export default class D20Roll extends DHRoll {
         return adv === this.constructor.ADV_MODE.DISADVANTAGE;
     }
 
-    static applyKeybindings(config) {
-        let keys = {
-            normal: false,
-            advantage: false,
-            disadvantage: false
-        };
-
-        if (config.event) {
-            keys = {
-                normal: config.event.shiftKey || config.event.altKey || config.event.ctrlKey,
-                advantage: config.event.altKey,
-                disadvantage: config.event.ctrlKey
-            };
-        }
-
-        // Should the roll configuration dialog be displayed?
-        config.dialog.configure ??= !Object.values(keys).some(k => k);
-
-        // Determine advantage mode
-        const advantage = config.roll.advantage === this.ADV_MODE.ADVANTAGE || keys.advantage || config.advantage;
-        const disadvantage =
-            config.roll.advantage === this.ADV_MODE.DISADVANTAGE || keys.disadvantage || config.disadvantage;
-        if (advantage && !disadvantage) config.roll.advantage = this.ADV_MODE.ADVANTAGE;
-        else if (!advantage && disadvantage) config.roll.advantage = this.ADV_MODE.DISADVANTAGE;
-        else config.roll.advantage = this.ADV_MODE.NORMAL;
-    }
-
     constructFormula(config) {
         this.createBaseDice();
         this.configureModifiers();

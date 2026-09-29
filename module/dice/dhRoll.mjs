@@ -52,14 +52,9 @@ export default class DHRoll extends BaseRoll {
      */
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
-        config.dialog ??= {};
-        config.damageOptions ??= {};
-
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
-
-        this.applyKeybindings(config);
 
         this.temporaryModifierBuilder(config);
 
@@ -212,11 +207,6 @@ export default class DHRoll extends BaseRoll {
             options.message.system.allResourceLabels = getAllResourceLabels();
             return options.message.system;
         }
-    }
-
-    static applyKeybindings(config) {
-        if (config.event)
-            config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
     }
 
     static getHooks(hooks) {

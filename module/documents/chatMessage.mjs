@@ -1,3 +1,4 @@
+import { RollConfig } from '../dice/config.mjs';
 import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
@@ -188,16 +189,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onRollDamage(event) {
         event.stopPropagation();
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
-        if (this.system.action) {
-            const { base } = game.system.api.data.actions.actionsTypes;
-            config.effects = await base.getActionRelevantEffects(
-                this.system.action.getRollData({ message: this }), 
-                this.system.actionActor);
-
-            await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
-        }
+        const config = await RollConfig.build(this.system, { event });
+        await this.system.action?.workflow.get('damage')?.execute(config, this._id, true);
     }
 
     async onApplyDamage(event) {

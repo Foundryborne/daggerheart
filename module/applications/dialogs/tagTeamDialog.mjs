@@ -1,6 +1,7 @@
 import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
+import { RollConfig } from '../../dice/config.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
@@ -530,9 +531,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const memberData = this.party.system.tagTeam.members[memberKey];
         const action = await foundry.utils.fromUuid(memberData.rollChoice);
-        const { base } = game.system.api.data.actions.actionsTypes;
-        const config = {
+        const config = await RollConfig.build({
             ...memberData.rollData.options,
+            action,
             dialog: {
                 configure: !event.shiftKey
             },
@@ -540,9 +541,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 createMessage: true,
                 resources: true,
                 triggers: true
-            },
-            effects: await base.getActionRelevantEffects(action.getRollData(), actor)
-        };
+            }
+        });
 
         await action.workflow.get('damage').execute(config, null, true);
         if (!config.damage) return;

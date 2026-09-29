@@ -189,21 +189,6 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
-    static async buildConfigure(config = {}, message = {}) {
-        config.dialog ??= {};
-        config.guaranteedCritical = config.data?.parent?.appliedEffects.reduce((a, c) => {
-            const change = c.system.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
-            if (change) a = true;
-            return a;
-        }, false);
-
-        if (config.guaranteedCritical) {
-            config.dialog.configure = false;
-        }
-
-        return super.buildConfigure(config, message);
-    }
-
     getActionChangeKeys() {
         const changeKeys = new Set(['system.bonuses.roll']);
         return changeKeys;
