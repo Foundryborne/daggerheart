@@ -130,6 +130,8 @@ export default class DamageField extends fields.SchemaField {
                     actor
                         .takeDamage(configDamage, config.isDirect)
                         .then(updates => { 
+                            if (!updates.length) return;
+
                             const resistanceData = 
                                 token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes ?? []);
                             const tokenData = {
@@ -155,7 +157,7 @@ export default class DamageField extends fields.SchemaField {
                 CONFIG.DH.id,
                 CONFIG.DH.SETTINGS.gameSettings.Automation
             ).summaryMessages;
-            if (!summaryMessageSettings.damage) return;
+            if (!summaryMessageSettings.damage || !targetDamage.length) return;
 
             const { hideObserverPermissionInChat } = game.settings.get(
                 CONFIG.DH.id,
