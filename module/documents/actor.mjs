@@ -3,7 +3,7 @@ import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick, itemIsIdentical } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
-import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
