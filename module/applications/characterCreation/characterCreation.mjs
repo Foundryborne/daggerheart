@@ -11,7 +11,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         this.character = character;
 
-        this.setup = {
+        this.setup = character.flags.daggerheart.characterSetup ?? {
             traits: Object.keys(this.character.system.traits).reduce((acc, key) => {
                 acc[key] = { value: null };
                 return acc;
@@ -106,17 +106,17 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             minimizable: false
         },
         actions: {
-            viewCompendium: this.viewCompendium,
-            useSuggestedTraits: this.useSuggestedTraits,
-            equipmentChoice: this.equipmentChoice,
-            setupGoNext: this.setupGoNext,
-            finish: this.finish,
-            selectItem: this.selectItem,
-            selectTable: this.selectTable,
-            applySuggestedEquips: this.applySuggestedEquips,
-            removeSelectedItem: this.removeSelectedItem,
-            mixedAncestryToggle: this.mixedAncestryToggle,
-            selectAncestryFeature: this.selectAncestryFeature
+            viewCompendium: this.#onViewCompendium,
+            useSuggestedTraits: this.#onUseSuggestedTraits,
+            equipmentChoice: this.#onEquipmentChoice,
+            setupGoNext: this.#onSetupGoNext,
+            finish: this.#onFinish,
+            selectItem: this.#onSelectItem,
+            selectTable: this.#onSelectTable,
+            applySuggestedEquips: this.#onApplySuggestedEquips,
+            removeSelectedItem: this.#onRemoveSelectedItem,
+            mixedAncestryToggle: this.#onMixedAncestryToggle,
+            selectAncestryFeature: this.#onSelectAncestryFeature
         },
         form: {
             handler: this.updateForm,
@@ -385,62 +385,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         return context;
     }
 
-    static async updateForm(event, _, formData) {
-        this.setup = foundry.utils.mergeObject(this.setup, formData.object);
-
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
-    }
-
-    static async mixedAncestryToggle(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.setup.mixedAncestry = !this.setup.mixedAncestry;
-        if (!this.setup.mixedAncestry) this.setup.secondaryAncestry = {};
-
-        this.render();
-    }
-
-    static async selectAncestryFeature(event, target) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const uuid = target.dataset.uuid;
-        const featureType = target.dataset.featureType;
-        const ancestryType = target.dataset.ancestryType;
-        const feature = await foundry.utils.fromUuid(uuid);
-
-        if (featureType === 'primary') {
-            this.setup.mixedFeatures.primaryFeature = feature;
-            this.setup.mixedFeatures.secondaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.secondaryFeature : this.setup.primaryAncestry.system.secondaryFeature;
-        } else {
-            this.setup.mixedFeatures.primaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.primaryFeature : this.setup.primaryAncestry.system.primaryFeature;
-            this.setup.mixedFeatures.secondaryFeature = feature;
-        }
-
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
-    }
-
-    getUpdateVisibility() {
-        switch (this.setup.visibility) {
-            case 7:
-                return 7;
-            case 6:
-                return Object.values(this.setup.domainCards).every(x => x.uuid) ? 7 : 6;
-            case 5:
-                return Object.values(this.setup.experiences).every(x => x.name) ? 6 : 5;
-            case 4:
-                return this.getNrSelectedTrait() === 6 ? 5 : 4;
-            case 3:
-                return this.setup.community.uuid ? 4 : 3;
-            case 2:
-                return this.setup.primaryAncestry.uuid ? 3 : 2;
-            case 1:
-                return this.setup.class.uuid && this.setup.subclass.uuid ? 2 : 1;
-        }
-    }
-
     getNrSelectedTrait() {
         const traitCompareArray = [
             ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).traitArray
@@ -479,188 +423,22 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
     }
 
-    static async viewCompendium(event, target) {
-        const type = target.dataset.compendium ?? target.dataset.type,
-            equipment = ['armor', 'weapon'];
-
-        const presets = {
-            folder: equipment.includes(type) ? `equipments.folders.${type}s` : type,
-            render: {
-                noFolder: true
-            }
-        };
-
-        if (type === 'domains')
-            presets.filter = {
-                'level.max': { key: 'level.max', value: 1 },
-                'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null }
-            };
-
-        if (type === 'subclasses') {
-            const classItem = this.setup.class;
-            presets.filter = {
-                'system.linkedClass': { key: 'system.linkedClass', value: classItem?.sourceUuid }
-            };
-        }
-
-        if (equipment.includes(type))
-            presets.filter = {
-                'system.tier': { key: 'system.tier', value: 1 },
-                type: { key: 'type', value: type }
-            };
-
-        ui.compendiumBrowser.open(presets);
+    /** Calculates what tab we should be allowed to view */
+    #calculateUpdateVisibility() {
+        if (Object.values(this.setup.domainCards).every(x => x.uuid)) return 7;
+        if (this.getNrSelectedTrait() === 6) return 6; // Experiences are allowed to be blank
+        if (this.setup.community.uuid) return 4;
+        if (this.setup.primaryAncestry.uuid) return 3;
+        if (this.setup.class.uuid && this.setup.subclass.uuid) return 2;
+        return 1;
     }
-
-    static useSuggestedTraits() {
-        this.setup.traits = Object.keys(this.setup.traits).reduce((acc, traitKey) => {
-            acc[traitKey] = {
-                ...this.setup.traits[traitKey],
-                value: this.setup.class.system.characterGuide.suggestedTraits[traitKey]
-            };
-            return acc;
-        }, {});
-
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
-    }
-
-    static async equipmentChoice(_, target) {
-        this.equipment.inventory[target.dataset.path] = await foundry.utils.fromUuid(target.dataset.uuid);
-        this.render();
-    }
-
-    static setupGoNext() {
-        switch (this.setup.visibility) {
-            case 2:
-                this.tabGroups.setup = 'ancestry';
-                break;
-            case 3:
-                this.tabGroups.setup = 'community';
-                break;
-            case 4:
-                this.tabGroups.setup = 'traits';
-                break;
-            case 5:
-                this.tabGroups.setup = 'experience';
-                break;
-            case 6:
-                this.tabGroups.setup = 'domainCards';
-                break;
-            case 7:
-                this.tabGroups.setup = 'equipment';
-                break;
-        }
-
-        this.render();
-    }
-
-    static async finish(_, button) {
-        button.disabled = true;
-
-        const primaryAncestryFeature = this.setup.primaryAncestry.system.primaryFeature;
-        const secondaryAncestryFeature = this.setup.secondaryAncestry?.uuid
-            ? this.setup.secondaryAncestry.system.secondaryFeature
-            : this.setup.primaryAncestry.system.secondaryFeature;
-
-        const { primary, secondary, overwrite } = this.setup.ancestryName;
-        const ancestry = {
-            ...this.setup.primaryAncestry,
-            name: overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary),
-            system: {
-                ...this.setup.primaryAncestry.system,
-                features: [
-                    { type: 'primary', item: primaryAncestryFeature.uuid },
-                    { type: 'secondary', item: secondaryAncestryFeature.uuid }
-                ]
-            }
-        };
-
-        // Inner function to create the base item data
-        async function createEmbeddedItemData(baseData) {
-            const uuid = baseData.uuid ?? baseData._uuid
-            const data = baseData instanceof Item ? baseData : await foundry.utils.fromUuid(baseData.uuid) ?? baseData;
-            const compendiumSource = uuid.startsWith('Compendium.') ? uuid : baseData._stats?.compendiumSource ?? null;
-            return {
-                ...baseData,
-                id: data.id,
-                uuid: uuid,
-                _uuid: uuid,
-                effects: data.effects?.map(effect => effect.toObject()),
-                flags: baseData.flags ?? data.flags,
-                _stats: {
-                    ...data._stats,
-                    compendiumSource,
-                    // mutually exclusive with compendiumSource
-                    duplicateSource: !compendiumSource && uuid && !uuid.startsWith('Compendium.') ? uuid : null
-                }
-            };
-        }
-
-        // Add the class first. All other items validate it during pre creation
-        await this.character.createEmbeddedDocuments('Item', [await createEmbeddedItemData(this.setup.class)]);
-        
-        // Add the remaining items
-        const newItems = [
-            await createEmbeddedItemData(ancestry),
-            await createEmbeddedItemData(this.setup.community),
-            await createEmbeddedItemData(this.setup.subclass),
-            ...(await Promise.all(
-                Object.values(this.setup.domainCards).map(d => createEmbeddedItemData(d))
-            ))
-        ];
-        if (this.equipment.armor.uuid)
-            newItems.push(await createEmbeddedItemData(this.equipment.armor));
-        if (this.equipment.primaryWeapon.uuid)
-            newItems.push(await createEmbeddedItemData(this.equipment.primaryWeapon));
-        if (this.equipment.secondaryWeapon.uuid)
-            newItems.push(await createEmbeddedItemData(this.equipment.secondaryWeapon));
-        if (this.equipment.inventory.choiceA.uuid)
-            newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceA));
-        if (this.equipment.inventory.choiceB.uuid)
-            newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceB));
-        for (const item of this.setup.class.system.inventory.take.filter(x => x)) {
-            newItems.push(await createEmbeddedItemData(item));
-        }
-
-        await this.character.createEmbeddedDocuments('Item', newItems);
-        await this.character.update(
-            {
-                system: {
-                    traits: this.setup.traits,
-                    experiences: {
-                        ...this.setup.experiences,
-                        ...Object.keys(this.character.system.experiences).reduce((acc, key) => {
-                            acc[`${key}`] = _del;
-                            return acc;
-                        }, {})
-                    }
-                }
-            },
-            { overwrite: true }
-        );
-
-        if (ui.compendiumBrowser) ui.compendiumBrowser.close();
-        this.close();
-    }
-
+    
     async loadItems() {
         const browserSettings = game.settings.get(
             CONFIG.DH.id,
             CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings
         );
-        const promises = [];
-
-        game.packs.forEach(pack => {
-            promises.push(
-                // eslint-disable-next-line no-async-promise-executor
-                new Promise(async resolve => {
-                    const items = await pack.getDocuments({ type__in: this.selectedMenu?.data?.type });
-                    resolve(items);
-                })
-            );
-        });
-
+        const promises = game.packs.map(pack => pack.getDocuments({ type__in: this.selectedMenu?.data?.type }));
         Promise.all(promises).then(async result => {
             this.items = ItemBrowser.sortBy(
                 result.flatMap(r => r).filter(r => !browserSettings.isEntryExcluded.bind(browserSettings)(r)),
@@ -765,6 +543,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
             if (this.subclassGroups.length) return;
 
+            // todo: replace with inline rendering like the rest, given we can resume whenever
             for (const classItem of subclassGroups) {
                 const element = document.createElement('div');
                 element.classList.add(classItem.label.toLowerCase(), 'compedium-item')
@@ -796,16 +575,264 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             this.domainCardGroups = domainCardGroups;
             this.equipmentGroups = equipmentGroups;
             this.selectedTable = equipmentGroups[equipmentGroups.selectedTable];
+            this.render();
         });
     }
 
+    formatLabel(item, field) {
+        const property = foundry.utils.getProperty(item, field.key);
+        if (Array.isArray(property)) property.join(', ');
+        if (typeof field.format !== 'function') return property ?? '-';
+        return _loc(field.format(property));
+    }
+
+    save() {
+        this.setup.visibility = Math.max(this.setup.visibility, this.#calculateUpdateVisibility());
+        this.character.update({ 'flags.daggerheart.characterSetup': this.setup });
+        this.render();
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+
     async _preRender(context, options) {
         await super._preRender(context, options);
-
         if (options.isFirstRender) this.loadItems();
     }
 
-    static async selectItem(_, target) {
+    /** @this {DhCharacterCreation} */
+    static async updateForm(event, _, formData) {
+        this.setup = foundry.utils.mergeObject(this.setup, formData.object);
+        this.save();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onMixedAncestryToggle(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.setup.mixedAncestry = !this.setup.mixedAncestry;
+        if (!this.setup.mixedAncestry) this.setup.secondaryAncestry = {};
+        this.save();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onSelectAncestryFeature(event, target) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const uuid = target.dataset.uuid;
+        const featureType = target.dataset.featureType;
+        const ancestryType = target.dataset.ancestryType;
+        const feature = await foundry.utils.fromUuid(uuid);
+
+        if (featureType === 'primary') {
+            this.setup.mixedFeatures.primaryFeature = feature;
+            this.setup.mixedFeatures.secondaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.secondaryFeature : this.setup.primaryAncestry.system.secondaryFeature;
+        } else {
+            this.setup.mixedFeatures.primaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.primaryFeature : this.setup.primaryAncestry.system.primaryFeature;
+            this.setup.mixedFeatures.secondaryFeature = feature;
+        }
+
+        this.save();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onViewCompendium(event, target) {
+        const type = target.dataset.compendium ?? target.dataset.type,
+            equipment = ['armor', 'weapon'];
+
+        const presets = {
+            folder: equipment.includes(type) ? `equipments.folders.${type}s` : type,
+            render: {
+                noFolder: true
+            }
+        };
+
+        if (type === 'domains')
+            presets.filter = {
+                'level.max': { key: 'level.max', value: 1 },
+                'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null }
+            };
+
+        if (type === 'subclasses') {
+            const classItem = this.setup.class;
+            presets.filter = {
+                'system.linkedClass': { key: 'system.linkedClass', value: classItem?.sourceUuid }
+            };
+        }
+
+        if (equipment.includes(type))
+            presets.filter = {
+                'system.tier': { key: 'system.tier', value: 1 },
+                type: { key: 'type', value: type }
+            };
+
+        ui.compendiumBrowser.open(presets);
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static #onUseSuggestedTraits() {
+        this.setup.traits = Object.keys(this.setup.traits).reduce((acc, traitKey) => {
+            acc[traitKey] = {
+                ...this.setup.traits[traitKey],
+                value: this.setup.class.system.characterGuide.suggestedTraits[traitKey]
+            };
+            return acc;
+        }, {});
+
+        this.save();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onEquipmentChoice(_, target) {
+        this.equipment.inventory[target.dataset.path] = await foundry.utils.fromUuid(target.dataset.uuid);
+        this.save();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static #onSetupGoNext() {
+        switch (this.setup.visibility) {
+            case 2:
+                this.tabGroups.setup = 'ancestry';
+                break;
+            case 3:
+                this.tabGroups.setup = 'community';
+                break;
+            case 4:
+                this.tabGroups.setup = 'traits';
+                break;
+            case 5:
+                this.tabGroups.setup = 'experience';
+                break;
+            case 6:
+                this.tabGroups.setup = 'domainCards';
+                break;
+            case 7:
+                this.tabGroups.setup = 'equipment';
+                break;
+        }
+
+        this.render();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onFinish(_, button) {
+        button.disabled = true;
+
+        const primaryAncestryFeature = this.setup.primaryAncestry.system.primaryFeature;
+        const secondaryAncestryFeature = this.setup.secondaryAncestry?.uuid
+            ? this.setup.secondaryAncestry.system.secondaryFeature
+            : this.setup.primaryAncestry.system.secondaryFeature;
+
+        const { primary, secondary, overwrite } = this.setup.ancestryName;
+        const ancestry = {
+            ...this.setup.primaryAncestry,
+            name: overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary),
+            system: {
+                ...this.setup.primaryAncestry.system,
+                features: [
+                    { type: 'primary', item: primaryAncestryFeature.uuid },
+                    { type: 'secondary', item: secondaryAncestryFeature.uuid }
+                ]
+            }
+        };
+
+        // Inner function to create the base item data
+        async function createEmbeddedItemData(baseData) {
+            const uuid = baseData.uuid ?? baseData._uuid
+            const data = baseData instanceof Item ? baseData : await foundry.utils.fromUuid(baseData.uuid) ?? baseData;
+            const compendiumSource = uuid.startsWith('Compendium.') ? uuid : baseData._stats?.compendiumSource ?? null;
+            return {
+                ...baseData,
+                id: data.id,
+                uuid: uuid,
+                _uuid: uuid,
+                effects: data.effects?.map(effect => effect.toObject()),
+                flags: baseData.flags ?? data.flags,
+                _stats: {
+                    ...data._stats,
+                    compendiumSource,
+                    // mutually exclusive with compendiumSource
+                    duplicateSource: !compendiumSource && uuid && !uuid.startsWith('Compendium.') ? uuid : null
+                }
+            };
+        }
+
+        // Add the class first. All other items validate it during pre creation
+        await this.character.createEmbeddedDocuments('Item', [await createEmbeddedItemData(this.setup.class)]);
+        
+        // Add the remaining items
+        const newItems = [
+            await createEmbeddedItemData(ancestry),
+            await createEmbeddedItemData(this.setup.community),
+            await createEmbeddedItemData(this.setup.subclass),
+            ...(await Promise.all(
+                Object.values(this.setup.domainCards).map(d => createEmbeddedItemData(d))
+            ))
+        ];
+        if (this.equipment.armor.uuid)
+            newItems.push(await createEmbeddedItemData(this.equipment.armor));
+        if (this.equipment.primaryWeapon.uuid)
+            newItems.push(await createEmbeddedItemData(this.equipment.primaryWeapon));
+        if (this.equipment.secondaryWeapon.uuid)
+            newItems.push(await createEmbeddedItemData(this.equipment.secondaryWeapon));
+        if (this.equipment.inventory.choiceA.uuid)
+            newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceA));
+        if (this.equipment.inventory.choiceB.uuid)
+            newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceB));
+        for (const item of this.setup.class.system.inventory.take.filter(x => x)) {
+            newItems.push(await createEmbeddedItemData(item));
+        }
+
+        await this.character.createEmbeddedDocuments('Item', newItems);
+        await this.character.update(
+            {
+                system: {
+                    traits: this.setup.traits,
+                    experiences: {
+                        ...this.setup.experiences,
+                        ...Object.keys(this.character.system.experiences).reduce((acc, key) => {
+                            acc[`${key}`] = _del;
+                            return acc;
+                        }, {})
+                    }
+                },
+                'flags.daggerheart.characterSetup': _del
+            },
+            { overwrite: true }
+        );
+
+        if (ui.compendiumBrowser) ui.compendiumBrowser.close();
+        this.close();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onSelectItem(_, target) {
         const type = target.dataset.type
         
         switch (type) {
@@ -869,11 +896,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 break;
         }
 
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
+        this.save();
     }
 
-    static async applySuggestedEquips(_, target) {
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onApplySuggestedEquips(_, target) {
         const suggestions = await this.getEquipmentSuggestions(
             this.equipment.inventory.choiceA,
             this.equipment.inventory.choiceB
@@ -883,11 +913,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.equipment.secondaryWeapon = suggestions.secondaryWeapon
         this.equipment.armor = suggestions.armor
 
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
+        this.save();
     }
 
-    static async removeSelectedItem(_, target) {
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onRemoveSelectedItem(_, target) {
         const type = target.dataset.type;
         const itemType = target.dataset.itemType;
         const indexID = target.dataset.id;
@@ -917,24 +950,17 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         }
 
 
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
+        this.save();
     }
 
-    static async selectTable(_, target) {
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DhCharacterCreation}
+     */
+    static async #onSelectTable(_, target) {
         const table = target.dataset.table;
         this.equipmentGroups.selectedTable = table;
-
         this.selectedTable = this.equipmentGroups[table];
-
-        this.setup.visibility = this.getUpdateVisibility();
-        this.render();
-    }
-
-    formatLabel(item, field) {
-        const property = foundry.utils.getProperty(item, field.key);
-        if (Array.isArray(property)) property.join(', ');
-        if (typeof field.format !== 'function') return property ?? '-';
-        return game.i18n.localize(field.format(property));
+        this.save();
     }
 }
