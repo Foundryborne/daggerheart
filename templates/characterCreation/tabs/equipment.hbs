@@ -110,7 +110,7 @@
                                 <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
                             {{/each}}
                     </div>
-                    <div class="item-list m-top-10">
+                    <div class="item-list m-top-10 scroll-container">
                         {{#each selectedTable.items as |item|}}
                             <div class="item-container" data-item-uuid="{{item.uuid}}" {{#if (and uuid (eq documentName "Item"))}}data-tooltip="#item#{{item.uuid}}"{{/if}} data-action="selectItem" data-type="{{item.type}}">
                                 <img src="{{item.img}}" data-item-key="img" class="item-list-img">

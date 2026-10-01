@@ -6,7 +6,7 @@
     <div class="main-selections-container">
         <div class="step-sidebar">
             <h1 class="title-section">1. {{localize tabs.class.label}}</h1>
-            <div class="subclass compedium-list">
+            <div class="subclass compedium-list scroll-container">
                 {{#each subclassGroups}}
                 <div class="{{label}} compedium-item">
                     <h1 class="subtitle-section">
@@ -18,14 +18,13 @@
                             items=items
                             action="selectItem"}}
                     </ul>
-
                 </div>
                 {{/each}}
             </div>
         </div>
         <line-div></line-div>
         {{#if class.name}}
-        <div class="class-info">
+        <div class="class-info scroll-container">
             <h1 class="title-section">{{class.name}}</h1>
             <div class="description">
                 {{{class.system.description}}}
@@ -105,7 +104,7 @@
         </div>
         {{/if}}
         {{#if subclass.name}}
-        <div class="subclass-info">
+        <div class="subclass-info scroll-container">
             <h1 class="title-section">{{subclass.name}}</h1>
             <img class="sublcass-img" src="{{subclass.img}}" alt="{{subclass.name}}">
             <div class="description m-top-20">

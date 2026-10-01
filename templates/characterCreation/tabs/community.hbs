@@ -21,7 +21,7 @@
         </div>
         <line-div></line-div>
 
-        <div class="comunity-list card-list">
+        <div class="comunity-list card-list scroll-container">
             {{#each communityGroups.items as |community|}}
                 <a class="card {{#if ../community.name}}{{#unless (eq ../community.name community.name)}}not-selected{{/unless}}{{/if}}" data-uuid="{{community.uuid}}" data-type="{{community.type}}" data-action="selectItem">
                     {{{community.embedCard}}}

@@ -127,13 +127,34 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/characterCreation/tabs.hbs' },
-        class: { template: 'systems/daggerheart/templates/characterCreation/tabs/class.hbs' },
-        ancestry: { template: 'systems/daggerheart/templates/characterCreation/tabs/ancestry.hbs' },
-        community: { template: 'systems/daggerheart/templates/characterCreation/tabs/community.hbs' },
-        traits: { template: 'systems/daggerheart/templates/characterCreation/tabs/traits.hbs' },
-        experience: { template: 'systems/daggerheart/templates/characterCreation/tabs/experience.hbs' },
-        domainCards: { template: 'systems/daggerheart/templates/characterCreation/tabs/domainCards.hbs' },
-        equipment: { template: 'systems/daggerheart/templates/characterCreation/tabs/equipment.hbs' },
+        class: { 
+            template: 'systems/daggerheart/templates/characterCreation/tabs/class.hbs',
+            scrollable: ['.scroll-container']
+        },
+        ancestry: {
+            template: 'systems/daggerheart/templates/characterCreation/tabs/ancestry.hbs',
+            scrollable: ['.scroll-container']
+        },
+        community: {
+            template: 'systems/daggerheart/templates/characterCreation/tabs/community.hbs',
+            scrollable: ['.scroll-container']
+        },
+        traits: {
+            template: 'systems/daggerheart/templates/characterCreation/tabs/traits.hbs',
+            scrollable: ['.scroll-container']
+        },
+        experience: {
+            template: 'systems/daggerheart/templates/characterCreation/tabs/experience.hbs',
+            scrollable: ['.scroll-container']
+        },
+        domainCards: {
+            template: 'systems/daggerheart/templates/characterCreation/tabs/domainCards.hbs',
+            scrollable: ['.scroll-container']
+        },
+        equipment: {
+            template: 'systems/daggerheart/templates/characterCreation/tabs/equipment.hbs',
+            scrollable: ['.scroll-container']
+        },
         footer: { template: 'systems/daggerheart/templates/characterCreation/footer.hbs' }
     };
 

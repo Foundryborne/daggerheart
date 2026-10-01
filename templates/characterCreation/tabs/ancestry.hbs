@@ -79,7 +79,7 @@
 
         <line-div></line-div>
 
-        <div class="ancestry-list card-list">
+        <div class="ancestry-list card-list scroll-container">
             {{#each ancestryGroups.items as |ancestry|}}
                 <a 
                     class="card {{#if ../primaryAncestry.name}}{{#unless (or (eq ../primaryAncestry.name ancestry.name) (eq ../secondaryAncestry.name ancestry.name))}}not-selected{{/unless}}{{/if}}"
