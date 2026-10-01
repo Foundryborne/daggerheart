@@ -1,5 +1,16 @@
-<li class="inventory-item inventory-item-compact" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}}
-  data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}" draggable="true">
+<li 
+    class="inventory-item inventory-item-compact" 
+    data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}} data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}" draggable="true"
+    {{!-- Data added for external styling purposes --}}
+    {{#if (eq type 'domainCard')}}
+        data-level="{{item.system.level}}"
+        data-domain="{{item.system.domain}}"
+        {{#with (lookup @root.domains item.system.domain) as |domainData|}}
+            {{#if domainData.invertText}}data-domain-invert-text{{/if}}
+            style="--domain-color: {{domainData.color}}"
+        {{/with}}
+    {{/if}}
+    >
     {{!-- Image --}}
     <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
     (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
@@ -22,7 +33,7 @@
         <div class="item-labels">
             <div class="label">
                 {{#each this._getLabels as |label|}}
-                    {{ifThen label.value label.value label}}
+                    <span>{{ifThen label.value label.value label}}</span>
                     {{#each label.icons as |icon|}}
                         <i class="fa-solid {{icon}}"></i>
                     {{/each}}

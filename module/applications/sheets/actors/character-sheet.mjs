@@ -235,6 +235,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
+        context.domains = CONFIG.DH.DOMAIN.allDomains();
         context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
                 ...this.document.system.traits[key],
