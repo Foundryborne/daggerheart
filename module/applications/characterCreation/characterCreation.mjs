@@ -6,96 +6,8 @@ import { ItemBrowser } from '../ui/itemBrowser.mjs';
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhCharacterCreation extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(character) {
-        super({});
-
-        this.character = character;
-
-        this.setup = character.flags.daggerheart.characterSetup ?? {
-            traits: Object.keys(this.character.system.traits).reduce((acc, key) => {
-                acc[key] = { value: null };
-                return acc;
-            }, {}),
-            ancestryName: {
-                primary: '',
-                secondary: ''
-            },
-            mixedAncestry: false,
-            mixedFeatures: {
-                primaryFeature: {},
-                secondaryFeature: {}
-            },
-            primaryAncestry: this.character.system.ancestry ?? {},
-            secondaryAncestry: {},
-            community: this.character.system.community ?? {},
-            class: this.character.system.class?.value ?? {},
-            subclass: this.character.system.class?.subclass ?? {},
-            experiences: {
-                [foundry.utils.randomID()]: { name: '', value: 2, core: true },
-                [foundry.utils.randomID()]: { name: '', value: 2, core: true }
-            },
-            domainCards: {
-                [foundry.utils.randomID()]: {},
-                [foundry.utils.randomID()]: {}
-            },
-            visibility: 1
-        };
-
-        this.equipment = {
-            armor: {},
-            primaryWeapon: {},
-            secondaryWeapon: {},
-            inventory: {
-                take: {},
-                choiceA: {},
-                choiceB: {}
-            }
-        };
-
-        this.subclassGroups = [];
-        this.ancestryGroups = {};
-        this.communityGroups = {};
-        this.domainCardGroups = {
-            label: '',
-            items: []
-        };
-
-        this.equipmentGroups = {
-            primaryWeapon: {
-                label: '',
-                items: [],
-                columns: []
-            },
-            secondaryWeapon: {
-                label: '',
-                items: [],
-                columns: []
-            },
-            armor: {
-                label: '',
-                items: [],
-                columns: []
-            },
-            selectedTable: 'primaryWeapon'
-        }
-
-        this.selectedTable = {}
-
-        this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
-            if (refreshType === RefreshType.CompendiumBrowser) {
-                if (this.rendered) {
-                    this.render();
-                    this.loadItems();
-                }
-            }
-        });
-    }
-
-    get title() {
-        return game.i18n.format('DAGGERHEART.APPLICATIONS.CharacterCreation.title', { actor: this.character.name });
-    }
-
     static DEFAULT_OPTIONS = {
+        id: 'character-creation-{id}',
         tag: 'form',
         classes: ['daggerheart', 'dialog', 'dh-style', 'character-creation'],
         position: { width: 'auto', height: 'auto' },
@@ -103,7 +15,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             icon: 'fa-solid fa-wand-magic-sparkles',
             positioned: false,
             resizable: false,
-            minimizable: false
+            minimizable: true
         },
         actions: {
             viewCompendium: this.#onViewCompendium,
@@ -209,6 +121,95 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.equipment'
         }
     };
+
+    get title() {
+        return _loc('DAGGERHEART.APPLICATIONS.CharacterCreation.title', { actor: this.character.name });
+    }
+
+    constructor(character) {
+        super({});
+
+        this.character = character;
+
+        this.setup = character.flags.daggerheart.characterSetup ?? {
+            traits: Object.keys(this.character.system.traits).reduce((acc, key) => {
+                acc[key] = { value: null };
+                return acc;
+            }, {}),
+            ancestryName: {
+                primary: '',
+                secondary: ''
+            },
+            mixedAncestry: false,
+            mixedFeatures: {
+                primaryFeature: {},
+                secondaryFeature: {}
+            },
+            primaryAncestry: this.character.system.ancestry ?? {},
+            secondaryAncestry: {},
+            community: this.character.system.community ?? {},
+            class: this.character.system.class?.value ?? {},
+            subclass: this.character.system.class?.subclass ?? {},
+            experiences: {
+                [foundry.utils.randomID()]: { name: '', value: 2, core: true },
+                [foundry.utils.randomID()]: { name: '', value: 2, core: true }
+            },
+            domainCards: {
+                [foundry.utils.randomID()]: {},
+                [foundry.utils.randomID()]: {}
+            },
+            visibility: 1
+        };
+
+        this.equipment = {
+            armor: {},
+            primaryWeapon: {},
+            secondaryWeapon: {},
+            inventory: {
+                take: {},
+                choiceA: {},
+                choiceB: {}
+            }
+        };
+
+        this.subclassGroups = [];
+        this.ancestryGroups = {};
+        this.communityGroups = {};
+        this.domainCardGroups = {
+            label: '',
+            items: []
+        };
+
+        this.equipmentGroups = {
+            primaryWeapon: {
+                label: '',
+                items: [],
+                columns: []
+            },
+            secondaryWeapon: {
+                label: '',
+                items: [],
+                columns: []
+            },
+            armor: {
+                label: '',
+                items: [],
+                columns: []
+            },
+            selectedTable: 'primaryWeapon'
+        }
+
+        this.selectedTable = {}
+
+        this.setupHooks = Hooks.on(socketEvent.Refresh, ({ refreshType }) => {
+            if (refreshType === RefreshType.CompendiumBrowser) {
+                if (this.rendered) {
+                    this.render();
+                    this.loadItems();
+                }
+            }
+        });
+    }
 
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
@@ -561,34 +562,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             }
 
             subclassGroups.sort((a, b) => a.label.localeCompare(b.label))
-
-            if (this.subclassGroups.length) return;
-
-            // todo: replace with inline rendering like the rest, given we can resume whenever
-            for (const classItem of subclassGroups) {
-                const element = document.createElement('div');
-                element.classList.add(classItem.label.toLowerCase(), 'compedium-item')
-                const subclassElement = document.createElement('ul');
-
-                let header = document.createElement('h1');
-                header.classList.add('subtitle-section')
-                header.innerHTML = classItem.label + '<side-line-div></side-line-div>'
-
-                element.appendChild(header)
-
-                const subclassList = await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs',
-                    {
-                        items: classItem?.items,
-                        action: 'selectItem'
-                    }
-                );
-
-                subclassElement.innerHTML = subclassList
-                element.appendChild(subclassElement)
-
-                this.element.querySelector('.compedium-list').appendChild(element);
-            }
 
             this.subclassGroups = subclassGroups;
             this.ancestryGroups = ancestryGroups;
