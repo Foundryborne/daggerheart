@@ -4,15 +4,58 @@
     data-group='{{tabs.community.group}}'
 >
     <div class="main-selections-container">
-        <fieldset class="section-container">
-            <legend>{{localize "TYPES.Item.community"}}</legend>
-            <div class="selections-outer-container">
-                <div class="selections-container community-card">
-                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" community }}
-                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectCommunity"}}
-                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
-                </div>
+        <div class="step-sidebar">
+            <h1 class="title-section">3. {{localize tabs.community.label}}</h1>
+
+            <div class="community compedium-list">
+                <h2 class="subtitle-section">
+                    {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.community'}}
+                    <side-line-div></side-line-div>
+                </h2>
+                {{> selectedItem
+                    item=community
+                    type='community'
+                    emptyMessage='Select a Community'
+                }}
             </div>
-        </fieldset>
+        </div>
+        <line-div></line-div>
+
+        <div class="comunity-list card-list scroll-container">
+            {{#each communityGroups.items as |community|}}
+                <a class="card {{#if ../community.name}}{{#unless (eq ../community.name community.name)}}not-selected{{/unless}}{{/if}}" data-uuid="{{community.uuid}}" data-type="{{community.type}}" data-action="selectItem">
+                    {{{community.embedCard}}}
+                </a>
+            {{/each}}
+        </div>
     </div>
 </section>
+
+{{#*inline "communityFeatures"}}
+    <div class="{{type}}-feature m-top-20">
+        <h2 class="subtitle-section">
+            {{localize subtitle}}
+            <side-line-div></side-line-div>
+        </h2>
+        {{#each list as |feature|}}
+            <div class="m-top-10">
+                <i><b>{{{feature.name}}}:</b></i>
+                {{{feature.system.description}}}
+            </div>
+        {{/each}}
+    </div>
+{{/inline}}
+
+{{#*inline "selectedItem"}}
+    {{#if item.name}}
+        <div class="equip-items">
+            <img src="{{item.img}}" alt="{{item.name}}">
+            <p>{{item.name}}</p>
+            <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-type="{{type}}" data-item-type="community" data-action="removeSelectedItem"></i></a>
+        </div>
+    {{else}}
+        <div class="empty-slot">
+            {{emptyMessage}}
+        </div>
+    {{/if}}
+{{/inline}}

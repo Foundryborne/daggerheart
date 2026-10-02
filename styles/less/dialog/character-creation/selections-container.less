@@ -36,11 +36,17 @@
                     }
                 }
             }
+
+            .class-info .domains .domain-list .domain-item img {
+                filter: brightness(0) saturate(100%);
+            }
         }  
     }
 });
 
 .daggerheart.dh-style.dialog.character-creation {
+    border-radius: 0;
+
     .setup-tabs {
         display: flex;
         justify-content: center;
@@ -55,8 +61,629 @@
 
     .main-selections-container {
         display: flex;
-        flex-direction: column;
-        gap: 4px;
+        flex-direction: row;
+        gap: 40px;
+        height: -webkit-fill-available;
+        overflow: hidden;
+
+        line-div {
+            height: auto;
+            width: 1px;
+            border-bottom: none;
+            border-left: 1px solid @color-border;
+            mask-image: linear-gradient(180deg, transparent 0%, black 50%, transparent 100%);
+        }
+
+        side-line-div {
+            width: auto;
+            flex: 1;
+        }
+
+        .m-top-40 {
+            margin-top: 40px;
+        }
+
+        .m-top-20 {
+            margin-top: 20px;
+        }
+
+        .m-top-10 {
+            margin-top: 10px;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .title-section {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: @font-subtitle;
+            color: light-dark(@dark, @beige);
+            margin-bottom: 10px;
+        }
+
+        .subtitle-section {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-family: @font-subtitle;
+            font-weight: bold;
+            text-transform: capitalize;
+            color: light-dark(@dark, @beige);
+            margin-bottom: 5px;
+        }
+
+        .subtitle-trait {
+            font-family: @font-subtitle;
+            font-weight: bold;
+            font-size: 12px;
+            color: light-dark(@dark, @beige);
+            width: fit-content;
+            margin: 0;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+
+            .tag {
+                display: flex;
+                flex-direction: row;
+                gap: 4px;
+                justify-content: center;
+                align-items: center;
+                padding: 3px 5px;
+                font: var(--font-size-12) @font-body;
+
+                background: light-dark(@dark-15, @beige-15);
+                border: 1px solid light-dark(@dark, @beige);
+                border-radius: 3px;
+            }
+
+            .label {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                font-size: var(--font-size-12);
+            }
+        }
+
+        .choice-side-label {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-family: @font-subtitle;
+            font-weight: bold;
+            text-transform: capitalize;
+            color: light-dark(@dark, @beige);
+            height: auto;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                right: 50%;
+                background: light-dark(@dark, @beige);
+                width: 1px;
+                height: 40px;
+            }
+
+            &::before {
+                bottom: 0%;
+                mask-image: linear-gradient(0deg, transparent 0%, black 100%);
+            }
+
+            &::after {
+                top: 0%;
+                mask-image: linear-gradient(180deg, transparent 0%, black 100%);
+            }
+
+            side-line-div {
+                rotate: 90deg;
+                color: light-dark(@dark, @beige);
+            }
+        }
+
+        .equip-items {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 3px;
+
+            &.selectable {
+                padding-right: 8px;
+                border: 1px solid transparent;
+
+                &:hover {
+                    background: light-dark(@dark-blue-40, @dark-golden-40);
+                    cursor: pointer;
+                }
+
+                &.selected {
+                    background: light-dark(@dark-blue-60, @dark-golden-80);
+                    border: 1px solid light-dark(@dark-blue-40, @golden-40);
+
+                }
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 3px;
+            }
+
+            a {
+                margin-left: auto;
+            }
+        }
+
+        .step-sidebar {
+            width: 300px;
+            min-width: 300px;
+
+            .compedium-list{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                overflow-y: auto;
+                height: -webkit-fill-available;
+                padding-bottom: 32px;
+
+                &.ancestry {
+                    .ancestry-feature {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+                }
+
+                &.traits {
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        padding-left: 1rem;
+                        list-style: disc;
+
+                        li {
+                            display: list-item;
+                            font-size: 1rem;
+                        }
+                    }
+                }
+
+                &.domains {
+                    .domain-card {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+
+                        .delete { margin-left: auto; }
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            object-fit: cover;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+
+                &.equipment {
+                    .choice-item-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 30px;
+                        margin-left: 10px;
+                        width: 100%;
+                    }
+
+                    .item-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
+
+                .compedium-item {
+                    
+                    ul .sidebar-item-container {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        &:not(:first-child) {
+                            margin-top: 5px;
+                        }
+
+                        &:hover {
+                            background: light-dark(@dark-blue-40, @dark-golden-40);
+                            cursor: pointer;
+                        }
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            object-fit: cover;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .class-info,
+        .subclass-info {
+            min-width: 350px;
+            max-width: 700px;
+            overflow-y: auto;
+
+        }
+
+        .ancestry-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            height: auto;
+
+            .ancestry-info,
+            .mixed-options {
+                // min-width: 350px;
+                // max-width: 700px;
+                // overflow-y: auto;
+            }
+
+            .ancestry-info {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                height: 100%;
+
+                .ancestry-feature {
+                    max-width: 500px;
+                }
+
+                .container {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+
+                    img {
+                        width: 100%;
+                        min-height: 120px;
+                        max-height: 400px;
+                        border-radius: 3px;
+                        object-fit: cover;
+                    }
+        
+                    .description {
+                        
+                    }
+                }
+            }
+        }
+
+
+        .traits-info,
+        .experience-info {
+            min-width: 450px;
+            max-width: 900px;
+        }
+
+        .floating-container {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            margin-left: -300px;
+            transform: translateX(20dvw);
+            width: calc(100% - 30dvw);
+
+            &.trait {
+                transform: translateX(25dvw);
+            }
+        }
+
+        .equipment-list {
+            width: 100%;
+            min-width: 400px;
+            max-width: 900px;
+        }
+
+        .suggested-equipments {
+            min-width: 250px;
+        }
+
+        .class-info {
+            .domains {
+                .domains-list {
+                    display: flex;
+                    gap: 10px;
+                    
+                    .domain-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 5px 10px;
+                        border-radius: 3px;
+                        color: light-dark(@dark, @beige);
+                        background: light-dark(@dark-15, @beige-15);
+                        border: 1px solid light-dark(@dark, @beige);
+
+                        img {
+                            width: 20px;
+                            height: 20px;
+                            object-fit: cover;
+                            filter: @golden-filter;
+
+                        }
+                    }
+                }
+            }
+
+            .class-items {
+                .class-item-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+                    margin-left: 10px;
+
+                    .class-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 3px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+
+        .subclass-info {
+            .sublcass-img {
+                width: 100%;
+                min-height: 120px;
+                max-height: 400px;
+                border-radius: 3px;
+                object-fit: cover;
+            }
+
+            .description {
+                text-align: center;
+                font-family: @font-subtitle;
+                font-weight: bold;
+                font-size: 18px;
+                background: light-dark(@chat-blue-bg, @golden-bg);
+                padding: 10px 5px;
+                border-radius: 3px;
+                border: 1px solid light-dark(@dark-blue-40, @golden-40);
+            }
+        }
+
+        .community-info {
+            max-width: 800px;
+
+            img {
+                height: 100%;
+                min-width: 350px;
+                max-width: 500px;
+                border-radius: 3px;
+                object-fit: cover;
+            }
+
+            .container {
+                display: flex;
+                gap: 10px;
+            }
+        }
+
+        .traits-info {
+            .trait-list {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+
+                .trait-container {
+                    .trait-header {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+    
+                        .trait-label {
+                            .title-section {margin: 0;}
+            
+                            .suggestion-list {
+                                display: flex;
+                                gap: 3px;
+                            }
+                        }
+    
+                        .trait-select-container {
+                            width: 48px;
+                            height: 48px;
+                            transform: rotate(45deg);
+                            overflow: hidden;
+                            border: 1px solid light-dark(@dark-40, @beige-50);
+    
+                            select {
+                                transform: rotate(-45deg);
+                                font-size: 28px;
+                                font-weight: bold;
+                                font-family: @font-subtitle;
+                                color: light-dark(@dark, @beige);
+                                margin-bottom: 10px;
+                                width: 100%;
+                                height: 100%;
+                                background: transparent;
+                                border: none;
+                                margin: 0;
+                                padding: 0;
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+    
+                                &:focus,
+                                &:hover {
+                                    outline: none;
+                                    box-shadow: none;
+                                }
+
+                                & option,
+                                & optgroup {
+                                    color: @beige;
+                                    background-color: @dark-blue;
+                                    border-radius: 6px;
+                                    text-align: center;
+                                    font-weight: bold;
+                                }
+    
+                                &::-ms-expand {
+                                    display: none;
+                                }
+                            }
+                        }
+    
+                    }
+                    .trait-description {
+                        margin: 0;
+                        width: calc(100% - 50px);
+                    }
+                }
+            }
+        }
+
+        .experience-info {
+            .experience-list {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .experience-container {
+                    input  {
+                        width: 80%;
+                    }
+
+                    textarea {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .experience-example-list {
+            margin-left: auto;
+            max-width: 350px;
+            font-style: normal;
+            
+            p {font-family: @font-body;}
+        }
+
+        .ancestry-list,
+        .domain-card-list,
+        .comunity-list {
+            &.card-list {
+                overflow-y: auto;
+                padding: 10px;
+                height: -webkit-fill-available;
+                gap: 18px;
+
+                .card {
+                    text-shadow: none;
+                    border-radius: 12px;
+                    transition: all 0.3s ease;
+
+                    &:hover { box-shadow: 0 0 12px light-dark(@dark-blue, @golden); }
+
+                    &.not-selected {
+                        opacity: 0.4;
+                    }
+                }
+            }
+        }
+
+        .suggested-equipments {
+            .item-list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .equipment-list {
+            .item-list-header {
+                align-items: center;
+                background-color: light-dark(@dark-15, @dark-golden-80);
+                color: @color-text-emphatic;
+                border: 1px solid @color-border;
+                border-radius: 3px;
+                min-height: 30px;
+                font-weight: bold;
+                padding-right: var(--spacer-16); // align with scroll-container
+
+                > * {
+                    white-space: nowrap;
+                }
+
+                div[data-sort-key] {
+                    &:after {
+                        font-family: var(--font-awesome);
+                        margin-left: 5px;
+                    }
+
+                    &[data-sort-type='ASC']:after {
+                        content: '\f884';
+                    }
+
+                    &[data-sort-type='DESC']:after {
+                        content: '\f885';
+                    }
+                }
+
+                .item-list-img {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .item-list-name::after {
+                    display: none;
+                }
+            }
+
+            .item-list-header,
+            .item-container {
+                display: grid;
+                grid-template-columns: 40px 400px repeat(auto-fit, minmax(100px, 1fr));
+                align-items: center;
+                text-transform: capitalize;
+                gap: 10px;
+
+                &::after {
+                    display: none;
+                    content: '';
+                }
+            }
+
+            .item-list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                overflow-y: auto;
+                height: -webkit-fill-available;
+                padding-bottom: 120px;
+            }
+        }
 
         .ancestry-mixed-controller {
             position: relative;
@@ -104,6 +731,18 @@
                 width: 50%;
                 text-align: center;
             }
+        }
+
+        .empty-slot {
+            text-align: center;
+            place-content: center;
+
+            width: 100%;
+            box-sizing: border-box;
+            height: 40px;
+            border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+            border-radius: 3px;
+            color: light-dark(@dark-blue-50, @beige-50);
         }
 
         .selections-container {

@@ -4,28 +4,52 @@
     data-group='{{tabs.experience.group}}'
 >
     <div class="main-selections-container">
-        <fieldset class="section-container no-horizontal-padding">
-            <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.initialExperiences"}} {{experience.nrSelected}}/{{experience.nrTotal}}</legend>
-            <div class="experiences-inner-container">
-                {{#each experience.values as |experience id|}}
-                    <div class="experience-container {{#unless @last}}separated{{/unless}}">
-                        <div class="form-group">
-                            <label>{{localize "DAGGERHEART.GENERAL.label"}}</label>
-                            <div class="experience-inner-container">
-                                <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
-                                <span class="experience-value">{{numberFormat this.value sign=true}}</span>
+        <div class="step-sidebar">
+            <h1 class="title-section">5. {{localize tabs.experience.label}}</h1>
+        </div>
+        <line-div></line-div>
+        <div class="floating-container">
+            <div class="experience-info">
+                <h1 class="subtitle-section">
+                    {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.createYourExperiences"}}
+                    <side-line-div></side-line-div>
+                </h1>
+                <div class="m-top-10">
+                    <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.paragraph1"}}}</p>
+                    <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.paragraph2"}}}</p>
+                </div>
+                <div class="experience-list">
+                    {{#each experience.values as |experience id|}}
+                        <div class="experience-container m-top-20">
+                            <div class="form-group">
+                                <label>{{localize "DAGGERHEART.GENERAL.label"}}</label>
+                                <div class="experience-inner-container">
+                                    <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label>{{localize "DAGGERHEART.GENERAL.optionalThing" thing=(localize "DAGGERHEART.GENERAL.description")}}</label>
-                            <div class="form-fields">
-                                <textarea name="{{concat "experiences." id ".description"}}">{{experience.description}}</textarea>
+                            <div class="form-group m-top-10">
+                                <label>{{localize "DAGGERHEART.GENERAL.optionalThing" thing=(localize "DAGGERHEART.GENERAL.description")}}</label>
+                                <div class="form-fields">
+                                    <textarea name="{{concat "experiences." id ".description"}}">{{experience.description}}</textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {{/each}}
+                    {{/each}}
+                    <blockquote class="m-top-20">
+                        <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.tip"}}}</p>
+                    </blockquote>
+                </div>
             </div>
-        </fieldset>
+            <blockquote class="experience-example-list">
+                <h2 class="subtitle-section">Example Experiences</h2>
+
+                <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.backgrounds"}}}</p>
+                <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.characteristics"}}}</p>
+                <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.specialties"}}}</p>
+                <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.skills"}}}</p>
+                <p>{{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.experienceTab.exampleList.phrases"}}}</p>
+            </blockquote>
+        </div>
     </div>
 </section>

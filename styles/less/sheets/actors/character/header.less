@@ -57,7 +57,6 @@
                 display: flex;
                 justify-content: end;
                 height: var(--font-size-32);
-                margin-top: 6px;
 
                 .label {
                     display: flex;
@@ -75,21 +74,20 @@
 
                 .level-button {
                     color: light-dark(@dark, @beige);
-                    font-size: var(--font-size-18);
-                    line-height: 1;
-                    min-height: unset;
+                    font-size: var(--font-size-14);
                     height: min-content;
-                    padding: 4px;
-                    font-family: 'Cinzel', serif;
+                    padding: 8px;
+                    font-family: @font-body;
+                    text-transform: uppercase;
+                    font-weight: bold;
                     margin: 0;
-                    font-weight: normal;
-                    border-color: light-dark(@dark-blue, @golden);
-                    background-color: light-dark(transparent, @deep-black);
+                    border-color: light-dark(@dark-blue-40, @golden-40);
+                    background: light-dark(@dark-blue-40, @dark-golden-40);
+                    border-radius: 6px;
 
                     &:hover {
                         background-image: none;
-                        background-color: var(--color-warm-2);
-                        filter: drop-shadow(0 0 3px lightgray);
+                        background: light-dark(@dark-blue-90, @dark-golden-80);
                     }
                 }
             }

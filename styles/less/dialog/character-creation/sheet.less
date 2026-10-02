@@ -17,11 +17,19 @@
 }, {});
 
 .daggerheart.dh-style.dialog.character-creation {
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
     .window-content {
-        gap: 16px;
-
+        gap: 24px;
         .tab {
             overflow-y: auto;
         }
+    }
+    .scroll-container {
+        overflow: auto;
+        scrollbar-gutter: stable;
+        padding-right: max(0px, calc(var(--spacer-16) - var(--scrollbar-width)));
+        .with-scroll-shadows();
     }
 }
