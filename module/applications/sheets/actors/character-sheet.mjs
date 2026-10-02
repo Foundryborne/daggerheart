@@ -21,28 +21,28 @@ export default class CharacterSheet extends DHBaseActorSheet {
         classes: ['character'],
         position: { width: 850, height: 800 },
         actions: {
-            toggleVault: CharacterSheet.#toggleVault,
-            rollAttribute: CharacterSheet.#rollAttribute,
-            toggleHitPoints: CharacterSheet.#toggleHitPoints,
-            toggleStress: CharacterSheet.#toggleStress,
-            toggleArmor: CharacterSheet.#toggleArmor,
-            toggleHope: CharacterSheet.#toggleHope,
-            toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
-            openPack: CharacterSheet.#openPack,
-            makeDeathMove: CharacterSheet.#makeDeathMove,
+            toggleVault: CharacterSheet.#onToggleVault,
+            rollAttribute: CharacterSheet.#onRollAttribute,
+            toggleHitPoints: CharacterSheet.#onToggleHitPoints,
+            toggleStress: CharacterSheet.#onToggleStress,
+            toggleArmor: CharacterSheet.#onToggleArmor,
+            toggleHope: CharacterSheet.#onToggleHope,
+            toggleLoadoutView: CharacterSheet.#onToggleLoadoutView,
+            openPack: CharacterSheet.#onOpenPack,
+            makeDeathMove: CharacterSheet.#onMakeDeathMove,
             levelManagement: CharacterSheet.#levelManagement,
-            viewLevelups: CharacterSheet.#viewLevelups,
-            resetCharacter: CharacterSheet.#resetCharacter,
-            toggleEquipItem: CharacterSheet.#toggleEquipItem,
-            toggleResourceDice: CharacterSheet.#toggleResourceDice,
-            handleResourceDice: CharacterSheet.#handleResourceDice,
-            advanceResourceDie: CharacterSheet.#advanceResourceDie,
+            viewLevelups: CharacterSheet.#onViewLevelups,
+            resetCharacter: CharacterSheet.#onResetCharacter,
+            toggleEquipItem: CharacterSheet.#onToggleEquipItem,
+            toggleResourceDice: CharacterSheet.#onToggleResourceDice,
+            handleResourceDice: CharacterSheet.#onHandleResourceDice,
+            advanceResourceDie: CharacterSheet.#onAdvanceResourceDie,
             toggleItemReload: CharacterSheet.#onToggleItemReload,
-            cancelBeastform: CharacterSheet.#cancelBeastform,
-            toggleResourceManagement: CharacterSheet.#toggleResourceManagement,
+            cancelBeastform: CharacterSheet.#onCancelBeastform,
+            toggleResourceManagement: CharacterSheet.#onToggleResourceManagement,
             useDowntime: this.useDowntime,
-            viewParty: CharacterSheet.#viewParty,
-            toggleArmorMangement: CharacterSheet.#toggleArmorManagement
+            viewParty: CharacterSheet.#onViewParty,
+            toggleArmorMangement: CharacterSheet.#onToggleArmorManagement
         },
         window: {
             resizable: true,
@@ -235,6 +235,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
+        context.domains = CONFIG.DH.DOMAIN.allDomains();
         context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
                 ...this.document.system.traits[key],
@@ -523,7 +524,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc.isOwner && doc && !doc.system.equipped;
                 },
-                onClick: (event, target) => CharacterSheet.#toggleEquipItem.call(this, event, target)
+                onClick: (event, target) => CharacterSheet.#onToggleEquipItem.call(this, event, target)
             },
             {
                 label: 'unequip',
@@ -532,7 +533,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc.isOwner && doc && doc.system.equipped;
                 },
-                onClick: (event, target) => CharacterSheet.#toggleEquipItem.call(this, event, target)
+                onClick: (event, target) => CharacterSheet.#onToggleEquipItem.call(this, event, target)
             }
         ].map(option => ({
             ...option,
@@ -793,31 +794,37 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /**
      * Opens the charater level management window in viewMode.
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static #viewLevelups() {
+    static #onViewLevelups() {
         new LevelupViewMode(this.document).render({ force: true });
     }
 
     /**
      * Resets the character data and removes all embedded documents.
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #resetCharacter() {
+    static async #onResetCharacter() {
         new game.system.api.applications.dialogs.CharacterResetDialog(this.document).render({ force: true });
     }
 
     /**
      * Opens the Death Move interface for the character.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #makeDeathMove() {
+    static async #onMakeDeathMove() {
         await new DhDeathMove(this.document).render({ force: true });
     }
 
     /**
      * Opens a compendium pack given its dataset key.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #openPack(_event, button) {
+    static async #onOpenPack(_event, button) {
         const { key } = button.dataset;
 
         const presets = {
@@ -842,8 +849,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Rolls an attribute check based on the clicked button's dataset attribute.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #rollAttribute(event, button) {
+    static async #onRollAttribute(event, button) {
         const result = await this.document.rollTrait(button.dataset.attribute, { event });
         if (!result) return;
 
@@ -860,8 +868,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggles the equipped state of an item (armor or weapon).
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleEquipItem(_event, button) {
+    static async #onToggleEquipItem(_event, button) {
         const item = await getDocFromElement(button);
         if (!item) return;
         if (item.system.equipped) {
@@ -895,8 +904,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggles the current view of the character's loadout display.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleLoadoutView(_, button) {
+    static async #onToggleLoadoutView(_, button) {
         const newAbilityView = button.dataset.value === 'true';
         await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsCard, newAbilityView);
         this.render();
@@ -905,8 +915,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggles hitpoint resource value.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleHitPoints(_, button) {
+    static async #onToggleHitPoints(_, button) {
         const hitPointsValue = Number.parseInt(button.dataset.value);
         const newValue =
             this.document.system.resources.hitPoints.value >= hitPointsValue ? hitPointsValue - 1 : hitPointsValue;
@@ -916,8 +927,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggles stress resource value.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleStress(_, button) {
+    static async #onToggleStress(_, button) {
         const StressValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.resources.stress.value >= StressValue ? StressValue - 1 : StressValue;
         await this.document.update({ 'system.resources.stress.value': newValue });
@@ -926,8 +938,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggles ArmorScore resource value.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleArmor(_, button, _element) {
+    static async #onToggleArmor(_, button, _element) {
         const { value, max } = this.document.system.armorScore;
         const inputValue = Number.parseInt(button.dataset.value);
         const newValue = value >= inputValue ? inputValue - 1 : inputValue;
@@ -939,8 +952,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggles a hope resource value.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleHope(_, button) {
+    static async #onToggleHope(_, button) {
         const hopeValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.resources.hope.value >= hopeValue ? hopeValue - 1 : hopeValue;
         await this.document.update({ 'system.resources.hope.value': newValue });
@@ -949,8 +963,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggles whether an item is stored in the vault.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleVault(event, button) {
+    static async #onToggleVault(event, button) {
         const doc = await getDocFromElement(button);
         if (!doc) return;
         return await doc.system.toggleVault(event);
@@ -959,8 +974,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Toggle the used state of a resource dice.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #toggleResourceDice(event, target) {
+    static async #onToggleResourceDice(event, target) {
         const item = await getDocFromElement(target);
 
         const { dice } = event.target.closest('.item-resource').dataset;
@@ -974,8 +990,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /**
      * Handle the roll values of resource dice.
      * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #handleResourceDice(_, target) {
+    static async #onHandleResourceDice(_, target) {
         const item = await getDocFromElement(target);
         if (!item) return;
 
@@ -990,10 +1007,18 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    static #advanceResourceDie(_, target) {
+    /**
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
+     */
+    static #onAdvanceResourceDie(_, target) {
         this.updateResourceDie(target, true);
     }
 
+    /**
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
+     */
     static async #onToggleItemReload(_, target) {
         const item = await getDocFromElement(target);
         if (!item || !item.system.resource?.max) 
@@ -1022,15 +1047,20 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /**
-     *
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
      */
-    static async #cancelBeastform(_, target) {
+    static async #onCancelBeastform(_, target) {
         const item = await getDocFromElement(target);
         if (!item) return;
         game.system.api.fields.ActionFields.BeastformField.handleActiveTransformations.call(item);
     }
 
-    static async #viewParty(_, target) {
+    /**
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
+     */
+    static async #onViewParty(_, target) {
         const parties = this.document.parties;
         if (parties.size <= 1) {
             parties.first()?.sheet.render({ force: true });
@@ -1065,7 +1095,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
-    static async #toggleArmorManagement(_event, target) {
+    /**
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
+     */
+    static async #onToggleArmorManagement(_event, target) {
         const existingTooltip = document.body.querySelector('.locked-tooltip .armor-management-container');
         if (existingTooltip) {
             game.tooltip.dismissLockedTooltips();
@@ -1157,8 +1191,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }
         }
     }
-
-    static async #toggleResourceManagement(event, button) {
+    
+    /**
+     * @type {ApplicationClickAction}
+     * @this {CharacterSheet}
+     */
+    static async #onToggleResourceManagement(event, button) {
         event.stopPropagation();
         const existingTooltip = document.body.querySelector('.locked-tooltip .resource-management-container');
         if (existingTooltip) {

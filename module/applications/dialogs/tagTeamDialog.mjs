@@ -1,4 +1,4 @@
-import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
+import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';

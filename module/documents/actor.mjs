@@ -3,7 +3,7 @@ import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick, itemIsIdentical } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
-import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
@@ -888,17 +888,17 @@ export default class DhActor extends Actor {
                         timeout: 30000
                     }
                 );
-                if (armorSlotResult) {
-                    const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
-                    hpDamage.value = modifiedDamage;
-                    for (const armorChange of armorChanges) {
-                        updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
-                    }
-                    if (stressSpent) {
-                        const stressUpdate = updates.find(u => u.key === 'stress');
-                        if (stressUpdate) stressUpdate.value += stressSpent;
-                        else updates.push({ value: stressSpent, key: 'stress' });
-                    }
+                if (!armorSlotResult) return [];
+
+                const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
+                hpDamage.value = modifiedDamage;
+                for (const armorChange of armorChanges) {
+                    updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
+                }
+                if (stressSpent) {
+                    const stressUpdate = updates.find(u => u.key === 'stress');
+                    if (stressUpdate) stressUpdate.value += stressSpent;
+                    else updates.push({ value: stressSpent, key: 'stress' });
                 }
             } else if (this.type === 'adversary') {
                 const reducedSeverity = hpDamage.damageTypes.reduce((value, curr) => {
