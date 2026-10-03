@@ -1,8 +1,11 @@
 import DhCompanionLevelUp from '../../levelup/companionLevelup.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
+/** @import DhCompanion from '../../../data/actor/companion.mjs'; */
+
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
+/** @extends {DHBaseActorSheet<DhActor<DhCompanion>>} */
 export default class CompanionSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['actor', 'companion'],

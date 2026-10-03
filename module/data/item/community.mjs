@@ -1,5 +1,4 @@
-import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import BaseDataItem from './base.mjs';
 
 const fields = foundry.data.fields;
@@ -20,7 +19,7 @@ export default class DHCommunity extends BaseDataItem {
     static defineSchema() {
         return {
             ...super.defineSchema(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            features: new fields.ArrayField(new fields.DocumentUUIDField({ required: true, nullable: false, type: 'Item' })),
             /** An id or path to the journal page that has information for this community */
             loreReference: new fields.StringField({ required: true, blank: false, nullable: true })
         };
@@ -40,7 +39,7 @@ export default class DHCommunity extends BaseDataItem {
             ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
-        const features = await getFeaturesHTMLData(await fromUuids(this._source.features));
+        const features = await getFeaturesHTMLData(this.features);
 
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
         const suffix = await foundry.applications.handlebars.renderTemplate(
