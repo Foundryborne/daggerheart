@@ -172,7 +172,8 @@ export class RollConfig {
     }
 
     toJSON() {
-        return omit(this, ['evaluated']);
+        // RollConfig is pasted to roll.options. We don't want certain properties to get serialized in the roll
+        return omit(this, ['actor', 'item', 'action', 'event', 'data', 'evaluated']);
     }
 }
 
