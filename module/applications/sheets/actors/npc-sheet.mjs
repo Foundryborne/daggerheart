@@ -1,5 +1,8 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
+/** @import { DhNPC } from '../../../data/actor/_module.mjs'; */
+
+/** @extends {DHBaseActorSheet<DhActor<DhNPC>>} */
 export default class NPCSheet extends DHBaseActorSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
