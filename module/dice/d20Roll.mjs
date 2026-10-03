@@ -126,8 +126,6 @@ export default class D20Roll extends DHRoll {
         await super.buildEvaluate(roll, config, message);
 
         const data = config.roll;
-        data.type = config.actionType;
-        data.difficulty = config.roll.difficulty;
         if (config.targets?.length) {
             config.targets.forEach(target => {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
@@ -136,31 +134,6 @@ export default class D20Roll extends DHRoll {
             data.success = config.targets.some(target => target.hit);
         } else if (config.roll.difficulty) data.success = roll.isCritical || roll.total >= config.roll.difficulty;
         config.successConsumed = data.success;
-
-        data.advantage = {
-            type: config.roll.advantage,
-            dice: roll.dAdvantage?.denomination,
-            value: roll.dAdvantage?.total
-        };
-        data.dice = data.dice.map(dice => ({
-            ...dice,
-            results: dice.results.filter(x => !x.rerolled),
-            rerolled: {
-                any: dice.results.some(x => x.rerolled),
-                rerolls: dice.results.filter(x => x.rerolled)
-            }
-        }));
-        data.isCritical = roll.isCritical;
-        data.extra = roll.dice
-            .filter(d => !roll.baseTerms.includes(d))
-            .map(d => {
-                return {
-                    dice: d.denomination,
-                    value: d.total,
-                    results: d.results
-                };
-            });
-        data.modifierTotal = roll.modifierTotal;
     }
 
     resetFormula() {

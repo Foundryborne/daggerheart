@@ -105,7 +105,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllCritical');
         }
 
-        if (config.roll.result.duality == 1) {
+        if (config.roll.evaluated?.withHope) {
             if (
                 config.roll.hope.value >=
                 this.actor.system.resources.hitPoints.value + this.actor.system.resources.stress.value
@@ -122,7 +122,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             }
         }
 
-        if (config.roll.result.duality == -1) {
+        if (config.roll.evaluated?.withFear) {
             await this.actor.setDeathMoveDefeated(CONFIG.DH.GENERAL.defeatedConditionChoices.dead.id);
             chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllFailure');
         }

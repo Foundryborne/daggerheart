@@ -5,6 +5,8 @@ import BaseRoll from './baseRoll.mjs';
 export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
+        // @todo: this method receives config objects, which are not that serializable. This is the main case of issues in bonusEffects.
+        // Find out where this is handled for rerolls, and consider perhaps creating a new RollConfig here and making it explicit
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
         options.bonusEffects = this.bonusEffectBuilder();
 
@@ -82,17 +84,11 @@ export default class DHRoll extends BaseRoll {
      */
     static async buildEvaluate(roll, config = {}, message = {}) {
         await roll.evaluate();
-        config.roll = {
-            ...roll.options.roll,
-            total: roll.total,
-            formula: roll.formula,
-            dice: roll.dice.map(d => ({
-                dice: d.denomination,
-                total: d.total,
-                formula: d.formula,
-                results: d.results
-            }))
-        };
+        config.roll = foundry.utils.deepClone({
+            ...config.roll,
+            ...roll.options.roll
+        });
+        config.evaluated = roll;
     }
 
     /** 

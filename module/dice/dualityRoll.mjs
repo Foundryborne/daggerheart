@@ -197,32 +197,6 @@ export default class DualityRoll extends D20Roll {
     /** @inheritdoc */
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
-        config.roll.hope = {
-            dice: roll.dHope.denomination,
-            value: this.guaranteedCritical ? 0 : roll.dHope.total,
-            rerolled: {
-                any: roll.dHope.results.some(x => x.rerolled),
-                rerolls: roll.dHope.results.filter(x => x.rerolled)
-            }
-        };
-        config.roll.fear = {
-            dice: roll.dFear.denomination,
-            value: this.guaranteedCritical ? 0 : roll.dFear.total,
-            rerolled: {
-                any: roll.dFear.results.some(x => x.rerolled),
-                rerolls: roll.dFear.results.filter(x => x.rerolled)
-            }
-        };
-        config.roll.rally = {
-            dice: roll.dRally?.denomination,
-            value: roll.dRally?.total
-        };
-        config.roll.result = {
-            duality: roll.withHope ? 1 : roll.withFear ? -1 : 0,
-            total: this.guaranteedCritical ? 0 : roll.dHope.total + roll.dFear.total,
-            label: roll.totalLabel
-        };
-
         if (roll._rallyIndex && roll.data?.parent)
             roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
     }
@@ -247,7 +221,7 @@ export default class DualityRoll extends D20Roll {
         );
         if (dualityUpdates?.length) updates.push(...dualityUpdates);
 
-        if (config.roll.result.duality === -1 && config.actionType === 'action') {
+        if (config.roll.evaluated?.withFear && config.actionType === 'action') {
             const fearUpdates = await game.system.registeredTriggers.runTrigger(
                 CONFIG.DH.TRIGGER.triggers.fearRoll.id,
                 roll.data?.parent,
@@ -275,21 +249,21 @@ export default class DualityRoll extends D20Roll {
         if (config.rerolledRoll) {
             if (config.roll.result.duality != config.rerolledRoll.result.duality) {
                 const hope =
-                    (config.roll.isCritical || config.roll.result.duality === 1 ? 1 : 0) -
+                    (config.roll.isCritical || config.roll.evaluated?.withHope ? 1 : 0) -
                     (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1 ? 1 : 0);
                 const stress = (config.roll.isCritical ? 1 : 0) - (config.rerolledRoll.isCritical ? 1 : 0);
                 const fear =
-                    (config.roll.result.duality === -1 ? 1 : 0) - (config.rerolledRoll.result.duality === -1 ? 1 : 0);
+                    (config.roll.evaluated?.withFear ? 1 : 0) - (config.rerolledRoll.result.duality === -1 ? 1 : 0);
 
                 if (hope !== 0) updates.push({ key: 'hope', value: hope, enabled: true });
                 if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, enabled: true });
                 if (fear !== 0) updates.push({ key: 'fear', value: fear, enabled: true });
             }
         } else {
-            if (config.roll.isCritical || config.roll.result.duality === 1)
+            if (config.roll.isCritical || config.roll.evaluated?.withHope)
                 updates.push({ key: 'hope', value: 1, enabled: true });
             if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
-            if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, enabled: true });
+            if (config.roll.evaluated?.withFear) updates.push({ key: 'fear', value: 1, enabled: true });
         }
 
         if (updates.length) {
@@ -305,7 +279,7 @@ export default class DualityRoll extends D20Roll {
         if (countdownAutomation && config.actionType !== 'reaction' && !config.skips?.updateCountdowns) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
 
-            if (config.roll.result.duality === -1) {
+            if (config.roll.evaluated?.withFear) {
                 await updateCountdowns(
                     CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id,
                     CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id
