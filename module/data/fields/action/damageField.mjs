@@ -195,7 +195,7 @@ export default class DamageField extends fields.SchemaField {
      * @returns Formula value object
      */
     static getFormulaValue(part, data) {
-        return data.hasRoll && part.resultBased && data.roll.withFear && part.valueAlt
+        return data.hasRoll && part.resultBased && data.evaluated?.withFear && part.valueAlt
             ? part.valueAlt
             : part.value;
     }

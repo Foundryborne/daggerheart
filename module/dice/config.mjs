@@ -1,4 +1,5 @@
 import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
+import { omit } from '../helpers/functional.mjs';
 import D20Roll from './d20Roll.mjs';
 
 /** @import DHBaseAction from '../data/action/baseAction.mjs'; */
@@ -48,6 +49,7 @@ export class RollConfig {
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
         this.roll = data.roll ?? {};
+        this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
         
         this.resourceUpdates = new ResourceUpdateMap(this.actor);
@@ -167,6 +169,10 @@ export class RollConfig {
         const config = new this(data, options);
         await config.initialize();
         return config;
+    }
+
+    toJSON() {
+        return omit(this, ['evaluated']);
     }
 }
 
