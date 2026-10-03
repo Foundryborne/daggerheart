@@ -202,8 +202,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
 
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
+        const config = await RollConfig.build(this.system, { event });
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({
@@ -290,8 +289,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (!game.user.isGM) return;
         
         const targets = this.system.currentHitTargets;
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
+        const config = await RollConfig.build(this.system, { event });
         this.system.action?.workflow.get('save')?.execute(config, targets, true);
     }
 
@@ -304,8 +302,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
 
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
+
+        const config = await RollConfig.build(this.system, { event });
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({
