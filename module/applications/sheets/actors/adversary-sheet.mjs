@@ -2,8 +2,11 @@ import { getDocFromElement, signedNumber } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import { prepareFeatureData } from '../sheet-helpers.mjs';
 
+/** @import { DhAdversary } from '../../../data/actor/_module.mjs'; */
+
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
+/** @extends {DHBaseActorSheet<DhActor<DhAdversary>>} */
 export default class AdversarySheet extends DHBaseActorSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {

@@ -36,7 +36,7 @@ export default class BeastformSheet extends DHBaseItemSheet {
 
     /**@inheritdoc */
     get relatedDocs() {
-        return this.document.system.features;
+        return this.document.system.features.map(x => fromUuidSync(x, { strict: false }));
     }
 
     _attachPartListeners(partId, htmlElement, options) {

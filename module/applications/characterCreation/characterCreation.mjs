@@ -242,8 +242,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         const { primary, secondary, overwrite } = this.setup.ancestryName;
         context.ancestryName = overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary);
-        context.primaryAncestry = { ...this.setup.primaryAncestry, compendium: 'ancestries' };
-        context.secondaryAncestry = { ...this.setup.secondaryAncestry, compendium: 'ancestries' };
+        for (const ancestryKey of ['primaryAncestry', 'secondaryAncestry']) {
+            context[ancestryKey] = {
+                ...this.setup[ancestryKey],
+                compendium: 'ancestries',
+                primaryFeature: await fromUuid(this.setup[ancestryKey]?.system?.primaryFeature),    
+                secondaryFeature: await fromUuid(this.setup[ancestryKey]?.system?.secondaryFeature)
+            };
+        }
         context.community = { ...this.setup.community, compendium: 'communities' };
         context.class = { ...this.setup.class, compendium: 'classes' };
         context.subclass = { ...this.setup.subclass, compendium: 'subclasses' };
@@ -390,13 +396,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     async getEquipmentSuggestions(choiceA, choiceB) {
         if (!this.setup.class.uuid) return { inventory: { take: [] } };
 
-        const { inventory, characterGuide } = this.setup.class.system;
+        const characterGuide = await this.setup.class?.system?.fetchSuggestedGear();
+        const inventory = await this.setup.class?.system?.fetchInventoryChoices();
+
         return {
-            armor: characterGuide.suggestedArmor ?? null,
-            primaryWeapon: characterGuide.suggestedPrimaryWeapon ?? null,
-            secondaryWeapon: characterGuide.suggestedSecondaryWeapon
-                ? { ...characterGuide.suggestedSecondaryWeapon, uuid: characterGuide.suggestedSecondaryWeapon.uuid }
-                : null,
+            armor: characterGuide.armor ?? null,
+            primaryWeapon: characterGuide.primary ?? null,
+            secondaryWeapon: characterGuide.secondary ?? null,
             inventory: {
                 take: inventory.take?.filter(x => x) ?? [],
                 choiceA:
@@ -516,24 +522,27 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             system: {
                 ...this.setup.primaryAncestry.system,
                 features: [
-                    { type: 'primary', item: primaryAncestryFeature.uuid },
-                    { type: 'secondary', item: secondaryAncestryFeature.uuid }
+                    { type: 'primary', item: primaryAncestryFeature },
+                    { type: 'secondary', item: secondaryAncestryFeature }
                 ]
             }
         };
 
         // Inner function to create the base item data
-        async function createEmbeddedItemData(baseData) {
-            const uuid = baseData.uuid ?? baseData._uuid
-            const data = baseData instanceof Item ? baseData : await foundry.utils.fromUuid(baseData.uuid) ?? baseData;
+        async function createEmbeddedItemData(baseDataOrString) {
+            const uuid = typeof baseDataOrString === 'string' ? baseDataOrString : baseDataOrString.uuid ?? baseDataOrString._uuid;
+            const baseData = typeof baseDataOrString === 'string' ? null : baseDataOrString;
+            const data = baseData instanceof Item 
+                ? baseData
+                : await foundry.utils.fromUuid(uuid) ?? baseData ?? null;
             const compendiumSource = uuid.startsWith('Compendium.') ? uuid : baseData._stats?.compendiumSource ?? null;
             return {
-                ...baseData,
+                ...(baseData ?? data),
                 id: data.id,
                 uuid: uuid,
                 _uuid: uuid,
                 effects: data.effects?.map(effect => effect.toObject()),
-                flags: baseData.flags ?? data.flags,
+                flags: baseData?.flags ?? data.flags,
                 _stats: {
                     ...data._stats,
                     compendiumSource,
@@ -565,8 +574,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceA));
         if (this.equipment.inventory.choiceB.uuid)
             newItems.push(await createEmbeddedItemData(this.equipment.inventory.choiceB));
-        for (const item of this.setup.class.system.inventory.take.filter(x => x)) {
-            newItems.push(await createEmbeddedItemData(item));
+        for (const uuid of this.setup.class.system.inventory.take.filter(Boolean)) {
+            newItems.push(await createEmbeddedItemData(uuid));
         }
 
         await this.character.createEmbeddedDocuments('Item', newItems);
