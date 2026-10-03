@@ -1,5 +1,9 @@
+import { fromUuids } from '../../../helpers/utils.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 
+/** @import DHSubclass from '../../../data/item/subclass.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHSubclass>>} */
 export default class SubclassSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -38,12 +42,16 @@ export default class SubclassSheet extends DHBaseItemSheet {
 
     /**@inheritdoc */
     get relatedDocs() {
-        return this.document.system.features.map(x => x.item);
+        return this.document.system.features.map(x => fromUuidSync(x.item, { strict: false }));
     }
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        context.features = Object.groupBy(this.item.system.features, f => f.type);
+        context.features = {
+            foundation: await fromUuids(this.document.system.foundationFeatures),
+            specialization: await fromUuids(await this.document.system.specializationFeatures),
+            mastery: await fromUuids(await this.document.system.masteryFeatures)
+        };
         if (this.document.system.linkedClass) {
             const classData = await fromUuid(this.document.system.linkedClass);
             context.class = classData ?? {

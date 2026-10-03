@@ -1,6 +1,5 @@
 import BaseDataItem from './base.mjs';
 import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DHTransformation extends BaseDataItem {
     static embedTemplate = 'systems/daggerheart/templates/components/card/transformation.hbs';
@@ -19,7 +18,7 @@ export default class DHTransformation extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            features: new fields.ArrayField(new fields.DocumentUUIDField({ required: true, nullable: false })),
             questions: new fields.HTMLField(),
             /** An id or path to the journal page that has the full description for this ancestry */
             loreReference: new fields.StringField({ required: true, blank: false, nullable: true })

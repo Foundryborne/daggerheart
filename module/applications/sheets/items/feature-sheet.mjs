@@ -1,5 +1,8 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
+/** @import { DHFeature } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHFeature>>} */
 export default class FeatureSheet extends DHBaseItemSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {

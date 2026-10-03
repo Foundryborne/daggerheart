@@ -1,6 +1,9 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 import Tagify from '@yaireo/tagify';
 
+/** @import { DHBeastform } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHBeastform>>} */
 export default class BeastformSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -33,7 +36,7 @@ export default class BeastformSheet extends DHBaseItemSheet {
 
     /**@inheritdoc */
     get relatedDocs() {
-        return this.document.system.features;
+        return this.document.system.features.map(x => fromUuidSync(x, { strict: false }));
     }
 
     _attachPartListeners(partId, htmlElement, options) {
