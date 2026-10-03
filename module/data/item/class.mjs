@@ -1,6 +1,4 @@
 import BaseDataItem from './base.mjs';
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import { addLinkedItemsDiff, fromUuids, getFeaturesHTMLData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { DhLevelOption } from '../levelTier.mjs';
@@ -19,10 +17,11 @@ export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
+        const createItemUuidArray = () => new fields.ArrayField(new fields.DocumentUUIDField({ nullable: false, type: 'Item' }));
         return {
             ...super.defineSchema(),
             domains: new fields.ArrayField(new fields.StringField()),
-            classItems: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
+            classItems: createItemUuidArray(),
             hitPoints: new fields.NumberField({
                 required: true,
                 integer: true,
@@ -33,9 +32,9 @@ export default class DHClass extends BaseDataItem {
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             features: new ItemLinkFields(),
             inventory: new fields.SchemaField({
-                take: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
-                choiceA: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
-                choiceB: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false })
+                take: createItemUuidArray(),
+                choiceA: createItemUuidArray(),
+                choiceB: createItemUuidArray()
             }),
             characterGuide: new fields.SchemaField({
                 suggestedTraits: new fields.SchemaField({
@@ -46,9 +45,9 @@ export default class DHClass extends BaseDataItem {
                     presence: new fields.NumberField({ initial: 0, integer: true }),
                     knowledge: new fields.NumberField({ initial: 0, integer: true })
                 }),
-                suggestedPrimaryWeapon: new ForeignDocumentUUIDField({ type: 'Item' }),
-                suggestedSecondaryWeapon: new ForeignDocumentUUIDField({ type: 'Item' }),
-                suggestedArmor: new ForeignDocumentUUIDField({ type: 'Item' })
+                suggestedPrimaryWeapon: new fields.DocumentUUIDField({ type: 'Item' }),
+                suggestedSecondaryWeapon: new fields.DocumentUUIDField({ type: 'Item' }),
+                suggestedArmor: new fields.DocumentUUIDField({ type: 'Item' })
             }),
             backgroundQuestions: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
             connections: new fields.ArrayField(new fields.StringField(), { initial: ['', '', ''] }),
@@ -69,12 +68,31 @@ export default class DHClass extends BaseDataItem {
 
     /* -------------------------------------------- */
 
+    /** @returns {string[]} */
     get hopeFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.hope).map(x => x.item);
     }
 
+    /** @returns {string[]} */
     get classFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.class).map(x => x.item);
+    }
+
+    async fetchSuggestedGear() {
+        const data = this.characterGuide;
+        return {
+            primary: await fromUuid(data.suggestedPrimaryWeapon),
+            secondary: await fromUuid(data.suggestedSecondaryWeapon),
+            armor: await fromUuid(data.suggestedArmor)
+        }
+    }
+
+    async fetchInventoryChoices() {
+        return {
+            take: await fromUuids(this.inventory.take),
+            choiceA: await fromUuids(this.inventory.choiceA),
+            choiceB: await fromUuids(this.inventory.choiceB)
+        }
     }
 
     async fetchSubclasses() {
@@ -220,19 +238,11 @@ export default class DHClass extends BaseDataItem {
         }
 
         const classItems = [];
-        for (const itemData of this.inventory.choiceB) {
-            const linkData = [
-                undefined,
-                'UUID', // type
-                itemData.uuid // target
-            ];
+        for (const uuid of this.inventory.choiceB) {
+            const linkData = [undefined, 'UUID', uuid];
             const contentLink = await foundry.applications.ux.TextEditor.implementation._createContentLink(linkData);
             classItems.push(contentLink.outerHTML);
         }
-
-        // Preload all class features for acquisition from the cache
-        // todo: make feature acquisition async and replace feature helpers for methods
-        await fromUuids(this._source.features.map(f => f.item));
 
         const hopeFeatures = await getFeaturesHTMLData(this.hopeFeatures);
         const classFeatures = await getFeaturesHTMLData(this.classFeatures);

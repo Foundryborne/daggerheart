@@ -10,7 +10,7 @@ export default class RegisterHandlebarsHelpers {
             empty: this.empty,
             formulaValue: this.formulaValue,
             getProperty: foundry.utils.getProperty,
-            hasProperty: foundry.utils.hasProperty,
+            hasProperty: this.hasProperty,
             includes: this.includes,
             isNullish: this.isNullish,
             pluralize: this.pluralize,
@@ -95,5 +95,13 @@ export default class RegisterHandlebarsHelpers {
 
     static isNullish(a) {
         return a === null || a === undefined;
+    }
+
+    static hasProperty(...args) {
+        try {
+            return foundry.utils.hasProperty(...args);
+        } catch {
+            return false;
+        }
     }
 }

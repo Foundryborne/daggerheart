@@ -32,11 +32,9 @@
         {{/if}}
     </fieldset>
 
-
     {{> rankFeatures type="foundation" label=(localize "DAGGERHEART.GENERAL.Tabs.foundation") features=features.foundation}}
     {{> rankFeatures type="specialization" label=(localize "DAGGERHEART.GENERAL.Tabs.specialization") features=features.specialization}}
     {{> rankFeatures type="mastery" label=(localize "DAGGERHEART.GENERAL.Tabs.mastery") features=features.mastery}}
-
 </section>
 
 {{#*inline "rankFeatures"}}
@@ -48,7 +46,7 @@
 
         <div class="feature-list">
             {{#each features as | feature |}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type=type uuid=feature.uuid feature=feature.item}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type=type uuid=feature.uuid feature=feature}}
             {{else}}
                 <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
             {{/each}}
