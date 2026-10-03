@@ -246,25 +246,10 @@ export default class DualityRoll extends D20Roll {
         let updates = [];
         if (!actor) return;
 
-        if (config.rerolledRoll) {
-            if (config.roll.result.duality != config.rerolledRoll.result.duality) {
-                const hope =
-                    (config.roll.isCritical || config.roll.evaluated?.withHope ? 1 : 0) -
-                    (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1 ? 1 : 0);
-                const stress = (config.roll.isCritical ? 1 : 0) - (config.rerolledRoll.isCritical ? 1 : 0);
-                const fear =
-                    (config.roll.evaluated?.withFear ? 1 : 0) - (config.rerolledRoll.result.duality === -1 ? 1 : 0);
-
-                if (hope !== 0) updates.push({ key: 'hope', value: hope, enabled: true });
-                if (stress !== 0) updates.push({ key: 'stress', value: -1 * stress, enabled: true });
-                if (fear !== 0) updates.push({ key: 'fear', value: fear, enabled: true });
-            }
-        } else {
-            if (config.roll.isCritical || config.roll.evaluated?.withHope)
-                updates.push({ key: 'hope', value: 1, enabled: true });
-            if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
-            if (config.roll.evaluated?.withFear) updates.push({ key: 'fear', value: 1, enabled: true });
-        }
+        if (config.roll.isCritical || config.roll.evaluated?.withHope)
+            updates.push({ key: 'hope', value: 1, enabled: true });
+        if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
+        if (config.roll.evaluated?.withFear) updates.push({ key: 'fear', value: 1, enabled: true });
 
         if (updates.length) {
             // const target = actor.system.partner ?? actor;
