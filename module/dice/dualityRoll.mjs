@@ -221,7 +221,7 @@ export default class DualityRoll extends D20Roll {
         );
         if (dualityUpdates?.length) updates.push(...dualityUpdates);
 
-        if (config.roll.evaluated?.withFear && config.actionType === 'action') {
+        if (config.evaluated?.withFear && config.actionType === 'action') {
             const fearUpdates = await game.system.registeredTriggers.runTrigger(
                 CONFIG.DH.TRIGGER.triggers.fearRoll.id,
                 roll.data?.parent,
@@ -246,10 +246,10 @@ export default class DualityRoll extends D20Roll {
         let updates = [];
         if (!actor) return;
 
-        if (config.roll.isCritical || config.roll.evaluated?.withHope)
+        if (config.roll.isCritical || config.evaluated?.withHope)
             updates.push({ key: 'hope', value: 1, enabled: true });
         if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
-        if (config.roll.evaluated?.withFear) updates.push({ key: 'fear', value: 1, enabled: true });
+        if (config.evaluated?.withFear) updates.push({ key: 'fear', value: 1, enabled: true });
 
         if (updates.length) {
             // const target = actor.system.partner ?? actor;
@@ -264,7 +264,7 @@ export default class DualityRoll extends D20Roll {
         if (countdownAutomation && config.actionType !== 'reaction' && !config.skips?.updateCountdowns) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
 
-            if (config.roll.evaluated?.withFear) {
+            if (config.evaluated?.withFear) {
                 await updateCountdowns(
                     CONFIG.DH.GENERAL.countdownProgressionTypes.actionRoll.id,
                     CONFIG.DH.GENERAL.countdownProgressionTypes.fear.id
