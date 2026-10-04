@@ -1,3 +1,4 @@
+import { RollConfig } from '../dice/_module.mjs';
 import { createHtmlElement, getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export function DhFateRollEnricher(match, _options) {
@@ -64,7 +65,7 @@ export const renderFateButton = async event => {
 };
 
 export const enrichedFateRoll = async ({ target, title, label, fateType }, event) => {
-    const config = {
+    const config = await RollConfig.build({
         event: event ?? {},
         title: title,
         headerTitle: label,
@@ -72,7 +73,7 @@ export const enrichedFateRoll = async ({ target, title, label, fateType }, event
         hasRoll: true,
         fateType: fateType,
         skips: { reaction: true }
-    };
+    }, { rollClass: 'FateRoll' });
 
     config.data = { experiences: {}, traits: {}, fateType: fateType };
     config.source = { actor: target?.uuid };

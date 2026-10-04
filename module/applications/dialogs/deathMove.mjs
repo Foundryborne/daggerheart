@@ -91,7 +91,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
             customConfig: { skips: { resources: true, reaction: true } }
         });
 
-        if (!config.roll.result) return;
+        if (!config.evaluated.result) return;
         if (!useAutomation) return '';
 
         const clearAllStressAndHitpointsUpdates = [
