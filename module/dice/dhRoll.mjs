@@ -8,7 +8,6 @@ export default class DHRoll extends BaseRoll {
         // @todo: this method receives config objects, which are not that serializable. This is the main case of issues in bonusEffects.
         // Find out where this is handled for rerolls, and consider perhaps creating a new RollConfig here and making it explicit
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
-        options.bonusEffects = this.bonusEffectBuilder();
 
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
@@ -332,46 +331,16 @@ export default class DHRoll extends BaseRoll {
         return modifierTotal;
     }
 
+    /** @param {RollConfig} config */
     static temporaryModifierBuilder(config) {
         return {};
     }
 
-    bonusEffectBuilder() {
-        const changeKeys = this.getActionChangeKeys();
-        return (
-            // todo: improve safety. When used improperly, effects is a list of data, not active effects
-            // it can be worked around provisionarily by using getActionRelevantEffects()
-            this.options.effects?.reduce((acc, effect) => {
-                const item = this.options.data.parent?.items?.get?.(this.options.source.item) ?? null;
-                const actions = item ? [
-                    ...item.system.actions,
-                    ...(item.system.attack?.id === this.options.source.action ? [item.system.attack] : [])
-                ] : [];
-                const action = actions.find(x => x.id === this.options.source.action);
-
-                const isConditionalBlocked = action &&
-                    (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.test(action.getRollData()));
-                // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
-                if (
-                    !isConditionalBlocked && 
-                    (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
-                ) {
-                    acc[effect.id] = {
-                        id: effect.id,
-                        name: effect.name,
-                        description: effect.description,
-                        changes: effect.system.changes,
-                        origEffect: effect,
-                        selected: !effect.disabled
-                    };
-                }
-
-                return acc;
-            }, {}) ?? []
-        );
-    }
-
-    getActionChangeKeys() {
+    /** 
+     * Returns the change keys associated with this roll class.
+     * @returns {string[]} 
+     */
+    static getActionChangeKeys() {
         return [];
     }
 }

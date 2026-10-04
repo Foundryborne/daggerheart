@@ -7,12 +7,13 @@ import D20Roll from './d20Roll.mjs';
 export class RollConfig {
     /**
      * 
-     * @param {object} data RollConfig data or creation data for one 
+     * @param {Partial<import('./_types').RollConfigParams>} data RollConfig data or creation data for one 
      * @param {object} options  Resolved document types for overrides. 
      *                          Mostly used to pass the event without mutation or in build() after parsing the source data. 
      * @param {Event} [options.event]
      * @param {DhActor} [options.actor]
      * @param {DhItem} [options.item]
+     * @param {DHBaseAction} [options.action]
      */
     constructor(data = {}, { actor, item, action, event } = {}) {
         // Store documents and resolve missing ones
@@ -20,13 +21,17 @@ export class RollConfig {
         this.item = item ??= data.item ?? data.action?.item;
         this.action = action ??= data.action;
         this.event ??= data.event;
-        const damage = action?.damage;
 
         // Passthrough certain props. This allows RollConfigs to be recreated
+        this.title = data.title ?? _loc(action?.name);
+        this.headerTitle = data.headerTitle;
+        this.actionType = data.actionType ?? action?.actionType ?? 'action';
+        
         this.selectedMessageMode = data.selectedMessageMode ?? game.settings.get('core', 'messageMode');
         this.tierLimit = data.tierLimit;
         this.modifications = data.modifications;
         this.costs = data.costs ?? [];
+        this.targets = data.targets ?? [];
         this.countdowns = data.countdowns;
         this.skips = foundry.utils.mergeObject({
             resources: false,
@@ -38,9 +43,6 @@ export class RollConfig {
         this.damageOptions = data.damageOptions ?? {};
         
         // Initialize props based on the documents and action
-        this.title = data.title ?? _loc(action?.name);
-        this.headerTitle = data.headerTitle;
-        this.actionType = data.actionType ?? action?.actionType ?? 'action';
         this.onSave = action?.save.damageMod;
         this.hasDamage = Boolean(action?.hasDamage);
         this.hasEffect = Boolean(action?.hasEffect);
@@ -56,16 +58,21 @@ export class RollConfig {
         this.dialog = {}; // updated when keybindings are applied
 
         // Create roll data. This should probably not be done here, but the codebase expects if
-        // TODO: Convert it to config.getRollData() that must be called explicitly
-        this.data = action?.getRollData() ?? item?.getRollData() ?? actor?.getRollData() ?? {};
-        this.data.experiences ??= {};
-        this.data.traits ??= {};
-        this.data.rules ??= {};
-        this.data.action ??= {
-            actionType: this.actionType, 
-            roll: this.roll
+        // Roll construction will often refer to data props, and expects it to exist even on deserialization
+        // Moving more of the roll construction stuff to here may help convert this
+        // For now we keep this data minimal to not bloat roll objects
+        const baseData = this.action?.getRollData() ?? this.item?.getRollData() ?? this.actor?.getRollData() ?? {};
+        this.data = {
+            experiences: baseData.experiences ?? {},
+            traits: baseData.traits ?? {},
+            rules: baseData.rules ?? {},
+            action: baseData.action ?? {
+                actionType: this.actionType, 
+                roll: this.roll
+            }
         };
 
+        const damage = action?.damage;
         if (actor && damage) {
             this.isDirect = damage.main?.direct;
             const groupAttackTokens = damage.main?.groupAttack
@@ -108,8 +115,28 @@ export class RollConfig {
 
         this.applyKeybindings();
 
-        // todo: determine if "configure" should occur here or be a separate step.
-        // "configure" is the show roll dialog step, handled by buildConfigure().
+        const changeKeys = this.rollClass.getActionChangeKeys();
+        this.bonusEffects = this.effects?.reduce((acc, effect) => {
+            const action = this.action;
+            const isConditionalBlocked = action &&
+                (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.test(action.getRollData()));
+            // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+            if (
+                !isConditionalBlocked && 
+                effect.system.changes?.some(x => changeKeys.some(key => x.key?.includes(key)))
+            ) {
+                acc[effect.id] = {
+                    id: effect.id,
+                    name: effect.name,
+                    description: effect.description,
+                    changes: effect.system.changes,
+                    origEffect: effect,
+                    selected: !effect.disabled
+                };
+            }
+
+            return acc;
+        }, {}) ?? [];
     }
 
     /** 
@@ -173,7 +200,8 @@ export class RollConfig {
 
     toJSON() {
         // RollConfig is pasted to roll.options. We don't want certain properties to get serialized in the roll
-        return omit(this, ['actor', 'item', 'action', 'event', 'data', 'evaluated']);
+        // We can't omit "data" yet until we reduce reliance on it
+        return omit(this, ['actor', 'item', 'action', 'effects', 'event', 'evaluated']);
     }
 }
 

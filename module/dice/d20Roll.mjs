@@ -117,9 +117,9 @@ export default class D20Roll extends DHRoll {
         return modifiers;
     }
 
-    getActionChangeKeys() {
-        const changeKeys = new Set(['system.bonuses.roll']);
-        return changeKeys;
+    /** @inheritdoc */
+    static getActionChangeKeys() {
+        return ['system.bonuses.roll'];
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {
