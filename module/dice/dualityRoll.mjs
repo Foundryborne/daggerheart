@@ -246,9 +246,9 @@ export default class DualityRoll extends D20Roll {
         let updates = [];
         if (!actor) return;
 
-        if (config.roll.isCritical || config.evaluated?.withHope)
+        if (config.evaluated?.isCritical || config.evaluated?.withHope)
             updates.push({ key: 'hope', value: 1, enabled: true });
-        if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
+        if (config.evaluated?.isCritical) updates.push({ key: 'stress', value: -1, enabled: true });
         if (config.evaluated?.withFear) updates.push({ key: 'fear', value: 1, enabled: true });
 
         if (updates.length) {

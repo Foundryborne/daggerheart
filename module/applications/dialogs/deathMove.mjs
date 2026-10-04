@@ -100,7 +100,7 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
         ];
 
         let chatMessage = '';
-        if (config.roll.isCritical) {
+        if (config.evaluated?.isCritical) {
             config.resourceUpdates.addResources(clearAllStressAndHitpointsUpdates);
             chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllCritical');
         }
