@@ -197,7 +197,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             const type = item.system.secondary ? 'secondary' : 'primary';
             tags.unshift(_loc(`DAGGERHEART.ITEMS.Weapon.${type}Weapon.full`));
         }
-        if (item instanceof Item && item.system.metadata.isQuantifiable) {
+        if (item instanceof Item && item.metadata.isQuantifiable) {
             tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`)
         }
         if (item instanceof game.system.api.models.actions.actionsTypes.base) {
