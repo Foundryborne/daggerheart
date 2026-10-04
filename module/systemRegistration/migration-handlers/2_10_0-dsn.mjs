@@ -29,7 +29,7 @@ export class Migration_2_10_0_DSN extends MigrationHandlerBase {
                     diceType: triggerName,
                     mode: 'basic',
                     onResult: [key],
-                    options: { isGlobal: overrideEnabled, muteSound: Boolean(animation.options.muteSound) },
+                    options: { isGlobal: overrideEnabled, muteSound: Boolean(animation.options?.muteSound) },
                     specialEffect: effect    
                 });
             }
