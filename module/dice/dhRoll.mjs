@@ -4,9 +4,15 @@ import BaseRoll from './baseRoll.mjs';
 
 export default class DHRoll extends BaseRoll {
     baseTerms = [];
+
+    /**
+     * Creates a new Daggerheart roll
+     * @param {string} formula 
+     * @param {object} data 
+     * @param {RollConfig | import('./_types').RollConfigParams} options 
+     */
     constructor(formula, data = {}, options = {}) {
-        // @todo: this method receives config objects, which are not that serializable. This is the main case of issues in bonusEffects.
-        // Find out where this is handled for rerolls, and consider perhaps creating a new RollConfig here and making it explicit
+        // @todo: Consider constructing a RollConfig here if its a plain object to guarantee certain properties
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
 
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
