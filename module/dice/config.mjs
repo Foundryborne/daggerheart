@@ -15,7 +15,7 @@ export class RollConfig {
      * @param {DhItem} [options.item]
      * @param {DHBaseAction} [options.action]
      */
-    constructor(data = {}, { actor, item, action, event } = {}) {
+    constructor(data = {}, { actor, item, action, rollClass } = {}) {
         // Store documents and resolve missing ones
         this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor;
         this.item = item ??= data.item ?? data.action?.item;
@@ -51,6 +51,8 @@ export class RollConfig {
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
         this.roll = data.roll ?? {};
+        this.rollClass = this.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : 
+            (rollClass ? CONFIG.Dice.daggerheart[rollClass] : this.actor?.rollClass);
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
         
@@ -95,10 +97,6 @@ export class RollConfig {
             action: action?.id,
             originItem: action?.originItem
         };
-    }
-
-    get rollClass() {
-        return this.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : this.actor?.rollClass;
     }
 
     async initialize() {

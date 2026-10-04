@@ -107,7 +107,7 @@ export const enrichedDualityRoll = async (
             triggers: !shouldGrantResources
         },
         ...(customConfig ?? {})
-    });
+    }, { rollClass: 'DualityRoll' });
 
     if (target) {
         const result = await target.diceRoll(config);
