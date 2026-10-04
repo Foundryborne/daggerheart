@@ -107,17 +107,17 @@ export default class DhDeathMove extends HandlebarsApplicationMixin(ApplicationV
 
         if (config.evaluated?.withHope) {
             if (
-                config.roll.hope.value >=
+                config.evaluated.dHope.total >=
                 this.actor.system.resources.hitPoints.value + this.actor.system.resources.stress.value
             ) {
                 config.resourceUpdates.addResources(clearAllStressAndHitpointsUpdates);
                 chatMessage = game.i18n.localize('DAGGERHEART.UI.Chat.deathMove.riskItAllSuccessWithEnoughHope');
             } else {
                 chatMessage = game.i18n.format('DAGGERHEART.UI.Chat.deathMove.riskItAllSuccess', {
-                    hope: config.roll.hope.value
+                    hope: config.evaluated.dHope.total
                 });
                 this.showRiskItAllButton = true;
-                this.riskItAllHope = config.roll.hope.value;
+                this.riskItAllHope = config.evaluated.dHope.total;
                 this.riskItAllButtonLabel = game.i18n.format('DAGGERHEART.UI.Chat.deathMove.riskItAllDialogButton');
             }
         }
