@@ -1,11 +1,10 @@
 import * as dice from './_module.mjs';
 
 /**
- * Data used to build rolls such as duality rolls. The definition is incomplete and likely incorrect.
- * Objects will often accept a Partial<RollConfig> and spit out a non-partial. Those that are not guaranteed should be marked optional.
+ * Data used to build a RollConfig object such as duality rolls.
+ * @see RollConfig
  */
 interface RollConfigParams {
-    // unverified, check which ones are used and optional/not optional
     event: Event;
     actor: DhActor;
     item: DhItem;
