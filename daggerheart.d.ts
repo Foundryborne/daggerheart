@@ -1,5 +1,4 @@
 import '@common/global.mjs';
-import { ResourceUpdateMap } from './module/data/action/baseAction.mjs';
 
 import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
@@ -31,6 +30,7 @@ import Game from '@client/game.mjs';
 import Localization from '@client/helpers/localization.mjs';
 import * as globalUI from '@client/ui.mjs';
 import DhTokenLayer from './module/canvas/tokens.mjs';
+import DHBaseAction from './module/data/action/baseAction.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
@@ -41,8 +41,10 @@ declare global {
     type DhItem<T extends BaseDataItem = BaseDataItem> = InstanceType<typeof documents.DhItem<T>>;
     type DhActor<T extends BaseDataActor = BaseDataActor> = InstanceType<typeof documents.DhActor<T>>;
     type DhActiveEffect = InstanceType<typeof documents.DhActiveEffect>;
+    type DHBaseAction = InstanceType<typeof DHBaseAction>;
     type DhScene = InstanceType<typeof documents.DhScene>;
     type DhTokenDocument = InstanceType<typeof documents.DhTokenDocument>;
+    type RollConfig = dice.RollConfig;
     
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.
@@ -75,45 +77,6 @@ declare global {
     /** @deprecated */
     const TextEditor: foundry.applications.ux.TextEditor;
     const Roll: dice.BaseRoll;
-
-    /**
-     * Data used to build rolls such as duality rolls. The definition is incomplete and likely incorrect.
-     * Objects will often accept a Partial<RollConfig> and spit out a non-partial. Those that are not guaranteed should be marked optional.
-     */
-    interface RollConfig {
-        // unverified, check which ones are used and optional/not optional
-        event: Event;
-        title: string;
-        roll: {
-            modifier: number;
-            simple: boolean;
-            type: string;
-            difficulty: number;
-        };
-        hasDamage: boolean;
-        hasEffect: boolean;
-        hasRoll: boolean;
-        chatMessage: {
-            template: string;
-            mute: boolean;
-        };
-        targets: object;
-        costs: object;
-
-        // verified
-        source?: {
-            /** uuid of the actor this roll is coming from */
-            actor: string;
-        };
-        /** Roll data associated with the actor or item */
-        data: object;
-        resourceUpdates: ResourceUpdateMap;
-        hooks: string[];
-        dialog: {
-            configure: boolean;
-        };
-        damageOptions: object;
-    }
 }
 
 // A copy of foundry/client/global.d.mts with dheart specific overrides

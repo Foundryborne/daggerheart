@@ -229,11 +229,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 onClick: async (event, target) => {
                     const doc = await getDocFromElement(target),
                         action = doc?.system?.attack ?? doc;
-                    const config = action.prepareConfig(event);
-                    config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                        doc.getRollData(),
-                        this.document
-                    );
+                    const config = await action.prepareConfig(event);
                     config.hasRoll = false;
                     return action && action.workflow.get('damage').execute(config, null, true);
                 }

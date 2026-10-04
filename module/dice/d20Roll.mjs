@@ -51,33 +51,6 @@ export default class D20Roll extends DHRoll {
         return adv === this.constructor.ADV_MODE.DISADVANTAGE;
     }
 
-    static applyKeybindings(config) {
-        let keys = {
-            normal: false,
-            advantage: false,
-            disadvantage: false
-        };
-
-        if (config.event) {
-            keys = {
-                normal: config.event.shiftKey || config.event.altKey || config.event.ctrlKey,
-                advantage: config.event.altKey,
-                disadvantage: config.event.ctrlKey
-            };
-        }
-
-        // Should the roll configuration dialog be displayed?
-        config.dialog.configure ??= !Object.values(keys).some(k => k);
-
-        // Determine advantage mode
-        const advantage = config.roll.advantage === this.ADV_MODE.ADVANTAGE || keys.advantage || config.advantage;
-        const disadvantage =
-            config.roll.advantage === this.ADV_MODE.DISADVANTAGE || keys.disadvantage || config.disadvantage;
-        if (advantage && !disadvantage) config.roll.advantage = this.ADV_MODE.ADVANTAGE;
-        else if (!advantage && disadvantage) config.roll.advantage = this.ADV_MODE.DISADVANTAGE;
-        else config.roll.advantage = this.ADV_MODE.NORMAL;
-    }
-
     constructFormula(config) {
         this.createBaseDice();
         this.configureModifiers();
@@ -144,17 +117,15 @@ export default class D20Roll extends DHRoll {
         return modifiers;
     }
 
-    getActionChangeKeys() {
-        const changeKeys = new Set(['system.bonuses.roll']);
-        return changeKeys;
+    /** @inheritdoc */
+    static getActionChangeKeys() {
+        return ['system.bonuses.roll'];
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
 
         const data = config.roll;
-        data.type = config.actionType;
-        data.difficulty = config.roll.difficulty;
         if (config.targets?.length) {
             config.targets.forEach(target => {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
@@ -163,31 +134,6 @@ export default class D20Roll extends DHRoll {
             data.success = config.targets.some(target => target.hit);
         } else if (config.roll.difficulty) data.success = roll.isCritical || roll.total >= config.roll.difficulty;
         config.successConsumed = data.success;
-
-        data.advantage = {
-            type: config.roll.advantage,
-            dice: roll.dAdvantage?.denomination,
-            value: roll.dAdvantage?.total
-        };
-        data.dice = data.dice.map(dice => ({
-            ...dice,
-            results: dice.results.filter(x => !x.rerolled),
-            rerolled: {
-                any: dice.results.some(x => x.rerolled),
-                rerolls: dice.results.filter(x => x.rerolled)
-            }
-        }));
-        data.isCritical = roll.isCritical;
-        data.extra = roll.dice
-            .filter(d => !roll.baseTerms.includes(d))
-            .map(d => {
-                return {
-                    dice: d.denomination,
-                    value: d.total,
-                    results: d.results
-                };
-            });
-        data.modifierTotal = roll.modifierTotal;
     }
 
     resetFormula() {
