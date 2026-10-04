@@ -19,6 +19,7 @@ interface RollConfigParams {
     targets: unknown[];
     countdowns: unknown;
     hasRoll: boolean;
+    rollType?: keyof typeof CONFIG.Dice.daggerheart;
     roll: {
         lite?: boolean;
         type?: string;

@@ -15,7 +15,7 @@ export class RollConfig {
      * @param {DhItem} [options.item]
      * @param {DHBaseAction} [options.action]
      */
-    constructor(data = {}, { actor, item, action, rollClass } = {}) {
+    constructor(data = {}, { actor, item, action } = {}) {
         // Store documents and resolve missing ones
         this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor;
         this.item = item ??= data.item ?? data.action?.item;
@@ -51,8 +51,7 @@ export class RollConfig {
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
         this.roll = data.roll ?? {};
-        this.rollClass = this.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : 
-            (rollClass ? CONFIG.Dice.daggerheart[rollClass] : this.actor?.rollClass);
+        this.rollType = data.rollType ?? null;
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
         
@@ -99,7 +98,20 @@ export class RollConfig {
         };
     }
 
+    /**
+     * @returns {typeof CONFIG.Dice.daggerheart[keyof typeof CONFIG.Dice.daggerheart]}
+     */
+    get rollClass() {
+        return CONFIG.Dice.daggerheart[this.rollType] ?? CONFIG.Dice.daggerheart['DHRoll'];
+    }
+
     async initialize() {
+        this.rollType = this.roll.lite
+            ? 'DHRoll'
+            : this.fateType
+                ? 'FateRoll'
+                : this.actor?.rollClass?.name ?? (this.roll.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+
         this.effects = await this.getActionRelevantEffects();
 
         this.guaranteedCritical = this.data?.parent?.appliedEffects.reduce((a, c) => {

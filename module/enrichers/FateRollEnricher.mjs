@@ -73,7 +73,7 @@ export const enrichedFateRoll = async ({ target, title, label, fateType }, event
         hasRoll: true,
         fateType: fateType,
         skips: { reaction: true }
-    }, { rollClass: 'FateRoll' });
+    });
 
     config.data = { experiences: {}, traits: {}, fateType: fateType };
     config.source = { actor: target?.uuid };
