@@ -133,6 +133,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return this.hasEffect && !this.action?.evolution;
     }
 
+    /** Returns a RollConfig object for the roll contained in this message */
     async getConfig({ event } = {}) {
         const action = this.action;
         const config = await RollConfig.build({
@@ -141,14 +142,11 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             actor: this.actor,
             item: this.item,
             action,
-            // @todo: remove result from here and 
             roll: this.roll?.options.roll ?? {
                 type: action?.actionType ?? 'action'
             },
             evaluated: this.roll
         });
-
-        console.log(config);
 
         return config;
     }
