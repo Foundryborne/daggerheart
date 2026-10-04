@@ -189,9 +189,9 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
-    getActionChangeKeys() {
-        const changeKeys = new Set(['system.bonuses.roll']);
-        return changeKeys;
+    /** @inheritdoc */
+    static getActionChangeKeys() {
+        return ['system.bonuses.roll'];
     }
 
     /** @inheritdoc */
