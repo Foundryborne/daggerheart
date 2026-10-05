@@ -64,7 +64,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.rollConfig = this.config;
-        context.hasRoll = !!this.config.roll;
+        context.hasRoll = !!this.config.hasRoll;
         context.canRoll = true;
         context.selectedMessageMode = this.config.selectedMessageMode ?? game.settings.get('core', 'messageMode');
         context.rollModes = Object.entries(CONFIG.ChatMessage.modes).map(([action, { label, icon }]) => ({
