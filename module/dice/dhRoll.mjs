@@ -51,7 +51,7 @@ export default class DHRoll extends BaseRoll {
     }
 
     static createRollInstance(config) {
-        return new this(config.roll.formula, config.data, config);
+        return new this(config.roll.formula, config.getRollData?.(), config);
     }
 
     /** 
@@ -120,13 +120,13 @@ export default class DHRoll extends BaseRoll {
      */
     static async toMessage(roll, config) {
         config = await RollConfig.build(config);
-        const { item, action } = config;
+        const { actor, item, action } = config;
         let actionDescription = null;
         if (action?.chatDisplay) {
             actionDescription = action
                 ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(action.description, {
                     relativeTo: config.actor,
-                    rollData: config.getRollData()
+                    rollData: config.getRollData() // should this use roll.data instead?
                 })
                 : null;
         }
@@ -143,7 +143,7 @@ export default class DHRoll extends BaseRoll {
             type: this.messageType,
             user: game.user.id,
             title: roll.title,
-            speaker: cls.getSpeaker({ actor: roll.data?.parent }),
+            speaker: cls.getSpeaker({ actor }),
             sound: config.mute ? null : CONFIG.sounds.dice,
             system: { 
                 ...foundry.utils.deepClone(config), 
