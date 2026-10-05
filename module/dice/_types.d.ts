@@ -44,4 +44,6 @@ interface RollConfigParams {
         originItem: string;
     };
     evaluated: dice.DHRoll;
+    /** If set, skips creation of dedicated toChat messages of used actions due to it having already been created */
+    actionChatMessageHandled: false;
 }

@@ -1,5 +1,5 @@
 import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
-import { omit } from '../helpers/functional.mjs';
+import { omit, pick } from '../helpers/functional.mjs';
 import D20Roll from './d20Roll.mjs';
 
 /** @import DHBaseAction from '../data/action/baseAction.mjs'; */
@@ -41,16 +41,17 @@ export class RollConfig {
             reaction: false
         }, data.skips ?? {});
         this.damageOptions = data.damageOptions ?? {};
+        this.actionChatMessageHandled = data.actionChatMessageHandled ?? false;
         
         // Initialize props based on the documents and action
-        this.onSave = action?.save.damageMod;
+        this.onSave = action?.save?.damageMod;
         this.hasDamage = Boolean(action?.hasDamage);
         this.hasEffect = Boolean(action?.hasEffect);
         this.hasRoll = Boolean(action?.hasRoll || data.roll);
         this.hasHealing = Boolean(action?.hasHealing);
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
-        this.roll = data.roll ?? {};
+        this.roll = data.roll ?? action?.roll ?? (this.hasRoll ? {} : null);
         this.rollType = data.rollType ?? null;
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
@@ -62,16 +63,7 @@ export class RollConfig {
         // Roll construction will often refer to data props, and expects it to exist even on deserialization
         // Moving more of the roll construction stuff to here may help convert this
         // For now we keep this data minimal to not bloat roll objects
-        const baseData = this.action?.getRollData() ?? this.item?.getRollData() ?? this.actor?.getRollData() ?? {};
-        this.data = {
-            experiences: baseData.experiences ?? {},
-            traits: baseData.traits ?? {},
-            rules: baseData.rules ?? {},
-            action: baseData.action ?? {
-                actionType: this.actionType, 
-                roll: this.roll
-            }
-        };
+        this.data = pick(this.getRollData(), ['experiences', 'traits', 'rules', 'action']);
 
         const damage = action?.damage;
         if (actor && damage) {
@@ -105,12 +97,21 @@ export class RollConfig {
         return CONFIG.Dice.daggerheart[this.rollType] ?? CONFIG.Dice.daggerheart['DHRoll'];
     }
 
+    getRollData() {
+        const data = this.action?.getRollData() ?? this.item?.getRollData() ?? this.actor?.getRollData() ?? {};
+        data.action ??= {
+            actionType: this.actionType, 
+            roll: this.roll
+        };
+        return data;
+    }
+
     async initialize() {
-        this.rollType = this.roll.lite
+        this.rollType = this.roll?.lite
             ? 'DHRoll'
             : this.fateType
                 ? 'FateRoll'
-                : this.actor?.rollClass?.name ?? (this.roll.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+                : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
 
         this.effects = await this.getActionRelevantEffects();
 
@@ -165,14 +166,16 @@ export class RollConfig {
         };
 
         // Determine advantage mode
-        const advantage = this.roll.advantage === D20Roll.ADV_MODE.ADVANTAGE || keys.advantage || this.advantage;
-        const disadvantage =
-            this.roll.advantage === D20Roll.ADV_MODE.DISADVANTAGE || keys.disadvantage || this.disadvantage;
-        this.roll.advantage = advantage && !disadvantage
-            ? D20Roll.ADV_MODE.ADVANTAGE :
-            !advantage && disadvantage
-                ? D20Roll.ADV_MODE.DISADVANTAGE
-                : D20Roll.ADV_MODE.NORMAL;
+        if (this.roll) {
+            const advantage = this.roll.advantage === D20Roll.ADV_MODE.ADVANTAGE || keys.advantage || this.advantage;
+            const disadvantage =
+                this.roll.advantage === D20Roll.ADV_MODE.DISADVANTAGE || keys.disadvantage || this.disadvantage;
+            this.roll.advantage = advantage && !disadvantage
+                ? D20Roll.ADV_MODE.ADVANTAGE :
+                !advantage && disadvantage
+                    ? D20Roll.ADV_MODE.DISADVANTAGE
+                    : D20Roll.ADV_MODE.NORMAL;
+        }
     }
 
     /**
@@ -195,6 +198,14 @@ export class RollConfig {
     }
 
     static async build(data, options = {}) {
+        // If this is already a RollConfig and there are no options, do a passthrough
+        // This allows passing users to pass plain objects to functions that expect a RollConfig.
+        // Do not change this behavior without careful consideration - the code likes to bolt on props and they could be lost
+        // todo: initialize if not already initialized
+        if (data instanceof RollConfig && foundry.utils.isEmpty(options)) {
+            return data;
+        }
+
         if (data.source) {
             options.actor ??= data.actor ?? await fromUuid(data.source.actor);
             options.item ??= data.item ?? options.actor?.items.get(data.source.item);

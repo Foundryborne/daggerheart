@@ -1,5 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { getAllResourceLabels, triggerChatRollFx } from '../helpers/utils.mjs';
+import { RollConfig } from './_module.mjs';
 import BaseRoll from './baseRoll.mjs';
 
 export default class DHRoll extends BaseRoll {
@@ -109,25 +110,25 @@ export default class DHRoll extends BaseRoll {
             await triggerChatRollFx([roll]);
         } else if (!config.source?.message) {
             config.message = await this.toMessage(roll, config);
+            config.actionChatMessageHandled ||= config.action?.chatDisplay;
         }
     }
 
+    /**
+     * @param {DHRoll} roll 
+     * @param {RollConfig} config
+     */
     static async toMessage(roll, config) {
-        const item = config.data.parent?.items?.get?.(config.source.item) ?? null;
-        const actions = item ? [
-            ...item.system.actions,
-            ...(item.system.attack?.id === config.source.action ? [item.system.attack] : [])
-        ] : [];
-        const action = actions.find(x => x.id === config.source.action);
+        config = await RollConfig.build(config);
+        const { item, action } = config;
         let actionDescription = null;
         if (action?.chatDisplay) {
             actionDescription = action
                 ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(action.description, {
-                    relativeTo: config.data,
-                    rollData: config.data.getRollData?.() ?? {}
+                    relativeTo: config.actor,
+                    rollData: config.getRollData()
                 })
                 : null;
-            config.actionChatMessageHandled = true;
         }
 
         const reloadSetting = game.system.settings.automation.reload;
@@ -137,22 +138,20 @@ export default class DHRoll extends BaseRoll {
             reloadSetting === CONFIG.DH.SETTINGS.reloadChoices.auto.id;
         const reloadResult = useReload ? await action?.handleReload?.() : {};
         
-        const cls = getDocumentClass('ChatMessage'),
-            msgData = {
-                type: this.messageType,
-                user: game.user.id,
-                title: roll.title,
-                speaker: cls.getSpeaker({ actor: roll.data?.parent }),
-                sound: config.mute ? null : CONFIG.sounds.dice,
-                system: { 
-                    ...foundry.utils.deepClone(config), 
-                    actionDescription,
-                    reloadCheckValue: reloadResult.rollValue 
-                },
-                rolls: [roll]
-            };
-
-        config.selectedMessageMode ??= game.settings.get('core', 'messageMode');
+        const cls = getDocumentClass('ChatMessage');
+        const msgData = {
+            type: this.messageType,
+            user: game.user.id,
+            title: roll.title,
+            speaker: cls.getSpeaker({ actor: roll.data?.parent }),
+            sound: config.mute ? null : CONFIG.sounds.dice,
+            system: { 
+                ...foundry.utils.deepClone(config), 
+                actionDescription,
+                reloadCheckValue: reloadResult.rollValue 
+            },
+            rolls: [roll]
+        };
 
         if (roll._evaluated) {
             const message = await cls.create(msgData, { messageMode: config.selectedMessageMode });
