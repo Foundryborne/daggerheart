@@ -90,10 +90,16 @@ export default class DamageField extends fields.SchemaField {
         const damagePromises = [];
         for (const target of targets) {
             const actor = foundry.utils.fromUuidSync(target.actorId);
-            if (!actor) continue;
+            if (!actor) {
+                ui.notifications.error(
+                    _loc('DAGGERHEART.UI.Notifications.actorMissing', { actorName: target.name })
+                );
+                continue;
+            }
             
             const actorTokens = actor.getDependentTokens();
             const token = actorTokens.find(x => x.id === target.id) ?? actor.prototypeToken;
+            
             if (config.hasHealing)
                 damagePromises.push(
                     actor.takeHealing(config.damage).then(updates => targetDamage.push({ 
