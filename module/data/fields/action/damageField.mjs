@@ -92,9 +92,8 @@ export default class DamageField extends fields.SchemaField {
             const actor = foundry.utils.fromUuidSync(target.actorId);
             if (!actor) continue;
             
-            const token = target.id
-                ? game.scenes.find(x => x.active).tokens.find(x => x.id === target.id)
-                : actor.prototypeToken;
+            const actorTokens = actor.getDependentTokens();
+            const token = actorTokens.find(x => x.id === target.id) ?? actor.prototypeToken;
             if (config.hasHealing)
                 damagePromises.push(
                     actor.takeHealing(config.damage).then(updates => targetDamage.push({ 
