@@ -1,14 +1,14 @@
-<div class="daggerheart chat downtime">
-    <div class="downtime-moves-list">
+<div class="daggerheart chat downtime move">
+    <div class="moves-list downtime-moves-list">
         {{#each moves as | move index |}}
-            <details class="downtime-move" {{@root.open}}>
+            <details class="move downtime-move" {{@root.open}}>
                 <summary class="downtime-label">
-                    <img class="downtime-image" src="{{move.img}}" />
+                    <img class="move-image downtime-image" src="{{move.img}}" />
                     <div class="header-label">
                         <h2 class="title">{{move.name}}</h2>
                         <span class="label">{{localize 'DAGGERHEART.GENERAL.Bonuses.rest.downtimeAction'}}</span>
                     </div>
-                     <i class="fa-solid fa-chevron-down"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </summary>
                 <div class="description">
                     {{{move.description}}}
