@@ -40,7 +40,7 @@ jobs:
         flags.hotReload: false
 
     # Create a zip file with all files required by the module to add to the release
-    - run: zip -r ./system.zip system.json README.md LICENSE build/daggerheart.js build/tagify.css styles/daggerheart.css assets/ templates/ packs/ lang/
+    - run: zip -r ./system.zip system.json README.md LICENSE build/daggerheart.js build/daggerheart.js.map build/tagify.css styles/daggerheart.css assets/ templates/ packs/ lang/
 
     # Create a release for this specific version
     - name: Update Release with Files
