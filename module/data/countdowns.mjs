@@ -27,6 +27,20 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
         }
     }
 
+    /** Adds one or more countdowns to the data model */
+    async add(...countdowns) {
+        const newData = countdowns.reduce((r, countdown) => {
+            r[foundry.utils.randomID()] = countdown;
+            return r;
+        }, {});
+        this.updateSource({ countdowns: newData });
+        await game.settings.set(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Countdowns,
+            this.toObject()
+        );
+    }
+
     async handleChange() {
         const previousCountdowns = foundry.ui.countdowns.previousCountdownData;
         const changedCountdowns = Object.entries(this.countdowns).reduce((acc, [key, countdown]) => {
