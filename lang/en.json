@@ -4350,7 +4350,8 @@
                 "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
                 "comboDiceOnlyTwoDiceError": "Combo dice functionality only works on a single pair of two dice",
                 "reloadRequired": "The {weapon} must be reloaded to be used!",
-                "partnerRequired": "A partner must be assigned to use this action."
+                "partnerRequired": "A partner must be assigned to use this action.",
+                "actorMissing": "The actor {actorName} could not be dealt damage as it no longer exists"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
