@@ -204,8 +204,10 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
 
     /** @inheritdoc */
     static fromSource(source, options) {
-        // Checks for any nested Collection objects. If found, converts them to objects
-        // This may happen if a module merges prepared data instead of source data when updating
+        // Checks for any nested Collection objects. If found, converts them to objects.
+        // This may happen if a module merges prepared data instead of source data when updating.
+        // This can be averted if ActionsField supports arrays like the built in EmbeddedCollectionField, 
+        // since Collections serialize to Arrays.
         return new this(this.#nestedReplaceCollection(source), options);
     }
 
