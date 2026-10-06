@@ -754,8 +754,10 @@ export function resetAndRerenderActors() {
             }
         }
 
-        actor.reset();
-        actor.render();
+        try {
+            actor.reset();
+            actor.render();
+        } finally {}
     }
 }
 

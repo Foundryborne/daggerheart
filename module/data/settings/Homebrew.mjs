@@ -202,6 +202,33 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
         };
     }
 
+    /** @inheritdoc */
+    static fromSource(source, options) {
+        // Checks for any nested Collection objects. If found, converts them to objects
+        // This may happen if a module merges prepared data instead of source data when updating
+        return new this(this.#nestedReplaceCollection(source), options);
+    }
+
+    static #nestedReplaceCollection(data) {
+        if (data instanceof Collection) {
+            const obj = {};
+            for (const [k, v] of data.entries()) {
+                obj[k] = v;
+            }
+            return obj;
+        }
+        
+        if (Array.isArray(data)) {
+            return data.map(DhHomebrew.#nestedReplaceCollection);
+        } else if (data && typeof data === 'object') {
+            for (const [key, value] of Object.entries(data)) {
+                data[key] = DhHomebrew.#nestedReplaceCollection(value);
+            }
+        }
+            
+        return data;
+    }
+
     /** @inheritDoc */
     _initializeSource(source, options = {}) {
         source = super._initializeSource(source, options);
