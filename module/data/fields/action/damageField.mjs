@@ -131,8 +131,8 @@ export default class DamageField extends fields.SchemaField {
                         .then(updates => { 
                             if (!updates.length) return;
 
-                            const resistanceData = 
-                                token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes ?? []);
+                            const resistanceData = actor.getResistanceStatus(
+                                configDamage.main?.options.damageTypes ?? []);
                             const tokenData = {
                                 id: token.id, 
                                 name: token.prototype?.name ?? token.name, 
