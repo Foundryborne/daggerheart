@@ -568,7 +568,7 @@ export const defaultRestOptions = {
                     }
                 },
                 xxxxACTION02xxxx: {
-                    _id: 'xxxxACTION01xxxx',
+                    _id: 'xxxxACTION02xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepareWithFriends.name'),
