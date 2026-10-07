@@ -58,12 +58,13 @@ export class ActionsField extends foundry.data.fields.TypedObjectField {
 
     /* -------------------------------------------- */
 
-    /** @inheritDoc */
+    /** @inheritdoc */
     initialize(value, model, options) {
         const actions = Object.entries(super.initialize(value, model, options));
         return new ActionCollection(model, actions);
     }
 
+    /** @inheritdoc */
     clean(value, options, state) {
         // Before any migrations and such occurs, convert collections to objects
         if (value instanceof Collection) {
@@ -75,6 +76,7 @@ export class ActionsField extends foundry.data.fields.TypedObjectField {
         return super.clean(value, this.options, state);
     }
 
+    /** @inheritdoc */
     _cleanType(value, options, state) {
         value = super._cleanType(value, options, state);
         // Ensure ids match. If ids do not match, this causes issues in things like the action config's resync
