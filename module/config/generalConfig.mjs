@@ -266,7 +266,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.description'),
             actions: {
-                tendToWounds: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
@@ -301,7 +302,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.description'),
             actions: {
-                clearStress: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.clearStress.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
@@ -335,7 +337,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.description'),
             actions: {
-                repairArmor: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.repairArmor.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
@@ -370,7 +373,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.description'),
             actions: {
-                prepare: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.name'),
@@ -394,7 +398,8 @@ export const defaultRestOptions = {
                         }
                     }
                 },
-                prepareWithFriends: {
+                xxxxACTION02xxxx: {
+                    _id: 'xxxxACTION02xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepareWithFriends.name'),
@@ -430,7 +435,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.description'),
             actions: {
-                tendToWounds: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.tendToWounds.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.name'),
@@ -465,7 +471,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.description'),
             actions: {
-                clearStress: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.clearStress.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.name'),
@@ -499,7 +506,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.description'),
             actions: {
-                repairArmor: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.repairArmor.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.name'),
@@ -534,7 +542,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.description'),
             actions: {
-                prepare: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.name'),
@@ -558,7 +567,8 @@ export const defaultRestOptions = {
                         }
                     }
                 },
-                prepareWithFriends: {
+                xxxxACTION02xxxx: {
+                    _id: 'xxxxACTION02xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepareWithFriends.name'),
