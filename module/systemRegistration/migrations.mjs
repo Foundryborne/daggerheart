@@ -7,6 +7,7 @@ import { Migration_2_9_1 } from './migration-handlers/2_9_1.mjs';
 import { Migration_2_9_3 } from './migration-handlers/2_9_3.mjs';
 import { Migration_2_10_0_DSN } from './migration-handlers/2_10_0-dsn.mjs';
 import { Migration_2_10_0_Refresh } from './migration-handlers/2_10_0-refresh.mjs';
+import { Migration_2_10_10_FixMoves } from './migration-handlers/2_10_10-fixmoves.mjs'
 
 export async function runMigrations() {
     // All migrations here are meant for the active gm to run. 
@@ -346,7 +347,8 @@ export async function runMigrations() {
         new Migration_2_9_1(),
         new Migration_2_9_3(),
         new Migration_2_10_0_DSN(),
-        new Migration_2_10_0_Refresh()
+        new Migration_2_10_0_Refresh(),
+        new Migration_2_10_10_FixMoves()
     ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, lastMigrationVersion));
 
     for (const handler of migrations) {
