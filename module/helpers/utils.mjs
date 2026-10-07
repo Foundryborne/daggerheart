@@ -600,11 +600,8 @@ export async function RefreshFeatures(
             expireActiveEffects(actor, refreshTypes);
 
             const updates = {};
-            for (let item of actor.items) {
-                if (
-                    item.system.metadata?.hasResource &&
-                    refreshIsAllowed(refreshTypes, item.system.resource?.recovery)
-                ) {
+            for (const item of actor.items) {
+                if (item.metadata?.hasResource && refreshIsAllowed(refreshTypes, item.system.resource?.recovery)) {
                     if (!refreshedActors[actor.id])
                         refreshedActors[actor.id] = { name: actor.name, img: actor.img, refreshed: new Set() };
                     refreshedActors[actor.id].refreshed.add(
@@ -624,7 +621,7 @@ export async function RefreshFeatures(
                             )
                     };
                 }
-                if (item.system.metadata?.hasActions) {
+                if (item.metadata?.hasActions) {
                     const usedTypes = new Set();
                     const actions = item.system.actions.filter(action => {
                         if (refreshIsAllowed(refreshTypes, action.uses.recovery)) {
