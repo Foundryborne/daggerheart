@@ -7,7 +7,7 @@ import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
-import { RollConfig } from '../dice/config.mjs';
+import { RollConfig } from '../data/action/config.mjs';
 
 export default class DhActor extends Actor {
     parties = new Set();

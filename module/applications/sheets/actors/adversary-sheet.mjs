@@ -1,4 +1,4 @@
-import { RollConfig } from '../../../dice/config.mjs';
+import { RollConfig } from '../../../data/action/config.mjs';
 import { getDocFromElement, signedNumber } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import { prepareFeatureData } from '../sheet-helpers.mjs';

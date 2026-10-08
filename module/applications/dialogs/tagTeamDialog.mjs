@@ -1,7 +1,7 @@
 import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
-import { RollConfig } from '../../dice/config.mjs';
+import { RollConfig } from '../../data/action/config.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
