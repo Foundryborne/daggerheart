@@ -190,7 +190,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     /** @inheritdoc */
-    static getActionChangeKeys() {
+    getActionChangeKeys() {
         return ['system.bonuses.roll'];
     }
 

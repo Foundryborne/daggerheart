@@ -125,29 +125,6 @@ export class RollConfig {
         }
 
         this.applyKeybindings();
-
-        const changeKeys = this.rollClass.getActionChangeKeys();
-        this.bonusEffects = this.effects?.reduce((acc, effect) => {
-            const action = this.action;
-            const isConditionalBlocked = action &&
-                (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.test(action.getRollData()));
-            // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
-            if (
-                !isConditionalBlocked && 
-                effect.system.changes?.some(x => changeKeys.some(key => x.key?.includes(key)))
-            ) {
-                acc[effect.id] = {
-                    id: effect.id,
-                    name: effect.name,
-                    description: effect.description,
-                    changes: effect.system.changes,
-                    origEffect: effect,
-                    selected: !effect.disabled
-                };
-            }
-
-            return acc;
-        }, {}) ?? [];
     }
 
     /** 

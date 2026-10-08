@@ -129,7 +129,7 @@ export default class DamageRoll extends DHRoll {
     }
 
     /** @inheritdoc */
-    static getActionChangeKeys() {
+    getActionChangeKeys() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
         return [
             'system.rules.attack.damage.hpDamageMultiplier',
