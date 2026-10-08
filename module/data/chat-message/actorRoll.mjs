@@ -1,4 +1,4 @@
-import { RollConfig } from '../../dice/config.mjs';
+import { RollConfig } from '../action/config.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 import { ChatDamageData } from './chatDamageData.mjs';
 

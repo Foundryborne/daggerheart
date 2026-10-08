@@ -1,13 +1,17 @@
-import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
-import { omit, pick } from '../helpers/functional.mjs';
-import D20Roll from './d20Roll.mjs';
+import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
+import { omit, pick } from '../../helpers/functional.mjs';
+import D20Roll from '../../dice/d20Roll.mjs';
 
-/** @import DHBaseAction from '../data/action/baseAction.mjs'; */
+/** @import DHBaseAction from './baseAction.mjs'; */
 
+/** 
+ * Action specific state/context for a specific use of an action.
+ * This needs a rename, but the codebase uses "config" system wide, so its not an easy thing to rename.
+ */
 export class RollConfig {
     /**
      * 
-     * @param {Partial<import('./_types').RollConfigParams>} data RollConfig data or creation data for one 
+     * @param {Partial<import('../../dice/_types').RollConfigParams>} data RollConfig data or creation data for one 
      * @param {object} options  Resolved document types for overrides. 
      *                          Mostly used to pass the event without mutation or in build() after parsing the source data. 
      * @param {Event} [options.event]

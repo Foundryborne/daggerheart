@@ -3,7 +3,7 @@ import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
 import TriggerField from '../fields/triggerField.mjs';
-import { RollConfig } from '../../dice/config.mjs';
+import { RollConfig } from './config.mjs';
 
 const fields = foundry.data.fields;
 
