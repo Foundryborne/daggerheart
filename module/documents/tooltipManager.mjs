@@ -154,6 +154,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     async #activateItem(element, options) {
         const itemUuid = element.dataset.tooltip.slice(6);
         const item = await foundry.utils.fromUuid(itemUuid);
+        const actor = item?.actor;
         if (!item) return null;
 
         // If there is support for embeds, use that instead.
@@ -197,8 +198,11 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             const type = item.system.secondary ? 'secondary' : 'primary';
             tags.unshift(_loc(`DAGGERHEART.ITEMS.Weapon.${type}Weapon.full`));
         }
-        if (item instanceof Item && item.system.metadata.isQuantifiable) {
-            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`)
+        if (
+            item instanceof Item &&
+            ((!actor && item.system.quantity > 1) || actor.metadata.quantifiable?.includes(item?.type))
+        ) {
+            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`);
         }
         if (item instanceof game.system.api.models.actions.actionsTypes.base) {
             // todo: should these be in action._getTags()?

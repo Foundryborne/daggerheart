@@ -7,24 +7,26 @@
         <span>{{localize "DOCUMENT.New" type=(localize "DAGGERHEART.GENERAL.experience.single")}}</span>
     </button>
 
-    <fieldset>
-        <legend>{{localize tabs.experiences.label}}</legend>
-        <ul class="experience-list">
-            {{#each document._source.system.experiences as |experience key|}}
-                <li class="experience-item">
-                    <div class="experience-inner-item">
-                        <input class="name" type="text" name="system.experiences.{{key}}.name" value="{{experience.name}}" />
-                        <input class="modifier" type="text" name="system.experiences.{{key}}.value" value="{{experience.value}}" data-dtype="Number" />
+    <section class="scroll-container">
+        <fieldset>
+            <legend>{{localize tabs.experiences.label}}</legend>
+            <ul class="experience-list">
+                {{#each document._source.system.experiences as |experience key|}}
+                    <li class="experience-item">
+                        <div class="experience-inner-item">
+                            <input class="name" type="text" name="system.experiences.{{key}}.name" value="{{experience.name}}" />
+                            <input class="modifier" type="text" name="system.experiences.{{key}}.value" value="{{experience.value}}" data-dtype="Number" />
 
-                        <span data-tooltip="{{#if experience.core}}{{localize 'DAGGERHEART.ACTORS.Character.cannotRemoveCoreExperience'}}{{else}}{{localize 'CONTROLS.CommonDelete'}}{{/if}}">
-                            <a data-action="removeExperience" data-experience="{{key}}" class="{{#if experience.core}}disabled{{/if}}">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </span>
-                    </div>
-                    <textarea name="system.experiences.{{key}}.description">{{experience.description}}</textarea>
-                </li>
-            {{/each}}
-        </ul>
-    </fieldset>
+                            <span data-tooltip="{{#if experience.core}}{{localize 'DAGGERHEART.ACTORS.Character.cannotRemoveCoreExperience'}}{{else}}{{localize 'CONTROLS.CommonDelete'}}{{/if}}">
+                                <a data-action="removeExperience" data-experience="{{key}}" class="{{#if experience.core}}disabled{{/if}}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <textarea name="system.experiences.{{key}}.description">{{experience.description}}</textarea>
+                    </li>
+                {{/each}}
+            </ul>
+        </fieldset>
+    </div>
 </section>

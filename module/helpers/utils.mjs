@@ -442,7 +442,48 @@ export function expireActiveEffects(actor, allowedTypes = null) {
 
 export function getCritDamageBonus(terms) {
     const critRoll = Roll.fromTerms(terms);
-    return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.results.filter(r => r.active).length, 0);
+
+    const modifiers = game.system.api.dice.BaseDie.MODIFIERS;
+    const modifierUnion = Object.keys(modifiers).sort((a, b) => b.length - a.length).join('|');
+    const modifierRegexp = String.raw`[^A-z\s()+\-*/]*`;
+    const modifierPattern = new RegExp(String.raw`(${modifierUnion})${modifierRegexp}`, 'gi');
+
+    return critRoll.dice.reduce((acc, dice) => {
+        if (dice.evaluated) {
+            acc += dice.faces * dice.results.filter(r => r.active).length
+        } else {
+            let nrDice = dice._number;
+            let numericalChange = 0;
+            for (const sequence of dice.modifiers) {
+                for (const [modifier, command] of sequence.matchAll(modifierPattern)) {
+                    const modifierParsed = Number.parseInt(modifier.substring(command.length));
+                    const modifierValue = Number.isNaN(modifierParsed) ? 0 : modifierParsed;
+                    switch (command) {
+                        case 'k':
+                        case 'kh':
+                        case 'kl':
+                            nrDice = Math.min(nrDice, modifierValue);
+                            break;
+                        case 'd':
+                        case 'dh':
+                        case 'dl':
+                            numericalChange -= 1;
+                            break;
+                        case 'c':
+                        case 'x':
+                        case 'xo':
+                            return 0;  
+                    }
+
+                    nrDice += numericalChange;
+                }
+            }
+
+            acc += dice.faces * nrDice;
+        }
+
+        return acc;
+    }, 0);
 }
 
 export function htmlToText(html) {
@@ -559,11 +600,8 @@ export async function RefreshFeatures(
             expireActiveEffects(actor, refreshTypes);
 
             const updates = {};
-            for (let item of actor.items) {
-                if (
-                    item.system.metadata?.hasResource &&
-                    refreshIsAllowed(refreshTypes, item.system.resource?.recovery)
-                ) {
+            for (const item of actor.items) {
+                if (item.metadata?.hasResource && refreshIsAllowed(refreshTypes, item.system.resource?.recovery)) {
                     if (!refreshedActors[actor.id])
                         refreshedActors[actor.id] = { name: actor.name, img: actor.img, refreshed: new Set() };
                     refreshedActors[actor.id].refreshed.add(
@@ -583,7 +621,7 @@ export async function RefreshFeatures(
                             )
                     };
                 }
-                if (item.system.metadata?.hasActions) {
+                if (item.metadata?.hasActions) {
                     const usedTypes = new Set();
                     const actions = item.system.actions.filter(action => {
                         if (refreshIsAllowed(refreshTypes, action.uses.recovery)) {

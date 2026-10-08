@@ -131,13 +131,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return Item the action is attached too.
-     * @returns {DhItem}
+     * @returns {DhItem | null} the item its attached to, or null if it has none (such as for a rest move)
      */
     get item() {
-        if (!this.parent.parent && this.systemPath)
-            return foundry.utils.getProperty(this.parent, this.systemPath).get(this.id);
-
-        return this.parent.parent;
+        const item = !this.parent.parent && this.systemPath
+            ? foundry.utils.getProperty(this.parent, this.systemPath).get(this.id)
+            : this.parent.parent;
+        return item instanceof Item ? item : null;
     }
 
     get applyEffects() {

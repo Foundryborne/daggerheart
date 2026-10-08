@@ -7,9 +7,9 @@ export default class DhScene extends Scene {
         const sceneMeasurements = this.flags.daggerheart?.rangeMeasurement;
         const globalMeasurements = game.system.settings.variantRules.rangeMeasurement;
         return sceneMeasurements?.setting === disable.id
-            ? { enabled: false, ...globalMeasurements }
+            ? { ...globalMeasurements, enabled: false }
             : sceneMeasurements?.setting === custom.id 
-                ? sceneMeasurements
+                ? { ...sceneMeasurements, enabled: true }
                 : globalMeasurements;
     }
 
