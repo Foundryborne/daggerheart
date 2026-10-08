@@ -220,7 +220,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         }
 
         for (const item of actor?.items ?? []) {
-            if (!item.system.metadata.hasActions) continue;
+            if (!item.metadata.hasActions) continue;
             const actions = [...item.system.actions, ...(item.system.attack ? [item.system.attack] : [])];
             for (const action of actions) {
                 if (action.hasRoll) {

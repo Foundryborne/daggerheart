@@ -90,11 +90,16 @@ export default class DamageField extends fields.SchemaField {
         const damagePromises = [];
         for (const target of targets) {
             const actor = foundry.utils.fromUuidSync(target.actorId);
-            if (!actor) continue;
+            if (!actor) {
+                ui.notifications.error(
+                    _loc('DAGGERHEART.UI.Notifications.actorMissing', { actorName: target.name })
+                );
+                continue;
+            }
             
-            const token = target.id
-                ? game.scenes.find(x => x.active).tokens.find(x => x.id === target.id)
-                : actor.prototypeToken;
+            const actorTokens = actor.getDependentTokens();
+            const token = actorTokens.find(x => x.id === target.id) ?? actor.prototypeToken;
+            
             if (config.hasHealing)
                 damagePromises.push(
                     actor.takeHealing(config.damage).then(updates => targetDamage.push({ 
@@ -132,8 +137,8 @@ export default class DamageField extends fields.SchemaField {
                         .then(updates => { 
                             if (!updates.length) return;
 
-                            const resistanceData = 
-                                token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes ?? []);
+                            const resistanceData = actor.getResistanceStatus(
+                                configDamage.main?.options.damageTypes ?? []);
                             const tokenData = {
                                 id: token.id, 
                                 name: token.prototype?.name ?? token.name, 
