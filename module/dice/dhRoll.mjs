@@ -15,6 +15,9 @@ export default class DHRoll extends BaseRoll {
     constructor(formula, data = {}, options = {}) {
         // @todo: Consider constructing a RollConfig here if its a plain object to guarantee certain properties
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
+        // @todo - move to config. Currently we can't do so because a single move can have an attack roll *and* a damage roll,
+        // which each need their own separate list of effects. Perhaps an option of when an bonus effect applies would work.
+        options.bonusEffects = this.bonusEffectBuilder();
 
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
@@ -341,11 +344,42 @@ export default class DHRoll extends BaseRoll {
         return {};
     }
 
+    bonusEffectBuilder() {
+        const changeKeys = this.getActionChangeKeys();
+        return (
+            // todo: improve safety. When used improperly, effects is a list of data, not active effects
+            // it can be worked around provisionarily by using getActionRelevantEffects()
+            this.options.effects?.reduce((acc, effect) => {
+                if (!(effect instanceof ActiveEffect)) return acc;
+
+                const action = this.options.action;
+                const isConditionalBlocked = action &&
+                    (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.test(action.getRollData()));
+                // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+                if (
+                    !isConditionalBlocked && 
+                    (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
+                ) {
+                    acc[effect.id] = {
+                        id: effect.id,
+                        name: effect.name,
+                        description: effect.description,
+                        changes: effect.system.changes,
+                        origEffect: effect,
+                        selected: !effect.disabled
+                    };
+                }
+
+                return acc;
+            }, {}) ?? []
+        );
+    }
+
     /** 
      * Returns the change keys associated with this roll class.
      * @returns {string[]} 
      */
-    static getActionChangeKeys() {
+    getActionChangeKeys() {
         return [];
     }
 }

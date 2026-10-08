@@ -118,7 +118,7 @@ export default class D20Roll extends DHRoll {
     }
 
     /** @inheritdoc */
-    static getActionChangeKeys() {
+    getActionChangeKeys() {
         return ['system.bonuses.roll'];
     }
 
