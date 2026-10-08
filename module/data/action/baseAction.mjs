@@ -4,6 +4,7 @@ import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
 import TriggerField from '../fields/triggerField.mjs';
 import { RollConfig } from './config.mjs';
+import { resolveNearestDocument } from '../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -103,11 +104,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return fields.DataField.isPrototypeOf(field) && field;
     }
 
-    /** @inheritDoc */
     prepareData() {
         this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
         this.img = this.img ?? this.parent?.parent?.img;
-
+        /** 
+         * This nearest document associated with this action
+         * @type {DhActor | DhItem | null}
+         */
+        this.parentDocument = resolveNearestDocument(this.parent);
+        
         /* Fallback to feature description */
         this.description = this.description || this.parent?.description;
 
@@ -130,18 +135,23 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /**
+     * Return the first Actor parent found.
+     * @returns {DhActor | null}
+     */
+    get actor() {
+        return resolveNearestDocument(this.parentDocument, Actor);
+    }
+
+    /**
      * Return Item the action is attached too.
      * @returns {DhItem | null} the item its attached to, or null if it has none (such as for a rest move)
      */
     get item() {
-        const item = !this.parent.parent && this.systemPath
-            ? foundry.utils.getProperty(this.parent, this.systemPath).get(this.id)
-            : this.parent.parent;
-        return (item instanceof Item || item instanceof Actor) ? item : null;
+        return this.parentDocument instanceof Item ? this.parentDocument : null;
     }
 
     get applyEffects() {
-        if (this.item.systemPath) {
+        if (this.systemPath && !this.parentDocument) {
             const itemEffectIds = this.item.effects.map(x => x._id);
             const movePathSplit = this.item.systemPath.split('.');
             movePathSplit.pop();
@@ -150,18 +160,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         }
 
         return this.item.effects;
-    }
-
-    /**
-     * Return the first Actor parent found.
-     * @returns {DhActor | null}
-     */
-    get actor() {
-        return this.item instanceof CONFIG.Actor.documentClass
-            ? this.item
-            : this.item?.parent instanceof CONFIG.Actor.documentClass
-                ? this.item.parent
-                : null;
     }
 
     /**
@@ -285,9 +283,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {RollConfig}
      */
     prepareBaseConfig(event, configOptions = {}) {
-        const isActor = this.item instanceof CONFIG.Actor.documentClass;
+        const item = this.item;
         const actionTitle = game.i18n.localize(this.name);
-        const itemTitle = isActor || this.item.name === actionTitle ? '' : `${this.item.name} - `;
+        const itemTitle = !item || item.name === actionTitle ? '' : `${item.name} - `;
 
         // We can't initialize the roll config yet as other field types will want to make their own modifications
         return new RollConfig({
