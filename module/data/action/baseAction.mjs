@@ -136,7 +136,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const item = !this.parent.parent && this.systemPath
             ? foundry.utils.getProperty(this.parent, this.systemPath).get(this.id)
             : this.parent.parent;
-        return item instanceof Item ? item : null;
+        return (item instanceof Item || item instanceof Actor) ? item : null;
     }
 
     get applyEffects() {
