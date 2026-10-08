@@ -974,3 +974,16 @@ export function measureExact(pointA, pointB, { grid = null } = {}) {
         Math.pow((pointA.z ?? 0) - (pointB.z ?? 0), 2)
     ) * cost;
 }
+
+/** 
+ * Recursively finds the first parent document of the given object.
+ * Similar to data.getNearestDocument(), but with a filter and works on the ever outdated forge.
+ */
+export function resolveNearestDocument(model, documentClass = foundry.abstract.Document) {
+    if (!model) return null;
+    return model instanceof documentClass
+        ? model
+        : model.parent
+            ? resolveNearestDocument(model.parent, documentClass)
+            : null;
+}
