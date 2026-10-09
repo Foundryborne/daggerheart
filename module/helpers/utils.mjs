@@ -561,6 +561,77 @@ export function parseTermsFromSimpleFormula(formula) {
     }, []);
 }
 
+/** 
+ * Given a formula, returns a new formula where adjacent modifiers have been merged.
+ * Does not currently merge equivalent dice terms, and grouping is limited
+ */
+export function simplifyFormula(formula) {
+    const ast = foundry.dice.RollGrammar.parse(formula);
+    function simplifyNode(node) {
+        if (node.class !== 'Node') return node;
+
+        node.operands = node.operands.map(n => simplifyNode(n));
+        const isAllNumbers = node.operands.length && node.operands.every(o => o.class === 'NumericTerm');
+        const isPlusMinus = ['+', '-'].includes(node.operator);
+        if (!isPlusMinus || node.operands.length !== 2) {
+            return node; // Only +/- operator nodes can be simplified
+        }
+
+        // If both sides are numbers, this is simple: merge both
+        if (isAllNumbers) {
+            const number = node.operands.slice(1).reduce((r, o) => {
+                return r + (node.operator === '+' ? 1 : -1) * o.number; 
+            }, node.operands[0].number);
+            return {
+                ...node.operands[0],
+                number
+            }
+        }
+
+        // We want numbers to be on the right side, and non-numbers (like dice) to be on the left
+        // This also reduces the amount of edge cases we need to handle
+        // However, we can't do this if the sign is negative (-3d4). Fix that in the future...
+        // To do so, we have to conver the -3d4 to a parenthetical, then merge dice to clean that up
+        if (node.operands[0].class === 'NumericTerm' && node.operands[1].class !== 'NumericTerm' && node.operator === '+') {
+            const left = node.operands[0];
+            node.operands[0] = node.operands[1];
+            node.operands[1] = left;
+        }
+
+        if (node.operands.some(o => o.class === 'NumericTerm' && o.number === 0)) {
+            // If an expression is "X + 0" or "0 + X", and one side isn't a number, simply to the non-zero
+            return node.operands.find(o => o.class !== 'NumericTerm' || o.number !== 0);
+        } else if (node.operands[1]?.class === 'NumericTerm' && ['+', '-'].includes(node.operands[0]?.operator) && node.operands[0].operands[1].class === 'NumericTerm') {
+            // This is a case where we can rotate the tree so that it can become simplifyable
+            // If this is minus, convert to + first so that it doesn't math out wrong
+            // ex: (2d4 - 2) - (2) -> (2d4) + (-2 - 2).
+            // Todo: Also handle (2d4 + 2) + 1d4 -> (2d4 + 1d4) + 2
+            // In general, numeric terms should univerally be lifted up the tree via rotations so that they can merge
+            const newRoot = node.operands[0];
+            if (newRoot.operator === '-') {
+                newRoot.operator = '+';
+                newRoot.operands[1].number *= -1;
+            }
+            node.operands[0] = newRoot.operands[1];
+            newRoot.operands[1] = node;
+            return simplifyNode(newRoot); // try again
+        }
+
+        // If the second number is negative, flip the sign and make positive
+        const secondNumber = node.operands[1]?.class === 'NumericTerm' ? node.operands[1].number : null;
+        if (secondNumber < 0 && isPlusMinus) {
+            node.operands[1].number = Math.abs(secondNumber);
+            node.operator = node.operator === '+' ? '-' : '+';
+        } 
+            
+        return node;
+    }
+
+    // Note that Roll.simplifyTerms() only deals with duplicate operators, and doesn't merge like terms together
+    const simplified = simplifyNode(ast);
+    return Roll.fromTerms(Roll.instantiateAST(simplified)).formula;
+}
+
 /**
  * Calculates the expectede value from a formula or the results of parseTermsFromSimpleFormula.
  * @returns {number} the average result of rolling the given dice
