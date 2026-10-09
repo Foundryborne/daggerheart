@@ -563,7 +563,8 @@ export function parseTermsFromSimpleFormula(formula) {
 
 /** 
  * Given a formula, returns a new formula where adjacent modifiers have been merged.
- * Does not currently merge equivalent dice terms, and grouping is limited
+ * Does not currently merge equivalent dice terms or work on parentheticals
+ * It may also run into issues with negative die terms when attempting sign flips, those cases need testing
  */
 export function simplifyFormula(formula) {
     const ast = foundry.dice.RollGrammar.parse(formula);
@@ -584,7 +585,8 @@ export function simplifyFormula(formula) {
             }, node.operands[0].number);
             return {
                 ...node.operands[0],
-                number
+                number,
+                formula: String(number)
             }
         }
 
@@ -601,19 +603,32 @@ export function simplifyFormula(formula) {
         if (node.operands.some(o => o.class === 'NumericTerm' && o.number === 0)) {
             // If an expression is "X + 0" or "0 + X", and one side isn't a number, simply to the non-zero
             return node.operands.find(o => o.class !== 'NumericTerm' || o.number !== 0);
-        } else if (node.operands[1]?.class === 'NumericTerm' && ['+', '-'].includes(node.operands[0]?.operator) && node.operands[0].operands[1].class === 'NumericTerm') {
+        } else if (['+', '-'].includes(node.operands[0]?.operator) && node.operands[0].operands[1].class === 'NumericTerm') {
             // This is a case where we can rotate the tree so that it can become simplifyable
             // If this is minus, convert to + first so that it doesn't math out wrong
             // ex: (2d4 - 2) - (2) -> (2d4) + (-2 - 2).
-            // Todo: Also handle (2d4 + 2) + 1d4 -> (2d4 + 1d4) + 2
-            // In general, numeric terms should univerally be lifted up the tree via rotations so that they can merge
             const newRoot = node.operands[0];
             if (newRoot.operator === '-') {
                 newRoot.operator = '+';
                 newRoot.operands[1].number *= -1;
+                newRoot.operands[1].formula = String(newRoot.operands[1].number);
             }
             node.operands[0] = newRoot.operands[1];
             newRoot.operands[1] = node;
+            return simplifyNode(newRoot); // try again
+        } else if (['+', '-'].includes(node.operands[1]?.operator) && node.operands[1].operands[1].class === 'NumericTerm') {
+            // ex: 1d4 + (2d4 + 3) -> (1d4 + 2d4) + 3
+            // ex: 1d4 - (2d4 + 3) -> (1d4 - 2d4) - 3
+            // ex: 1d4 + (2d4 - 3) -> (1d4 + 2d4) - 3
+            const flipRight = node.operator === '-';
+            const newRoot = node.operands[1];
+            node.operands[1] = newRoot.operands[0];
+            newRoot.operands[0] = node;
+            if (flipRight) {
+                // This handles the 1d4 - (2d4 + 3) case.
+                // The new root needs to flip its sign due to distribution
+                newRoot.operator = newRoot.operator === '+' ? '-' : '+';
+            }
             return simplifyNode(newRoot); // try again
         }
 
@@ -621,9 +636,11 @@ export function simplifyFormula(formula) {
         const secondNumber = node.operands[1]?.class === 'NumericTerm' ? node.operands[1].number : null;
         if (secondNumber < 0 && isPlusMinus) {
             node.operands[1].number = Math.abs(secondNumber);
+            node.operands[1].formula = node.operands[1].number;
             node.operator = node.operator === '+' ? '-' : '+';
-        } 
-            
+        }
+
+        node.formula = `${node.operands[0].formula} ${node.operator} ${node.operands[1].formula}`;
         return node;
     }
 
