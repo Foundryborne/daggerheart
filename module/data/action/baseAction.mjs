@@ -104,14 +104,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return fields.DataField.isPrototypeOf(field) && field;
     }
 
-    prepareData() {
-        this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
-        this.img = this.img ?? this.parent?.parent?.img;
+    _initialize(options) {
+        super._initialize(options);
         /** 
          * This nearest document associated with this action
          * @type {DhActor | DhItem | null}
          */
         this.parentDocument = resolveNearestDocument(this.parent);
+    }
+
+    prepareData() {
+        // todo: this is not called by all uses (adversary attacks/weapon attacks don't call it)
+        // determine if we should move it to _initialize()
+        this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
+        this.img = this.img ?? this.parent?.parent?.img;
         
         /* Fallback to feature description */
         this.description = this.description || this.parent?.description;
