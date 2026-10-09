@@ -50,7 +50,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         actions: {
             toggleSelectMember: TagTeamDialog.#toggleSelectMember,
             startTagTeamRoll: TagTeamDialog.#startTagTeamRoll,
-            makeRoll: TagTeamDialog.#makeRoll,
+            makeRoll: TagTeamDialog.#onMakeRoll,
             removeRoll: TagTeamDialog.#removeRoll,
             rerollDice: TagTeamDialog.#rerollDice,
             makeDamageRoll: TagTeamDialog.#makeDamageRoll,
@@ -445,7 +445,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         );
     }
 
-    static async #makeRoll(event, button) {
+    /** @this {TagTeamDialog} */
+    static async #onMakeRoll(event, button) {
         const { member } = button.dataset;
 
         let result = null;

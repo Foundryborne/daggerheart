@@ -297,7 +297,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return new RollConfig({
             event,
             action: this,
-            title: `${itemTitle}${actionTitle}`
+            title: `${itemTitle}${actionTitle}`,
+            ...configOptions
         });
     }
 
