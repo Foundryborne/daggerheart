@@ -27,6 +27,7 @@ interface RollConfigParams {
         trait?: string;
         difficulty?: number;
     };
+    damage: unknown;
     damageOptions: {
         groupAttack?: boolean;
     };

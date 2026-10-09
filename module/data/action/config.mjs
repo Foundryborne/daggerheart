@@ -55,10 +55,12 @@ export class RollConfig {
         this.hasHealing = Boolean(action?.hasHealing);
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
-        this.roll = data.roll ?? action?.roll ?? (this.hasRoll ? {} : null);
         this.rollType = data.rollType ?? null;
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
+
+        this.roll = data.roll ?? action?.roll ?? (this.hasRoll ? {} : null);
+        this.damage = data.damage;
         
         this.resourceUpdates = new ResourceUpdateMap(this.actor);
         this.dialog = {}; // updated when keybindings are applied
