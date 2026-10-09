@@ -185,11 +185,6 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
 
     /* -------------------------------------------- */
 
-    prepareBaseData() {
-        super.prepareBaseData();
-        this.attack?.prepareData();
-    }
-
     isItemValid(source) {
         const inventoryTypes = ['weapon', 'armor', 'consumable', 'loot'];
         return this.metadata.hasInventory && inventoryTypes.includes(source.type);
