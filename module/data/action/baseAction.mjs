@@ -223,7 +223,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {object}
      */
     getRollData(data = {}) {
-        const actorData = this.item?.getRollData() ?? {};
+        const actorData = this.parentDocument?.getRollData() ?? {};
         actorData.result = data.roll?.total ?? 1;
         actorData.scale = data.costs?.length // Right now only return the first scalable cost.
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
