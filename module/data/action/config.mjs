@@ -59,7 +59,7 @@ export class RollConfig {
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
 
-        this.roll = data.roll ?? action?.roll ?? (this.hasRoll ? {} : null);
+        this.roll = data.roll ?? (this.hasRoll ? action?.roll ?? {} : null);
         this.damage = data.damage;
         
         this.resourceUpdates = new ResourceUpdateMap(this.actor);
