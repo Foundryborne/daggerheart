@@ -120,7 +120,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
                 break;
             case 'sidebar':
-                const attackBonus = this.document.system.attack.roll.bonus;
+                const attackBonus = this.document.system.attack?.roll.bonus;
                 context.attackBonus = !attackBonus ? '-' : (Number.isNumeric(attackBonus) ? signedNumber(attackBonus, { zero: '+' }) : `+${attackBonus}`);
                 break;
             case 'features': 
