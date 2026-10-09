@@ -5,6 +5,7 @@
             <img class="actor-img" src="{{actor.img}}" />
         </div>
         <div class="message-header-main">
+            {{log @root}}
             {{#if message.title}}
                 <h4>{{message.title}}</h4>
             {{else if (not actor.name)}}
