@@ -105,6 +105,8 @@ export class RollConfig {
 
     getRollData() {
         const data = this.action?.getRollData() ?? this.item?.getRollData() ?? this.actor?.getRollData() ?? {};
+        data.experiences ??= {};
+        data.traits ??= {};
         data.action ??= {
             actionType: this.actionType, 
             roll: this.roll
