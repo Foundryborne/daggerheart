@@ -1,4 +1,4 @@
-import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
+import { calculateExpectedValue, parseTermsFromSimpleFormula, signedNumber, simplifyFormula } from '../../helpers/utils.mjs';
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 import { parseInlineParams } from '../../enrichers/parser.mjs';
 
@@ -27,7 +27,7 @@ export function getTierAdjustedAdversary(source, tier) {
         source.system.damageThresholds.severe += scale * entry.severeThreshold;
         source.system.resources.hitPoints.max += scale * entry.hp;
         source.system.resources.stress.max += scale * entry.stress;
-        source.system.attack.roll.bonus += scale * entry.attack;
+        source.system.attack.roll.bonus = simplifyFormula(`${source.system.attack.roll.bonus} ${signedNumber(scale * entry.attack)}`);
     }
 
     // Get the mean and standard deviation of expected damage in the previous and new tier
