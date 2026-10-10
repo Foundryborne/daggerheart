@@ -7,6 +7,8 @@ import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
+import { RollConfig } from '../data/action/config.mjs';
+
 export default class DhActor extends Actor {
     parties = new Set();
 
@@ -661,40 +663,28 @@ export default class DhActor extends Actor {
 
     /**
      * @param {Partial<RollConfig>} config
+     * @returns {Promise<RollConfig>}
      */
     async diceRoll(config) {
-        config.source = { ...(config.source ?? {}), actor: this.uuid };
-        config.data = this.getRollData();
-        config.resourceUpdates = new ResourceUpdateMap(this);
-        const rollClass = config.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : this.rollClass;
-        return await rollClass.build(config);
+        config = config instanceof RollConfig ? config : await RollConfig.build(config);
+        return await config.rollClass.build(config);
     }
 
     async rollTrait(trait, options = {}) {
         const abilityLabel = game.i18n.localize(abilities[trait].label);
-        const config = {
-            event: null,
-            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+        const config = await RollConfig.build({
+            title: _loc('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                {
-                    action: {
-                        actionType: 'action', 
-                        roll: { type: 'trait', trait: trait }
-                    }
-                }, 
-                this
-            ),
             roll: {
-                trait: trait,
-                type: 'trait'
+                type: 'trait',
+                trait
             },
-            hasRoll: true,
             actionType: 'action',
-            ...options
-        };
+            ...options,
+            actor: this
+        });
         return await this.diceRoll(config);
     }
 

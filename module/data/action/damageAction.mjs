@@ -27,7 +27,7 @@ export default class DHDamageAction extends DHBaseAction {
     }
 
     getParentHitPointDamage() {
-        return this.item?.system.attack?.damage.main ?? this.item.parent?.system.attack?.damage.main;
+        return this.actor?.system.attack?.damage.main;
     }
 
     /**

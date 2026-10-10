@@ -128,14 +128,13 @@ export default class DamageRoll extends DHRoll {
         return modifiers;
     }
 
+    /** @inheritdoc */
     getActionChangeKeys() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        const changeKeys = [
+        return [
             'system.rules.attack.damage.hpDamageMultiplier',
             `system.bonuses.${type}`
         ];
-
-        return changeKeys;
     }
 
     constructFormulas(config) {
@@ -219,37 +218,36 @@ export default class DamageRoll extends DHRoll {
         return formulaData;
     }
 
-    /* To Remove When Reaction System */
+    /** @param {RollConfig} config **/
     static temporaryModifierBuilder(config) {
         const mods = {};
-        if (config.data?.parent) {
-            if (config.data.parent.appliedEffects) {
-                // Bardic Rally
-                const rallyChoices = config.data?.parent?.appliedEffects.reduce((a, c) => {
-                    const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
-                    if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
-                    return a;
-                }, []);
-                if (rallyChoices.length) {
-                    mods.rally = {
-                        label: 'DAGGERHEART.CLASS.Feature.rallyDice',
-                        values: rallyChoices,
-                        value: null,
-                        beforeCrit: true,
-                        callback: part => {
-                            const rallyFaces = config.modifiers.rally.values.find(
-                                r => r.value === config.modifiers.rally.value
-                            )?.label;
-                            part.roll.terms.push(
-                                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                                ...this.parse(`1${rallyFaces}`)
-                            );
-                        }
-                    };
-                }
+        
+        const { actor, item } = config;
+        if (actor) {
+            // Bardic Rally
+            const rallyChoices = (actor.appliedEffects ?? []).reduce((a, c) => {
+                const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
+                if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
+                return a;
+            }, []);
+            if (rallyChoices.length) {
+                mods.rally = {
+                    label: 'DAGGERHEART.CLASS.Feature.rallyDice',
+                    values: rallyChoices,
+                    value: null,
+                    beforeCrit: true,
+                    callback: part => {
+                        const rallyFaces = config.modifiers.rally.values.find(
+                            r => r.value === config.modifiers.rally.value
+                        )?.label;
+                        part.roll.terms.push(
+                            new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                            ...this.parse(`1${rallyFaces}`)
+                        );
+                    }
+                };
             }
 
-            const item = config.data.parent.items?.get(config.source.item);
             if (item) {
                 // Massive (Weapon Feature)
                 if (item.system.itemFeatures.find(f => f.value === 'massive'))

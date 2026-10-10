@@ -13,13 +13,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.originalActionType = config.actionType;
         this.selectedEffects = this.config.bonusEffects;
 
-        if (config.source?.action) {
-            this.item = config.data.parent.items.get(config.source.item) ?? config.data.parent;
-            this.action =
-                config.data.attack?._id == config.source.action
-                    ? config.data.attack
-                    : this.item.system.actionsList?.find(a => a.id === config.source.action);
-        }
+        this.item = config.item;
+        this.action = config.action;
     }
 
     static DEFAULT_OPTIONS = {
@@ -69,7 +64,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.rollConfig = this.config;
-        context.hasRoll = !!this.config.roll;
+        context.hasRoll = !!this.config.hasRoll;
         context.canRoll = true;
         context.selectedMessageMode = this.config.selectedMessageMode ?? game.settings.get('core', 'messageMode');
         context.rollModes = Object.entries(CONFIG.ChatMessage.modes).map(([action, { label, icon }]) => ({

@@ -1,3 +1,4 @@
+import { RollConfig } from '../action/config.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 import { ChatDamageData } from './chatDamageData.mjs';
 
@@ -130,6 +131,25 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
      */
     get appliesEffects() {
         return this.hasEffect && !this.action?.evolution;
+    }
+
+    /** Returns a RollConfig object for the roll contained in this message */
+    async getConfig({ event } = {}) {
+        const action = this.action;
+        const config = await RollConfig.build({
+            ...this.system,
+            event,
+            actor: this.actor,
+            item: this.item,
+            action,
+            roll: this.roll?.options.roll ?? {
+                type: action?.actionType ?? 'action'
+            },
+            evaluated: this.roll,
+            damage: this.damage
+        });
+
+        return config;
     }
 
     /**

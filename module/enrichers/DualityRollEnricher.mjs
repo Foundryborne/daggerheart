@@ -1,4 +1,5 @@
 import { abilities } from '../config/actorConfig.mjs';
+import { RollConfig } from '../data/action/config.mjs';
 import { createHtmlElement, getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export function DhDualityRollEnricher(match, _options) {
@@ -89,12 +90,13 @@ export const enrichedDualityRoll = async (
 ) => {
     const shouldGrantResources = grantResources === undefined ? true : grantResources;
 
-    const config = {
-        event: event ?? {},
-        title: title,
+    const config = await RollConfig.build({
+        event,
+        title,
         headerTitle: label,
         actionType: reaction ? 'reaction' : null,
         roll: {
+            type: 'trait',
             trait: traitValue && target ? traitValue : null,
             difficulty: difficulty,
             advantage
@@ -104,19 +106,14 @@ export const enrichedDualityRoll = async (
             resources: !shouldGrantResources,
             triggers: !shouldGrantResources
         },
-        type: 'trait',
-        hasRoll: true,
         ...(customConfig ?? {})
-    };
+    });
 
     if (target) {
         const result = await target.diceRoll(config);
         if (!result) return;
         result.resourceUpdates.updateResources();
     } else {
-        // For no target, call DualityRoll directly with basic data
-        config.data = { experiences: {}, traits: {}, rules: {} };
-        config.source = { actor: null };
         await CONFIG.Dice.daggerheart.DualityRoll.build(config);
     }
     return config;

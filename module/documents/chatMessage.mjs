@@ -188,16 +188,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onRollDamage(event) {
         event.stopPropagation();
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
-        if (this.system.action) {
-            const { base } = game.system.api.data.actions.actionsTypes;
-            config.effects = await base.getActionRelevantEffects(
-                this.system.action.getRollData({ message: this }), 
-                this.system.actionActor);
-
-            await this.system.action.workflow.get('damage')?.execute(config, this._id, true);
-        }
+        const config = await this.system.getConfig({ event });
+        await this.system.action?.workflow.get('damage')?.execute(config, this._id, true);
     }
 
     async onApplyDamage(event) {
@@ -209,8 +201,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
 
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
+        const config = await this.system.getConfig({ event });
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({
@@ -297,8 +288,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (!game.user.isGM) return;
         
         const targets = this.system.currentHitTargets;
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
+        const config = await this.system.getConfig({ event });
         this.system.action?.workflow.get('save')?.execute(config, targets, true);
     }
 
@@ -311,8 +301,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
 
-        const config = foundry.utils.deepClone(this.system);
-        config.event = event;
+
+        const config = await this.system.getConfig({ event });
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({
