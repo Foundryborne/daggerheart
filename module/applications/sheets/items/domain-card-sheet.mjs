@@ -1,5 +1,8 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
+/** @import { DHDomainCard } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHDomainCard>>} */
 export default class DomainCardSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {

@@ -1,5 +1,8 @@
 import DHHeritageSheet from '../api/heritage-sheet.mjs';
 
+/** @import DHAncestry from '../../../data/item/ancestry.mjs'; */
+
+/** @extends {DHHeritageSheet<DhItem<DHAncestry>>} */
 export default class AncestrySheet extends DHHeritageSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
