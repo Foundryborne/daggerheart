@@ -1,5 +1,8 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
+/** @import { DHLoot } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHLoot>>} */
 export default class LootSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
