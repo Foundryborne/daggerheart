@@ -1,3 +1,4 @@
+import { fromUuids } from '../../../helpers/utils.mjs';
 import DHHeritageSheet from '../api/heritage-sheet.mjs';
 
 /** @import { DHCommunity } from '../../../data/item/_module.mjs'; */
@@ -21,6 +22,13 @@ export default class CommunitySheet extends DHHeritageSheet {
 
     /**@inheritdoc */
     get relatedDocs() {
-        return this.document.system.features;
+        return this.document.system.features.map(x => fromUuidSync(x.item, { strict: false }));
+    }
+
+    /** @inheritdoc */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.features = await fromUuids(this.document.system.features);
+        return context;
     }
 }

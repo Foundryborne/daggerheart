@@ -7,8 +7,11 @@ import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import DhActor from '../../../documents/actor.mjs';
 
+/** @import DhParty from '../../../data/actor/party.mjs'; */
+
 /** @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
+/** @extends {DHBaseActorSheet<DhActor<DhParty>>} */
 export default class PartySheet extends DHBaseActorSheet {
     constructor(options) {
         super(options);
