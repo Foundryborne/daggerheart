@@ -73,7 +73,7 @@
       "disabled": false,
       "img": "icons/consumables/plants/thorned-curled-vine-green.webp",
       "description": "",
-      "transfer": true,
+      "transfer": false,
       "statuses": [
         "restrained"
       ],
