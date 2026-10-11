@@ -48,10 +48,12 @@ export class RollConfig {
         this.actionChatMessageHandled = data.actionChatMessageHandled ?? false;
         
         // Initialize props based on the documents and action
+        this.hasSave = Boolean(action?.hasSave);
         this.onSave = action?.save?.damageMod;
         this.hasDamage = Boolean(action?.hasDamage);
         this.hasEffect = Boolean(action?.hasEffect);
         this.hasRoll = Boolean(action?.hasRoll || data.roll);
+        this.hasTarget = Boolean(action?.hasTarget);
         this.hasHealing = Boolean(action?.hasHealing);
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
