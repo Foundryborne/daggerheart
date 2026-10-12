@@ -49,12 +49,12 @@ export class RollConfig {
         
         // Initialize props based on the documents and action
         this.hasSave = Boolean(action?.hasSave);
-        this.onSave = action?.save?.damageMod;
         this.hasDamage = Boolean(action?.hasDamage);
         this.hasEffect = Boolean(action?.hasEffect);
         this.hasRoll = Boolean(action?.hasRoll || data.roll);
-        this.hasTarget = Boolean(action?.hasTarget);
+        this.hasTarget = data.hasTarget ?? Boolean(action?.hasTarget); // targetField sets it to true, even though the action has it to false
         this.hasHealing = Boolean(action?.hasHealing);
+        this.onSave = action?.save?.damageMod;
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
         this.rollType = data.rollType ?? null;
