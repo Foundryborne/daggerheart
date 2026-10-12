@@ -11,7 +11,7 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
 
     static DEFAULT_OPTIONS = {
         tag: 'div',
-        classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'compendium-brower-settings'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'compendium-browser-settings'],
         window: {
             icon: 'fa-solid fa-book',
             title: 'DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.title'

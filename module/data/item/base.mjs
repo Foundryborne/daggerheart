@@ -47,6 +47,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             attribution: new fields.SchemaField({
                 source: new fields.StringField(),
                 page: new fields.NumberField(),
+                campaignFrame: new fields.StringField(),
                 artist: new fields.StringField()
             })
         };
