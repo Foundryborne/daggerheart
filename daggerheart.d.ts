@@ -2,6 +2,7 @@ import '@common/global.mjs';
 
 import * as applications from './module/applications/_module.mjs';
 import * as data from './module/data/_module.mjs';
+import * as actionData from './module/data/action/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import { macros } from './module/_module.mjs';
@@ -44,7 +45,7 @@ declare global {
     type DHBaseAction = InstanceType<typeof DHBaseAction>;
     type DhScene = InstanceType<typeof documents.DhScene>;
     type DhTokenDocument = InstanceType<typeof documents.DhTokenDocument>;
-    type RollConfig = dice.RollConfig;
+    type RollConfig = actionData.RollConfig;
     
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.

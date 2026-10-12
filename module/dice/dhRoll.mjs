@@ -112,8 +112,8 @@ export default class DHRoll extends BaseRoll {
         if (config.skips?.createMessage) {
             await triggerChatRollFx([roll]);
         } else if (!config.source?.message) {
-            config.message = await this.toMessage(roll, config);
             config.actionChatMessageHandled ||= config.action?.chatDisplay;
+            config.message = await this.toMessage(roll, config);
         }
     }
 
