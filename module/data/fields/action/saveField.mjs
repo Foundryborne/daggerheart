@@ -132,7 +132,7 @@ export default class SaveField extends fields.SchemaField {
 
     /**
      * Update a Roll ChatMessage for a token according to his Reaction Roll result.
-     * @param {object} result        Result from the Reaction Roll
+     * @param {RollConfig} result        Result from the Reaction Roll
      * @param {object} message       ChatMessage to update
      * @param {string} targetId      Token ID
      */
@@ -141,7 +141,7 @@ export default class SaveField extends fields.SchemaField {
 
         const chatMessage = ui.chat.collection.get(message._id);
         await chatMessage.update({
-            [`system.targetSaves.${targetId}`]: { value: result.roll.total, isCritical: result.roll.isCritical }
+            [`system.targetSaves.${targetId}`]: { value: result.evaluated.total, isCritical: result.evaluated.isCritical }
         });
     }
 
