@@ -30,7 +30,7 @@ export default class SaveField extends fields.SchemaField {
     /**
      * Reaction Roll Action Workflow part.
      * Must be called within Action context or similar.
-     * @param {object} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {RollConfig} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {object[]} [targets=null]     Array of targets to override pre-selected ones.
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
@@ -43,6 +43,7 @@ export default class SaveField extends fields.SchemaField {
             roll._evaluated = true;
             // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
             config.mute = true;
+            config.actionChatMessageHandled ||= config.action?.chatDisplay;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {

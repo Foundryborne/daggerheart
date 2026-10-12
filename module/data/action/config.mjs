@@ -45,7 +45,8 @@ export class RollConfig {
             reaction: false
         }, data.skips ?? {});
         this.damageOptions = data.damageOptions ?? {};
-        this.actionChatMessageHandled = data.actionChatMessageHandled ?? false;
+        /** If set, skips creation of dedicated toChat messages. Used to prevent duplicates. */
+        this.actionChatMessageHandled = Boolean(data.actionChatMessageHandled ?? false);
         
         // Initialize props based on the documents and action
         this.hasSave = Boolean(action?.hasSave);
@@ -58,6 +59,7 @@ export class RollConfig {
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
         this.rollType = data.rollType ?? null;
+        /** Evaluated main roll @type {InstanceType<typeof game.system.api.dice.DHRoll>} */
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
 
