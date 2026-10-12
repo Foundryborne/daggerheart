@@ -100,4 +100,37 @@ export async function updateItemFeatures(document, changes, key, featureListFn) 
     }
     
     await foundry.documents.modifyBatch(aeBatch);
+
+    // Clean up feature configs for things that have been removed
+    const featuresToRemove = Object.keys(document.system.featureConfig)
+        .filter(k => !changedFeatures.some(f => f.value === k));
+    if (featuresToRemove.length) {
+        changes.system.featureConfig = {
+            ...(changes.system.featureConfig ?? {}),
+            ...featuresToRemove.reduce((r, f) => {
+                r[f] = _del;
+                return r;
+            }, {})
+        };
+    }
+
+}
+
+/**
+ * Initialize feature config data and ensure the typing is correct.
+ * Because the data of one validates the other, this can't be done in a custom data type.
+ */
+export async function initializeFeatureConfig({ allFeatures, itemFeatures, featureConfig }) {
+    for (const featureKey of itemFeatures?.map(f => f.value) ?? []) {
+        const field = allFeatures[featureKey]?.config;
+        if (!field) continue;
+
+        try {
+            const value = featureConfig[featureKey] ?? field.getInitialValue();
+            featureConfig[featureKey] = field.initialize(value);
+        } catch (ex) {
+            console.error(ex);
+            featureConfig[featureKey] = field.initialize(field.getInitialValue());
+        }
+    }
 }

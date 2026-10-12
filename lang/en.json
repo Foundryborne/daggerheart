@@ -2845,6 +2845,10 @@
                         }
                     }
                 },
+                "versatile": {
+                    "name": "Versatile",
+                    "description": "This weapon can also be used with these statistics — @Lookup[@item.featureConfig.versatile.trait|type:trait]{Trait}, @Lookup[@item.featureConfig.versatile.range|type:range]{Range}, @Lookup[@item.featureConfig.versatile.damage]{Damage}"
+                },
                 "volleyed": {
                     "name": "Volleyed",
                     "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage."

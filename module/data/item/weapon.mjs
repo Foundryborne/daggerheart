@@ -1,6 +1,6 @@
 import { ActionField } from '../fields/actionField.mjs';
 import BaseDataItem from './base.mjs';
-import { updateItemFeatures } from './helpers.mjs';
+import { initializeFeatureConfig, updateItemFeatures } from './helpers.mjs';
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -49,6 +49,7 @@ export default class DHWeapon extends BaseDataItem {
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
+            featureConfig: new fields.TypedObjectField(new fields.ObjectField()),
             attack: new ActionField({
                 type: 'attack',
                 initial: {
@@ -124,6 +125,26 @@ export default class DHWeapon extends BaseDataItem {
 
     get needsReload() {
         return this.hasReload && this.resource.value === 0;
+    }
+
+    _initialize(options = {}) {
+        super._initialize(options);
+
+        // Initialize feature config data and ensure its all the right type
+        initializeFeatureConfig({
+            allFeatures: CONFIG.DH.ITEM.allWeaponFeatures(),
+            itemFeatures: this.weaponFeatures,
+            featureConfig: (this.featureConfig ??= {})
+        });
+    }
+
+    static _cleanData(data, options, _state) {
+        super._cleanData(data, options, _state);
+        const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
+        const featureConfig = data?.featureConfig;
+        for (const [key, value] of Object.entries(featureConfig ?? {})) {
+            featureConfig[key] = allFeatures[key]?.config?.clean(value) ?? value;
+        }
     }
 
     /**@inheritdoc */

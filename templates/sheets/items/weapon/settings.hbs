@@ -55,5 +55,13 @@
 
         <input type="text" class="features-input" value="{{features}}" />
     </fieldset>
+    {{#each featureConfigs as |config|}}
+        <fieldset class="standard-form">
+            <legend>{{config.label}}</legend>
+            {{#each config.data as |entry key|}}
+                {{formGroup entry.field localize=true name=entry.name value=entry.value}}
+            {{/each}}
+        </fieldset>
+    {{/each}}
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}
 </section>
