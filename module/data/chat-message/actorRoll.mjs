@@ -146,7 +146,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 type: action?.actionType ?? 'action'
             },
             evaluated: this.roll,
-            damage: this.damage
+            damage: this.damage,
+            message: this.parent
         });
 
         return config;

@@ -11,7 +11,7 @@ import D20Roll from '../../dice/d20Roll.mjs';
 export class RollConfig {
     /**
      * 
-     * @param {Partial<import('../../dice/_types').RollConfigParams>} data RollConfig data or creation data for one 
+     * @param {import('./_types').RollConfigParams} data RollConfig data or creation data for one 
      * @param {object} options  Resolved document types for overrides. 
      *                          Mostly used to pass the event without mutation or in build() after parsing the source data. 
      * @param {Event} [options.event]
@@ -24,6 +24,7 @@ export class RollConfig {
         this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor;
         this.item = item ??= data.item ?? data.action?.item;
         this.action = action ??= data.action;
+        this.message = data.message;
         this.event ??= data.event;
 
         // Passthrough certain props. This allows RollConfigs to be recreated
