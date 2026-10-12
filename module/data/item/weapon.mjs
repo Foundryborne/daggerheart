@@ -143,7 +143,9 @@ export default class DHWeapon extends BaseDataItem {
         const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
         const featureConfig = data?.featureConfig;
         for (const [key, value] of Object.entries(featureConfig ?? {})) {
-            featureConfig[key] = allFeatures[key]?.config?.clean(value) ?? value;
+            const field = allFeatures[key]?.config;
+            const innerState = { ..._state, source: value };
+            featureConfig[key] = field?.clean(value, options, innerState) ?? value;
         }
     }
 
