@@ -676,7 +676,9 @@ export default class DhActor extends Actor {
      * @returns {Promise<RollConfig>}
      */
     async diceRoll(config) {
-        config = config instanceof RollConfig ? config : await RollConfig.build(config);
+        config = config instanceof RollConfig && config.actor === this
+            ? config
+            : await RollConfig.build(config, { actor: this });
         return await config.rollClass.build(config);
     }
 

@@ -109,22 +109,22 @@ export default class SaveField extends fields.SchemaField {
     static async rollSave(actor, event) {
         if (!actor) return;
         const title = actor.isNPC
-                ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
-                : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                    ability: game.i18n.localize(abilities[this.save.trait]?.label)
-                }),
-            rollConfig = {
-                event,
-                title,
-                roll: {
-                    trait: this.save.trait,
-                    difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-                    type: 'trait'
-                },
-                actionType: 'reaction',
-                hasRoll: true,
-                data: actor.getRollData()
-            };
+            ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+            : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: game.i18n.localize(abilities[this.save.trait]?.label)
+            });
+        const rollConfig = {
+            actor,
+            event,
+            title,
+            roll: {
+                trait: this.save.trait,
+                difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
+                type: 'trait'
+            },
+            actionType: 'reaction',
+            hasRoll: true
+        };
         if (SaveField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id)
             rollConfig.dialog = { configure: false };
         return actor.diceRoll(rollConfig);
