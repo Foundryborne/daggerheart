@@ -8,8 +8,8 @@ declare module './base-actor.mjs' {
 }
 
 declare module './base-item.mjs' {
-    export default interface DHBaseItemSheet {
-        item: DhItem;
-        document: DhItem;
+    export default interface DHBaseItemSheet<T extends DhItem> {
+        item: T;
+        document: T;
     }
 }

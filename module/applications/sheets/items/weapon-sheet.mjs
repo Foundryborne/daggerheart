@@ -1,3 +1,4 @@
+import { mapValues } from '../../../helpers/functional.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 import ItemAttachmentSheet from '../api/item-attachment-sheet.mjs';
 
@@ -10,6 +11,9 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         classes: ['weapon'],
         actions: {
             configureAttack: WeaponSheet.#configureAttack
+        },
+        position: {
+            height: 500
         },
         tagifyConfigs: [
             {
@@ -54,18 +58,36 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     async _preparePartContext(partId, context) {
         await super._preparePartContext(partId, context);
         switch (partId) {
-            case 'settings':
+            case 'settings': {
+                const weaponFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
                 context.features = this.document.system.weaponFeatures.map(x => x.value);
                 context.systemFields.attack.fields = this.document.system.attack.schema.fields;
                 context.featureErrors = this.document.system.weaponFeatures.reduce((acc, curr) => {
-                    const configData = CONFIG.DH.ITEM.weaponFeatures[curr.value];
+                    const configData = weaponFeatures[curr.value];
                     const error = configData?.getErrorText?.(this.document);
                     if (error) return !acc ? error : [acc, error].join(', ');
 
                     return acc;
                 }, null);
 
+                context.featureConfigs = context.features
+                    .map(featureKey => {
+                        const feature = weaponFeatures[featureKey];
+                        if (!feature.config) return null;
+
+                        return {
+                            label: _loc(feature.label),
+                            data: mapValues(feature.config.fields, (field, k) => ({
+                                field,
+                                name: `system.featureConfig.${featureKey}.${k}`,
+                                value: this.item.system.featureConfig[featureKey]?.[k]
+                            }))
+                        };
+                    })
+                    .filter(Boolean);
+
                 break;
+            }
         }
         return context;
     }

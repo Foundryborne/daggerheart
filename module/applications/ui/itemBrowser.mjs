@@ -49,7 +49,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             expandContent: this.expandContent,
             resetFilters: this.resetFilters,
             sortList: this.sortList,
-            openSettings: this.openSettings,
+            openSettings: this.#onOpenSettings,
             viewSheet: this.#onViewSheet
         },
         position: {
@@ -547,7 +547,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         itemListContainer.replaceChildren(...newOrder);
     }
 
-    static async openSettings() {
+    /** @this {ItemBrowser} */
+    static async #onOpenSettings() {
         const settingsUpdated = await game.system.api.applications.dialogs.CompendiumBrowserSettingsDialog.configure();
         if (settingsUpdated) {
             if (this.rendered) {
