@@ -191,13 +191,13 @@ export function ActionMixin(Base) {
         }
 
         get relativeUUID() {
-            return `.Item.${this.item.id}.Action.${this.id}`;
+            const parentDocument = this.parentDocument;
+            return `.${parentDocument.documentName}.${parentDocument.id}.Action.${this.id}`;
         }
 
         get uuid() {
-            const isItem = this.item instanceof game.system.api.documents.DhItem;
-            const isActor = this.item instanceof game.system.api.documents.DhActor;
-            return isItem || isActor ? `${this.item.uuid}.${this.documentName}.${this.id}` : null;
+            const parentDocument = this.parentDocument;
+            return parentDocument ? `${parentDocument.uuid}.${this.documentName}.${this.id}` : null;
         }
 
         get sheet() {

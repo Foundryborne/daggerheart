@@ -59,7 +59,7 @@ export default class TargetField extends fields.SchemaField {
         for (const target of config.targets) {
             const toHitNumber = target.difficulty || target.evasion;
             const hitSuccessfull = (!config.roll || !toHitNumber) ? false : 
-                (config.roll.isCritical || config.roll.total >= toHitNumber);
+                (config.evaluated?.isCritical || config.evaluated?.total >= toHitNumber);
             
             target.hitResult = { success: hitSuccessfull };
         }

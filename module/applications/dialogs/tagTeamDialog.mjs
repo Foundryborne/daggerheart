@@ -1,6 +1,7 @@
 import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
+import { RollConfig } from '../../data/action/config.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
@@ -49,7 +50,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         actions: {
             toggleSelectMember: TagTeamDialog.#toggleSelectMember,
             startTagTeamRoll: TagTeamDialog.#startTagTeamRoll,
-            makeRoll: TagTeamDialog.#makeRoll,
+            makeRoll: TagTeamDialog.#onMakeRoll,
             removeRoll: TagTeamDialog.#removeRoll,
             rerollDice: TagTeamDialog.#rerollDice,
             makeDamageRoll: TagTeamDialog.#makeDamageRoll,
@@ -444,7 +445,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         );
     }
 
-    static async #makeRoll(event, button) {
+    /** @this {TagTeamDialog} */
+    static async #onMakeRoll(event, button) {
         const { member } = button.dataset;
 
         let result = null;
@@ -530,9 +532,9 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const memberData = this.party.system.tagTeam.members[memberKey];
         const action = await foundry.utils.fromUuid(memberData.rollChoice);
-        const { base } = game.system.api.data.actions.actionsTypes;
-        const config = {
+        const config = await RollConfig.build({
             ...memberData.rollData.options,
+            action,
             dialog: {
                 configure: !event.shiftKey
             },
@@ -540,9 +542,8 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
                 createMessage: true,
                 resources: true,
                 triggers: true
-            },
-            effects: await base.getActionRelevantEffects(action.getRollData(), actor)
-        };
+            }
+        });
 
         await action.workflow.get('damage').execute(config, null, true);
         if (!config.damage) return;

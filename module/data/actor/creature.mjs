@@ -74,7 +74,10 @@ export default class DhCreature extends BaseDataActor {
         }
     }
 
+    /** @inheritdoc */
     prepareBaseData() {
+        super.prepareBaseData();
+
         // Initialize the set of feature granted resources
         this.availableOptionalResourceKeys.clear();
         for (const feature of this.parent.itemTypes.feature) {

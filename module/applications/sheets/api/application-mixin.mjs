@@ -525,11 +525,7 @@ export default function DHApplicationMixin(Base) {
                     onClick: async (event, target) => {
                         const doc = await getDocFromElement(target);
                         const action = doc.system.attack;
-                        const config = action.prepareConfig(event);
-                        config.effects = await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                            action.getRollData(),
-                            this.document
-                        );
+                        const config = await action.prepareConfig(event);
                         config.hasRoll = false;
                         return action && action.workflow.get('damage').execute(config, null, true);
                     }
