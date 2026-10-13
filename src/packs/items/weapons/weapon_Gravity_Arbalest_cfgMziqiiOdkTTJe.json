@@ -110,15 +110,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "magnetic",
-        "effectIds": [],
-        "actionIds": [
-          "R0DsdoMfAJNfGLy5"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -208,6 +199,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "magnetic": {
+        "value": "magnetic",
+        "effectIds": [],
+        "actionIds": [
+          "R0DsdoMfAJNfGLy5"
+        ],
+        "config": {}
       }
     }
   },

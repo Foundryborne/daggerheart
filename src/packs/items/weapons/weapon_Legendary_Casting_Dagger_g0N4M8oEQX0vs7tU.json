@@ -19,13 +19,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "versatile",
-        "effectIds": [],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -117,14 +110,19 @@
         }
       }
     },
-    "featureConfig": {
+    "itemFeatures": {
       "versatile": {
-        "trait": "instinct",
-        "range": "melee",
-        "damage": {
-          "dice": "d8",
-          "bonus": 9,
-          "type": "magical"
+        "value": "versatile",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {
+          "trait": "instinct",
+          "range": "melee",
+          "damage": {
+            "dice": "d8",
+            "bonus": 9,
+            "type": "magical"
+          }
         }
       }
     }

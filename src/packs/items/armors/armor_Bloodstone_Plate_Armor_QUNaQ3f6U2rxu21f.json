@@ -92,15 +92,16 @@
       "major": 13,
       "severe": 35
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "bloodthirsty": {
         "value": "bloodthirsty",
         "effectIds": [],
         "actionIds": [
           "LoUjBJNX5nvhKyZM"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 4,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "burning",
-        "effectIds": [],
-        "actionIds": [
-          "L8mHf4A8SylyxsMH"
-        ]
-      }
-    ],
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "burning": {
+        "value": "burning",
+        "effectIds": [],
+        "actionIds": [
+          "L8mHf4A8SylyxsMH"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

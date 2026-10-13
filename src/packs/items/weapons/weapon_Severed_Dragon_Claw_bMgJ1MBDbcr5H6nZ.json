@@ -72,17 +72,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "destructive",
-        "effectIds": [
-          "vQJCrV4wxxhGUcBX"
-        ],
-        "actionIds": [
-          "bWNQYdjog9uNuNfL"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -172,6 +161,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "destructive": {
+        "value": "destructive",
+        "effectIds": [
+          "vQJCrV4wxxhGUcBX"
+        ],
+        "actionIds": [
+          "bWNQYdjog9uNuNfL"
+        ],
+        "config": {}
       }
     }
   },

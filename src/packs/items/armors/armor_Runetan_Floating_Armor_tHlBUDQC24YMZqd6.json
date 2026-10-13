@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 2,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "shifting",
-        "effectIds": [],
-        "actionIds": [
-          "Nn33zCIcWe6LQMDH"
-        ]
-      }
-    ],
     "baseThresholds": {
       "major": 9,
       "severe": 20
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "shifting": {
+        "value": "shifting",
+        "effectIds": [],
+        "actionIds": [
+          "Nn33zCIcWe6LQMDH"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

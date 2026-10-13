@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 2,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "hopeful",
-        "effectIds": [],
-        "actionIds": [
-          "QRTnCYxJfuJHdnyV"
-        ]
-      }
-    ],
     "baseThresholds": {
       "major": 11,
       "severe": 23
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "hopeful": {
+        "value": "hopeful",
+        "effectIds": [],
+        "actionIds": [
+          "QRTnCYxJfuJHdnyV"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

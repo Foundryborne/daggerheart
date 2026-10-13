@@ -68,17 +68,18 @@
       "major": 15,
       "severe": 40
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "vitreous": {
         "value": "vitreous",
         "effectIds": [
           "dzGZkBgtJjQh3JH1"
         ],
         "actionIds": [
           "iTv5QVsZaJ6KYEv3"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

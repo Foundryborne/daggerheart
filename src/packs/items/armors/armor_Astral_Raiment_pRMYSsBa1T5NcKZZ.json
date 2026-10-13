@@ -63,15 +63,16 @@
       "major": 11,
       "severe": 27
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "stellar": {
         "value": "stellar",
         "effectIds": [],
         "actionIds": [
           "1xXZfSn4U37AgDRB"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,
