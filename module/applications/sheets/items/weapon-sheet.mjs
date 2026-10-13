@@ -54,15 +54,22 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         }
     };
 
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.source = this.document._source;
+
+        return context;
+    }
+
     /** @inheritdoc */
     async _preparePartContext(partId, context) {
         await super._preparePartContext(partId, context);
         switch (partId) {
             case 'settings': {
                 const weaponFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
-                context.features = this.document.system.weaponFeatures.map(x => x.value);
+                context.features = context.source.system.weaponFeatures.map(x => x.value);
                 context.systemFields.attack.fields = this.document.system.attack.schema.fields;
-                context.featureErrors = this.document.system.weaponFeatures.reduce((acc, curr) => {
+                context.featureErrors = context.source.system.weaponFeatures.reduce((acc, curr) => {
                     const configData = weaponFeatures[curr.value];
                     const error = configData?.getErrorText?.(this.document);
                     if (error) return !acc ? error : [acc, error].join(', ');
@@ -80,7 +87,7 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                             data: mapValues(feature.config.fields, (field, k) => ({
                                 field,
                                 name: `system.featureConfig.${featureKey}.${k}`,
-                                value: this.item.system.featureConfig[featureKey]?.[k]
+                                value: context.source.system.featureConfig[featureKey]?.[k]
                             }))
                         };
                     })
@@ -104,10 +111,9 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-        const document = this.document;
-        await document.update({ 
+        await this.document.update({ 
             'system.weaponFeatures': selectedOptions.map(x => ({
-                ...(document.system._source.weaponFeatures?.find(f => f.value === x.value) ?? {}),
+                ...(this.document._source.weaponFeatures?.find(f => f.value === x.value) ?? {}),
                 value: x.value
             }))
         });
