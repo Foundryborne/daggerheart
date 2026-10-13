@@ -127,13 +127,6 @@ export default class DHWeapon extends BaseDataItem {
         return this.hasReload && this.resource.value === 0;
     }
 
-    get versatileData() {
-        const isVersatile = this.weaponFeatures.find(x => x.value === 'versatile');
-        if (!isVersatile) return null;
-
-        return { };
-    }
-
     _initialize(options = {}) {
         super._initialize(options);
 
@@ -182,6 +175,19 @@ export default class DHWeapon extends BaseDataItem {
                 'weaponFeatures',
                 CONFIG.DH.ITEM.allWeaponFeatures
             );
+        }
+    }
+
+    /** @inheritDoc */
+    prepareBaseData() {
+        const versatileActive = this.parent.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.itemFlags.versatileActive);
+        const versatileData = this.featureConfig.versatile;
+        if (versatileData && versatileActive) {
+            this.attack.range = versatileData.range;
+            this.attack.roll.trait = versatileData.trait;
+            this.attack.damage.main.type = new Set([versatileData.damage.type]);
+            this.attack.damage.main.value.dice = versatileData.damage.dice;
+            this.attack.damage.main.value.bonus = versatileData.damage.bonus;
         }
     }
 
