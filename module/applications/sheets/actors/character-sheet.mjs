@@ -523,7 +523,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-right-left',
                 visible: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc.isOwner && doc && doc.system.versatileData;
+                    return doc.isOwner && doc && doc.system.featureConfig.versatile;
                 },
                 onClick: (event, target) => CharacterSheet.#onToggleEquipItem.call(this, event, target)
             },

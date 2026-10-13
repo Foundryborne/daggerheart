@@ -59,7 +59,7 @@
                 </a>
             {{/if}}
         {{else}}
-            {{#if (and (eq item.type 'weapon') item.system.versatileData)}}
+            {{#if (and (eq item.type 'weapon') item.system.featureConfig.versatile)}}
                 <a data-action="toggleVersatileWeapon" data-tooltip="DAGGERHEART.UI.Tooltip.toggleVersatile">
                     <i class="fa-regular fa-fw fa-right-left"></i>
                 </a>
