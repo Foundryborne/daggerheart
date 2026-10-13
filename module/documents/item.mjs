@@ -66,7 +66,7 @@ export default class DhItem extends foundry.documents.Item {
     /** Returns true if the item has a description, usually if there is a description field, or if there are item features */
     get hasDescription() {
         return Boolean(this.system.description) 
-            || Boolean(this.system.itemFeatures?.length)
+            || !foundry.utils.isEmpty(this.system.itemFeatures)
             || (Boolean(this.system.gmNotes) && game.user.isGM);
     }
 

@@ -75,11 +75,14 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      */
     static async #onFeatureSelect(selectedOptions) {
         const document = this.document;
+        const selectedFeatures = selectedOptions.map(x => x.value);
+        const toRemove = Object.keys(document.system.itemFeatures).filter(f => !selectedFeatures.includes(f));
+        const toAdd = selectedFeatures.filter(f => !(f in document.system.itemFeatures)); 
         await document.update({ 
-            'system.armorFeatures': selectedOptions.map(x => ({
-                ...(document.system._source.armorFeatures?.find(f => f.value === x.value) ?? {}),
-                value: x.value
-            }))
+            'system.itemFeatures': {
+                ...Object.fromEntries(toAdd.map(f => [f, { value: f }])),
+                ...Object.fromEntries(toRemove.map(f => [f, _del]))
+            }
         });
     }
 }

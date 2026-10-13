@@ -125,10 +125,6 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return this.actions;
     }
 
-    get itemFeatures() {
-        return this.actor?.items.filter(i => i.system.granterItem === this.parent) ?? [];
-    }
-
     get attributionLabel() {
         if (!this.attribution) return null;
 

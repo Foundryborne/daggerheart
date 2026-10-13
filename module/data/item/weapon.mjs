@@ -1,6 +1,7 @@
 import { ActionField } from '../fields/actionField.mjs';
+import { ConfigurableItemFeature } from '../fields/configurable-item-feature.mjs';
 import BaseDataItem from './base.mjs';
-import { initializeFeatureConfig, updateItemFeatures } from './helpers.mjs';
+import { updateItemFeatures } from './helpers.mjs';
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -40,16 +41,7 @@ export default class DHWeapon extends BaseDataItem {
                 initial: 'oneHanded',
                 label: 'DAGGERHEART.GENERAL.burden'
             }),
-            weaponFeatures: new fields.ArrayField(
-                new fields.SchemaField({
-                    value: new fields.StringField({
-                        required: true
-                    }),
-                    effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
-                    actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
-                })
-            ),
-            featureConfig: new fields.TypedObjectField(new fields.ObjectField()),
+            itemFeatures: new fields.TypedObjectField(new ConfigurableItemFeature({ itemType: 'weapon' })),
             attack: new ActionField({
                 type: 'attack',
                 initial: {
@@ -115,8 +107,9 @@ export default class DHWeapon extends BaseDataItem {
         );
     }
 
-    get itemFeatures() {
-        return this.weaponFeatures;
+    get weaponFeatures() {
+        // todo: deprecate
+        return Object.values(this.itemFeatures);
     }
 
     get hasReload() {
@@ -125,28 +118,6 @@ export default class DHWeapon extends BaseDataItem {
 
     get needsReload() {
         return this.hasReload && this.resource.value === 0;
-    }
-
-    _initialize(options = {}) {
-        super._initialize(options);
-
-        // Initialize feature config data and ensure its all the right type
-        initializeFeatureConfig({
-            allFeatures: CONFIG.DH.ITEM.allWeaponFeatures(),
-            itemFeatures: this.weaponFeatures,
-            featureConfig: (this.featureConfig ??= {})
-        });
-    }
-
-    static _cleanData(data, options, _state) {
-        super._cleanData(data, options, _state);
-        const allFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
-        const featureConfig = data?.featureConfig;
-        for (const [key, value] of Object.entries(featureConfig ?? {})) {
-            const field = allFeatures[key]?.config;
-            const innerState = { ..._state, source: value };
-            featureConfig[key] = field?.clean(value, options, innerState) ?? value;
-        }
     }
 
     /**@inheritdoc */
@@ -168,11 +139,10 @@ export default class DHWeapon extends BaseDataItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        if (changes.system?.weaponFeatures) {
+        if (changes.system?.itemFeatures) {
             await updateItemFeatures(
                 this.parent,
                 changes,
-                'weaponFeatures',
                 CONFIG.DH.ITEM.allWeaponFeatures
             );
         }
@@ -181,7 +151,7 @@ export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
     prepareBaseData() {
         const versatileActive = this.parent.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.itemFlags.versatileActive);
-        const versatileData = this.featureConfig.versatile;
+        const versatileData = this.itemFeatures.versatile?.config;
         if (versatileData && versatileActive) {
             this.attack.range = versatileData.range;
             this.attack.roll.trait = versatileData.trait;
