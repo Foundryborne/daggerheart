@@ -127,6 +127,13 @@ export default class DHWeapon extends BaseDataItem {
         return this.hasReload && this.resource.value === 0;
     }
 
+    get versatileData() {
+        const isVersatile = this.weaponFeatures.find(x => x.value === 'versatile');
+        if (!isVersatile) return null;
+
+        return { };
+    }
+
     _initialize(options = {}) {
         super._initialize(options);
 

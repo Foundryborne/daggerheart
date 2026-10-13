@@ -576,7 +576,8 @@
                 "recall": "Recall",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
-                "useItem": "Use Item"
+                "useItem": "Use Item",
+                "toggleVersatile": "Switch Versatile"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -4415,7 +4416,8 @@
                     "general": "This effect is suppressed",
                     "invalid": "This effect is suppressed due to conditionals",
                     "unequipped": "This effect is suppressed because this item is not equipped"
-                }
+                },
+                "toggleVersatile": "Versatile Switch"
             }
         }
     }
