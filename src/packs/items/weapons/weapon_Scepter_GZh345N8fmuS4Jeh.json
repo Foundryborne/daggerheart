@@ -11,7 +11,13 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [],
+    "weaponFeatures": [
+      {
+        "value": "versatile",
+        "effectIds": [],
+        "actionIds": []
+      }
+    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -110,7 +116,18 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "featureConfig": {
+      "versatile": {
+        "trait": "presence",
+        "range": "melee",
+        "damage": {
+          "dice": "d8",
+          "bonus": 0,
+          "type": "magical"
+        }
+      }
+    }
   },
   "effects": [],
   "sort": 0,
