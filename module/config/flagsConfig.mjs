@@ -39,3 +39,7 @@ export const activeEffectFlags = {
 export const actorFlags = {
     hordeFeature: 'hordeFeature'
 };
+
+export const itemFlags = {
+    versatileActive: 'versatileActive'
+};
