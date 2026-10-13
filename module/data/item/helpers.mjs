@@ -1,6 +1,8 @@
 import { pickBy } from '../../helpers/functional.mjs';
 
 export async function updateItemFeatures(document, changes, featureListFn) {
+    // Check that itemFeatures was changed. Note that having a config will lead to this being called twice,
+    // however due to the diffing that should be fine
     if (!changes.system.itemFeatures) return;
 
     // Store final data. A batch update is made from this at the end
@@ -10,10 +12,11 @@ export async function updateItemFeatures(document, changes, featureListFn) {
 
     const changedFeatures = foundry.utils.mergeObject(
         document.toObject(true).system.itemFeatures,
-        changes.system.itemFeatures
+        changes.system.itemFeatures,
+        { applyOperators: true }
     );
     const existingFeatures = document.system.itemFeatures;
-    const removedFeatures = Object.keys(existingFeatures).filter(x => !(x in changedFeatures));
+    const removedFeatures = Object.values(existingFeatures).filter(f => !(f.value in changedFeatures));
     const addedFeatures = Object.values(pickBy(changes.system.itemFeatures, (_, k) => !(k in existingFeatures)));
     removedEffectIds.push(...removedFeatures.flatMap(f => f.effectIds ?? []).filter(id => document.effects.has(id)));
 
@@ -31,7 +34,6 @@ export async function updateItemFeatures(document, changes, featureListFn) {
 
     const allFeatures = featureListFn();
     for (const feature of addedFeatures) {
-        console.log(feature);
         feature.actionIds ??= [];
         feature.effectIds ??= [];
         const featureData = foundry.utils.deepClone(allFeatures[feature.value]);

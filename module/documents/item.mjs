@@ -369,6 +369,8 @@ export default class DhItem extends foundry.documents.Item {
         const weaponArmorFeatures = source.system?.weaponFeatures ?? source.system?.armorFeatures;
         if (weaponArmorFeatures && !source.system.itemFeatures) {
             source.system.itemFeatures = Object.fromEntries(weaponArmorFeatures.map(e => [e.value, e]));
+            delete source.system.weaponFeatures;
+            delete source.system.armorFeatures;
         }
 
         return super.migrateData(source);

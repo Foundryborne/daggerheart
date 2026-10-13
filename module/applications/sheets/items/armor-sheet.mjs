@@ -53,7 +53,7 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
 
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.armorFeatures.map(x => x.value);
+                context.features = Object.keys(this.document.system.itemFeatures);
                 break;
         }
 

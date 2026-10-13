@@ -112,23 +112,15 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-<<<<<<< HEAD
-        await this.document.update({ 
-            'system.weaponFeatures': selectedOptions.map(x => ({
-                ...(this.document._source.weaponFeatures?.find(f => f.value === x.value) ?? {}),
-                value: x.value
-            }))
-=======
         const document = this.document;
         const selectedFeatures = selectedOptions.map(x => x.value);
-        const toRemove = Object.keys(document.system.itemFeatures).filter(f => !selectedFeatures.includes(f));
-        const toAdd = selectedFeatures.filter(f => !(f in document.system.itemFeatures)); 
+        const toRemove = Object.keys(document._source.system.itemFeatures).filter(f => !selectedFeatures.includes(f));
+        const toAdd = selectedFeatures.filter(f => !(f in document._source.system.itemFeatures)); 
         await document.update({ 
             'system.itemFeatures': {
                 ...Object.fromEntries(toAdd.map(f => [f, { value: f }])),
                 ...Object.fromEntries(toRemove.map(f => [f, _del]))
             }
->>>>>>> c8452c0fe (Refactor item features into an object, and move config to there)
         });
     }
 }

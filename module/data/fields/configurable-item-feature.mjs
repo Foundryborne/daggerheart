@@ -29,7 +29,7 @@ export class ConfigurableItemFeature extends fields.SchemaField {
             try {
                 value.config = configField?.initialize(value.config ?? configField?.getInitialValue()) ?? {};
             } catch (ex) {
-                console.log(ex);
+                console.error(ex);
                 value.config = configField?.initialize(configField?.getInitialValue()) ?? {};
             }
         }

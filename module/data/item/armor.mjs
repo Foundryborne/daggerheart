@@ -30,7 +30,7 @@ export default class DHArmor extends BaseDataItem {
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })
             }),
-            itemFeatures: new fields.TypedObjectField(new ConfigurableItemFeature({ itemType: 'weapon' }))
+            itemFeatures: new fields.TypedObjectField(new ConfigurableItemFeature({ itemType: 'armor' }))
         };
     }
 
@@ -56,7 +56,7 @@ export default class DHArmor extends BaseDataItem {
     async getDescriptionData() {
         const baseDescription = this.description;
         const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
-        const features = this.armorFeatures.map(x => allFeatures[x.value]).filter(x => x);
+        const features = Object.values(this.itemFeatures).map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
