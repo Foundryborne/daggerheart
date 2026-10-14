@@ -135,22 +135,22 @@ export default class DamageField extends fields.SchemaField {
                     actor
                         .takeDamage(configDamage, config.isDirect)
                         .then(updates => { 
-                            if (!updates.length) return;
-
-                            const resistanceData = actor.getResistanceStatus(
-                                configDamage.main?.options.damageTypes ?? []);
-                            const tokenData = {
-                                id: token.id, 
-                                name: token.prototype?.name ?? token.name, 
-                                img: token.texture.src,
-                                resistant: resistanceData?.resistant,
-                                immune: resistanceData?.immune
-                            };
-                            
-                            targetDamage.push({
-                                token: tokenData,
-                                updates 
-                            })
+                            if (updates?.length) {
+                                const resistanceData = actor.getResistanceStatus(
+                                    configDamage.main?.options.damageTypes ?? []);
+                                const tokenData = {
+                                    id: token.id, 
+                                    name: token.prototype?.name ?? token.name, 
+                                    img: token.texture.src,
+                                    resistant: resistanceData?.resistant,
+                                    immune: resistanceData?.immune
+                                };
+                                
+                                targetDamage.push({
+                                    token: tokenData,
+                                    updates 
+                                })
+                            }
                         })
                 );
             }
