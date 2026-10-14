@@ -135,7 +135,7 @@ export default class DamageField extends fields.SchemaField {
                     actor
                         .takeDamage(configDamage, config.isDirect)
                         .then(updates => { 
-                            if (!updates.length) return;
+                            if (!updates?.length) return;
 
                             const resistanceData = actor.getResistanceStatus(
                                 configDamage.main?.options.damageTypes ?? []);

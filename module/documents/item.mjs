@@ -338,10 +338,6 @@ export default class DhItem extends foundry.documents.Item {
         }
     }
 
-    async _preDelete() {
-        this.deleteTriggers();
-    }
-
     /** @inheritDoc */
     static migrateData(source) {
         const documentClass = game.system.api.data.items[`DH${source.type?.capitalize()}`];
@@ -460,5 +456,12 @@ export default class DhItem extends foundry.documents.Item {
         } else {
             return batch;
         }
+    }
+
+    /** @inheritdoc */
+    async _preDelete(options, user) {
+        const allowed = await super._preDelete(options, user);
+        if (allowed === false) return false;
+        this.deleteTriggers();
     }
 }

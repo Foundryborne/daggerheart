@@ -1,18 +1,18 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 import ItemAttachmentSheet from '../api/item-attachment-sheet.mjs';
 
-export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
-    /** @inheritdoc */
+/** @import { DHArmor } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHArmor>>} */
+export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        classes: ['weapon'],
-        actions: {
-            configureAttack: WeaponSheet.#configureAttack
-        },
+        classes: ['armor'],
         tagifyConfigs: [
             {
                 selector: '.features-input',
                 options: async () => {
-                    const options = CONFIG.DH.ITEM.orderedWeaponFeatures();
+                    const options = CONFIG.DH.ITEM.orderedArmorFeatures();
                     const TextEditor = foundry.applications.ux.TextEditor;
                     for (const option of options) {
                         // Descriptions may use Lookup's with fallback values, which we want to show
@@ -20,14 +20,14 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                     }
                     return options;
                 },
-                callback: WeaponSheet.#onFeatureSelect
+                callback: ArmorSheet.#onFeatureSelect
             }
         ]
     };
 
     /** @inheritdoc */
     static PARTS = {
-        header: { template: 'systems/daggerheart/templates/sheets/items/weapon/header.hbs' },
+        header: { template: 'systems/daggerheart/templates/sheets/items/armor/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { 
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs',
@@ -38,7 +38,7 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
             scrollable: ['']
         },
         settings: {
-            template: 'systems/daggerheart/templates/sheets/items/weapon/settings.hbs',
+            template: 'systems/daggerheart/templates/sheets/items/armor/settings.hbs',
             scrollable: ['']
         },
         effects: {
@@ -47,31 +47,26 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         }
     };
 
-    /** @inheritdoc */
+    /**@inheritdoc */
     async _preparePartContext(partId, context) {
         await super._preparePartContext(partId, context);
+
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.weaponFeatures.map(x => x.value);
-                context.systemFields.attack.fields = this.document.system.attack.schema.fields;
-                context.featureErrors = this.document.system.weaponFeatures.reduce((acc, curr) => {
-                    const configData = CONFIG.DH.ITEM.weaponFeatures[curr.value];
-                    const error = configData?.getErrorText?.(this.document);
-                    if (error) return !acc ? error : [acc, error].join(', ');
-
-                    return acc;
-                }, null);
-
+                context.features = this.document.system.armorFeatures.map(x => x.value);
                 break;
         }
+
         return context;
     }
 
-    /**
-     * Open the action configuration sheet for the weapon's base attack.
-     */
-    static #configureAttack() {
-        this.document.system.attack.sheet.render({ force: true });
+    async updateArmorEffect(event) {
+        const value = Number.parseInt(event.target.value);
+        const armorEffect = this.document.system.armorEffect;
+        if (Number.isNaN(value) || !armorEffect) return;
+
+        await armorEffect.system.armorChange.updateArmorMax(value);
+        this.render();
     }
 
     /**
@@ -81,8 +76,8 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     static async #onFeatureSelect(selectedOptions) {
         const document = this.document;
         await document.update({ 
-            'system.weaponFeatures': selectedOptions.map(x => ({
-                ...(document.system._source.weaponFeatures?.find(f => f.value === x.value) ?? {}),
+            'system.armorFeatures': selectedOptions.map(x => ({
+                ...(document.system._source.armorFeatures?.find(f => f.value === x.value) ?? {}),
                 value: x.value
             }))
         });

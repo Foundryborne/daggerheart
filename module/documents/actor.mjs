@@ -854,11 +854,6 @@ export default class DhActor extends Actor {
         args = this.#parseDamageArgs(args);
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args) === false) return null;
 
-        if (this.type === 'companion') {
-            await this.modifyResource([{ value: 1, key: 'stress' }]);
-            return;
-        }
-
         const updates = args.resourceUpdates;
         if (args.main) {
             // todo: avoid side effects, but hook currently requires it
@@ -868,9 +863,11 @@ export default class DhActor extends Actor {
         if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, args) === false) return null;
 
         // Convert deducted resources to a record of updates. Return if nothing to do.
-        if (!updates.some(u => u.value) && !args.main) return; 
+        if (!updates.some(u => u.value) && !args.main) return null; 
 
-        if (args.main) {
+        if (args.main && this.type === 'companion') {
+            updates.push({ value: 1, key: 'stress' });
+        } else if (args.main) {
             const hpDamage = { 
                 value: this.convertDamageToThreshold(args.main.value),
                 damageTypes: new Set(args.main.damageTypes), 

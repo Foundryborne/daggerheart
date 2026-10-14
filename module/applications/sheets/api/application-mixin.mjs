@@ -141,8 +141,10 @@ export default function DHApplicationMixin(Base) {
 
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
             if (this.document.system.metadata.hasAttribution && headerAttribution) {
-                const { source, page } = this.document.system.attribution;
-                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+                const { source, page, campaignFrame } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null, campaignFrame ? ` (${campaignFrame})` : null]
+                    .filter(x => x)
+                    .join('. ');
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
                 this.window.controls.insertAdjacentHTML('beforebegin', element);
             }

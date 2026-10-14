@@ -1,5 +1,8 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
+/** @import { DHTransformation } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHTransformation>>} */
 export default class TransformationSheet extends DHBaseItemSheet {    
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
