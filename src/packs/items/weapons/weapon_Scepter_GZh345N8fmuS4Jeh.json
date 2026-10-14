@@ -121,7 +121,9 @@
           "damage": {
             "dice": "d8",
             "bonus": 0,
-            "type": "magical"
+            "type": [
+              "magical"
+            ]
           }
         }
       }

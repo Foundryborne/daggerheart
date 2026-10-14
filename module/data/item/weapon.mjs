@@ -155,7 +155,10 @@ export default class DHWeapon extends BaseDataItem {
         if (versatileData && versatileActive) {
             this.attack.range = versatileData.range;
             this.attack.roll.trait = versatileData.trait;
-            this.attack.damage.main.type = new Set([versatileData.damage.type]);
+            if (versatileData.damage.type.size) {
+                this.attack.damage.main.type = versatileData.damage.type;
+            }
+            this.attack.damage.main.value.custom.enabled = false;
             this.attack.damage.main.value.dice = versatileData.damage.dice;
             this.attack.damage.main.value.bonus = versatileData.damage.bonus;
         }

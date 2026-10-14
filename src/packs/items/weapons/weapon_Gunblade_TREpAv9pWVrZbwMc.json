@@ -121,7 +121,9 @@
           "damage": {
             "dice": "d8",
             "bonus": 6,
-            "type": "physical"
+            "type": [
+              "physical"
+            ]
           }
         }
       }
