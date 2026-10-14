@@ -115,6 +115,8 @@ export default class DhActor extends Actor {
     }
 
     prepareData() {
+        this.flags ??= {};
+        this.flags.daggerheart ??= {};
         super.prepareData();
 
         // Update effects if it is the user's character or is controlled
