@@ -62,17 +62,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "ethereal",
-        "effectIds": [
-          "MnQKsDs3DCwlqUQs"
-        ],
-        "actionIds": [
-          "XdQBnYfIX5Km5KqU"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -162,6 +151,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "ethereal": {
+        "value": "ethereal",
+        "effectIds": [
+          "MnQKsDs3DCwlqUQs"
+        ],
+        "actionIds": [
+          "XdQBnYfIX5Km5KqU"
+        ],
+        "config": {}
       }
     }
   },

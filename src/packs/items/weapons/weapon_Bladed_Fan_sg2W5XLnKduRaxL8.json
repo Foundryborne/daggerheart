@@ -48,15 +48,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "parry",
-        "effectIds": [],
-        "actionIds": [
-          "KrXsIpyvPDci7gXH"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -146,6 +137,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "parry": {
+        "value": "parry",
+        "effectIds": [],
+        "actionIds": [
+          "KrXsIpyvPDci7gXH"
+        ],
+        "config": {}
       }
     }
   },

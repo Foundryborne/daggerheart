@@ -25,15 +25,16 @@
       "major": 9,
       "severe": 20
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "wallCrawling": {
         "value": "wallCrawling",
         "effectIds": [
           "a1I284B2QCnVEs7e"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

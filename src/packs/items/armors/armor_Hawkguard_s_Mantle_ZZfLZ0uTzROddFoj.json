@@ -54,15 +54,16 @@
       "major": 9,
       "severe": 20
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "gliding": {
         "value": "gliding",
         "effectIds": [],
         "actionIds": [
           "DlCbxmVa5udw4wLA"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

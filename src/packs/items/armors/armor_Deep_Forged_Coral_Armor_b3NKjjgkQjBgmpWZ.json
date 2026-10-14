@@ -25,15 +25,16 @@
       "major": 13,
       "severe": 35
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "aquatic": {
         "value": "aquatic",
         "effectIds": [
           "3lzAYwHLDaq0HiMs"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

@@ -1,12 +1,23 @@
-export async function updateItemFeatures(document, changes, key, featureListFn) {
+import { pickBy } from '../../helpers/functional.mjs';
+
+export async function updateItemFeatures(document, changes, featureListFn) {
+    // Check that itemFeatures was changed. Note that having a config will lead to this being called twice,
+    // however due to the diffing that should be fine
+    if (!changes.system.itemFeatures) return;
+
     // Store final data. A batch update is made from this at the end
     // keepId is on at the end, so id references are safe
     const finalCreateData = [];
     const removedEffectIds = [];
 
-    const changedFeatures = changes.system[key] ?? [];
-    const removedFeatures = document.system[key].filter(x => changedFeatures.every(y => y.value !== x.value));
-    const added = changedFeatures.filter(x => document.system[key].every(y => y.value !== x.value));
+    const changedFeatures = foundry.utils.mergeObject(
+        document.toObject(true).system.itemFeatures,
+        changes.system.itemFeatures,
+        { applyOperators: true }
+    );
+    const existingFeatures = document.system.itemFeatures;
+    const removedFeatures = Object.values(existingFeatures).filter(f => !(f.value in changedFeatures));
+    const addedFeatures = Object.values(pickBy(changes.system.itemFeatures, (_, k) => !(k in existingFeatures)));
     removedEffectIds.push(...removedFeatures.flatMap(f => f.effectIds ?? []).filter(id => document.effects.has(id)));
 
     // Determine what to remove
@@ -22,7 +33,9 @@ export async function updateItemFeatures(document, changes, key, featureListFn) 
     const existingIds = new Set(document.effects.map(e => e._id).filter(e => !removedEffectIds.includes(e._id)));
 
     const allFeatures = featureListFn();
-    for (const feature of added) {
+    for (const feature of addedFeatures) {
+        feature.actionIds ??= [];
+        feature.effectIds ??= [];
         const featureData = foundry.utils.deepClone(allFeatures[feature.value]);
 
         // Add top level effects
@@ -100,37 +113,4 @@ export async function updateItemFeatures(document, changes, key, featureListFn) 
     }
     
     await foundry.documents.modifyBatch(aeBatch);
-
-    // Clean up feature configs for things that have been removed
-    const featuresToRemove = Object.keys(document.system.featureConfig)
-        .filter(k => !changedFeatures.some(f => f.value === k));
-    if (featuresToRemove.length) {
-        changes.system.featureConfig = {
-            ...(changes.system.featureConfig ?? {}),
-            ...featuresToRemove.reduce((r, f) => {
-                r[f] = _del;
-                return r;
-            }, {})
-        };
-    }
-
-}
-
-/**
- * Initialize feature config data and ensure the typing is correct.
- * Because the data of one validates the other, this can't be done in a custom data type.
- */
-export async function initializeFeatureConfig({ allFeatures, itemFeatures, featureConfig }) {
-    for (const featureKey of itemFeatures?.map(f => f.value) ?? []) {
-        const field = allFeatures[featureKey]?.config;
-        if (!field) continue;
-
-        try {
-            const value = featureConfig[featureKey] ?? field.getInitialValue();
-            featureConfig[featureKey] = field.initialize(value);
-        } catch (ex) {
-            console.error(ex);
-            featureConfig[featureKey] = field.initialize(field.getInitialValue());
-        }
-    }
 }

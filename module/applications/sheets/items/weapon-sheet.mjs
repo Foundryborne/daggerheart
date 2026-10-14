@@ -67,10 +67,11 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         switch (partId) {
             case 'settings': {
                 const weaponFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
-                context.features = context.source.system.weaponFeatures.map(x => x.value);
+                const featureIds = Object.keys(this.item._source.system.itemFeatures);
+                context.features = featureIds;
                 context.systemFields.attack.fields = this.document.system.attack.schema.fields;
-                context.featureErrors = context.source.system.weaponFeatures.reduce((acc, curr) => {
-                    const configData = weaponFeatures[curr.value];
+                context.featureErrors = featureIds.reduce((acc, curr) => {
+                    const configData = weaponFeatures[curr];
                     const error = configData?.getErrorText?.(this.document);
                     if (error) return !acc ? error : [acc, error].join(', ');
 
@@ -86,8 +87,8 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                             label: _loc(feature.label),
                             data: mapValues(feature.config.fields, (field, k) => ({
                                 field,
-                                name: `system.featureConfig.${featureKey}.${k}`,
-                                value: context.source.system.featureConfig[featureKey]?.[k]
+                                name: `system.itemFeatures.${featureKey}.config.${k}`,
+                                value: this.item._source.system.itemFeatures[featureKey]?.config[k]
                             }))
                         };
                     })
@@ -111,11 +112,15 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 
-            'system.weaponFeatures': selectedOptions.map(x => ({
-                ...(this.document._source.weaponFeatures?.find(f => f.value === x.value) ?? {}),
-                value: x.value
-            }))
+        const document = this.document;
+        const selectedFeatures = selectedOptions.map(x => x.value);
+        const toRemove = Object.keys(document._source.system.itemFeatures).filter(f => !selectedFeatures.includes(f));
+        const toAdd = selectedFeatures.filter(f => !(f in document._source.system.itemFeatures)); 
+        await document.update({ 
+            'system.itemFeatures': {
+                ...Object.fromEntries(toAdd.map(f => [f, { value: f }])),
+                ...Object.fromEntries(toRemove.map(f => [f, _del]))
+            }
         });
     }
 }

@@ -54,15 +54,16 @@
       "major": 10,
       "severe": 21
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "quickStriding": {
         "value": "quickStriding",
         "effectIds": [],
         "actionIds": [
           "ajgzKFQYH5aUzmZk"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

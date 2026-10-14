@@ -2602,6 +2602,7 @@ export const createWeaponFeatures = () => ({
         description: 'DAGGERHEART.CONFIG.WeaponFeature.versatile.description',
         config: new fields.SchemaField({
             trait: new fields.StringField({
+                required: true,
                 nullable: false,
                 initial: 'strength',
                 choices: CONFIG.DH.ACTOR.abilities,

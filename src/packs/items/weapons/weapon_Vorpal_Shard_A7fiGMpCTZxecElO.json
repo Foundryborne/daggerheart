@@ -48,15 +48,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "targeted",
-        "effectIds": [],
-        "actionIds": [
-          "lwtLR9xWsREAonue"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -146,6 +137,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "targeted": {
+        "value": "targeted",
+        "effectIds": [],
+        "actionIds": [
+          "lwtLR9xWsREAonue"
+        ],
+        "config": {}
       }
     }
   },

@@ -92,15 +92,16 @@
       "major": 9,
       "severe": 20
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "absorbing": {
         "value": "absorbing",
         "effectIds": [],
         "actionIds": [
           "yOf6C8teHAmMhIF1"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

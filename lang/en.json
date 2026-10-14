@@ -2848,7 +2848,7 @@
                 },
                 "versatile": {
                     "name": "Versatile",
-                    "description": "This weapon can also be used with these statistics — @Lookup[@item.featureConfig.versatile.trait|type:trait]{Trait}, @Lookup[@item.featureConfig.versatile.range|type:range]{Range}, @Lookup[@item.featureConfig.versatile.damage]{Damage}"
+                    "description": "This weapon can also be used with these statistics — @Lookup[@item.itemFeatures.versatile.config.trait|type:trait]{Trait}, @Lookup[@item.itemFeatures.versatile.config.range|type:range]{Range}, @Lookup[@item.itemFeatures.versatile.config.damage]{Damage}"
                 },
                 "volleyed": {
                     "name": "Volleyed",

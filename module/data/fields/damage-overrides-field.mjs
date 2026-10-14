@@ -1,4 +1,4 @@
-import { pick } from '../../helpers/functional.mjs';
+import { pick, sortBy } from '../../helpers/functional.mjs';
 
 const fields = foundry.data.fields;
 
@@ -18,13 +18,17 @@ class DamageOverridesData extends foundry.abstract.DataModel {
                 initial: 0, 
                 label: 'DAGGERHEART.GENERAL.bonus'
             }),
-            type: new fields.StringField({
-                nullable: true,
-                choices: CONFIG.DH.GENERAL.damageTypes,
-                initial: null,
-                blank: false,
-                label: 'DAGGERHEART.GENERAL.damageType'
-            })
+            type: new fields.SetField(
+                new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.damageTypes,
+                    initial: 'physical',
+                    nullable: false,
+                    required: true
+                }),
+                {
+                    label: 'DAGGERHEART.GENERAL.damageType'
+                }
+            )
         }
     }
 
@@ -32,8 +36,15 @@ class DamageOverridesData extends foundry.abstract.DataModel {
     toString() {
         const sign = this.bonus < 0 ? '-' : '+';
         const base = this.bonus ? `${this.dice}${sign}${this.bonus}` : this.dice;
-        const type = CONFIG.DH.GENERAL.damageTypes[this.type]?.abbreviation;
-        return type ? `${base} ${_loc(type)?.toLowerCase()}` : base;
+        if (this.type.size === 0) {
+            return base;
+        }
+
+        const damageTypes = CONFIG.DH.GENERAL.damageTypes;
+        const damageKeys = Object.keys(damageTypes);
+        const typesSorted = sortBy([...this.type], t => damageKeys.indexOf(t));
+        const type = typesSorted.map(t => _loc(damageTypes[t]?.abbreviation)?.toLocaleLowerCase() ?? t).join('/');
+        return `${base} ${type}`;
     }
 }
 

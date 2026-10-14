@@ -92,15 +92,16 @@
       "major": 11,
       "severe": 23
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "selfHealing": {
         "value": "selfHealing",
         "effectIds": [],
         "actionIds": [
           "3KVzpGEV8ThH4jhu"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

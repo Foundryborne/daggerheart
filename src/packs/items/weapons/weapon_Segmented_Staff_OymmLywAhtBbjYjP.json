@@ -19,16 +19,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "doubleDuty",
-        "effectIds": [
-          "DQ783nkboRdHiAdK",
-          "iNCNhj2WdjpeJ0WX"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,6 +108,17 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "doubleDuty": {
+        "value": "doubleDuty",
+        "effectIds": [
+          "DQ783nkboRdHiAdK",
+          "iNCNhj2WdjpeJ0WX"
+        ],
+        "actionIds": [],
+        "config": {}
       }
     }
   },
