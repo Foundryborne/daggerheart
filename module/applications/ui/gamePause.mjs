@@ -15,7 +15,8 @@ export default class DhGamePause extends foundry.applications.ui.GamePause {
         /* Avoid altering the gamepause context if a module has subscribed to the renderGamePause hook  */
         if (!Hooks.events.renderGamePause?.length) {
             context.spin = options.spin ?? false;
-            context.icon = options.icon ?? 'systems/daggerheart/assets/logos/DaggerheartLogo.webp';
+            context.text = '';
+            context.icon = options.icon ?? 'systems/daggerheart/assets/logos/daggerheart_pause_logo.png';
         }
 
         return context;
