@@ -4,19 +4,16 @@
     animation: none;
 
     img {
-        width: 150px;
-        height: 150px;
-        margin-top: 15px;
+        max-width: 270px;
+        width: auto;
+        height: auto;
+        --base-shadow: drop-shadow(2px 1px 2px black);
+        animation: pause-pulse 3s ease-in-out infinite;
+        filter: var(--base-shadow);
     }
     
     figcaption {
-        --base-shadow: drop-shadow(2px 1px 2px black);
-        position: absolute;
-        margin-top: 24px;
-        animation: pause-pulse 3s ease-in-out infinite;
-        font-size: var(--font-size-30);
-        letter-spacing: 0.15em;
-        filter: var(--base-shadow);
+        display: none;
     }
 
     @keyframes pause-pulse {
