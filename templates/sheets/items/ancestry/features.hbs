@@ -16,18 +16,17 @@
     <fieldset class="one-column drop-section" data-type="{{type}}">
         <legend>
             {{label}} 
-            {{#unless features.length}}<a><i data-action="addFeature" data-type="{{type}}" class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
         </legend>
         <div class="feature-list">
             {{#each features as |feature|}}
                 <div class="feature-line"
                     data-item-uuid="{{feature.uuid}}"
-                    data-type="{{type}}"
-                    data-item-id="{{feature.item._id}}"
+                    data-type="{{../type}}"
+                    data-item-id="{{feature._id}}"
                 >
-                    {{#if feature.item}}
-                        <img class="image" src="{{feature.item.img}}" />
-                        <span>{{feature.item.name}}</span>
+                    {{#if feature}}
+                        <img class="image" src="{{feature.img}}" />
+                        <span>{{feature.name}}</span>
                     {{else}}
                         <i class="fa-solid fa-link-slash hint image-icon" inert></i>
                         <span class="hint">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "TYPES.Item.feature")}}</span>
@@ -40,7 +39,9 @@
                         {{/if}}
                         <a data-action="deleteFeature"><i class="fa-solid fa-trash"></i></a>
                     </div>
-                </div> 
+                </div>
+            {{else}}
+                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
             {{/each}}
         </div>
     </fieldset>

@@ -412,13 +412,18 @@ export default class CharacterSheet extends DHBaseActorSheet {
             if (!actor) return false;
 
             // If levelup automation is off in general or for this character, all items are unmanaged
-            // This is disabled until we have proper granted feature removal, for now this feature is to correct errors
+            // This is disabled until we track on the actor whether it was managed by a wizard or not
             // const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
             // if (!levelupAuto) return false;
 
             // Core items aren't part of levelup data. TODO: add some way to flag a specific character as no auto leveling
+            // If any core item is missing, we presume the entire thing is shot and let the user delete things
             const classPair = actor.system.class;
-            const coreItems = [actor.system.ancestry, actor.system.community, classPair?.value, classPair?.subclass];
+            const ancestry = actor.system.ancestry;
+            const community = actor.system.community;
+            if (!classPair.value || !classPair.subclass || !ancestry || !community) return false;
+
+            const coreItems = [ancestry, community, actor.system.community, classPair?.value, classPair?.subclass];
             if (coreItems.includes(item)) return true;
 
             const levelups = Object.values(actor.system.levelData?.levelups) ?? [];

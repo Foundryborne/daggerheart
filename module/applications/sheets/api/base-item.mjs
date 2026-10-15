@@ -1,5 +1,5 @@
 import autocomplete from 'autocompleter';
-import { getDocFromElement } from '../../../helpers/utils.mjs';
+import { fromUuids, getDocFromElement } from '../../../helpers/utils.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -32,7 +32,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         },
         actions: {
             showPortraitArtwork: DHBaseItemSheet.#onShowPortraitArtwork,
-            addFeature: DHBaseItemSheet.#addFeature,
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
             removeResource: DHBaseItemSheet.#removeResource,
@@ -200,42 +199,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     }
 
     /**
-     * Add a new feature to the item, prompting the user for its type.
-     * @type {ApplicationClickAction}
-     */
-    static async #addFeature(_, target) {
-        const { type } = target.dataset;
-        const cls = foundry.documents.Item.implementation;
-
-        const multiclass = this.document.system.isMulticlass ? 'multiclass' : null;
-        let systemData = {};
-        if (this.document.parent?.type === 'character') {
-            systemData = {
-                granter: {
-                    id: this.document.id,
-                    type: this.document.type,
-                    identifier: multiclass ?? type
-                }
-            };
-        }
-
-        const item = await cls.create(
-            {
-                type: 'feature',
-                name: cls.defaultName({ type: 'feature' }),
-                system: systemData
-            },
-            { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
-        );
-        await this.document.update({
-            'system.features': [...this.document.system.features, { type, item }].map(x => ({
-                ...x,
-                item: x.item?.uuid
-            }))
-        });
-    }
-
-    /**
      * Remove a feature from the item.
      * @type {ApplicationClickAction}
      */
@@ -244,10 +207,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const feature = await getDocFromElement(target);
 
         if (!feature) {
+            // Filter out those that don't exist
+            const testItems = (await fromUuids(this.document.system.features)).map(i => i?.uuid);
             await this.document.update({
-                'system.features': this.document.system.features
-                    .filter(x => x.item)
-                    .map(x => ({ ...x, item: x.item.uuid }))
+                'system.features': this.document.system.features.filter(x => x.item && testItems.includes(x.item))
             });
         } else {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
@@ -263,9 +226,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             if (!confirmed) return;
 
             await this.document.update({
-                'system.features': this.document.system.features
-                    .filter(x => target.dataset.type !== x.type || x.item.uuid !== feature.uuid)
-                    .map(x => ({ ...x, item: x.item?.uuid }))
+                'system.features': this.document.system.features.filter(x => target.dataset.type !== x.type || x.item !== feature.uuid)
             });
         }
     }
@@ -369,19 +330,14 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             if (target?.dataset.type) {
                 await this.document.update(
                     {
-                        'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(
-                            x => ({
-                                ...x,
-                                item: x.item?.uuid
-                            })
-                        )
+                        'system.features': [...this.document.system.features, { type: target.dataset.type, item: item.uuid }]
                     },
                     { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
                 );
             } else {
                 await this.document.update(
                     {
-                        'system.features': [...this.document.system.features, item].map(x => x.uuid)
+                        'system.features': [...this.document.system.features, item.uuid]
                     },
                     { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
                 );

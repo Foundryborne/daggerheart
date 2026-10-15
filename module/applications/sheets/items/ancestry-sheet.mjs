@@ -1,3 +1,4 @@
+import { fromUuids } from '../../../helpers/utils.mjs';
 import DHHeritageSheet from '../api/heritage-sheet.mjs';
 
 /** @import DHAncestry from '../../../data/item/ancestry.mjs'; */
@@ -21,7 +22,7 @@ export default class AncestrySheet extends DHHeritageSheet {
 
     /**@inheritdoc */
     get relatedDocs() {
-        return this.document.system.features.map(x => x.item);
+        return this.document.system.features.map(x => fromUuidSync(x.item, { strict: false }));
     }
 
     /** @inheritdoc */
@@ -29,8 +30,12 @@ export default class AncestrySheet extends DHHeritageSheet {
         const context = await super._prepareContext(options);
         // There can only be one primary/secondary but we show all in case something errors so the user can delete it.
         const features = this.item.system.features;
-        context.primaryFeatures = features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.primary);
-        context.secondaryFeatures = features.filter(x => x.type !== CONFIG.DH.ITEM.featureSubTypes.primary);
+        context.primaryFeatures = await fromUuids(
+            features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.primary)
+        );
+        context.secondaryFeatures = await fromUuids(
+            features.filter(x => x.type !== CONFIG.DH.ITEM.featureSubTypes.primary)
+        );
         return context;
     }
 
