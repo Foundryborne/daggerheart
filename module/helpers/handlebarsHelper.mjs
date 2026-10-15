@@ -17,6 +17,7 @@ export default class RegisterHandlebarsHelpers {
             positive: this.positive,
             rollParsed: this.rollParsed,
             setVar: this.setVar,
+            someByObjet: this.someByObjet,
             times: this.times
         });
     }
@@ -31,7 +32,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static includes(list, item) {
-        return list.includes(item);
+        return list?.includes(item) ?? false;
     }
 
     static times(nr, block) {
@@ -103,5 +104,11 @@ export default class RegisterHandlebarsHelpers {
         } catch {
             return false;
         }
+    }
+
+    // todo: replace, this helper is kinda hard to understand what it means
+    // it seems to check if a value has a key
+    static someByObjet(list, property, value) {
+        return Object.values(list ?? {}).some(item => item[property] === value);
     }
 }

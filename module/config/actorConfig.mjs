@@ -8,7 +8,8 @@ export const abilities = {
             'DAGGERHEART.CONFIG.Traits.agility.verb.sprint',
             'DAGGERHEART.CONFIG.Traits.agility.verb.leap',
             'DAGGERHEART.CONFIG.Traits.agility.verb.maneuver'
-        ]
+        ],
+        description: 'DAGGERHEART.CONFIG.Traits.agility.description'
     },
     strength: {
         id: 'strength',
@@ -17,7 +18,8 @@ export const abilities = {
             'DAGGERHEART.CONFIG.Traits.strength.verb.lift',
             'DAGGERHEART.CONFIG.Traits.strength.verb.smash',
             'DAGGERHEART.CONFIG.Traits.strength.verb.grapple'
-        ]
+        ],
+        description: 'DAGGERHEART.CONFIG.Traits.strength.description'
     },
     finesse: {
         id: 'finesse',
@@ -26,7 +28,8 @@ export const abilities = {
             'DAGGERHEART.CONFIG.Traits.finesse.verb.control',
             'DAGGERHEART.CONFIG.Traits.finesse.verb.hide',
             'DAGGERHEART.CONFIG.Traits.finesse.verb.tinker'
-        ]
+        ],
+        description: 'DAGGERHEART.CONFIG.Traits.finesse.description'
     },
     instinct: {
         id: 'instinct',
@@ -35,7 +38,8 @@ export const abilities = {
             'DAGGERHEART.CONFIG.Traits.instinct.verb.perceive',
             'DAGGERHEART.CONFIG.Traits.instinct.verb.sense',
             'DAGGERHEART.CONFIG.Traits.instinct.verb.navigate'
-        ]
+        ],
+        description: 'DAGGERHEART.CONFIG.Traits.instinct.description'
     },
     presence: {
         id: 'presence',
@@ -44,7 +48,8 @@ export const abilities = {
             'DAGGERHEART.CONFIG.Traits.presence.verb.charm',
             'DAGGERHEART.CONFIG.Traits.presence.verb.perform',
             'DAGGERHEART.CONFIG.Traits.presence.verb.deceive'
-        ]
+        ],
+        description: 'DAGGERHEART.CONFIG.Traits.presence.description'
     },
     knowledge: {
         id: 'knowledge',
@@ -53,7 +58,8 @@ export const abilities = {
             'DAGGERHEART.CONFIG.Traits.knowledge.verb.recall',
             'DAGGERHEART.CONFIG.Traits.knowledge.verb.analyze',
             'DAGGERHEART.CONFIG.Traits.knowledge.verb.comprehend'
-        ]
+        ],
+        description: 'DAGGERHEART.CONFIG.Traits.knowledge.description'
     }
 };
 

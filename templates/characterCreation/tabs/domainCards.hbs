@@ -4,17 +4,43 @@
     data-group='{{tabs.domainCards.group}}'
 >
     <div class="main-selections-container">
-        <fieldset class="section-container">
-            <legend>{{localize "TYPES.Item.domainCard"}}</legend>
-            <div class="selections-outer-container">
-                {{#each domainCards as |domainCard id|}}
-                    <div class="selections-container domain-card" data-card="{{id}}"> 
-                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" domainCard }}
-                            {{#each @root.classDomains }}<div>{{this}}</div>{{/each}}
-                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+        <div class="step-sidebar">
+            <h1 class="title-section">6. {{localize tabs.domainCards.label}}</h1>
+
+            <div class="compedium-list domains">
+                <h1 class="subtitle-section">
+                    {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.selectedDomains'}}
+                    {{selectedDomainCards}}/{{totalDomainCards}}
+                    <side-line-div></side-line-div>
+                </h1>
+                {{#each domainCards as |card id|}}
+                    {{#if card.name}}
+                    <div class="domain-card" data-tooltip="#item#{{card.id}}">
+                        <img src="{{card.img}}" alt="card.name">
+                        <p>{{card.name}}</p>
+                        <a class="delete"><i class="fa-solid fa-xmark" data-id="{{id}}" data-item-type="domainCard" data-action="removeSelectedItem"></i></a>
                     </div>
+                    {{/if}}
                 {{/each}}
             </div>
-        </fieldset>
+        </div>
+        <line-div></line-div>
+        <div class="domain-card-list card-list scroll-container">
+            {{#each domainCardGroups.items as |card|}}
+                {{#if
+                    (and
+                        (or
+                            (eq card.system.domain (lookup ../class.system.domains 0))
+                            (eq card.system.domain (lookup ../class.system.domains 1))
+                        )
+                        (eq card.system.level 1)
+                    )
+                }}
+                    <a class="card {{#if ../selectedDomainCards}}{{#unless (someByObjet ../domainCards 'name' card.name)}}not-selected{{/unless}}{{/if}}" data-uuid="{{card.uuid}}" data-type="{{card.type}}" data-action="selectItem">
+                        {{{card.embedCard}}}
+                    </a>
+                {{/if}}
+            {{/each}}
+        </div>
     </div>
 </section>
