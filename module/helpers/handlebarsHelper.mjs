@@ -32,7 +32,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static includes(list, item) {
-        return list.includes(item);
+        return list?.includes(item) ?? false;
     }
 
     static times(nr, block) {

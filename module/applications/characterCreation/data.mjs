@@ -12,14 +12,12 @@ export class CharacterCreatorData extends foundry.abstract.DataModel {
             // Character Options
             class: createDocumentField(),
             subclass: createDocumentField(),
-            primaryAncestry: createDocumentField(),
-            secondaryAncestry: createDocumentField(),
-            mixedAncestry: new fields.BooleanField({ initial: false }),
-            ancestryName: new fields.SchemaField({
-                primary: new fields.StringField(),
-                secondary: new fields.StringField(),
-                overwrite: new fields.BooleanField()
-            }),
+            ancestry: createDocumentField(),
+            mixedAncestry: new fields.SchemaField({
+                second: createDocumentField(),
+                selected: new fields.ArrayField(new fields.StringField())
+                // todo: reimplement name override. It was broken before this release anyways
+            }, { nullable: true, initial: null }),
             community: createDocumentField(),
             // Char Data
             traits: new fields.SchemaField({
@@ -58,8 +56,10 @@ export class CharacterCreatorData extends foundry.abstract.DataModel {
     async load() {
         this.class = await fromUuid(this.class.uuid) ?? { uuid: null };
         this.subclass = await fromUuid(this.subclass.uuid) ?? { uuid: null };
-        this.primaryAncestry = await fromUuid(this.primaryAncestry.uuid) ?? { uuid: null };
-        this.secondaryAncestry = await fromUuid(this.secondaryAncestry.uuid) ?? { uuid: null };
+        this.ancestry = await fromUuid(this.ancestry.uuid) ?? { uuid: null };
+        if (this.mixedAncestry) {
+            this.mixedAncestry.second = await fromUuid(this.mixedAncestry.second.uuid) ?? { uuid: null };
+        }
         this.community = await fromUuid(this.community.uuid) ?? { uuid: null };
         for (const [key, value] of Object.entries(this.domainCards)) {
             this.domainCards[key] = await fromUuid(value.uuid) ?? { uuid: null }
@@ -67,8 +67,33 @@ export class CharacterCreatorData extends foundry.abstract.DataModel {
         this.equipment.armor = await fromUuid(this.equipment.armor.uuid) ?? { uuid: null };
         this.equipment.primaryWeapon = await fromUuid(this.equipment.primaryWeapon.uuid) ?? { uuid: null };
         this.equipment.secondaryWeapon = await fromUuid(this.equipment.secondaryWeapon.uuid) ?? { uuid: null };
-        this.equipment.inventory.take = await fromUuid(this.equipment.inventory.take) ?? { uuid: null };
-        this.equipment.inventory.choiceA = await fromUuid(this.equipment.inventory.choiceA) ?? { uuid: null };
-        this.equipment.inventory.choiceB = await fromUuid(this.equipment.inventory.choiceB) ?? { uuid: null };
+        this.equipment.inventory.take = await fromUuid(this.equipment.inventory.take.uuid) ?? { uuid: null };
+        this.equipment.inventory.choiceA = await fromUuid(this.equipment.inventory.choiceA.uuid) ?? { uuid: null };
+        this.equipment.inventory.choiceB = await fromUuid(this.equipment.inventory.choiceB.uuid) ?? { uuid: null };
+    }
+
+    async createAncestryItem() {
+        const primaryAncestry = await fromUuid(this.ancestry.uuid);
+        const secondaryAncestry = await fromUuid(this.mixedAncestry?.second.uuid);
+        const object = primaryAncestry?.toObject();
+        
+        if (!secondaryAncestry || !primaryAncestry) {
+            return object ?? null;
+        }
+
+        // todo: check validity of "selected fields"
+
+        return {
+            name: `${primaryAncestry.name}/${secondaryAncestry.name}`,
+            type: 'ancestry',
+            uuid: primaryAncestry.uuid, // used to figure out compendiumSource/duplicateSource
+            system: {
+                ...object.system,
+                features: [
+                    { type: 'primary', item: this.mixedAncestry.selected[0] },
+                    { type: 'secondary', item: this.mixedAncestry.selected[1] }
+                ]
+            }
+        };
     }
 }

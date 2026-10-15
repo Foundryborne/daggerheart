@@ -6,8 +6,10 @@
     <div class="main-selections-container">
         <div class="step-sidebar">
             <h1 class="title-section">2. {{localize tabs.ancestry.label}}</h1>
-            <input type="checkbox" data-action="mixedAncestryToggle" {{checked mixedAncestry}}/>
-            <span>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}</span>
+            <label>
+                <input type="checkbox" data-action="mixedAncestryToggle" {{checked mixedAncestry}}/>
+                <span>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}</span>
+            </label>
 
             <div class="ancestry compedium-list m-top-10">
                 <h2 class="subtitle-section">
@@ -26,53 +28,29 @@
                         emptyMessage='Select a Ancestry'
                     }}
 
-                    <h2 class="subtitle-section m-top-20">
-                        {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.selectPrimaryAncestry'}}
-                        <side-line-div></side-line-div>
-                    </h2>
-                    {{> ancestryFeature
-                        name='primary-ancestry'
-                        elementId='primary-feature'
-                        ancestry=primaryAncestry
-                        uuid=primaryAncestry.primaryFeature.uuid
-                        mixedUuid=mixedFeatures.primaryFeature.uuid 
-                        ancestryType='primary'
-                        featureType='primary'
-                    }}
-                    {{> ancestryFeature
-                        name='primary-ancestry'
-                        elementId='secondary-feature'
-                        ancestry=primaryAncestry
-                        uuid=primaryAncestry.secondaryFeature.uuid
-                        mixedUuid=mixedFeatures.secondaryFeature.uuid 
-                        ancestryType='primary'
-                        featureType='secondary'
-                    }}
+                    {{#each selections as |group|}}
+                        <h2 class="subtitle-section m-top-20">
+                            {{#if (eq group.ancestryType "primary")}}
+                                {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.selectPrimaryAncestry'}}
+                            {{else}}
+                                {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.selectSecondaryAncestry'}}
+                            {{/if}}
+                            <side-line-div></side-line-div>
+                        </h2>
+                        {{#each group.features as |choice|}}
+                            {{> ancestryFeature
+                                name=(concat group.ancestryType " primary-ancestry")
+                                ancestry=group.ancestry
+                                feature=choice.feature
+                                uuid=choice.feature.uuid
+                                selected=choice.selected 
+                                ancestryType=group.ancestryType
+                                featureType=choice.featureType
+                            }}
+                        {{/each}}
+                    {{/each}}
+                {{else}}
 
-                    {{#if secondaryAncestry.name}}
-                    <h2 class="subtitle-section m-top-10">
-                        {{localize 'DAGGERHEART.APPLICATIONS.CharacterCreation.selectSecondaryAncestry'}}
-                        <side-line-div></side-line-div>
-                    </h2>
-                    {{> ancestryFeature
-                        name='secondary-ancestry'
-                        elementId='primary-feature'
-                        ancestry=secondaryAncestry
-                        uuid=secondaryAncestry.primaryFeature.uuid
-                        mixedUuid=mixedFeatures.primaryFeature.uuid 
-                        ancestryType='primary'
-                        featureType='primary'
-                    }}
-                    {{> ancestryFeature
-                        name='secondary-ancestry'
-                        elementId='secondary-feature'
-                        ancestry=secondaryAncestry
-                        uuid=secondaryAncestry.secondaryFeature.uuid
-                        mixedUuid=mixedFeatures.secondaryFeature.uuid 
-                        ancestryType='primary'
-                        featureType='secondary'
-                    }}
-                    {{/if}}
                 {{/if}}
             </div>
         </div>
@@ -82,7 +60,7 @@
         <div class="ancestry-list card-list scroll-container">
             {{#each ancestryGroups.items as |ancestry|}}
                 <a 
-                    class="card {{#if ../primaryAncestry.name}}{{#unless (or (eq ../primaryAncestry.name ancestry.name) (eq ../secondaryAncestry.name ancestry.name))}}not-selected{{/unless}}{{/if}}"
+                    class="card {{#unless (includes @root.selectedAncestries ancestry.uuid)}}not-selected{{/unless}}"
                     data-uuid="{{ancestry.uuid}}" data-type="{{ancestry.type}}" data-action="selectItem"
                 >
                     {{{ancestry.embedCard}}}
@@ -93,26 +71,22 @@
 </section>
 
 {{#*inline "ancestryFeature"}}
-    <div class="ancestry-feature" >
-        {{#if mixedAncestry}}
+    <div class="ancestry-feature">
+        {{#if @root.mixedAncestry}}
             <input
                 type="radio"
+                id="creator-{{ancestryType}}-{{featureType}}"
                 name="{{name}}"
-                id="{{elementId}}"
                 data-action="selectAncestryFeature"
                 data-uuid="{{uuid}}"
                 data-ancestry-type="{{ancestryType}}"
                 data-feature-type="{{featureType}}"
-                {{checked (eq mixedUuid uuid)}}
+                {{checked selected}}
             >
         {{/if}}
-        <div for="{{elementId}}">
-            {{#if (eq featureType 'primary')}}
-                <b>{{{ancestry.system.primaryFeature.name}}}</b>
-            {{else}}
-                <b>{{{ancestry.system.secondaryFeature.name}}}</b>
-            {{/if}}
-        </div>
+        <label for="creator-{{ancestryType}}-{{featureType}}">
+            <strong>{{feature.name}}</strong>
+        </label>
     </div>
 {{/inline}}
 

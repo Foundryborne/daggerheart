@@ -33,17 +33,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 acc[key] = { value: null };
                 return acc;
             }, {}),
-            ancestryName: {
-                primary: '',
-                secondary: ''
-            },
-            mixedAncestry: false,
-            mixedFeatures: {
-                primaryFeature: {},
-                secondaryFeature: {}
-            },
-            primaryAncestry: this.character.system.ancestry ?? {},
-            secondaryAncestry: {},
+            ancestry: this.character.system.ancestry ?? {},
             community: this.character.system.community ?? {},
             class: this.character.system.class?.value ?? {},
             subclass: this.character.system.class?.subclass ?? {},
@@ -314,18 +304,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             nrSelected: Object.values(this.setup.experiences).reduce((acc, exp) => acc + (exp.name ? 1 : 0), 0)
         };
 
-        context.mixedAncestry = this.setup.mixedAncestry;
-
-        const { primary, secondary, overwrite } = this.setup.ancestryName;
-        context.ancestryName = overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary);
-        for (const ancestryKey of ['primaryAncestry', 'secondaryAncestry']) {
-            context[ancestryKey] = {
-                ...this.setup[ancestryKey],
-                compendium: 'ancestries',
-                primaryFeature: await fromUuid(this.setup[ancestryKey]?.system?.primaryFeature),    
-                secondaryFeature: await fromUuid(this.setup[ancestryKey]?.system?.secondaryFeature)
-            };
-        }
         context.community = { ...this.setup.community, compendium: 'communities' };
         context.class = {
             ...this.setup.class,
@@ -396,11 +374,39 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 }
 
                 break;
+            case 'ancestry': {
+                context.mixedAncestry = Boolean(this.setup.mixedAncestry);
+                context.selectedAncestries =
+                    [this.setup.ancestry.uuid, this.mixedAncestry?.second.uuid].filter(Boolean);
+                const prepareAncestryData = async ancestry => {
+                    if (!ancestry?.uuid) return null;
+                    const primaryFeature = await fromUuid(ancestry?.system?.primaryFeature);
+                    const secondaryFeature = await fromUuid(ancestry?.system?.secondaryFeature);
+                    return {
+                        ...ancestry,
+                        compendium: 'ancestries',
+                        primaryFeature,
+                        secondaryFeature
+                    };
+                }
+                context.primaryAncestry = await prepareAncestryData(this.setup.ancestry);
+                context.secondaryAncestry = await prepareAncestryData(this.setup.mixedAncestry?.second);
+                if (context.primaryAncestry && context.secondaryAncestry) {
+                    context.selections = [context.primaryAncestry, context.secondaryAncestry].map((data, idx) => ({
+                        ancestry: data.ancestry,
+                        ancestryType: idx === 0 ? 'primary' : 'secondary',
+                        features: [data.primaryFeature, data.secondaryFeature].map((feature, idx) => ({
+                            feature,
+                            featureType: idx === 0 ? 'primary' : 'secondary',
+                            selected: this.setup.mixedAncestry?.selected.includes(feature?.uuid)
+                        }))
+                    }));
+                }
+
+                break;
+            }
             case 'equipment':
-                const suggestions = await this.getEquipmentSuggestions(
-                    this.equipment.inventory.choiceA,
-                    this.equipment.inventory.choiceB
-                );
+                const suggestions = await this.getEquipmentSuggestions();
                 context.armor = {
                     ...this.equipment.armor,
                     suggestion: {
@@ -459,21 +465,20 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         }, 0);
     }
 
-    async getEquipmentSuggestions(choiceA, choiceB) {
+    async getEquipmentSuggestions() {
         if (!this.setup.class.uuid) return { inventory: { take: [] } };
 
+        const { choiceA, choiceB } = this.setup.equipment.inventory;
         const characterGuide = await this.setup.class?.system?.fetchSuggestedGear();
         const inventory = await this.setup.class?.system?.fetchInventoryChoices();
 
         return {
-            armor: characterGuide.armor ?? null,
-            primaryWeapon: characterGuide.primary ?? null,
-            secondaryWeapon: characterGuide.secondary ?? null,
+            ...characterGuide,
             inventory: {
-                take: inventory.take?.filter(x => x) ?? [],
+                take: inventory.take?.filter(Boolean) ?? [],
                 choiceA:
                     inventory.choiceA
-                        ?.filter(x => x)
+                        ?.filter(Boolean)
                         .map(x => ({ ...x, uuid: x.uuid, selected: x.uuid === choiceA?.uuid })) ?? [],
                 choiceB:
                     inventory.choiceB
@@ -483,12 +488,15 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
     }
 
-    /** Calculates what tab we should be allowed to view */
+    /** 
+     * Calculates what tab we should be allowed to view.
+     * Replace to only requiring class to proceed to traits and on. However we will need an end step check to support that
+     */
     #calculateUpdateVisibility() {
         if (Object.values(this.setup.domainCards).every(x => x.uuid)) return 7;
         if (this.getNrSelectedTrait() === 6) return 6; // Experiences are allowed to be blank
         if (this.setup.community.uuid) return 4;
-        if (this.setup.primaryAncestry.uuid) return 3;
+        if (this.setup.ancestry.uuid) return 3;
         if (this.setup.class.uuid && this.setup.subclass.uuid) return 2;
         return 1;
     }
@@ -646,12 +654,19 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static async #onMixedAncestryToggle(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.setup.mixedAncestry = !this.setup.mixedAncestry;
-        if (!this.setup.mixedAncestry) this.setup.secondaryAncestry = {};
+        if (this.setup.mixedAncestry) {
+            this.setup.mixedAncestry = null;
+        } else {
+            this.setup.mixedAncestry = {
+                second: { uuid: null },
+                selected: []
+            };
+        }
         this.save();
     }
 
     /**
+     * Used for multiclass selection
      * @type {ApplicationClickAction}
      * @this {DhCharacterCreation}
      */
@@ -662,15 +677,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         const uuid = target.dataset.uuid;
         const featureType = target.dataset.featureType;
         const ancestryType = target.dataset.ancestryType;
-        const feature = await foundry.utils.fromUuid(uuid);
+        const selected = await foundry.utils.fromUuid(uuid);
 
-        if (featureType === 'primary') {
-            this.setup.mixedFeatures.primaryFeature = feature;
-            this.setup.mixedFeatures.secondaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.secondaryFeature : this.setup.primaryAncestry.system.secondaryFeature;
-        } else {
-            this.setup.mixedFeatures.primaryFeature = ancestryType === 'primary' ? this.setup.secondaryAncestry.system.primaryFeature : this.setup.primaryAncestry.system.primaryFeature;
-            this.setup.mixedFeatures.secondaryFeature = feature;
-        }
+        const otherAncestryType = ancestryType === 'primary' ? 'secondary' : 'primary';
+        const otherFeatureType = featureType === 'primary' ? 'secondary' : 'primary';
+        const otherAncestry = otherAncestryType === 'primary' ? this.setup.ancestry : this.setup.mixedAncestry.second;
+        const otherSelected = await fromUuid(otherAncestry.system[`${otherFeatureType}Feature`]);
+
+        this.setup.mixedAncestry.selected = [selected.uuid, otherSelected.uuid];
 
         this.save();
     }
@@ -733,7 +747,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
      * @this {DhCharacterCreation}
      */
     static async #onEquipmentChoice(_, target) {
-        this.equipment.inventory[target.dataset.path] = await foundry.utils.fromUuid(target.dataset.uuid);
+        this.setup.equipment.inventory[target.dataset.path] = await foundry.utils.fromUuid(target.dataset.uuid);
         this.save();
     }
 
@@ -773,24 +787,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static async #onFinish(_, button) {
         button.disabled = true;
 
-        const primaryAncestryFeature = this.setup.primaryAncestry.system.primaryFeature;
-        const secondaryAncestryFeature = this.setup.secondaryAncestry?.uuid
-            ? this.setup.secondaryAncestry.system.secondaryFeature
-            : this.setup.primaryAncestry.system.secondaryFeature;
-
-        const { primary, secondary, overwrite } = this.setup.ancestryName;
-        const ancestry = {
-            ...this.setup.primaryAncestry,
-            name: overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary),
-            system: {
-                ...this.setup.primaryAncestry.system,
-                features: [
-                    { type: 'primary', item: primaryAncestryFeature },
-                    { type: 'secondary', item: secondaryAncestryFeature }
-                ]
-            }
-        };
-
         // Inner function to create the base item data
         async function createEmbeddedItemData(baseDataOrString) {
             const uuid = typeof baseDataOrString === 'string' ? baseDataOrString : baseDataOrString.uuid ?? baseDataOrString._uuid;
@@ -802,8 +798,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             return {
                 ...(baseData ?? data),
                 id: data.id,
-                uuid: uuid,
-                _uuid: uuid,
                 effects: data.effects?.map(effect => effect.toObject()),
                 flags: baseData?.flags ?? data.flags,
                 _stats: {
@@ -820,7 +814,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         
         // Add the remaining items
         const newItems = [
-            await createEmbeddedItemData(ancestry),
+            await createEmbeddedItemData(await this.setup.createAncestryItem()),
             await createEmbeddedItemData(this.setup.community),
             await createEmbeddedItemData(this.setup.subclass),
             ...(await Promise.all(
@@ -880,19 +874,17 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
             case 'ancestry':
                 const ancestry = await foundry.utils.fromUuid(target.dataset.uuid);
-                if (!this.setup.primaryAncestry.uuid) {
-                    this.setup.primaryAncestry = ancestry;
-                    this.setup.ancestryName.primary = ancestry.name;
-                } else if (
-                    this.setup.primaryAncestry.uuid &&
+                if (
+                    this.setup.ancestry.uuid &&
                     this.setup.mixedAncestry &&
-                    (ancestry.uuid !== this.setup.primaryAncestry.uuid)
+                    (ancestry.uuid !== this.setup.ancestry.uuid)
                 ) {
-                    this.setup.secondaryAncestry = ancestry;
-                    this.setup.ancestryName.secondary = ancestry.name;
+                    this.setup.mixedAncestry = {
+                        second: ancestry,
+                        selected: [this.setup.ancestry.system.primaryFeature, ancestry.system.secondaryFeature]
+                    }
                 } else {
-                    this.setup.primaryAncestry = ancestry;
-                    this.setup.ancestryName.primary = ancestry.name;
+                    this.setup.ancestry = ancestry;
                 }
                 break;
 
@@ -938,15 +930,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
      * @this {DhCharacterCreation}
      */
     static async #onApplySuggestedEquips(_, target) {
-        const suggestions = await this.getEquipmentSuggestions(
-            this.equipment.inventory.choiceA,
-            this.equipment.inventory.choiceB
-        );
-
+        const suggestions = await this.getEquipmentSuggestions();
         this.equipment.primaryWeapon = suggestions.primaryWeapon
         this.equipment.secondaryWeapon = suggestions.secondaryWeapon
         this.equipment.armor = suggestions.armor
-
         this.save();
     }
 
@@ -972,17 +959,21 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         
             case 'ancestry':
                 if (type === 'primaryAncestry') {
-                    this.setup.primaryAncestry = {}
+                    this.setup.ancestry = { uuid: null }
                 } else if (type === 'secondaryAncestry') {
-                    this.setup.secondaryAncestry = {}
+                    this.setup.mixedAncestry.second = { uuid: null };
+                    this.setup.mixedAncestry.selected = [];
                 }
                 break;
             
             case 'domainCard':
                 this.setup.domainCards[indexID] = {}
                 break;
-        }
 
+            case 'community': {
+                this.setup.community = {};
+            }
+        }
 
         this.save();
     }
