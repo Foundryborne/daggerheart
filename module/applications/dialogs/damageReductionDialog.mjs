@@ -3,7 +3,7 @@ import { damageKeyToNumber, getArmorSources, getDamageLabel } from '../../helper
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageReductionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(resolve, reject, actor, damage, damageType) {
+    constructor(resolve, reject, actor, action, damage, damageType) {
         super({});
 
         this.resolve = resolve;
@@ -36,51 +36,14 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
             return acc;
         }, []);
-        const stress = [...Array(actor.system.rules.damageReduction.maxArmorMarked.stressExtra ?? 0).keys()].reduce(
-            (acc, _) => {
-                acc[foundry.utils.randomID()] = { selected: false };
-                return acc;
-            },
-            {}
-        );
-        this.marks = { armor, stress };
 
-        this.availableStressReductions = Object.keys(actor.system.rules.damageReduction.stressDamageReduction).reduce(
-            (acc, key) => {
-                const dr = actor.system.rules.damageReduction.stressDamageReduction[key];
-                if (dr.cost) {
-                    if (acc === null) acc = {};
-
-                    const damage = damageKeyToNumber(key);
-                    acc[damage] = {
-                        cost: dr.cost,
-                        selected: false,
-                        any: key === 'any',
-                        from: getDamageLabel(damage),
-                        to: getDamageLabel(damage - 1)
-                    };
-                }
-
-                return acc;
-            },
-            null
-        );
-
-        this.reduceSeverity = this.damageType.reduce((value, curr) => {
-            return Math.max(this.actor.system.rules.damageReduction.reduceSeverity[curr], value);
-        }, 0);
-        this.actor.system.rules.damageReduction.reduceSeverity[this.damageType];
-
-        this.thresholdImmunities = Object.keys(actor.system.rules.damageReduction.thresholdImmunities).reduce(
-            (acc, key) => {
-                if (actor.system.rules.damageReduction.thresholdImmunities[key])
-                    acc[damageKeyToNumber(key)] = game.i18n.format(`DAGGERHEART.GENERAL.DamageThresholds.with`, {
-                        threshold: game.i18n.localize(`DAGGERHEART.GENERAL.DamageThresholds.${key}`)
-                    });
-                return acc;
-            },
-            {}
-        );
+        const rules = this.#getRulesData(actor, action);
+        this.marks = { armor, stress: rules.stress };
+        this.maxArmorUsed = rules.maxArmorUsed;
+        this.increasePerArmorMark = rules.increasePerArmorMark;
+        this.availableStressReductions = rules.availableStressReductions;
+        this.reduceSeverity = rules.reduceSeverity;
+        this.thresholdImmunities = rules.thresholdImmunities;
     }
 
     static DEFAULT_OPTIONS = {
@@ -116,6 +79,63 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     /** @inheritDoc */
     get title() {
         return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
+    }
+
+    #getRulesData(baseActor, action) {
+        const actor = baseActor.getActionClone(action);
+
+        const maxArmorUsed = actor.system.rules.damageReduction.maxArmorMarked;
+        const increasePerArmorMark = actor.system.rules.damageReduction.increasePerArmorMark;
+        const reduceSeverity = actor.system.rules.damageReduction.reduceSeverity;
+
+        const stress = [...Array(maxArmorUsed.stressExtra ?? 0).keys()].reduce(
+            (acc, _) => {
+                acc[foundry.utils.randomID()] = { selected: false };
+                return acc;
+            },
+            {}
+        );
+
+        const availableStressReductions = Object.keys(actor.system.rules.damageReduction.stressDamageReduction).reduce(
+            (acc, key) => {
+                const dr = actor.system.rules.damageReduction.stressDamageReduction[key];
+                if (dr.cost) {
+                    if (acc === null) acc = {};
+
+                    const damage = damageKeyToNumber(key);
+                    acc[damage] = {
+                        cost: dr.cost,
+                        selected: false,
+                        any: key === 'any',
+                        from: getDamageLabel(damage),
+                        to: getDamageLabel(damage - 1)
+                    };
+                }
+
+                return acc;
+            },
+            null
+        );
+
+        const thresholdImmunities = Object.keys(actor.system.rules.damageReduction.thresholdImmunities).reduce(
+            (acc, key) => {
+                if (actor.system.rules.damageReduction.thresholdImmunities[key])
+                    acc[damageKeyToNumber(key)] = game.i18n.format(`DAGGERHEART.GENERAL.DamageThresholds.with`, {
+                        threshold: game.i18n.localize(`DAGGERHEART.GENERAL.DamageThresholds.${key}`)
+                    });
+                return acc;
+            },
+            {}
+        );
+
+        return {
+            stress,
+            maxArmorUsed,
+            increasePerArmorMark,
+            availableStressReductions,
+            reduceSeverity,
+            thresholdImmunities
+        }
     }
 
     async _prepareContext(_options) {
@@ -187,7 +207,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             : [];
         const currentMarks = this.actor.system.armorScore.value + selectedArmorMarks.length;
 
-        const maxArmorUsed = this.actor.system.rules.damageReduction.maxArmorMarked.value + selectedStressMarks.length;
+        const maxArmorUsed = this.maxArmorUsed.value + selectedStressMarks.length;
         const availableArmor =
             maxArmorUsed -
             this.marks.armor.reduce((acc, source) => {
@@ -196,7 +216,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             }, 0);
 
         const armorMarkReduction =
-            selectedArmorMarks.length * this.actor.system.rules.damageReduction.increasePerArmorMark;
+            selectedArmorMarks.length * this.increasePerArmorMark;
         let currentDamage = Math.max(this.damage - armorMarkReduction - stressReductions.length, 0);
         if (this.reduceSeverity) {
             currentDamage = Math.max(currentDamage - this.reduceSeverity, 0);
@@ -210,7 +230,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     static toggleRules() {
         this.rulesOn = !this.rulesOn;
 
-        const maxArmor = this.actor.system.rules.damageReduction.maxArmorMarked.value;
+        const maxArmor = this.maxArmorUsed.value;
         this.marks = {
             armor: this.marks.armor.map((mark, index) => {
                 const keepSelectValue = !this.rulesOn || index + 1 <= maxArmor;
@@ -349,12 +369,13 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         await super.close({});
     }
 
-    static async armorSlotQuery({ actorId, damage, type }) {
+    static async armorSlotQuery({ actorId, actionUuid, damage, type }) {
         const actor = await fromUuid(actorId);
         if (!actor?.isOwner) throw new Error(`Actor [${actorId}] is not owned by the queried user.`);
 
+        const action = await fromUuid(actionUuid);
         return new Promise((resolve, reject) => {
-            new DamageReductionDialog(resolve, reject, actor, damage, type).render({ force: true });
+            new DamageReductionDialog(resolve, reject, actor, action, damage, type).render({ force: true });
         });
     }
 }
