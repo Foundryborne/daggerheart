@@ -2657,11 +2657,11 @@
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "@Resolve[@item.tier|sign]{Add the item's Tier} to Armor Score",
+                    "description": "@Resolve[@item.itemFeatures.protective.config.value|sign]{Add the item's Tier} to Armor Score",
                     "effects": {
                         "protective": {
                             "name": "Protective",
-                            "description": "Add the item's Tier to your Armor Score"
+                            "description": "Add @Resolve[@item.itemFeatures.protective.config.value|sign]{the item's Tier} to your Armor Score"
                         }
                     }
                 },

@@ -37,14 +37,18 @@ export class ConfigurableItemFeature extends fields.SchemaField {
     }
 
     _cleanType(data, options, state) {
+        const hadNoConfig = !data?.config; // check data.config BEFORE it becomes empty object
         data = super._cleanType(data, options, state);
         
-        // Clean data for correctness, but do not destroy data if the configField is missing
+        // Clean data for correctness, but do not destroy data if configField is missing
         // If that happens, it is likely a module being turned off or a homebrew feature removed, and we don't want to lose data
         const configField = this.#featureFn()[data?.value ?? state.source?.value]?.config;
         if (data && configField) {
             const innerState = { ...state, source: data.config };
-            data.config = configField?.clean(data.config, options, innerState) ?? {};
+            if (hadNoConfig && foundry.utils.isEmpty(data.config)) {
+                data.config = configField.getInitialValue();
+            }
+            data.config = configField.clean(data.config, options, innerState);
         }
         return data;
     }
