@@ -13,13 +13,14 @@
     "gmNotes": "",
     "resource": null,
     "actions": {
-      "r84dWo5C5kKvf9rf": {
-        "type": "damage",
+      "Rwsa4AwHKzqMm5fB": {
+        "type": "attack",
         "damage": {
           "main": null,
           "resources": {
             "hitPoints": {
               "base": false,
+              "itemId": null,
               "applyTo": "hitPoints",
               "resultBased": false,
               "fullRestore": false,
@@ -33,12 +34,11 @@
                   "formula": ""
                 }
               },
-              "valueAlt": null,
-              "itemId": null
+              "valueAlt": null
             }
           }
         },
-        "_id": "r84dWo5C5kKvf9rf",
+        "_id": "Rwsa4AwHKzqMm5fB",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -48,24 +48,15 @@
         },
         "actionType": "action",
         "triggers": [],
-        "areas": [
-          {
-            "name": "Otherworldly Ire",
-            "type": "placed",
-            "shape": "emanation",
-            "size": "close",
-            "hasHole": false,
-            "effects": []
-          }
-        ],
+        "areas": [],
         "cost": [
           {
+            "consumeOnSuccess": false,
             "scalable": true,
             "key": "favor",
             "value": 1,
             "step": 1,
-            "itemId": null,
-            "consumeOnSuccess": false
+            "itemId": null
           }
         ],
         "uses": {
@@ -79,6 +70,27 @@
           "amount": null
         },
         "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "custom",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null,
+            "custom": "@scale@system.tokens.warlock.patronDie"
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
         "name": "Spend Favor",
         "range": ""
       }

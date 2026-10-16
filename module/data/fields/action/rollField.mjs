@@ -29,6 +29,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                     nullable: false,
                     required: true
                 }),
+                custom: new FormulaField({ label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.custom' }),
                 flatMultiplier: new fields.NumberField({
                     nullable: true,
                     initial: 1,
@@ -63,15 +64,20 @@ export class DHActionRollData extends foundry.abstract.DataModel {
         let formula;
         switch (this.type) {
             case 'diceSet':
-                const multiplier =
-                    this.diceRolling.multiplier === 'flat'
-                        ? this.diceRolling.flatMultiplier
-                        : `@${this.diceRolling.multiplier}`;
-                if (this.diceRolling.compare && this.diceRolling.treshold) {
-                    formula = `${multiplier}${this.diceRolling.dice}cs${CONFIG.DH.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold}`;
+                if (this.diceRolling.multiplier === 'custom') {
+                    formula = this.diceRolling.custom;
                 } else {
+                    const multiplier =
+                        this.diceRolling.multiplier === 'flat'
+                            ? this.diceRolling.flatMultiplier
+                            : `@${this.diceRolling.multiplier}`;
                     formula = `${multiplier}${this.diceRolling.dice}`;
+                    
+                    if (this.diceRolling.compare && this.diceRolling.treshold) {
+                        formula = `(${formula}cs${CONFIG.DH.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold})`;
+                    }
                 }
+
                 break;
             default:
                 formula = '';
