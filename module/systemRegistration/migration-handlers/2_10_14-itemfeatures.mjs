@@ -6,9 +6,9 @@ import { MigrationHandlerBase } from './base.mjs';
  * This triggers an update so that the actual data can be committed.
  * https://github.com/foundryvtt/foundryvtt/issues/14848
  */
-export class Migration_2_11_0_ItemFeatures extends MigrationHandlerBase {
+export class Migration_2_10_14_ItemFeatures extends MigrationHandlerBase {
     /** @inheritdoc */
-    version = '2.11.0';
+    version = '2.10.14';
 
     updateItemSource(source) {
         if (['weapon', 'armor'].includes(source.type) && source.system) {
