@@ -63,15 +63,16 @@
       "major": 13,
       "severe": 36
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "ghostwalker": {
         "value": "ghostwalker",
         "effectIds": [],
         "actionIds": [
           "5Hq0OZmmnGykxe6H"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

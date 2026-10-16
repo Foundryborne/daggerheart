@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 3,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "impenetrable",
-        "effectIds": [],
-        "actionIds": [
-          "J1MCpcfXByKaSSgx"
-        ]
-      }
-    ],
     "baseThresholds": {
       "major": 11,
       "severe": 27
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "impenetrable": {
+        "value": "impenetrable",
+        "effectIds": [],
+        "actionIds": [
+          "J1MCpcfXByKaSSgx"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

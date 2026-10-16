@@ -45,17 +45,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "greedy",
-        "effectIds": [
-          "zkfYb3BZcBjQJ9Bw"
-        ],
-        "actionIds": [
-          "A6lC0N6hQhqFTqCx"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -154,7 +143,19 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "greedy": {
+        "value": "greedy",
+        "effectIds": [
+          "zkfYb3BZcBjQJ9Bw"
+        ],
+        "actionIds": [
+          "A6lC0N6hQhqFTqCx"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

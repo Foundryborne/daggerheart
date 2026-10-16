@@ -25,15 +25,16 @@
       "major": 10,
       "severe": 31
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "enchanted": {
         "value": "enchanted",
         "effectIds": [
           "YEg4fgH21uRnKW7f"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

@@ -25,15 +25,16 @@
       "major": 6,
       "severe": 12
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "lined": {
         "value": "lined",
         "effectIds": [
           "Qqdax2Dl4UHB9TxB"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

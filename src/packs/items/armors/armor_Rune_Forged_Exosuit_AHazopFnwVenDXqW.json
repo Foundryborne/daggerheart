@@ -25,15 +25,16 @@
       "major": 12,
       "severe": 39
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "attuned": {
         "value": "attuned",
         "effectIds": [
           "VSuoGIo7GpK3JLfA"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

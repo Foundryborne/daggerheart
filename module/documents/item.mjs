@@ -66,7 +66,7 @@ export default class DhItem extends foundry.documents.Item {
     /** Returns true if the item has a description, usually if there is a description field, or if there are item features */
     get hasDescription() {
         return Boolean(this.system.description) 
-            || Boolean(this.system.itemFeatures?.length)
+            || !foundry.utils.isEmpty(this.system.itemFeatures)
             || (Boolean(this.system.gmNotes) && game.user.isGM);
     }
 
@@ -360,6 +360,13 @@ export default class DhItem extends foundry.documents.Item {
             for (const resource of Object.values(action.damage?.resources ?? {})) {
                 if (!resource.resultBased) resource.valueAlt = null;
             }
+        }
+
+        const weaponArmorFeatures = source.system?.weaponFeatures ?? source.system?.armorFeatures;
+        if (weaponArmorFeatures && !source.system.itemFeatures) {
+            source.system.itemFeatures = Object.fromEntries(weaponArmorFeatures.map(e => [e.value, e]));
+            delete source.system.weaponFeatures;
+            delete source.system.armorFeatures;
         }
 
         return super.migrateData(source);

@@ -54,15 +54,16 @@
       "major": 9,
       "severe": 20
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "mnemonic": {
         "value": "mnemonic",
         "effectIds": [],
         "actionIds": [
           "SqJwukvzZAPDgCJy"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

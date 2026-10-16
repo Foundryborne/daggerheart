@@ -59,15 +59,20 @@
                 </a>
             {{/if}}
         {{else}}
+            {{#if (and (eq item.type 'weapon') item.system.featureConfig.versatile)}}
+                <a data-action="toggleVersatileWeapon" data-tooltip="DAGGERHEART.UI.Tooltip.toggleVersatile">
+                    <i class="fa-regular fa-fw fa-right-left"></i>
+                </a>
+            {{/if}}
             {{#if (hasProperty item "toChat")}}
-            <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
-                <i class="fa-regular fa-fw fa-message"></i>
-            </a>
+                <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
+                    <i class="fa-regular fa-fw fa-message"></i>
+                </a>
             {{/if}}
             {{#unless hideContextMenu}}
-            <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </a>
+                <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </a>
             {{/unless}}
         {{/if}}
     </div>

@@ -1,3 +1,4 @@
+import { ConfigurableItemFeature } from '../fields/configurable-item-feature.mjs';
 import BaseDataItem from './base.mjs';
 import { updateItemFeatures } from './helpers.mjs';
 
@@ -29,15 +30,7 @@ export default class DHArmor extends BaseDataItem {
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })
             }),
-            armorFeatures: new fields.ArrayField(
-                new fields.SchemaField({
-                    value: new fields.StringField({
-                        required: true
-                    }),
-                    effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
-                    actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
-                })
-            )
+            itemFeatures: new fields.TypedObjectField(new ConfigurableItemFeature({ itemType: 'armor' }))
         };
     }
 
@@ -54,15 +47,16 @@ export default class DHArmor extends BaseDataItem {
         );
     }
 
-    get itemFeatures() {
-        return this.armorFeatures;
+    get armorFeatures() {
+        // todo: deprecate
+        return Object.values(this.itemFeatures);
     }
 
     /**@inheritdoc */
     async getDescriptionData() {
         const baseDescription = this.description;
         const allFeatures = CONFIG.DH.ITEM.allArmorFeatures();
-        const features = this.armorFeatures.map(x => allFeatures[x.value]).filter(x => x);
+        const features = Object.values(this.itemFeatures).map(x => allFeatures[x.value]).filter(x => x);
 
         const prefix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
@@ -77,11 +71,10 @@ export default class DHArmor extends BaseDataItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        if (changes.system?.armorFeatures) {
+        if (changes.system?.itemFeatures) {
             await updateItemFeatures(
                 this.parent,
                 changes,
-                'armorFeatures',
                 CONFIG.DH.ITEM.allArmorFeatures
             );
         }

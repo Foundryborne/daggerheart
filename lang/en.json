@@ -576,7 +576,8 @@
                 "recall": "Recall",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
-                "useItem": "Use Item"
+                "useItem": "Use Item",
+                "toggleVersatile": "Switch Versatile"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -2845,6 +2846,10 @@
                         }
                     }
                 },
+                "versatile": {
+                    "name": "Versatile",
+                    "description": "This weapon can also be used with these statistics — @Lookup[@item.itemFeatures.versatile.config.trait|type:trait]{Trait}, @Lookup[@item.itemFeatures.versatile.config.range|type:range]{Range}, @Lookup[@item.itemFeatures.versatile.config.damage]{Damage}"
+                },
                 "volleyed": {
                     "name": "Volleyed",
                     "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage."
@@ -4414,7 +4419,8 @@
                     "general": "This effect is suppressed",
                     "invalid": "This effect is suppressed due to conditionals",
                     "unequipped": "This effect is suppressed because this item is not equipped"
-                }
+                },
+                "toggleVersatile": "Versatile Switch"
             }
         }
     }

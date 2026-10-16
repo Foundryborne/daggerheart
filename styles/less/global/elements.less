@@ -431,7 +431,7 @@
             }
         }
 
-        .form-group {
+        .form-group:not(.standard-form *) {
             width: 100%;
             label {
                 font-weight: bold;
@@ -503,6 +503,15 @@
             border-width: 0;
             margin: 0;
             padding: 0;
+        }
+    }
+
+    .standard-form {
+        .form-group {
+            width: 100%;
+        }
+        .standard-form {
+            width: 100%;
         }
     }
 

@@ -25,15 +25,16 @@
       "major": 15,
       "severe": 34
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "bulky": {
         "value": "bulky",
         "effectIds": [
           "clo7We2aUibWdsmD"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

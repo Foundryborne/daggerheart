@@ -19,7 +19,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -108,6 +107,24 @@
       "attack": {
         "roll": {
           "trait": null
+        }
+      }
+    },
+    "itemFeatures": {
+      "versatile": {
+        "value": "versatile",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {
+          "trait": "agility",
+          "range": "melee",
+          "damage": {
+            "dice": "d8",
+            "bonus": 5,
+            "type": [
+              "physical"
+            ]
+          }
         }
       }
     }

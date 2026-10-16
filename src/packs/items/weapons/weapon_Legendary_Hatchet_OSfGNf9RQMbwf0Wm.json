@@ -62,17 +62,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "followUp",
-        "effectIds": [
-          "r37xG24Qrx3q4ObR"
-        ],
-        "actionIds": [
-          "sE7LyJkbAZMXTGH3"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -162,6 +151,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "followUp": {
+        "value": "followUp",
+        "effectIds": [
+          "r37xG24Qrx3q4ObR"
+        ],
+        "actionIds": [
+          "sE7LyJkbAZMXTGH3"
+        ],
+        "config": {}
       }
     }
   },

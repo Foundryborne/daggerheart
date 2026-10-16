@@ -25,15 +25,16 @@
       "major": 13,
       "severe": 30
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "cumbersome": {
         "value": "cumbersome",
         "effectIds": [
           "2uaDK1adL1aVP1Pg"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

@@ -57,15 +57,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "ricochet",
-        "effectIds": [],
-        "actionIds": [
-          "oK1CHBxZLcmM37jR"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -155,6 +146,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "ricochet": {
+        "value": "ricochet",
+        "effectIds": [],
+        "actionIds": [
+          "oK1CHBxZLcmM37jR"
+        ],
+        "config": {}
       }
     }
   },
