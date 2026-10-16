@@ -2303,6 +2303,7 @@ export const createWeaponFeatures = () => ({
             value: new fields.StringField({
                 label: 'DAGGERHEART.GENERAL.value',
                 blank: false,
+                nullable: false,
                 initial: '@item.tier'
             })
         })
