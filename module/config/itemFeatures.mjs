@@ -2292,14 +2292,20 @@ export const createWeaponFeatures = () => ({
                         {
                             type: 'armor',
                             value: {
-                                max: 'ITEM.@system.tier'
+                                max: '@item.itemFeatures.protective.config.value'
                             }
                         }
                     ]
                 }
-
             }
-        ]
+        ],
+        config: new fields.SchemaField({
+            value: new fields.StringField({
+                label: 'DAGGERHEART.GENERAL.value',
+                blank: false,
+                initial: '@item.tier'
+            })
+        })
     },
     quick: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.quick.name',
