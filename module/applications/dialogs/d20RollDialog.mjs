@@ -97,7 +97,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                 this.action ?? { actor: this.actor },
                 updatedCosts
             );
-            this.config.data.scale = this.config.costs[0].total;
+            this.config.data.scale = this.config.costs.find(x => x.scalable)?.total ?? 1;
         }
         if (this.config.uses?.max) {
             context.uses = game.system.api.fields.ActionFields.UsesField.calcUses.call(this.action, this.config.uses);

@@ -998,6 +998,11 @@ export function getAllResources() {
         resource: {
             id: 'resource',
             label: 'DAGGERHEART.GENERAL.Resource.single'
+        },
+        freelyScaleable: {
+            id: 'freelyScaleable',
+            label: 'DAGGERHEART.ACTIONS.Settings.cost.freelyScaleable',
+            isReversed: true
         }
     }
 
