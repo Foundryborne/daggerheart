@@ -117,14 +117,16 @@
           "i5HfkF5aKQuUCTEG"
         ],
         "actionIds": [],
-        "config": {}
+        "config": {
+          "value": "@item.tier"
+        }
       }
     }
   },
   "effects": [
     {
       "name": "Protective",
-      "description": "<p>Add the item's Tier to your Armor Score</p>",
+      "description": "Add @Resolve[@item.itemFeatures.protective.config.value|sign]{the item's Tier} to your Armor Score",
       "img": "icons/skills/melee/shield-block-gray-orange.webp",
       "_id": "7285CRGdZfHCEtT2",
       "type": "base",
@@ -135,7 +137,7 @@
             "phase": "initial",
             "priority": 20,
             "value": {
-              "max": "ITEM.@system.tier",
+              "max": "@item.itemFeatures.protective.config.value",
               "current": 0,
               "damageThresholds": null,
               "interaction": "none"

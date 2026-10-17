@@ -38,8 +38,8 @@ export async function updateItemFeatures(document, changes, featureListFn) {
         feature.effectIds ??= [];
         const featureData = foundry.utils.deepClone(allFeatures[feature.value]);
 
-        // Add top level effects
-        if (featureData.effects?.length > 0) {
+        // Add top level effects if the feature doesn't already come with effects
+        if (featureData.effects?.length > 0 && feature.effectIds.length === 0) {
             const effectsToAdd = featureData.effects.map(effect => ({
                 ...effect,
                 _id: effect._id && !existingIds.has(effect._id) ? effect._id : foundry.utils.randomID(),
