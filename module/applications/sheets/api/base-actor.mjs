@@ -471,6 +471,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             const attackData = {
                 type: 'Attack',
                 actorUuid: this.document.uuid,
+                name: this.document.system.attack.name,
                 img: this.document.system.attack.img,
                 fromInternal: true
             };
