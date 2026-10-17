@@ -10,7 +10,7 @@
       "page": null,
       "artist": ""
     },
-    "description": "<p><strong>Protective</strong>: +1 to your Armor Score.</p>",
+    "description": "",
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
@@ -110,7 +110,18 @@
         }
       }
     },
-    "itemFeatures": {}
+    "itemFeatures": {
+      "protective": {
+        "value": "protective",
+        "actionIds": [],
+        "effectIds": [
+          "tL0mow5BGsYS4wPp"
+        ],
+        "config": {
+          "value": "1"
+        }
+      }
+    }
   },
   "effects": [
     {
@@ -124,7 +135,7 @@
             "value": {
               "interaction": "none",
               "current": 0,
-              "max": "1",
+              "max": "@item.itemFeatures.protective.config.value",
               "damageThresholds": null
             },
             "priority": 20
@@ -156,7 +167,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "<p>+1 to your Armor Score</p>",
+      "description": "Add @Resolve[@item.itemFeatures.protective.config.value|sign]{the item's Tier} to your Armor Score",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
