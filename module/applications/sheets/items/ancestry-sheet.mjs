@@ -19,6 +19,9 @@ export default class AncestrySheet extends DHHeritageSheet {
         }
     };
 
+    /** @inheritdoc */
+    hasHeaderAttribution = false;
+
     /**@inheritdoc */
     get relatedDocs() {
         return this.document.system.features.map(x => x.item);

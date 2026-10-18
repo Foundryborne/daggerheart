@@ -73,7 +73,8 @@ const typeSettingsMap = {
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
-        #nonHeaderAttribution = ['ancestry', 'community', 'domainCard'];
+        /** Determines if this sheet has the attribution in the header */
+        hasHeaderAttribution = true;
 
         /**
          * @param {DHSheetV2Configuration} [options={}]
@@ -139,8 +140,7 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
                 const { source, page, campaignFrame } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null, campaignFrame ? ` (${campaignFrame})` : null]
                     .filter(x => x)
@@ -160,8 +160,7 @@ export default function DHApplicationMixin(Base) {
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
 

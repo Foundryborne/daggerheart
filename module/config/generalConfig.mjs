@@ -803,7 +803,7 @@ export const rollTypes = {
 export const attributionSources = {
     daggerheart: {
         label: 'Daggerheart',
-        values: [{ label: 'Daggerheart SRD' }]
+        values: [{ label: 'Daggerheart SRD' }, { label: 'Daggerheart SRD H&F'}]
     }
 };
 
