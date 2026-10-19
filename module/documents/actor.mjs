@@ -40,6 +40,16 @@ export default class DhActor extends Actor {
     }
 
     /**
+     * Returns the uuid of the original item this item was derived from, 
+     * or its own uuid if its a compendium item or not derived from a source item.
+     * @returns {string}
+     */
+    get sourceUuid() {
+        const isCompendium = this._id && this.pack && !this.isEmbedded;
+        return isCompendium ? this.uuid : this._stats.compendiumSource ?? this._stats.duplicateSource ?? this.uuid;
+    }
+
+    /**
      * Returns the uuid of the actor that is used for refreshing.
      * This isn't necessarily the sourceUuid. Compendium items don't have a refresh source.
      * @returns {string | null} the uuid to refresh from, or null if it can't be refreshed
