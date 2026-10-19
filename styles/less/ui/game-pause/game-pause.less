@@ -2,18 +2,29 @@
 
 #pause.dh-style {
     animation: none;
+    justify-content: flex-start;
+    padding: 4px 0 0;
+    gap: 0;
 
     img {
+        max-width: 180px;
+        width: auto;
+        height: auto;
+    }
+    
+    figcaption {
         max-width: 270px;
         width: auto;
         height: auto;
         --base-shadow: drop-shadow(2px 1px 2px black);
         animation: pause-pulse 3s ease-in-out infinite;
+        font-size: var(--font-size-30);
+        letter-spacing: 0.15em;
+        line-height: normal;
+        flex: 1;
+        display: flex;
+        align-items: center;
         filter: var(--base-shadow);
-    }
-    
-    figcaption {
-        display: none;
     }
 
     @keyframes pause-pulse {
