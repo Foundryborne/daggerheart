@@ -16,6 +16,69 @@
         flex: 0 0 auto;
     }
 
+    .item-card-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        text-align: center;
+
+        .profile {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+            mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+            cursor: pointer;
+        }
+
+        .domain-card-banner {    
+            --width: 80px;
+            left: 20px;
+        }
+
+        .recall-cost {
+            --width: 52px;
+            top: 40px;
+            right: 22px;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            top: -25px;
+            margin-bottom: -20px;
+
+            .item-name {
+                input[type='text'] {
+                    font-size: var(--font-size-32);
+                    height: 42px;
+                    text-align: center;
+                    width: 90%;
+                    transition: all 0.3s ease;
+                    outline: 2px solid transparent;
+                    border: 1px solid transparent;
+
+                    &:hover[type='text'],
+                    &:focus[type='text'] {
+                        box-shadow: none;
+                        outline: 2px solid light-dark(@dark-blue, @golden);
+                    }
+                }
+            }
+
+            .item-description {
+                display: flex;
+                flex-direction: column;
+                gap: 7px;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+        }
+    }
+
     .tab-navigation {
         margin-bottom: 0;
     }

@@ -6,9 +6,10 @@
   "img": "icons/weapons/daggers/dagger-simple-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -110,7 +111,13 @@
         }
       }
     },
-    "itemFeatures": {}
+    "itemFeatures": {
+      "inverted": {
+        "value": "inverted",
+        "effectIds": [],
+        "actionIds": []
+      }
+    }
   },
   "effects": [],
   "sort": 0,

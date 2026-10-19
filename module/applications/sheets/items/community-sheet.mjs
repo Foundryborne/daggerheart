@@ -19,6 +19,9 @@ export default class CommunitySheet extends DHHeritageSheet {
         }
     };
 
+    /** @inheritdoc */
+    hasHeaderAttribution = false;
+
     /**@inheritdoc */
     get relatedDocs() {
         return this.document.system.features;
