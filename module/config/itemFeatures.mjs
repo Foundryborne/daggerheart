@@ -1985,14 +1985,7 @@ export const createWeaponFeatures = () => ({
     },
     inverted: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.name',
-        description: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.description',
-        effects: [
-            {
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.effects.inverted.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.effects.inverted.description',
-                img: 'icons/magic/symbols/runes-carved-stone-yellow.webp'
-            }
-        ]
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.inverted.description'
     },
     lifestealing: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.lifestealing.name',
