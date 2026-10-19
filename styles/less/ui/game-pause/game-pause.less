@@ -4,27 +4,30 @@
     animation: none;
     justify-content: flex-start;
     padding: 4px 0 0;
-    gap: 0;
+    gap: 4px;
+    height: auto;
 
     img {
-        max-width: 180px;
         width: auto;
-        height: auto;
+        height: 110px;
+        padding-top: 0.75rem;
     }
     
     figcaption {
         max-width: 270px;
+        color: white;
         width: auto;
         height: auto;
         --base-shadow: drop-shadow(2px 1px 2px black);
-        animation: pause-pulse 3s ease-in-out infinite;
-        font-size: var(--font-size-30);
-        letter-spacing: 0.15em;
+        animation: pause-pulse 4s ease-in-out infinite;
+        font-size: 30px; // fixed height header means it shouldn't font scale
+        letter-spacing: 0.1em;
         line-height: normal;
         flex: 1;
         display: flex;
         align-items: center;
         filter: var(--base-shadow);
+        white-space: nowrap;
     }
 
     @keyframes pause-pulse {
