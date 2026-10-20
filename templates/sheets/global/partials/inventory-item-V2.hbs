@@ -28,7 +28,7 @@ Parameters:
     <div class="item-main">
         <div class="inventory-item-header{{#if hideContextMenu}} padded{{/if}}" {{#unless (or noExtensible (not item.hasDescription))}}data-action="toggleExtended" {{/unless}}>
             {{!-- Image --}}
-            <div class="img-portait" draggable="true"
+            <div class="img-portrait" draggable="true"
                 {{#unless (eq showActions false)}}data-action='{{ifThen (and (not inactive) item.usable) "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'{{/unless}}
                 {{#unless hideTooltip}} {{#if (eq type 'attack' )}} data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}
             >
