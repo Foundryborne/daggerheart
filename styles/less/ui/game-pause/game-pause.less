@@ -3,17 +3,12 @@
 #pause.dh-style {
     animation: none;
 
-    img {
-        max-width: 270px;
-        width: auto;
-        height: auto;
+    figcaption {
         --base-shadow: drop-shadow(2px 1px 2px black);
         animation: pause-pulse 3s ease-in-out infinite;
+        font-size: var(--font-size-30);
+        letter-spacing: 0.15em;
         filter: var(--base-shadow);
-    }
-    
-    figcaption {
-        display: none;
     }
 
     @keyframes pause-pulse {
