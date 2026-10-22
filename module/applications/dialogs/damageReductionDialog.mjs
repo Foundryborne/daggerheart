@@ -81,8 +81,12 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
     }
 
+    /**
+     * @param {DhActor} baseActor 
+     * @param {*} action 
+     */
     #getRulesData(baseActor, action) {
-        const actor = baseActor.getActionClone(action);
+        const actor = baseActor.getActionClone(action, { role: 'target' });
 
         const maxArmorUsed = actor.system.rules.damageReduction.maxArmorMarked;
         const increasePerArmorMark = actor.system.rules.damageReduction.increasePerArmorMark;

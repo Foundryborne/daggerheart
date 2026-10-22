@@ -24,6 +24,15 @@ export default class DamageTypeConditional extends foundry.abstract.DataModel {
                 required: true,
                 choices: CONFIG.DH.GENERAL.damageTypes,
                 initial: CONFIG.DH.GENERAL.damageTypes.physical.id
+            }),
+            evaluateOn: new fields.StringField({
+                label: 'Evaluate On',
+                choices: {
+                    origin: 'Origin',
+                    target: 'Target'
+                },
+                initial: 'origin',
+                nullable: false
             })
         }
     }

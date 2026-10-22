@@ -244,13 +244,17 @@ export default class DhActor extends Actor {
     /**
      * Makes a clone for the actor with only ActiveEffects that pass their conditionals applied.
      * @param {BaseAction} action The action relevant to needing the data
+     * @param {object} options
+     * @param {"origin" | "target"} options.role whether to evaluate conditionals as the origin or as the target
      * @returns {DhActor}
      */
-    getActionClone(action) {
+    getActionClone(action, { role = 'origin' } = {}) {
         const rollData = (action ?? this).getRollData();
+        /** @param {DhActiveEffect} effect */
         const effectFilter = effect => {
             const conditionalRollPassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id,
+                role
             });
             const conditionalPreparePassed = effect.system.testConditionals(rollData, { 
                 phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id 
@@ -944,7 +948,7 @@ export default class DhActor extends Actor {
                     else updates.push({ value: stressSpent, key: 'stress' });
                 }
             } else if (this.type === 'adversary') {
-                const actorClone = this.getActionClone(await fromUuid(actionUuid));
+                const actorClone = this.getActionClone(await fromUuid(actionUuid), { role: 'target' });
                 const reducedSeverity = actorClone.system.rules.damageReduction.reduceSeverity;
                 hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
                 if (actorClone.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {

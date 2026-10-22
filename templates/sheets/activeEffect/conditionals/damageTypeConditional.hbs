@@ -6,5 +6,6 @@
     <div class="conditional-inner-container">
         <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
         {{formGroup model.fields.damageType value=this.damageType name=(concat "system.conditionals." @key ".damageType") localize=true blank=false }}
+        {{formGroup model.fields.evaluateOn value=this.evaluateOn name=(concat "system.conditionals." @key ".evaluateOn") localize=true blank=false }}
     </div>
 </fieldset>

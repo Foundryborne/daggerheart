@@ -3,7 +3,7 @@
         {{localize "DAGGERHEART.CONFIG.ConditionalType.dataCompare"}}
         <a data-action="removeConditional" data-index="{{@key}}"><i class="fa-solid fa-trash" inert></i></a>
     </legend>
-    <div class="conditional-inner-container">
+    <div class="standard-form">
         <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
         {{formGroup model.fields.key value=this.key name=(concat "system.conditionals." @key ".key") localize=true }}
         {{formGroup model.fields.comparator value=this.comparator name=(concat "system.conditionals." @key ".comparator") localize=true }}
