@@ -2902,6 +2902,11 @@
             "Conditionals": {
                 "phase": "Phase",
                 "failureMode": "Failure Mode",
+                "evaluateOn": {
+                    "title": "Evaluate On",
+                    "origin": "Origin",
+                    "target": "Target"
+                },
                 "dataCompare": {
                     "comparator": "Comparator"
                 },

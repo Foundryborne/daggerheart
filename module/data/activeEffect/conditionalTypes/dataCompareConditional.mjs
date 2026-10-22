@@ -32,6 +32,15 @@ export default class DataCompareConditional extends foundry.abstract.DataModel {
             }),
             value: new FormulaField({
                 label: 'DAGGERHEART.GENERAL.value'
+            }),
+            evaluateOn: new fields.StringField({
+                label: 'DAGGERHEART.EFFECTS.Conditionals.evaluateOn.title',
+                choices: {
+                    origin: 'DAGGERHEART.EFFECTS.Conditionals.evaluateOn.origin',
+                    target: 'DAGGERHEART.EFFECTS.Conditionals.evaluateOn.target'
+                },
+                initial: 'origin',
+                nullable: false
             })
         }
     }

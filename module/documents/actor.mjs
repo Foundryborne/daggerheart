@@ -257,7 +257,8 @@ export default class DhActor extends Actor {
                 role
             });
             const conditionalPreparePassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id,
+                role
             }); 
 
             return !effect.disabled && !effect.isSuppressed && conditionalRollPassed && conditionalPreparePassed;

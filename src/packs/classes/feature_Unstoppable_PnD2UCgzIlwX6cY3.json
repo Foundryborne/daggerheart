@@ -110,7 +110,8 @@
         "conditionals": [
           {
             "type": "damageType",
-            "damageType": "physical"
+            "damageType": "physical",
+            "evaluateOn": "target"
           }
         ]
       },

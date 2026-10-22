@@ -8,5 +8,6 @@
         {{formGroup model.fields.key value=this.key name=(concat "system.conditionals." @key ".key") localize=true }}
         {{formGroup model.fields.comparator value=this.comparator name=(concat "system.conditionals." @key ".comparator") localize=true }}
         {{formGroup model.fields.value value=this.value name=(concat "system.conditionals." @key ".value") classes="conditional-value" localize=true }}
+        {{formGroup model.fields.evaluateOn value=this.evaluateOn name=(concat "system.conditionals." @key ".evaluateOn") localize=true blank=false }}
     </div>
 </fieldset>
