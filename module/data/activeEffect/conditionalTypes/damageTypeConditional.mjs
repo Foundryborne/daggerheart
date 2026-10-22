@@ -25,11 +25,11 @@ export default class DamageTypeConditional extends foundry.abstract.DataModel {
                 choices: CONFIG.DH.GENERAL.damageTypes,
                 initial: CONFIG.DH.GENERAL.damageTypes.physical.id
             }),
-            evaluateOn: new fields.StringField({
-                label: 'DAGGERHEART.EFFECTS.Conditionals.evaluateOn.title',
+            evaluateRole: new fields.StringField({
+                label: 'DAGGERHEART.EFFECTS.Conditionals.evaluateRole.title',
                 choices: {
-                    origin: 'DAGGERHEART.EFFECTS.Conditionals.evaluateOn.origin',
-                    target: 'DAGGERHEART.EFFECTS.Conditionals.evaluateOn.target'
+                    origin: 'DAGGERHEART.EFFECTS.Conditionals.evaluateRole.origin',
+                    target: 'DAGGERHEART.EFFECTS.Conditionals.evaluateRole.target'
                 },
                 initial: 'origin',
                 nullable: false

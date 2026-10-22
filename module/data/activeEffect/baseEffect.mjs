@@ -145,7 +145,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             if (!metadata) return false;
             const matchesPhase = metadata.phase === phase;
             const matchesFailureMode = !failureMode || metadata.failureMode === failureMode;
-            const matchesRole = !x.evaluateOn || x.evaluateOn === role;
+            const matchesRole = !x.evaluateRole || x.evaluateRole === role;
             return matchesPhase && matchesFailureMode && matchesRole;
         });
 
