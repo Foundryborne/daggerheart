@@ -2858,6 +2858,7 @@
         },
         "EFFECTS": {
             "AddChange": "Add Change",
+            "AddConditional": "Add Conditional",
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
