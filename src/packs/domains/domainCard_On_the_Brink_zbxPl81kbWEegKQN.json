@@ -51,8 +51,7 @@
             "type": "dataCompare",
             "key": "system.resources.hitPoints.value",
             "comparator": "greaterEquals",
-            "value": "@system.resources.hitPoints.max - 2",
-            "evaluateOn": "origin"
+            "value": "@system.resources.hitPoints.max - 2"
           }
         ]
       },
