@@ -52,7 +52,7 @@
             "key": "system.resources.hitPoints.value",
             "comparator": "greaterEquals",
             "value": "@system.resources.hitPoints.max - 2",
-            "evaluateOn": "target"
+            "evaluateOn": "origin"
           }
         ]
       },
