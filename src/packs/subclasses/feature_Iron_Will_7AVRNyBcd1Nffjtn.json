@@ -43,7 +43,7 @@
           {
             "type": "damageType",
             "damageType": "physical",
-            "evaluateRole": "target"
+            "role": "target"
           }
         ]
       },

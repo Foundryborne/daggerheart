@@ -37,7 +37,7 @@ export default class ActionTypeConditional extends foundry.abstract.DataModel {
      * Action Type Conditionals are currently only ever evaluted on origins, but could be expanded.
      * Consider if the default should be null (both origin/target) or "origin"
      */
-    evaluateRole = 'origin';
+    role = 'origin';
 
     test(rollData) {
         if (this.traits.size) {

@@ -2902,8 +2902,8 @@
             "Conditionals": {
                 "phase": "Phase",
                 "failureMode": "Failure Mode",
-                "evaluateRole": {
-                    "title": "Evaluate On",
+                "role": {
+                    "title": "Evaluated Role",
                     "origin": "Origin",
                     "target": "Target"
                 },

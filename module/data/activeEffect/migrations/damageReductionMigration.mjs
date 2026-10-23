@@ -10,7 +10,7 @@ export default function damageReductionMigration(source) {
         source.conditionals.push({ 
             type: CONFIG.DH.EFFECTS.conditionalTypes.damageType.id,
             damageType: reductionTypes.first(),
-            evaluateRole: 'target'
+            role: 'target'
         });
     }
     // Convert keys and then remove duplicates
