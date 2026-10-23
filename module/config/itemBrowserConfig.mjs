@@ -118,17 +118,19 @@ export const typeConfig = {
             {
                 key: 'type',
                 label: 'DAGGERHEART.GENERAL.type',
-                format: type => (type ? `TYPES.Item.${type}` : '-')
-            },
-            {
-                key: 'system.secondary',
-                label: 'DAGGERHEART.UI.ItemBrowser.subtype',
-                format: isSecondary =>
-                    isSecondary
-                        ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short'
-                        : isSecondary === false
-                            ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
-                            : '-'
+                format: (type, item) => {
+                    const typeLabel = type ? `TYPES.Item.${type}` : '-';
+                    if (type === 'weapon') {
+                        const isSecondary = item?.system.secondary;
+                        const weaponType = isSecondary
+                            ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short'
+                            : isSecondary === false
+                                ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short'
+                                : null;
+                        return weaponType ? `${_loc(typeLabel)}<br/>(${_loc(weaponType)})` : typeLabel;
+                    }
+                    return typeLabel;
+                }
             },
             {
                 key: 'system.tier',
@@ -211,6 +213,11 @@ export const typeConfig = {
                 format: isSecondary => (isSecondary ? 'DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short' : isSecondary === false ? 'DAGGERHEART.ITEMS.Weapon.primaryWeapon.short' : '-')
             },
             {
+                key: 'system.attack.roll.trait',
+                label: 'DAGGERHEART.GENERAL.Trait.single',
+                format: trait => CONFIG.DH.ACTOR.traits[trait]?.label ?? '-'
+            },
+            {
                 key: 'system.tier',
                 label: 'DAGGERHEART.GENERAL.Tiers.singular'
             }
@@ -261,6 +268,16 @@ export const typeConfig = {
     armors: {
         columns: [
             {
+                key: 'system.baseThresholds',
+                label: 'DAGGERHEART.UI.ItemBrowser.thresholds',
+                format: thresholds => thresholds ? `${thresholds.major} / ${thresholds.severe}` : '-',
+                sortBy: v => Number(v?.split(' / ')[0])
+            },
+            {
+                key: 'system.armor.max',
+                label: 'DAGGERHEART.ITEMS.Armor.scoreShort'
+            },
+            {
                 key: 'system.tier',
                 label: 'DAGGERHEART.GENERAL.Tiers.singular'
             }
@@ -277,17 +294,17 @@ export const typeConfig = {
                 ]
             },
             {
-                key: 'system.baseScore',
+                key: 'system.armor.max',
                 name: 'armor.min',
                 label: 'DAGGERHEART.UI.ItemBrowser.armorScoreMin',
-                field: 'system.api.models.items.DHArmor.schema.fields.baseScore',
+                field: 'system.api.models.items.DHArmor.schema.fields.armor.fields.max',
                 operator: 'gte'
             },
             {
-                key: 'system.baseScore',
+                key: 'system.armor.max',
                 name: 'armor.max',
                 label: 'DAGGERHEART.UI.ItemBrowser.armorScoreMax',
-                field: 'system.api.models.items.DHArmor.schema.fields.baseScore',
+                field: 'system.api.models.items.DHArmor.schema.fields.armor.fields.max',
                 operator: 'lte'
             },
             {
@@ -431,7 +448,7 @@ export const typeConfig = {
             },
             {
                 key: 'system.spellcastingTrait',
-                label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait',
+                label: 'DAGGERHEART.UI.ItemBrowser.spellcasting',
                 format: trait => (trait ? `DAGGERHEART.CONFIG.Traits.${trait}.name` : '-')
             }
         ],

@@ -3522,6 +3522,7 @@
             },
             "Armor": {
                 "baseScore": "Base Score",
+                "scoreShort": "Score",
                 "baseThresholds": {
                     "base": "Base Thresholds",
                     "major": "Major Threshold",
@@ -4239,6 +4240,8 @@
                 "recallCostMax": "Recall Cost (Max)",
                 "evasionMin": "Evasion (Min)",
                 "evasionMax": "Evasion (Max)",
+                "spellcasting": "Spellcasting",
+                "thresholds": "Thresholds",
                 "subtype": "Subtype",
                 "missing": "<i>Missing</i>",
                 "folders": {
