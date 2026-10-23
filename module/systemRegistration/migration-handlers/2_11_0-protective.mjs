@@ -4,9 +4,9 @@ import { MigrationHandlerBase } from './base.mjs';
  * Updates protective entries with hardcoded effects to use the new effect config.
  * Also updates Attribution to match the latest version per file
  */
-export class Migration_2_10_14_ProtectiveAttribution extends MigrationHandlerBase {
+export class Migration_2_11_0_ProtectiveAttribution extends MigrationHandlerBase {
     /** @inheritdoc */
-    version = '2.10.14';
+    version = '2.11.0';
 
     migrateCompendiums = true;
 
