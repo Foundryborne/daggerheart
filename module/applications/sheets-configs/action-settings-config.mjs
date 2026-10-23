@@ -34,16 +34,43 @@ export default class DHActionSettingsConfig extends DHActionBaseConfig {
         const { areaIndex } = event.target.dataset;
         if (!this.action.effects) return;
 
-        const effectData = game.system.api.data.activeEffects.BaseEffect.getDefaultObject({ transfer: false });
-        const data = this.action.toObject();
+        // const createData = game.system.api.data.activeEffects.BaseEffect.getDefaultObject({ transfer: false });
+        const typeChoices = {
+            BaseEffect: 'TYPES.ActiveEffect.base',
+            EphemeralEffect: 'TYPES.ActiveEffect.ephemeral'
+        };
+        const content = new foundry.data.fields.StringField({
+            label: _loc('DAGGERHEART.GENERAL.type'),
+            choices: typeChoices,
+            required: true
+        }).toFormGroup({}, { name: 'type', localize: true }).outerHTML;
 
-        this.sheetUpdate(data, effectData);
-        this.effects = [...this.effects, effectData];
+        const callback = async (_, button) => {
+            const type = button.form.elements.type.value;
+            if (!type) return;
 
-        if (areaIndex !== undefined) data.areas[areaIndex].effects.push(effectData.id);
-        else data.effects.push({ _id: effectData.id });
+            const effectData = game.system.api.data.activeEffects[type].getDefaultObject({ transfer: false });
+            const data = this.action.toObject();
 
-        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+            this.sheetUpdate(data, effectData);
+            this.effects = [...this.effects, effectData];
+
+            if (areaIndex !== undefined) data.areas[areaIndex].effects.push(effectData.id);
+            else data.effects.push({ _id: effectData.id });
+
+            this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+        };
+
+        await foundry.applications.api.DialogV2.prompt({
+            content: content,
+            rejectClose: false,
+            modal: true,
+            ok: { callback: callback.bind(this) },
+            window: {
+                title: _loc('DAGGERHEART.ACTIVEEFFECT.Config.settingsCreateTitle')
+            },
+            position: { width: 400 }
+        });
     }
 
     static removeEffect(event, button) {

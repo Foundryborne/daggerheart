@@ -312,7 +312,8 @@
             }
         },
         "ActiveEffect": {
-            "beastform": {}
+            "beastform": {},
+            "ephemeral": {}
         },
         "Combat": {
             "combat": {}

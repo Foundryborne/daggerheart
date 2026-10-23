@@ -1,14 +1,15 @@
 <div class="effects-sections">
-    {{> "fieldset" title="DAGGERHEART.GENERAL.activeEffects" effects=effects.actives}}
-    {{> "fieldset" title="DAGGERHEART.GENERAL.inactiveEffects" effects=effects.inactives disabled=true}}
+    {{> "fieldset" title="DAGGERHEART.GENERAL.activeEffects" effects=effects.actives type="base"}}
+    {{> "fieldset" title="DAGGERHEART.GENERAL.ephemeralEffects" effects=effects.ephemerals type="ephemeral" hideDisable="true" }}
+    {{> "fieldset" title="DAGGERHEART.GENERAL.inactiveEffects" effects=effects.inactives type="base" disabled=true}}
 </div>
 
 {{#*inline "fieldset"}}
     <fieldset class="glassy drop-section">
         <legend>
             {{localize title}}
-            {{#if @root.editable}}
-                <a data-action="createDoc" data-document-class="ActiveEffect" data-tooltip="{{localize 'DOCUMENT.Create' type=''}}">
+            {{#if (and @root.editable (not disabled))}}
+                <a data-action="createDoc" data-document-class="ActiveEffect" data-type="{{type}}" data-tooltip="{{localize 'DOCUMENT.Create' type=type}}">
                     <i class="fa-solid fa-plus icon-button" inert></i>
                 </a>
             {{/if}}
@@ -23,6 +24,7 @@
                     type="effect"
                     actorType=(ifThen ../actorType ../actorType @root.document.type)
                     hideResources=true
+                    hideDisable=../hideDisable
                     disabled=../disabled
                 }}
             {{/each}}

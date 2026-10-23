@@ -2,6 +2,7 @@
     <img class='profile' src="{{source.img}}" data-action="editImage" data-edit="img" alt="{{localize " EFFECT.FIELDS.img.label"}}">
     <div class='item-info'>
         <h1 class='item-name'><input name="name" type="text" value="{{source.name}}" placeholder="{{localize " EFFECT.FIELDS.name.label"}}" aria-label="{{localize " EFFECT.FIELDS.name.label"}}"></h1>
-        {{#if originItem}}<h3 {{#if originItem.visible}}data-item-id="{{originItem.uuid}}" data-action="showItem" {{/if}}>{{originItem.name}}</h3>{{/if}}
+        <h3 data-tooltip="{{effectSubTypeTooltip}}">{{effectSubTypeLabel}}</h3>
+        {{#if originItem}}<h3 {{#if originItem.visible}}data-item-id="{{originItem.uuid}}" data-action="showItem" {{/if}}>Parent Item: {{originItem.name}}</h3>{{/if}}
     </div>
 </header>

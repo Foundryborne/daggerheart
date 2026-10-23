@@ -66,6 +66,7 @@ export default class DamageField extends fields.SchemaField {
         if (!damageResult) return false;
         if (damageResult.actionChatMessageHandled) config.actionChatMessageHandled = true;
 
+        config.costs.push(...(damageResult.costs ?? []));
         config.damage = damageResult.damage;
         config.message ??= damageConfig.message;
     }

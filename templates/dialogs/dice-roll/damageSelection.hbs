@@ -11,6 +11,11 @@
                 <div class="selection-chip {{#if effect.selected}}selected{{/if}}" data-action="toggleSelectedEffect" data-key="{{id}}" data-tooltip="{{this.description}}">
                     <span><i class="{{ifThen effect.selected "fa-solid" "fa-regular"}} fa-circle"></i></span>
                     <span class="label">{{effect.name}}</span>
+                    {{#if (eq effect.origEffect.type 'ephemeral')}}
+                        {{#with effect.origEffect.system.costLabelData}}
+                            <span class="header-label" {{#if this.tooltip}}data-tooltip={{this.tooltip}}{{/if}}>{{this.label}}</span>
+                        {{/with}}
+                    {{/if}}
                 </div>
             {{/each}}
         </fieldset>
@@ -93,6 +98,10 @@
             {{/each}}
         </fieldset>
     {{/unless}}
+
+    {{#if costs}}
+        {{> 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'}}
+    {{/if}}
 
     <div class="damage-section-controls">
         {{#if directDamage}}
