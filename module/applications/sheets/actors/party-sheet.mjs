@@ -225,7 +225,7 @@ export default class PartySheet extends DHBaseActorSheet {
     }
     
     /* -------------------------------------------- */
-    /*  Event handlers                          */
+    /*  Event handlers                              */
     /* -------------------------------------------- */
 
     /**

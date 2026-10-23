@@ -228,111 +228,17 @@
             }
         }
 
-        .item-list-header,
-        .item-header {
-            .item-info {
-                display: grid;
-                grid-template-columns: 40px 400px repeat(auto-fit, minmax(100px, 1fr));
-                align-items: center;
-                text-transform: capitalize;
-            }
-        }
-
-        .item-list-header,
-        .item-list,
         .compendium-sidebar > .folder-list {
             overflow-y: auto;
             scrollbar-gutter: stable;
             .with-scroll-shadows();
         }
 
-        .item-list-header,
-        .item-list .item-info[data-action] {
-            display: flex;
-
-            > * {
-                flex: 2.5;
-                text-align: center;
-            }
-            .item-list-img {
-                width: 40px;
-                height: 40px;
-                flex: unset;
-                object-fit: cover;
-                // Cards use center center, however they're often wider than tall, so center/top is the same
-                // Adversaries and all other item types prefer center top
-                object-position: center top;
-            }
-            .item-list-name {
-                flex-grow: 3;
-                text-align: start;
-            }
-        }
-
-        .item-list-header {
-            align-items: center;
-            background-color: light-dark(@dark-15, @dark-golden-80);
-            color: @color-text-emphatic;
-            border: 1px solid @color-border;
-            border-radius: 3px;
-            min-height: 30px;
-            font-weight: bold;
-
-            > * {
-                white-space: nowrap;
-            }
-
-            div[data-sort-key] {
-                &:after {
-                    font-family: var(--font-awesome);
-                    margin-left: 5px;
-                }
-
-                &[data-sort-type='ASC']:after {
-                    content: '\f884';
-                }
-
-                &[data-sort-type='DESC']:after {
-                    content: '\f885';
-                }
-            }
-        }
-
-        .item-list {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            flex: 1;
-
-            .item-container {
-                &:hover {
-                    background: light-dark(@dark-blue-10, @golden-10);
-                }
-            }
-
-            .item-desc .wrapper {
-                padding: 0 0 0 50px;
-                display: flex;
-                flex-direction: column;
-                .typography();
-
-                /* Some items don't include an outer container, so we attempt a catch-all */
-                > *:last-child {
-                    padding-bottom: 6px;
-                }
-            }
-
-            img {
-                border-radius: 5px;
-            }
-        }
-
         .filter-content {
             padding: 0px;
         }
 
-        .filter-content,
-        .item-desc {
+        .filter-content {
             display: grid;
             opacity: 0;
             grid-template-rows: 0fr;

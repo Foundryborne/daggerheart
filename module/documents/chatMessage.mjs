@@ -223,7 +223,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 if (!actor) continue;
 
                 if (this.system.hasHealing) actor.takeHealing(this.system.damage);
-                else actor.takeDamage(this.system.damage);
+                else {
+                    actor.takeDamage(
+                        this.system.damage, 
+                        { actionUuid: this.system.action, isDirect: this.system.isDirect }
+                    );
+                }
             }
         }
     }

@@ -15,7 +15,7 @@ import {
     updateLinkedItemApps
 } from '../../helpers/utils.mjs';
 import { DHActionDiceData } from '../fields/action/damageField.mjs';
-import { ActionsField } from '../fields/actionField.mjs';
+import { ActionCollectionField } from '../fields/action-collection-field.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -95,7 +95,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (this.metadata.isInventoryItem)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
 
-        if (this.metadata.hasActions) schema.actions = new ActionsField();
+        if (this.metadata.hasActions) schema.actions = new ActionCollectionField();
 
         return schema;
     }
@@ -267,7 +267,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
                 const action = changed.system.actions[key];
-                if (action && Object.keys(action).length === 0) {
+                if (action && Object.keys(action).length === 0 && this.actions.has(key)) {
                     acc.push(...this.actions.get(key).triggers.map(x => x.trigger));
                 }
 

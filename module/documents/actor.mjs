@@ -243,6 +243,40 @@ export default class DhActor extends Actor {
         return doc;
     }
 
+    /**
+     * Makes a clone for the actor with only ActiveEffects that pass their conditionals applied.
+     * @param {BaseAction} action The action relevant to needing the data
+     * @param {object} options
+     * @param {"origin" | "target"} options.role whether to evaluate conditionals as the origin or as the target
+     * @returns {DhActor}
+     */
+    getActionClone(action, { role = 'origin' } = {}) {
+        const rollData = (action ?? this).getRollData();
+        /** @param {DhActiveEffect} effect */
+        const effectFilter = effect => {
+            const conditionalRollPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id,
+                role
+            });
+            const conditionalPreparePassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id,
+                role
+            }); 
+
+            return !effect.disabled && !effect.isSuppressed && conditionalRollPassed && conditionalPreparePassed;
+        }   
+
+        const actor = this.clone({
+            effects: this.effects.filter(effectFilter).map(e => e.toObject(true)),
+            items: this.items.map(x => ({
+                ...x.toObject(),
+                effects: x.effects.filter(effectFilter).map(e => e.toObject(true))
+            }))
+        }, { keepId: true });
+
+        return actor;
+    }
+
     /** Perform a render, debounced in order to prevent overloading repeat render requests */
     renderDebounced = foundry.utils.debounce(options => {
         return this.render(options);
@@ -852,7 +886,13 @@ export default class DhActor extends Actor {
         return canUseArmor || canUseStress || hasReduceSeverity || hasThresholdImmunity;
     }
 
-    async takeDamage(args, isDirect = false) {
+    /**
+     * Handling of the actor taking damage
+     * @param {Object} args 
+     * @param {{ actionUuid: string, isDirect: bool  }} params 
+     * @returns { Object }
+     */
+    async takeDamage(args, { actionUuid = null, isDirect = false } = {}) {
         args = this.#parseDamageArgs(args);
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args) === false) return null;
 
@@ -880,6 +920,7 @@ export default class DhActor extends Actor {
                     'armorSlot',
                     {
                         actorId: this.uuid,
+                        actionUuid: actionUuid,
                         damage: hpDamage.value,
                         type: [...hpDamage.damageTypes]
                     },
@@ -900,11 +941,10 @@ export default class DhActor extends Actor {
                     else updates.push({ value: stressSpent, key: 'stress' });
                 }
             } else if (this.type === 'adversary') {
-                const reducedSeverity = hpDamage.damageTypes.reduce((value, curr) => {
-                    return Math.max(this.system.rules.damageReduction.reduceSeverity[curr], value);
-                }, 0);
+                const actorClone = this.getActionClone(await fromUuid(actionUuid), { role: 'target' });
+                const reducedSeverity = actorClone.system.rules.damageReduction.reduceSeverity;
                 hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
-                if (this.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
+                if (actorClone.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
                     hpDamage.value = Math.max(0, hpDamage.value - 1);
                 }
             }

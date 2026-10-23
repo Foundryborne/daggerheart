@@ -105,6 +105,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                     secrets: this.item.isOwner
                 })
                 break;
+            case 'actions': 
+                context.invalidActions = Object.values(this.document._source.system.actions ?? {})
+                    .filter(a => !this.document.system.actions?.has(a._id));
+                break;
             case 'effects':
                 await this._prepareEffectsContext(context, options);
                 break;

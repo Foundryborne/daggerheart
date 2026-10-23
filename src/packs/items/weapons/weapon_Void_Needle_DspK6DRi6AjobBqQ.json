@@ -115,7 +115,8 @@
       "inverted": {
         "value": "inverted",
         "effectIds": [],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
     }
   },

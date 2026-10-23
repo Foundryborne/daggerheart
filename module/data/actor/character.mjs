@@ -231,33 +231,6 @@ export default class DhCharacter extends DhCreature {
                             intial: false,
                             label: 'DAGGERHEART.GENERAL.Rules.damageReduction.disabledArmor.label'
                         })
-                    },
-                    attack: {
-                        damage: {
-                            diceIndex: new fields.NumberField({
-                                integer: true,
-                                min: 0,
-                                max: 5,
-                                initial: 0,
-                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
-                                hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
-                            }),
-                            bonus: new fields.NumberField({
-                                required: true,
-                                initial: 0,
-                                min: 0,
-                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
-                            })
-                        },
-                        roll: new fields.SchemaField({
-                            trait: new fields.StringField({
-                                required: true,
-                                choices: CONFIG.DH.ACTOR.abilities,
-                                nullable: true,
-                                initial: null,
-                                label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
-                            })
-                        })
                     }
                 }),
                 dualityRoll: new fields.SchemaField({
