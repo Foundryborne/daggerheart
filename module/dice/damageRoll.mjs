@@ -249,10 +249,11 @@ export default class DamageRoll extends DHRoll {
                 }
             }
 
+            // Handle weapon features. The item may be a feature, which doesn't have any
             const item = config.data.parent.items?.get(config.source.item);
-            if (item) {
+            if (item?.system.itemFeatures) {
                 // Massive (Weapon Feature)
-                if (item.system.itemFeatures.find(f => f.value === 'massive'))
+                if (item.system.itemFeatures.massive)
                     mods.massive = {
                         label: CONFIG.DH.ITEM.weaponFeatures.massive.label,
                         enabled: true,
@@ -263,7 +264,7 @@ export default class DamageRoll extends DHRoll {
                     };
 
                 // Powerful (Weapon Feature)
-                if (item.system.itemFeatures.find(f => f.value === 'powerful'))
+                if (item.system.itemFeatures.powerful)
                     mods.powerful = {
                         label: CONFIG.DH.ITEM.weaponFeatures.powerful.label,
                         enabled: true,
@@ -274,7 +275,7 @@ export default class DamageRoll extends DHRoll {
                     };
 
                 // Brutal (Weapon Feature)
-                if (item.system.itemFeatures.find(f => f.value === 'brutal'))
+                if (item.system.itemFeatures.brutal)
                     mods.brutal = {
                         label: CONFIG.DH.ITEM.weaponFeatures.brutal.label,
                         enabled: true,
@@ -285,7 +286,7 @@ export default class DamageRoll extends DHRoll {
                     };
 
                 // Serrated (Weapon Feature)
-                if (item.system.itemFeatures.find(f => f.value === 'serrated'))
+                if (item.system.itemFeatures.serrated)
                     mods.serrated = {
                         label: CONFIG.DH.ITEM.weaponFeatures.serrated.label,
                         enabled: true,
@@ -295,7 +296,7 @@ export default class DamageRoll extends DHRoll {
                     };
 
                 // Self-Correcting (Weapon Feature)
-                if (item.system.itemFeatures.find(f => f.value === 'selfCorrecting'))
+                if (item.system.itemFeatures.selfCorrecting)
                     mods.selfCorrecting = {
                         label: CONFIG.DH.ITEM.weaponFeatures.selfCorrecting.label,
                         enabled: true,

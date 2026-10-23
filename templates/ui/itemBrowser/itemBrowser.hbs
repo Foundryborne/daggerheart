@@ -27,15 +27,15 @@
             </div>
         </div>
         {{#if menu.data.columns.length}}
-            <div class="item-list-header">
+            <div class="item-browser item-list-header">
                 <div class="item-list-img"></div>
                 <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
                     {{#each menu.data.columns}}
-                        <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
+                        <div data-key="{{key}}" data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</div>
                     {{/each}}
                 </div>
         {{/if}}
-        <div class="item-list"></div>
+        <div class="item-browser item-list"></div>
     {{else}}
         <div class="welcome-message">
             <h2 class="title">{{localize "DAGGERHEART.UI.ItemBrowser.title"}}</h2>

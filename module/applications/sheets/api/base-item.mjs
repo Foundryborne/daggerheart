@@ -105,6 +105,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                     secrets: this.item.isOwner
                 })
                 break;
+            case 'actions': 
+                context.invalidActions = Object.values(this.document._source.system.actions ?? {})
+                    .filter(a => !this.document.system.actions?.has(a._id));
+                break;
             case 'effects':
                 await this._prepareEffectsContext(context, options);
                 break;
@@ -119,7 +123,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /** @inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-
         
         htmlElement.querySelector('img.profile')
             ?.addEventListener('contextmenu', DHBaseItemSheet.#onShowPortraitArtwork.bind(this));

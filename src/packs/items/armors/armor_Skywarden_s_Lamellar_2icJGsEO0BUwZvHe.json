@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-purple.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -25,15 +26,16 @@
       "major": 11,
       "severe": 27
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "vigilant": {
         "value": "vigilant",
         "effectIds": [
           "P1bG8YNaWOUkRbn7"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

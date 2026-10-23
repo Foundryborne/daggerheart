@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 4,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "truthseeking",
-        "effectIds": [],
-        "actionIds": [
-          "sY3W5JYspN5Du5ag"
-        ]
-      }
-    ],
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "truthseeking": {
+        "value": "truthseeking",
+        "effectIds": [],
+        "actionIds": [
+          "sY3W5JYspN5Du5ag"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

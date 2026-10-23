@@ -86,15 +86,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "bolstering",
-        "effectIds": [],
-        "actionIds": [
-          "tD3OR33TwHpqDyGy"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -184,6 +175,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "bolstering": {
+        "value": "bolstering",
+        "effectIds": [],
+        "actionIds": [
+          "tD3OR33TwHpqDyGy"
+        ],
+        "config": {}
       }
     }
   },

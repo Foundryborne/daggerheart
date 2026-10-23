@@ -436,7 +436,9 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     item,
                     targetActor: this.document
                 });
-                return targetActor.transferItem({ item: actorItem, quantity: quantityTransferred });
+                if (quantityTransferred) {
+                    return targetActor.transferItem({ item: actorItem, quantity: quantityTransferred });
+                }
             } else {
                 return targetActor.transferItem({ item: actorItem, quantity: availableQuantity });
             }
@@ -471,6 +473,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             const attackData = {
                 type: 'Attack',
                 actorUuid: this.document.uuid,
+                name: this.document.system.attack.name,
                 img: this.document.system.attack.img,
                 fromInternal: true
             };

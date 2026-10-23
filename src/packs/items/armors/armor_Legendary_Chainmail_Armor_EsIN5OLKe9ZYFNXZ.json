@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 4,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "heavy",
-        "effectIds": [
-          "8Oa6Y375X8UpcPph"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 15,
       "severe": 40
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "heavy": {
+        "value": "heavy",
+        "effectIds": [
+          "8Oa6Y375X8UpcPph"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

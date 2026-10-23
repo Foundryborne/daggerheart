@@ -6,9 +6,10 @@
   "img": "icons/weapons/hammers/hammer-double-sledge-engraved.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -19,15 +20,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "trusty",
-        "effectIds": [
-          "RuT7WwcbaHVqK6it"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -117,6 +109,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "trusty": {
+        "value": "trusty",
+        "effectIds": [
+          "RuT7WwcbaHVqK6it"
+        ],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

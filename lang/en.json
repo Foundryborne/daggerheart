@@ -332,7 +332,9 @@
                 }
             },
             "Base": {
-                "CannotAddType": "Cannot add {itemType} items to {actorType} actors."
+                "CannotAddType": "Cannot add {itemType} items to {actorType} actors.",
+                "bonusFieldBonusLabel": "{type} Bonus Value",
+                "bonusFieldDiceLabel": "{type} Dice"
             },
             "Character": {
                 "advantageSources": {
@@ -576,7 +578,8 @@
                 "recall": "Recall",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
-                "useItem": "Use Item"
+                "useItem": "Use Item",
+                "toggleVersatile": "Switch Versatile"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -2656,11 +2659,11 @@
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "@Resolve[@item.tier|sign]{Add the item's Tier} to Armor Score",
+                    "description": "@Resolve[@item.itemFeatures.protective.config.value|sign]{Add the item's Tier} to Armor Score",
                     "effects": {
                         "protective": {
                             "name": "Protective",
-                            "description": "Add the item's Tier to your Armor Score"
+                            "description": "Add @Resolve[@item.itemFeatures.protective.config.value|sign]{the item's Tier} to your Armor Score"
                         }
                     }
                 },
@@ -2845,6 +2848,10 @@
                         }
                     }
                 },
+                "versatile": {
+                    "name": "Versatile",
+                    "description": "This weapon can also be used with these statistics — @Lookup[@item.itemFeatures.versatile.config.trait|type:trait]{Trait}, @Lookup[@item.itemFeatures.versatile.config.range|type:range]{Range}, @Lookup[@item.itemFeatures.versatile.config.damage]{Damage}"
+                },
                 "volleyed": {
                     "name": "Volleyed",
                     "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage."
@@ -2853,6 +2860,7 @@
         },
         "EFFECTS": {
             "AddChange": "Add Change",
+            "AddConditional": "Add Conditional",
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
@@ -2896,6 +2904,11 @@
             "Conditionals": {
                 "phase": "Phase",
                 "failureMode": "Failure Mode",
+                "role": {
+                    "title": "Evaluated Role",
+                    "origin": "Origin",
+                    "target": "Target"
+                },
                 "dataCompare": {
                     "comparator": "Comparator"
                 },
@@ -3178,14 +3191,8 @@
                         "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
                     },
                     "reduceSeverity": {
-                        "magical": {
-                            "label": "Reduce Damage Severity: Magical",
-                            "hint": "Lowers any magical damage received by the set amount of severity degrees"
-                        },
-                        "physical": {
-                            "label": "Reduce Damage Severity: Physical",
-                            "hint": "Lowers any physical damage received by the set amount of severity degrees"
-                        }
+                        "label": "Reduce Damage Severity",
+                        "hint": "Lowers any damage received by the set amount of severity degrees"
                     },
                     "physical": {
                         "label": "Damage Reduction: Only Physical",
@@ -3213,22 +3220,6 @@
                         "minor": {
                             "label": "Threshold Immunities: Minor",
                             "hint": "Automatically ignores minor damage when set to 1"
-                        }
-                    }
-                },
-                "attack": {
-                    "damage": {
-                        "dice": {
-                            "label": "Base Attack: Damage Dice Index",
-                            "hint": "Index for the damage dice used on the basic attack. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20"
-                        },
-                        "bonus": {
-                            "label": "Base Attack: Damage Bonus"
-                        }
-                    },
-                    "roll": {
-                        "trait": {
-                            "label": "Base Attack: Trait"
                         }
                     }
                 }
@@ -3531,6 +3522,7 @@
             },
             "Armor": {
                 "baseScore": "Base Score",
+                "scoreShort": "Score",
                 "baseThresholds": {
                     "base": "Base Thresholds",
                     "major": "Major Threshold",
@@ -4248,6 +4240,8 @@
                 "recallCostMax": "Recall Cost (Max)",
                 "evasionMin": "Evasion (Min)",
                 "evasionMax": "Evasion (Max)",
+                "spellcasting": "Spellcasting",
+                "thresholds": "Thresholds",
                 "subtype": "Subtype",
                 "missing": "<i>Missing</i>",
                 "folders": {
@@ -4414,7 +4408,8 @@
                     "general": "This effect is suppressed",
                     "invalid": "This effect is suppressed due to conditionals",
                     "unequipped": "This effect is suppressed because this item is not equipped"
-                }
+                },
+                "toggleVersatile": "Versatile Switch"
             }
         }
     }

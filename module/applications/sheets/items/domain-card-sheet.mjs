@@ -41,6 +41,9 @@ export default class DomainCardSheet extends DHBaseItemSheet {
         }
     };
 
+    /** @inheritdoc */
+    hasHeaderAttribution = false;
+
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.domain = CONFIG.DH.DOMAIN.allDomains()[this.document.system.domain];

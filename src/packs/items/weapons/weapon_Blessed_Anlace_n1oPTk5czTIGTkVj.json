@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "healing",
-        "effectIds": [],
-        "actionIds": [
-          "o18UvqLPWLe1A8XJ"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "healing": {
+        "value": "healing",
+        "effectIds": [],
+        "actionIds": [
+          "o18UvqLPWLe1A8XJ"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

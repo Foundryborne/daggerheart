@@ -5,13 +5,15 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     constructor(options) {
         super(options);
 
-        this.changeChoices = DhActiveEffectConfig.getChangeChoices();
+        const actorType = this.document.actor?.type;
+        this.changeChoices = DhActiveEffectConfig.getChangeChoices({ actorType });
     }
 
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
             showItem: DhActiveEffectConfig.#onShowItem,
+            addConditional: DhActiveEffectConfig.#onAddConditional,
             removeConditional: DhActiveEffectConfig.#onRemoveConditional,
             addCustomChange: DhActiveEffectConfig.#onAddCustomChange,
             removeCustomChange: DhActiveEffectConfig.#onRemoveCustomChange
@@ -22,12 +24,15 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         header: { template: 'systems/daggerheart/templates/sheets/activeEffect/header.hbs' },
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
-        conditionals: { template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs' },
+        conditionals: { 
+            template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs',
+            scrollable: ['']
+        },
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
             templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
-            scrollable: ['ol[data-changes]']
+            scrollable: ['']
         },
         footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
     };
@@ -47,9 +52,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
     /**
      * Get ChangeChoices for the changes autocomplete. Static for use in this class aswell as in settings-active-effect-config.mjs
+     * @param {object} [options]
+     * @param {string} [options.actorType] the actor to filter the choices to
      * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
      */
-    static getChangeChoices() {
+    static getChangeChoices({ actorType } = {}) {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty', 'DhNPC'];
         const ignoredRuleKeys = ['standardAttack'];
 
@@ -87,6 +94,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             if (ignoredActorKeys.includes(key)) return acc;
 
             const model = game.system.api.models.actors[key];
+            if (actorType && model.metadata.type && model.metadata.type !== actorType) {
+                return acc;
+            }
+
             const group = game.i18n.localize(model.metadata.label);
             const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model.metadata.type);
 
@@ -175,9 +186,6 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             });
         });
 
-        htmlElement.querySelector('.conditional-select-input')
-            ?.addEventListener('change', this.#onAddConditional.bind(this));
-
         htmlElement.querySelector('.stacking-change-checkbox')
             ?.addEventListener('change', this.#onStackingChangeToggle.bind(this));
 
@@ -246,12 +254,6 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         }
 
         return partContext;
-    }
-
-    #onAddConditional(event) {
-        const conditionals = [...this.document.system.conditionals, { type: event.target.value }];
-        event.target.value = '';
-        return this.submit({ updateData: { system: { conditionals } } });
     }
 
     #onStackingChangeToggle(event) {
@@ -386,6 +388,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             app.render({ force: true });
         });
     }
+
+    /* -------------------------------------------- */
+    /*  Event handlers                              */
+    /* -------------------------------------------- */
     
     /**
      * Handles viewing an item linked from the effect header
@@ -400,7 +406,19 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     }
 
     /**
-     * Hadnles removing a conditional
+     * Handles adding a conditional
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
+    static #onAddConditional() {
+        const type = this.element.querySelector('.conditional-select-input').value;
+        const conditionals = [...this.document.system.conditionals, { type }];
+        event.target.value = '';
+        return this.submit({ updateData: { system: { conditionals } } });
+    }
+
+    /**
+     * Handles removing a conditional
      * @this {DhActiveEffectConfig}
      * @type {ApplicationClickAction}
      */

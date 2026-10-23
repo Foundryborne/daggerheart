@@ -6,9 +6,10 @@
   "img": "icons/weapons/staves/staff-ornate-blue-jewel.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -53,17 +54,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "catalytic",
-        "effectIds": [
-          "Nqr49MytiiDO6mRq"
-        ],
-        "actionIds": [
-          "fdXtuFA7Sy6r2GOw"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -153,6 +143,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "catalytic": {
+        "value": "catalytic",
+        "effectIds": [
+          "Nqr49MytiiDO6mRq"
+        ],
+        "actionIds": [
+          "fdXtuFA7Sy6r2GOw"
+        ],
+        "config": {}
       }
     }
   },

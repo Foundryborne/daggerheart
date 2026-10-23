@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 3,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "sharp",
-        "effectIds": [
-          "V8CcTcVAIxHq8KNd"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 10,
       "severe": 25
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "sharp": {
+        "value": "sharp",
+        "effectIds": [
+          "V8CcTcVAIxHq8KNd"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

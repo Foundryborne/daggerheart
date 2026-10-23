@@ -6,7 +6,7 @@
   "img": "icons/weapons/axes/shortaxe-yellow.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -62,17 +62,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "followUp",
-        "effectIds": [
-          "cLwG6tOV7LaFZDiF"
-        ],
-        "actionIds": [
-          "9rorDndpgEXMAnaf"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -162,6 +151,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "followUp": {
+        "value": "followUp",
+        "effectIds": [
+          "cLwG6tOV7LaFZDiF"
+        ],
+        "actionIds": [
+          "9rorDndpgEXMAnaf"
+        ],
+        "config": {}
       }
     }
   },

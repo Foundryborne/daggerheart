@@ -143,10 +143,12 @@ export default class DhpAdversary extends DhCreature {
         return tags;
     }
 
-    /** Returns source data for this actor adjusted to a new tier, which can be used to create a new actor. */
+    /** 
+     * Returns source data for this actor adjusted to a new tier, which can be used to create a new actor.
+     * @returns {object}
+     */
     adjustForTier(tier) {
-        const source = this.parent.toObject(true);
-        return getTierAdjustedAdversary(source, tier);
+        return getTierAdjustedAdversary(this.parent, tier);
     }
 
     /** @inheritdoc */

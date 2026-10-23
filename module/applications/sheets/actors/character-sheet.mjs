@@ -34,6 +34,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             viewLevelups: CharacterSheet.#onViewLevelups,
             resetCharacter: CharacterSheet.#onResetCharacter,
             toggleEquipItem: CharacterSheet.#onToggleEquipItem,
+            toggleVersatileWeapon: CharacterSheet.#onToggleVersatileWeapon,
             toggleResourceDice: CharacterSheet.#onToggleResourceDice,
             handleResourceDice: CharacterSheet.#onHandleResourceDice,
             advanceResourceDie: CharacterSheet.#onAdvanceResourceDie,
@@ -518,6 +519,15 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static #getEquipmentContextOptions() {
         const options = [
             {
+                label: 'toggleVersatile',
+                icon: 'fa-solid fa-right-left',
+                visible: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc.isOwner && doc && doc.system.itemFeatures?.versatile;
+                },
+                onClick: (event, target) => CharacterSheet.#onToggleEquipItem.call(this, event, target)
+            },
+            {
                 label: 'equip',
                 icon: 'fa-solid fa-hands',
                 visible: target => {
@@ -646,6 +656,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         for (const li of html.querySelectorAll('.inventory-item')) {
             const item = await getDocFromElement(li);
+            if (!item) continue;
+            
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.inventory.search.add(item.id);
             const { menu } = this.#filteredItems.inventory;
@@ -899,6 +911,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 await item.update({ 'system.equipped': true });
                 break;
         }
+    }
+
+    static async #onToggleVersatileWeapon(_event, button) {
+        const item = await getDocFromElement(button);
+        if (!item) return;
+
+        const versatileActive = item.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.itemFlags.versatileActive);
+        await item.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.itemFlags.versatileActive, !versatileActive);
     }
 
     /**

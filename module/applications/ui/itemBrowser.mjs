@@ -49,7 +49,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             expandContent: this.expandContent,
             resetFilters: this.resetFilters,
             sortList: this.sortList,
-            openSettings: this.openSettings,
+            openSettings: this.#onOpenSettings,
             viewSheet: this.#onViewSheet
         },
         position: {
@@ -336,7 +336,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         const property = foundry.utils.getProperty(item, field.key);
         if (Array.isArray(property)) property.join(', ');
         if (typeof field.format !== 'function') return property ?? '-';
-        return game.i18n.localize(field.format(property));
+        return _loc(field.format(property, item) ?? '-');
     }
 
     formatChoices(data) {
@@ -491,7 +491,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 docValue = Array.isArray(docValue) ? docValue : [docValue];
                 return docValue.some(dv => filterValue.includes(dv));
             case 'contains3':
-                return docValue.some(f => f.value === filterValue);
+                return Object.values(docValue ?? {}).some(f => f.value === filterValue);
             default:
                 return foundry.applications.ux.SearchFilter.evaluateFilter(obj, filter);
         }
@@ -520,6 +520,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         return folder[property] ?? CONFIG.DH.ITEMBROWSER.typeConfig[folder.listType]?.[property] ?? [];
     }
 
+    /** @this {ItemBrowser} */
     static sortList(_, target) {
         const key = target.dataset.sortKey,
             type = !target.dataset.sortType || target.dataset.sortType === 'DESC' ? 'ASC' : 'DESC',
@@ -532,11 +533,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             .forEach(b => (b.dataset.sortType = ''));
         target.dataset.sortType = type;
 
+        const sortBy = this.selectedMenu?.data?.columns?.find(f => f.key === key)?.sortBy
+            ?? (v => isNaN(v) ? v : Number(v));
         const newOrder = [...itemList].reverse().sort((a, b) => {
-            const aProp = a.querySelector(`[data-item-key="${key}"]`),
-                bProp = b.querySelector(`[data-item-key="${key}"]`),
-                aValue = isNaN(aProp.innerText) ? aProp.innerText : Number(aProp.innerText),
-                bValue = isNaN(bProp.innerText) ? bProp.innerText : Number(bProp.innerText);
+            const aProp = a.querySelector(`[data-item-key="${key}"]`);
+            const bProp = b.querySelector(`[data-item-key="${key}"]`);
+            const aValue = sortBy(aProp.innerText);
+            const bValue = sortBy(bProp.innerText);
             if (type === 'DESC') {
                 return aValue < bValue ? 1 : -1;
             } else {
@@ -547,7 +550,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         itemListContainer.replaceChildren(...newOrder);
     }
 
-    static async openSettings() {
+    /** @this {ItemBrowser} */
+    static async #onOpenSettings() {
         const settingsUpdated = await game.system.api.applications.dialogs.CompendiumBrowserSettingsDialog.configure();
         if (settingsUpdated) {
             if (this.rendered) {

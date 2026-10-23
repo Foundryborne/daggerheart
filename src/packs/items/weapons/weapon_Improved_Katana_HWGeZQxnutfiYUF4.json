@@ -6,7 +6,7 @@
   "img": "icons/weapons/swords/sword-katana.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -57,15 +57,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "quick",
-        "effectIds": [],
-        "actionIds": [
-          "Ph7QtVYXhBfHFl0D"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -155,6 +146,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "quick": {
+        "value": "quick",
+        "effectIds": [],
+        "actionIds": [
+          "Ph7QtVYXhBfHFl0D"
+        ],
+        "config": {}
       }
     }
   },

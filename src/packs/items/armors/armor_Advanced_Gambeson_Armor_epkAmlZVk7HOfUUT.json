@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 3,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "flexible",
-        "effectIds": [
-          "Fq9Q93IHCchhfSss"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 9,
       "severe": 23
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "flexible": {
+        "value": "flexible",
+        "effectIds": [
+          "Fq9Q93IHCchhfSss"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

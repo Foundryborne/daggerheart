@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "timebending",
-        "effectIds": [],
-        "actionIds": [
-          "TzNsQcYm4OVNFQyD"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "timebending": {
+        "value": "timebending",
+        "effectIds": [],
+        "actionIds": [
+          "TzNsQcYm4OVNFQyD"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

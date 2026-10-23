@@ -36,6 +36,13 @@ export default class DataCompareConditional extends foundry.abstract.DataModel {
         }
     }
 
+    /** 
+     * Data Compare is evaluated on both origin and target roles.
+     * This could change in the future, to support null/origin/target, if we need to,
+     * but we may need to check if there are any areas we are assuming origin when we should check either or.
+     */
+    role = null;
+
     test(rollData) {
         const comparator = CONFIG.DH.EFFECTS.conditionalComparators[this.comparator];
         if (!this.key || (!comparator.ignoresValue && this.value === undefined)) return true;
