@@ -79,7 +79,7 @@
             }
           },
           "includeBase": false,
-          "direct": false,
+          "direct": true,
           "itemId": null
         },
         "resources": {}
@@ -114,7 +114,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {

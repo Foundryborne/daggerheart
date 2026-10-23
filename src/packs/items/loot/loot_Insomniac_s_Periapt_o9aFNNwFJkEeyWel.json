@@ -6,7 +6,7 @@
     "description": "<p>When you take a rest without clearing Hit Points or Stress, you gain a +2 bonus to attack and damage rolls until your next rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -59,14 +59,14 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": 2,
             "priority": null,
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 2,
             "priority": null,
@@ -85,7 +85,8 @@
             "type": "actionType",
             "actionTypes": [
               "attack"
-            ]
+            ],
+            "traits": []
           }
         ]
       },

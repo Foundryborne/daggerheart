@@ -170,10 +170,13 @@
     multi-select {
         position: relative;
         height: 34px;
+        padding-right: 2ch;
+        
         .tags {
             justify-content: flex-start;
             margin: 4px;
             height: inherit;
+            gap: 0.125rem;
             .tag {
                 padding: 0.3rem 0.5rem;
                 color: @color-text-emphatic;
@@ -428,7 +431,7 @@
             }
         }
 
-        .form-group {
+        .form-group:not(.standard-form *) {
             width: 100%;
             label {
                 font-weight: bold;
@@ -500,6 +503,15 @@
             border-width: 0;
             margin: 0;
             padding: 0;
+        }
+    }
+
+    .standard-form {
+        .form-group {
+            width: 100%;
+        }
+        .standard-form {
+            width: 100%;
         }
     }
 

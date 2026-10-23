@@ -1,0 +1,21 @@
+{
+  "folder": "uU8bIoZvXge0rLaU",
+  "name": "Carrier",
+  "type": "feature",
+  "_id": "TME5cvuTk0TW3yiJ",
+  "img": "icons/creatures/reptiles/dragon-winged-blue.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>You can carry up to three willing allies with you when you move.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive",
+    "actorResources": []
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!TME5cvuTk0TW3yiJ"
+}

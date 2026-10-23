@@ -104,10 +104,10 @@ export default class DhEffectsDisplay extends HandlebarsApplicationMixin(Applica
         const newValue = Math.clamp((effect.system.stacking?.value ?? 1) + delta, 0, maxValue);
         if (newValue > 0) {
             await effect.update({ 'system.stacking.value': newValue });
+            this.render(); // may not be needed, but verify
         } else {
             await effect.delete();
         }
-        this.render();
     }
 
     setupHooks() {

@@ -353,6 +353,8 @@ export default class DHRoll extends BaseRoll {
     bonusEffectBuilder() {
         const changeKeys = this.getActionChangeKeys();
         return (
+            // todo: improve safety. When used improperly, effects is a list of data, not active effects
+            // it can be worked around provisionarily by using getActionRelevantEffects()
             this.options.effects?.reduce((acc, effect) => {
                 const item = this.options.data.parent?.items?.get?.(this.options.source.item) ?? null;
                 const actions = item ? [
@@ -361,11 +363,11 @@ export default class DHRoll extends BaseRoll {
                 ] : [];
                 const action = actions.find(x => x.id === this.options.source.action);
 
-                const isConditionalBlocked = action &&
-                    (effect.system.conditionals ?? []).some(x => x.constructor.metadata.phase === 'roll' && !x.test(action.getRollData()));
+                const rollData = action?.getRollData();
+                const conditionalsPassed = action && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
                 // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
                 if (
-                    !isConditionalBlocked && 
+                    conditionalsPassed && 
                     (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
                 ) {
                     acc[effect.id] = {

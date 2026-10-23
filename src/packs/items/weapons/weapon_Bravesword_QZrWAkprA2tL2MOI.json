@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "brave",
-        "effectIds": [
-          "lLM5uyDAGk3zVxoa"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -50,7 +41,7 @@
       "damage": {
         "main": {
           "value": {
-            "dice": "d10",
+            "dice": "d12",
             "bonus": 7,
             "multiplier": "prof",
             "flatMultiplier": 1,
@@ -118,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "brave": {
+        "value": "brave",
+        "effectIds": [
+          "lLM5uyDAGk3zVxoa"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

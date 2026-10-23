@@ -13,16 +13,16 @@
         <span>{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full"}}</span>
         {{formInput systemFields.secondary value=source.system.secondary}}
         <span>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</span>
-        {{formInput systemFields.attack.fields.roll.fields.trait value=document.system.attack.roll.trait name="system.attack.roll.trait" label="DAGGERHEART.GENERAL.Trait.single" localize=true}}
+        {{formInput systemFields.attack.fields.roll.fields.trait value=source.system.attack.roll.trait name="system.attack.roll.trait" label="DAGGERHEART.GENERAL.Trait.single" localize=true}}
         <span>{{localize "DAGGERHEART.GENERAL.range"}}</span>
-        {{formInput systemFields.attack.fields.range value=document.system.attack.range label="Range" name="system.attack.range" localize=true}}
+        {{formInput systemFields.attack.fields.range value=source.system.attack.range label="Range" name="system.attack.range" localize=true}}
         <span>{{localize "DAGGERHEART.GENERAL.burden"}}</span>
         {{formInput systemFields.burden value=source.system.burden localize=true}}
     </fieldset>
 
     <fieldset class="two-columns">
         {{#with systemFields.attack.fields.damage.fields.main.fields as | fields | }}
-            {{#with ../document.system.attack.damage.main as | source | }}
+            {{#with ../source.system.attack.damage.main as | source | }}
                 <legend>{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
                 <span>{{localize "DAGGERHEART.ACTIONS.Config.general.customFormula"}}</span>
                 {{formInput fields.value.fields.custom.fields.enabled value=source.value.custom.enabled name="system.attack.damage.main.value.custom.enabled"}}
@@ -38,7 +38,7 @@
                 <span>{{localize "DAGGERHEART.GENERAL.type"}}</span>
                 {{formInput fields.type value=source.type name="system.attack.damage.main.type" localize=true}}
                 <span>{{localize "DAGGERHEART.CONFIG.DamageType.direct.name"}}</span>
-                {{formInput @root.systemFields.attack.fields.damage.fields.main.fields.direct value=@root.document.system.attack.damage.main.direct name="system.attack.damage.main.direct" localize=true}}
+                {{formInput @root.systemFields.attack.fields.damage.fields.main.fields.direct value=@root.source.system.attack.damage.main.direct name="system.attack.damage.main.direct" localize=true}}
                 <input type="hidden" name="system.attack.damage.main.value.multiplier" value="{{source.value.multiplier}}">
             {{/with}}
         {{/with}}
@@ -55,5 +55,13 @@
 
         <input type="text" class="features-input" value="{{features}}" />
     </fieldset>
+    {{#each featureConfigs as |config|}}
+        <fieldset class="standard-form">
+            <legend>{{config.label}}</legend>
+            {{#each config.data as |entry key|}}
+                {{formGroup entry.field localize=true name=entry.name value=entry.value}}
+            {{/each}}
+        </fieldset>
+    {{/each}}
     {{> "systems/daggerheart/templates/sheets/global/partials/resource-section/resource-section.hbs" }}
 </section>

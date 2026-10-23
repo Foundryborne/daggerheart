@@ -47,7 +47,7 @@ export default class AttributionDialog extends HandlebarsApplicationMixin(Applic
                 },
                 render: function (item, search) {
                     const label = game.i18n.localize(item.label);
-                    const matchIndex = label.toLowerCase().indexOf(search);
+                    const matchIndex = label.toLowerCase().indexOf(label.toLowerCase());
 
                     const beforeText = label.slice(0, matchIndex);
                     const matchText = label.slice(matchIndex, matchIndex + search.length);

@@ -6,9 +6,10 @@
   "img": "icons/equipment/wrist/bracer-studded-copper.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -19,7 +20,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -110,7 +110,8 @@
           "trait": null
         }
       }
-    }
+    },
+    "itemFeatures": {}
   },
   "effects": [],
   "sort": 0,

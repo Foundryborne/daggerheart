@@ -6,7 +6,7 @@
   "img": "icons/weapons/fist/fist-knuckles-spiked-brown.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -19,15 +19,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "paired",
-        "effectIds": [
-          "I3wflHo4lw4LE4Gu"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,19 +109,30 @@
           "trait": null
         }
       }
+    },
+    "itemFeatures": {
+      "paired": {
+        "value": "paired",
+        "effectIds": [
+          "I3wflHo4lw4LE4Gu"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
     }
   },
   "effects": [
     {
       "name": "Paired",
-      "description": "Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range",
+      "description": "<p>Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range</p>",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "ITEM.@system.tier + 1",
+            "priority": null,
             "phase": "initial"
           }
         ],
@@ -140,7 +142,8 @@
           "type": "withinRange"
         },
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "stacking": null,
         "targetDispositions": [],
@@ -154,7 +157,14 @@
       "_id": "I3wflHo4lw4LE4Gu",
       "type": "base",
       "disabled": false,
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "duration": {
         "value": null,
         "units": "seconds",

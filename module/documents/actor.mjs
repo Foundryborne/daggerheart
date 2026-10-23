@@ -1,17 +1,25 @@
-import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick, itemIsIdentical } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
-import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
-export default class DhpActor extends Actor {
+export default class DhActor extends Actor {
     parties = new Set();
 
     #scrollTextQueue = [];
     #scrollTextInterval;
+
+    /**
+     * Shorthand getter for this system's metadata, but with a type safe fallback in case of a custom actor type.
+     * @returns {import('../data/actor/base.mjs').ActorDataModelMetadata}
+     */
+    get metadata() {
+        return this.system?.metadata ?? {};
+    }
 
     /**
      * Return the first Actor active owner.
@@ -32,6 +40,16 @@ export default class DhpActor extends Actor {
     }
 
     /**
+     * Returns the uuid of the original item this item was derived from, 
+     * or its own uuid if its a compendium item or not derived from a source item.
+     * @returns {string}
+     */
+    get sourceUuid() {
+        const isCompendium = this._id && this.pack && !this.isEmbedded;
+        return isCompendium ? this.uuid : this._stats.compendiumSource ?? this._stats.duplicateSource ?? this.uuid;
+    }
+
+    /**
      * Returns the uuid of the actor that is used for refreshing.
      * This isn't necessarily the sourceUuid. Compendium items don't have a refresh source.
      * @returns {string | null} the uuid to refresh from, or null if it can't be refreshed
@@ -41,6 +59,14 @@ export default class DhpActor extends Actor {
         return !this.pack && hasCompendiumSource && ['adversary', 'environment'].includes(this.type)
             ? this._stats.compendiumSource
             : null;
+    }
+
+    get rollClass() {
+        return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
+    }
+
+    get baseSaveDifficulty() {
+        return this.system.difficulty ?? 10;
     }
 
     /** @inheritDoc */
@@ -215,69 +241,44 @@ export default class DhpActor extends Actor {
         return doc;
     }
 
-    /**@inheritdoc */
-    async _preCreate(data, options, user) {
-        if ((await super._preCreate(data, options, user)) === false) return false;
-        const update = {};
-
-        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
-        if (this.system.metadata.usesSize && !data.system?.size) {
-            Object.assign(update, {
-                system: {
-                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
-                }
+    /**
+     * Makes a clone for the actor with only ActiveEffects that pass their conditionals applied.
+     * @param {BaseAction} action The action relevant to needing the data
+     * @param {object} options
+     * @param {"origin" | "target"} options.role whether to evaluate conditionals as the origin or as the target
+     * @returns {DhActor}
+     */
+    getActionClone(action, { role = 'origin' } = {}) {
+        const rollData = (action ?? this).getRollData();
+        /** @param {DhActiveEffect} effect */
+        const effectFilter = effect => {
+            const conditionalRollPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id,
+                role
             });
-        }
+            const conditionalPreparePassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.preparation.id,
+                role
+            }); 
 
-        // Configure prototype token settings
-        if (['character', 'companion', 'party'].includes(this.type)) {
-            Object.assign(update, {
-                prototypeToken: {
-                    sight: { enabled: true },
-                    actorLink: true,
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
+            return !effect.disabled && !effect.isSuppressed && conditionalRollPassed && conditionalPreparePassed;
+        }   
 
-        if (this.type === 'npc') {
-            Object.assign(update, {
-                prototypeToken: {
-                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-                }
-            });
-        }
+        const actor = this.clone({
+            effects: this.effects.filter(effectFilter).map(e => e.toObject(true)),
+            items: this.items.map(x => ({
+                ...x.toObject(),
+                effects: x.effects.filter(effectFilter).map(e => e.toObject(true))
+            }))
+        }, { keepId: true });
 
-        this.updateSource(update);
+        return actor;
     }
 
     /** Perform a render, debounced in order to prevent overloading repeat render requests */
     renderDebounced = foundry.utils.debounce(options => {
         return this.render(options);
     }, 10);
-
-    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
-        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
-        
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-
-        if (collection === 'items') {
-            if (game.user.id === userId) {
-                this._cleanupOptionalResources();
-            }
-        }
-    }
-
-    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
-        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
-        if (collection === 'items') {
-            if (game.user.id === userId) {
-                this._cleanupOptionalResources();
-            }
-        }
-    }
 
     /**
      * Cleanup of any optional resources on the actor that are no longer available.
@@ -310,36 +311,6 @@ export default class DhpActor extends Actor {
                     return r;
                 }, {})
             });
-        }
-    }
-
-    _preUpdate(changed, options, user) {
-        return super._preUpdate(changed, options, user);
-    }
-
-    _onUpdate(changes, options, userId) {
-        super._onUpdate(changes, options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
-        }
-    }
-
-    async _preDelete(options, user) {
-        if ((await super._preDelete(options, user)) === false) return false;
-
-        if (this.prototypeToken.actorLink) {
-            game.system.registeredTriggers.unregisterItemTriggers(this.items);
-        } else {
-            for (const token of this.getActiveTokens()) {
-                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
-            }
-        }
-    }
-
-    _onDelete(options, userId) {
-        super._onDelete(options, userId);
-        for (const party of this.parties) {
-            party.renderDebounced({ parts: ['partyMembers'] });
         }
     }
 
@@ -755,7 +726,7 @@ export default class DhpActor extends Actor {
                 {
                     action: {
                         actionType: 'action', 
-                        roll: { type: 'trait' }
+                        roll: { type: 'trait', trait: trait }
                     }
                 }, 
                 this
@@ -771,28 +742,18 @@ export default class DhpActor extends Actor {
         return await this.diceRoll(config);
     }
 
-    get rollClass() {
-        return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
-    }
-
-    get baseSaveDifficulty() {
-        return this.system.difficulty ?? 10;
-    }
-
     /** @inheritDoc */
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
         const status = CONFIG.statusEffects.find(e => e.id === statusId);
         if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
         const existing = [];
 
-        // Find the effect with the static _id of the status effect
         if (status._id) {
+            // Find the effect with the static _id of the status effect
             const effect = this.effects.get(status._id);
             if (effect) existing.push(effect.id);
-        }
-
-        // If no static _id, find all effects that have this status
-        else {
+        } else {
+            // If no static _id, find all effects that have this status
             for (const effect of this.effects) {
                 if (effect.statuses.has(status.id)) existing.push(effect.id);
             }
@@ -827,6 +788,81 @@ export default class DhpActor extends Actor {
         return rollData;
     }
 
+    /**
+     * Helper to perform the actual transfer of an item to this actor, including stack/unstack logic based on target quantifiability.
+     * Make sure item is the actor item before calling this method or there will be issues
+     */
+    async transferItem({ item, quantity }) {
+        const originActor = item.actor;
+        const targetActor = this;
+        if (!originActor) {
+            // Todo: eventually support unowned items as well. These would simply just resolve stacking rules
+            throw new Error('transferItem can only be called on embedded items');
+        }
+
+        if (!originActor.isOwner || !targetActor.isOwner) {
+            if (!game.users.activeGM) {
+                ui.notifications.error(_loc('DAGGERHEART.UI.Notifications.gmRequired'));
+            } else {
+                await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                    action: socketEvent.TransferItem,
+                    data: { item: item.uuid, targetActor: this.uuid, quantity }
+                });
+            }
+
+            return;
+        }
+
+        const batch = [];
+
+        // First add/update the item to the target actor
+        const allowStacking = targetActor.system.metadata.quantifiable?.includes(item.type);
+        const existing = allowStacking ? targetActor.items.find(x => itemIsIdentical(x, item)) : null;
+        if (existing) {
+            batch.push({
+                action: 'update',
+                documentName: 'Item',
+                parent: targetActor,
+                updates: [{ _id: existing.id, 'system.quantity': existing.system.quantity + quantity }]
+            });
+        } else {
+            const itemsToCreate = [];
+            if (allowStacking) {
+                itemsToCreate.push(foundry.utils.mergeObject(item.toObject(true), { system: { quantity } }));
+            } else {
+                const createData = new Array(Math.max(1, quantity))
+                    .fill(0)
+                    .map(() => foundry.utils.mergeObject(item.toObject(), { system: { quantity: 1 } }));
+                itemsToCreate.push(...createData);
+            }
+            batch.push({
+                action: 'create',
+                documentName: 'Item',
+                parent: targetActor,
+                data: itemsToCreate
+            });
+        }
+
+        // Remove the item from the original actor (by either deleting it, or updating its quantity)
+        if (quantity >= item.system.quantity) {
+            batch.push({
+                action: 'delete',
+                documentName: 'Item',
+                parent: originActor,
+                ids: [item.id]
+            });
+        } else {
+            batch.push({
+                action: 'update',
+                documentName: 'Item',
+                parent: originActor,
+                updates: [{ _id: item.id, 'system.quantity': item.system.quantity - quantity }]
+            });
+        }
+
+        return foundry.documents.modifyBatch(batch);
+    }
+
     /** 
      * Checks to see if damage can be reduced in one way or another.
      * @param {number} hpDamage the amount of marked hp that will be marked
@@ -858,14 +894,15 @@ export default class DhpActor extends Actor {
         return canUseArmor || canUseStress || hasReduceSeverity || hasThresholdImmunity;
     }
 
-    async takeDamage(args, isDirect = false) {
+    /**
+     * Handling of the actor taking damage
+     * @param {Object} args 
+     * @param {{ actionUuid: string, isDirect: bool  }} params 
+     * @returns { Object }
+     */
+    async takeDamage(args, { actionUuid = null, isDirect = false } = {}) {
         args = this.#parseDamageArgs(args);
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args) === false) return null;
-
-        if (this.type === 'companion') {
-            await this.modifyResource([{ value: 1, key: 'stress' }]);
-            return;
-        }
 
         const updates = args.resourceUpdates;
         if (args.main) {
@@ -876,9 +913,11 @@ export default class DhpActor extends Actor {
         if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, args) === false) return null;
 
         // Convert deducted resources to a record of updates. Return if nothing to do.
-        if (!updates.some(u => u.value) && !args.main) return; 
+        if (!updates.some(u => u.value) && !args.main) return null; 
 
-        if (args.main) {
+        if (args.main && this.type === 'companion') {
+            updates.push({ value: 1, key: 'stress' });
+        } else if (args.main) {
             const hpDamage = { 
                 value: this.convertDamageToThreshold(args.main.value),
                 damageTypes: new Set(args.main.damageTypes), 
@@ -889,6 +928,7 @@ export default class DhpActor extends Actor {
                     'armorSlot',
                     {
                         actorId: this.uuid,
+                        actionUuid: actionUuid,
                         damage: hpDamage.value,
                         type: [...hpDamage.damageTypes]
                     },
@@ -896,24 +936,23 @@ export default class DhpActor extends Actor {
                         timeout: 30000
                     }
                 );
-                if (armorSlotResult) {
-                    const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
-                    hpDamage.value = modifiedDamage;
-                    for (const armorChange of armorChanges) {
-                        updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
-                    }
-                    if (stressSpent) {
-                        const stressUpdate = updates.find(u => u.key === 'stress');
-                        if (stressUpdate) stressUpdate.value += stressSpent;
-                        else updates.push({ value: stressSpent, key: 'stress' });
-                    }
+                if (!armorSlotResult) return [];
+
+                const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
+                hpDamage.value = modifiedDamage;
+                for (const armorChange of armorChanges) {
+                    updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
+                }
+                if (stressSpent) {
+                    const stressUpdate = updates.find(u => u.key === 'stress');
+                    if (stressUpdate) stressUpdate.value += stressSpent;
+                    else updates.push({ value: stressSpent, key: 'stress' });
                 }
             } else if (this.type === 'adversary') {
-                const reducedSeverity = hpDamage.damageTypes.reduce((value, curr) => {
-                    return Math.max(this.system.rules.damageReduction.reduceSeverity[curr], value);
-                }, 0);
+                const actorClone = this.getActionClone(await fromUuid(actionUuid), { role: 'target' });
+                const reducedSeverity = actorClone.system.rules.damageReduction.reduceSeverity;
                 hpDamage.value = Math.max(hpDamage.value - reducedSeverity, 0);
-                if (this.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
+                if (actorClone.system.rules.damageReduction.thresholdImmunities[getDamageKey(hpDamage.value)]) {
                     hpDamage.value = Math.max(0, hpDamage.value - 1);
                 }
             }
@@ -1405,6 +1444,111 @@ export default class DhpActor extends Actor {
             if (batch.length) await foundry.documents.modifyBatch(batch);
         } else {
             return batch;
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
+    
+    /**@inheritdoc */
+    async _preCreate(data, options, user) {
+        if ((await super._preCreate(data, options, user)) === false) return false;
+        const update = {};
+
+        // Set default token size. Done here as we do not want to set a datamodel default, since that would apply the sizing to third party actor modules that aren't set up with the size system.
+        if (this.system.metadata.usesSize && !data.system?.size) {
+            foundry.utils.mergeObject(update, {
+                system: {
+                    size: CONFIG.DH.ACTOR.tokenSize.medium.id
+                }
+            })
+        }
+
+        // Set the ones actor linked by default
+        if (['character', 'companion', 'party', 'environment', 'loot'].includes(this.type)) {
+            foundry.utils.mergeObject(update, { prototypeToken: { actorLink: true } });
+        }
+
+        // Configure prototype token settings
+        if (['character', 'companion', 'party'].includes(this.type)) {
+            foundry.utils.mergeObject(update, {
+                prototypeToken: {
+                    sight: { enabled: true },
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        if (this.type === 'loot') {
+            foundry.utils.mergeObject(update, {
+                ownership: {
+                    default: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
+                }
+            })
+        }
+
+        if (this.type === 'npc') {
+            foundry.utils.mergeObject(update, {
+                prototypeToken: {
+                    disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+                }
+            });
+        }
+
+        this.updateSource(update);
+    }
+
+    _preUpdate(changed, options, user) {
+        return super._preUpdate(changed, options, user);
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    async _preDelete(options, user) {
+        if ((await super._preDelete(options, user)) === false) return false;
+
+        if (this.prototypeToken.actorLink) {
+            game.system.registeredTriggers.unregisterItemTriggers(this.items);
+        } else {
+            for (const token of this.getActiveTokens()) {
+                game.system.registeredTriggers.unregisterItemTriggers(token.actor.items);
+            }
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+    }
+
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+        
+        for (const party of this.parties) {
+            party.renderDebounced({ parts: ['partyMembers'] });
+        }
+
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
+        }
+    }
+
+    _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+        super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
+        if (collection === 'items') {
+            if (game.user.id === userId) {
+                this._cleanupOptionalResources();
+            }
         }
     }
 }

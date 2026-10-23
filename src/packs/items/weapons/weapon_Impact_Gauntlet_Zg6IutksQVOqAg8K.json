@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "concussive",
-        "effectIds": [],
-        "actionIds": [
-          "wh1Op9x5dVDpwXyd"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "concussive": {
+        "value": "concussive",
+        "effectIds": [],
+        "actionIds": [
+          "wh1Op9x5dVDpwXyd"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

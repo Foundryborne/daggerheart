@@ -80,17 +80,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "incendiary",
-        "effectIds": [
-          "DQcdvMkGHEUycaBv"
-        ],
-        "actionIds": [
-          "pkg1z8LU5URZsQIe"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -180,6 +169,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "incendiary": {
+        "value": "incendiary",
+        "effectIds": [
+          "DQcdvMkGHEUycaBv"
+        ],
+        "actionIds": [
+          "pkg1z8LU5URZsQIe"
+        ],
+        "config": {}
       }
     }
   },

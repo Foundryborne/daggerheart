@@ -119,7 +119,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {
@@ -164,7 +164,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": "@fear",
                 "priority": null,

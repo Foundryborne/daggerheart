@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/coat-collared-studded-red.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -25,15 +26,16 @@
       "major": 11,
       "severe": 27
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "magnificent": {
         "value": "magnificent",
         "effectIds": [
           "zvc1X0O4HyQE9yfV"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

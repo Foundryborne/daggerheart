@@ -85,7 +85,7 @@ export default class DhCompanion extends DhCreature {
                 initial: {
                     name: 'Attack',
                     img: 'icons/creatures/claws/claw-bear-paw-swipe-brown.webp',
-                    _id: foundry.utils.randomID(),
+                    _id: CONFIG.DH.ACTOR.standardAttackId,
                     systemPath: 'attack',
                     chatDisplay: false,
                     type: 'attack',

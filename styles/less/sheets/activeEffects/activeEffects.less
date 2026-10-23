@@ -13,10 +13,6 @@
         }
     }
 
-    .form-row-icon {
-        margin-top: 14px;
-    }
-
     .duration-description {
         height: 0;
         overflow: hidden;
@@ -27,31 +23,73 @@
         }
     }
 
+    fieldset.standard-form,
+    fieldset .standard-form {
+        gap: 10px;
+        .form-group label {
+            font-weight: normal;
+        }
+    }
+
     .tab.conditionals {
+        gap: var(--spacer-4);
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+
         .conditional-container {
             display: flex;
-            align-items: center;
             gap: 4px;
+            width: 100%;
+            padding-top: var(--spacer-12);
 
             .conditional-inner-container {
                 display: flex;
-                align-items: center;
                 gap: 4px;
+                width: 100%;
 
                 .form-group {
                     display: block;
                     
+                    multi-select {
+                        min-height: 34px;
+                        height: -webkit-fill-available;
+                    }
+
                     label {
                         line-height: normal;
                         color: inherit;
+                        white-space: nowrap;
                     }
                 }
+            }
+        }
+
+        .add-conditional {
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            margin-top: 1rem;
+            gap: var(--spacer-8);
+            select {
+                flex: 0 1 fit-content;
             }
         }
     }
 
     .tab.changes {
         gap: 0;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+
+        .basic-changes {
+            header,
+            ol[data-changes] {
+                grid-template-columns: 1fr 7rem 7rem 4rem 2ch;
+            }
+            .controls {
+                text-align: end;
+            }
+        }
 
         header {
             div {

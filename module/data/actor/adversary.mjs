@@ -68,11 +68,12 @@ export default class DhpAdversary extends DhCreature {
                 ...commonActorRules()
             }, { persisted: false }),
             attack: new ActionField({
+                type: 'attack',
                 nullable: true,
                 initial: {
                     name: 'Attack',
                     img: 'icons/skills/melee/blood-slash-foam-red.webp',
-                    _id: foundry.utils.randomID(),
+                    _id: CONFIG.DH.ACTOR.standardAttackId,
                     systemPath: 'attack',
                     chatDisplay: false,
                     type: 'attack',
@@ -142,10 +143,12 @@ export default class DhpAdversary extends DhCreature {
         return tags;
     }
 
-    /** Returns source data for this actor adjusted to a new tier, which can be used to create a new actor. */
+    /** 
+     * Returns source data for this actor adjusted to a new tier, which can be used to create a new actor.
+     * @returns {object}
+     */
     adjustForTier(tier) {
-        const source = this.parent.toObject(true);
-        return getTierAdjustedAdversary(source, tier);
+        return getTierAdjustedAdversary(this.parent, tier);
     }
 
     /** @inheritdoc */
@@ -186,7 +189,7 @@ export default class DhpAdversary extends DhCreature {
             this.updateSource({ typeData: this.typeData.toObject() });
         }
 
-        if (this.type === 'horde') {
+        if (this.type === 'horde' && this.attack) {
             // Add backwards compatibility. Consider a deprecation warning at a later date
             Object.defineProperty(this.attack, 'altDamageFormula', {
                 get: () => {

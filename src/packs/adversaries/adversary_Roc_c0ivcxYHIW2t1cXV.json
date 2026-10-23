@@ -114,7 +114,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {
@@ -618,7 +618,7 @@
                 "phase": "initial"
               },
               {
-                "key": "system.bonuses.damage",
+                "key": "system.bonuses.damage.bonus",
                 "type": "add",
                 "value": "@system.resources.stress.value",
                 "priority": null,

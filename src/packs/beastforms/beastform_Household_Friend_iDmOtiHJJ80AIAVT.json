@@ -92,7 +92,7 @@
                 "physical"
               ],
               "attackRange": "melee",
-              "trait": "presence",
+              "trait": "instinct",
               "damageFormula": "@profd6",
               "img": "icons/magic/nature/wolf-paw-glow-small-teal-blue.webp"
             },

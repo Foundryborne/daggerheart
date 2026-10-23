@@ -87,11 +87,12 @@ export default class DhCharacter extends DhCreature {
                 })
             }),
             attack: new ActionField({
+                type: 'attack',
                 persisted: false,
                 initial: () => ({
                     name: _loc('DAGGERHEART.GENERAL.unarmedAttack'),
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
-                    _id: foundry.utils.randomID(),
+                    _id: CONFIG.DH.ACTOR.standardAttackId,
                     systemPath: 'attack',
                     chatDisplay: false,
                     type: 'attack',
@@ -230,33 +231,6 @@ export default class DhCharacter extends DhCreature {
                             intial: false,
                             label: 'DAGGERHEART.GENERAL.Rules.damageReduction.disabledArmor.label'
                         })
-                    },
-                    attack: {
-                        damage: {
-                            diceIndex: new fields.NumberField({
-                                integer: true,
-                                min: 0,
-                                max: 5,
-                                initial: 0,
-                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
-                                hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
-                            }),
-                            bonus: new fields.NumberField({
-                                required: true,
-                                initial: 0,
-                                min: 0,
-                                label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
-                            })
-                        },
-                        roll: new fields.SchemaField({
-                            trait: new fields.StringField({
-                                required: true,
-                                choices: CONFIG.DH.ACTOR.abilities,
-                                nullable: true,
-                                initial: null,
-                                label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
-                            })
-                        })
                     }
                 }),
                 dualityRoll: new fields.SchemaField({
@@ -338,7 +312,7 @@ export default class DhCharacter extends DhCreature {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
-    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
+    /** @returns {{ value?: DhItem; subclass?: DhItem }} */
     get class() {
         const value = this.parent.items.find(x => x.type === 'class' && !x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && !x.system.isMulticlass);
@@ -349,7 +323,7 @@ export default class DhCharacter extends DhCreature {
         };
     }
 
-    /** @returns {{ value?: DHItem; subclass?: DHItem }} */
+    /** @returns {{ value?: DhItem; subclass?: DhItem }} */
     get multiclass() {
         const value = this.parent.items.find(x => x.type === 'class' && x.system.isMulticlass);
         const subclass = this.parent.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
@@ -501,6 +475,23 @@ export default class DhCharacter extends DhCreature {
         } else {
             return false;
         }
+    }
+
+    /** 
+     * Given a trait from the rollTypes collections, resolves what trait that is for this actor.
+     * For most actors, it is null, and only has a value for characters
+     * @param {keyof typeof CONFIG.DH.ACTIONS.rollTypeTraits} trait
+     */
+    resolveTrait(trait) {
+        if (trait === 'highest') {
+            let highest = 'strength';
+            for (const [key, value] of Object.entries(this.traits)) {
+                highest = value.value > this.traits[highest].value ? key : highest;
+            }
+            return highest;
+        }
+
+        return trait === 'spellcast' ? this.spellcastModifierTrait?.key ?? null : trait;
     }
 
     async updateArmorValue({ value: armorChange = 0, clear = false }) {

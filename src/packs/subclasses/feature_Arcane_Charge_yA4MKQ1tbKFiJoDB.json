@@ -34,9 +34,9 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
-            "value": "+10",
+            "value": "10",
             "priority": null,
             "phase": "initial"
           }

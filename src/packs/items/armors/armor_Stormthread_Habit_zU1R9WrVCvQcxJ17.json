@@ -6,9 +6,10 @@
   "img": "icons/equipment/hand/gauntlet-armored-leather-steel-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -92,15 +93,16 @@
       "major": 9,
       "severe": 20
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "absorbing": {
         "value": "absorbing",
         "effectIds": [],
         "actionIds": [
           "yOf6C8teHAmMhIF1"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

@@ -70,7 +70,7 @@ export default class CharacterResetDialog extends HandlebarsApplicationMixin(App
     static async #finishSelection() {
         const update = {};
         if (!this.data.optional.name.keep) {
-            const defaultName = game.system.api.documents.DhpActor.defaultName({ type: 'character' });
+            const defaultName = game.system.api.documents.DhActor.defaultName({ type: 'character' });
             foundry.utils.setProperty(update, 'name', defaultName);
             foundry.utils.setProperty(update, 'prototypeToken.name', defaultName);
         }

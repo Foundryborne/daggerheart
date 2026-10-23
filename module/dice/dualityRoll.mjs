@@ -331,17 +331,6 @@ export default class DualityRoll extends D20Roll {
         }
 
         await DualityRoll.addDualityResourceUpdates(config);
-
-        if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
-
-        const rollResult = config.roll.success || config.targets?.some(t => t.hit),
-            looseSpotlight = !rollResult || config.roll.result.duality === -1;
-
-        if (looseSpotlight && game.combat?.active) {
-            const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
-            if (currentCombatant && currentCombatant.actorId == config.data.id)
-                ui.combat.setCombatantSpotlight(currentCombatant.id);
-        }
     }
 
     async reroll(options) {
@@ -355,11 +344,11 @@ export default class DualityRoll extends D20Roll {
                 foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
             }
 
-            if (this.options.actionType === 'reaction') return;
-
-            const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
-            const actor = await foundry.utils.fromUuid(this.options.source.actor);
-            updateResourcesForDualityReroll(oldDuality, newDuality, actor);
+            if (this.options.actionType !== 'reaction') {
+                const newDuality = rerolled.withHope ? 1 : rerolled.withFear ? -1 : 0;
+                const actor = await foundry.utils.fromUuid(this.options.source.actor);
+                updateResourcesForDualityReroll(oldDuality, newDuality, actor);
+            }
         }
 
         return rerolled;

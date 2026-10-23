@@ -1,7 +1,7 @@
 const weaponKeys = ['primaryWeapon', 'secondaryWeapon'];
 
 export default function conditionalsMigration(source) {
-    if (!source.conditionals) {
+    if (source.conditionals === undefined && source.changes) {
         source.conditionals = [];
 
         const damageTypes = new Set();
@@ -9,18 +9,27 @@ export default function conditionalsMigration(source) {
         const actionTypes = new Set();
 
         /* Damage Bonus: Gather conditional data and replace outdated changes  */
-        const damageTypeIndexes = source.changes.reduce((acc, change, index) => {
-            if (change.key?.startsWith('system.bonuses.damage.'))
-                acc.push(index);
+        const damageTypeIndexes = [];
+        const newDamageData = [];
+        for (let i = 0; i < source.changes.length; i++) {
+            const change = source.changes[i];
+            if (!change.key) continue;
 
-            return acc;
-        }, []);
+            const match = change.key.match(/system\.bonuses\.damage\.([^.]*)\.(bonus|dice)/);
+            if (!match?.length) continue;
 
-        const newDamageData = damageTypeIndexes.length ? 
-            { ...source.changes[damageTypeIndexes[0]], key: 'system.bonuses.damage' } : null;
+            damageTypeIndexes.push(i);
+            const bonusType = match[2];
+            const newChange = { ...change, key: `system.bonuses.damage.${bonusType}` };
+            if (!newDamageData.some(x => x.key === newChange.key)) 
+                newDamageData.push(newChange);
+        }
+
         for (const index of damageTypeIndexes) {
             const change = source.changes[index];
-            const match = change.key.match(/system\.bonuses\.damage\.(.*)\./);
+            if (!change.key) continue;
+
+            const match = change.key.match(/system\.bonuses\.damage\.([^.]*)/);
             if (!match?.length) continue;
 
             const rollDamageType = match[1];
@@ -35,18 +44,27 @@ export default function conditionalsMigration(source) {
         }
 
         /* Roll Bonus: Gather conditional data and replace outdated changes  */
-        const rollChangeIndexes = source.changes.reduce((acc, change, index) => {
-            if (change.key?.startsWith('system.bonuses.roll.'))
-                acc.push(index);
+        const rollChangeIndexes = [];
+        const newRollData = [];
+        for (let i = 0; i < source.changes.length; i++) {
+            const change = source.changes[i];
+            if (!change.key) continue;
 
-            return acc;
-        }, []);
+            const match = change.key.match(/system\.bonuses\.roll\.([^.]*)\.(bonus|dice)/);
+            if (!match?.length) continue;
+
+            rollChangeIndexes.push(i);
+            const bonusType = match[2];
+            const newChange = { ...change, key: `system.bonuses.roll.${bonusType}` };
+            if (!newRollData.some(x => x.key === newChange.key)) 
+                newRollData.push(newChange);
+        }
         
-        const newRollData = rollChangeIndexes.length ? 
-            { ...source.changes[rollChangeIndexes[0]], key: 'system.bonuses.roll' } : null;
         for (const index of rollChangeIndexes) {
             const change = source.changes[index];
-            const match = change.key.match(/system\.bonuses\.roll\.(.*)\./);
+            if (!change.key) continue;
+
+            const match = change.key.match(/system\.bonuses\.roll\.([^.]*)/);
             if (!match?.length) continue;
 
             const rollBonusType = match[1];
@@ -61,8 +79,8 @@ export default function conditionalsMigration(source) {
         }
 
         /* Add the new replacement changes */
-        if (newDamageData) source.changes.push(newDamageData);
-        if (newRollData) source.changes.push(newRollData);
+        if (newDamageData.length) source.changes.push(...newDamageData);
+        if (newRollData.length) source.changes.push(...newRollData);
 
         /* Add the conditionals */
         if (damageTypes.size === 1) {

@@ -84,7 +84,7 @@
             "phase": "initial"
           },
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.bonus",
             "value": 10,
             "priority": null,
             "type": "add",

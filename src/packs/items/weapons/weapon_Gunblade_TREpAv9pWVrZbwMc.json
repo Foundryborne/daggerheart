@@ -6,9 +6,10 @@
   "img": "icons/weapons/guns/rifle-fluted.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -19,7 +20,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -57,7 +57,7 @@
             "multiplier": "prof",
             "dice": "d6",
             "flatMultiplier": 1,
-            "bonus": 7,
+            "bonus": 6,
             "custom": {
               "enabled": false,
               "formula": ""
@@ -108,6 +108,24 @@
       "attack": {
         "roll": {
           "trait": null
+        }
+      }
+    },
+    "itemFeatures": {
+      "versatile": {
+        "value": "versatile",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {
+          "trait": "agility",
+          "range": "melee",
+          "damage": {
+            "dice": "d8",
+            "bonus": 6,
+            "type": [
+              "physical"
+            ]
+          }
         }
       }
     }

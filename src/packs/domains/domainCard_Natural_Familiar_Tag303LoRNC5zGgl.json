@@ -170,7 +170,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage",
+            "key": "system.bonuses.damage.dice",
             "type": "add",
             "value": "d6",
             "priority": null,

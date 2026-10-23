@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 4,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "channeling",
-        "effectIds": [
-          "8bwf1Ri3jYkjphEv"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "channeling": {
+        "value": "channeling",
+        "effectIds": [
+          "8bwf1Ri3jYkjphEv"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {
@@ -45,7 +46,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
             "value": 1,
             "phase": "initial"

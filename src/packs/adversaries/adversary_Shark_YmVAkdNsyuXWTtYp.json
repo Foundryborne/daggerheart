@@ -33,7 +33,13 @@
     },
     "type": "bruiser",
     "notes": "",
-    "experiences": {},
+    "experiences": {
+      "lHr0FWThbG3SwYX1": {
+        "name": "Sense of Smell",
+        "value": 3,
+        "description": ""
+      }
+    },
     "tier": 2,
     "description": "<p>A large aquatic predator, always on the move.</p>",
     "motivesAndTactics": "Find the blood, isolate prey, target the weak",

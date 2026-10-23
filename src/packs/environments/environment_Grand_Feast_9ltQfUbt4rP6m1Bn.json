@@ -9,7 +9,7 @@
     "impulses": "Bring everyone together, celebrate a momentous occasion, encourage revelrous abandon",
     "difficulty": 11,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "potentialAdversaries": {
@@ -390,7 +390,7 @@
           "system": {
             "changes": [
               {
-                "key": "system.bonuses.roll",
+                "key": "system.bonuses.roll.bonus",
                 "type": "subtract",
                 "value": 1,
                 "priority": null,
@@ -409,7 +409,8 @@
                 "type": "actionType",
                 "actionTypes": [
                   "action"
-                ]
+                ],
+                "traits": []
               }
             ]
           },

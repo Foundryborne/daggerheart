@@ -1,0 +1,147 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+@import '../../utils/spacing.less';
+
+.daggerheart.chat {
+    &.move,
+    &.death-moves,
+    &.action {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        .fa-chevron-down {
+            transition: all 0.3s ease;
+            margin-left: auto;
+        }
+
+        .moves-list,
+        .death-moves-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+            padding: 0;
+        }
+
+        .move,
+        .action-move,
+        .death-move {
+            width: 100%;
+
+            summary {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin: 4px 4px 0;
+                padding-bottom: 5px;
+                gap: 6px;
+                border-bottom: 1px solid light-dark(@dark-blue, @golden);
+                width: 100%;
+
+                &:hover {
+                    background: light-dark(@dark-blue-10, @golden-10);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                > img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 3px;
+                    object-fit: cover;
+                }
+
+                .action-header,
+                .header-label {
+                    display: flex;
+                    flex-direction: column;
+                    color: @beige;
+
+                    .title {
+                        font-size: var(--font-size-20);
+                        color: light-dark(@dark-blue, @golden);
+                        font-weight: 700;
+                        margin: 0;
+                    }
+
+                    .label {
+                        font-size: var(--font-size-12);
+                        color: light-dark(@dark, @beige);
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        .result {
+            color: @color-text-subtle;
+            padding: 8px 0;
+            font-weight: bold;
+        }
+
+        .risk-it-all-button {
+            width: 100%;
+            margin: 0 8px;
+            font-weight: 600;
+            height: 40px;
+        }
+
+        .action-use-button-parent {
+            width: 100%;
+
+            .action-use-target {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 4px;
+                width: 100%;
+                padding: 4px 8px 10px 40px;
+                font-size: var(--font-size-12);
+
+                label {
+                    font-weight: bold;
+                }
+
+                select {
+                    flex: 1;
+                }
+            }
+        }
+
+        .action-use-button {
+            width: 100%;
+            margin: 0 8px;
+            font-weight: 600;
+            height: 40px;
+        }
+
+        .ability-card-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            width: 100%;
+            padding: 0 8px;
+
+            button {
+                height: 36px;
+                flex: 1 1 calc(50% - 5px);
+
+                span {
+                    font-family: @font-body;
+                    font-weight: 700;
+                }
+
+                &:nth-last-child(1):nth-child(odd) {
+                    flex-basis: 100%;
+                }
+            }
+
+            .ability-card-action-cost {
+                margin: auto;
+                font-size: 1.5em;
+            }
+        }
+    }
+}

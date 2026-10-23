@@ -94,7 +94,8 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         let effect;
         if (element.dataset.uuid) {
             const effectItem = await foundry.utils.fromUuid(element.dataset.uuid);
-            const effectData = effectItem.toObject();
+            const effectData = effectItem?.toObject();
+            if (!effectData) return; // May be mid removal
 
             effect = {
                 ...effectData,
@@ -153,6 +154,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     async #activateItem(element, options) {
         const itemUuid = element.dataset.tooltip.slice(6);
         const item = await foundry.utils.fromUuid(itemUuid);
+        const actor = item?.actor;
         if (!item) return null;
 
         // If there is support for embeds, use that instead.
@@ -196,8 +198,11 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             const type = item.system.secondary ? 'secondary' : 'primary';
             tags.unshift(_loc(`DAGGERHEART.ITEMS.Weapon.${type}Weapon.full`));
         }
-        if (item instanceof Item && item.system.metadata.isQuantifiable) {
-            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`)
+        if (
+            item instanceof Item &&
+            ((!actor && item.system.quantity > 1) || actor?.metadata.quantifiable?.includes(item?.type))
+        ) {
+            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`);
         }
         if (item instanceof game.system.api.models.actions.actionsTypes.base) {
             // todo: should these be in action._getTags()?
@@ -507,10 +512,13 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             combat.turns
                 ?.filter(x => x.actor?.isNPC && x.token.disposition === CONST.TOKEN_DISPOSITIONS.HOSTILE)
                 ?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
-        const characters = combat.turns?.filter(x => !x.isNPC && x.actor) ?? [];
+        
+        const activePartyActors = game.actors.party?.system.partyMembers ?? [];
+        const activePartyCharacters = activePartyActors.filter(x => Boolean(x) && x.type === 'character');
+        const charactersInCombat = combat.turns?.filter(x => !x.isNPC && x.actor) ?? [];
+        const nrCharacters = charactersInCombat.length ? charactersInCombat.length : activePartyCharacters.length;
 
-        const nrCharacters = characters.length;
-        const currentBP = AdversaryBPPerEncounter(adversaries, characters);
+        const currentBP = AdversaryBPPerEncounter(adversaries, nrCharacters);
         const maxBP = combat.system.extendedBattleToggles.reduce(
             (acc, toggle) => acc + toggle.category,
             BaseBPPerEncounter(nrCharacters)

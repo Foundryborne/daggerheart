@@ -266,7 +266,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.description'),
             actions: {
-                tendToWounds: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
@@ -301,7 +302,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.description'),
             actions: {
-                clearStress: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.clearStress.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
@@ -335,7 +337,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.description'),
             actions: {
-                repairArmor: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.repairArmor.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
@@ -370,7 +373,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.description'),
             actions: {
-                prepare: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.name'),
@@ -394,7 +398,8 @@ export const defaultRestOptions = {
                         }
                     }
                 },
-                prepareWithFriends: {
+                xxxxACTION02xxxx: {
+                    _id: 'xxxxACTION02xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.shortRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepareWithFriends.name'),
@@ -430,7 +435,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.description'),
             actions: {
-                tendToWounds: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.tendToWounds.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.name'),
@@ -465,7 +471,8 @@ export const defaultRestOptions = {
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.description'),
             actions: {
-                clearStress: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.clearStress.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.name'),
@@ -499,7 +506,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.description'),
             actions: {
-                repairArmor: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.repairArmor.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.name'),
@@ -534,7 +542,8 @@ export const defaultRestOptions = {
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.description'),
             actions: {
-                prepare: {
+                xxxxACTION01xxxx: {
+                    _id: 'xxxxACTION01xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.name'),
@@ -558,7 +567,8 @@ export const defaultRestOptions = {
                         }
                     }
                 },
-                prepareWithFriends: {
+                xxxxACTION02xxxx: {
+                    _id: 'xxxxACTION02xxxx',
                     type: 'healing',
                     systemPath: 'restMoves.longRest.moves.prepare.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepareWithFriends.name'),
@@ -667,63 +677,6 @@ export const diceSetNumbers = {
     flat: 'Flat'
 };
 
-export const diceSoNiceSFXClasses = {
-    PlayAnimationBright: {
-        id: 'PlayAnimationBright',
-        label: 'DICESONICE.PlayAnimationBright'
-    },
-    PlayAnimationDark: {
-        id: 'PlayAnimationDark',
-        label: 'DICESONICE.PlayAnimationDark'
-    },
-    PlayAnimationOutline: {
-        id: 'PlayAnimationOutline',
-        label: 'DICESONICE.PlayAnimationOutline'
-    },
-    PlayAnimationImpact: {
-        id: 'PlayAnimationImpact',
-        label: 'DICESONICE.PlayAnimationImpact'
-    },
-    // PlayConfettiStrength1: {
-    //     id: 'PlayConfettiStrength1',
-    //     label: 'DICESONICE.PlayConfettiStrength1'
-    // },
-    // PlayConfettiStrength2: {
-    //     id: 'PlayConfettiStrength2',
-    //     label: 'DICESONICE.PlayConfettiStrength2'
-    // },
-    // PlayConfettiStrength3: {
-    //     id: 'PlayConfettiStrength3',
-    //     label: 'DICESONICE.PlayConfettiStrength3'
-    // },
-    PlayAnimationThormund: {
-        id: 'PlayAnimationThormund',
-        label: 'DICESONICE.PlayAnimationThormund'
-    },
-    PlayAnimationParticleSpiral: {
-        id: 'PlayAnimationParticleSpiral',
-        label: 'DICESONICE.PlayAnimationParticleSpiral'
-    },
-    PlayAnimationParticleSparkles: {
-        id: 'PlayAnimationParticleSparkles',
-        label: 'DICESONICE.PlayAnimationParticleSparkles'
-    },
-    PlayAnimationParticleVortex: {
-        id: 'PlayAnimationParticleVortex',
-        label: 'DICESONICE.PlayAnimationParticleVortex'
-    },
-    PlaySoundEpicWin: {
-        id: 'PlaySoundEpicWin',
-        label: 'DICESONICE.PlaySoundEpicWin'
-    },
-    PlaySoundEpicFail: {
-        id: 'PlaySoundEpicFail',
-        label: 'DICESONICE.PlaySoundEpicFail'
-    }
-    // "PlaySoundCustom",
-    // "PlayMacro"
-};
-
 export const daggerheartDiceAnimationEvents = {
     critical: {
         id: 'critical',
@@ -733,53 +686,6 @@ export const daggerheartDiceAnimationEvents = {
         id: 'higher',
         label: 'DAGGERHEART.CONFIG.DaggerheartDiceAnimationEvents.higher.name'
     }
-};
-
-export const getDiceSoNiceSFX = sfxOptions => {
-    const diceSoNice = game.system.settings.appearance.diceSoNiceData;
-    const criticalAnimationData = diceSoNice.sfx.critical;
-    if (sfxOptions.critical && criticalAnimationData.class) {
-        return {
-            specialEffect: criticalAnimationData.class,
-            options: { ...criticalAnimationData.options }
-        };
-    }
-
-    if (sfxOptions.higher && sfxOptions.data.higher) {
-        return {
-            specialEffect: sfxOptions.data.higher.class,
-            options: { ...sfxOptions.data.higher.options }
-        };
-    }
-
-    return {};
-};
-
-export const getDiceSoNicePreset = async (type, faces) => {
-    const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
-    if (!system) {
-        ui.notifications.error(
-            game.i18n.format('DAGGERHEART.UI.Notifications.noDiceSystem', {
-                system: game.dice3d.DiceFactory.systems.get(type.system).name,
-                faces: faces
-            })
-        );
-        return;
-    }
-
-    if (system.modelFile && !system.modelLoaded) {
-        await system.loadModel(game.dice3d.DiceFactory.loaderGLTF);
-    } else {
-        await system.loadTextures();
-    }
-
-    return {
-        modelFile: system.modelFile,
-        appearance: {
-            ...system.appearance,
-            ...type
-        }
-    };
 };
 
 export const refreshTypes = {
@@ -884,6 +790,10 @@ export const rollTypes = {
         label: 'DAGGERHEART.CONFIG.RollTypes.trait.name',
         playerOnly: true
     },
+    reaction: {
+        id: 'reaction',
+        label: 'DAGGERHEART.CONFIG.RollTypes.reaction.name'
+    },
     diceSet: {
         id: 'diceSet',
         label: 'DAGGERHEART.CONFIG.RollTypes.diceSet.name'
@@ -893,7 +803,7 @@ export const rollTypes = {
 export const attributionSources = {
     daggerheart: {
         label: 'Daggerheart',
-        values: [{ label: 'Daggerheart SRD' }]
+        values: [{ label: 'Daggerheart SRD' }, { label: 'Daggerheart SRD H&F'}]
     }
 };
 

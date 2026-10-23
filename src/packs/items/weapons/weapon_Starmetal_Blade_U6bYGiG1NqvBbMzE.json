@@ -6,9 +6,10 @@
   "img": "icons/weapons/swords/sword-guard-flanged.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -19,15 +20,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "serrated",
-        "effectIds": [
-          "l3sq4oU9PFSf3voP"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -117,6 +109,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "serrated": {
+        "value": "serrated",
+        "effectIds": [
+          "l3sq4oU9PFSf3voP"
+        ],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

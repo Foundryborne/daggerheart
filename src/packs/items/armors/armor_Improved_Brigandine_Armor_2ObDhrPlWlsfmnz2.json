@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/breastplate-banded-leather-brown.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -25,15 +25,16 @@
       "major": 9,
       "severe": 19
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "lined": {
         "value": "lined",
         "effectIds": [
           "qtuLYIIbHcUzeVpq"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

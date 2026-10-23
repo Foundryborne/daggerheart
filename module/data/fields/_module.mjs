@@ -1,4 +1,4 @@
-export { ActionCollection } from './actionField.mjs';
+export { ActionCollection } from './action-collection-field.mjs';
 export { default as IterableTypedObjectField } from './iterableTypedObjectField.mjs';
 export { default as FormulaField } from './formulaField.mjs';
 export { default as ForeignDocumentUUIDField } from './foreignDocumentUUIDField.mjs';

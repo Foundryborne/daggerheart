@@ -3,7 +3,6 @@ import DhCountdowns from '../data/countdowns.mjs';
 import {
     DhAppearance,
     DhAutomation,
-    DhGlobalOverrides,
     DhHomebrew,
     DhMetagaming,
     DhVariantRules
@@ -79,7 +78,10 @@ const registerMenuSettings = () => {
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules, {
         scope: 'world',
         config: false,
-        type: DhVariantRules
+        type: DhVariantRules,
+        onChange: value => {    
+            value.handleChange();
+        }
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation, {
@@ -107,12 +109,6 @@ const registerMenuSettings = () => {
         onChange: value => {
             value.handleChange();
         }
-    });
-
-    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.GlobalOverrides, {
-        scope: 'world',
-        config: false,
-        type: DhGlobalOverrides
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance, {

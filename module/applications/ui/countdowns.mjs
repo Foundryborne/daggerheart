@@ -328,7 +328,7 @@ export default class DhCountdowns extends HandlebarsApplicationMixin(Application
      */
     static async updateCountdowns(...progressTypes) {
         progressTypes = progressTypes.map(p => typeof p === 'string' ? { type: p } : p);
-        const { countdownAutomation } = !game.system.settings.automation;
+        const { countdownAutomation } = game.system.settings.automation;
         if (!countdownAutomation) return;
 
         const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);

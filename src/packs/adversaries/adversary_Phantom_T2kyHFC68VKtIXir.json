@@ -10,7 +10,7 @@
     "difficulty": 11,
     "damageThresholds": {
       "major": 5,
-      "severe": 5
+      "severe": 0
     },
     "resources": {
       "hitPoints": {
@@ -114,7 +114,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {

@@ -1,4 +1,3 @@
-import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 
 export default class BaseDie extends foundry.dice.terms.Die {
@@ -11,6 +10,30 @@ export default class BaseDie extends foundry.dice.terms.Die {
         a: 'advantage',
         d: 'disadvantage'
     };
+
+    hope() {
+        this.setDualityTriggers();
+    }
+
+    fear() {
+        this.setDualityTriggers();
+    }
+
+    setDualityTriggers() {
+        if (!(this._root instanceof game.system.api.dice.DualityRoll)) return;
+        
+        const { dHope, dFear, isCritical } = this._root;
+        if (dHope.total === undefined || dFear.total === undefined) return;
+
+        if (isCritical) {
+            dHope.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.critical;
+            dFear.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.critical;
+        } else if (dHope.total > dFear.total) {
+            dHope.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.hope;
+        } else if (dHope.total < dFear.total) {
+            dFear.options.sfx = CONFIG.DH.DICESONICE.dualityTrigger.sfxTriggers.fear;
+        }
+    }
 
     async rerollResult(resultToReroll) {
         const resultIndex = Number(resultToReroll);
@@ -40,26 +63,6 @@ export default class BaseDie extends foundry.dice.terms.Die {
         return css;
     }
 
-    /* -------------------------------------------- */
-    /*  Modifier Logic                              */
-    /* -------------------------------------------- */
-
-    async hope() {
-        this.#setDualityDiePreset('hope');
-    }
-
-    async fear() {
-        this.#setDualityDiePreset('fear');
-    }
-
-    async advantage() {
-        this.#setDualityDiePreset('advantage');
-    }
-
-    async disadvantage() {
-        this.#setDualityDiePreset('disadvantage');
-    }
-
     /**
      * Return the configured value as result if 1 is rolled
      * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
@@ -76,16 +79,6 @@ export default class BaseDie extends foundry.dice.terms.Die {
                 r.result = target;
             }
         }
-    }
-
-    async #setDualityDiePreset(dualityType) {
-        if (!game.dice3d) return;
-
-        const diceSoNice = game.system.settings.appearance.diceSoNiceData;
-        const dualityDie = diceSoNice[dualityType];
-        if (!dualityDie) return;
-
-        this.options = await getDiceSoNicePreset(dualityDie, this.denomination);
     }
 
     async comboDice() {
@@ -172,22 +165,18 @@ export default class BaseDie extends foundry.dice.terms.Die {
             this.number = this.results.filter(x => x.active).length;
         };
 
-        /* (1) Rerolling any of the last two dice might introduce new results */
         const isFinalHigher = 
             rerollGroupingIndex === resultGroupingIndexes.length - 1 && rerolledResult.result >= previousResult?.result;
         const isSemifinalLower = 
             rerollGroupingIndex === resultGroupingIndexes.length - 2 && rerolledResult.result < nextResult?.result;
         if (isFinalHigher || isSemifinalLower) {
-            return await this.rollComboDice({
-                rerollStartIndex: rerollGroupingIndex
-            });
-        }
-        /* (2) Rerolling a subsequent dice might invalidate later dice which should then be dropped */
-        else if (rerolledResult.result < previousResult?.result){
+            /* (1) Rerolling any of the last two dice might introduce new results */
+            return await this.rollComboDice({ rerollStartIndex: rerollGroupingIndex });
+        } else if (rerolledResult.result < previousResult?.result){
+            /* (2) Rerolling a subsequent dice might invalidate later dice which should then be dropped */
             dropDice(false);
-        }
-        /* (3) Rerolling a preceeding dice might invalidate later dice which should then be dropped */
-        else if (rerolledResult.result >= nextResult?.result) {
+        } else if (rerolledResult.result >= nextResult?.result) {
+            /* (3) Rerolling a preceeding dice might invalidate later dice which should then be dropped */
             dropDice(true);
         }
 
