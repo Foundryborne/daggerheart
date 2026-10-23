@@ -8,10 +8,15 @@
             {{formField ../fields.consumeOnSuccess value=cost.consumeOnSuccess name=(concat "cost." index ".consumeOnSuccess") classes="checkbox" rootId=partId localize=true}}
         {{/if}}
         <div class="nest-inputs">
-            {{formField ../fields.scalable label="DAGGERHEART.GENERAL.scalable" value=cost.scalable name=(concat "cost." index ".scalable") classes="checkbox" localize=true}}
+            {{#if (eq cost.key 'freelyScaleable')}}
+                <input type="hidden" data-dtype="Boolean" value="true" name="{{concat "cost." index ".scalable"}}" />
+            {{else}}
+                {{formField ../fields.scalable label="DAGGERHEART.GENERAL.scalable" value=cost.scalable name=(concat "cost." index ".scalable") classes="checkbox" localize=true}}
+            {{/if}}
             {{formField ../fields.key choices=(@root.disableOption index @root.costOptions ../source) label="DAGGERHEART.GENERAL.Resource.single" value=cost.key name=(concat "cost." index ".key") localize=true blank=false}}
             {{formField ../fields.value label="DAGGERHEART.GENERAL.amount" value=cost.value name=(concat "cost." index ".value") localize=true}}
-            {{formField ../fields.step label="DAGGERHEART.GENERAL.step" value=cost.step name=(concat "cost." index ".step") disabled=(not cost.scalable) localize=true}}
+            {{formField ../fields.step label="DAGGERHEART.GENERAL.step" value=cost.step name=(concat "cost." index ".step") disabled=(and (not (eq cost.key 'freelyScaleable')) (not cost.scalable)) localize=true}}
+            {{#if (eq cost.key 'freelyScaleable')}}{{formField ../fields.scaleMax label="DAGGERHEART.ACTIONS.Settings.cost.scaleMax" value=cost.scaleMax name=(concat "cost." index ".scaleMax") localize=true}}{{/if}}
             <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
         </div>
     {{/each}}
