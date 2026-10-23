@@ -55,3 +55,55 @@ jobs:
         artifacts: './system.json, ./system.zip'
         tag: ${{ github.event.release.tag_name }}
         body: ${{ github.event.release.body }}
+
+    # Notify Foundry VTT API about the new release version
+    - name: Notify Foundry VTT Registry
+      env:
+        FOUNDRY_API_KEY: ${{ secrets.FOUNDRY_API_KEY }}
+        TAG_NAME: ${{ github.event.release.tag_name }}
+        VERSION: ${{ steps.get_version.outputs.version-without-v }}
+        REPOSITORY: ${{ github.repository }}
+      run: |
+        SYSTEM_ID=$(jq -r '.id' system.json)
+        MIN_COMPAT=$(jq -r '.compatibility.minimum // ""' system.json)
+        VER_COMPAT=$(jq -r '.compatibility.verified // ""' system.json)
+        MAX_COMPAT=$(jq -r '.compatibility.maximum // ""' system.json)
+        
+        PAYLOAD=$(jq -n \
+          --arg id "$SYSTEM_ID" \
+          --arg version "$VERSION" \
+          --arg manifest "https://raw.githubusercontent.com/$REPOSITORY/$TAG_NAME/system.json" \
+          --arg notes "https://github.com/$REPOSITORY/releases/tag/$TAG_NAME" \
+          --arg min "$MIN_COMPAT" \
+          --arg ver "$VER_COMPAT" \
+          --arg max "$MAX_COMPAT" \
+          '{
+            id: $id,
+            "dry-run": false,
+            release: {
+              version: $version,
+              manifest: $manifest,
+              notes: $notes,
+              compatibility: {
+                minimum: $min,
+                verified: $ver,
+                maximum: $max
+              }
+            }
+          }')
+
+        RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://foundryvtt.com/_api/packages/release_version/" \
+          -H "Content-Type: application/json" \
+          -H "Authorization: $FOUNDRY_API_KEY" \
+          -d "$PAYLOAD")
+
+        HTTP_BODY=$(echo "$RESPONSE" | head -n -1)
+        HTTP_STATUS=$(echo "$RESPONSE" | tail -n 1)
+
+        echo "Response: $HTTP_BODY"
+        if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+          echo "Successfully notified Foundry VTT registry."
+        else
+          echo "Failed to notify Foundry VTT registry with status code $HTTP_STATUS"
+          exit 1
+        fi
