@@ -2860,6 +2860,7 @@
         },
         "EFFECTS": {
             "AddChange": "Add Change",
+            "AddConditional": "Add Conditional",
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
@@ -2903,6 +2904,11 @@
             "Conditionals": {
                 "phase": "Phase",
                 "failureMode": "Failure Mode",
+                "role": {
+                    "title": "Evaluated Role",
+                    "origin": "Origin",
+                    "target": "Target"
+                },
                 "dataCompare": {
                     "comparator": "Comparator"
                 },
@@ -3185,14 +3191,8 @@
                         "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
                     },
                     "reduceSeverity": {
-                        "magical": {
-                            "label": "Reduce Damage Severity: Magical",
-                            "hint": "Lowers any magical damage received by the set amount of severity degrees"
-                        },
-                        "physical": {
-                            "label": "Reduce Damage Severity: Physical",
-                            "hint": "Lowers any physical damage received by the set amount of severity degrees"
-                        }
+                        "label": "Reduce Damage Severity",
+                        "hint": "Lowers any damage received by the set amount of severity degrees"
                     },
                     "physical": {
                         "label": "Damage Reduction: Only Physical",

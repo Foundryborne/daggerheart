@@ -72,13 +72,6 @@
       "system": {
         "changes": [
           {
-            "key": "system.rules.damageReduction.reduceSeverity.physical",
-            "type": "add",
-            "value": 1,
-            "priority": null,
-            "phase": "initial"
-          },
-          {
             "key": "system.rules.conditionImmunities.vulnerable",
             "type": "override",
             "value": 1,
@@ -98,15 +91,29 @@
             "value": "ORIGIN.@item.resource.value",
             "priority": null,
             "phase": "initial"
+          },
+          {
+            "key": "system.rules.damageReduction.reduceSeverity",
+            "type": "add",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
         "targetDispositions": [],
-        "conditionals": []
+        "conditionals": [
+          {
+            "type": "damageType",
+            "damageType": "physical",
+            "role": "target"
+          }
+        ]
       },
       "disabled": false,
       "duration": {
@@ -115,7 +122,7 @@
         "expiry": null,
         "expired": false
       },
-      "description": "",
+      "description": "<ul><li><p>You add the current value of the Unstoppable Die to your damage roll.</p></li><li><p>You can't be Restrained or Vulnerable.</p></li><li><p>You reduce the severity of physical damage by one threshold (Severe to Major, Major to Minor, Minor to None).</p></li></ul>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -123,7 +130,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!PnD2UCgzIlwX6cY3.xzQtFSuDS48kUdAZ"

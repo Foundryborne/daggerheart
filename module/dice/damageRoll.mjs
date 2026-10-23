@@ -249,8 +249,9 @@ export default class DamageRoll extends DHRoll {
                 }
             }
 
+            // Handle weapon features. The item may be a feature, which doesn't have any
             const item = config.data.parent.items?.get(config.source.item);
-            if (item) {
+            if (item?.system.itemFeatures) {
                 // Massive (Weapon Feature)
                 if (item.system.itemFeatures.massive)
                     mods.massive = {
