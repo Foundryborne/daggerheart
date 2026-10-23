@@ -27,7 +27,7 @@ export default class StatusRestrictionConditional extends foundry.abstract.DataM
         }
     }
 
-    /** Weapon restriction conditionals only make sense for origin roles */
+    /** Status conditionals only make sense for origin roles */
     role = 'origin';
 
     test(rollData) { 
