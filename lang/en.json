@@ -332,7 +332,9 @@
                 }
             },
             "Base": {
-                "CannotAddType": "Cannot add {itemType} items to {actorType} actors."
+                "CannotAddType": "Cannot add {itemType} items to {actorType} actors.",
+                "bonusFieldBonusLabel": "{type} Bonus Value",
+                "bonusFieldDiceLabel": "{type} Dice"
             },
             "Character": {
                 "advantageSources": {
