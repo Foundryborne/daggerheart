@@ -5,7 +5,8 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     constructor(options) {
         super(options);
 
-        this.changeChoices = DhActiveEffectConfig.getChangeChoices();
+        const actorType = this.document.actor?.type;
+        this.changeChoices = DhActiveEffectConfig.getChangeChoices({ actorType });
     }
 
     static DEFAULT_OPTIONS = {
@@ -47,9 +48,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
     /**
      * Get ChangeChoices for the changes autocomplete. Static for use in this class aswell as in settings-active-effect-config.mjs
+     * @param {object} [options]
+     * @param {string} [options.actorType] the actor to filter the choices to
      * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
      */
-    static getChangeChoices() {
+    static getChangeChoices({ actorType } = {}) {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty', 'DhNPC'];
         const ignoredRuleKeys = ['standardAttack'];
 
@@ -87,6 +90,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             if (ignoredActorKeys.includes(key)) return acc;
 
             const model = game.system.api.models.actors[key];
+            if (actorType && model.metadata.type && model.metadata.type !== actorType) {
+                return acc;
+            }
+
             const group = game.i18n.localize(model.metadata.label);
             const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model.metadata.type);
 
