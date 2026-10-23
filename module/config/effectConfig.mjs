@@ -85,6 +85,10 @@ export const conditionalTypes = {
     damageType: {
         id: 'damageType',
         label: 'DAGGERHEART.CONFIG.ConditionalType.damageType'
+    },
+    duality: {
+        id: 'duality',
+        label: 'DAGGERHEART.CONFIG.ConditionalType.duality'
     }
 };
 
@@ -156,5 +160,16 @@ export const actionType = {
     spellcast: {
         id: 'spellcast',
         label: 'DAGGERHEART.GENERAL.Roll.spellcast'
+    }
+}
+
+export const dualityType = {
+    hope: {
+        id: 'hope',
+        label: 'DAGGERHEART.GENERAL.hope'
+    },
+    fear: {
+        id: 'fear',
+        label: 'DAGGERHEART.GENERAL.fear'
     }
 }
