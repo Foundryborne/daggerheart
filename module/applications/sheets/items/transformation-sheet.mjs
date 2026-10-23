@@ -36,6 +36,9 @@ export default class TransformationSheet extends DHBaseItemSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+    
+    /** @inheritdoc */
+    hasHeaderAttribution = false;
 
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {

@@ -11,17 +11,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "deflecting",
-        "effectIds": [
-          "Anbxt99bL9IWnlGh"
-        ],
-        "actionIds": [
-          "BspGQXodaANPEQcl"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -120,7 +109,19 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "deflecting": {
+        "value": "deflecting",
+        "effectIds": [
+          "Anbxt99bL9IWnlGh"
+        ],
+        "actionIds": [
+          "BspGQXodaANPEQcl"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

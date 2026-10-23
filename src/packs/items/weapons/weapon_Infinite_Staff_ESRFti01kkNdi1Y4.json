@@ -19,13 +19,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "extending",
-        "effectIds": [],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -115,6 +108,14 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "extending": {
+        "value": "extending",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

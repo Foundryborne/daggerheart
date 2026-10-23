@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 3,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "magical",
-        "effectIds": [
-          "3n4O7PyAWMEFdr5p"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 16,
       "severe": 39
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "magical": {
+        "value": "magical",
+        "effectIds": [
+          "3n4O7PyAWMEFdr5p"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

@@ -341,7 +341,9 @@ export const itemAbleRollParse = (value, actor, item) => {
     const rollData = isItemTarget || !model?.getRollData ? model : model.getRollData();
 
     try {
-        return Roll.replaceFormulaData(slicedValue, rollData);
+        // The AE may be referring to a field (like a config value) that also refers to a field
+        // nestedReplaceFormulaData only has a max depth of 2, and cannot infinite recursion
+        return nestedReplaceFormulaData(slicedValue, rollData);
     } catch {
         return '';
     }

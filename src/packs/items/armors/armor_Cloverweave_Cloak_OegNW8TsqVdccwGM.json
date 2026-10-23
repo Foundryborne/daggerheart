@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/coat-collared-red.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -54,15 +55,16 @@
       "major": 11,
       "severe": 27
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "fortuneFavored": {
         "value": "fortuneFavored",
         "effectIds": [],
         "actionIds": [
           "0JzAOuMyJDSdEpy3"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 4,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "fortified",
-        "effectIds": [
-          "QIefVb73cm9gYju8"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 15,
       "severe": 40
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "fortified": {
+        "value": "fortified",
+        "effectIds": [
+          "QIefVb73cm9gYju8"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

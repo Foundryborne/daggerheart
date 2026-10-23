@@ -5,8 +5,10 @@
   "system": {
     "loreReference": "gnome",
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart SRD H&F",
+      "page": null,
+      "campaignFrame": "",
+      "artist": ""
     },
     "description": "<p>Gnomes are typically small humanoids with conical heads and the ability to teleport short distances.</p>",
     "gmNotes": "",

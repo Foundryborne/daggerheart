@@ -6,9 +6,10 @@
   "img": "icons/weapons/daggers/dagger-poisoned-curved-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -53,17 +54,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "venomous",
-        "effectIds": [
-          "t6Qu6nt3bGnkTlXP"
-        ],
-        "actionIds": [
-          "1nmjsSNRC9uHl2j4"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -153,6 +143,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "venomous": {
+        "value": "venomous",
+        "effectIds": [
+          "t6Qu6nt3bGnkTlXP"
+        ],
+        "actionIds": [
+          "1nmjsSNRC9uHl2j4"
+        ],
+        "config": {}
       }
     }
   },

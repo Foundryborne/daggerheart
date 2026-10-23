@@ -22,8 +22,11 @@ import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
 import { pick } from './module/helpers/utils.mjs';
 import { dhTriggers, dhColorsets, getDiceRoles } from './module/config/dsnConfig.mjs';
+import { createArmorFeatures, createWeaponFeatures } from './module/config/itemFeatures.mjs';
 
 CONFIG.DH = SYSTEM;
+foundry.utils.mergeObject(CONFIG.DH.ITEM.armorFeatures, createArmorFeatures(), { overwrite: true, recursive: false });
+foundry.utils.mergeObject(CONFIG.DH.ITEM.weaponFeatures, createWeaponFeatures(), { overwrite: true, recursive: false });
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
 globalThis.Roll = BaseRoll;
@@ -111,7 +114,6 @@ CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
 CONFIG.ui.settings = applications.sidebar.DhSettings;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
-CONFIG.ui.pause = applications.ui.DhGamePause;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();

@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "startling",
-        "effectIds": [],
-        "actionIds": [
-          "itHKcDEckRlitu2z"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "startling": {
+        "value": "startling",
+        "effectIds": [],
+        "actionIds": [
+          "itHKcDEckRlitu2z"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

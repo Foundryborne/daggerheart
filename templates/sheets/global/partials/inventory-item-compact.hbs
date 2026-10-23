@@ -12,7 +12,7 @@
     {{/if}}
     >
     {{!-- Image --}}
-    <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
+    <div class="img-portrait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
     (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
     data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
         <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
@@ -59,15 +59,20 @@
                 </a>
             {{/if}}
         {{else}}
+            {{#if (and (eq item.type 'weapon') item.system.featureConfig.versatile)}}
+                <a data-action="toggleVersatileWeapon" data-tooltip="DAGGERHEART.UI.Tooltip.toggleVersatile">
+                    <i class="fa-regular fa-fw fa-right-left"></i>
+                </a>
+            {{/if}}
             {{#if (hasProperty item "toChat")}}
-            <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
-                <i class="fa-regular fa-fw fa-message"></i>
-            </a>
+                <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
+                    <i class="fa-regular fa-fw fa-message"></i>
+                </a>
             {{/if}}
             {{#unless hideContextMenu}}
-            <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </a>
+                <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </a>
             {{/unless}}
         {{/if}}
     </div>

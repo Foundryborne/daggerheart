@@ -6,9 +6,10 @@
   "img": "icons/tools/instruments/lute-gold-brown.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -48,15 +49,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "invigorating",
-        "effectIds": [],
-        "actionIds": [
-          "EIwNjlroQWthm07Q"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -146,6 +138,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "invigorating": {
+        "value": "invigorating",
+        "effectIds": [],
+        "actionIds": [
+          "EIwNjlroQWthm07Q"
+        ],
+        "config": {}
       }
     }
   },
