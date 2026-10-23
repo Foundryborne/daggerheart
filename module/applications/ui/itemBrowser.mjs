@@ -491,7 +491,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 docValue = Array.isArray(docValue) ? docValue : [docValue];
                 return docValue.some(dv => filterValue.includes(dv));
             case 'contains3':
-                return docValue.some(f => f.value === filterValue);
+                return Object.values(docValue ?? {}).some(f => f.value === filterValue);
             default:
                 return foundry.applications.ux.SearchFilter.evaluateFilter(obj, filter);
         }
