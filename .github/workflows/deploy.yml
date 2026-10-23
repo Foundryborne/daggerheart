@@ -1,57 +1,51 @@
-name: Release Creation
-
-on: 
-  release:
-    types: [published]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Install Dependencies
-      run: npm ci
-
-    - name: Build Packs
-      run: |
-        npm run pullYMLtoLDBBuild
-        mv --force src/packs/LICENSE packs/LICENSE
-
-    - name: Build daggerheart.js
-      run: npm run build
-
-    # get part of the tag after the `v`
-    - name: Extract tag version number
-      id: get_version
-      uses: battila7/get-version-action@v2
-
-    # Substitute the Manifest and Download URLs in the system.json
-    - name: Substitute Manifest and Download Links For Versioned Ones
-      id: sub_manifest_link_version
-      uses: microsoft/variable-substitution@v1
-      with:
-        files: 'system.json'
+# Notify Foundry VTT API about the new release version
+    - name: Notify Foundry VTT Registry
       env:
-        version: ${{steps.get_version.outputs.version-without-v}}
-        url: https://github.com/${{github.repository}}
-        manifest: https://raw.githubusercontent.com/${{github.repository}}/v14/system.json
-        download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
-        flags.hotReload: false
+        FOUNDRY_API_KEY: ${{ secrets.FOUNDRY_API_KEY }}
+        TAG_NAME: ${{ github.event.release.tag_name }}
+        VERSION: ${{ steps.get_version.outputs.version-without-v }}
+        REPOSITORY: ${{ github.repository }}
+      run: |
+        SYSTEM_ID=$(jq -r '.id' system.json)
+        MIN_COMPAT=$(jq -r '.compatibility.minimum // ""' system.json)
+        VER_COMPAT=$(jq -r '.compatibility.verified // ""' system.json)
+        MAX_COMPAT=$(jq -r '.compatibility.maximum // ""' system.json)
+        
+        PAYLOAD=$(jq -n \
+          --arg id "$SYSTEM_ID" \
+          --arg version "$VERSION" \
+          --arg manifest "https://raw.githubusercontent.com/$REPOSITORY/$TAG_NAME/system.json" \
+          --arg notes "https://github.com/$REPOSITORY/releases/tag/$TAG_NAME" \
+          --arg min "$MIN_COMPAT" \
+          --arg ver "$VER_COMPAT" \
+          --arg max "$MAX_COMPAT" \
+          '{
+            id: $id,
+            "dry-run": false,
+            release: {
+              version: $version,
+              manifest: $manifest,
+              notes: $notes,
+              compatibility: {
+                minimum: $min,
+                verified: $ver,
+                maximum: $max
+              }
+            }
+          }')
 
-    # Create a zip file with all files required by the module to add to the release
-    - run: zip -r ./system.zip system.json README.md LICENSE build/daggerheart.js build/daggerheart.js.map build/tagify.css styles/daggerheart.css assets/ templates/ packs/ lang/
+        RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://foundryvtt.com/_api/packages/release_version/" \
+          -H "Content-Type: application/json" \
+          -H "Authorization: $FOUNDRY_API_KEY" \
+          -d "$PAYLOAD")
 
-    # Create a release for this specific version
-    - name: Update Release with Files
-      id: create_version_release
-      uses: ncipollo/release-action@v1
-      with:
-        allowUpdates: true # Set this to false if you want to prevent updating existing releases
-        name: ${{ github.event.release.name }}
-        draft: ${{ github.event.release.unpublished }}
-        prerelease: ${{ github.event.release.prerelease }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: './system.json, ./system.zip'
-        tag: ${{ github.event.release.tag_name }}
-        body: ${{ github.event.release.body }}
+        HTTP_BODY=$(echo "$RESPONSE" | head -n -1)
+        HTTP_STATUS=$(echo "$RESPONSE" | tail -n 1)
+
+        echo "Response: $HTTP_BODY"
+        if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+          echo "Successfully notified Foundry VTT registry."
+        else
+          echo "Failed to notify Foundry VTT registry with status code $HTTP_STATUS"
+          exit 1
+        fi
