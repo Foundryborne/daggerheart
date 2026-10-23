@@ -16,8 +16,9 @@ const stressDamageReductionRule = localizationPath =>
     });
 
 const bonusField = label =>
+    // @todo: use proper localization keys for this. Do it after we figure out what to do with dice
     new fields.SchemaField({
-        bonus: new fields.NumberField({ integer: true, initial: 0, label: `${game.i18n.localize(label)} Value` }),
+        bonus: new fields.NumberField({ integer: true, initial: 0, label: `${game.i18n.localize(label)} Bonus Value` }),
         dice: new fields.ArrayField(new fields.StringField(), { label: `${game.i18n.localize(label)} Dice` })
     });
 
