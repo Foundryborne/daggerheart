@@ -3,11 +3,38 @@
     data-tab='{{tabs.actions.id}}'
     data-group='{{tabs.actions.group}}'
 >
-
-{{> 'daggerheart.inventory-items'
-    title='DAGGERHEART.GENERAL.Action.plural'
-    collection=document.system.actions
-    type='action'
-    canCreate=@root.editable
-}}
+    <fieldset class="drop-section">
+        <legend>
+            {{localize "DAGGERHEART.GENERAL.Action.plural"}}
+            {{#if @root.editable}}
+                <a data-action="createDoc" data-document-class="Item" data-type="action" data-tooltip="{{localize 'DOCUMENT.Create' type=''}}">
+                    <i class="fa-solid fa-plus icon-button" inert=""></i>
+                </a>
+            {{/if}}
+        </legend>
+        <ul class="items-list">
+            {{#each document.system.actions as |data|}}
+                {{> 'daggerheart.inventory-item'
+                    item=data
+                    type="action"
+                    actorType=@root.document.type
+                }}
+            {{/each}}
+            {{#each invalidActions as |data|}}
+                <li class="inventory-item" data-invalid-id="{{data._id}}" data-collection="actions">
+                    <div class="inventory-item-header">
+                        <div class="img-portrait">
+                            <img class="item-img" src="icons/svg/hazard.svg">
+                        </div>
+                        <div class="item-label">{{coalesce data.name "Invalid Action"}}</div>
+                        <div class="controls">
+                            <a data-action="deleteInvalidDoc" data-tooltip="DAGGERHEART.UI.Tooltip.deleteItem">
+                                <i class="fa-solid fa-trash" inert></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </fieldset>
 </section>
