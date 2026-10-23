@@ -1,12 +1,23 @@
-export async function updateItemFeatures(document, changes, key, featureListFn) {
+import { pickBy } from '../../helpers/functional.mjs';
+
+export async function updateItemFeatures(document, changes, featureListFn) {
+    // Check that itemFeatures was changed. Note that having a config will lead to this being called twice,
+    // however due to the diffing that should be fine
+    if (!changes.system.itemFeatures) return;
+
     // Store final data. A batch update is made from this at the end
     // keepId is on at the end, so id references are safe
     const finalCreateData = [];
     const removedEffectIds = [];
 
-    const changedFeatures = changes.system[key] ?? [];
-    const removedFeatures = document.system[key].filter(x => changedFeatures.every(y => y.value !== x.value));
-    const added = changedFeatures.filter(x => document.system[key].every(y => y.value !== x.value));
+    const changedFeatures = foundry.utils.mergeObject(
+        document.toObject(true).system.itemFeatures,
+        changes.system.itemFeatures,
+        { applyOperators: true }
+    );
+    const existingFeatures = document.system.itemFeatures;
+    const removedFeatures = Object.values(existingFeatures).filter(f => !(f.value in changedFeatures));
+    const addedFeatures = Object.values(pickBy(changes.system.itemFeatures, (_, k) => !(k in existingFeatures)));
     removedEffectIds.push(...removedFeatures.flatMap(f => f.effectIds ?? []).filter(id => document.effects.has(id)));
 
     // Determine what to remove
@@ -22,11 +33,13 @@ export async function updateItemFeatures(document, changes, key, featureListFn) 
     const existingIds = new Set(document.effects.map(e => e._id).filter(e => !removedEffectIds.includes(e._id)));
 
     const allFeatures = featureListFn();
-    for (const feature of added) {
+    for (const feature of addedFeatures) {
+        feature.actionIds ??= [];
+        feature.effectIds ??= [];
         const featureData = foundry.utils.deepClone(allFeatures[feature.value]);
 
-        // Add top level effects
-        if (featureData.effects?.length > 0) {
+        // Add top level effects if the feature doesn't already come with effects
+        if (featureData.effects?.length > 0 && feature.effectIds.length === 0) {
             const effectsToAdd = featureData.effects.map(effect => ({
                 ...effect,
                 _id: effect._id && !existingIds.has(effect._id) ? effect._id : foundry.utils.randomID(),

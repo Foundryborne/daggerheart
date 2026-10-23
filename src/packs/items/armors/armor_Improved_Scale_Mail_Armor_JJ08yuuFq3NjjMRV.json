@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/breastplate-sculpted-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -25,15 +25,16 @@
       "major": 11,
       "severe": 23
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "cumbersome": {
         "value": "cumbersome",
         "effectIds": [
           "bE8TfDWmibDVXlDK"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

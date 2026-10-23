@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 3,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "gilded",
-        "effectIds": [
-          "Hy0sNtFS1JAXxgwC"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 11,
       "severe": 27
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "gilded": {
+        "value": "gilded",
+        "effectIds": [
+          "Hy0sNtFS1JAXxgwC"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-sculpted-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -25,15 +26,16 @@
       "major": 13,
       "severe": 35
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "aquatic": {
         "value": "aquatic",
         "effectIds": [
           "3lzAYwHLDaq0HiMs"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

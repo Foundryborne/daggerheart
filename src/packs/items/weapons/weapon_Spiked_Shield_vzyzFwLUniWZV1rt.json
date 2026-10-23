@@ -11,16 +11,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "doubleDuty",
-        "effectIds": [
-          "gz2f4hmXhl7hbM6p",
-          "xLmqw1OcCztX7NI4"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -119,7 +109,18 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "doubleDuty": {
+        "value": "doubleDuty",
+        "effectIds": [
+          "gz2f4hmXhl7hbM6p",
+          "xLmqw1OcCztX7NI4"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

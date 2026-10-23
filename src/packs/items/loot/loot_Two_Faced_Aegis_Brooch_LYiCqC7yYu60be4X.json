@@ -6,7 +6,7 @@
     "description": "<p>Once per rest, [[/r 1d2]]{flip a coin}. On heads, you become immune to the next physical damage you take. On tails, you become immune to the next magic damage you take.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },

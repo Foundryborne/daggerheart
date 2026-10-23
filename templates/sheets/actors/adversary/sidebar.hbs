@@ -12,7 +12,7 @@
         </div>
         <div class="status-section">
             <div class="status-number">
-                <div class='status-value armor-slots'>
+                <div class='status-value'>
                     {{#if source.system.difficulty}}
                     <p>{{source.system.difficulty}}</p>
                     {{else}}
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="status-number">
-                <div class='status-value armor-slots'>
+                <div class="status-value">
                     <p>{{attackBonus}}</p>
                 </div>
                 <div class="status-label">
@@ -33,7 +33,7 @@
             </div>
             {{#if (lt source.system.criticalThreshold 20)}}
                 <div class="status-number">
-                    <div class='status-value armor-slots'>
+                    <div class="status-value">
                         <p>{{source.system.criticalThreshold}}+</p>
                     </div>
                     <div class="status-label">

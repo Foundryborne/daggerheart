@@ -38,6 +38,9 @@
             }
         }
     },
+    "SETTINGS": {
+        "GridDiagonalsL": "Configure how diagonal distance is measured on square and hexagonal grids. The number in parentheses defines the length of diagonals in units of grid spaces under each option. This option has no effect on daggerheart range measurements (close/far/etc)."
+    },
     "DAGGERHEART": {
         "CharacterSheet": "Character Sheet",
         "ACTIONS": {
@@ -329,7 +332,9 @@
                 }
             },
             "Base": {
-                "CannotAddType": "Cannot add {itemType} items to {actorType} actors."
+                "CannotAddType": "Cannot add {itemType} items to {actorType} actors.",
+                "bonusFieldBonusLabel": "{type} Bonus Value",
+                "bonusFieldDiceLabel": "{type} Dice"
             },
             "Character": {
                 "advantageSources": {
@@ -573,7 +578,8 @@
                 "recall": "Recall",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
-                "useItem": "Use Item"
+                "useItem": "Use Item",
+                "toggleVersatile": "Switch Versatile"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -1722,8 +1728,20 @@
                     "disadvantage": "Disadvantage Dice"
                 },
                 "triggers": {
-                  "dualityRoll": { "label": "Duality Roll" },
-                  "gmRoll": { "label": "GM Roll" }
+                    "dualityRoll": { 
+                        "label": "Duality Roll",
+                        "results": {
+                            "hope": "With Hope",
+                            "fear": "With Fear",
+                            "critical": "Critical"
+                        } 
+                    },
+                    "gmRoll": {  
+                        "label": "GM Roll",
+                        "results": {
+                            "critical": "Critical"
+                        }
+                    }
                 }
             },
             "DomainCardTypes": {
@@ -1889,6 +1907,9 @@
                 "spellcast": {
                     "name": "SpellCast"
                 },
+                "reaction": {
+                    "name": "Reaction"
+                },
                 "diceSet": {
                     "name": "Dice Set"
                 }
@@ -1995,6 +2016,10 @@
                         "comprehend": "Comprehend"
                     }
                 }
+            },
+            "TraitsSpecial": {
+                "spellcast": "Spellcast Trait",
+                "highest": "Best Trait"
             },
             "Triggers": {
                 "postDamageReduction": {
@@ -2635,11 +2660,11 @@
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "@Resolve[@item.tier|sign]{Add the item's Tier} to Armor Score",
+                    "description": "@Resolve[@item.itemFeatures.protective.config.value|sign]{Add the item's Tier} to Armor Score",
                     "effects": {
                         "protective": {
                             "name": "Protective",
-                            "description": "Add the item's Tier to your Armor Score"
+                            "description": "Add @Resolve[@item.itemFeatures.protective.config.value|sign]{the item's Tier} to your Armor Score"
                         }
                     }
                 },
@@ -2824,6 +2849,10 @@
                         }
                     }
                 },
+                "versatile": {
+                    "name": "Versatile",
+                    "description": "This weapon can also be used with these statistics — @Lookup[@item.itemFeatures.versatile.config.trait|type:trait]{Trait}, @Lookup[@item.itemFeatures.versatile.config.range|type:range]{Range}, @Lookup[@item.itemFeatures.versatile.config.damage]{Damage}"
+                },
                 "volleyed": {
                     "name": "Volleyed",
                     "description": "Spend a Hope to target a group of creatures within range. Targets you succeed against take half damage."
@@ -2832,6 +2861,7 @@
         },
         "EFFECTS": {
             "AddChange": "Add Change",
+            "AddConditional": "Add Conditional",
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
@@ -2875,6 +2905,11 @@
             "Conditionals": {
                 "phase": "Phase",
                 "failureMode": "Failure Mode",
+                "role": {
+                    "title": "Evaluated Role",
+                    "origin": "Origin",
+                    "target": "Target"
+                },
                 "dataCompare": {
                     "comparator": "Comparator"
                 },
@@ -3164,14 +3199,8 @@
                         "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
                     },
                     "reduceSeverity": {
-                        "magical": {
-                            "label": "Reduce Damage Severity: Magical",
-                            "hint": "Lowers any magical damage received by the set amount of severity degrees"
-                        },
-                        "physical": {
-                            "label": "Reduce Damage Severity: Physical",
-                            "hint": "Lowers any physical damage received by the set amount of severity degrees"
-                        }
+                        "label": "Reduce Damage Severity",
+                        "hint": "Lowers any damage received by the set amount of severity degrees"
                     },
                     "physical": {
                         "label": "Damage Reduction: Only Physical",
@@ -3199,22 +3228,6 @@
                         "minor": {
                             "label": "Threshold Immunities: Minor",
                             "hint": "Automatically ignores minor damage when set to 1"
-                        }
-                    }
-                },
-                "attack": {
-                    "damage": {
-                        "dice": {
-                            "label": "Base Attack: Damage Dice Index",
-                            "hint": "Index for the damage dice used on the basic attack. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20"
-                        },
-                        "bonus": {
-                            "label": "Base Attack: Damage Bonus"
-                        }
-                    },
-                    "roll": {
-                        "trait": {
-                            "label": "Base Attack: Trait"
                         }
                     }
                 }
@@ -3422,6 +3435,7 @@
             "scars": "Scars",
             "situationalBonus": "Situational Bonus",
             "searchPlaceholder": "Search...",
+            "spellcastTrait": "Spellcast Trait",
             "spent": "Spent",
             "step": "Step",
             "stress": "Stress",
@@ -3464,6 +3478,9 @@
                     },
                     "page": {
                         "label": "Page"
+                    },
+                    "campaignFrame": {
+                        "label": "Campaign Frame"
                     },
                     "artist": {
                         "label": "Artist"
@@ -3513,6 +3530,7 @@
             },
             "Armor": {
                 "baseScore": "Base Score",
+                "scoreShort": "Score",
                 "baseThresholds": {
                     "base": "Base Thresholds",
                     "major": "Major Threshold",
@@ -3711,7 +3729,7 @@
                         "label": "Show Foundry Status Effects"
                     },
                     "showTokenDistance": {
-                        "label": "Show Token Distance on Hover",
+                        "label": "Show Token Distance on Highlight",
                         "choices": {
                             "always": "Always",
                             "encounters": "Encounters",
@@ -4230,6 +4248,8 @@
                 "recallCostMax": "Recall Cost (Max)",
                 "evasionMin": "Evasion (Min)",
                 "evasionMax": "Evasion (Max)",
+                "spellcasting": "Spellcasting",
+                "thresholds": "Thresholds",
                 "subtype": "Subtype",
                 "missing": "<i>Missing</i>",
                 "folders": {
@@ -4288,7 +4308,7 @@
                 "cardTooHighLevel": "The card is too high level!",
                 "duplicateCard": "You cannot select the same card more than once.",
                 "duplicateCharacter": "This actor is already registered in the party members list.",
-                "onlyCharactersInPartySheet": "You can only drag characters, companions and adversaries to the party sheet.",
+                "limitedActorsInPartySheet": "You can only drag actors of type {allowedTypes} to the party sheet.",
                 "notPrimary": "The weapon is not a primary weapon!",
                 "notSecondary": "The weapon is not a secondary weapon!",
                 "itemTooHighTier": "The item must be from Tier1",
@@ -4335,7 +4355,8 @@
                 "behaviorRegionRequiresGM": "Creating a Region with an attached Behavior requires an online GM",
                 "comboDiceOnlyTwoDiceError": "Combo dice functionality only works on a single pair of two dice",
                 "reloadRequired": "The {weapon} must be reloaded to be used!",
-                "partnerRequired": "A partner must be assigned to use this action."
+                "partnerRequired": "A partner must be assigned to use this action.",
+                "actorMissing": "The actor {actorName} could not be dealt damage as it no longer exists"
             },
             "Progress": {
                 "migrationLabel": "Performing system migration. Please wait and do not close Foundry."
@@ -4395,7 +4416,8 @@
                     "general": "This effect is suppressed",
                     "invalid": "This effect is suppressed due to conditionals",
                     "unequipped": "This effect is suppressed because this item is not equipped"
-                }
+                },
+                "toggleVersatile": "Versatile Switch"
             }
         }
     }

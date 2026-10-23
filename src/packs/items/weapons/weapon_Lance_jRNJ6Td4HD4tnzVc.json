@@ -6,9 +6,10 @@
   "img": "icons/weapons/polearms/spear-flared-purple.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -19,15 +20,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "cumbersome",
-        "effectIds": [
-          "zj1ddWCXh6TuGr3c"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -117,6 +109,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "cumbersome": {
+        "value": "cumbersome",
+        "effectIds": [
+          "zj1ddWCXh6TuGr3c"
+        ],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

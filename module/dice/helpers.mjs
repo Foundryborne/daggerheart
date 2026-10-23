@@ -1,4 +1,4 @@
-import { ResourceUpdateMap } from '../data/action/baseAction.mjs';
+import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 
 export function updateResourcesForDualityReroll(oldDuality, newDuality, actor) {
     const hope = (newDuality >= 0 ? 1 : 0) - (oldDuality >= 0 ? 1 : 0);

@@ -20,17 +20,16 @@ export default class RegisteredTriggers extends Map {
     }
 
     registerItemTriggers(item, registerOverride) {
-        if (!item.actor || !item._stats.createdTime) return;
+        if (!item.actor || !item._stats.createdTime || !item.persisted) return;
         for (const action of item.system.actions ?? []) {
             if (!action.actor) continue;
 
             /* Non actor-linked should only prep synthetic actors so they're not registering triggers unless they're on the canvas */
-            if (
-                !registerOverride &&
-                !action.actor.prototypeToken.actorLink &&
-                (!(action.actor.parent instanceof game.system.api.documents.DhToken) || !action.actor.parent?.uuid)
-            )
+            const isUnlinked = !action.actor.prototypeToken.actorLink;
+            const isSynthetic = action.actor.token?.uuid;
+            if (!registerOverride && isUnlinked && !isSynthetic) {
                 continue;
+            }
 
             const triggers = {};
             for (const trigger of action.triggers) {

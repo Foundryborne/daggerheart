@@ -316,12 +316,6 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
         const fields = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).schema.fields;
 
-        const removeUpdate = Object.keys(this.settings.restMoves[target.dataset.type].moves).reduce((acc, key) => {
-            acc[key] = _del;
-
-            return acc;
-        }, {});
-
         const updateBase =
             target.dataset.type === 'shortRest'
                 ? fields.restMoves.fields.shortRest.fields
@@ -351,10 +345,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         await this.settings.updateSource({
             [`restMoves.${target.dataset.type}`]: {
                 ...update,
-                moves: {
-                    ...removeUpdate,
-                    ...update.moves
-                }
+                moves: _replace(update.moves)
             }
         });
 

@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 3,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "painful",
-        "effectIds": [],
-        "actionIds": [
-          "37KLF2bim9nRdPTU"
-        ]
-      }
-    ],
     "baseThresholds": {
       "major": 17,
       "severe": 43
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "painful": {
+        "value": "painful",
+        "effectIds": [],
+        "actionIds": [
+          "37KLF2bim9nRdPTU"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

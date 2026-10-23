@@ -1,5 +1,5 @@
 import { itemAbleRollParse } from '../../../helpers/utils.mjs';
-import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../../systemRegistration/socket.mjs';
+import { emitAsGM, socketEvent } from '../../../systemRegistration/socket.mjs';
 import { NullableBooleanField } from '../nullableBooleanField.mjs';
 
 const fields = foundry.data.fields;
@@ -42,7 +42,7 @@ export default class CountdownField extends fields.ArrayField {
             return;
         }
 
-        const data = { countdowns: {} };
+        const countdowns = [];
         const countdownMessages = [];
         for (let countdown of config.countdowns) {
             let startFormula = countdown.progress.startFormula ? countdown.progress.startFormula : null;
@@ -58,17 +58,15 @@ export default class CountdownField extends fields.ArrayField {
                 }
             }
 
-            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-            data.countdowns[foundry.utils.randomID()] = {
+            countdowns.push({
                 ...countdown,
-                hidden: countdown.hidden ?? setting.hideNewCountdowns,
                 progress: {
                     ...countdown.progress,
                     current: countdownStart,
                     start: countdownStart,
                     startFormula
                 }
-            };
+            });
         }
 
         if (game.dice3d) {
@@ -79,28 +77,17 @@ export default class CountdownField extends fields.ArrayField {
             );
         }
 
-        await emitGMUpdate(
-            GMUpdateEvent.UpdateCountdowns,
-            async () => {
-                const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-                await countdownSetting.updateSource(data);
-                await game.settings.set(
-                    CONFIG.DH.id,
-                    CONFIG.DH.SETTINGS.gameSettings.Countdowns,
-                    countdownSetting.toObject()
-                );
-                game.socket.emit(`system.${CONFIG.DH.id}`, {
-                    action: socketEvent.Refresh,
-                    data: { refreshType: RefreshType.Countdown }
-                });
-                Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
-            },
-            data,
-            null,
-            {
-                refreshType: RefreshType.Countdown
-            }
-        );
+        if (game.user.isGM) {
+            const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+            await setting.add(...countdowns);
+        } else {
+            await emitAsGM(
+                socketEvent.AddCountdown,
+                {
+                    data: { countdowns }
+                }
+            );
+        }
     }
 
     /**

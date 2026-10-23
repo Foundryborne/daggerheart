@@ -29,6 +29,9 @@ export default class DualityConditional extends foundry.abstract.DataModel {
         }
     }
 
+    /** Duality conditionals only make sense for origin roles */
+    role = 'origin';
+
     test(rollData) {
         const roll = rollData.message?.system.roll;
         if (!roll) return false;

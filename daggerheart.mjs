@@ -22,8 +22,11 @@ import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
 import { pick } from './module/helpers/utils.mjs';
 import { dhTriggers, dhColorsets, getDiceRoles } from './module/config/dsnConfig.mjs';
+import { createArmorFeatures, createWeaponFeatures } from './module/config/itemFeatures.mjs';
 
 CONFIG.DH = SYSTEM;
+foundry.utils.mergeObject(CONFIG.DH.ITEM.armorFeatures, createArmorFeatures(), { overwrite: true, recursive: false });
+foundry.utils.mergeObject(CONFIG.DH.ITEM.weaponFeatures, createWeaponFeatures(), { overwrite: true, recursive: false });
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
 globalThis.Roll = BaseRoll;
@@ -47,11 +50,11 @@ CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
 
 CONFIG.Folder.documentClass = documents.DhFolder;
 
-CONFIG.Actor.documentClass = documents.DhpActor;
+CONFIG.Actor.documentClass = documents.DhActor;
 CONFIG.Actor.dataModels = models.actors.config;
 CONFIG.Actor.collection = collections.DhActorCollection;
 
-CONFIG.Item.documentClass = documents.DHItem;
+CONFIG.Item.documentClass = documents.DhItem;
 CONFIG.Item.dataModels = models.items.config;
 
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
@@ -80,7 +83,7 @@ CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-r
 
 CONFIG.Scene.documentClass = documents.DhScene;
 
-CONFIG.Token.documentClass = documents.DhToken;
+CONFIG.Token.documentClass = documents.DhTokenDocument;
 CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
 CONFIG.Token.rulerClass = placeables.DhTokenRuler;
@@ -111,7 +114,6 @@ CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
 CONFIG.ui.settings = applications.sidebar.DhSettings;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
-CONFIG.ui.pause = applications.ui.DhGamePause;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
@@ -308,7 +310,8 @@ Hooks.on('i18nInit', () => {
     game.system.settings = {
         appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
         automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
-        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
+        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew),
+        variantRules: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
     };
 
     // Setup homebrew resources
@@ -415,7 +418,7 @@ Hooks.on('ready', async () => {
 
 Hooks.once('diceSoNiceReady', dice3d => {
     for (const trigger of dhTriggers) {
-        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids);
+        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids.map(x => ({ ...x, name: _loc(x.name) })));
     }
 
     for (const colorset of dhColorsets) {
@@ -573,9 +576,9 @@ Hooks.on('activateSceneControls', controls => {
 Hooks.on('renderDialogV2', (dialog, html) => {
     if (!html.classList.contains('dialog')) return;
     const cls = html.classList.contains('item-create')
-        ? documents.DHItem.implementation
+        ? documents.DhItem.implementation
         : html.classList.contains('actor-create')
-            ? documents.DhpActor.implementation
+            ? documents.DhActor.implementation
             : null;
     if (!cls) return;
 

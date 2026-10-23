@@ -1,0 +1,120 @@
+.daggerheart.dh-style .item-browser {
+    // Sizing and layout styling
+    // Actual display styling occurs later
+    .item-info,
+    &.item-list-header {
+        display: flex;
+        align-items: center;
+
+        > * {
+            flex: 1 0 80px;
+            text-align: center;
+        }
+
+        .item-list-img {
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            flex: unset;
+            object-fit: cover;
+            // Cards use center center, however they're often wider than tall, so center/top is the same
+            // Adversaries and all other item types prefer center top
+            object-position: center top;
+        }
+
+        .item-list-name {
+            flex-grow: 3;
+            text-align: start;
+        }
+
+        [data-key="system.armor.max"],
+        [data-key="system.tier"] {
+            flex: 0 0 6.5ch;
+        }
+    }
+
+    &.item-list-header {
+        background-color: light-dark(@dark-15, @dark-golden-80);
+        color: @color-text-emphatic;
+        border: 1px solid @color-border;
+        border-radius: 3px;
+        min-height: 30px;
+        font-weight: bold;
+
+        // Allows alignment with the actual scrollable body
+        scrollbar-gutter: stable;
+        overflow-y: auto;
+
+        > * {
+            white-space: nowrap;
+        }
+
+        div[data-sort-key] {
+            &:after {
+                font-family: var(--font-awesome);
+                margin-left: 5px;
+            }
+
+            &[data-sort-type='ASC']:after {
+                content: '\f884';
+            }
+
+            &[data-sort-type='DESC']:after {
+                content: '\f885';
+            }
+        }
+    }
+
+    &.item-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        .with-scroll-shadows();
+
+        .item-info {
+            text-transform: capitalize;
+            padding-inline: 1px; // Fixes alignment due to the header having a border
+        }
+
+        .item-container {
+            &:hover {
+                background: light-dark(@dark-blue-10, @golden-10);
+            }
+        }
+
+        .item-list-img {
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            flex: unset;
+            object-fit: cover;
+            // Cards use center center, however they're often wider than tall, so center/top is the same
+            // Adversaries and all other item types prefer center top
+            object-position: center top;
+        }
+
+        .item-desc {
+            display: grid;
+            opacity: 0;
+            grid-template-rows: 0fr;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+
+            .wrapper {
+                overflow: hidden;
+                padding: 0 0 0 50px;
+                display: flex;
+                flex-direction: column;
+                .typography();
+
+                /* Some items don't include an outer container, so we attempt a catch-all */
+                > *:last-child {
+                    padding-bottom: 6px;
+                }
+            }
+        }
+    }
+}

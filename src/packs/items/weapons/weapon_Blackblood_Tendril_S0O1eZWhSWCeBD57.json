@@ -6,9 +6,10 @@
   "img": "icons/commodities/biological/tentacle-thorned-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -19,13 +20,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "poisonous",
-        "effectIds": [],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -115,6 +109,14 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "poisonous": {
+        "value": "poisonous",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

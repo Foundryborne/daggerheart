@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "bouncing",
-        "effectIds": [],
-        "actionIds": [
-          "x9cz8u1utQ6DtoKA"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "bouncing": {
+        "value": "bouncing",
+        "effectIds": [],
+        "actionIds": [
+          "x9cz8u1utQ6DtoKA"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

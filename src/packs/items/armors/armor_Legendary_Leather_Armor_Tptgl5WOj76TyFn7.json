@@ -13,7 +13,6 @@
     "actions": {},
     "tier": 4,
     "equipped": false,
-    "armorFeatures": [],
     "baseThresholds": {
       "major": 13,
       "severe": 36
@@ -25,7 +24,8 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {}
   },
   "effects": [],
   "sort": 0,

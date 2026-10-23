@@ -15,7 +15,7 @@
 import { getScrollTextData } from '../../helpers/utils.mjs';
 import { changeTypes } from './changeTypes/_module.mjs'
 import { conditionalTypes } from './conditionalTypes/_module.mjs';
-import { migrations } from './migrations/_module.mjs';
+import * as migrations from './migrations/_module.mjs';
 
 export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     static defineSchema() {
@@ -120,28 +120,37 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     }
 
     /** 
-     * Tests all conditionals of a specific phase and returns if there are no failures
+     * Tests all conditionals of a specific phase and role and returns if there are no failures. 
+     * Conditionals not meant for that phase or role are not tested.
      * @param {object} rollData
      * @param {object} [options]
      * @param {keyof typeof CONFIG.DH.EFFECTS.conditionalPhases} [options.phase] the phase to run on, by default its preparation
      * @param {(keyof typeof CONFIG.DH.EFFECTS.conditionalFailureModes) | null} [options.failureMode] the failure mode to check, by default its all
+     * @param {"origin" | "target"} [options.role="origin"] the actor's role in the tested exchange. The origin is action actor, and the target is the one taking damage
      * @returns if the conditionals of the phase pass
      */
     testConditionals(rollData, { 
         phase = CONFIG.DH.EFFECTS.conditionalPhases.preparation.id, 
-        failureMode = null
+        failureMode = null,
+        role = 'origin'
     } = {}) {
         for (const change of this.changes) {
             if (change.isSuppressed) return false;
         }
 
-        const conditionalFailed = rollData && this.conditionals.some(x => 
-            x.constructor.metadata.phase === phase && 
-            (!failureMode || x.constructor.metadata.failureMode === failureMode) &&
-            !x.test(rollData)
-        );
+        // If there is no roll data, return early
+        if (!rollData) return false;
 
-        return !rollData || !conditionalFailed; 
+        const relevantConditionals = this.conditionals.filter(x => {
+            const metadata = x.constructor.metadata;
+            if (!metadata) return false;
+            const matchesPhase = metadata.phase === phase;
+            const matchesFailureMode = !failureMode || metadata.failureMode === failureMode;
+            const matchesRole = !x.role || x.role === role;
+            return matchesPhase && matchesFailureMode && matchesRole;
+        });
+
+        return relevantConditionals.every(x => x.test(rollData));
     }
 
     get armorChange() {
@@ -198,7 +207,7 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
     }
 
     static migrateData(source) {
-        for (const migration of migrations) {
+        for (const migration of Object.values(migrations)) {
             migration(source);
         } 
 

@@ -2,11 +2,22 @@
 @import '../../utils/fonts.less';
 
 .application.daggerheart.dh-style.dialog {
-    .tab.experiences {
+    .tab.experiences.active {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex: 1;
+        overflow: hidden;
+
+        .scroll-container {
+            overflow-y: auto;
+            flex: 1 1 auto;
+            max-height: 28rem;
+        }
+
         .add-experience-btn {
             width: 100%;
             height: 38px;
-            margin-bottom: 12px;
         }
 
         .experience-list {
