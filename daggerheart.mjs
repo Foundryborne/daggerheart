@@ -114,7 +114,6 @@ CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
 CONFIG.ui.settings = applications.sidebar.DhSettings;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
-CONFIG.ui.pause = applications.ui.DhGamePause;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
