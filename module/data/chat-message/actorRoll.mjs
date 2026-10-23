@@ -89,7 +89,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     get actionItem() {
         switch (this.source.originItem.type) {
             case CONFIG.DH.ITEM.originItemType.restMove:
-                const restMoves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves;
+                const restMoves = game.system.settings.homebrew.restMoves;
                 return Array.from(foundry.utils.getProperty(restMoves, `${this.source.originItem.itemPath}`).actions)[
                     this.source.originItem.actionIndex
                 ];
@@ -278,8 +278,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             for (const key of Object.keys(flatDamageKeys)) {
                 if (key === 'hitPoints' && source.hasDamage && !source.hasHealing) {
                     source.damage.main = getRoll('hitPoints');
-                } 
-                else {
+                } else {
                     source.damage.resources[key] = getRoll(key);
                 }
             }

@@ -6,9 +6,10 @@
   "img": "icons/weapons/swords/sword-runed-glowing.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -62,17 +63,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "ethereal",
-        "effectIds": [
-          "MnQKsDs3DCwlqUQs"
-        ],
-        "actionIds": [
-          "XdQBnYfIX5Km5KqU"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -131,7 +121,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -162,6 +153,18 @@
           "trait": null
         }
       }
+    },
+    "itemFeatures": {
+      "ethereal": {
+        "value": "ethereal",
+        "effectIds": [
+          "MnQKsDs3DCwlqUQs"
+        ],
+        "actionIds": [
+          "XdQBnYfIX5Km5KqU"
+        ],
+        "config": {}
+      }
     }
   },
   "effects": [
@@ -177,7 +180,8 @@
         "changes": [],
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "transfer": false,
       "_id": "MnQKsDs3DCwlqUQs",

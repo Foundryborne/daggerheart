@@ -6,7 +6,7 @@
     "description": "<p>When you mark your last Hit Point, this bottle shatters to release the Sprite inside. The Sprite clears all your Hit Points before fading from the Mortal Realm.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -60,16 +60,8 @@
                   "formula": ""
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           }
         },

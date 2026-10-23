@@ -40,19 +40,11 @@
             "applyTo": "hitPoints",
             "type": [],
             "base": false,
-            "valueAlt": {
-              "multiplier": "prof",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
-            "fullRestore": false
+            "fullRestore": false,
+            "itemId": null
           },
           "resources": {}
         },
@@ -176,7 +168,8 @@
           "description": ""
         },
         "rangeDependence": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

@@ -2,10 +2,11 @@ export const customChangeTypes = {
     armor: {
         id: 'armor',
         priority: 20,
-        label: 'TYPES.ActiveEffect.armor'
+        label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.name'
     },
     standardAttack: {
-        id: 'standardAttack'
+        id: 'standardAttack',
+        label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.name'
     }
 };
 
@@ -151,10 +152,6 @@ export const actionType = {
     attack: {
         id: 'attack',
         label: 'DAGGERHEART.GENERAL.Roll.attack'
-    },
-    trait: {
-        id: 'trait',
-        label: 'DAGGERHEART.GENERAL.Roll.trait'
     },
     spellcast: {
         id: 'spellcast',

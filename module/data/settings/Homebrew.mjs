@@ -1,6 +1,6 @@
 import { defaultRestOptions } from '../../config/generalConfig.mjs';
 import { resetAndRerenderActors } from '../../helpers/utils.mjs';
-import { ActionsField } from '../fields/actionField.mjs';
+import { ActionCollectionField } from '../fields/action-collection-field.mjs';
 
 const currencyField = (initial, label, icon, initialAmount = 0) =>
     new foundry.data.fields.SchemaField({
@@ -30,7 +30,7 @@ const restMoveField = () =>
             base64: false
         }),
         description: new foundry.data.fields.HTMLField(),
-        actions: new ActionsField(),
+        actions: new ActionCollectionField(),
         effects: new foundry.data.fields.ArrayField(new foundry.data.fields.ObjectField())
     });
 
@@ -181,7 +181,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                             base64: false
                         }),
                         description: new fields.HTMLField(),
-                        actions: new ActionsField(),
+                        actions: new ActionCollectionField(),
                         effects: new fields.ArrayField(new fields.ObjectField())
                     })
                 ),
@@ -194,7 +194,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                             base64: false
                         }),
                         description: new fields.HTMLField(),
-                        actions: new ActionsField(),
+                        actions: new ActionCollectionField(),
                         effects: new fields.ArrayField(new fields.ObjectField())
                     })
                 )
@@ -221,6 +221,9 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
 
     /** Invoked by the setting when data changes */
     handleChange() {
+        // Update setting early so re-render attempts pull it
+        game.system.settings.homebrew = this;
+
         if (this.maxFear) {
             if (ui.resources) ui.resources.render({ force: true });
         }

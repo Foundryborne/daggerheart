@@ -30,7 +30,8 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
         },
         experiences: {
             id: 'experiences',
-            template: 'systems/daggerheart/templates/sheets-settings/character-settings/experiences.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/character-settings/experiences.hbs',
+            scrollable: ['.scroll-container']
         }
     };
 
@@ -46,7 +47,7 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
     /**@inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        context.levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        context.levelupAuto = game.system.settings.automation.levelupAuto;
 
         return context;
     }

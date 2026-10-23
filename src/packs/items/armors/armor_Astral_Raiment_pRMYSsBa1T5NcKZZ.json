@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-layered-leather-blue-gold.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -63,15 +64,16 @@
       "major": 11,
       "severe": 27
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "stellar": {
         "value": "stellar",
         "effectIds": [],
         "actionIds": [
           "1xXZfSn4U37AgDRB"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

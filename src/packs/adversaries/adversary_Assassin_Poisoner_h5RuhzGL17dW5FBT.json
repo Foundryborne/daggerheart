@@ -34,7 +34,6 @@
     },
     "type": "skulk",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "t4LUkxg9fu3go5h4": {
         "name": "Intrusion",
@@ -93,7 +92,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "h5RuhzGL17dW5FBT",
@@ -278,7 +279,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Fz2lnUEeBxsDpx0G",
       "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
@@ -297,7 +299,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {
@@ -347,7 +350,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "of6g4piugKzTI4dv",
       "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
@@ -370,7 +374,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "qT5nh7OcQ6aGdiWS",
           "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
@@ -458,7 +463,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "lAmiK8wVxjyHwKlp",
       "img": "icons/magic/air/fog-gas-smoke-green.webp",
@@ -476,7 +482,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": false,
           "duration": {

@@ -6,7 +6,7 @@
   "img": "icons/equipment/shield/heater-emossed-spiral-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -19,15 +19,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "protective",
-        "effectIds": [
-          "2GJFRy7hXnzFe0Rz"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -86,7 +77,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -117,19 +109,31 @@
           "trait": null
         }
       }
+    },
+    "itemFeatures": {
+      "protective": {
+        "value": "protective",
+        "effectIds": [
+          "2GJFRy7hXnzFe0Rz"
+        ],
+        "actionIds": [],
+        "config": {
+          "value": "@item.tier"
+        }
+      }
     }
   },
   "effects": [
     {
       "name": "Protective",
-      "description": "Add the item's Tier to your Armor Score",
+      "description": "Add @Resolve[@item.itemFeatures.protective.config.value|sign]{the item's Tier} to your Armor Score",
       "img": "icons/skills/melee/shield-block-gray-orange.webp",
       "system": {
         "changes": [
           {
             "type": "armor",
             "value": {
-              "max": "ITEM.@system.tier",
+              "max": "@item.itemFeatures.protective.config.value",
               "current": 0,
               "damageThresholds": null,
               "interaction": "none"
@@ -143,7 +147,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "2GJFRy7hXnzFe0Rz",
       "type": "base",

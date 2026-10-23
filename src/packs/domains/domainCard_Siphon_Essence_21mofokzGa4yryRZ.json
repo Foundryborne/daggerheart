@@ -6,7 +6,7 @@
     "domain": "dread",
     "level": 2,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Very Close range. Once per long rest on a success, the target takes <strong>d12+4</strong> magic damage using your Proficiency. On a success with Fear, you gain a +1 bonus to your Proficiency for this attack.</p><p>You clear a number of Hit Points equal to the number of Hit Points the target marked from this attack.</p>",
@@ -31,21 +31,13 @@
                 "formula": ""
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },
@@ -114,21 +106,13 @@
                 "formula": "(@prof+1)d12 + 4"
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },

@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "reloading",
-        "effectIds": [],
-        "actionIds": [
-          "8BHprlLTXO0C71ps"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -77,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -126,7 +118,17 @@
       "diceStates": {}
     },
     "gmNotes": "",
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "reloading": {
+        "value": "reloading",
+        "effectIds": [],
+        "actionIds": [
+          "8BHprlLTXO0C71ps"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

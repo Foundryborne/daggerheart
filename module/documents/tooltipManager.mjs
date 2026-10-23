@@ -21,6 +21,9 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         let html = options.html;
         const key = element.dataset.tooltip?.match(/^#([\w-]+)#/)?.[1];
         switch (key) {
+            case 'actor':
+                html = await this.#activateActor(element, options);
+                break;
             case 'battlepoints':
                 return this.#activateBattlepoints(element, options);
             case 'effect-display':
@@ -50,6 +53,27 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         super.activate(element, { ...options, html });
         if (typeof html === 'string') this.tooltip.innerHTML = html; // foundry likes to strip certain stuff like svgs, put it back
     }
+    
+    async #activateActor(element, options) {
+        const actorUuid = element.dataset.tooltip.slice(7);
+        const actor = await foundry.utils.fromUuid(actorUuid);
+        if (!actor) return null;
+
+        // If there is support for embeds, use that instead.
+        const theme = game.system.settings.appearance.tooltipCardTheme;
+        const embed = actor instanceof Actor ? await actor.system.toEmbed({ includeAttribution: true, theme }) : null;
+        if (embed) {
+            if (embed instanceof HTMLCollection) {
+                this.tooltip.replaceChildren(...embed);
+            } else {
+                this.tooltip.replaceChildren(embed);
+            }
+            options.direction ??= this._determineItemTooltipDirection(element);
+            return this.tooltip.innerHTML;
+        }
+
+        return null;
+    }
 
     async #activateBattlepoints(element, options) {
         this.#wide = true;
@@ -70,7 +94,8 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         let effect;
         if (element.dataset.uuid) {
             const effectItem = await foundry.utils.fromUuid(element.dataset.uuid);
-            const effectData = effectItem.toObject();
+            const effectData = effectItem?.toObject();
+            if (!effectData) return; // May be mid removal
 
             effect = {
                 ...effectData,
@@ -129,10 +154,11 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     async #activateItem(element, options) {
         const itemUuid = element.dataset.tooltip.slice(6);
         const item = await foundry.utils.fromUuid(itemUuid);
+        const actor = item?.actor;
         if (!item) return null;
 
         // If there is support for embeds, use that instead.
-        const cardTheme = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).tooltipCardTheme;
+        const cardTheme = game.system.settings.appearance.tooltipCardTheme;
         const embed = item instanceof Item ? await item.system.toEmbed({ theme: cardTheme }) : null;
         if (item instanceof Item && embed) {
             if (embed instanceof HTMLCollection) {
@@ -172,8 +198,11 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             const type = item.system.secondary ? 'secondary' : 'primary';
             tags.unshift(_loc(`DAGGERHEART.ITEMS.Weapon.${type}Weapon.full`));
         }
-        if (item instanceof Item && item.system.metadata.isQuantifiable) {
-            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`)
+        if (
+            item instanceof Item &&
+            ((!actor && item.system.quantity > 1) || actor?.metadata.quantifiable?.includes(item?.type))
+        ) {
+            tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`);
         }
         if (item instanceof game.system.api.models.actions.actionsTypes.base) {
             // todo: should these be in action._getTags()?
@@ -310,9 +339,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
     async #activateRest(element, options) {
         const isShortRest = element.dataset.tooltip?.startsWith('#shortRest#');
         const key = element.dataset.tooltip.slice(isShortRest ? 11 : 10);
-        const moves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves[
-            element.dataset.restType
-        ].moves;
+        const moves = game.system.settings.homebrew.restMoves[element.dataset.restType].moves;
         const move = moves[key];
         const description = await foundry.applications.ux.TextEditor.enrichHTML(move.description);
         const html = await foundry.applications.handlebars.renderTemplate(
@@ -485,10 +512,13 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             combat.turns
                 ?.filter(x => x.actor?.isNPC && x.token.disposition === CONST.TOKEN_DISPOSITIONS.HOSTILE)
                 ?.map(x => ({ ...x.actor, type: x.actor.system.type })) ?? [];
-        const characters = combat.turns?.filter(x => !x.isNPC && x.actor) ?? [];
+        
+        const activePartyActors = game.actors.party?.system.partyMembers ?? [];
+        const activePartyCharacters = activePartyActors.filter(x => Boolean(x) && x.type === 'character');
+        const charactersInCombat = combat.turns?.filter(x => !x.isNPC && x.actor) ?? [];
+        const nrCharacters = charactersInCombat.length ? charactersInCombat.length : activePartyCharacters.length;
 
-        const nrCharacters = characters.length;
-        const currentBP = AdversaryBPPerEncounter(adversaries, characters);
+        const currentBP = AdversaryBPPerEncounter(adversaries, nrCharacters);
         const maxBP = combat.system.extendedBattleToggles.reduce(
             (acc, toggle) => acc + toggle.category,
             BaseBPPerEncounter(nrCharacters)

@@ -3,7 +3,7 @@
 @import '../utils/mixin.less';
 
 .appTheme({}, {
-    .inventory-item .img-portait .roll-img {
+    .inventory-item .img-portrait .roll-img {
         filter: invert(1);
     }
 
@@ -30,13 +30,13 @@
             border: 1px solid;
             border-radius: 6px;
 
-            .inventory-item-header .img-portait img.item-img {
+            .inventory-item-header .img-portrait img.item-img {
                 border-radius: 6px 0 0 6px;
             }
         }
 
         &:not(.single-img) {
-            .img-portait:has(.roll-img):hover {
+            .img-portrait:has(.roll-img):hover {
                 .roll-img {
                     opacity: 1;
                 }
@@ -69,7 +69,7 @@
 
         .inventory-item-header,
         &.inventory-item-compact {
-            .img-portait {
+            .img-portrait {
                 flex: 0 0 40px;
                 height: 40px;
                 position: relative;
@@ -104,6 +104,10 @@
                 display: flex;
                 align-items: center;
                 justify-content: end;
+
+                .suppressed {
+                    margin-right: var(--spacer-4);
+                }
 
                 a {
                     width: 20px;
@@ -219,7 +223,7 @@
                 / 40px 1fr min-content;
             column-gap: 8px;
 
-            > .img-portait {
+            > .img-portrait {
                 grid-area: img;
             }
             > .item-name {

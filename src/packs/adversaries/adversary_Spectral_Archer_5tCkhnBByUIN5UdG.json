@@ -34,7 +34,6 @@
     },
     "type": "ranged",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "d0ynwl3Sk57JFfpw": {
         "name": "Ancient Knowledge",
@@ -92,7 +91,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "5tCkhnBByUIN5UdG",
@@ -282,7 +283,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "qvJRjKrdr6MG05iJ",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -305,7 +307,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "xNkkl7nwKFkiB9Rv",
           "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -378,19 +381,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -433,7 +428,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "0h4IVmCgWXyQngAw",
       "img": "icons/skills/targeting/crosshair-triple-strike-orange.webp",

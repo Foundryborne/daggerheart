@@ -6,9 +6,10 @@
   "img": "icons/weapons/clubs/club-spiked-glowing.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -48,15 +49,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "burning",
-        "effectIds": [],
-        "actionIds": [
-          "XpE38Dn617zBvsiX"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -115,7 +107,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -145,6 +138,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "burning": {
+        "value": "burning",
+        "effectIds": [],
+        "actionIds": [
+          "XpE38Dn617zBvsiX"
+        ],
+        "config": {}
       }
     }
   },

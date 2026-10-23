@@ -4,7 +4,7 @@
 
         {{#if actionDescription}}{{> 'systems/daggerheart/templates/ui/chat/parts/description-part.hbs'}}{{/if}}
         {{#if hasRoll}}
-            <div class="roll-part-header"><span>{{localize "Result"}}</span></div>
+            <div class="roll-part-header"><span>{{localize "DAGGERHEART.GENERAL.result.single"}}</span></div>
             {{> 'systems/daggerheart/templates/ui/chat/parts/roll-part.hbs'}}
         {{/if}}
         {{#if (or hasDamage hasHealing)}}{{> 'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs'}}{{/if}}

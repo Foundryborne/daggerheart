@@ -34,7 +34,6 @@
     },
     "type": "standard",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 2,
     "description": "<p>An armored squire or experienced commoner looking to advance.</p>",
@@ -100,7 +99,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "prototypeToken": {
@@ -273,19 +274,11 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -328,7 +321,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ojiIZHBd0sMLxSUE",
       "img": "icons/skills/melee/hand-grip-sword-orange.webp",
@@ -390,7 +384,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "zcfyEY29yWqJtZbl",
       "img": "icons/magic/defensive/shield-barrier-blue.webp",

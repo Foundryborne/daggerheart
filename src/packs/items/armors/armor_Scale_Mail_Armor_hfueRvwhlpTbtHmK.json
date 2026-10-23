@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/breastplate-banded-steel-gold.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -25,15 +25,16 @@
       "major": 7,
       "severe": 14
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "cumbersome": {
         "value": "cumbersome",
         "effectIds": [
           "2wGrVqcFO8jiTuDv"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {
@@ -54,7 +55,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "2wGrVqcFO8jiTuDv",
       "type": "base",

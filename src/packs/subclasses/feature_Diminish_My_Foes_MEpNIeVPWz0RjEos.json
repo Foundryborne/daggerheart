@@ -33,16 +33,8 @@
                   "formula": "@scale"
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           }
         },
@@ -83,7 +75,8 @@
       }
     },
     "featureForm": "passive",
-    "granter": null
+    "granter": null,
+    "actorResources": []
   },
   "effects": [],
   "sort": 0,

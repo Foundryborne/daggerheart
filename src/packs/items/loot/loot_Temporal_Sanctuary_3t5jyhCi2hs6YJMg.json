@@ -6,7 +6,7 @@
     "description": "<p>A PC who takes a rest in the temporal sanctuary can choose an additional downtime move.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -41,7 +41,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "K1ZreKqxSLXvANm5",
       "img": "icons/commodities/treasure/token-worn-yang-brown.webp",

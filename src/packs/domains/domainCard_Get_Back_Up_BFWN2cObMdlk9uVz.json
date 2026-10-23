@@ -44,7 +44,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "aV3KUHtXXR86PRMh",
       "img": "icons/magic/control/silhouette-aura-energy.webp",

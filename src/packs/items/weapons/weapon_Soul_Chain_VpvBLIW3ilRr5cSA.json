@@ -6,9 +6,10 @@
   "img": "icons/magic/unholy/hand-claw-fire-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -38,16 +39,8 @@
               "base": false,
               "resultBased": false,
               "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           },
           "main": null
@@ -79,15 +72,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "draining",
-        "effectIds": [],
-        "actionIds": [
-          "cGTB3G8sp5XZhucX"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -146,7 +130,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -176,6 +161,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "draining": {
+        "value": "draining",
+        "effectIds": [],
+        "actionIds": [
+          "cGTB3G8sp5XZhucX"
+        ],
+        "config": {}
       }
     }
   },

@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-layered-steel-black.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -42,16 +43,8 @@
               "base": false,
               "resultBased": false,
               "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           },
           "main": null
@@ -100,15 +93,16 @@
       "major": 13,
       "severe": 35
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "bloodthirsty": {
         "value": "bloodthirsty",
         "effectIds": [],
         "actionIds": [
           "LoUjBJNX5nvhKyZM"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

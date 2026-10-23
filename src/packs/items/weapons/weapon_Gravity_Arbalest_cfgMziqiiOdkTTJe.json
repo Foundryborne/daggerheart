@@ -6,9 +6,10 @@
   "img": "icons/weapons/crossbows/handcrossbow-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -33,16 +34,8 @@
               "base": false,
               "resultBased": false,
               "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           },
           "main": null
@@ -118,15 +111,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "magnetic",
-        "effectIds": [],
-        "actionIds": [
-          "R0DsdoMfAJNfGLy5"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -185,7 +169,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -215,6 +200,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "magnetic": {
+        "value": "magnetic",
+        "effectIds": [],
+        "actionIds": [
+          "R0DsdoMfAJNfGLy5"
+        ],
+        "config": {}
       }
     }
   },

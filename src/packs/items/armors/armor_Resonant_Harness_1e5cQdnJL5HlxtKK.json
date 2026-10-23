@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-layered-gilded-black.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -68,17 +69,18 @@
       "major": 15,
       "severe": 40
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "vitreous": {
         "value": "vitreous",
         "effectIds": [
           "dzGZkBgtJjQh3JH1"
         ],
         "actionIds": [
           "iTv5QVsZaJ6KYEv3"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {
@@ -107,7 +109,8 @@
           "description": ""
         },
         "rangeDependence": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "transfer": false,
       "_id": "dzGZkBgtJjQh3JH1",

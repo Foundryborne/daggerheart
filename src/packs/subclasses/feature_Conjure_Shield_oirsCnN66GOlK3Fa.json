@@ -15,7 +15,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -32,11 +33,20 @@
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "dataCompare",
+            "key": "system.resources.hope.value",
+            "comparator": "greaterEquals",
+            "value": "2"
+          }
+        ]
       },
       "_id": "0i7GVOvjH6bK5AUM",
       "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
@@ -56,7 +66,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!oirsCnN66GOlK3Fa.0i7GVOvjH6bK5AUM"

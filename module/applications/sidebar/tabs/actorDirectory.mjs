@@ -33,7 +33,7 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
             const img = event.currentTarget.querySelector('img');
             const pt = actor.prototypeToken;
             const usesSize = actor.system.metadata.usesSize;
-            const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+            const tokenSizes = game.system.settings.homebrew.tokenSizes;
             const width = usesSize ? tokenSizes[actor.system.size] : pt.width;
             const height = usesSize ? tokenSizes[actor.system.size] : pt.height;
 

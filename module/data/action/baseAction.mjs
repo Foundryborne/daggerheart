@@ -2,6 +2,7 @@ import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
 import TriggerField from '../fields/triggerField.mjs';
+import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
 
 const fields = foundry.data.fields;
 
@@ -129,13 +130,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return Item the action is attached too.
-     * @returns {DHItem}
+     * @returns {DhItem | null} the item its attached to, or null if it has none (such as for a rest move)
      */
     get item() {
-        if (!this.parent.parent && this.systemPath)
-            return foundry.utils.getProperty(this.parent, this.systemPath).get(this.id);
-
-        return this.parent.parent;
+        const item = !this.parent.parent && this.systemPath
+            ? foundry.utils.getProperty(this.parent, this.systemPath).get(this.id)
+            : this.parent.parent;
+        return (item instanceof Item || item instanceof Actor) ? item : null;
     }
 
     get applyEffects() {
@@ -152,7 +153,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Return the first Actor parent found.
-     * @returns {CONFIG.Actor.documentClass | null}
+     * @returns {DhActor | null}
      */
     get actor() {
         return this.item instanceof CONFIG.Actor.documentClass
@@ -170,7 +171,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     get usable() {
         const actor = this.actor;
         const pack = actor?.pack ? game.packs.get(actor.pack) : null;
-        return !pack?.locked && this.isOwner;
+        return Boolean(actor) && !pack?.locked && this.isOwner;
     }
 
     static getRollType(parent) {
@@ -362,8 +363,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Get the all potentially applicable effects on the actor for the action's RollDialog
      * @param {RollData} rollData The rolldata of the action being performed
-     * @param {DhpActor} actor The actor performing the action
-     * @returns {DhActiveEffect[]}
+     * @param {DhActor} actor The actor performing the action
+     * @returns {Promise<DhActiveEffect[]>}
      */
     static async getActionRelevantEffects(rollData, actor) {
         if (!actor) return [];
@@ -487,43 +488,4 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 }
 
-export class ResourceUpdateMap extends Map {
-    #actor;
 
-    constructor(actor) {
-        super();
-
-        this.#actor = actor;
-    }
-
-    addResources(resources) {
-        if (!resources?.length) return;
-        const invalidResources = resources.some(resource => !resource.key);
-        if (invalidResources) return;
-
-        for (const resource of resources) {
-            if (!resource.key) continue;
-
-            const existing = this.get(resource.key);
-            if (!existing || resource.clear) {
-                this.set(resource.key, resource);
-            } else if (!existing?.clear) {
-                this.set(resource.key, {
-                    ...existing,
-                    value: existing.value + (resource.value ?? 0)
-                });
-            }
-        }
-    }
-
-    #getResources() {
-        return Array.from(this.values());
-    }
-
-    async updateResources() {
-        if (this.#actor) {
-            const target = this.#actor.system.partner ?? this.#actor;
-            await target.modifyResource(this.#getResources());
-        }
-    }
-}

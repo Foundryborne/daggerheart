@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-layered-gilded-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -48,16 +49,8 @@
               "base": false,
               "resultBased": false,
               "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           },
           "main": null
@@ -100,15 +93,16 @@
       "major": 12,
       "severe": 26
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "resplendent": {
         "value": "resplendent",
         "effectIds": [],
         "actionIds": [
           "d9r7VK4r3fb7KHMu"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

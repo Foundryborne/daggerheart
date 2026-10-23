@@ -6,7 +6,7 @@
   "img": "icons/weapons/fist/fist-knuckles-brass.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -19,15 +19,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "paired",
-        "effectIds": [
-          "5vwZnbIvZmUi4tZM"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -86,7 +77,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -117,6 +109,16 @@
           "trait": null
         }
       }
+    },
+    "itemFeatures": {
+      "paired": {
+        "value": "paired",
+        "effectIds": [
+          "5vwZnbIvZmUi4tZM"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
     }
   },
   "effects": [
@@ -127,7 +129,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.primaryWeapon.bonus",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "ITEM.@system.tier + 1",
             "phase": "initial"
@@ -142,7 +144,13 @@
           "description": ""
         },
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "primary"
+          }
+        ]
       },
       "_id": "5vwZnbIvZmUi4tZM",
       "type": "base",

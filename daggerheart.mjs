@@ -21,8 +21,12 @@ import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
 import { pick } from './module/helpers/utils.mjs';
+import { dhTriggers, dhColorsets, getDiceRoles } from './module/config/dsnConfig.mjs';
+import { createArmorFeatures, createWeaponFeatures } from './module/config/itemFeatures.mjs';
 
 CONFIG.DH = SYSTEM;
+foundry.utils.mergeObject(CONFIG.DH.ITEM.armorFeatures, createArmorFeatures(), { overwrite: true, recursive: false });
+foundry.utils.mergeObject(CONFIG.DH.ITEM.weaponFeatures, createWeaponFeatures(), { overwrite: true, recursive: false });
 CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
 globalThis.Roll = BaseRoll;
@@ -46,11 +50,11 @@ CONFIG.Dice.types = [die.BaseDie, CONFIG.Dice.terms.f];
 
 CONFIG.Folder.documentClass = documents.DhFolder;
 
-CONFIG.Actor.documentClass = documents.DhpActor;
+CONFIG.Actor.documentClass = documents.DhActor;
 CONFIG.Actor.dataModels = models.actors.config;
 CONFIG.Actor.collection = collections.DhActorCollection;
 
-CONFIG.Item.documentClass = documents.DHItem;
+CONFIG.Item.documentClass = documents.DhItem;
 CONFIG.Item.dataModels = models.items.config;
 
 CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
@@ -79,7 +83,7 @@ CONFIG.RollTable.resultTemplate = 'systems/daggerheart/templates/ui/chat/table-r
 
 CONFIG.Scene.documentClass = documents.DhScene;
 
-CONFIG.Token.documentClass = documents.DhToken;
+CONFIG.Token.documentClass = documents.DhTokenDocument;
 CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
 CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
 CONFIG.Token.rulerClass = placeables.DhTokenRuler;
@@ -110,11 +114,24 @@ CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
 CONFIG.ui.settings = applications.sidebar.DhSettings;
 CONFIG.ui.resources = applications.ui.DhFearTracker;
 CONFIG.ui.countdowns = applications.ui.DhCountdowns;
-CONFIG.ui.pause = applications.ui.DhGamePause;
 CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
 CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 CONFIG.ux.TokenManager = new TokenManager();
 CONFIG.debug.triggers = false;
+
+// Fix on Foundry native formula replacement for DH
+// @todo: this should maybe be roll data bolt ons
+const nativeReplaceFormulaData = Roll.replaceFormulaData;
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
+    /* Inserting global data */
+    const defaultingTypes = [
+        ...Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(x => ({ term: x, default: 1 })),
+        { term: 'partySize', default: game.actors?.party?.system.partyMembers.length ?? 0 }
+    ];
+
+    formula = defaultingTypes.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    return nativeReplaceFormulaData(formula, data, { missing, warn });
+};
 
 Hooks.once('init', () => {
     game.system.api = {
@@ -275,21 +292,30 @@ Hooks.once('init', () => {
     RegisterHandlebarsHelpers.registerHelpers();
     handlebarsRegistration();
     
-    // Firefox can't handle mixed unit calcs until the nightly (156)
-    // Until then, they must be fixed size
+    // Firefox can't handle mixed unit calcs until the nightly (158).
+    // That said, it may release without the fix (this happened on version 156 as well)
+    // Until we verify that its fine on the current release, we can't add the version check
     const userAgent = navigator.userAgent ?? '';
     const firefoxVersionMatch = userAgent.match(/\bFirefox\/(\d+\.\d+)\b/);
     if (firefoxVersionMatch) {
-        const version = Number(firefoxVersionMatch[1]);
-        if (version < 156) {
-            document.body.classList.add('dh-old-firefox-cards');
-        }
+        // const version = Number(firefoxVersionMatch[1]);
+        document.body.classList.add('dh-old-firefox-cards');
     }
 });
 
 Hooks.on('i18nInit', () => {
+    // Setup references to avoid continual recreation every access, and also simplify access
+    // These are updated in the onChange events.
+    // Occurs in i18nInit so that localization in default values work correctly
+    game.system.settings = {
+        appearance: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance),
+        automation: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation),
+        homebrew: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew),
+        variantRules: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
+    };
+
     // Setup homebrew resources
-    game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).refreshConfig();
+    game.system.settings.homebrew.refreshConfig();
 });
 
 Hooks.on('setup', () => {
@@ -358,6 +384,10 @@ Hooks.on('ready', async () => {
     ui.effectsDisplay = new CONFIG.ui.effectsDisplay();
     ui.effectsDisplay.render({ force: true });
 
+    // Create Scene Darkness slider and add to `Scenes` apps list so that it will re-render on scene update
+    ui.sceneDarknessSlider = new applications.ui.SceneDarknessSlider();
+    game.scenes.apps.push(ui.sceneDarknessSlider);
+
     if (!(ui.compendiumBrowser instanceof applications.ui.ItemBrowser))
         ui.compendiumBrowser = new applications.ui.ItemBrowser();
 
@@ -383,11 +413,22 @@ Hooks.on('ready', async () => {
         });
     }
 
-
     runMigrations();
 });
 
-Hooks.once('dicesoniceready', () => {});
+Hooks.once('diceSoNiceReady', dice3d => {
+    for (const trigger of dhTriggers) {
+        dice3d.addSFXTrigger(trigger.name, _loc(trigger.label), trigger.ids.map(x => ({ ...x, name: _loc(x.name) })));
+    }
+
+    for (const colorset of dhColorsets) {
+        dice3d.addColorset(colorset);
+    }
+
+    for (const diceRole of getDiceRoles()) {
+        dice3d.addRole(diceRole, { package: CONFIG.DH.id });
+    }
+});
 
 Hooks.on('openDetachedWindow', (_, window) => {
     enricherRenderSetup(window.document);
@@ -456,7 +497,7 @@ const updateActorsRangeDependentEffects = async token => {
 };
 
 const updateAllRangeDependentEffects = async () => {
-    const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
+    const effectsAutomation = game.system.settings.automation.effects;
     if (!effectsAutomation.rangeDependent) return;
 
     const tokens = canvas.scene?.tokens;
@@ -500,13 +541,44 @@ Hooks.on('canvasReady', canas => {
     game.system.registeredTriggers.registerSceneTriggers(canvas.scene);
 });
 
+Hooks.on('getSceneControlButtons', controls => {
+    const sceneDarknessTool = {
+        name: 'changeSceneDarknessLevel',
+        title: 'CONTROLS.ChangeSceneDarknessLevel',
+        icon: 'fa-solid fa-circle-half-stroke',
+        visible: game.user.isGM && !canvas.scene?.environment.darknessLock,
+        toggle: true,
+        active: false,
+        onChange: () => {
+            ui.sceneDarknessSlider.toggleVisibility();
+        }
+    }
+    
+    const lightingControls = controls.lighting;
+    const newLightingTools = {};
+    for (const [key, value] of Object.entries(lightingControls.tools)) {
+        if (key === 'day') {
+            newLightingTools[sceneDarknessTool.name] = sceneDarknessTool;
+        }
+        newLightingTools[key] = value;
+    }
+    
+    controls.lighting.tools = newLightingTools;
+});
+
+Hooks.on('activateSceneControls', controls => {
+    if (controls.control.name !== 'lighting') {
+        ui.sceneDarknessSlider.close();
+    }
+});
+
 /** Make the user to select a document type, instead of having a default doc type for them to accidentally keep */
 Hooks.on('renderDialogV2', (dialog, html) => {
     if (!html.classList.contains('dialog')) return;
     const cls = html.classList.contains('item-create')
-        ? documents.DHItem.implementation
+        ? documents.DhItem.implementation
         : html.classList.contains('actor-create')
-            ? documents.DhpActor.implementation
+            ? documents.DhActor.implementation
             : null;
     if (!cls) return;
 

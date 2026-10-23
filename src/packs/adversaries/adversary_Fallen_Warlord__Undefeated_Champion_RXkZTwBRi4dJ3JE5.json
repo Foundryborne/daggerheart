@@ -22,7 +22,6 @@
     "type": "solo",
     "notes": "",
     "difficulty": 18,
-    "hordeHp": 1,
     "damageThresholds": {
       "major": 35,
       "severe": 58
@@ -94,7 +93,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -146,7 +146,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "prototypeToken": {
     "name": "Fallen Warlord: Undefeated Champion",
@@ -290,7 +291,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ct5vhSsNP25arggo",
       "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
@@ -367,7 +369,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "zypNlBVfuaHVw1M4",
       "img": "icons/equipment/chest/breastplate-layered-steel.webp",
@@ -428,20 +431,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "groupAttack": "",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -493,7 +488,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "t8yOkGWmPgQ6EbIr",
       "img": "icons/skills/melee/sword-stuck-glowing-pink.webp",
@@ -555,7 +551,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "AP7W9ruUCdTHO69S",
       "img": "icons/magic/death/undead-skeleton-worn-blue.webp",
@@ -659,7 +656,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "55P7ZijSbQeVHCw4",
       "img": "icons/magic/unholy/barrier-fire-pink.webp",
@@ -684,7 +682,8 @@
               1,
               0
             ],
-            "rangeDependence": null
+            "rangeDependence": null,
+            "conditionals": []
           },
           "_id": "KlTKlZXjdXQ9v6qB",
           "type": "base",
@@ -759,17 +758,9 @@
                   "applyTo": "fear",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -807,7 +798,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ReWtcLE5akrSauI1",
       "img": "icons/skills/melee/strike-weapons-orange.webp",
@@ -858,17 +850,9 @@
                   "applyTo": "hope",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -900,7 +884,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "tQRotPLi3eokgUdM",
       "img": "icons/magic/death/skull-energy-light-purple.webp",

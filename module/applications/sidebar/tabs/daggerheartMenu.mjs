@@ -97,16 +97,16 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
     static async #onRollDowntimeFear(_event, button) {
         let formula;
         if (button.dataset.type === 'short') {
-            formula = '1d4';
+            formula = '1d4f';
         } else {
             const activeParty = game.actors.find(x => x.type === 'party' && x.system.active);
             const partySize = activeParty?.system.partyMembers.length ?? await this.getFallbackPartySize();
             if (!partySize) return;
             
             if (button.dataset.type === 'long') {
-                formula = `1d4 + ${partySize}`;
+                formula = `1d4f + ${partySize}`;
             } else {
-                formula = `${partySize}d6`;
+                formula = `${partySize}d6f`;
             }
         }
 
@@ -123,7 +123,7 @@ export default class DaggerheartMenu extends HandlebarsApplicationMixin(Abstract
 
         await game.dice3d.waitFor3DAnimationByMessageID(message.id);
 
-        const automation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
+        const automation = game.system.settings.automation.hopeFear;
         if (automation.gm) {
             ui.resources.updateFear(ui.resources.currentFear + fearRoll.total);
         }

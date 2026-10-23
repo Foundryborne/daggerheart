@@ -52,7 +52,6 @@ export default class DHSummonField extends fields.SchemaField {
         const controlledMatchingTokens = canvas.tokens.controlled
             .filter(x => x.actor && x.actor.uuid === this.actor.uuid)
             .map(x => x.document);
-        /** @type {typeof game.system.api.documents.DhToken | null} */
         const token = this.actor.token ?? (
             activeTokens.length === 1 ? activeTokens[0] :
                 (controlledMatchingTokens.length === 1 ? controlledMatchingTokens[0] : null)
@@ -69,7 +68,7 @@ export default class DHSummonField extends fields.SchemaField {
         }
 
         const actor = await getWorldActor(baseActor);
-        const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+        const tokenSizes = game.system.settings.homebrew.tokenSizes;
         const tokenSize = actor?.system.metadata.usesSize ? tokenSizes[actor.system.size] : actor.prototypeToken.width;
 
         // Update token. Avoid using recursive: false, since that prevents animations

@@ -6,7 +6,7 @@
     "description": "<p>You can throw this seed at a point you can see. It explodes into a tangle of binding vines that temporarily Restrains all creatures within Close range of that point.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -73,7 +73,7 @@
       "disabled": false,
       "img": "icons/consumables/plants/thorned-curled-vine-green.webp",
       "description": "",
-      "transfer": true,
+      "transfer": false,
       "statuses": [
         "restrained"
       ],
@@ -85,7 +85,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "Zi97S6oahSHgWD96",
       "type": "base",

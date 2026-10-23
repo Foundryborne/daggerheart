@@ -20,14 +20,32 @@ export default class ActionTypeConditional extends foundry.abstract.DataModel {
                 initial: conditionalTypes.actionType.id 
             }),
             actionTypes: new fields.SetField(new fields.StringField({
-                nullable: true,
+                required: true,
+                nullable: false,
                 choices: CONFIG.DH.EFFECTS.actionType,
                 initial: null
-            }), { label: 'DAGGERHEART.EFFECTS.Conditionals.actionType.actionTypes' })
+            }), { label: 'DAGGERHEART.EFFECTS.Conditionals.actionType.actionTypes' }),
+            traits: new fields.SetField(new fields.StringField({
+                required: true,
+                nullable: false,
+                choices: CONFIG.DH.ACTOR.abilities
+            }), { label: 'DAGGERHEART.GENERAL.Trait.plural' })
         }
     }
 
+    /** 
+     * Action Type Conditionals are currently only ever evaluted on origins, but could be expanded.
+     * Consider if the default should be null (both origin/target) or "origin"
+     */
+    role = 'origin';
+
     test(rollData) {
+        if (this.traits.size) {
+            const trait = rollData.action?.roll?.trait;
+            
+            if (!this.traits.has(trait)) return false;
+        }
+
         if (!this.actionTypes.size) return true;
 
         const actionType = rollData.action?.actionType;

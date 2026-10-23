@@ -6,7 +6,7 @@
     "description": "<p>You can dissolve this lozenge in your mouth to perfectly mimic any voice you've heard until the end of the scene.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -74,7 +74,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "b0lldg6nQ598gF8F",
       "type": "base",

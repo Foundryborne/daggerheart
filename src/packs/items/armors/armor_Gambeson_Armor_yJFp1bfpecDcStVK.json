@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 1,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "flexible",
-        "effectIds": [
-          "v1FNEsypRF5W6vVc"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 5,
       "severe": 11
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "flexible": {
+        "value": "flexible",
+        "effectIds": [
+          "v1FNEsypRF5W6vVc"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {
@@ -56,7 +57,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

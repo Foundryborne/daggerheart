@@ -6,9 +6,10 @@
   "img": "icons/creatures/webs/webthin-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -25,15 +26,16 @@
       "major": 9,
       "severe": 20
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "wallCrawling": {
         "value": "wallCrawling",
         "effectIds": [
           "a1I284B2QCnVEs7e"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {
@@ -54,7 +56,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "a1I284B2QCnVEs7e",
       "type": "base",

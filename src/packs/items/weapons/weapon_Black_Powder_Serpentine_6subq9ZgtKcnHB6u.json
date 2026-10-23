@@ -48,16 +48,8 @@
               "base": false,
               "resultBased": false,
               "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           },
           "main": null
@@ -88,17 +80,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "incendiary",
-        "effectIds": [
-          "DQcdvMkGHEUycaBv"
-        ],
-        "actionIds": [
-          "pkg1z8LU5URZsQIe"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -157,7 +138,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -188,6 +170,18 @@
           "trait": null
         }
       }
+    },
+    "itemFeatures": {
+      "incendiary": {
+        "value": "incendiary",
+        "effectIds": [
+          "DQcdvMkGHEUycaBv"
+        ],
+        "actionIds": [
+          "pkg1z8LU5URZsQIe"
+        ],
+        "config": {}
+      }
     }
   },
   "effects": [
@@ -209,7 +203,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "DQcdvMkGHEUycaBv",
       "type": "base",

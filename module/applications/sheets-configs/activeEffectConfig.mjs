@@ -5,14 +5,18 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     constructor(options) {
         super(options);
 
-        this.changeChoices = DhActiveEffectConfig.getChangeChoices();
+        const actorType = this.document.actor?.type;
+        this.changeChoices = DhActiveEffectConfig.getChangeChoices({ actorType });
     }
 
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'sheet', 'dh-style'],
         actions: {
             showItem: DhActiveEffectConfig.#onShowItem,
-            removeConditional: DhActiveEffectConfig.#onRemoveConditional
+            addConditional: DhActiveEffectConfig.#onAddConditional,
+            removeConditional: DhActiveEffectConfig.#onRemoveConditional,
+            addCustomChange: DhActiveEffectConfig.#onAddCustomChange,
+            removeCustomChange: DhActiveEffectConfig.#onRemoveCustomChange
         }
     };
 
@@ -20,12 +24,15 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         header: { template: 'systems/daggerheart/templates/sheets/activeEffect/header.hbs' },
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
-        conditionals: { template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs' },
+        conditionals: { 
+            template: 'systems/daggerheart/templates/sheets/activeEffect/conditionals.hbs',
+            scrollable: ['']
+        },
         settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
             templates: ['systems/daggerheart/templates/sheets/activeEffect/change.hbs'],
-            scrollable: ['ol[data-changes]']
+            scrollable: ['']
         },
         footer: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-form-footer.hbs' }
     };
@@ -45,9 +52,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
     /**
      * Get ChangeChoices for the changes autocomplete. Static for use in this class aswell as in settings-active-effect-config.mjs
+     * @param {object} [options]
+     * @param {string} [options.actorType] the actor to filter the choices to
      * @returns {ChangeChoice { value: string, label: string, hint: string, group: string }[]}
      */
-    static getChangeChoices() {
+    static getChangeChoices({ actorType } = {}) {
         const ignoredActorKeys = ['config', 'DhEnvironment', 'DhParty', 'DhNPC'];
         const ignoredRuleKeys = ['standardAttack'];
 
@@ -85,6 +94,10 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             if (ignoredActorKeys.includes(key)) return acc;
 
             const model = game.system.api.models.actors[key];
+            if (actorType && model.metadata.type && model.metadata.type !== actorType) {
+                return acc;
+            }
+
             const group = game.i18n.localize(model.metadata.label);
             const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model.metadata.type);
 
@@ -173,17 +186,11 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             });
         });
 
-        htmlElement.querySelector('.conditional-select-input')
-            ?.addEventListener('change', this.#onAddConditional.bind(this));
-
         htmlElement.querySelector('.stacking-change-checkbox')
             ?.addEventListener('change', this.#onStackingChangeToggle.bind(this));
 
         htmlElement.querySelector('.range-dependence-change-checkbox')
             ?.addEventListener('change', this.#onRangeDependenceChangeToggle.bind(this));
-
-        for (const element of htmlElement.querySelectorAll('.typed-change-checkbox'))
-            element.addEventListener('change', this.#onTypedChangeToggle.bind(this));
 
         htmlElement.querySelector('.armor-damage-thresholds-checkbox')
             ?.addEventListener('change', this.#onArmorDamageThresholdToggle.bind(this));
@@ -240,16 +247,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 }, {});
                 partContext.changes = partContext.changes.filter(c => !!c);
                 partContext.typedChanges = typedChanges;
+                partContext.creatableTypes = ['armor', 'standardAttack']
+                    .filter(t => !typedChanges[t])
+                    .map(t => ({ value: t, label: _loc(CONFIG.DH.EFFECTS.customChangeTypes[t]?.label) }));
                 break;
         }
 
         return partContext;
-    }
-
-    #onAddConditional(event) {
-        const conditionals = [...this.document.system.conditionals, { type: event.target.value }];
-        event.target.value = '';
-        return this.submit({ updateData: { system: { conditionals } } });
     }
 
     #onStackingChangeToggle(event) {
@@ -274,37 +278,6 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 : null
         };
         return this.submit({ updateData: { system: systemData } });
-    }
-
-    #onTypedChangeToggle(event) {
-        const { type, index } = event.target.dataset;
-        if (event.target.checked) {
-            this.addCustomChange(type);
-        } else {
-            this.removeCustomChange(index);
-        }
-    }
-
-    /**
-     * Add a customChangeType to the changes list
-     * @param {string} type a key from game.system.api.data.activeEffects.changeTypes
-     */
-    addCustomChange(type) {
-        const changeType = game.system.api.data.activeEffects.changeTypes[type];
-        if (!changeType) return;
-
-        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
-        const changes = Object.values(submitData.system?.changes ?? {});
-        changes.push(changeType.getInitialValue());
-        return this.submit({ updateData: { system: { changes } } });
-    }
-
-    removeCustomChange(indexString) {
-        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
-        const changes = Object.values(submitData.system.changes);
-        const index = Number(indexString);
-        changes.splice(index, 1);
-        return this.submit({ updateData: { system: { changes } } });
     }
 
     #onArmorDamageThresholdToggle(event) {
@@ -416,6 +389,15 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         });
     }
 
+    /* -------------------------------------------- */
+    /*  Event handlers                              */
+    /* -------------------------------------------- */
+    
+    /**
+     * Handles viewing an item linked from the effect header
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
     static #onShowItem(_event, button) {
         const { itemId } = button.dataset;
         if (!itemId) return;
@@ -423,10 +405,56 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         if (item.visible) item.sheet?.render({ force: true });
     }
 
+    /**
+     * Handles adding a conditional
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
+    static #onAddConditional() {
+        const type = this.element.querySelector('.conditional-select-input').value;
+        const conditionals = [...this.document.system.conditionals, { type }];
+        event.target.value = '';
+        return this.submit({ updateData: { system: { conditionals } } });
+    }
+
+    /**
+     * Handles removing a conditional
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
     static #onRemoveConditional(_event, button) {
         const conditionals = this.document.system.conditionals
         const index = Number(button.dataset.index);
         conditionals.splice(index, 1);
         return this.submit({ updateData: { system: { conditionals } } });
+    }
+
+    /**
+     * Handles adding a custom change type
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+     */
+    static #onAddCustomChange() {
+        const select = this.element.querySelector('.change-type');
+        const changeType = game.system.api.data.activeEffects.changeTypes[select?.value];
+        if (!changeType) return;
+
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        changes.push(changeType.getInitialValue());
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    /**
+     * Handles removing a custom change type
+     * @this {DhActiveEffectConfig}
+     * @type {ApplicationClickAction}
+    */
+    static #onRemoveCustomChange(event) {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system.changes);
+        const index = Number(event.target.dataset.index);
+        changes.splice(index, 1);
+        return this.submit({ updateData: { system: { changes } } });
     }
 }

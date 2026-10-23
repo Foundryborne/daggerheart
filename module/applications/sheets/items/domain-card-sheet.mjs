@@ -1,0 +1,54 @@
+import DHBaseItemSheet from '../api/base-item.mjs';
+
+/** @import { DHDomainCard } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHDomainCard>>} */
+export default class DomainCardSheet extends DHBaseItemSheet {
+    /**@inheritdoc */
+    static DEFAULT_OPTIONS = {
+        classes: ['domain-card'],
+        position: { width: 450, height: 700 }
+    };
+
+    /** @override */
+    static TABS = {
+        primary: {
+            tabs: [{ id: 'description' }, { id: 'actions' }, { id: 'settings' }, { id: 'effects' }],
+            initial: 'description',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
+        }
+    };
+
+    /** @inheritdoc */
+    static PARTS = {
+        header: { template: 'systems/daggerheart/templates/sheets/items/domainCard/header.hbs' },
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
+        description: { 
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs',
+            scrollable: ['.description-section']
+        },
+        actions: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
+            scrollable: ['']
+        },
+        settings: {
+            template: 'systems/daggerheart/templates/sheets/items/domainCard/settings.hbs',
+            scrollable: ['']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['']
+        }
+    };
+
+    /** @inheritdoc */
+    hasHeaderAttribution = false;
+
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.domain = CONFIG.DH.DOMAIN.allDomains()[this.document.system.domain];
+        context.domainChoices = CONFIG.DH.DOMAIN.orderedDomains();
+
+        return context;
+    }
+}

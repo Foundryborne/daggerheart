@@ -30,7 +30,7 @@
       }
     },
     "features": [
-      "Compendium.daggerheart.beastforms.Item.EVOJTskJYf4rpuga",
+      "Compendium.daggerheart.beastforms.Item.TME5cvuTk0TW3yiJ",
       "Compendium.daggerheart.beastforms.Item.QQtQ77tos8ijTHag"
     ],
     "evolved": {
@@ -108,7 +108,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

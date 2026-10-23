@@ -6,9 +6,10 @@
   "img": "icons/commodities/gems/gem-faceted-teardrop-pink.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -48,15 +49,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "targeted",
-        "effectIds": [],
-        "actionIds": [
-          "lwtLR9xWsREAonue"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -115,7 +107,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -145,6 +138,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "targeted": {
+        "value": "targeted",
+        "effectIds": [],
+        "actionIds": [
+          "lwtLR9xWsREAonue"
+        ],
+        "config": {}
       }
     }
   },

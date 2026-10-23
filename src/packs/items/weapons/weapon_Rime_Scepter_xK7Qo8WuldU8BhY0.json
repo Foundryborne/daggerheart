@@ -6,9 +6,10 @@
   "img": "icons/weapons/staves/staff-ornate-teal.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -53,17 +54,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "freezing",
-        "effectIds": [
-          "2iYaP8XdKTfwBw6A"
-        ],
-        "actionIds": [
-          "LYqVHYFcuJlf6omC"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -122,7 +112,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -153,6 +144,18 @@
           "trait": null
         }
       }
+    },
+    "itemFeatures": {
+      "freezing": {
+        "value": "freezing",
+        "effectIds": [
+          "2iYaP8XdKTfwBw6A"
+        ],
+        "actionIds": [
+          "LYqVHYFcuJlf6omC"
+        ],
+        "config": {}
+      }
     }
   },
   "effects": [
@@ -173,7 +176,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "start": null,

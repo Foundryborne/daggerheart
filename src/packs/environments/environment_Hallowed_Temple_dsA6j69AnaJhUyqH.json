@@ -160,17 +160,9 @@
                   "applyTo": "hitPoints",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": true
+                  "valueAlt": null,
+                  "fullRestore": true,
+                  "itemId": null
                 }
               }
             },
@@ -208,7 +200,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "hgHpS2k1sVxHKiG1",
       "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
@@ -231,7 +224,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "uqV1mTkJmXJwMYue",
       "img": "icons/magic/holy/chalice-glowing-yellow-blue.webp",
@@ -282,17 +276,9 @@
                   "applyTo": "stress",
                   "base": false,
                   "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false,
-                      "formula": ""
-                    }
-                  },
-                  "fullRestore": false
+                  "valueAlt": null,
+                  "fullRestore": false,
+                  "itemId": null
                 }
               }
             },
@@ -315,7 +301,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "vICfHK2urDQ2Jm8s",
       "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
@@ -377,7 +364,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "8tGAuFRyM4onvQ2o",
       "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",

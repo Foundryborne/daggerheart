@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 2,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "warded",
-        "effectIds": [
-          "xGxqTCO8MjNq5Cw6"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 9,
       "severe": 21
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "warded": {
+        "value": "warded",
+        "effectIds": [
+          "xGxqTCO8MjNq5Cw6"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {
@@ -57,7 +58,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

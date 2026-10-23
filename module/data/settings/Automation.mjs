@@ -200,4 +200,8 @@ export default class DhAutomation extends foundry.abstract.DataModel {
             })
         };
     }
+
+    handleChange() {
+        game.system.settings.automation = this;
+    }
 }

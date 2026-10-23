@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "brutal",
-        "effectIds": [],
-        "actionIds": [
-          "cLBfHGpuGzOatf5i"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -77,7 +68,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -117,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "brutal": {
+        "value": "brutal",
+        "effectIds": [],
+        "actionIds": [
+          "cLBfHGpuGzOatf5i"
+        ],
+        "config": {}
+      }
+    }
   },
   "effects": [],
   "sort": 0,

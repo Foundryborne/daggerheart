@@ -6,7 +6,7 @@
     "domain": "dread",
     "level": 10,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "description": "<p>You deal double damage to targets that have all their Stress marked.</p><p>Additionally, when an adversary within Close range is defeated with all its Stress marked, you gain a Hope.</p>",
@@ -51,16 +51,8 @@
                   "formula": ""
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           }
         },
@@ -118,7 +110,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "bGNhmCLMfn7MRJiE",
       "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",

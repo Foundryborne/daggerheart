@@ -6,7 +6,7 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 
 /**
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction *
- * @import DHItem from '../../../documents/item.mjs';
+ * @import DhItem from '../../../documents/item.mjs';
  /
 
 /**
@@ -105,6 +105,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                     secrets: this.item.isOwner
                 })
                 break;
+            case 'actions': 
+                context.invalidActions = Object.values(this.document._source.system.actions ?? {})
+                    .filter(a => !this.document.system.actions?.has(a._id));
+                break;
             case 'effects':
                 await this._prepareEffectsContext(context, options);
                 break;
@@ -116,29 +120,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         return context;
     }
 
-    /**
-     * Prepare render context for the Effect part.
-     * @param {ApplicationRenderContext} context
-     * @param {ApplicationRenderOptions} options
-     * @returns {Promise<void>}
-     * @protected
-     */
-    async _prepareEffectsContext(context, _options) {
-        context.effects = {
-            actives: [],
-            inactives: []
-        };
-
-        for (const effect of this.item.effects) {
-            const list = effect.active ? context.effects.actives : context.effects.inactives;
-            list.push(effect);
-        }
-    }
-
     /** @inheritdoc */
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-
         
         htmlElement.querySelector('img.profile')
             ?.addEventListener('contextmenu', DHBaseItemSheet.#onShowPortraitArtwork.bind(this));
@@ -358,7 +342,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * @param {DragEvent} event 
-     * @param {DHItem} item 
+     * @param {DhItem} item 
      */
     async _onDropItem(event, item) {
         const target = event.target.closest('fieldset.drop-section');
@@ -470,7 +454,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         // Render an add gmnotes button if there are no set GM notes.
         // We need to re-render on close since its possible to prosemirror to close *without* triggering a full re-render
         const item = this.item;
-        if (game.user.isGM && item.system.metadata.hasDescription && !item.system.gmNotes) {
+        if (game.user.isGM && item.metadata.hasDescription && !item.system.gmNotes) {
             const description = this.element.querySelector('[name="system.description"]');
             const addButton = () => {
                 if (description.disabled || description.querySelector('[data-action=editGMNote]')) {

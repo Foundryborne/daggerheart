@@ -34,7 +34,6 @@
     },
     "type": "ranged",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {},
     "tier": 4,
     "description": "<p>Spirit soldiers with sanctified bows.</p>",
@@ -87,7 +86,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -129,7 +129,8 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "flags": {},
   "_id": "kabueAo6BALApWqp",
@@ -237,7 +238,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "FGJTAeL38zTVd4fA",
       "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp",
@@ -260,7 +262,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "ID85zoIa5GfhNMti",
           "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp",
@@ -342,20 +345,12 @@
                 ],
                 "base": false,
                 "resultBased": false,
-                "valueAlt": {
-                  "multiplier": "prof",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": true,
                 "direct": false,
                 "fullRestore": false,
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -398,7 +393,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "Ye35DuZroQfeFoNw",
       "img": "icons/skills/ranged/arrows-flying-salvo-yellow.webp",

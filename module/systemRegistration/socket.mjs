@@ -1,6 +1,6 @@
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 
-export function handleSocketEvent({ action = null, data = {} } = {}) {
+export async function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
         case socketEvent.GMUpdate:
             Hooks.callAll(socketEvent.GMUpdate, data);
@@ -22,6 +22,19 @@ export function handleSocketEvent({ action = null, data = {} } = {}) {
             break;
         case socketEvent.GroupRollStart:
             Hooks.callAll(CONFIG.DH.HOOKS.hooksConfig.groupRollStart, data);
+            break;
+        case socketEvent.TransferItem: {
+            // Transfer events only occur when a player needs to request a GM update, so using a hook would be inconsistent
+            if (game.user.isActiveGM) {
+                const item = await fromUuid(data.item);
+                const targetActor = await fromUuid(data.targetActor);
+                if (!item || !targetActor) return;
+                targetActor.transferItem({ item, quantity: Number(data.quantity || 1) });
+            }
+            break;
+        }
+        default:
+            EVENT_HANDLERS[data.action]?.(data.data);
     }
 }
 
@@ -29,10 +42,12 @@ export const socketEvent = {
     GMUpdate: 'DhGMUpdate',
     GMCreate: 'DhGMCreate',
     Refresh: 'DhRefresh',
+    AddCountdowns: 'DhAddCountdowns',
     DhpFearUpdate: 'DhFearUpdate',
     DowntimeTrigger: 'DowntimeTrigger',
     TagTeamStart: 'DhTagTeamStart',
-    GroupRollStart: 'DhGroupRollStart'
+    GroupRollStart: 'DhGroupRollStart',
+    TransferItem: 'DhTransferItem'
 };
 
 export const GMUpdateEvent = {
@@ -53,68 +68,82 @@ export const RefreshType = {
     CompendiumBrowser: 'DhCompendiumBrowserRefresh'
 };
 
-export const registerSocketHooks = () => {
-    Hooks.on(socketEvent.GMUpdate, async data => {
-        if (game.user.isGM) {
-            const document = data.uuid ? await fromUuid(data.uuid) : null;
-            switch (data.action) {
-                case GMUpdateEvent.UpdateDocument:
-                    if (document && data.data) await document.update(data.data);
-                    break;
-                case GMUpdateEvent.UpdateEffect:
-                    if (document && data.data)
-                        await game.system.api.fields.ActionFields.EffectsField.applyEffects.call(document, data.data);
-                    break;
-                case GMUpdateEvent.UpdateSetting:
-                    await game.settings.set(CONFIG.DH.id, data.uuid, data.data);
-                    break;
-                case GMUpdateEvent.UpdateFear:
-                    await game.settings.set(
-                        CONFIG.DH.id,
-                        CONFIG.DH.SETTINGS.gameSettings.Resources.Fear,
-                        Math.max(
-                            0,
-                            Math.min(
-                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                                data.data
-                            )
-                        )
-                    );
-                    break;
-                case GMUpdateEvent.UpdateCountdowns:
-                    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data.data);
-                    Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
-                    break;
-                case GMUpdateEvent.UpdateSaveMessage:
-                    const message = game.messages.get(data.data.message);
-                    if (!message) return;
-                    game.system.api.fields.ActionFields.SaveField.updateSaveMessage(
-                        data.data.result,
-                        message,
-                        data.data.token
-                    );
-                    break;
-            }
-
-            if (data.refresh) {
-                await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                    action: socketEvent.Refresh,
-                    data: data.refresh
-                });
-                Hooks.call(socketEvent.Refresh, data.refresh);
-            }
+/** Registered socket events that are invoked when an event is received. May also be invoked directly without a socket if the user is a GM  */
+const EVENT_HANDLERS = {
+    [socketEvent.GMUpdate]: async data => {
+        const document = data.uuid ? await fromUuid(data.uuid) : null;
+        switch (data.action) {
+            case GMUpdateEvent.UpdateDocument:
+                if (document && data.data) await document.update(data.data);
+                break;
+            case GMUpdateEvent.UpdateEffect:
+                if (document && data.data)
+                    await game.system.api.fields.ActionFields.EffectsField.applyEffects.call(document, data.data);
+                break;
+            case GMUpdateEvent.UpdateSetting:
+                await game.settings.set(CONFIG.DH.id, data.uuid, data.data);
+                break;
+            case GMUpdateEvent.UpdateFear:
+                await game.settings.set(
+                    CONFIG.DH.id,
+                    CONFIG.DH.SETTINGS.gameSettings.Resources.Fear,
+                    Math.max(
+                        0,
+                        Math.min(game.system.settings.homebrew.maxFear, data.data)
+                    )
+                );
+                break;
+            case GMUpdateEvent.UpdateCountdowns:
+                await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, data.data);
+                Hooks.callAll(socketEvent.Refresh, { refreshType: RefreshType.Countdown });
+                break;
+            case GMUpdateEvent.UpdateSaveMessage:
+                const message = game.messages.get(data.data.message);
+                if (!message) return;
+                game.system.api.fields.ActionFields.SaveField.updateSaveMessage(
+                    data.data.result,
+                    message,
+                    data.data.token
+                );
+                break;
         }
-    });
 
-    Hooks.on(socketEvent.GMCreate, async ({ data, documentType, scene }) => {
-        if (!game.user.isGM) return;
-
+        if (data.refresh) {
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                action: socketEvent.Refresh,
+                data: data.refresh
+            });
+            Hooks.call(socketEvent.Refresh, data.refresh);
+        }
+    },
+    [socketEvent.GMCreate]: async ({ data, documentType, scene }) => {
         switch (documentType) {
             default:
                 const cls = getDocumentClass(documentType);
                 cls.create(data, { parent: game.scenes.get(scene) });
                 break;
         }
+    },
+    [socketEvent.AddCountdown]: async data => {
+        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+        const countdowns = data.countdowns ?? [];
+        // User created countdowns should always be not hidden
+        for (const countdown of countdowns) {
+            countdown.hidden = false;
+        }
+        await setting.add(...countdowns);
+    }
+}
+
+export const registerSocketHooks = () => {
+    Hooks.on(socketEvent.GMUpdate, async data => {
+        if (!game.user.isGM) return;
+        return EVENT_HANDLERS[socketEvent.GMUpdate](data);
+    });
+
+    Hooks.on(socketEvent.GMCreate, async options => {
+        if (!game.user.isGM) return;
+        return EVENT_HANDLERS[socketEvent.GMCreate](options);
     });
 };
 

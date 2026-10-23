@@ -70,7 +70,12 @@
       "What animal do I say you remind me of?",
       "What affectionate nickname have you given me?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "folder": null,

@@ -24,12 +24,21 @@ export default class DamageTypeConditional extends foundry.abstract.DataModel {
                 required: true,
                 choices: CONFIG.DH.GENERAL.damageTypes,
                 initial: CONFIG.DH.GENERAL.damageTypes.physical.id
+            }),
+            role: new fields.StringField({
+                label: 'DAGGERHEART.EFFECTS.Conditionals.role.title',
+                choices: {
+                    origin: 'DAGGERHEART.EFFECTS.Conditionals.role.origin',
+                    target: 'DAGGERHEART.EFFECTS.Conditionals.role.target'
+                },
+                initial: 'origin',
+                nullable: false
             })
         }
     }
 
     test(rollData) { 
-        if (!rollData.action?.damage) return false;
+        if (!rollData.action?.damage?.main) return false;
         
         return rollData.action.damage.main.type.has(this.damageType)
     }

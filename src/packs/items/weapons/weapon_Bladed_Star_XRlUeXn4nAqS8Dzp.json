@@ -15,17 +15,10 @@
     "resource": null,
     "quantity": 1,
     "actions": {},
-    "tier": 1,
+    "tier": 3,
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "rebounding",
-        "effectIds": [],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -84,7 +77,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -114,6 +108,14 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "rebounding": {
+        "value": "rebounding",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

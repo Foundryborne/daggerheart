@@ -70,7 +70,12 @@
       "What have I discovered about your past that I hold secret from the others?",
       "Who do you know from my past, and how have they influenced your feelings about me?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "folder": null,

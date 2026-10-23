@@ -6,7 +6,7 @@
     "domain": "dread",
     "level": 9,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, <strong>mark any number of Stress</strong> to roll an equal number of <strong>d20</strong>s, dealing magic damage equal to the total result. If this attack defeats the target, all adversaries within Far range of the target must mark a Stress.</p>",
@@ -31,21 +31,13 @@
                 "formula": "@scaled20"
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },
@@ -125,16 +117,8 @@
                   "formula": ""
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           }
         },

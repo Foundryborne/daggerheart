@@ -6,9 +6,10 @@
   "img": "icons/commodities/biological/shell-ridged-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -42,16 +43,8 @@
               "base": false,
               "resultBased": false,
               "fullRestore": false,
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              }
+              "valueAlt": null,
+              "itemId": null
             }
           },
           "main": null
@@ -98,17 +91,18 @@
     },
     "baseThresholds": {
       "major": 11,
-      "severe": 26
+      "severe": 23
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "selfHealing": {
         "value": "selfHealing",
         "effectIds": [],
         "actionIds": [
           "3KVzpGEV8ThH4jhu"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

@@ -10,7 +10,7 @@
     "difficulty": 9,
     "damageThresholds": {
       "major": 4,
-      "severe": 7
+      "severe": 0
     },
     "resources": {
       "hitPoints": {
@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -113,7 +114,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {
@@ -132,8 +133,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -184,7 +185,8 @@
             "range": "close"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "46MnCFburOGkFfxC",
       "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -208,7 +210,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "TG5Mkvcvw1JzCnoX",
           "img": "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -302,7 +305,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "UugDye75RdeNZw37",
       "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
@@ -322,7 +326,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "_id": "qX9bmAPqLAU7jhN6",
           "type": "base",
@@ -387,22 +392,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -471,7 +468,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "sQEVdFOtGR0EEjrM",
       "img": "icons/magic/air/wind-tornado-funnel-damage-blue.webp",

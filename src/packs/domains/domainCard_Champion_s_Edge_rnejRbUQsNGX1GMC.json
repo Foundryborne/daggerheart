@@ -50,17 +50,9 @@
               "applyTo": "hitPoints",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -134,17 +126,9 @@
               "applyTo": "armor",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -218,17 +202,9 @@
                   "formula": ""
                 }
               },
-              "valueAlt": {
-                "multiplier": "flat",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },

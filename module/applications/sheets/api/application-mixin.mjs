@@ -42,7 +42,7 @@ const typeSettingsMap = {
  *
  * @typedef {object} TagifyConfig
  * @property {String} selector - The CSS selector for get the element to transform into a tag input
- * @property {Record<string, TagOption> | (() => Record<string, TagOption>)} options - Available tag options as key-value pairs
+ * @property {Record<string, TagOption> | (() => Record<string, TagOption> | Promise<Record<string, TagOption>>)} options - Available tag options as key-value pairs
  * @property {TagChangeCallback} callback - Callback function triggered when tags change
  * @property {TagifyOptions} [tagifyOptions={}] - Additional configuration for Tagify
  *
@@ -73,7 +73,8 @@ const typeSettingsMap = {
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
-        #nonHeaderAttribution = ['ancestry', 'community', 'domainCard'];
+        /** Determines if this sheet has the attribution in the header */
+        hasHeaderAttribution = true;
 
         /**
          * @param {DHSheetV2Configuration} [options={}]
@@ -92,7 +93,8 @@ export default function DHApplicationMixin(Base) {
                 triggerContextMenu: DHSheetV2.#triggerContextMenu,
                 createDoc: DHSheetV2.#onCreateDoc,
                 editDoc: DHSheetV2.#editDoc,
-                deleteDoc: DHSheetV2.#deleteDoc,
+                deleteDoc: DHSheetV2.#onDeleteDoc,
+                deleteInvalidDoc: DHSheetV2.#onDeleteInvalidDoc,
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
                 viewItem: DHSheetV2.#viewItem,
@@ -139,10 +141,11 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
-                const { source, page } = this.document.system.attribution;
-                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+            if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
+                const { source, page, campaignFrame } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null, campaignFrame ? ` (${campaignFrame})` : null]
+                    .filter(x => x)
+                    .join('. ');
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
                 this.window.controls.insertAdjacentHTML('beforebegin', element);
             }
@@ -158,8 +161,7 @@ export default function DHApplicationMixin(Base) {
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
 
@@ -291,7 +293,7 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
-            this._createTagifyElements(this.options.tagifyConfigs);
+            await this._createTagifyElements(this.options.tagifyConfigs);
 
             for (const d of this.options.dragDrop) {
                 new foundry.applications.ux.DragDrop.implementation({
@@ -330,10 +332,10 @@ export default function DHApplicationMixin(Base) {
          * @throws {Error} If required properties are missing in config objects
          * @param {TagifyConfig[]} tagConfigs
          */
-        _createTagifyElements(tagConfigs) {
+        async _createTagifyElements(tagConfigs) {
             if (!Array.isArray(tagConfigs)) throw new TypeError('tagConfigs must be an array');
 
-            tagConfigs.forEach(config => {
+            for (const config of tagConfigs) {
                 try {
                     const { selector, options, callback, tagifyOptions = {} } = config;
 
@@ -348,14 +350,14 @@ export default function DHApplicationMixin(Base) {
                         throw new Error(`Element not found with selector: ${selector}`);
                     }
                     // Resolve dynamic options if function provided
-                    const resolvedOptions = typeof options === 'function' ? options.call(this) : options;
+                    const resolvedOptions = typeof options === 'function' ? await options.call(this) : options;
 
                     // Initialize Tagify
                     tagifyElement(element, resolvedOptions, callback.bind(this), tagifyOptions);
                 } catch (error) {
                     console.error('Error initializing Tagify:', error);
                 }
-            });
+            }
         }
 
         /* -------------------------------------------- */
@@ -586,9 +588,40 @@ export default function DHApplicationMixin(Base) {
             context.source = this.document;
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
-            context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+            context.settings = game.system.settings.appearance;
 
             return context;
+        }
+
+        /**
+         * Prepare render context for the Effect part.
+         * @param {ApplicationRenderContext} context
+         * @param {ApplicationRenderOptions} options
+         * @returns {Promise<void>}
+         * @protected
+         */
+        async _prepareEffectsContext(context, _options) {
+            context.effects = {
+                actives: [],
+                inactives: []
+            };
+
+            const effects = this.document.allApplicableEffects?.({ noTransferArmor: true }) ?? this.document.effects;
+            for (const effect of effects) {
+                const list = effect.active ? context.effects.actives : context.effects.inactives;
+                const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();
+                const isSuppressed = effect.isSuppressed;
+                const invalid = !effect.system.testConditionals(rollData);
+                const unequipped = effect.item?.system.equipped === false;
+                list.push({
+                    effect,
+                    isSuppressed,
+                    invalid,
+                    suppressedMessage: isSuppressed
+                        ? _loc(`DAGGERHEART.UI.Tooltip.suppressedEffect.${invalid ? 'invalid' : unequipped ? 'unequipped' : 'general'}`)
+                        : null
+                });
+            }
         }
 
         /* -------------------------------------------- */
@@ -813,11 +846,33 @@ export default function DHApplicationMixin(Base) {
          * Delete an embedded document.
          * @type {ApplicationClickAction}
          */
-        static async #deleteDoc(event, target) {
+        static async #onDeleteDoc(event, target) {
             const doc = await getDocFromElement(target);
             if (doc) {
                 if (event.shiftKey) return doc.delete();
                 else return await doc.deleteDialog();
+            }
+        }
+
+        /**
+         * Delete an embedded document or action that is invalid.
+         * @type {ApplicationClickAction}
+         * @this DHSheetV2
+         */
+        static async #onDeleteInvalidDoc(event, target) {
+            const { invalidId, collection } = target.closest('[data-invalid-id]')?.dataset ?? {};
+            if (!invalidId) throw Error('Missing invalid document id');
+
+            if (collection === 'actions') {
+                this.document.update({
+                    'system.actions': {
+                        [invalidId]: _del
+                    }
+                });
+            } else {
+                if (!this.document[collection]) throw new Error(`Invalid collection ${collection}`);
+                const document = this.document[collection].getInvalid(invalidId);
+                await document.delete(); // untested, test when implementing https://github.com/Foundryborne/daggerheart/issues/1891
             }
         }
 

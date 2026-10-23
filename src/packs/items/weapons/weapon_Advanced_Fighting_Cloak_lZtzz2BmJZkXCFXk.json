@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/coat-collared-red.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -19,15 +19,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "padded",
-        "effectIds": [
-          "sqvQgVCVUFwF7iEK"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -86,7 +77,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -117,6 +109,16 @@
           "trait": null
         }
       }
+    },
+    "itemFeatures": {
+      "padded": {
+        "value": "padded",
+        "effectIds": [
+          "sqvQgVCVUFwF7iEK"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
     }
   },
   "effects": [
@@ -144,7 +146,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "sqvQgVCVUFwF7iEK",
       "type": "base",

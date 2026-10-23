@@ -43,12 +43,12 @@ export function omit(obj, keys) {
  * @template V
  * @template R
  * @param {Record<K, V>} obj object to transform
- * @param {(value: V, index: number) => R} transform mapping function
+ * @param {(value: V, key: K) => R} transform mapping function
  * @returns {Record<K, R>} new object with mapped values
  */
 export function mapValues(obj, transform) {
-    return Object.entries(obj).reduce((r, [k, v], index) => {
-        r[k] = transform(v, index);
+    return Object.entries(obj).reduce((r, [k, v]) => {
+        r[k] = transform(v, k);
         return r;
     }, {});
 }
@@ -87,4 +87,16 @@ export function sortBy(arr, fn) {
         return directCompare(resultA, resultB);
     };
     return arr.sort(cmp);
+}
+
+export function shuffleArray(array) {
+    let currentIndex = array.length;
+    while (currentIndex != 0) {
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
 }

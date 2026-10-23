@@ -90,11 +90,16 @@ export default class DamageField extends fields.SchemaField {
         const damagePromises = [];
         for (const target of targets) {
             const actor = foundry.utils.fromUuidSync(target.actorId);
-            if (!actor) continue;
+            if (!actor) {
+                ui.notifications.error(
+                    _loc('DAGGERHEART.UI.Notifications.actorMissing', { actorName: target.name })
+                );
+                continue;
+            }
             
-            const token = target.id
-                ? game.scenes.find(x => x.active).tokens.find(x => x.id === target.id)
-                : actor.prototypeToken;
+            const actorTokens = actor.getDependentTokens();
+            const token = actorTokens.find(x => x.id === target.id) ?? actor.prototypeToken;
+            
             if (config.hasHealing)
                 damagePromises.push(
                     actor.takeHealing(config.damage).then(updates => targetDamage.push({ 
@@ -128,10 +133,12 @@ export default class DamageField extends fields.SchemaField {
 
                 damagePromises.push(
                     actor
-                        .takeDamage(configDamage, config.isDirect)
+                        .takeDamage(configDamage, { actionUuid: this.uuid, isDirect: config.isDirect})
                         .then(updates => { 
-                            const resistanceData = 
-                                token.actor?.getResistanceStatus(configDamage.main?.options.damageTypes ?? []);
+                            if (!updates?.length) return;
+
+                            const resistanceData = actor.getResistanceStatus(
+                                configDamage.main?.options.damageTypes ?? []);
                             const tokenData = {
                                 id: token.id, 
                                 name: token.prototype?.name ?? token.name, 
@@ -155,7 +162,7 @@ export default class DamageField extends fields.SchemaField {
                 CONFIG.DH.id,
                 CONFIG.DH.SETTINGS.gameSettings.Automation
             ).summaryMessages;
-            if (!summaryMessageSettings.damage) return;
+            if (!summaryMessageSettings.damage || !targetDamage.length) return;
 
             const { hideObserverPermissionInChat } = game.settings.get(
                 CONFIG.DH.id,
@@ -195,11 +202,9 @@ export default class DamageField extends fields.SchemaField {
      * @returns Formula value object
      */
     static getFormulaValue(part, data) {
-        let formulaValue = part.value;
-
-        if (data.hasRoll && part.resultBased && data.roll.withFear) return part.valueAlt;
-
-        return formulaValue;
+        return data.hasRoll && part.resultBased && data.roll.withFear && part.valueAlt
+            ? part.valueAlt
+            : part.value;
     }
 
     /**
@@ -240,10 +245,8 @@ export default class DamageField extends fields.SchemaField {
      */
     static getAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.players)
+            (game.user.isGM && game.system.settings.automation.roll.damage.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.damage.players)
         );
     }
 
@@ -253,10 +256,8 @@ export default class DamageField extends fields.SchemaField {
      */
     static getApplyAutomation() {
         return (
-            (game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.gm) ||
-            (!game.user.isGM &&
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.players)
+            (game.user.isGM && game.system.settings.automation.roll.damageApply.gm) ||
+            (!game.user.isGM && game.system.settings.automation.roll.damageApply.players)
         );
     }
 
@@ -266,13 +267,10 @@ export default class DamageField extends fields.SchemaField {
         const targets = Array.from(game.user.targets);
         const rangeSettings = canvas.scene?.rangeSettings;
         if (!rangeSettings) return [];
-
-        const maxDistance = rangeSettings[range];
+        
         return canvas.scene.tokens.filter(x => {
             if (x.actor?.id !== actorId) return false;
-            if (targets.every(target => x.object.distanceTo(target) > maxDistance)) return false;
-
-            return true;
+            return targets.some(target => x.object.isWithinRange(target, range));
         });
     }
 }
@@ -358,7 +356,7 @@ export class DHResourceData extends DHResourceBaseData {
         return {
             ...super.defineSchema(),
             value: new fields.EmbeddedDataField(DHActionDiceData),
-            valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
+            valueAlt: new fields.EmbeddedDataField(DHActionDiceData, { nullable: true, initial: null })
         };
     }
 }

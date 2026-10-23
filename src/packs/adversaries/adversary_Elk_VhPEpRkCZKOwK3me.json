@@ -79,7 +79,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -118,7 +119,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {
@@ -137,8 +138,8 @@
     "advantageSources": [],
     "disadvantageSources": [],
     "notes": "",
-    "hordeHp": 1,
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": null
   },
   "items": [
     {
@@ -169,22 +170,14 @@
                     "formula": ""
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "includeBase": false,
                 "direct": false,
                 "type": [
                   "physical"
                 ],
-                "groupAttack": ""
+                "groupAttack": "",
+                "itemId": null
               },
               "resources": {}
             },
@@ -215,7 +208,8 @@
             "range": ""
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "WxeMh4vOkER8kCLr",
       "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
@@ -268,9 +262,9 @@
             },
             "effects": [],
             "roll": {
-              "type": null,
+              "type": "reaction",
               "trait": null,
-              "difficulty": null,
+              "difficulty": 10,
               "bonus": null,
               "advState": "neutral",
               "diceRolling": {
@@ -283,7 +277,7 @@
               "useDefault": false
             },
             "save": {
-              "trait": "agility",
+              "trait": null,
               "difficulty": 10,
               "damageMod": "none"
             },
@@ -291,7 +285,8 @@
             "range": "self"
           }
         },
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "ku7SWV1AXQ1d50sN",
       "img": "icons/skills/movement/arrow-upward-yellow.webp",

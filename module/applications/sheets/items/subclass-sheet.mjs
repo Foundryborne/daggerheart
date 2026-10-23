@@ -1,0 +1,75 @@
+import DHBaseItemSheet from '../api/base-item.mjs';
+
+/** @import DHSubclass from '../../../data/item/subclass.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHSubclass>>} */
+export default class SubclassSheet extends DHBaseItemSheet {
+    /**@inheritdoc */
+    static DEFAULT_OPTIONS = {
+        classes: ['subclass'],
+        position: { width: 600 },
+        window: { resizable: true }
+    };
+
+    /**@override */
+    static PARTS = {
+        header: { template: 'systems/daggerheart/templates/sheets/items/subclass/header.hbs' },
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
+        description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
+        features: {
+            template: 'systems/daggerheart/templates/sheets/items/subclass/features.hbs',
+            scrollable: ['.features']
+        },
+        settings: {
+            template: 'systems/daggerheart/templates/sheets/items/subclass/settings.hbs',
+            scrollable: ['.settings']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects']
+        }
+    };
+
+    /** @inheritdoc */
+    static TABS = {
+        primary: {
+            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }, { id: 'effects' }],
+            initial: 'description',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
+        }
+    };
+
+    /**@inheritdoc */
+    get relatedDocs() {
+        return this.document.system.features.map(x => x.item);
+    }
+
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.features = Object.groupBy(this.item.system.features, f => f.type);
+        if (this.document.system.linkedClass) {
+            const classData = await fromUuid(this.document.system.linkedClass);
+            context.class = classData ?? {
+                name: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.class') }),
+                missing: true
+            };
+        }
+        return context;
+    }
+
+    async _onDropItem(event, item) {
+        if (item.type === 'class') {
+            const uuid = item.sourceUuid;
+            if (this.document.system.linkedClass !== uuid) {
+                await this.document.update({ 'system.linkedClass': uuid });
+                // Re-render all class sheets for instant feedback
+                for (const app of foundry.applications.instances.values()) {
+                    if (app.document?.type === 'class') app.render();
+                }
+            }
+            return;
+        }
+
+        return super._onDropItem(event, item);
+    }
+}

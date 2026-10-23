@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/bullet-proof-vest-kevlar.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -25,15 +25,16 @@
       "major": 8,
       "severe": 16
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "bulky": {
         "value": "bulky",
         "effectIds": [
           "JkRfeN3ioW857m1p"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {
@@ -54,7 +55,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "JkRfeN3ioW857m1p",
       "type": "base",

@@ -74,7 +74,12 @@
       "What did I do that makes you cautious around me?",
       "Why do we keep our shared past a secret?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "folder": null,

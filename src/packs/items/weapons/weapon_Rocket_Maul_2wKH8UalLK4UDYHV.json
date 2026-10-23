@@ -6,9 +6,10 @@
   "img": "icons/skills/melee/strike-hammer-destructive-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -57,15 +58,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "concussive",
-        "effectIds": [],
-        "actionIds": [
-          "xd2N3IRFkGcy9byh"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -97,7 +89,7 @@
       "damage": {
         "main": {
           "type": [
-            "physical"
+            "magical"
           ],
           "value": {
             "multiplier": "prof",
@@ -124,7 +116,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -154,6 +147,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "concussive": {
+        "value": "concussive",
+        "effectIds": [],
+        "actionIds": [
+          "xd2N3IRFkGcy9byh"
+        ],
+        "config": {}
       }
     }
   },

@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 4,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "difficult",
-        "effectIds": [
-          "rkrqlwqtR9REgRx7"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 18,
       "severe": 48
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "difficult": {
+        "value": "difficult",
+        "effectIds": [
+          "rkrqlwqtR9REgRx7"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {
@@ -92,7 +93,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

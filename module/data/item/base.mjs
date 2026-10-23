@@ -14,7 +14,8 @@ import {
     createShallowProxy,
     updateLinkedItemApps
 } from '../../helpers/utils.mjs';
-import { ActionsField } from '../fields/actionField.mjs';
+import { DHActionDiceData } from '../fields/action/damageField.mjs';
+import { ActionCollectionField } from '../fields/action-collection-field.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -46,6 +47,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             attribution: new fields.SchemaField({
                 source: new fields.StringField(),
                 page: new fields.NumberField(),
+                campaignFrame: new fields.StringField(),
                 artist: new fields.StringField()
             })
         };
@@ -93,7 +95,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (this.metadata.isInventoryItem)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
 
-        if (this.metadata.hasActions) schema.actions = new ActionsField();
+        if (this.metadata.hasActions) schema.actions = new ActionCollectionField();
 
         return schema;
     }
@@ -110,7 +112,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /**
      * Convenient access to the item's actor, if it exists.
-     * @returns {DhpActor | null}
+     * @returns {DhActor | null}
      */
     get actor() {
         return this.parent.actor;
@@ -122,10 +124,6 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             return [];
         }
         return this.actions;
-    }
-
-    get itemFeatures() {
-        return this.actor?.items.filter(i => i.system.granterItem === this.parent) ?? [];
     }
 
     get attributionLabel() {
@@ -233,7 +231,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         addLinkedItemsDiff(changed.system?.features, this.features, options);
 
-        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const autoSettings = game.system.settings.automation;
         const armorChanged =
             changed.system?.armor?.current !== undefined && changed.system.armor.current !== this.armor.current;
         if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
@@ -247,9 +245,29 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         }
 
         if (changed.system?.actions) {
+            const updateDamage = (changes, originData) => {
+                const resultBased = changes.resultBased ?? originData?.resultBased;
+                changes.valueAlt = resultBased 
+                    ? (changes.valueAlt ?? originData?.valueAlt ?? DHActionDiceData.schema.getInitialValue())
+                    : null;
+            }
+
+            for (const [key, action] of Object.entries(changed.system.actions)) {
+                const existing = this.actions.get(key);
+                if (!action?.damage || !existing) continue;
+
+                if (action.damage.main) {
+                    updateDamage(action.damage.main, existing.damage?.main);
+                }
+                for (const [resource, resourceData] of Object.entries(action.damage.resources ?? {})) {
+                    const existingResource = existing.damage?.resources?.[resource];
+                    updateDamage(resourceData, existingResource);
+                }
+            }
+
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
                 const action = changed.system.actions[key];
-                if (action && Object.keys(action).length === 0) {
+                if (action && Object.keys(action).length === 0 && this.actions.has(key)) {
                     acc.push(...this.actions.get(key).triggers.map(x => x.trigger));
                 }
 
@@ -258,7 +276,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
             game.system.registeredTriggers.unregisterTriggers(triggersToRemove, this.parent.uuid);
 
-            if (this.parent.parent && !(this.parent.parent.token instanceof game.system.api.documents.DhToken)) {
+            const actor = this.actor;
+            if (actor && !(actor?.token instanceof TokenDocument)) {
                 for (const token of this.parent.parent.getActiveTokens()) {
                     game.system.registeredTriggers.unregisterTriggers(
                         triggersToRemove,

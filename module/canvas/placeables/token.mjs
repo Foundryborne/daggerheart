@@ -1,4 +1,4 @@
-import { getIconVisibleActiveEffects } from '../../helpers/utils.mjs';
+import { getIconVisibleActiveEffects, measureExact } from '../../helpers/utils.mjs';
 import DhMeasuredTemplate from './measuredTemplate.mjs';
 
 export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
@@ -24,16 +24,14 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         const isTurn = game.combat?.combatant?.tokenId === this.id;
         const markerActive = markersEnabled && turnIsSet ? isTurn : spotlighted;
 
-        // Activate a Turn Marker
         if (markerActive) {
+            // Activate a Turn Marker
             if (!this.turnMarker)
                 this.turnMarker = this.addChildAt(new foundry.canvas.placeables.tokens.TokenTurnMarker(this), 0);
             canvas.tokens.turnMarkers.add(this);
             this.turnMarker.draw();
-        }
-
-        // Remove a Turn Marker
-        else if (this.turnMarker) {
+        } else if (this.turnMarker) {
+            // Remove a Turn Marker
             canvas.tokens.turnMarkers.delete(this);
             this.turnMarker.destroy();
             this.turnMarker = null;
@@ -112,8 +110,11 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
      * Returns the distance from this token to another token object.
      * This value is corrected to handle alternate token sizes and other grid types
      * according to the diagonal rules.
+     * @param {DhTokenPlaceable} target the target we're measuring too
+     * @param {object} [options]
+     * @param {boolean} [options.exact] whether to ignore grid diagonal setting and use exact measurements
      */
-    distanceTo(target) {
+    distanceTo(target, { exact = false } = {}) {
         if (!canvas.ready) return NaN;
         if (this === target) return 0;
 
@@ -151,6 +152,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         }
 
         // Compute what the closest grid space of each token is, then compute that distance
+        // Gridless is handled earlier, so if exact is set, grid diagonals are ignored in favor of 
         const originEdge = this.#getEdgeBoundary(thisBounds, originPoint, targetPoint);
         const targetEdge = this.#getEdgeBoundary(targetBounds, originPoint, targetPoint);
         const adjustedOriginPoint = originEdge
@@ -159,70 +161,130 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
                 y: originEdge.y + Math.sign(originPoint.y - originEdge.y)
             })
             : originPoint;
-        const adjustDestinationPoint = targetEdge
+        const adjustedDestinationPoint = targetEdge
             ? canvas.grid.getTopLeftPoint({
                 x: targetEdge.x + Math.sign(targetPoint.x - targetEdge.x),
                 y: targetEdge.y + Math.sign(targetPoint.y - targetEdge.y)
             })
             : targetPoint;
-        const distance = canvas.grid.measurePath([
-            { ...adjustedOriginPoint, elevation: 0 },
-            { ...adjustDestinationPoint, elevation }
-        ]).distance;
+        const distance = exact
+            ? measureExact(
+                adjustedOriginPoint, 
+                { ...adjustedDestinationPoint, z: elevation },
+                { grid: canvas.grid }
+            )
+            : canvas.grid.measurePath([
+                { ...adjustedOriginPoint, elevation: 0 },
+                { ...adjustedDestinationPoint, elevation }
+            ]).distance;
         return Math.min(distance, distance > adjacencyBuffer ? Infinity : canvas.grid.distance);
     }
 
+    /** 
+     * Checks if the target token is within range
+     * @param {DhTokenPlaceable} target
+     * @param {keyof typeof CONFIG.DH.GENERAL.range} range
+     */
+    isWithinRange(target, range) {
+        const settings = canvas.scene?.rangeSettings;
+        if (!settings) return false;
+
+        if (range === 'veryFar') return true;
+
+        const maxDistance = settings[range];
+        const distance = this.distanceTo(target, { exact: true });
+        const roundedDistance = Math.round(distance / canvas.grid.distance) * canvas.grid.distance;
+        return roundedDistance <= maxDistance;
+    }
+
+    /** @inheritdoc */
     _onHoverIn(event, options) {
         super._onHoverIn(event, options);
+        this.#showDistanceHover();
+    }
+
+    /** @inheritdoc */
+    _onHoverOut(...args) {
+        super._onHoverOut(...args);
+        if (!this.layer.highlightObjects) {
+            this.#showDistanceHover(false);
+        }
+    }
+
+    /** @inheritdoc */
+    _refreshState() {
+        super._refreshState();
+        const isHover = this.hover || this.layer.highlightObjects;
+        this.#showDistanceHover(isHover);
+    }
+
+    /**
+     * Show or hide distance hover tooltip. 
+     * Despite the given paramter, it performs the necessary checks to see if its valid to show.
+     * @param {boolean} [show] whether to show the hover or whether to hide
+     */
+    #showDistanceHover(show = true) {
+        if (!show) {
+            document.querySelector(`#measurement .token-hover-distance[data-uuid="${this.document.uuid}"]`)?.remove();
+            return;
+        }
 
         // Check if the setting is enabled
-        const setting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).showTokenDistance;
+        const setting = game.system.settings.appearance.showTokenDistance;
         if (setting === 'never' || (setting === 'encounters' && !game.combat?.started)) return;
 
         // Check if this token isn't invisible and is actually being hovered
         const isTokenValid =
+            this.document.uuid &&
             this.visible &&
-            this.hover &&
+            (this.hover || this.layer.highlightObjects) &&
             !this.isPreview &&
             !this.document.isSecret &&
             !this.controlled &&
             !this.animation;
-        if (!isTokenValid) return;
+        if (!isTokenValid) {
+            this.#showDistanceHover(false);
+            return;
+        }
 
         // Ensure we have a single controlled token
         const originToken = canvas.tokens.controlled[0];
         if (!originToken || canvas.tokens.controlled.length > 1) return;
 
         // Determine the actual range
-        const ranges = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement;
-        const distanceResult = DhMeasuredTemplate.getRangeLabels(originToken.distanceTo(this), ranges);
+        const ranges = canvas.scene.rangeSettings;
+        const exact = ranges.enabled;
+        const distanceResult = DhMeasuredTemplate.getRangeLabels(originToken.distanceTo(this, { exact }), ranges);
         const distanceLabel = `${distanceResult.distance} ${distanceResult.units}`.trim();
 
-        // Create the element
-        const element = document.createElement('div');
-        element.id = 'token-hover-distance';
-        element.classList.add('waypoint-label', 'last');
-        const ruler = document.createElement('i');
-        ruler.classList.add('fa-solid', 'fa-ruler');
-        element.appendChild(ruler);
-        const labelEl = document.createElement('span');
-        labelEl.classList.add('total-measurement');
-        labelEl.textContent = distanceLabel;
-        element.appendChild(labelEl);
+        // Create or retrieve the existing element.
+        const existing = document.querySelector(`#measurement .token-hover-distance[data-uuid="${this.document.uuid}"]`);
+        const element = existing ?? document.createElement('div');
+        const center = this.getCenterPoint();
 
         // Position the element and add to the DOM
-        const center = this.getCenterPoint();
         element.style.setProperty('--transformY', 'calc(-100% - 10px)');
         element.style.setProperty('--position-y', `${this.y}px`);
         element.style.setProperty('--position-x', `${center.x}px`);
         element.style.setProperty('--ui-scale', String(canvas.dimensions.uiScale));
-        document.querySelector('#token-hover-distance')?.remove();
-        document.querySelector('#measurement').appendChild(element);
-    }
 
-    _onHoverOut(...args) {
-        super._onHoverOut(...args);
-        document.querySelector('#token-hover-distance')?.remove();
+        if (!existing) {
+            // Create the element and add to the dom
+            element.dataset.uuid = this.document.uuid;
+            element.classList.add('token-hover-distance', 'waypoint-label', 'last');
+            const ruler = document.createElement('i');
+            ruler.classList.add('fa-solid', 'fa-ruler');
+            element.appendChild(ruler);
+            const labelEl = document.createElement('span');
+            labelEl.classList.add('total-measurement');
+            labelEl.textContent = distanceLabel;
+            element.appendChild(labelEl);
+            document.querySelector('#measurement').appendChild(element);
+        } else {
+            // Update the label of the existing element
+            const measurement = element.querySelector('span.total-measurement');
+            if (measurement) measurement.textContent = distanceLabel;
+        }
     }
 
     /** Returns the point at which a line starting at origin and ending at destination intersects the edge of the bounds */

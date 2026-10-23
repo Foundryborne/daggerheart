@@ -33,7 +33,6 @@
     },
     "type": "horde",
     "notes": "",
-    "hordeHp": 5,
     "experiences": {
       "4SUFXKZh33mFvNt9": {
         "name": "Camouflage",
@@ -75,7 +74,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,12 @@
     "size": "medium",
     "advantageSources": [],
     "disadvantageSources": [],
-    "criticalThreshold": 20
+    "criticalThreshold": 20,
+    "typeData": {
+      "type": "horde",
+      "hordeHP": 5,
+      "hordeDamage": "1d4+1"
+    }
   },
   "flags": {},
   "_id": "IIWV4ysJPFPnTP7W",
@@ -234,95 +239,6 @@
   },
   "items": [
     {
-      "name": "Horde",
-      "type": "feature",
-      "_id": "9RduwBLYcBaiouYk",
-      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
-      "system": {
-        "description": "<p>When the @Lookup[@name] have marked half or more of their HP, their standard attack deals <strong>@Lookup[@system.attack.altDamageFormula]</strong> physical damage instead.</p>",
-        "resource": null,
-        "actions": {},
-        "attribution": {},
-        "gmNotes": "",
-        "featureForm": "passive",
-        "granter": null
-      },
-      "effects": [
-        {
-          "name": "Horde",
-          "type": "base",
-          "system": {
-            "changes": [
-              {
-                "type": "standardAttack",
-                "phase": "initial",
-                "value": {
-                  "name": "",
-                  "damageTypes": [],
-                  "attackRange": null,
-                  "trait": null,
-                  "damageFormula": "1d4 + 1",
-                  "img": null
-                },
-                "priority": 0
-              }
-            ],
-            "duration": {
-              "description": "",
-              "type": ""
-            },
-            "conditionals": [
-              {
-                "type": "dataCompare",
-                "key": "system.resources.hitPoints.value",
-                "comparator": "greaterEquals",
-                "value": "@system.resources.hitPoints.max / 2"
-              }
-            ],
-            "rangeDependence": null,
-            "stacking": null,
-            "targetDispositions": []
-          },
-          "_id": "59X0UbixSRllXr9Z",
-          "img": "icons/magic/movement/chevrons-down-yellow.webp",
-          "disabled": false,
-          "start": {
-            "time": 0,
-            "combat": null,
-            "combatant": null,
-            "initiative": null,
-            "round": null,
-            "turn": null
-          },
-          "duration": {
-            "value": null,
-            "units": "seconds",
-            "expiry": null,
-            "expired": false
-          },
-          "description": "<p>When the Giant Mosquitoes have marked half or more of their HP, their standard attack deals <strong>1d4 + 1</strong> physical damage instead.</p>",
-          "tint": "#ffffff",
-          "transfer": true,
-          "statuses": [],
-          "showIcon": 2,
-          "folder": null,
-          "sort": 0,
-          "flags": {},
-          "_stats": {
-            "compendiumSource": null
-          },
-          "_key": "!actors.items.effects!IIWV4ysJPFPnTP7W.9RduwBLYcBaiouYk.59X0UbixSRllXr9Z"
-        }
-      ],
-      "folder": null,
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "_key": "!actors.items!IIWV4ysJPFPnTP7W.9RduwBLYcBaiouYk"
-    },
-    {
       "name": "Flying",
       "type": "feature",
       "_id": "gxYV6iTMM1S9Vv5v",
@@ -334,7 +250,8 @@
         "attribution": {},
         "gmNotes": "",
         "featureForm": "passive",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [
         {
@@ -357,7 +274,8 @@
             },
             "rangeDependence": null,
             "stacking": null,
-            "targetDispositions": []
+            "targetDispositions": [],
+            "conditionals": []
           },
           "disabled": true,
           "duration": {
@@ -382,7 +300,7 @@
         }
       ],
       "folder": null,
-      "sort": 0,
+      "sort": 100000,
       "flags": {},
       "_stats": {
         "compendiumSource": null
@@ -440,7 +358,8 @@
         "featureForm": "reaction",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "effects": [],
       "folder": null,
@@ -450,6 +369,92 @@
         "compendiumSource": null
       },
       "_key": "!actors.items!IIWV4ysJPFPnTP7W.BTlMLjG65KQs0Jk2"
+    },
+    {
+      "type": "feature",
+      "name": "Horde",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "system": {
+        "description": "When the @Lookup[@name] have marked half or more of their HP, their standard attack deals @Lookup[@system.typeData.hordeDamage] @Lookup[@system.attackDamageType] damage instead.",
+        "attribution": {},
+        "gmNotes": "",
+        "resource": null,
+        "actions": {},
+        "granter": null,
+        "featureForm": "passive",
+        "actorResources": []
+      },
+      "flags": {
+        "daggerheart": {
+          "hordeFeature": true
+        }
+      },
+      "effects": [
+        {
+          "name": "Horde",
+          "img": "icons/magic/movement/chevrons-down-yellow.webp",
+          "showIcon": 2,
+          "system": {
+            "conditionals": [
+              {
+                "type": "dataCompare",
+                "key": "system.resources.hitPoints.value",
+                "comparator": "greaterEquals",
+                "value": "@system.resources.hitPoints.max / 2"
+              }
+            ],
+            "changes": [
+              {
+                "type": "standardAttack",
+                "value": {
+                  "name": "",
+                  "damageTypes": [],
+                  "attackRange": null,
+                  "trait": null,
+                  "damageFormula": "@system.typeData.hordeDamage",
+                  "img": null
+                },
+                "priority": 0,
+                "phase": "initial"
+              }
+            ],
+            "duration": {
+              "description": ""
+            },
+            "rangeDependence": null,
+            "stacking": null,
+            "targetDispositions": []
+          },
+          "_id": "6D7zeQQtxAjOsGae",
+          "type": "base",
+          "disabled": false,
+          "start": null,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null
+          },
+          "_key": "!actors.items.effects!IIWV4ysJPFPnTP7W.wxEJDreq59Qk4Jk5.6D7zeQQtxAjOsGae"
+        }
+      ],
+      "_id": "wxEJDreq59Qk4Jk5",
+      "folder": null,
+      "sort": 0,
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!actors.items!IIWV4ysJPFPnTP7W.wxEJDreq59Qk4Jk5"
     }
   ],
   "effects": [],

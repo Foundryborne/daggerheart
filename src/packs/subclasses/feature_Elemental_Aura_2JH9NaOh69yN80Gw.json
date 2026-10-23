@@ -39,17 +39,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },
@@ -237,7 +229,8 @@
     },
     "gmNotes": "",
     "granter": null,
-    "featureForm": "passive"
+    "featureForm": "passive",
+    "actorResources": []
   },
   "effects": [
     {
@@ -253,7 +246,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -288,7 +282,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {
@@ -335,7 +330,8 @@
         "targetDispositions": [
           1
         ],
-        "rangeDependence": null
+        "rangeDependence": null,
+        "conditionals": []
       },
       "_id": "yvpWNCNobg0LLjey",
       "type": "base",
@@ -380,7 +376,8 @@
         "stacking": null,
         "targetDispositions": [
           1
-        ]
+        ],
+        "conditionals": []
       },
       "_id": "vnKV5hsO4DVjURAl",
       "type": "base",

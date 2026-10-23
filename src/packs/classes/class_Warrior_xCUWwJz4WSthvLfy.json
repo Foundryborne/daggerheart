@@ -70,7 +70,12 @@
       "What mundane task do you usually help me with off the battlefield?",
       "What fear am I helping you overcome?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "folder": null,

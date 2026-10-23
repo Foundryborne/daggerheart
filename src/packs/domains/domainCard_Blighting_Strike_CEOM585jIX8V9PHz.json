@@ -6,7 +6,7 @@
     "domain": "dread",
     "level": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success:</p><ul><li><p>On a roll with Hope, deal <strong>d6+1</strong> magic damage using your Proficiency. On a roll with Fear, deal <strong>d10+1</strong> magic damage using your Proficiency.</p></li><li><p>The target's next successful attack deals half damage.</p></li></ul><p>On a failure, you must spend a Hope or mark a Stress.</p>",
@@ -16,7 +16,38 @@
       "bwqmvRSWdnkxaHLl": {
         "type": "attack",
         "damage": {
-          "main": null,
+          "main": {
+            "base": false,
+            "itemId": null,
+            "applyTo": "hitPoints",
+            "resultBased": true,
+            "fullRestore": false,
+            "value": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": 1,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d10",
+              "bonus": 1,
+              "custom": {
+                "enabled": false,
+                "formula": ""
+              }
+            },
+            "includeBase": false,
+            "direct": false,
+            "type": [
+              "magical"
+            ]
+          },
           "resources": {}
         },
         "_id": "bwqmvRSWdnkxaHLl",
@@ -89,21 +120,13 @@
                 "formula": ""
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },
@@ -130,7 +153,7 @@
           "amount": null
         },
         "effects": [],
-        "name": "With Hope",
+        "name": "Damage (With Hope)",
         "range": "",
         "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp"
       },
@@ -152,21 +175,13 @@
                 "formula": ""
               }
             },
-            "valueAlt": {
-              "multiplier": "flat",
-              "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
-              "custom": {
-                "enabled": false,
-                "formula": ""
-              }
-            },
+            "valueAlt": null,
             "includeBase": false,
             "direct": false,
             "type": [
               "magical"
-            ]
+            ],
+            "itemId": null
           },
           "resources": {}
         },
@@ -193,7 +208,7 @@
           "amount": null
         },
         "effects": [],
-        "name": "With Fear",
+        "name": "Damage (With Fear)",
         "range": "",
         "img": "icons/magic/unholy/orb-hands-pink.webp"
       }
@@ -231,7 +246,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "5Sk45YMLZWn0kRla",
       "type": "base",

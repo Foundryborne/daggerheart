@@ -13,15 +13,6 @@
     "actions": {},
     "tier": 2,
     "equipped": false,
-    "armorFeatures": [
-      {
-        "value": "reinforced",
-        "effectIds": [
-          "P3aCN8PQgPXP4C9M"
-        ],
-        "actionIds": []
-      }
-    ],
     "baseThresholds": {
       "major": 9,
       "severe": 20
@@ -33,7 +24,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "reinforced": {
+        "value": "reinforced",
+        "effectIds": [
+          "P3aCN8PQgPXP4C9M"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {
@@ -64,7 +65,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "disabled": false,
       "duration": {

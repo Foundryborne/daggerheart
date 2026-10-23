@@ -6,7 +6,7 @@
     "description": "<p>You can choose an additional downtime move each rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -41,7 +41,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "RaFL9RF6M2Oa1Mc0",
       "img": "icons/equipment/neck/amulet-round-gold-green-blue.webp",

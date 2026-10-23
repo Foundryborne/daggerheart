@@ -132,9 +132,9 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.roll.spellcast.bonus",
+            "key": "system.bonuses.roll.bonus",
             "type": "add",
-            "value": "+2",
+            "value": "2",
             "priority": null,
             "phase": "initial"
           }
@@ -144,7 +144,16 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "spellcast"
+            ],
+            "traits": []
+          }
+        ]
       },
       "disabled": false,
       "duration": {

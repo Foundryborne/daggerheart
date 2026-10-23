@@ -70,7 +70,12 @@
       "What weird hobby or strange fascination do we both share?",
       "What secret about yourself have you entrusted only to me?"
     ],
-    "gmNotes": ""
+    "gmNotes": "",
+    "levelupOptionTiers": {
+      "2": {},
+      "3": {},
+      "4": {}
+    }
   },
   "effects": [],
   "folder": null,

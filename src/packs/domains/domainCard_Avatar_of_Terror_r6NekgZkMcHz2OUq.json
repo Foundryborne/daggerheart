@@ -6,7 +6,7 @@
     "domain": "dread",
     "level": 10,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "description": "<p><strong>Mark a Stress</strong> to transform into a creature fueled by fear. While in this form, you gain a <strong>1d6</strong> bonus to your damage rolls for each Fear in the GM's pool. Additionally, you gain a Hope when the GM spends a Fear to spotlight an adversary within Very Close range.</p><p>Before you make an action roll, you must spend a Hope. If you can't, you revert to your normal form.</p>",
@@ -58,7 +58,7 @@
       }
     },
     "recallCost": 2,
-    "type": "ability",
+    "type": "spell",
     "inVault": false,
     "vaultActive": false,
     "loadoutIgnore": false,
@@ -77,14 +77,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.physical.dice",
-            "type": "add",
-            "value": "(@fear)d6",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.bonuses.damage.magical.dice",
+            "key": "system.bonuses.damage.bonus",
             "type": "add",
             "value": "(@fear)d6",
             "priority": null,
@@ -97,7 +90,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "dn84Mz9qZxt25RXv",
       "type": "base",

@@ -1,6 +1,6 @@
 import { HordeAdversaryType } from '../data/actor/adversaryTypes/_module.mjs';
 
-export const abilities = {
+export const traits = {
     agility: {
         id: 'agility',
         label: 'DAGGERHEART.CONFIG.Traits.agility.name',
@@ -56,6 +56,10 @@ export const abilities = {
         ]
     }
 };
+
+export const abilities = traits;
+
+export const standardAttackId = '000BASEATTACK000';
 
 export const featureProperties = {
     agility: {
@@ -157,10 +161,7 @@ export const adversaryTypeModels = {
     horde: HordeAdversaryType
 }
 
-export const allAdversaryTypes = () => ({
-    ...adversaryTypes,
-    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).adversaryTypes
-});
+export const allAdversaryTypes = () => ({ ...adversaryTypes, ...game.system.settings.homebrew.adversaryTypes });
 
 export const environmentTypes = {
     exploration: {

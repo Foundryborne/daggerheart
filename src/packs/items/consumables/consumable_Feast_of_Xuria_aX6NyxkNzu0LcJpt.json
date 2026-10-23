@@ -47,17 +47,9 @@
               "applyTo": "hitPoints",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": true
+              "valueAlt": null,
+              "fullRestore": true,
+              "itemId": null
             },
             "stress": {
               "value": {
@@ -73,17 +65,9 @@
               "applyTo": "stress",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": true
+              "valueAlt": null,
+              "fullRestore": true,
+              "itemId": null
             },
             "hope": {
               "value": {
@@ -99,17 +83,9 @@
               "applyTo": "hope",
               "base": false,
               "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false,
-                  "formula": ""
-                }
-              },
-              "fullRestore": false
+              "valueAlt": null,
+              "fullRestore": false,
+              "itemId": null
             }
           }
         },

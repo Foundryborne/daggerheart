@@ -6,9 +6,10 @@
   "img": "icons/weapons/axes/axe-double-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -57,15 +58,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "bouncing",
-        "effectIds": [],
-        "actionIds": [
-          "go6bchi8pFs20jTQ"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -124,7 +116,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -154,6 +147,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "bouncing": {
+        "value": "bouncing",
+        "effectIds": [],
+        "actionIds": [
+          "go6bchi8pFs20jTQ"
+        ],
+        "config": {}
       }
     }
   },

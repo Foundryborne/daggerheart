@@ -9,7 +9,7 @@ export default class DhTokenManager {
      * @param {object} tokenData
      */
     async createPreview(actor, tokenData) {
-        const tokenSizes = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).tokenSizes;
+        const tokenSizes = game.system.settings.homebrew.tokenSizes;
         if (actor?.system.metadata.usesSize) {
             const tokenSize = tokenSizes[actor.system.size];
             if (tokenSize && actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {

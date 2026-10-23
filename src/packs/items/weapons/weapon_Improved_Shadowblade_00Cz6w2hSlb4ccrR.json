@@ -6,7 +6,7 @@
   "img": "icons/weapons/swords/sword-flanged-lightning.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -19,7 +19,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -51,7 +50,7 @@
       "damage": {
         "main": {
           "type": [
-            "magical"
+            "physical"
           ],
           "value": {
             "multiplier": "prof",
@@ -78,7 +77,8 @@
             }
           },
           "includeBase": false,
-          "direct": false
+          "direct": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -109,7 +109,8 @@
           "trait": null
         }
       }
-    }
+    },
+    "itemFeatures": {}
   },
   "effects": [],
   "sort": 0,

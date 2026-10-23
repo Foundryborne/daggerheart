@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/robe-collared-pink.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -25,15 +25,16 @@
       "major": 10,
       "severe": 31
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "enchanted": {
         "value": "enchanted",
         "effectIds": [
           "YEg4fgH21uRnKW7f"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {
@@ -60,7 +61,8 @@
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": []
+        "targetDispositions": [],
+        "conditionals": []
       },
       "_id": "YEg4fgH21uRnKW7f",
       "type": "base",

@@ -100,7 +100,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         const context = await super._prepareContext(_options);
         context.levelup = this.levelup;
         context.tabs = this._getTabs(this.constructor.TABS);
-        context.levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+        context.levelupAuto = game.system.settings.automation.levelupAuto;
 
         return context;
     }

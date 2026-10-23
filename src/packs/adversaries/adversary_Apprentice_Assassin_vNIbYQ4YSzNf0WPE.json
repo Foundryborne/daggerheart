@@ -19,7 +19,6 @@
     },
     "type": "minion",
     "notes": "",
-    "hordeHp": 1,
     "experiences": {
       "KRU37FQnKagBvefZ": {
         "name": "Intrusion",
@@ -88,7 +87,8 @@
           "base": false,
           "includeBase": false,
           "direct": false,
-          "fullRestore": false
+          "fullRestore": false,
+          "itemId": null
         },
         "resources": {}
       },
@@ -135,7 +135,8 @@
     "damageThresholds": {
       "major": 0,
       "severe": 0
-    }
+    },
+    "typeData": null
   },
   "flags": {},
   "_id": "vNIbYQ4YSzNf0WPE",
@@ -243,7 +244,8 @@
         "featureForm": "passive",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "2yREz60uPY80tAa4",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
@@ -305,16 +307,7 @@
                     "formula": "4"
                   }
                 },
-                "valueAlt": {
-                  "multiplier": "flat",
-                  "flatMultiplier": 1,
-                  "dice": "d6",
-                  "bonus": null,
-                  "custom": {
-                    "enabled": false,
-                    "formula": ""
-                  }
-                },
+                "valueAlt": null,
                 "base": false,
                 "type": [
                   "physical"
@@ -322,7 +315,8 @@
                 "includeBase": false,
                 "direct": false,
                 "groupAttack": "close",
-                "fullRestore": false
+                "fullRestore": false,
+                "itemId": null
               },
               "resources": {}
             },
@@ -359,7 +353,8 @@
         "featureForm": "action",
         "attribution": {},
         "gmNotes": "",
-        "granter": null
+        "granter": null,
+        "actorResources": []
       },
       "_id": "4wT7CmM1DJEPcraF",
       "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
