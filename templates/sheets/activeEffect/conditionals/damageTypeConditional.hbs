@@ -1,8 +1,11 @@
-<div class="conditional-container">
+<fieldset class="conditional-container">
+    <legend>
+        {{localize "DAGGERHEART.CONFIG.ConditionalType.damageType"}}
+        <a data-action="removeConditional" data-index="{{@key}}"><i class="fa-solid fa-trash" inert></i></a>
+    </legend>
     <div class="conditional-inner-container">
         <input type="hidden" value="{{this.type}}" name="{{concat "system.conditionals." @key ".type"}}" />
         {{formGroup model.fields.damageType value=this.damageType name=(concat "system.conditionals." @key ".damageType") localize=true blank=false }}
+        {{formGroup model.fields.role value=this.role name=(concat "system.conditionals." @key ".role") localize=true blank=false }}
     </div>
-
-    <a class="form-row-icon" data-action="removeConditional" data-index="{{@key}}"><i class="fa-solid fa-trash"></i></a>
-</div>
+</fieldset>

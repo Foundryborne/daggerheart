@@ -6,9 +6,10 @@
   "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -48,15 +49,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "doubledUp",
-        "effectIds": [],
-        "actionIds": [
-          "NO0cfOXGO0Z3vTwd"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -146,6 +138,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "doubledUp": {
+        "value": "doubledUp",
+        "effectIds": [],
+        "actionIds": [
+          "NO0cfOXGO0Z3vTwd"
+        ],
+        "config": {}
       }
     }
   },

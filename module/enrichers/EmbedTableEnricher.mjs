@@ -107,7 +107,7 @@ export async function DhEmbedTableEnricher(match) {
     return element;
 }
 
-/** @type {Record<string, { init?: () => unknown; cells: { label: string; cssClass?: string; value: (item: DHItem, init) => string | Promise<string>; html?: boolean }[] }>} */
+/** @type {Record<string, { init?: () => unknown; cells: { label: string; cssClass?: string; value: (item: DhItem, init) => string | Promise<string>; html?: boolean }[] }>} */
 const rowsByItemType = {
     weapon: {
         init: () => ({ features: CONFIG.DH.ITEM.allWeaponFeatures() }),

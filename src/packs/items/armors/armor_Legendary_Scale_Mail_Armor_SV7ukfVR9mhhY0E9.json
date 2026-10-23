@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/breastplate-layered-leather-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -25,15 +25,16 @@
       "major": 15,
       "severe": 39
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "cumbersome": {
         "value": "cumbersome",
         "effectIds": [
           "yYHxeQ0YPiVl8Cbc"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

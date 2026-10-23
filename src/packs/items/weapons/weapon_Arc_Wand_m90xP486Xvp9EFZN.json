@@ -6,9 +6,10 @@
   "img": "icons/weapons/wands/wand-carved-fire.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -57,15 +58,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "bouncing",
-        "effectIds": [],
-        "actionIds": [
-          "WbMKifYfcRQpDiP8"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -155,6 +147,16 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "bouncing": {
+        "value": "bouncing",
+        "effectIds": [],
+        "actionIds": [
+          "WbMKifYfcRQpDiP8"
+        ],
+        "config": {}
       }
     }
   },

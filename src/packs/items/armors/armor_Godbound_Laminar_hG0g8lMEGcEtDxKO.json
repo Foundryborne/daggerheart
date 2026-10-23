@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-collared-steel-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -92,15 +93,16 @@
       "major": 13,
       "severe": 36
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "divine": {
         "value": "divine",
         "effectIds": [],
         "actionIds": [
           "h7BCDsiPhLZxwllM"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

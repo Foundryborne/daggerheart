@@ -1,6 +1,9 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 import ItemAttachmentSheet from '../api/item-attachment-sheet.mjs';
 
+/** @import { DHArmor } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHArmor>>} */
 export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -50,7 +53,7 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
 
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.armorFeatures.map(x => x.value);
+                context.features = Object.keys(this.document.system.itemFeatures);
                 break;
         }
 
@@ -72,11 +75,14 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      */
     static async #onFeatureSelect(selectedOptions) {
         const document = this.document;
+        const selectedFeatures = selectedOptions.map(x => x.value);
+        const toRemove = Object.keys(document.system.itemFeatures).filter(f => !selectedFeatures.includes(f));
+        const toAdd = selectedFeatures.filter(f => !(f in document.system.itemFeatures)); 
         await document.update({ 
-            'system.armorFeatures': selectedOptions.map(x => ({
-                ...(document.system._source.armorFeatures?.find(f => f.value === x.value) ?? {}),
-                value: x.value
-            }))
+            'system.itemFeatures': {
+                ...Object.fromEntries(toAdd.map(f => [f, { value: f }])),
+                ...Object.fromEntries(toRemove.map(f => [f, _del]))
+            }
         });
     }
 }

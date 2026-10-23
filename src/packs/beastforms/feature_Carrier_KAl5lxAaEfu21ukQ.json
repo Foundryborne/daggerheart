@@ -1,0 +1,21 @@
+{
+  "folder": "uU8bIoZvXge0rLaU",
+  "name": "Carrier",
+  "type": "feature",
+  "_id": "KAl5lxAaEfu21ukQ",
+  "img": "icons/creatures/mammals/beast-horned-scaled-glowing-orange.webp",
+  "system": {
+    "attribution": {},
+    "description": "<p>You can carry up to four willing allies with you when you move.</p>",
+    "gmNotes": "",
+    "resource": null,
+    "actions": {},
+    "granter": null,
+    "featureForm": "passive",
+    "actorResources": []
+  },
+  "effects": [],
+  "sort": 0,
+  "flags": {},
+  "_key": "!items!KAl5lxAaEfu21ukQ"
+}

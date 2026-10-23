@@ -30,7 +30,8 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
         },
         experiences: {
             id: 'experiences',
-            template: 'systems/daggerheart/templates/sheets-settings/character-settings/experiences.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/character-settings/experiences.hbs',
+            scrollable: ['.scroll-container']
         }
     };
 

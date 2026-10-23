@@ -1,6 +1,9 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 import Tagify from '@yaireo/tagify';
 
+/** @import { DHBeastform } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHBeastform>>} */
 export default class BeastformSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {

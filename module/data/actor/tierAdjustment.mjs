@@ -1,14 +1,15 @@
-import { calculateExpectedValue, parseTermsFromSimpleFormula } from '../../helpers/utils.mjs';
+import { calculateExpectedValue, parseTermsFromSimpleFormula, signedNumber, simplifyFormula } from '../../helpers/utils.mjs';
 import { adversaryExpectedDamage, adversaryScalingData } from '../../config/actorConfig.mjs';
 import { parseInlineParams } from '../../enrichers/parser.mjs';
 
 /** 
  * Accepts source data for an adversary and a target tier, and returns new source data
- * @type {object} source
+ * @type {DhActor} actor
  * @type {number} tier
  * @returns {object} adjusted source data
  */
-export function getTierAdjustedAdversary(source, tier) {
+export function getTierAdjustedAdversary(actor, tier) {
+    const source = actor.toObject(true);
     const currentTier = source.system.tier ?? 1;
 
     /** @type {(2 | 3 | 4)[]} */
@@ -27,7 +28,7 @@ export function getTierAdjustedAdversary(source, tier) {
         source.system.damageThresholds.severe += scale * entry.severeThreshold;
         source.system.resources.hitPoints.max += scale * entry.hp;
         source.system.resources.stress.max += scale * entry.stress;
-        source.system.attack.roll.bonus += scale * entry.attack;
+        source.system.attack.roll.bonus = simplifyFormula(`${source.system.attack.roll.bonus} ${signedNumber(scale * entry.attack)}`);
     }
 
     // Get the mean and standard deviation of expected damage in the previous and new tier
@@ -67,8 +68,22 @@ export function getTierAdjustedAdversary(source, tier) {
     const damageRegex = /@Damage\[([^[\]]*)\]({[^}]*})?/g;
     for (const item of source.items) {
         // Replace damage inlines with new formulas. Keep a record for a specific check later
+        const itemDocument = actor.items.get(item._id);
+        if (!itemDocument) {
+            console.error(`Item ${item.name} [${item._id}] was not in actor, possibly due to data preparation errors`);
+            continue;
+        }
+
+        const actions = Object.values(item.system.actions).filter(a => {
+            if (!itemDocument.system.actions?.has(a._id)) {
+                console.error(`Action ${a._id} in ${itemDocument.name} was not in actor, possibly due to errors in data prep`);
+                return false;
+            }
+            return true;
+        });
+
         const descriptionFormulas = [];
-        for (const withDescription of [item.system, ...Object.values(item.system.actions)]) {
+        for (const withDescription of [item.system, ...actions]) {
             withDescription.description = withDescription.description.replace(damageRegex, (match, inner) => {
                 const { value: formula } = parseInlineParams(inner, { first: 'value' });
                 if (!formula) return match;
@@ -84,7 +99,7 @@ export function getTierAdjustedAdversary(source, tier) {
         }
 
         // Update damage in item actions and convert all formula matches in the descriptions to the new damage
-        for (const action of Object.values(item.system.actions)) {
+        for (const action of actions) {
             if (!action.damage?.main) continue;
             try {
                 // Apply conversions and save a record. If it matches attack damage *and* Its not in the description, use attack conversion instead

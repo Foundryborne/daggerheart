@@ -1,5 +1,8 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
+/** @import { DHConsumable } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHConsumable>>} */
 export default class ConsumableSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {

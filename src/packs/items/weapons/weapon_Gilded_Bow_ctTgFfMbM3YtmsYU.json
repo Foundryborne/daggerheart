@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "selfCorrecting",
-        "effectIds": [
-          "zoWZsD4ogzfPSPi7"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,7 +109,17 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "selfCorrecting": {
+        "value": "selfCorrecting",
+        "effectIds": [
+          "zoWZsD4ogzfPSPi7"
+        ],
+        "actionIds": [],
+        "config": {}
+      }
+    }
   },
   "effects": [
     {

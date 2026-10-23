@@ -1,5 +1,8 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
+/** @import DHSubclass from '../../../data/item/subclass.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHSubclass>>} */
 export default class SubclassSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {

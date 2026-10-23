@@ -119,7 +119,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {
@@ -326,7 +326,7 @@
           "disabled": false,
           "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
           "description": "<p>You are restrained until you break free with a successful Strength Roll. When you spend Hope, the GM gains a Fear.</p>",
-          "transfer": true,
+          "transfer": false,
           "statuses": [
             "restrained"
           ],

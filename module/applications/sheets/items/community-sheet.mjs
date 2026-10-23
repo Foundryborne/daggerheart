@@ -1,5 +1,8 @@
 import DHHeritageSheet from '../api/heritage-sheet.mjs';
 
+/** @import { DHCommunity } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHHeritageSheet<DhItem<DHCommunity>>} */
 export default class CommunitySheet extends DHHeritageSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -15,6 +18,9 @@ export default class CommunitySheet extends DHHeritageSheet {
             scrollable: ['.feature']
         }
     };
+
+    /** @inheritdoc */
+    hasHeaderAttribution = false;
 
     /**@inheritdoc */
     get relatedDocs() {

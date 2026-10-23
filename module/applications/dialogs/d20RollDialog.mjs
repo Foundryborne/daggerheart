@@ -10,7 +10,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.roll = roll;
         this.config = config;
         this.config.experiences = [];
-        this.reactionOverride = config.actionType === 'reaction';
+        this.originalActionType = config.actionType;
         this.selectedEffects = this.config.bonusEffects;
 
         if (config.source?.action) {
@@ -133,8 +133,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.formula = this.roll.constructFormula(this.config);
             if (this.actor?.system?.traits) context.abilities = this.getTraitModifiers();
 
-            context.showReaction = !this.config.skips?.reaction && context.rollType === 'DualityRoll';
-            context.reactionOverride = this.reactionOverride;
+            context.showReaction = !this.config.skips?.reaction && context.rollType !== 'FateRoll';
+            context.isReaction = this.config.actionType === 'reaction';
         }
 
         return context;
@@ -210,12 +210,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static toggleReaction() {
         if (this.config.roll) {
-            this.reactionOverride = !this.reactionOverride;
-            this.config.actionType = this.reactionOverride
-                ? 'reaction'
-                : this.config.actionType === 'reaction'
-                    ? 'action'
-                    : this.config.actionType;
+            const overrideType = this.originalActionType === 'reaction' ? 'trait' : 'reaction';
+            this.config.actionType = 
+                this.config.actionType === this.originalActionType ? overrideType : this.originalActionType;
+                
             this.render();
         }
     }

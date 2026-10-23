@@ -6,9 +6,10 @@
   "img": "icons/weapons/polearms/javelin-hooked.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -19,13 +20,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "stockpiled",
-        "effectIds": [],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -115,6 +109,14 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "stockpiled": {
+        "value": "stockpiled",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

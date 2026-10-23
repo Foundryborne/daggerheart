@@ -1,70 +1,6 @@
 import DHActionConfig from '../../applications/sheets-configs/action-config.mjs';
 import { itemAbleRollParse } from '../../helpers/utils.mjs';
 
-/**
- * Specialized collection type for stored actions.
- * @param {DataModel} model     The parent DataModel to which this ActionCollection belongs.
- * @param {Action[]} entries  The actions to store.
- */
-export class ActionCollection extends Collection {
-    constructor(model, entries) {
-        super();
-        for (const [key, value] of entries) {
-            if (!(value instanceof game.system.api.models.actions.actionsTypes.base)) continue;
-            this.set(key, value);
-        }
-    }
-
-    /* -------------------------------------------- */
-    /*  Properties                                  */
-    /* -------------------------------------------- */
-
-    /* -------------------------------------------- */
-    /*  Methods                                     */
-    /* -------------------------------------------- */
-
-    /* -------------------------------------------- */
-
-    /**
-     * Test the given predicate against every entry in the Collection.
-     * @param {function(*, number, ActionCollection): boolean} predicate  The predicate.
-     * @returns {boolean}
-     */
-    every(predicate) {
-        return this.reduce((pass, v, i) => pass && predicate(v, i, this), true);
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Convert the ActionCollection to an array of simple objects.
-     * @param {boolean} [source=true]  Draw data for contained Documents from the underlying data source?
-     * @returns {object[]}             The extracted array of primitive objects.
-     */
-    toObject(source = true) {
-        return this.map(doc => doc.toObject(source));
-    }
-}
-
-/* -------------------------------------------- */
-
-/**
- * Field that stores actions.
- */
-export class ActionsField extends foundry.data.fields.TypedObjectField {
-    constructor(options) {
-        super(new ActionField(), options);
-    }
-
-    /* -------------------------------------------- */
-
-    /** @inheritDoc */
-    initialize(value, model, options) {
-        const actions = Object.entries(super.initialize(value, model, options));
-        return new ActionCollection(model, actions);
-    }
-}
-
 /* -------------------------------------------- */
 
 /**
@@ -167,8 +103,8 @@ export function ActionMixin(Base) {
         }
 
         get uuid() {
-            const isItem = this.item instanceof game.system.api.documents.DHItem;
-            const isActor = this.item instanceof game.system.api.documents.DhpActor;
+            const isItem = this.item instanceof game.system.api.documents.DhItem;
+            const isActor = this.item instanceof game.system.api.documents.DhActor;
             return isItem || isActor ? `${this.item.uuid}.${this.documentName}.${this.id}` : null;
         }
 
@@ -282,36 +218,34 @@ export function ActionMixin(Base) {
         }
 
         async toChat(origin, config) {
+            const actor = this.actor;
+            const item = this.item;
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.FeatureForm.action'),
                 origin: origin,
                 action: {
                     name: this.name,
-                    img: this.baseAction ? this.parent.parent.img : this.img,
+                    img: this.baseAction ? item.img : this.img,
                     tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'],
                     areas: this.areas,
                     summon: config?.summonData
                 },
                 source: {
-                    actor: this.actor.uuid,
-                    item: this.item.id,
+                    actor: actor?.uuid,
+                    item: item.id,
                     action: this.id
                 },
                 itemOrigin: this.item,
-                description: this.description || (this.item instanceof Item ? this.item.system.description : '')
+                description: this.description || (item ? item.system.description : '')
             };
 
-            const speaker = cls.getSpeaker();
             const msg = {
                 type: 'abilityUse',
                 user: game.user.id,
-                actor: { name: this.actor.name, img: this.actor.img },
+                actor: actor ? { name: actor.name, img: actor.img } : undefined,
                 author: this.author,
-                speaker: {
-                    speaker,
-                    actor: speaker.actor ?? this.actor
-                },
+                speaker: cls.getSpeaker({ actor }),
                 title: game.i18n.localize('DAGGERHEART.UI.Chat.action.title'),
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(

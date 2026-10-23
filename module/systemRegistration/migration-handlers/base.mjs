@@ -1,5 +1,5 @@
 /** 
- * @import DHItem from "../../documents/item.mjs";
+ * @import DhItem from "../../documents/item.mjs";
 * @import DhActor from "../../documents/actor.mjs";
  */
 /** 
@@ -13,10 +13,12 @@ export class MigrationHandlerBase {
     /** System version that introduces this migration */
     version = null;
 
+    migrateCompendiums = false;
+
     /**
      * Gets change data for an active effect's source, or null if no changes
      * @param {object} effectSource 
-     * @param {DHItem} item 
+     * @param {DhItem} item 
      * @returns {Promise<object>}
      * @protected
      */
@@ -36,7 +38,7 @@ export class MigrationHandlerBase {
 
     /**
      * Update a world item
-     * @param {DhActor} actor 
+     * @param {DhItem} item 
      * @returns {Promise<object>}
      * @protected
      */
@@ -48,19 +50,22 @@ export class MigrationHandlerBase {
         // todo: handle more than just migrating effects. Right now this can only migrate effects
         // NOTE: the preload is hardcoded, we should not hardcode it
 
-        const numActors = game.actors.size;
-        const numItems = game.items.size;
+        const numWorldDocuments = game.actors.size + game.items.size;
         const finalUpdateProgress = 5;
         const DhProgress = game.system.api.applications.ui.DhProgress;
         const preRunProgress = game.packs.size;
         
         const progress = DhProgress.createMigrationProgress(
-            preRunProgress + numActors + numItems + finalUpdateProgress
+            preRunProgress + numWorldDocuments + finalUpdateProgress
         );
 
-        // Preload. Avoid hardcoding in the future
-        for (const pack of game.packs) {
-            await pack.getDocuments();
+        // Preload and count. In the future, find a way to include ActiveEffect here if needed
+        const relevantPacks = game.packs.filter(p => ['Actor', 'Item'].includes(p.documentName));
+        for (const pack of relevantPacks) {
+            const documents = await pack.getDocuments();
+            if (this.migrateCompendiums) {
+                progress.updateMax(progress.max + documents.length);
+            }
             progress.advance();
         }
 
@@ -131,16 +136,37 @@ export class MigrationHandlerBase {
 
         for (const actor of game.actors) {
             await updateActor(actor);
-  
             progress.advance();
         }
         for (const item of game.items) {
             await updateItem(item);
             progress.advance();
         }
-
         await foundry.documents.modifyBatch(batch);
-        progress.advance({ by: finalUpdateProgress });
+
+        // Migrate compendiums as well if enabled
+        if (this.migrateCompendiums) {
+            for (const pack of relevantPacks) {
+                batch.length = 0; // clear the array
+                const updateFn = pack.documentName === 'Actor' ? updateActor : updateItem;
+                for (const document of await pack.getDocuments()) {
+                    await updateFn(document);
+                    progress.advance();
+                }
+                if (batch.length) {
+                    const wasLocked = pack.locked;
+                    try {
+                        if (wasLocked) await pack.configure({ locked: false });
+                        await foundry.documents.modifyBatch(batch);
+                    } finally {
+                        if (wasLocked) await pack.configure({ locked: true });
+                    }
+                }
+            }
+        }
+
+        // finish the migration
+        progress.finish();
     }
 
     #processEffectUpdates(actorOrItem, update) {

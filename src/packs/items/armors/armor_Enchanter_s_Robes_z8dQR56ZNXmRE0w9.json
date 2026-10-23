@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/robe-collared-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -54,15 +55,16 @@
       "major": 9,
       "severe": 20
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "mnemonic": {
         "value": "mnemonic",
         "effectIds": [],
         "actionIds": [
           "SqJwukvzZAPDgCJy"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,

@@ -73,7 +73,8 @@ const typeSettingsMap = {
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
-        #nonHeaderAttribution = ['ancestry', 'community', 'domainCard'];
+        /** Determines if this sheet has the attribution in the header */
+        hasHeaderAttribution = true;
 
         /**
          * @param {DHSheetV2Configuration} [options={}]
@@ -92,7 +93,8 @@ export default function DHApplicationMixin(Base) {
                 triggerContextMenu: DHSheetV2.#triggerContextMenu,
                 createDoc: DHSheetV2.#onCreateDoc,
                 editDoc: DHSheetV2.#editDoc,
-                deleteDoc: DHSheetV2.#deleteDoc,
+                deleteDoc: DHSheetV2.#onDeleteDoc,
+                deleteInvalidDoc: DHSheetV2.#onDeleteInvalidDoc,
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
                 viewItem: DHSheetV2.#viewItem,
@@ -139,10 +141,11 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
-                const { source, page } = this.document.system.attribution;
-                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+            if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
+                const { source, page, campaignFrame } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null, campaignFrame ? ` (${campaignFrame})` : null]
+                    .filter(x => x)
+                    .join('. ');
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
                 this.window.controls.insertAdjacentHTML('beforebegin', element);
             }
@@ -158,8 +161,7 @@ export default function DHApplicationMixin(Base) {
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
 
@@ -857,11 +859,33 @@ export default function DHApplicationMixin(Base) {
          * Delete an embedded document.
          * @type {ApplicationClickAction}
          */
-        static async #deleteDoc(event, target) {
+        static async #onDeleteDoc(event, target) {
             const doc = await getDocFromElement(target);
             if (doc) {
                 if (event.shiftKey) return doc.delete();
                 else return await doc.deleteDialog();
+            }
+        }
+
+        /**
+         * Delete an embedded document or action that is invalid.
+         * @type {ApplicationClickAction}
+         * @this DHSheetV2
+         */
+        static async #onDeleteInvalidDoc(event, target) {
+            const { invalidId, collection } = target.closest('[data-invalid-id]')?.dataset ?? {};
+            if (!invalidId) throw Error('Missing invalid document id');
+
+            if (collection === 'actions') {
+                this.document.update({
+                    'system.actions': {
+                        [invalidId]: _del
+                    }
+                });
+            } else {
+                if (!this.document[collection]) throw new Error(`Invalid collection ${collection}`);
+                const document = this.document[collection].getInvalid(invalidId);
+                await document.delete(); // untested, test when implementing https://github.com/Foundryborne/daggerheart/issues/1891
             }
         }
 

@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/tech-red.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -25,15 +26,16 @@
       "major": 12,
       "severe": 39
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "attuned": {
         "value": "attuned",
         "effectIds": [
           "VSuoGIo7GpK3JLfA"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

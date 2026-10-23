@@ -1,6 +1,6 @@
 /** 
  * @typedef FeatureGroup
- * @property {DHItem} feature
+ * @property {DhItem} feature
  * @property {FeatureGroup[]} childFeatures
  */
 
@@ -8,7 +8,7 @@
  * Prepares function context for sheet preparation reasons. 
  * This is also required for embeds, and is relegated to a helper as a result.
  * Since this is merely organizing top level and child features, this should become data prep at some point
- * @param {DhpActor} actor 
+ * @param {DhActor} actor 
  * @returns {FeatureGroup[]}
  */
 export function prepareFeatureData(actor) {
