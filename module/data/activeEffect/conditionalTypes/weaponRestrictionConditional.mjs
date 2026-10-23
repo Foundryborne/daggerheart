@@ -28,6 +28,9 @@ export default class WeaponRestrictionConditional extends foundry.abstract.DataM
         }
     }
 
+    /** Weapon restriction conditionals only make sense for origin roles */
+    evaluateRole = 'origin';
+
     test(rollData) {
         if (!rollData.item) return true;
 
