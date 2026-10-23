@@ -1,5 +1,9 @@
 import DHBaseItemSheet from './base-item.mjs';
 
+/** 
+ * @template {DhItem} T
+ * @extends {DHBaseItemSheet<T>}
+ */
 export default class DHHeritageSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
