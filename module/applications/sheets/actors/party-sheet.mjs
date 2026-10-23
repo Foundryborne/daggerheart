@@ -487,6 +487,8 @@ export default class PartySheet extends DHBaseActorSheet {
 
         for (const li of html.querySelectorAll('.inventory-item')) {
             const item = await getDocFromElement(li);
+            if (!item) continue;
+            
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.inventory.search.add(item.id);
             const { menu } = this.#filteredItems.inventory;
