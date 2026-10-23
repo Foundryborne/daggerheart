@@ -51,7 +51,6 @@
             }
           },
           "type": [
-            "physical",
             "magical"
           ],
           "applyTo": "hitPoints",
@@ -111,9 +110,61 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "itemFeatures": {}
+    "itemFeatures": {
+      "otherwordly": {
+        "value": "otherwordly",
+        "effectIds": [
+          "A0OVmWWTQThyly8A"
+        ],
+        "actionIds": []
+      }
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Otherwordly",
+      "description": "On a successful attack, you can deal physical or magic damage.",
+      "img": "icons/weapons/swords/sword-flanged-lightning.webp",
+      "system": {
+        "changes": [
+          {
+            "key": "system.rules.attack.damage.canChooseDamageType",
+            "type": "override",
+            "value": 1,
+            "phase": "initial"
+          }
+        ],
+        "conditionals": [],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "A0OVmWWTQThyly8A",
+      "type": "base",
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!6gFvOFTE97QZ74Zr.A0OVmWWTQThyly8A"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!6gFvOFTE97QZ74Zr"

@@ -2114,6 +2114,26 @@ export const createWeaponFeatures = () => ({
         label: 'DAGGERHEART.CONFIG.WeaponFeature.omnipresent.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.omnipresent.description'
     },
+    otherwordly: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.description',
+                img: 'icons/weapons/swords/sword-flanged-lightning.webp',
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.attack.damage.canChooseDamageType',
+                            type: 'override',
+                            value: 1
+                        }
+                    ]
+                }
+            }
+        ]
+    },
     padded: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.padded.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.padded.description',
