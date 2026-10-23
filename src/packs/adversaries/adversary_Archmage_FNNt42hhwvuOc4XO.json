@@ -114,7 +114,7 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null
     },
     "resistance": {
@@ -423,7 +423,7 @@
             },
             "effects": [],
             "roll": {
-              "type": null,
+              "type": "reaction",
               "trait": null,
               "difficulty": null,
               "bonus": null,
@@ -438,7 +438,7 @@
               "useDefault": false
             },
             "save": {
-              "trait": "agility",
+              "trait": null,
               "difficulty": null,
               "damageMod": "none"
             },

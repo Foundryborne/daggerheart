@@ -6,7 +6,7 @@
   "img": "icons/equipment/chest/breastplate-collared-leather-grey.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -25,15 +25,16 @@
       "major": 6,
       "severe": 12
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "lined": {
         "value": "lined",
         "effectIds": [
           "Qqdax2Dl4UHB9TxB"
         ],
-        "actionIds": []
+        "actionIds": [],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [
     {

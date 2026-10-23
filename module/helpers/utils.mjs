@@ -341,7 +341,9 @@ export const itemAbleRollParse = (value, actor, item) => {
     const rollData = isItemTarget || !model?.getRollData ? model : model.getRollData();
 
     try {
-        return Roll.replaceFormulaData(slicedValue, rollData);
+        // The AE may be referring to a field (like a config value) that also refers to a field
+        // nestedReplaceFormulaData only has a max depth of 2, and cannot infinite recursion
+        return nestedReplaceFormulaData(slicedValue, rollData);
     } catch {
         return '';
     }
@@ -442,7 +444,48 @@ export function expireActiveEffects(actor, allowedTypes = null) {
 
 export function getCritDamageBonus(terms) {
     const critRoll = Roll.fromTerms(terms);
-    return critRoll.dice.reduce((acc, dice) => acc + dice.faces * dice.results.filter(r => r.active).length, 0);
+
+    const modifiers = game.system.api.dice.BaseDie.MODIFIERS;
+    const modifierUnion = Object.keys(modifiers).sort((a, b) => b.length - a.length).join('|');
+    const modifierRegexp = String.raw`[^A-z\s()+\-*/]*`;
+    const modifierPattern = new RegExp(String.raw`(${modifierUnion})${modifierRegexp}`, 'gi');
+
+    return critRoll.dice.reduce((acc, dice) => {
+        if (dice.evaluated) {
+            acc += dice.faces * dice.results.filter(r => r.active).length
+        } else {
+            let nrDice = dice._number;
+            let numericalChange = 0;
+            for (const sequence of dice.modifiers) {
+                for (const [modifier, command] of sequence.matchAll(modifierPattern)) {
+                    const modifierParsed = Number.parseInt(modifier.substring(command.length));
+                    const modifierValue = Number.isNaN(modifierParsed) ? 0 : modifierParsed;
+                    switch (command) {
+                        case 'k':
+                        case 'kh':
+                        case 'kl':
+                            nrDice = Math.min(nrDice, modifierValue);
+                            break;
+                        case 'd':
+                        case 'dh':
+                        case 'dl':
+                            numericalChange -= 1;
+                            break;
+                        case 'c':
+                        case 'x':
+                        case 'xo':
+                            return 0;  
+                    }
+
+                    nrDice += numericalChange;
+                }
+            }
+
+            acc += dice.faces * nrDice;
+        }
+
+        return acc;
+    }, 0);
 }
 
 export function htmlToText(html) {
@@ -520,6 +563,94 @@ export function parseTermsFromSimpleFormula(formula) {
     }, []);
 }
 
+/** 
+ * Given a formula, returns a new formula where adjacent modifiers have been merged.
+ * Does not currently merge equivalent dice terms or work on parentheticals
+ * It may also run into issues with negative die terms when attempting sign flips, those cases need testing
+ */
+export function simplifyFormula(formula) {
+    const ast = foundry.dice.RollGrammar.parse(formula);
+    function simplifyNode(node) {
+        if (node.class !== 'Node') return node;
+
+        node.operands = node.operands.map(n => simplifyNode(n));
+        const isAllNumbers = node.operands.length && node.operands.every(o => o.class === 'NumericTerm');
+        const isPlusMinus = ['+', '-'].includes(node.operator);
+        if (!isPlusMinus || node.operands.length !== 2) {
+            return node; // Only +/- operator nodes can be simplified
+        }
+
+        // If both sides are numbers, this is simple: merge both
+        if (isAllNumbers) {
+            const number = node.operands.slice(1).reduce((r, o) => {
+                return r + (node.operator === '+' ? 1 : -1) * o.number; 
+            }, node.operands[0].number);
+            return {
+                ...node.operands[0],
+                number,
+                formula: String(number)
+            }
+        }
+
+        // We want numbers to be on the right side, and non-numbers (like dice) to be on the left
+        // This also reduces the amount of edge cases we need to handle
+        // However, we can't do this if the sign is negative (-3d4). Fix that in the future...
+        // To do so, we have to conver the -3d4 to a parenthetical, then merge dice to clean that up
+        if (node.operands[0].class === 'NumericTerm' && node.operands[1].class !== 'NumericTerm' && node.operator === '+') {
+            const left = node.operands[0];
+            node.operands[0] = node.operands[1];
+            node.operands[1] = left;
+        }
+
+        if (node.operands.some(o => o.class === 'NumericTerm' && o.number === 0)) {
+            // If an expression is "X + 0" or "0 + X", and one side isn't a number, simply to the non-zero
+            return node.operands.find(o => o.class !== 'NumericTerm' || o.number !== 0);
+        } else if (['+', '-'].includes(node.operands[0]?.operator) && node.operands[0].operands[1].class === 'NumericTerm') {
+            // This is a case where we can rotate the tree so that it can become simplifyable
+            // If this is minus, convert to + first so that it doesn't math out wrong
+            // ex: (2d4 - 2) - (2) -> (2d4) + (-2 - 2).
+            const newRoot = node.operands[0];
+            if (newRoot.operator === '-') {
+                newRoot.operator = '+';
+                newRoot.operands[1].number *= -1;
+                newRoot.operands[1].formula = String(newRoot.operands[1].number);
+            }
+            node.operands[0] = newRoot.operands[1];
+            newRoot.operands[1] = node;
+            return simplifyNode(newRoot); // try again
+        } else if (['+', '-'].includes(node.operands[1]?.operator) && node.operands[1].operands[1].class === 'NumericTerm') {
+            // ex: 1d4 + (2d4 + 3) -> (1d4 + 2d4) + 3
+            // ex: 1d4 - (2d4 + 3) -> (1d4 - 2d4) - 3
+            // ex: 1d4 + (2d4 - 3) -> (1d4 + 2d4) - 3
+            const flipRight = node.operator === '-';
+            const newRoot = node.operands[1];
+            node.operands[1] = newRoot.operands[0];
+            newRoot.operands[0] = node;
+            if (flipRight) {
+                // This handles the 1d4 - (2d4 + 3) case.
+                // The new root needs to flip its sign due to distribution
+                newRoot.operator = newRoot.operator === '+' ? '-' : '+';
+            }
+            return simplifyNode(newRoot); // try again
+        }
+
+        // If the second number is negative, flip the sign and make positive
+        const secondNumber = node.operands[1]?.class === 'NumericTerm' ? node.operands[1].number : null;
+        if (secondNumber < 0 && isPlusMinus) {
+            node.operands[1].number = Math.abs(secondNumber);
+            node.operands[1].formula = node.operands[1].number;
+            node.operator = node.operator === '+' ? '-' : '+';
+        }
+
+        node.formula = `${node.operands[0].formula} ${node.operator} ${node.operands[1].formula}`;
+        return node;
+    }
+
+    // Note that Roll.simplifyTerms() only deals with duplicate operators, and doesn't merge like terms together
+    const simplified = simplifyNode(ast);
+    return Roll.fromTerms(Roll.instantiateAST(simplified)).formula;
+}
+
 /**
  * Calculates the expectede value from a formula or the results of parseTermsFromSimpleFormula.
  * @returns {number} the average result of rolling the given dice
@@ -559,11 +690,8 @@ export async function RefreshFeatures(
             expireActiveEffects(actor, refreshTypes);
 
             const updates = {};
-            for (let item of actor.items) {
-                if (
-                    item.system.metadata?.hasResource &&
-                    refreshIsAllowed(refreshTypes, item.system.resource?.recovery)
-                ) {
+            for (const item of actor.items) {
+                if (item.metadata?.hasResource && refreshIsAllowed(refreshTypes, item.system.resource?.recovery)) {
                     if (!refreshedActors[actor.id])
                         refreshedActors[actor.id] = { name: actor.name, img: actor.img, refreshed: new Set() };
                     refreshedActors[actor.id].refreshed.add(
@@ -583,7 +711,7 @@ export async function RefreshFeatures(
                             )
                     };
                 }
-                if (item.system.metadata?.hasActions) {
+                if (item.metadata?.hasActions) {
                     const usedTypes = new Set();
                     const actions = item.system.actions.filter(action => {
                         if (refreshIsAllowed(refreshTypes, action.uses.recovery)) {
@@ -916,4 +1044,23 @@ export function nestedReplaceFormulaData(formula, rollData) {
     return replacement !== formula && replacement.includes('@') 
         ? Roll.replaceFormulaData(replacement, rollData)
         : replacement;
+}
+
+/** 
+ * Measures an exact distance between two parts of x/y/z coords.
+ * @param {{x?: number; y?: number; z?: number}} pointA
+ * @param {{x?: number; y?: number; z?: number}} pointB
+ * @param {object} [options]
+ * @param {foundry.grid.BaseGrid} [options.grid] If given, convert to units for this grid
+ * @returns {number} the exact distance between two points ignoring diagonal settings 
+ */
+export function measureExact(pointA, pointB, { grid = null } = {}) {
+    const size = grid?.size ?? 1;
+    const cost = grid?.distance ?? 1;
+
+    return Math.sqrt(
+        Math.pow(((pointA.x ?? 0) - (pointB.x ?? 0)) / size, 2) +
+        Math.pow(((pointA.y ?? 0) - (pointB.y ?? 0)) / size, 2) +
+        Math.pow((pointA.z ?? 0) - (pointB.z ?? 0), 2)
+    ) * cost;
 }

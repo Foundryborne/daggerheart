@@ -1,6 +1,5 @@
-import { conditionalFailureModes, conditionalPhases } from '../../../config/effectConfig.mjs';
+import { conditionalFailureModes, conditionalPhases, conditionalTypes } from '../../../config/effectConfig.mjs';
 import FormulaField from '../../fields/formulaField.mjs';
-import { conditionalTypes } from './_module.mjs';
 
 export default class DataCompareConditional extends foundry.abstract.DataModel {
     static get metadata() {
@@ -36,6 +35,13 @@ export default class DataCompareConditional extends foundry.abstract.DataModel {
             })
         }
     }
+
+    /** 
+     * Data Compare is evaluated on both origin and target roles.
+     * This could change in the future, to support null/origin/target, if we need to,
+     * but we may need to check if there are any areas we are assuming origin when we should check either or.
+     */
+    role = null;
 
     test(rollData) {
         const comparator = CONFIG.DH.EFFECTS.conditionalComparators[this.comparator];

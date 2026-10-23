@@ -1,12 +1,19 @@
+import { mapValues } from '../../../helpers/functional.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 import ItemAttachmentSheet from '../api/item-attachment-sheet.mjs';
 
+/** @import { DHWeapon } from '../../../data/item/_module.mjs'; */
+
+/** @extends {DHBaseItemSheet<DhItem<DHWeapon>>} */
 export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     /** @inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['weapon'],
         actions: {
             configureAttack: WeaponSheet.#configureAttack
+        },
+        position: {
+            height: 500
         },
         tagifyConfigs: [
             {
@@ -47,22 +54,48 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         }
     };
 
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.source = this.document._source;
+
+        return context;
+    }
+
     /** @inheritdoc */
     async _preparePartContext(partId, context) {
         await super._preparePartContext(partId, context);
         switch (partId) {
-            case 'settings':
-                context.features = this.document.system.weaponFeatures.map(x => x.value);
+            case 'settings': {
+                const weaponFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
+                const featureIds = Object.keys(this.item._source.system.itemFeatures);
+                context.features = featureIds;
                 context.systemFields.attack.fields = this.document.system.attack.schema.fields;
-                context.featureErrors = this.document.system.weaponFeatures.reduce((acc, curr) => {
-                    const configData = CONFIG.DH.ITEM.weaponFeatures[curr.value];
+                context.featureErrors = featureIds.reduce((acc, curr) => {
+                    const configData = weaponFeatures[curr];
                     const error = configData?.getErrorText?.(this.document);
                     if (error) return !acc ? error : [acc, error].join(', ');
 
                     return acc;
                 }, null);
 
+                context.featureConfigs = context.features
+                    .map(featureKey => {
+                        const feature = weaponFeatures[featureKey];
+                        if (!feature.config) return null;
+
+                        return {
+                            label: _loc(feature.label),
+                            data: mapValues(feature.config.fields, (field, k) => ({
+                                field,
+                                name: `system.itemFeatures.${featureKey}.config.${k}`,
+                                value: this.item._source.system.itemFeatures[featureKey]?.config[k]
+                            }))
+                        };
+                    })
+                    .filter(Boolean);
+
                 break;
+            }
         }
         return context;
     }
@@ -80,11 +113,14 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
      */
     static async #onFeatureSelect(selectedOptions) {
         const document = this.document;
+        const selectedFeatures = selectedOptions.map(x => x.value);
+        const toRemove = Object.keys(document._source.system.itemFeatures).filter(f => !selectedFeatures.includes(f));
+        const toAdd = selectedFeatures.filter(f => !(f in document._source.system.itemFeatures)); 
         await document.update({ 
-            'system.weaponFeatures': selectedOptions.map(x => ({
-                ...(document.system._source.weaponFeatures?.find(f => f.value === x.value) ?? {}),
-                value: x.value
-            }))
+            'system.itemFeatures': {
+                ...Object.fromEntries(toAdd.map(f => [f, { value: f }])),
+                ...Object.fromEntries(toRemove.map(f => [f, _del]))
+            }
         });
     }
 }

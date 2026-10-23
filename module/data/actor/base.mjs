@@ -56,19 +56,11 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
                 hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.thresholdImmunities.minor.hint'
             })
         }),
-        reduceSeverity: new fields.SchemaField({
-            magical: new fields.NumberField({
-                initial: 0,
-                min: 0,
-                label: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.magical.label',
-                hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.magical.hint'
-            }),
-            physical: new fields.NumberField({
-                initial: 0,
-                min: 0,
-                label: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.physical.label',
-                hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.physical.hint'
-            })
+        reduceSeverity: new fields.NumberField({
+            initial: 0,
+            min: 0,
+            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.label',
+            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.reduceSeverity.hint'
         }),
         ...(extendedData.damageReduction ?? {})
     }),
@@ -102,6 +94,12 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
  * @property {string} type - The system type that this data model represents.
  * @property {Boolean} isNPC - This data model represents a NPC?
  * @property {typeof DHBaseActorSettings} settingSheet - The sheet class used to render the settings UI for this actor type.
+ * @property {boolean} hasResistances
+ * @property {boolean} hasAttribution
+ * @property {boolean} hasLimitedView
+ * @property {boolean} useSize whether token size configuration is valid at the actor level for this actor type
+ * @property {boolean} hasInventory whether this actor supports inventory items a display of them. A gold field will still be necessary.
+ * @property {boolean} transferrableWithoutOwner if true, item transfers done by players without permissions will be sent to the GM
  */
 
 /** Base actor type data model for all actors in Daggerheart */
@@ -117,11 +115,12 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             hasAttribution: false,
             hasLimitedView: true,
             usesSize: false,
-            hasInventory: false
+            hasInventory: false,
+            transferrableWithoutOwner: false
         };
     }
 
-    /**@returns {ActorDataModelMetadata}*/
+    /** @returns {ActorDataModelMetadata} */
     get metadata() {
         return this.constructor.metadata;
     }

@@ -6,7 +6,15 @@ import { fromUuids, keyBy, pick } from '../helpers/utils.mjs';
  * @extends {foundry.documents.Item}
  */
 export default class DhItem extends foundry.documents.Item {
-    /** 
+    /**
+     * Shorthand getter for this system's metadata, but with a type safe fallback in case of a custom item type.
+     * @returns {import('../data/item/base.mjs').ItemDataModelMetadata}
+     */
+    get metadata() {
+        return this.system?.metadata ?? {};
+    }
+
+    /**
      * Returns the uuid of the original item this item was derived from, 
      * or its own uuid if its a compendium item or not derived from a source item.
      * @returns {string}
@@ -58,7 +66,7 @@ export default class DhItem extends foundry.documents.Item {
     /** Returns true if the item has a description, usually if there is a description field, or if there are item features */
     get hasDescription() {
         return Boolean(this.system.description) 
-            || Boolean(this.system.itemFeatures?.length)
+            || !foundry.utils.isEmpty(this.system.itemFeatures)
             || (Boolean(this.system.gmNotes) && game.user.isGM);
     }
 
@@ -298,8 +306,8 @@ export default class DhItem extends foundry.documents.Item {
         const msg = {
             type: 'abilityUse',
             user: game.user.id,
-            actor: item.parent,
-            speaker: cls.getSpeaker(),
+            actor: item.actor,
+            speaker: cls.getSpeaker({ actor: item.actor }),
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
@@ -323,15 +331,11 @@ export default class DhItem extends foundry.documents.Item {
 
         game.system.registeredTriggers.unregisterTriggers(triggerKeys, this.uuid);
 
-        if (this.actor && !(this.actor.parent instanceof game.system.api.documents.DhToken)) {
+        if (this.actor && !(this.actor.parent instanceof TokenDocument)) {
             for (const token of this.actor.getActiveTokens()) {
                 game.system.registeredTriggers.unregisterTriggers(triggerKeys, `${token.document.uuid}.${this.uuid}`);
             }
         }
-    }
-
-    async _preDelete() {
-        this.deleteTriggers();
     }
 
     /** @inheritDoc */
@@ -356,6 +360,13 @@ export default class DhItem extends foundry.documents.Item {
             for (const resource of Object.values(action.damage?.resources ?? {})) {
                 if (!resource.resultBased) resource.valueAlt = null;
             }
+        }
+
+        const weaponArmorFeatures = source.system?.weaponFeatures ?? source.system?.armorFeatures;
+        if (weaponArmorFeatures && !source.system.itemFeatures) {
+            source.system.itemFeatures = Object.fromEntries(weaponArmorFeatures.map(e => [e.value, e]));
+            delete source.system.weaponFeatures;
+            delete source.system.armorFeatures;
         }
 
         return super.migrateData(source);
@@ -452,5 +463,12 @@ export default class DhItem extends foundry.documents.Item {
         } else {
             return batch;
         }
+    }
+
+    /** @inheritdoc */
+    async _preDelete(options, user) {
+        const allowed = await super._preDelete(options, user);
+        if (allowed === false) return false;
+        this.deleteTriggers();
     }
 }

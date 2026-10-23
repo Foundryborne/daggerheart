@@ -15,7 +15,7 @@ import {
     updateLinkedItemApps
 } from '../../helpers/utils.mjs';
 import { DHActionDiceData } from '../fields/action/damageField.mjs';
-import { ActionsField } from '../fields/actionField.mjs';
+import { ActionCollectionField } from '../fields/action-collection-field.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -47,6 +47,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             attribution: new fields.SchemaField({
                 source: new fields.StringField(),
                 page: new fields.NumberField(),
+                campaignFrame: new fields.StringField(),
                 artist: new fields.StringField()
             })
         };
@@ -94,7 +95,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (this.metadata.isInventoryItem)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
 
-        if (this.metadata.hasActions) schema.actions = new ActionsField();
+        if (this.metadata.hasActions) schema.actions = new ActionCollectionField();
 
         return schema;
     }
@@ -123,10 +124,6 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             return [];
         }
         return this.actions;
-    }
-
-    get itemFeatures() {
-        return this.actor?.items.filter(i => i.system.granterItem === this.parent) ?? [];
     }
 
     get attributionLabel() {
@@ -270,7 +267,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
             const triggersToRemove = Object.keys(changed.system.actions).reduce((acc, key) => {
                 const action = changed.system.actions[key];
-                if (action && Object.keys(action).length === 0) {
+                if (action && Object.keys(action).length === 0 && this.actions.has(key)) {
                     acc.push(...this.actions.get(key).triggers.map(x => x.trigger));
                 }
 
@@ -279,7 +276,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
             game.system.registeredTriggers.unregisterTriggers(triggersToRemove, this.parent.uuid);
 
-            if (this.parent.parent && !(this.parent.parent.token instanceof game.system.api.documents.DhToken)) {
+            const actor = this.actor;
+            if (actor && !(actor?.token instanceof TokenDocument)) {
                 for (const token of this.parent.parent.getActiveTokens()) {
                     game.system.registeredTriggers.unregisterTriggers(
                         triggersToRemove,

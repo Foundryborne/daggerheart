@@ -11,15 +11,6 @@
     "equipped": false,
     "secondary": false,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "otherwordly",
-        "effectIds": [
-          "WT5wBYRkENaUPvBw"
-        ],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -118,12 +109,21 @@
     },
     "gmNotes": "",
     "resource": null,
-    "quantity": 1
+    "quantity": 1,
+    "itemFeatures": {
+      "otherwordly": {
+        "value": "otherwordly",
+        "effectIds": [
+          "A0OVmWWTQThyly8A"
+        ],
+        "actionIds": []
+      }
+    }
   },
   "effects": [
     {
-      "name": "DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.name",
-      "description": "DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.description",
+      "name": "Otherwordly",
+      "description": "On a successful attack, you can deal physical or magic damage.",
       "img": "icons/weapons/swords/sword-flanged-lightning.webp",
       "system": {
         "changes": [
@@ -134,6 +134,7 @@
             "phase": "initial"
           }
         ],
+        "conditionals": [],
         "duration": {
           "description": ""
         },
@@ -141,7 +142,7 @@
         "stacking": null,
         "targetDispositions": []
       },
-      "_id": "WT5wBYRkENaUPvBw",
+      "_id": "A0OVmWWTQThyly8A",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -151,7 +152,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -162,7 +162,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!6gFvOFTE97QZ74Zr.WT5wBYRkENaUPvBw"
+      "_key": "!items.effects!6gFvOFTE97QZ74Zr.A0OVmWWTQThyly8A"
     }
   ],
   "sort": 0,

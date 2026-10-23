@@ -50,7 +50,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         const nrCharacters = context.allCharacters.length ? context.allCharacters.length : activePartyCharacters.length;
 
         const maxBP = CONFIG.DH.ENCOUNTER.BaseBPPerEncounter(nrCharacters) + modifierBP;
-        const currentBP = AdversaryBPPerEncounter(context.adversaries, context.allCharacters);
+        const currentBP = AdversaryBPPerEncounter(context.adversaries, nrCharacters);
 
         Object.assign(context, {
             fear: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),

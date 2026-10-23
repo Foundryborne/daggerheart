@@ -104,7 +104,11 @@ export const getDiceRoles = () => ([
 export const dualityTrigger = {
     name: 'daggerheart-duality-trigger', 
     label: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.label',
-    ids: ['hope', 'fear', 'critical'],
+    ids: [
+        { id: 'hope', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.results.hope' },
+        { id: 'fear', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.results.fear' },
+        { id: 'critical', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.dualityRoll.results.critical' }
+    ],
     sfxTriggers: { 
         critical: { id: 'daggerheart-duality-trigger', result: 'critical' },
         hope: { id: 'daggerheart-duality-trigger', result: 'hope' },
@@ -115,7 +119,9 @@ export const dualityTrigger = {
 export const gmRollTrigger = {
     name: 'daggerheart-gm-roll-trigger', 
     label: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.gmRoll.label',
-    ids: ['critical'],
+    ids: [
+        { id: 'critical', name: 'DAGGERHEART.CONFIG.DiceSoNice.triggers.gmRoll.results.critical' }
+    ],
     sfxTriggers: { 
         critical: { id: 'daggerheart-gm-roll-trigger', result: 'critical' }    
     }

@@ -6,7 +6,7 @@
   "img": "icons/weapons/daggers/dagger-twin-curved-black.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
       "artist": ""
     },
@@ -19,13 +19,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "stockpiled",
-        "effectIds": [],
-        "actionIds": []
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -115,6 +108,14 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "stockpiled": {
+        "value": "stockpiled",
+        "effectIds": [],
+        "actionIds": [],
+        "config": {}
       }
     }
   },

@@ -1,5 +1,5 @@
 import { DHDamageData } from '../../data/fields/action/damageField.mjs';
-import { getAllResources, tagifyElement } from '../../helpers/utils.mjs';
+import { getAllResources, pickBy, tagifyElement } from '../../helpers/utils.mjs';
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
@@ -154,12 +154,13 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     /** @inheritDoc */
     _onFirstRender(context, options) {
         super._onFirstRender(context, options);
-        this.item.apps[this.id] = this;
+        if (this.item) this.item.apps[this.id] = this;
     }
 
     /** @override */
-    _onClose(_options) {
-        delete this.item.apps[this.id];
+    _onClose(options) {
+        if (this.item) delete this.item.apps[this.id];
+        return super._onClose(options);
     }
 
     async _prepareContext(_options) {
@@ -205,6 +206,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             };
         }
 
+        if (context.source.roll) {
+            context.rollTraits = pickBy(CONFIG.DH.ACTIONS.rollTypeTraits, value => 
+                !context.source.roll.type || !value.rollTypes || value.rollTypes.includes(context.source.roll.type)
+            );
+        }
+
         context.openSection = this.openSection;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
@@ -212,6 +219,7 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
             const allKeys = Object.keys(CONFIG.DH.GENERAL.healingTypes);
             context.allDamageTypesUsed = allKeys.every(k => k in this.action._source.damage.resources);
             context.hasBaseDamage = this.action.damage?.main?.hasOwnProperty('includeBase');
+            context.showUseDefault = Boolean(this.action.item?.system.attack) && !this.action.baseAction && this.action.type === 'attack';
         }
 
         context.costOptions = this.getCostOptions();

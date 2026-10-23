@@ -1,4 +1,4 @@
-import { ResourceUpdateMap } from '../../data/action/baseAction.mjs';
+import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 

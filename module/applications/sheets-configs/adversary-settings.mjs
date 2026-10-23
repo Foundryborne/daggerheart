@@ -35,7 +35,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         },
         experiences: {
             id: 'experiences',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/experiences.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/experiences.hbs',
+            scrollable: ['.scroll-container']
         },
         features: {
             id: 'features',

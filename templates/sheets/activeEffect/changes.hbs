@@ -1,18 +1,20 @@
 <section class="tab changes{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-    <header>
-        <div class="key">{{localize "EFFECT.FIELDS.changes.element.key.label"}}</div>
-        <div class="type">{{localize "EFFECT.FIELDS.changes.element.type.label"}}</div>
-        <div class="value">{{localize "EFFECT.FIELDS.changes.element.value.label"}}</div>
-        <div class="priority">{{localize "EFFECT.FIELDS.changes.element.priority.label"}}</div>
-        <div class="controls">
-            <a class="inline-control icon" data-action="addChange"><i class="fa-regular fa-square-plus"></i></a>
-        </div>
-    </header>
-    <ol class="scrollable" data-changes>
-        {{#each changes as |change|}}
-            {{{change}}}
-        {{/each}}
-    </ol>
+    <div class="basic-changes">
+        <header>
+            <div class="key">{{localize "EFFECT.FIELDS.changes.element.key.label"}}</div>
+            <div class="type">{{localize "EFFECT.FIELDS.changes.element.type.label"}}</div>
+            <div class="value">{{localize "EFFECT.FIELDS.changes.element.value.label"}}</div>
+            <div class="priority">{{localize "EFFECT.FIELDS.changes.element.priority.label"}}</div>
+            <div class="controls">
+                <a class="inline-control icon" data-action="addChange"><i class="fa-regular fa-square-plus"></i></a>
+            </div>
+        </header>
+        <ol data-changes>
+            {{#each changes as |change|}}
+                {{{change}}}
+            {{/each}}
+        </ol>
+    </div>
 
     {{#if typedChanges.armor}}
         <fieldset class="typed-change-container armor-change-container optional">

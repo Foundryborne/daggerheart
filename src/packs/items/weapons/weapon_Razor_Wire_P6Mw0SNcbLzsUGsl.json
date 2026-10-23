@@ -6,9 +6,10 @@
   "img": "icons/commodities/metal/chain-steel.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -62,17 +63,6 @@
     "equipped": false,
     "secondary": true,
     "burden": "oneHanded",
-    "weaponFeatures": [
-      {
-        "value": "entangling",
-        "effectIds": [
-          "HzbHFY6UixXLRSNu"
-        ],
-        "actionIds": [
-          "WEj9asBFTeuvpcgu"
-        ]
-      }
-    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -162,6 +152,18 @@
         "roll": {
           "trait": null
         }
+      }
+    },
+    "itemFeatures": {
+      "entangling": {
+        "value": "entangling",
+        "effectIds": [
+          "HzbHFY6UixXLRSNu"
+        ],
+        "actionIds": [
+          "WEj9asBFTeuvpcgu"
+        ],
+        "config": {}
       }
     }
   },

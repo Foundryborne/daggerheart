@@ -6,9 +6,10 @@
   "img": "icons/equipment/chest/breastplate-layered-leather-black.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart SRD H&F",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "campaignFrame": ""
     },
     "description": "",
     "gmNotes": "",
@@ -63,15 +64,16 @@
       "major": 13,
       "severe": 36
     },
-    "armorFeatures": [
-      {
+    "itemFeatures": {
+      "ghostwalker": {
         "value": "ghostwalker",
         "effectIds": [],
         "actionIds": [
           "5Hq0OZmmnGykxe6H"
-        ]
+        ],
+        "config": {}
       }
-    ]
+    }
   },
   "effects": [],
   "sort": 0,
