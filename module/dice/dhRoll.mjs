@@ -363,7 +363,7 @@ export default class DHRoll extends BaseRoll {
                         ...item.system.actions,
                         ...(item.system.attack?.id === this.options.source.action ? [item.system.attack] : [])
                     ]
-                    : actor?.system.attack?.id === this.options.source.action 
+                    : actor?.system.attack && actor.system.attack.id === this.options.source.action 
                         ? [actor.system.attack]
                         : [];
                 const action = actions.find(x => x.id === this.options.source.action);
