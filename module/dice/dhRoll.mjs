@@ -352,7 +352,7 @@ export default class DHRoll extends BaseRoll {
             this.options.effects?.reduce((acc, effect) => {
                 if (!(effect instanceof ActiveEffect)) return acc;
 
-                const action = this.options.action;                
+                const action = this.options.action;
                 const rollData = action?.getRollData();
                 const conditionalsPassed = action && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
                 // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
