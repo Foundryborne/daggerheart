@@ -356,11 +356,16 @@ export default class DHRoll extends BaseRoll {
             // todo: improve safety. When used improperly, effects is a list of data, not active effects
             // it can be worked around provisionarily by using getActionRelevantEffects()
             this.options.effects?.reduce((acc, effect) => {
-                const item = this.options.data.parent?.items?.get?.(this.options.source.item) ?? null;
-                const actions = item ? [
-                    ...item.system.actions,
-                    ...(item.system.attack?.id === this.options.source.action ? [item.system.attack] : [])
-                ] : [];
+                const actor = this.options.data.parent;
+                const item = actor?.items?.get?.(this.options.source.item) ?? null;
+                const actions = item 
+                    ? [
+                        ...item.system.actions,
+                        ...(item.system.attack?.id === this.options.source.action ? [item.system.attack] : [])
+                    ]
+                    : actor?.system.attack?.id === this.options.source.action 
+                        ? [actor.system.attack]
+                        : [];
                 const action = actions.find(x => x.id === this.options.source.action);
 
                 const rollData = action?.getRollData();

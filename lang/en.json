@@ -2133,13 +2133,7 @@
                 },
                 "brutal": {
                     "name": "Brutal",
-                    "description": "When you roll the maximum value on a damage die, roll an additional damage die.",
-                    "actions": {
-                        "addDamage": {
-                            "name": "Brutal",
-                            "description": "When you roll the maximum value on a damage die, roll an additional damage die."
-                        }
-                    }
+                    "description": "When you roll the maximum value on a damage die, roll an additional damage die."
                 },
                 "burning": {
                     "name": "Burning",
@@ -2545,7 +2539,7 @@
                     "effects": {
                         "massive": {
                             "name": "Massive",
-                            "description": "-1 to Evasion; on a successful attack, roll an additional damage die and discard the lowest result."
+                            "description": "-1 to Evasion"
                         }
                     }
                 },
@@ -2649,13 +2643,7 @@
                 },
                 "powerful": {
                     "name": "Powerful",
-                    "description": "On a successful attack, roll an additional damage die and discard the lowest result.",
-                    "effects": {
-                        "powerful": {
-                            "name": "Powerful",
-                            "description": "On a successful attack, roll an additional damage die and discard the lowest result."
-                        }
-                    }
+                    "description": "On a successful attack, roll an additional damage die and discard the lowest result."
                 },
                 "protective": {
                     "name": "Protective",
@@ -2750,23 +2738,11 @@
                 },
                 "selfCorrecting": {
                     "name": "Self Correcting",
-                    "description": "When you roll a 1 on a damage die, it deals 6 damage instead.",
-                    "effects": {
-                        "selfCorrecting": {
-                            "name": "Self Correcting",
-                            "description": "When you roll a 1 on a damage die, it deals 6 damage instead."
-                        }
-                    }
+                    "description": "When you roll a 1 on a damage die, it deals 6 damage instead."
                 },
                 "serrated": {
                     "name": "Serrated",
-                    "description": "When you roll a 1 on a damage die, it deals 8 damage instead.",
-                    "effects": {
-                        "serrated": {
-                            "name": "Serrated",
-                            "description": "When you roll a 1 on a damage die, it deals 8 damage instead."
-                        }
-                    }
+                    "description": "When you roll a 1 on a damage die, it deals 8 damage instead."
                 },
                 "sharpwing": {
                     "name": "Sharpwing",

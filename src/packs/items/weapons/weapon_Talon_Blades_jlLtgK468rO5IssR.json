@@ -114,10 +114,7 @@
       "brutal": {
         "value": "brutal",
         "effectIds": [],
-        "actionIds": [
-          "G7pAyfTwQ8uteLsP"
-        ],
-        "config": {}
+        "actionIds": []
       }
     }
   },
