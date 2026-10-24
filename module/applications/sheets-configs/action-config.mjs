@@ -14,7 +14,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        if (this.action.effects) context.effects = this.action.effects.map(e => this.item.effects.get(e._id));
+        if (this.action.effects) context.effects = this.action.effects.map(e => this.parentDocument.effects.get(e._id));
         context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
@@ -37,7 +37,7 @@ export default class DHActionConfig extends DHActionBaseConfig {
     }
 
     getEffectDetails(id) {
-        return this.item.effects.get(id);
+        return this.parentDocument.effects.get(id);
     }
 
     static removeEffect(event, button) {
