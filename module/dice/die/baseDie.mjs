@@ -4,6 +4,8 @@ export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
         sc: 'selfCorrecting',
+        pw: 'powerful',
+        br: 'brutal',
         c: 'comboDice',
         h: 'hope',
         f: 'fear',
@@ -79,6 +81,27 @@ export default class BaseDie extends foundry.dice.terms.Die {
                 r.result = target;
             }
         }
+    }
+
+    /**
+     * Add an extra dice, remove the lowest dice
+     * Example: 3d6pw  Roll 4d6, keep highest 3 (kh3)
+     * @param {string} modifier     The matched modifier query
+     */
+    async powerful(modifier) {
+        const originalDiceAmount = this.number;
+        this.number += 1;
+        await this.roll();
+        this.keep(`kh${originalDiceAmount}`);
+    }
+
+    /**
+     * Explode on max rolls
+     * Example: 3d6br  Roll 3d6, explode on all max rolls (6:s)
+     * @param {string} modifier     The matched modifier query
+     */
+    brutal(modifier) {
+        this.explode(`x${this.faces}`);
     }
 
     async comboDice() {
