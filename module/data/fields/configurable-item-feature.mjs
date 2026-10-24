@@ -12,7 +12,6 @@ export class ConfigurableItemFeature extends fields.SchemaField {
             value: new fields.StringField({ required: true }),
             effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
             actionIds: new fields.ArrayField(new fields.StringField({ required: true })),
-            rollModifiers: new fields.ArrayField(new fields.StringField()),
             config: new fields.ObjectField()
         });
         this.#featureFn = itemType === 'weapon'

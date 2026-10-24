@@ -36,10 +36,7 @@ export async function updateItemFeatures(document, changes, featureListFn) {
     for (const feature of addedFeatures) {
         feature.actionIds ??= [];
         feature.effectIds ??= [];
-        feature.rollModifiers ??= [];
         const featureData = foundry.utils.deepClone(allFeatures[feature.value]);
-
-        feature.rollModifiers.push(...(featureData.rollModifiers ?? []));
 
         // Add top level effects if the feature doesn't already come with effects
         if (featureData.effects?.length > 0 && feature.effectIds.length === 0) {
