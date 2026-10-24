@@ -4,6 +4,8 @@ export default class BaseDie extends foundry.dice.terms.Die {
     static MODIFIERS = {
         ...foundry.dice.terms.Die.MODIFIERS,
         sc: 'selfCorrecting',
+        pw: 'powerful',
+        br: 'brutal',
         c: 'comboDice',
         h: 'hope',
         f: 'fear',
@@ -79,6 +81,17 @@ export default class BaseDie extends foundry.dice.terms.Die {
                 r.result = target;
             }
         }
+    }
+
+    async powerful(modifier) {
+        const originalDiceAmount = this.number;
+        this.number += 1;
+        await this.roll();
+        this.keep(`kh${originalDiceAmount}`);
+    }
+
+    brutal(modifier) {
+        this.explode(`x${this.faces}`);
     }
 
     async comboDice() {

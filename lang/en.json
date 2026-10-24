@@ -2134,8 +2134,8 @@
                 "brutal": {
                     "name": "Brutal",
                     "description": "When you roll the maximum value on a damage die, roll an additional damage die.",
-                    "actions": {
-                        "addDamage": {
+                    "effects": {
+                        "brutal": {
                             "name": "Brutal",
                             "description": "When you roll the maximum value on a damage die, roll an additional damage die."
                         }

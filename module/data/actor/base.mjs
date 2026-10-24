@@ -83,7 +83,11 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
                 hint: 'DAGGERHEART.GENERAL.Attack.hpDamageTakenMultiplier.hint'
             }),
             ...(extendedData.attack?.damage ?? {})
-        })
+        }),
+        rollModifiers: new fields.TypedObjectField(new fields.SchemaField({
+            label: new fields.StringField(),
+            modifiers: new fields.ArrayField(new fields.StringField())
+        }))
     })
 });
 

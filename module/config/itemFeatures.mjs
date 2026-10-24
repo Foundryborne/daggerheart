@@ -1229,13 +1229,25 @@ export const createWeaponFeatures = () => ({
     brutal: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.description',
-        actions: [
+        effects: [
             {
-                type: 'effect',
-                chatDisplay: true,
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.description',
-                img: 'icons/skills/melee/strike-dagger-blood-red.webp'
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.effects.brutal.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.effects.brutal.description',
+                img: 'icons/skills/melee/strike-dagger-blood-red.webp',
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.attack.rollModifiers.brutal.label',
+                            type: 'override',
+                            value: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.name'
+                        },
+                        {
+                            key: 'system.rules.attack.rollModifiers.brutal.modifiers',
+                            type: 'override',
+                            value: 'br'
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2100,6 +2112,16 @@ export const createWeaponFeatures = () => ({
                             key: 'system.evasion',
                             type: 'add',
                             value: '-1'
+                        },
+                        {
+                            key: 'system.rules.attack.rollModifiers.massive.label',
+                            type: 'override',
+                            value: 'DAGGERHEART.CONFIG.WeaponFeature.massive.name'
+                        },
+                        {
+                            key: 'system.rules.attack.rollModifiers.massive.modifiers',
+                            type: 'override',
+                            value: 'pw'
                         }
                     ]
                 }
@@ -2268,7 +2290,20 @@ export const createWeaponFeatures = () => ({
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.description',
                 img: 'icons/magic/control/buff-flight-wings-runes-red-yellow.webp',
-                changes: []
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.attack.rollModifiers.powerful.label',
+                            type: 'override',
+                            value: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.name'
+                        },
+                        {
+                            key: 'system.rules.attack.rollModifiers.powerful.modifiers',
+                            type: 'override',
+                            value: 'pw'
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2439,7 +2474,20 @@ export const createWeaponFeatures = () => ({
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.effects.selfCorrecting.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.effects.selfCorrecting.description',
                 img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
-                changes: []
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.attack.rollModifiers.selfCorrecting.label',
+                            type: 'override',
+                            value: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.name'
+                        },
+                        {
+                            key: 'system.rules.attack.rollModifiers.selfCorrecting.modifiers',
+                            type: 'override',
+                            value: 'sc6'
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2451,7 +2499,20 @@ export const createWeaponFeatures = () => ({
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.effects.serrated.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.effects.serrated.description',
                 img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
-                changes: []
+                system: {
+                    changes: [
+                        {
+                            key: 'system.rules.attack.rollModifiers.serrated.label',
+                            type: 'override',
+                            value: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.name'
+                        },
+                        {
+                            key: 'system.rules.attack.rollModifiers.serrated.modifiers',
+                            type: 'add',
+                            value: 'sc8'
+                        }
+                    ]
+                }
             }
         ]
     },
