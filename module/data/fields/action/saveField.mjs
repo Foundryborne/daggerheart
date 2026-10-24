@@ -30,7 +30,7 @@ export default class SaveField extends fields.SchemaField {
     /**
      * Reaction Roll Action Workflow part.
      * Must be called within Action context or similar.
-     * @param {object} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {RollConfig} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {object[]} [targets=null]     Array of targets to override pre-selected ones.
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
@@ -43,6 +43,7 @@ export default class SaveField extends fields.SchemaField {
             roll._evaluated = true;
             // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
             config.mute = true;
+            config.actionChatMessageHandled ||= config.action?.chatDisplay;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {
@@ -108,22 +109,22 @@ export default class SaveField extends fields.SchemaField {
     static async rollSave(actor, event) {
         if (!actor) return;
         const title = actor.isNPC
-                ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
-                : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                    ability: game.i18n.localize(abilities[this.save.trait]?.label)
-                }),
-            rollConfig = {
-                event,
-                title,
-                roll: {
-                    trait: this.save.trait,
-                    difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-                    type: 'trait'
-                },
-                actionType: 'reaction',
-                hasRoll: true,
-                data: actor.getRollData()
-            };
+            ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+            : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: game.i18n.localize(abilities[this.save.trait]?.label)
+            });
+        const rollConfig = {
+            actor,
+            event,
+            title,
+            roll: {
+                trait: this.save.trait,
+                difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
+                type: 'trait'
+            },
+            actionType: 'reaction',
+            hasRoll: true
+        };
         if (SaveField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id)
             rollConfig.dialog = { configure: false };
         return actor.diceRoll(rollConfig);
@@ -131,7 +132,7 @@ export default class SaveField extends fields.SchemaField {
 
     /**
      * Update a Roll ChatMessage for a token according to his Reaction Roll result.
-     * @param {object} result        Result from the Reaction Roll
+     * @param {RollConfig} result        Result from the Reaction Roll
      * @param {object} message       ChatMessage to update
      * @param {string} targetId      Token ID
      */
@@ -140,7 +141,7 @@ export default class SaveField extends fields.SchemaField {
 
         const chatMessage = ui.chat.collection.get(message._id);
         await chatMessage.update({
-            [`system.targetSaves.${targetId}`]: { value: result.roll.total, isCritical: result.roll.isCritical }
+            [`system.targetSaves.${targetId}`]: { value: result.evaluated.total, isCritical: result.evaluated.isCritical }
         });
     }
 
