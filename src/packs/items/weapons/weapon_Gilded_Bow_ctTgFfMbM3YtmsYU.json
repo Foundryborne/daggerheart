@@ -113,59 +113,12 @@
     "itemFeatures": {
       "selfCorrecting": {
         "value": "selfCorrecting",
-        "effectIds": [
-          "zoWZsD4ogzfPSPi7"
-        ],
-        "actionIds": [],
-        "config": {}
+        "effectIds": [],
+        "actionIds": []
       }
     }
   },
-  "effects": [
-    {
-      "name": "Self Correcting",
-      "description": "When you roll a 1 on a damage die, it deals 6 damage instead.",
-      "img": "icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp",
-      "_id": "zoWZsD4ogzfPSPi7",
-      "type": "base",
-      "system": {
-        "changes": [
-          {
-            "key": "system.rules.damage.flipMinDiceValue",
-            "type": "override",
-            "value": 1,
-            "phase": "initial"
-          }
-        ],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": [],
-        "conditionals": []
-      },
-      "disabled": false,
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "start": null,
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!items.effects!ctTgFfMbM3YtmsYU.zoWZsD4ogzfPSPi7"
-    }
-  ],
+  "effects": [],
   "sort": 0,
   "flags": {},
   "_key": "!items!ctTgFfMbM3YtmsYU"

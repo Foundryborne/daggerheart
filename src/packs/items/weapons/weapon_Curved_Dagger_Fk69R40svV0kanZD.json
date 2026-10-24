@@ -113,59 +113,12 @@
     "itemFeatures": {
       "serrated": {
         "value": "serrated",
-        "effectIds": [
-          "X3a0PAJ9Tk4zVyxz"
-        ],
-        "actionIds": [],
-        "config": {}
+        "effectIds": [],
+        "actionIds": []
       }
     }
   },
-  "effects": [
-    {
-      "name": "Serrated",
-      "description": "When you roll a 1 on a damage die, it deals 8 damage instead.",
-      "img": "icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp",
-      "_id": "X3a0PAJ9Tk4zVyxz",
-      "type": "base",
-      "system": {
-        "changes": [
-          {
-            "key": "system.rules.damage.flipMinDiceValue",
-            "type": "override",
-            "value": 1,
-            "phase": "initial"
-          }
-        ],
-        "duration": {
-          "description": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": [],
-        "conditionals": []
-      },
-      "disabled": false,
-      "duration": {
-        "value": null,
-        "units": "seconds",
-        "expiry": null,
-        "expired": false
-      },
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null
-      },
-      "start": null,
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!items.effects!Fk69R40svV0kanZD.X3a0PAJ9Tk4zVyxz"
-    }
-  ],
+  "effects": [],
   "sort": 0,
   "flags": {},
   "_key": "!items!Fk69R40svV0kanZD"
