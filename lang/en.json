@@ -687,7 +687,9 @@
                 "title": "Damage Reduction",
                 "unncessaryStress": "You don't need to expend stress",
                 "usedMarks": "Used Marks",
-                "reduceSeverity": "Severity Reduced By {nr}"
+                "reduceSeverity": "Severity Reduced By {nr}",
+                "damageReductionsTitle": "Damage Reductions",
+                "rollvaluePlaceholder": "Not Rolled"
             },
             "DeathMove": {
                 "selectMove": "Select Move",

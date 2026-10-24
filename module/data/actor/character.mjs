@@ -7,6 +7,7 @@ import { attributeField, stressDamageReductionRule, bonusField, GoldField } from
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 import { getArmorSources } from '../../helpers/utils.mjs';
+import FormulaField from '../fields/formulaField.mjs';
 
 export default class DhCharacter extends DhCreature {
     /**@override */
@@ -188,6 +189,11 @@ export default class DhCharacter extends DhCreature {
             rules: new fields.SchemaField({
                 ...commonActorRules({
                     damageReduction: {
+                        reductions: new fields.TypedObjectField(new fields.SchemaField({
+                            label: new fields.StringField(),
+                            value: new FormulaField(),
+                            costs: new fields.TypedObjectField(new fields.NumberField({ initial: 1, min: 0 }))
+                        })),
                         magical: new fields.BooleanField({
                             initial: false,
                             label: 'DAGGERHEART.GENERAL.Rules.damageReduction.magical.label',

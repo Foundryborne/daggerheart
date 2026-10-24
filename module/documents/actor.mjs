@@ -1,7 +1,7 @@
 import { emitGMUpdate, GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick, itemIsIdentical } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, getDamageKey, createShallowProxy, pick, itemIsIdentical, convertDamageToThreshold } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
@@ -919,7 +919,7 @@ export default class DhActor extends Actor {
             updates.push({ value: 1, key: 'stress' });
         } else if (args.main) {
             const hpDamage = { 
-                value: this.convertDamageToThreshold(args.main.value),
+                value: convertDamageToThreshold(args.main.value, this.system.damageThresholds),
                 damageTypes: new Set(args.main.damageTypes), 
                 key: CONFIG.DH.GENERAL.healingTypes.hitPoints.id
             };
@@ -929,7 +929,7 @@ export default class DhActor extends Actor {
                     {
                         actorId: this.uuid,
                         actionUuid: actionUuid,
-                        damage: hpDamage.value,
+                        damage: args.main.value,
                         type: [...hpDamage.damageTypes]
                     },
                     {
@@ -1133,19 +1133,6 @@ export default class DhActor extends Actor {
         });
 
         return this;
-    }
-
-    convertDamageToThreshold(damage) {
-        if (damage <= 0) return 0;
-
-        const massiveDamageEnabled = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
-            .massiveDamage.enabled;
-        if (massiveDamageEnabled && damage >= this.system.damageThresholds.severe * 2) {
-            return 4;
-        }
-
-        const { major, severe } = this.system.damageThresholds;
-        return (severe && damage >= severe) ? 3 : (major && damage >= major) ? 2 : 1;
     }
 
     convertStressDamageToHP(resources) {

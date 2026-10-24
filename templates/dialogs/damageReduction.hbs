@@ -1,10 +1,55 @@
 <div class="damage-reduction-container">
-    {{#if rulesToggleable}}
-        <button type="button" class="rules-button {{#unless rulesOn}}inactive{{/unless}}" data-action="toggleRules" data-tooltip-text="{{#if rulesOn}}{{localize "DAGGERHEART.UI.Tooltip.rulesOn"}}{{else}}{{localize "DAGGERHEART.UI.Tooltip.rulesOff"}}{{/if}}">
-            <i class="fa-solid fa-book"></i>
-        </button>
+    {{#if reductions.length}}
+        <div class="section-container full-width">
+            <h4 class="divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.damageReductionsTitle"}}</h4>
+            <div class="reductions-container">
+                {{#each reductions as |reduction index|}}
+                    <div class="reduction-container {{#if reduction.enabled}}enabled{{/if}}" data-action="toggleReduction" data-reduction-index="{{index}}">
+                        <div class="reduction-info-section">
+                            <div class="info-part">
+                                <span>{{reduction.label}}</span>
+                            </div>
+                            {{#each reduction.costs as |cost key|}}
+                                <div class="info-part">
+                                    <span>{{key}}</span>: 
+                                    <span>{{cost}}</span>
+                                </div>
+                            {{/each}}
+                            {{#unless reduction.isDeterministic}}
+                                <a data-action="rollReductionDice"><i class="fa-solid fa-dice"></i></a>
+                            {{/unless}}
+                        </div>
+                        <div class="reduction-roll-section">
+                            <label>{{localize "DAGGERHEART.GENERAL.value"}}: </label>
+                            {{#if reduction.isDeterministic}}
+                                <span>{{reduction.value}}</span>
+                            {{else}}
+                                {{#if reduction.roll}}
+                                    <span>{{reduction.roll.total}}</span>
+                                {{else}}
+                                    <span class="not-rolled">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.rollvaluePlaceholder"}}</span>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+            {{#unless (isNullish this.reducedDamage)}}
+                <div class="reduction-summary">
+                    <div>{{this.damage}}</div>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                    <div>{{this.reducedDamage}}</div>
+                </div>
+            {{/unless}}
+        </div>
     {{/if}}
-    <div class="section-container padded">
+
+    <div class="section-container full-width">
+        {{#if rulesToggleable}}
+            <button type="button" class="rules-button {{#unless rulesOn}}inactive{{/unless}}" data-action="toggleRules" data-tooltip-text="{{#if rulesOn}}{{localize "DAGGERHEART.UI.Tooltip.rulesOn"}}{{else}}{{localize "DAGGERHEART.UI.Tooltip.rulesOff"}}{{/if}}">
+                <i class="fa-solid fa-book"></i>
+            </button>
+        {{/if}}
         <div class="resources-container">
             <div class="resource-container">
                 <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.maxUseableArmor"}}</h4>
@@ -48,17 +93,17 @@
     </div>
 
     {{#if availableStressReductions}}
-    <div class="resources-container">
-        <div class="resource-container">
-            <h4 class="armor-title divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stressReduction"}}</h4>
+        <div class="resources-container">
+            <div class="resource-container">
+                <h4 class="armor-title divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stressReduction"}}</h4>
+            </div>
         </div>
-    </div>
     {{/if}}
 
     {{#each availableStressReductions}}
         <div class="section-container">
             <h4 class="chip-container">
-                <div class="chip-inner-container selectable {{#if (or this.any (eq this.from @root.currentDamage))}}active{{/if}} {{#if this.selected}}selected{{/if}}" data-action="useStressReduction" data-reduction="{{@key}}">
+                <div class="chip-inner-container selectable {{#if (or this.any (eq this.from @root.currentDamageMarks))}}active{{/if}} {{#if this.selected}}selected{{/if}}" data-action="useStressReduction" data-reduction="{{@key}}">
                     {{#if this.any}}
                         {{localize "DAGGERHEART.GENERAL.any"}}
                     {{else}}
@@ -92,16 +137,16 @@
     {{/if}}
 
     {{#each thresholdImmunities as | immunity key |}}
-        <div class="threshold-label {{#if (gte key @root.currentDamageNr)}}active{{/if}}">{{immunity}}</div>
+        <div class="threshold-label {{#if (gte key @root.currentDamageMarksNr)}}active{{/if}}">{{immunity}}</div>
     {{/each}}
 
     <footer class="padded">
         <button type="button" data-action="takeDamage">
             {{localize "DAGGERHEART.GENERAL.take"}}
-            <div class="damage-value {{#if this.reducedDamage}}reduced-value{{/if}}">{{this.damage}}</div>
-            {{#if this.reducedDamage}}
+            <div class="damage-value {{#if this.reducedDamageMarks}}reduced-value{{/if}}">{{this.damageMarks}}</div>
+            {{#if this.reducedDamageMarks}}
                 <i class="fa-solid fa-arrow-right-long"></i>
-                <div class="damage-value">{{this.reducedDamage}}</div>
+                <div class="damage-value">{{this.reducedDamageMarks}}</div>
             {{/if}}
             {{localize "DAGGERHEART.GENERAL.damage"}}
         </button>

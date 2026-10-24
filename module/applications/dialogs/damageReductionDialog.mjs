@@ -1,4 +1,4 @@
-import { damageKeyToNumber, getArmorSources, getDamageLabel } from '../../helpers/utils.mjs';
+import { convertDamageToThreshold, damageKeyToNumber, getArmorSources, getDamageLabel } from '../../helpers/utils.mjs';
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -44,6 +44,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.availableStressReductions = rules.availableStressReductions;
         this.reduceSeverity = rules.reduceSeverity;
         this.thresholdImmunities = rules.thresholdImmunities;
+        this.reductions = rules.reductions;
     }
 
     static DEFAULT_OPTIONS = {
@@ -57,7 +58,9 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             toggleRules: this.toggleRules,
             setMarks: this.setMarks,
             useStressReduction: this.useStressReduction,
-            takeDamage: this.takeDamage
+            takeDamage: this.takeDamage,
+            toggleReduction: this.onToggleReduction,
+            rollReductionDice: this.onRollReductionDice
         },
         form: {
             handler: this.updateData,
@@ -132,13 +135,21 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             {}
         );
 
+        const reductions = Object.values(actor.system.rules.damageReduction.reductions).map(x => ({
+            ...x,
+            label: _loc(x.label),
+            enabled: false,
+            isDeterministic: (new Roll(x.value)).isDeterministic
+        }));
+
         return {
             stress,
             maxArmorUsed,
             increasePerArmorMark,
             availableStressReductions,
             reduceSeverity,
-            thresholdImmunities
+            thresholdImmunities,
+            reductions
         }
     }
 
@@ -191,10 +202,16 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         context.usesStressArmor = Object.keys(context.marks.stress).length;
         context.availableStressReductions = this.availableStressReductions;
 
-        context.damage = getDamageLabel(this.damage);
-        context.reducedDamage = currentDamage !== this.damage ? getDamageLabel(currentDamage) : null;
-        context.currentDamage = context.reducedDamage ?? context.damage;
-        context.currentDamageNr = currentDamage;
+        context.damage = this.damage;
+        context.reducedDamage = this.getReducedDamage();
+        const damageMarks = convertDamageToThreshold(context.damage, this.actor.system.damageThresholds);
+        context.damageMarks = getDamageLabel(damageMarks);
+
+        context.reducedDamageMarks = currentDamage !== damageMarks ? getDamageLabel(currentDamage) : null;
+        context.currentDamageMarks = context.reducedDamageMarks ?? context.damageMarks;
+        context.currentDamageMarksNr = currentDamage;
+
+        context.reductions = this.reductions;
 
         return context;
     }
@@ -219,9 +236,11 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
                 return acc;
             }, 0);
 
+        const reducedDamage = this.getReducedDamage();
+        const damageMarks = convertDamageToThreshold(reducedDamage ?? this.damage, this.actor.system.damageThresholds);
         const armorMarkReduction =
             selectedArmorMarks.length * this.increasePerArmorMark;
-        let currentDamage = Math.max(this.damage - armorMarkReduction - stressReductions.length, 0);
+        let currentDamage = Math.max(damageMarks - armorMarkReduction - stressReductions.length, 0);
         if (this.reduceSeverity) {
             currentDamage = Math.max(currentDamage - this.reduceSeverity, 0);
         }
@@ -229,6 +248,25 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         if (this.thresholdImmunities[currentDamage]) currentDamage = 0;
 
         return { selectedStressMarks, stressReductions, currentMarks, currentDamage, maxArmorUsed, availableArmor };
+    };
+
+    getReducedDamage = () => {
+        const activeReductions = this.reductions.filter(x => 
+            x.enabled && 
+            (x.isDeterministic || x.roll)
+        );
+        if (!activeReductions.length) return null;
+
+        return activeReductions.reduce((acc, reduction) => {
+            if (reduction.enabled) {
+                if (reduction.isDeterministic) 
+                    acc -= Number.parseInt(reduction.value);
+                else 
+                    acc -= reduction.roll.total;
+            }
+
+            return Math.max(acc, 0);
+        }, this.damage);
     };
 
     static toggleRules() {
@@ -339,8 +377,9 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
                 return;
             }
 
-            const reducedDamage = currentDamage !== this.damage ? getDamageLabel(currentDamage) : null;
-            const currentDamageLabel = reducedDamage ?? getDamageLabel(this.damage);
+            const damageMarks = convertDamageToThreshold(this.damage, this.actor.system.damageThresholds);
+            const reducedDamage = currentDamage !== damageMarks ? getDamageLabel(currentDamage) : null;
+            const currentDamageLabel = reducedDamage ?? getDamageLabel(damageMarks);
 
             if (!stressReduction.any && stressReduction.from !== currentDamageLabel) return;
 
@@ -363,6 +402,37 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
         this.resolve({ modifiedDamage: currentDamage, armorChanges, stressSpent });
         await this.close(true);
+    }
+
+    static onToggleReduction(_, target) {
+        const reduction = this.reductions[target.dataset.reductionIndex];
+        if (!reduction) return;
+
+        reduction.enabled = !reduction.enabled;
+        this.render();
+    }
+
+    static async onRollReductionDice(event, target) {
+        event.stopPropagation();
+        const element = target.closest('[data-reduction-index]');
+        if (!element) return;
+
+        const reduction = this.reductions[element.dataset.reductionIndex];
+        if (!reduction) return;
+
+        reduction.roll = await (new Roll(reduction.value)).evaluate();
+        const message = await getDocumentClass('ChatMessage').create({
+            user: game.user.id,
+            title: reduction.label,
+            rolls: [reduction.roll],
+            flags: { daggerheart: { noButtons: true } }
+        });
+
+        if (game.dice3d) {
+            await game.dice3d.waitFor3DAnimationByMessageID(message.id);
+        }
+
+        this.render();
     }
 
     async close(fromSave) {
