@@ -162,6 +162,16 @@ export default class DHWeapon extends BaseDataItem {
             this.attack.damage.main.value.dice = versatileData.damage.dice;
             this.attack.damage.main.value.bonus = versatileData.damage.bonus;
         }
+
+        // Add roll modifiers to the weapon from weapon features
+        this.rollModifiers = {};
+        const weaponFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
+        for (const key of Object.keys(this.itemFeatures)) {
+            const weaponData = weaponFeatures[key];
+            if (weaponData?.rollModifiers) {
+                this.rollModifiers[key] = { label: _loc(weaponData.label), modifiers: weaponData.rollModifiers };
+            }
+        }
     }
 
     /**

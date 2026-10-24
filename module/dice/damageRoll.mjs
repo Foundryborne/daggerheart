@@ -222,7 +222,7 @@ export default class DamageRoll extends DHRoll {
     static temporaryModifierBuilder(config) {
         const mods = {};
         
-        const { actor, item } = config;
+        const actor = config.actor;
         if (actor) {
             // Bardic Rally
             const rallyChoices = (actor.appliedEffects ?? []).reduce((a, c) => {
@@ -248,60 +248,13 @@ export default class DamageRoll extends DHRoll {
                 };
             }
 
-            // Handle weapon features. The item may be a feature, which doesn't have any
-            if (item?.system.itemFeatures) {
-                // Massive (Weapon Feature)
-                if (item.system.itemFeatures.massive)
-                    mods.massive = {
-                        label: CONFIG.DH.ITEM.weaponFeatures.massive.label,
-                        enabled: true,
-                        callback: part => {
-                            part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
-                            part.roll.terms[0].number += 1;
-                        }
-                    };
-
-                // Powerful (Weapon Feature)
-                if (item.system.itemFeatures.powerful)
-                    mods.powerful = {
-                        label: CONFIG.DH.ITEM.weaponFeatures.powerful.label,
-                        enabled: true,
-                        callback: part => {
-                            part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
-                            part.roll.terms[0].number += 1;
-                        }
-                    };
-
-                // Brutal (Weapon Feature)
-                if (item.system.itemFeatures.brutal)
-                    mods.brutal = {
-                        label: CONFIG.DH.ITEM.weaponFeatures.brutal.label,
-                        enabled: true,
-                        beforeCrit: true,
-                        callback: part => {
-                            part.roll.terms[0].modifiers.push(`x${part.roll.terms[0].faces}`);
-                        }
-                    };
-
-                // Serrated (Weapon Feature)
-                if (item.system.itemFeatures.serrated)
-                    mods.serrated = {
-                        label: CONFIG.DH.ITEM.weaponFeatures.serrated.label,
-                        enabled: true,
-                        callback: part => {
-                            part.roll.terms[0].modifiers.push(`sc8`);
-                        }
-                    };
-
-                // Self-Correcting (Weapon Feature)
-                if (item.system.itemFeatures.selfCorrecting)
-                    mods.selfCorrecting = {
-                        label: CONFIG.DH.ITEM.weaponFeatures.selfCorrecting.label,
-                        enabled: true,
-                        callback: part => {
-                            part.roll.terms[0].modifiers.push(`sc6`);
-                        }
-                    };
+            const item = config.data.parent.items?.get(config.source.item);
+            for (const [key, data] of Object.entries(item.system.rollModifiers ?? {})) {
+                mods[key] = {
+                    label: data.label,
+                    enabled: true,
+                    callback: part => part.roll.terms[0].modifiers.push(...data.modifiers)
+                };
             }
         }
 
