@@ -1,8 +1,11 @@
 import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
+/** @import DhEnvironment from '../../../data/actor/environment.mjs'; */
+
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
+/** @extends {DHBaseActorSheet<DhActor<DhEnvironment>>} */
 export default class EnvironmentSheet extends DHBaseActorSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {

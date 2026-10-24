@@ -1,4 +1,4 @@
-import { fromUuids, getFeaturesHTMLData } from '../../helpers/utils.mjs';
+import { getFeaturesHTMLData } from '../../helpers/utils.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -40,14 +40,17 @@ export default class DHSubclass extends BaseDataItem {
 
     /* -------------------------------------------- */
 
+    /** @returns {string[]} */
     get foundationFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.foundation).map(x => x.item);
     }
 
+    /** @returns {string[]} */
     get specializationFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.specialization).map(x => x.item);
     }
 
+    /** @returns {string[]} */
     get masteryFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.mastery).map(x => x.item);
     }
@@ -99,10 +102,6 @@ export default class DHSubclass extends BaseDataItem {
             // for now, tooltips do not show any specific version. Eventually we may want rank specific embeds via dataset params or something
             return { value: baseDescription };
         } else {
-            // Preload all subclass features for acquisition from the cache
-            // todo: make feature acquisition async and replace feature helpers for methods
-            await fromUuids(this._source.features.map(f => f.item));
-
             const foundationFeatures = await getFeaturesHTMLData(this.foundationFeatures);
             const specializationFeatures = await getFeaturesHTMLData(this.specializationFeatures);
             const masteryFeatures = await getFeaturesHTMLData(this.masteryFeatures);

@@ -26,8 +26,8 @@
                             <div class="ancestry-preview-info-container">
                                 <div class="ancestry-preview-label">{{name}}</div>
                                 <div class="ancestry-preview-features">
-                                    <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" system.primaryFeature.uuid}}">{{system.primaryFeature.name}}</div>
-                                    <div class="ancestry-preview-feature {{#if secondaryDisabled}}inactive{{/if}}" data-tooltip="{{concat "#item#" system.secondaryFeature.uuid}}">{{system.secondaryFeature.name}}</div>
+                                    <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" primaryFeature.uuid}}">{{primaryFeature.name}}</div>
+                                    <div class="ancestry-preview-feature {{#if secondaryDisabled}}inactive{{/if}}" data-tooltip="{{concat "#item#" secondaryFeature.uuid}}">{{secondaryFeature.name}}</div>
                                 </div>
                             </div>
                         {{else}}
@@ -47,8 +47,8 @@
                                     <div class="ancestry-preview-info-container">
                                         <div class="ancestry-preview-label">{{name}}</div>
                                         <div class="ancestry-preview-features">
-                                            <div class="ancestry-preview-feature inactive" data-tooltip="{{concat "#item#" system.primaryFeature.uuid}}">{{system.primaryFeature.name}}</div>
-                                            <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" system.secondaryFeature.uuid}}">{{system.secondaryFeature.name}}</div>
+                                            <div class="ancestry-preview-feature inactive" data-tooltip="{{concat "#item#" primaryFeature.uuid}}">{{primaryFeature.name}}</div>
+                                            <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" secondaryFeature.uuid}}">{{secondaryFeature.name}}</div>
                                         </div>
                                     </div>
                                 {{else}}

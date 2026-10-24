@@ -2,9 +2,7 @@
     <div class='feature-line'>
         {{#if feature}}
             <img class='image' src='{{feature.img}}' />
-            <h4>
-                {{feature.name}}
-            </h4>
+            <span>{{feature.name}}</span>
         {{else}}
             <i class="fa-solid fa-link-slash hint image-icon" inert></i>
             <span class="hint">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "TYPES.Item.feature")}}</span>
