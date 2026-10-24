@@ -17,8 +17,8 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}: ${this.action.name}`;
     }
 
-    get item() {
-        return this.action?.item;
+    get parentDocument() {
+        return this.action?.parentDocument;
     }
 
     static DEFAULT_OPTIONS = {
@@ -154,12 +154,12 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
     /** @inheritDoc */
     _onFirstRender(context, options) {
         super._onFirstRender(context, options);
-        if (this.item) this.item.apps[this.id] = this;
+        if (this.parentDocument) this.parentDocument.apps[this.id] = this;
     }
 
     /** @override */
     _onClose(options) {
-        if (this.item) delete this.item.apps[this.id];
+        if (this.parentDocument) delete this.parentDocument.apps[this.id];
         return super._onClose(options);
     }
 

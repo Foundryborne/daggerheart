@@ -1,4 +1,4 @@
-import { itemAbleRollParse } from '../helpers/utils.mjs';
+import { itemAbleRollParse, resolveNearestDocument } from '../helpers/utils.mjs';
 
 export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     /* -------------------------------------------- */
@@ -172,16 +172,6 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         super._applyChangeUnguided(actor, change, changes, options);
     }
 
-    /** Recursively finds the first parent document of the given object */
-    static #resolveParentDocument(model, documentClass) {
-        if (!model) return null;
-        return model instanceof documentClass
-            ? model
-            : model.parent
-                ? this.#resolveParentDocument(model.parent, documentClass)
-                : null;
-    }
-
     static getChangeValue(model, change, effect) {
         let value = change.value.toString();
         const useOrigin = value.toLowerCase().includes('origin.@') && effect.origin;
@@ -189,14 +179,14 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         if (effect.origin) {
             if (useOrigin) value = value.replaceAll(/origin\.@/gi, '@');
             const originEffect = foundry.utils.fromUuidSync(effect.origin);
-            origin = this.#resolveParentDocument(originEffect, Item);
+            origin = resolveNearestDocument(originEffect, Item);
         }
 
         // Get the actor and item documents. Note that actor roll data is inclusive of system roll data
-        const actor = this.#resolveParentDocument(model, Actor);
+        const actor = resolveNearestDocument(model, Actor);
         const item =
             (useOrigin ? origin : null) ??
-            this.#resolveParentDocument(effect.parent, Item) ??
+            resolveNearestDocument(effect.parent, Item) ??
             (origin?.actor === actor ? origin : null);
         const stackingParsedValue = effect.system.stacking
             ? Roll.replaceFormulaData(value, { stacks: effect.system.stacking.value })
@@ -228,7 +218,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
      */
     _getTags() {
         const tags = [];
-        const originActor = DhActiveEffect.#resolveParentDocument(fromUuidSync(this.origin, { strict: false }), Actor);
+        const originActor = resolveNearestDocument(fromUuidSync(this.origin, { strict: false }), Actor);
         if (originActor && originActor !== this.actor) {
             tags.push(_loc('DAGGERHEART.EFFECTS.OriginTag', { name: originActor.name }));
         } else if (!(this.parent instanceof Actor)) {
