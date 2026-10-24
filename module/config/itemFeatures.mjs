@@ -2256,15 +2256,7 @@ export const createWeaponFeatures = () => ({
     powerful: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.description',
-        rollModifiers: ['pw'],
-        effects: [
-            {
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.description',
-                img: 'icons/magic/control/buff-flight-wings-runes-red-yellow.webp',
-                changes: []
-            }
-        ]
+        rollModifiers: ['pw']
     },
     protective: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.protective.name',
