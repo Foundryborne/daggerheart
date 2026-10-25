@@ -265,7 +265,7 @@ export default class DHRoll extends BaseRoll {
         return Object.values(this.options.bonusEffects).reduce((acc, effect) => {
             if (!effect.selected) return acc;
             return acc + effect.changes.reduce((acc, change) => {
-                if (!change.key.includes(path)) return acc;
+                if (!change.key?.includes(path)) return acc;
                 const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
                     this.data,
                     change,
@@ -289,7 +289,7 @@ export default class DHRoll extends BaseRoll {
         for (const effect of Object.values(this.options.bonusEffects)) {
             if (!effect.selected) continue;
             for (const change of effect.changes) {
-                if (!change.key.includes(path)) continue;
+                if (!change.key?.includes(path)) continue;
                 
                 // TODO: We should handle override and all other modes. It'll have to be done in a different way
                 // as we cannot just go through each change and sum them up. We'll have to get the total value with
