@@ -81,7 +81,7 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                 context.featureConfigs = context.features
                     .map(featureKey => {
                         const feature = weaponFeatures[featureKey];
-                        if (!feature.config) return null;
+                        if (!feature?.config) return null;
 
                         return {
                             label: _loc(feature.label),
