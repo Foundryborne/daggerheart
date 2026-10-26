@@ -13,18 +13,15 @@
                 {{localize (concat 'DAGGERHEART.CONFIG.Traits.' source.system.attack.roll.trait '.short')}}
                 <span>-</span>
                 {{localize (concat 'DAGGERHEART.CONFIG.Range.' source.system.attack.range '.name')}}
-                <span>-</span>
-                {{#if source.system.attack.damage.parts.hitPoints.value.custom.enabled}}
-                    {{localize "DAGGERHEART.GENERAL.custom"}}
-                {{else}}
-                    {{source.system.attack.damage.main.value.dice}}{{#if source.system.attack.damage.main.value.bonus}} + {{source.system.attack.damage.main.value.bonus}}{{/if}}
-                {{/if}}
-                {{#if (gt source.system.attack.damage.main.type.size 0)}}
-                (
-                    {{#each source.system.attack.damage.main.type}}
-                        {{localize (concat 'DAGGERHEART.CONFIG.DamageType.' this '.abbreviation')}}
-                    {{/each}}
-                )
+                {{#if formula}}
+                    <span>-</span>
+                    <span>
+                        {{formula}}
+                        {{#each damageTypes as |type|}}
+                            {{~localize type.abbreviation~}}
+                            {{#unless @last}}/{{/unless~}}
+                        {{/each}}
+                    </span>
                 {{/if}}
                 <span>-</span>
                 {{localize (concat 'DAGGERHEART.CONFIG.Burden.' source.system.burden)}}
