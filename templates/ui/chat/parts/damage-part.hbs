@@ -11,11 +11,11 @@
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#if damage.main}}
-                {{> formula roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
+                {{> result roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
             {{/if}}
             {{#each damage.resources as | roll key | }}
                 {{#with (lookup @root.allResourceLabels key) as | labelData |}}
-                    {{> formula roll=roll label=(localize (ifThen ../../hasHealing labelData.label labelData.inChatRoll)) }}
+                    {{> result roll=roll label=(localize (ifThen ../../hasHealing labelData.label labelData.inChatRoll)) }}
                 {{/with}}
             {{/each}}
         </div>
@@ -41,8 +41,20 @@
     </div>
 </div>
 
-{{#*inline "formula"}}
-    <div class="roll-formula">{{label}}: {{#if roll.options.fullRestore}}{{localize "DAGGERHEART.ACTIONS.Settings.fullRestore.inChatRoll"}}{{else}}{{roll.total}}{{/if}}</div>
+{{#*inline "result"}}
+    <div class="roll-formula">
+        {{label}}:
+        {{#if roll.options.fullRestore}}
+            {{localize "DAGGERHEART.ACTIONS.Settings.fullRestore.inChatRoll"}}
+        {{else}}
+            {{roll.total}}
+            {{#if roll.options.damageTypes.length}}
+                {{#each @root.damageTypes as |type|}}
+                    <i class="fa-solid {{type.icon}}" data-tooltip aria-label="{{localize type.label}}"></i>
+                {{/each}}
+            {{/if}}
+        {{/if}}
+    </div>
 {{/inline}}
 
 {{#*inline "damage"}}
@@ -52,12 +64,15 @@
             <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{#if roll.options.fullRestore}}{{localize "DAGGERHEART.ACTIONS.Settings.fullRestore.inChatRoll"}}{{else}}{{roll.total}}{{/if}}</div>{{#if isDirect}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
         </legend>
         {{#if (and (not @root.hasHealing) roll.options.damageTypes.length)}}
-            <label class="roll-part-header"><span>
-                {{#each roll.options.damageTypes}}
-                    {{localize (concat 'DAGGERHEART.CONFIG.ArmorFeature.' this '.name')}}
-                    {{#unless @last}}/{{/unless}}
-                {{/each}}
-            <div class="roll-formula">{{roll.total}}</div></span></label>
+            <label class="roll-part-header">
+                <span>
+                    {{#each @root.damageTypes as |type|}}
+                        {{localize type.label}}
+                        {{#unless @last}}/{{/unless}}
+                    {{/each}}
+                    <div class="roll-formula">{{roll.total}}</div>
+                </span>
+            </label>
         {{/if}}
         {{#unless roll.options.fullRestore}}
         <div class="roll-dice">
