@@ -11,11 +11,11 @@
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#if damage.main}}
-                {{> formula roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
+                {{> result roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
             {{/if}}
             {{#each damage.resources as | roll key | }}
                 {{#with (lookup @root.allResourceLabels key) as | labelData |}}
-                    {{> formula roll=roll label=(localize (ifThen ../../hasHealing labelData.label labelData.inChatRoll)) }}
+                    {{> result roll=roll label=(localize (ifThen ../../hasHealing labelData.label labelData.inChatRoll)) }}
                 {{/with}}
             {{/each}}
         </div>
@@ -41,16 +41,18 @@
     </div>
 </div>
 
-{{#*inline "formula"}}
+{{#*inline "result"}}
     <div class="roll-formula">
         {{label}}:
         {{#if roll.options.fullRestore}}
             {{localize "DAGGERHEART.ACTIONS.Settings.fullRestore.inChatRoll"}}
         {{else}}
             {{roll.total}}
-            {{#each @root.damageTypes as |type|}}
-                <i class="fa-solid {{type.icon}}" data-tooltip aria-label="{{localize type.label}}"></i>
-            {{/each}}
+            {{#if roll.options.damageTypes.length}}
+                {{#each @root.damageTypes as |type|}}
+                    <i class="fa-solid {{type.icon}}" data-tooltip aria-label="{{localize type.label}}"></i>
+                {{/each}}
+            {{/if}}
         {{/if}}
     </div>
 {{/inline}}

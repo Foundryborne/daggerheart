@@ -169,7 +169,8 @@ export default class DHRoll extends BaseRoll {
         } else return msgData;
     }
 
-    // TODO - Possibly remove this completly if actorRoll.renderHTML implementation can take over getting the chatData prepared.
+    // TODO - Refactor _prepareChatRenderContext so that the stuff in renderTemplate are in there
+    // Then defer to the each damage roll's _prepareChatRenderContext() and include damageTypes only on the actual main damage
     /** @inheritDoc */
     async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false, ...options } = {}) {
         if (!this._evaluated) return;
