@@ -2,41 +2,63 @@ import { defaultRestOptions } from '../../config/generalConfig.mjs';
 import { resetAndRerenderActors } from '../../helpers/utils.mjs';
 import { ActionCollectionField } from '../fields/action-collection-field.mjs';
 
-const currencyField = (initial, label, icon, initialAmount = 0) =>
-    new foundry.data.fields.SchemaField({
-        enabled: new foundry.data.fields.BooleanField({ required: true, initial: true }),
-        label: new foundry.data.fields.StringField({
-            required: true,
-            initial,
-            label
-        }),
-        icon: new foundry.data.fields.StringField({ required: true, nullable: false, blank: true, initial: icon }),
-        initialAmount: new foundry.data.fields.NumberField({
-            required: true,
-            integer: true,
-            min: 0,
-            initial: initialAmount,
-            label: 'DAGGERHEART.SETTINGS.Homebrew.currency.initialAmount'
-        })
-    });
-
-const restMoveField = () =>
-    new foundry.data.fields.SchemaField({
-        name: new foundry.data.fields.StringField({ required: true }),
-        icon: new foundry.data.fields.StringField({ required: true }),
-        img: new foundry.data.fields.FilePathField({
-            initial: 'icons/magic/life/cross-worn-green.webp',
-            categories: ['IMAGE'],
-            base64: false
-        }),
-        description: new foundry.data.fields.HTMLField(),
-        actions: new ActionCollectionField(),
-        effects: new foundry.data.fields.ArrayField(new foundry.data.fields.ObjectField())
-    });
-
 export default class DhHomebrew extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
+
+        const currencyField = (initial, label, icon, initialAmount = 0) =>
+            new fields.SchemaField({
+                enabled: new fields.BooleanField({ required: true, initial: true }),
+                label: new fields.StringField({
+                    required: true,
+                    initial,
+                    label
+                }),
+                icon: new fields.StringField({ required: true, nullable: false, blank: true, initial: icon }),
+                initialAmount: new fields.NumberField({
+                    required: true,
+                    integer: true,
+                    min: 0,
+                    initial: initialAmount,
+                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.initialAmount'
+                })
+            });
+
+        const restMoveField = () =>
+            new fields.SchemaField({
+                name: new fields.StringField({ required: true }),
+                icon: new fields.StringField({ required: true }),
+                img: new fields.FilePathField({
+                    initial: 'icons/magic/life/cross-worn-green.webp',
+                    categories: ['IMAGE'],
+                    base64: false
+                }),
+                description: new fields.HTMLField(),
+                actions: new ActionCollectionField(),
+                effects: new fields.ArrayField(new fields.ObjectField())
+            });
+
+        const damageTypeField = type =>
+            new fields.SchemaField({
+                label: new fields.StringField({
+                    nullable: true,
+                    initial: null,
+                    blank: false,
+                    placeholder: CONFIG.DH.GENERAL.defaultDamageTypes[type]?.label
+                }),
+                abbreviation: new fields.StringField({
+                    nullable: true,
+                    initial: null,
+                    blank: false,
+                    placeholder: CONFIG.DH.GENERAL.defaultDamageTypes[type]?.abbreviation
+                }),
+                icon: new fields.StringField({ 
+                    nullable: true,
+                    initial: null,
+                    blank: false
+                })
+            });
+
         return {
             maxFear: new fields.NumberField({
                 required: true,
@@ -124,6 +146,10 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     'DAGGERHEART.SETTINGS.Homebrew.currency.chestName',
                     'fa-solid fa-treasure-chest'
                 )
+            }),
+            damageTypes: new fields.SchemaField({
+                physical: damageTypeField('physical'),
+                magical: damageTypeField('magical')
             }),
             restMoves: new fields.SchemaField({
                 longRest: new fields.SchemaField({
@@ -248,6 +274,15 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 ...config.custom,
                 ...config.base
             });
+        }
+
+        for (const type of ['physical', 'magical']) {
+            const data = CONFIG.DH.GENERAL.damageTypes[type];
+            const defaultData = CONFIG.DH.GENERAL.defaultDamageTypes[type];
+            data.label = this.damageTypes[type].label ?? defaultData.label;
+            data.lowercase = this.damageTypes[type].label?.toLowerCase() ?? defaultData.lowercase;
+            data.abbreviation = this.damageTypes[type].abbreviation ?? defaultData.abbreviation;
+            data.icon = this.damageTypes[type].icon ?? defaultData.icon;
         }
     }
 }

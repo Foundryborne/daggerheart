@@ -3905,6 +3905,7 @@
                 "deleteItemText": "Are you sure you want to delete the item?",
                 "deleteResourceTitle": "Delete Homebrew Resource",
                 "deleteResourceText": "Are you sure you want to delete the resource?",
+                "reset": "Reset",
                 "FIELDS": {
                     "domains": {
                         "color": { 
@@ -3960,6 +3961,11 @@
                     "chestName": "Chest Name",
                     "denomination": "Denomination",
                     "initialAmount": "Starting Amount"
+                },
+                "damageTypes": {
+                    "title": "Damage Type Overrides",
+                    "changeIcon": "Change Damage Type Icon",
+                    "abbreviation": "Abbrev."
                 },
                 "domains": {
                     "domainsTitle": "Base Domains",

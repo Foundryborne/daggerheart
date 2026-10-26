@@ -157,16 +157,19 @@ export const damageTypes = {
         label: 'DAGGERHEART.CONFIG.DamageType.physical.name',
         lowercase: 'DAGGERHEART.CONFIG.DamageType.physical.lowercase',
         abbreviation: 'DAGGERHEART.CONFIG.DamageType.physical.abbreviation',
-        icon: 'fa-hand-fist'
+        icon: 'fa-solid fa-hand-fist'
     },
     magical: {
         id: 'magical',
         label: 'DAGGERHEART.CONFIG.DamageType.magical.name',
         lowercase: 'DAGGERHEART.CONFIG.DamageType.magical.lowercase',
         abbreviation: 'DAGGERHEART.CONFIG.DamageType.magical.abbreviation',
-        icon: 'fa-wand-sparkles'
+        icon: 'fa-solid fa-wand-sparkles'
     }
 };
+
+/** Backup value for damageTypes, to use when restoring the homebrew data */
+export const defaultDamageTypes = foundry.utils.deepClone(damageTypes);
 
 export const healingTypes = {
     hitPoints: {
