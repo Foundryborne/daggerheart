@@ -58,6 +58,15 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
         const context = await super._prepareContext(options);
         context.source = this.document._source;
 
+        const attackDamage = this.document.system.attack?.damage.main;
+        if (attackDamage) {
+            const value = attackDamage.value;
+            const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
+            if (!value.custom.enabled && value.bonus) parts.push(value.bonus > 0 ? '+' : '-', Math.abs(value.bonus));
+            context.formula = parts.join(' ');
+            context.damageTypes = attackDamage.type.map(type => ({ ...CONFIG.DH.GENERAL.damageTypes[type] }));
+        }
+
         return context;
     }
 
@@ -81,7 +90,7 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
                 context.featureConfigs = context.features
                     .map(featureKey => {
                         const feature = weaponFeatures[featureKey];
-                        if (!feature.config) return null;
+                        if (!feature?.config) return null;
 
                         return {
                             label: _loc(feature.label),

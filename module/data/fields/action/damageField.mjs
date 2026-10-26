@@ -315,7 +315,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
      * @returns {string} the formula associated with this damage field
      */
     getFormula() {
-        if (this.custom.enabled) return this.custom.formula;
+        if (this.custom?.enabled) return this.custom.formula;
 
         const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : `@${this.multiplier}`;
         if (!multiplier) return String(this.bonus || 0);

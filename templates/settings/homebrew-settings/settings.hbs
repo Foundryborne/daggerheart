@@ -25,7 +25,7 @@
         <fieldset class="three-columns">
             <legend>
                 {{localize "DAGGERHEART.SETTINGS.Homebrew.FIELDS.tokenSizes.label"}}
-                <a data-action="resetTokenSizes"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                <a data-action="resetTokenSizes" data-tooltip aria-label="DAGGERHEART.SETTINGS.Homebrew.reset"><i class="fa-solid fa-arrow-rotate-left" inert></i></a>
             </legend>
 
             {{formGroup settingFields.schema.fields.tokenSizes.fields.tiny value=settingFields._source.tokenSizes.tiny localize=true}}
@@ -69,6 +69,24 @@
                 <input type="number" name="currency.chests.initialAmount" value="{{settingFields._source.currency.chests.initialAmount}}" min="0" step="1" />
                 <input type="checkbox" name="currency.chests.enabled" {{checked settingFields._source.currency.chests.enabled}} />
             </div>
+        </fieldset>
+
+        <fieldset class="damage-types">
+            <legend>
+                {{localize "DAGGERHEART.SETTINGS.Homebrew.damageTypes.title"}}
+            </legend>
+            {{#each damageTypes as |type|}}
+                <span></span>
+                <span>{{localize type.original.label}}</span>
+                <span>{{localize "DAGGERHEART.SETTINGS.Homebrew.damageTypes.abbreviation"}}</span>
+            {{/each}}
+            <span></span>
+            {{#each damageTypes as |type|}}
+                <button class="icon {{type.icon}}" data-action="editDamageTypeIcon" data-damage-type="{{type.key}}" data-tooltip aria-label="DAGGERHEART.SETTINGS.Homebrew.damageTypes.changeIcon"></button>
+                {{formInput type.fields.label value=type.label placeholder=(localize type.original.label)}}
+                {{formInput type.fields.abbreviation value=type.abbreviation placeholder=(localize type.original.abbreviation)}}
+            {{/each}}
+            <a data-action="resetDamageTypes" data-tooltip aria-label="DAGGERHEART.SETTINGS.Homebrew.reset"><i class="fa-solid fa-arrow-rotate-left" inert></i></a>
         </fieldset>
     </div>
 </section>

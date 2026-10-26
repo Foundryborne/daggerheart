@@ -96,6 +96,7 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
     const tagifyElement = new Tagify(element, {
         tagTextProp: 'name',
         enforceWhitelist: true,
+        keepInvalidTags: true, // allows removing and viewing invalid tags
         whitelist: options.map(option => {
             return {
                 value: option.id,
@@ -121,6 +122,7 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
                             tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
                             class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
                             data-tooltip="${tagData.description ? htmlToText(tagData.description) : tagData.name}"
+                            data-value="${tagData.value}"
                             ${this.getAttributes(tagData)}> 
                     <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
                     <div>
@@ -143,8 +145,8 @@ export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}
         const input = event.detail.tagify.DOM.originalInput;
         const currentList = input.value ? JSON.parse(input.value) : [];
         onChange(
-            currentList.filter(x => x.value !== event.detail.data.value),
-            { option: event.detail.data.value, removed: true },
+            currentList.filter(x => x.value !== (event.detail.data?.value ?? event.detail.tag?.dataset?.value)),
+            { option: event.detail.data?.value ?? event.detail.tag?.dataset?.value, removed: true },
             event.detail.tagify.DOM.originalInput
         );
     });
