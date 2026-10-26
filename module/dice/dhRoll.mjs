@@ -6,7 +6,7 @@ export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
-        options.bonusEffects = this.bonusEffectBuilder();
+        options.bonusEffects ??= this.bonusEffectBuilder();
 
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
