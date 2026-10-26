@@ -216,7 +216,7 @@ export default class DHWeapon extends BaseDataItem {
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
-            const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
+            const str = Roll.replaceFormulaData(value.getFormula(), this.getRollData() ?? {});
 
             const icons = Array.from(type ?? [])
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)
