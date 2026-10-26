@@ -180,6 +180,11 @@ export default class DHRoll extends BaseRoll {
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            damageTypes: chatData.damage?.main?.options?.damageTypes
+                ?.map(damageType => ({
+                    ...CONFIG.DH.GENERAL.damageTypes[damageType]
+                }))
+                .filter(Boolean),
             targetData: chatData.hasTarget ? {
                 currentTargets: chatData._getCurrentTargets(),
                 selectedTargetsData: chatData._getSelectedTargetsData()
