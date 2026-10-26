@@ -28,7 +28,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             icon: 'fa-solid fa-gears'
         },
         actions: {
-            editCurrencyIcon: this.changeCurrencyIcon,
+            editCurrencyIcon: this.#onChangeCurrencyIcon,
+            editDamageTypeIcon: this.#onChangeDamageTypeIcon,
             addItem: this.addItem,
             editItem: this.editItem,
             removeItem: this.removeItem,
@@ -44,7 +45,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             removeActorResource: this.#onRemoveActorResource,
             resetActorResourceImage: this.#onResetActorResourceImage,
             save: this.save,
-            resetTokenSizes: this.resetTokenSizes,
+            resetTokenSizes: this.#onResetTokenSizes,
+            resetDamageTypes: this.#onResetDamageTypes,
             reset: this.reset
         },
         form: { handler: this.updateData, submitOnChange: true }
@@ -52,7 +54,10 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        settings: { template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs' },
+        settings: { 
+            template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs',
+            scrollable: ['']
+        },
         domains: { template: 'systems/daggerheart/templates/settings/homebrew-settings/domains.hbs' },
         types: { template: 'systems/daggerheart/templates/settings/homebrew-settings/types.hbs' },
         resources: {
@@ -106,6 +111,18 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         await super._preparePartContext(partId, context);
 
         switch (partId) {
+            case 'settings': {
+                const source = this.settings._source;
+                context.damageTypes = ['physical', 'magical'].map(k => ({
+                    key: k,
+                    original: CONFIG.DH.GENERAL.defaultDamageTypes[k],
+                    icon: source.damageTypes[k].icon ?? CONFIG.DH.GENERAL.defaultDamageTypes[k].icon,
+                    label: source.damageTypes[k].label,
+                    abbreviation: source.damageTypes[k].abbreviation,
+                    fields: this.settings.schema.fields.damageTypes.fields[k].fields
+                }));
+                break;
+            }
             case 'domains':
                 const selectedDomain = this.settings.domains[this.selected.domain] ?? null;
                 const enrichedDescription = selectedDomain
@@ -171,13 +188,14 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.render();
     }
 
-    static async changeCurrencyIcon(_, target) {
+    /** @this {DhHomebrewSettings} */
+    static async #onChangeCurrencyIcon(_, target) {
         const type = target.dataset.currency;
         const currentIcon = this.settings.currency[type].icon;
         const icon = await foundry.applications.api.DialogV2.input({
-            classes: ['daggerheart', 'dh-style', 'change-currency-icon'],
+            classes: ['daggerheart', 'dh-style', 'change-setting-icon'],
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/settings/homebrew-settings/change-currency-icon.hbs',
+                'systems/daggerheart/templates/settings/homebrew-settings/change-setting-icon.hbs',
                 { currentIcon }
             ),
             window: {
@@ -209,7 +227,45 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             this.render();
         }
     }
+    
+    /** @this {DhHomebrewSettings} */
+    static async #onChangeDamageTypeIcon(_, target) {
+        const type = target.dataset.damageType;
+        const defaultIcon = CONFIG.DH.GENERAL.defaultDamageTypes[type]?.icon;
+        const currentIcon = this.settings.damageTypes[type].icon ?? defaultIcon;
+        const icon = await foundry.applications.api.DialogV2.input({
+            classes: ['daggerheart', 'dh-style', 'change-setting-icon'],
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/settings/homebrew-settings/change-setting-icon.hbs',
+                { currentIcon }
+            ),
+            window: {
+                title: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.damageTypes.changeIcon'),
+                icon: 'fa-solid fa-hand-fist'
+            },
+            render: (_, dialog) => {
+                const icon = dialog.element.querySelector('.displayed-icon i');
+                const input = dialog.element.querySelector('input');
+                const reset = dialog.element.querySelector('button[data-action=reset]');
+                input.addEventListener('input', () => {
+                    icon.classList.value = input.value;
+                });
+                reset.addEventListener('click', () => {
+                    input.value = icon.classList.value = defaultIcon;
+                });
+            },
+            ok: {
+                callback: (_, button) => button.form.elements.icon.value ?? defaultIcon
+            }
+        });
 
+        if (icon !== null) {
+            await this.settings.updateSource({
+                [`damageTypes.${type}.icon`]: icon === defaultIcon ? null : icon
+            });
+            this.render();
+        }
+    }
     static async addItem(_, target) {
         const { type } = target.dataset;
         if (['shortRest', 'longRest'].includes(type)) {
@@ -561,11 +617,19 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.close();
     }
 
-    static async resetTokenSizes() {
+    /** @this DhHomebrewSettings */
+    static async #onResetTokenSizes() {
         await this.settings.updateSource({
             tokenSizes: this.settings.schema.fields.tokenSizes.initial
         });
+        this.render();
+    }
 
+    /** @this DhHomebrewSettings */
+    static async #onResetDamageTypes() {
+        await this.settings.updateSource({
+            damageTypes: this.settings.schema.fields.damageTypes.initial
+        });
         this.render();
     }
 

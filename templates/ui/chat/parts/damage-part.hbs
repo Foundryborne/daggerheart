@@ -50,7 +50,7 @@
             {{roll.total}}
             {{#if roll.options.damageTypes.length}}
                 {{#each @root.damageTypes as |type|}}
-                    <i class="fa-solid {{type.icon}}" data-tooltip aria-label="{{localize type.label}}"></i>
+                    <i class="{{type.icon}}" data-tooltip aria-label="{{localize type.label}}"></i>
                 {{/each}}
             {{/if}}
         {{/if}}
