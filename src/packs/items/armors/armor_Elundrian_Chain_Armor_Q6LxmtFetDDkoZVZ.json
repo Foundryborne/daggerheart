@@ -39,27 +39,41 @@
   "effects": [
     {
       "name": "Warded",
-      "description": "You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds.",
+      "description": "<p>You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds.</p>",
       "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
       "_id": "xGxqTCO8MjNq5Cw6",
       "type": "base",
       "system": {
         "changes": [
           {
-            "key": "system.resistance.magical.reduction",
-            "type": "add",
+            "key": "system.rules.damageReduction.reductions.warded.label",
+            "type": "override",
+            "value": "Warded",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.rules.damageReduction.reductions.warded.value",
+            "type": "override",
             "value": "@system.armorScore.max",
-            "priority": 21,
+            "priority": 51,
             "phase": "initial"
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
         "targetDispositions": [],
-        "conditionals": []
+        "conditionals": [
+          {
+            "type": "damageType",
+            "damageType": "magical",
+            "role": "target"
+          }
+        ]
       },
       "disabled": false,
       "duration": {
@@ -76,7 +90,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!Q6LxmtFetDDkoZVZ.xGxqTCO8MjNq5Cw6"

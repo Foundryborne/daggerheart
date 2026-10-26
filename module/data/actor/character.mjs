@@ -192,7 +192,9 @@ export default class DhCharacter extends DhCreature {
                         reductions: new fields.TypedObjectField(new fields.SchemaField({
                             label: new fields.StringField(),
                             value: new FormulaField(),
-                            costs: new fields.TypedObjectField(new fields.NumberField({ initial: 1, min: 0 }))
+                            costs: new fields.TypedObjectField(new fields.SchemaField({
+                                value: new fields.NumberField({ initial: 1, min: 0 })
+                            }))
                         })),
                         magical: new fields.BooleanField({
                             initial: false,

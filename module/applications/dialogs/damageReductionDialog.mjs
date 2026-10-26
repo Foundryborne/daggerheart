@@ -1,4 +1,4 @@
-import { convertDamageToThreshold, damageKeyToNumber, getArmorSources, getDamageLabel } from '../../helpers/utils.mjs';
+import { convertDamageToThreshold, damageKeyToNumber, getArmorSources, getDamageLabel, itemAbleRollParse } from '../../helpers/utils.mjs';
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -89,11 +89,12 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
      * @param {*} action 
      */
     #getRulesData(baseActor, action) {
-        const actor = baseActor.getActionClone(action, { role: 'target' });
+        const targetActor = baseActor.getActionClone(action, { role: 'target' });
+        const originActor = baseActor.getActionClone(action, { role: 'origin' });
 
-        const maxArmorUsed = actor.system.rules.damageReduction.maxArmorMarked;
-        const increasePerArmorMark = actor.system.rules.damageReduction.increasePerArmorMark;
-        const reduceSeverity = actor.system.rules.damageReduction.reduceSeverity;
+        const maxArmorUsed = targetActor.system.rules.damageReduction.maxArmorMarked;
+        const increasePerArmorMark = targetActor.system.rules.damageReduction.increasePerArmorMark;
+        const reduceSeverity = targetActor.system.rules.damageReduction.reduceSeverity;
 
         const stress = [...Array(maxArmorUsed.stressExtra ?? 0).keys()].reduce(
             (acc, _) => {
@@ -103,30 +104,31 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             {}
         );
 
-        const availableStressReductions = Object.keys(actor.system.rules.damageReduction.stressDamageReduction).reduce(
+        const availableStressReductions = Object.keys(targetActor.system.rules.damageReduction.stressDamageReduction)
+            .reduce(
+                (acc, key) => {
+                    const dr = targetActor.system.rules.damageReduction.stressDamageReduction[key];
+                    if (dr.cost) {
+                        if (acc === null) acc = {};
+
+                        const damage = damageKeyToNumber(key);
+                        acc[damage] = {
+                            cost: dr.cost,
+                            selected: false,
+                            any: key === 'any',
+                            from: getDamageLabel(damage),
+                            to: getDamageLabel(damage - 1)
+                        };
+                    }
+
+                    return acc;
+                },
+                null
+            );
+
+        const thresholdImmunities = Object.keys(targetActor.system.rules.damageReduction.thresholdImmunities).reduce(
             (acc, key) => {
-                const dr = actor.system.rules.damageReduction.stressDamageReduction[key];
-                if (dr.cost) {
-                    if (acc === null) acc = {};
-
-                    const damage = damageKeyToNumber(key);
-                    acc[damage] = {
-                        cost: dr.cost,
-                        selected: false,
-                        any: key === 'any',
-                        from: getDamageLabel(damage),
-                        to: getDamageLabel(damage - 1)
-                    };
-                }
-
-                return acc;
-            },
-            null
-        );
-
-        const thresholdImmunities = Object.keys(actor.system.rules.damageReduction.thresholdImmunities).reduce(
-            (acc, key) => {
-                if (actor.system.rules.damageReduction.thresholdImmunities[key])
+                if (targetActor.system.rules.damageReduction.thresholdImmunities[key])
                     acc[damageKeyToNumber(key)] = game.i18n.format(`DAGGERHEART.GENERAL.DamageThresholds.with`, {
                         threshold: game.i18n.localize(`DAGGERHEART.GENERAL.DamageThresholds.${key}`)
                     });
@@ -135,9 +137,10 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             {}
         );
 
-        const reductions = Object.values(actor.system.rules.damageReduction.reductions).map(x => ({
+        const reductions = Object.values(originActor.system.rules.damageReduction.reductions).map(x => ({
             ...x,
             label: _loc(x.label),
+            value: itemAbleRollParse(x.value, originActor),
             enabled: false,
             isDeterministic: (new Roll(x.value)).isDeterministic
         }));
@@ -400,7 +403,20 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             selectedStressMarks.filter(x => x.armorMarkId).length +
             stressReductions.reduce((acc, red) => acc + red.cost, 0);
 
-        this.resolve({ modifiedDamage: currentDamage, armorChanges, stressSpent });
+        const resourceCosts = this.reductions.filter(x => x.enabled).reduce((acc, reduction) => {
+            for (const [key, cost] of Object.entries(reduction.costs)) {
+                const existing = acc.find(x => x.key === key);
+                if (!existing) {
+                    acc.push({ key, value: cost.value });    
+                } else {
+                    existing.value += cost.value;
+                }
+            }
+
+            return acc;
+        }, stressSpent ? [{ key: 'stress', value: stressSpent }] : []); 
+
+        this.resolve({ modifiedDamage: currentDamage, armorChanges, resourceCosts });
         await this.close(true);
     }
 

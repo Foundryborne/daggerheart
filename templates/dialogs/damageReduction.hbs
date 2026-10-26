@@ -12,7 +12,7 @@
                             {{#each reduction.costs as |cost key|}}
                                 <div class="info-part">
                                     <span>{{key}}</span>: 
-                                    <span>{{cost}}</span>
+                                    <span>{{cost.value}}</span>
                                 </div>
                             {{/each}}
                             {{#unless reduction.isDeterministic}}

@@ -938,15 +938,16 @@ export default class DhActor extends Actor {
                 );
                 if (!armorSlotResult) return [];
 
-                const { modifiedDamage, armorChanges, stressSpent } = armorSlotResult;
+                const { modifiedDamage, armorChanges, resourceCosts } = armorSlotResult;
                 hpDamage.value = modifiedDamage;
                 for (const armorChange of armorChanges) {
                     updates.push({ value: armorChange.amount, key: 'armor', uuid: armorChange.uuid });
                 }
-                if (stressSpent) {
-                    const stressUpdate = updates.find(u => u.key === 'stress');
-                    if (stressUpdate) stressUpdate.value += stressSpent;
-                    else updates.push({ value: stressSpent, key: 'stress' });
+
+                for (const resource of resourceCosts) {
+                    const stressUpdate = updates.find(u => u.key === resource.key);
+                    if (stressUpdate) stressUpdate.value += resource.value;
+                    else updates.push(resource);
                 }
             } else if (this.type === 'adversary') {
                 const actorClone = this.getActionClone(await fromUuid(actionUuid), { role: 'target' });
