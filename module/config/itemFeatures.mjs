@@ -2141,9 +2141,15 @@ export const createWeaponFeatures = () => ({
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.description',
                 img: 'icons/weapons/swords/sword-flanged-lightning.webp',
                 system: {
+                    conditionals: [
+                        {
+                            type: 'weaponRestriction',
+                            weaponType: 'sameWeapon'    
+                        }
+                    ],
                     changes: [
                         {
-                            key: 'system.rules.attack.damage.canChooseDamageType',
+                            key: 'system.rules.attack.canChooseDamageType',
                             type: 'override',
                             value: 1
                         }

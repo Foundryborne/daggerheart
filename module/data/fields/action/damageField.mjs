@@ -49,10 +49,7 @@ export default class DamageField extends fields.SchemaField {
             damageFormula,
             resourceFormulas, 
             data: this.getRollData(),
-            isCritical: Boolean(message?.system.roll?.isCritical),
-            canChooseDamageType: this.actor.appliedEffects.some(
-                x => x.parent.id === this.item.id && x.system.changes.some(x => x.key === 'system.rules.attack.damage.canChooseDamageType')
-            )
+            isCritical: Boolean(message?.system.roll?.isCritical)
         };
         delete damageConfig.evaluate;
 

@@ -12,6 +12,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
          */  
         this.originalIsCritical = config.isCritical;
         this.selectedEffects = this.config.bonusEffects;
+        this.canChooseDamageType = config.actor.system.rules.attack.canChooseDamageType;
     }
 
     static DEFAULT_OPTIONS = {
@@ -78,7 +79,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         context.damageOptions = this.config.damageOptions;
         context.rangeOptions = CONFIG.DH.GENERAL.groupAttackRange;
         
-        if (this.config.canChooseDamageType) {
+        if (this.canChooseDamageType) {
             const previousDamageType = 
                 game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.previousDamageTypeChoice);
             context.selectedDamageTypes = 
