@@ -94,12 +94,10 @@ export default class DHRoll extends BaseRoll {
     static async buildEvaluate(roll, config = {}, message = {}) {
         await roll.evaluate();
 
-        const rollBreakdown = this.getRollBreakdown(roll, roll.options.roll);
-
         config.roll = foundry.utils.deepClone({
             ...config.roll,
             ...roll.options.roll,
-            rollBreakdown
+            breakdown: this.getRollBreakdown(roll, roll.options.roll)
         });
         config.evaluated = roll;
     }
@@ -205,13 +203,13 @@ export default class DHRoll extends BaseRoll {
  
         const rollTooltip = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
-            { modifiers: this.options.roll.rollBreakdown }
+            { modifiers: this.options.roll.breakdown }
         );
  
         const damageRollTooltip = chatData.damage?.main ? 
             await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
-                { modifiers: chatData.damage.main.options.rollBreakdown }
+                { modifiers: chatData.damage.main.options.breakdown }
             ) : null; 
 
         return foundry.applications.handlebars.renderTemplate(template, {

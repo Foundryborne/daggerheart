@@ -36,7 +36,7 @@ export default class DamageRoll extends DHRoll {
             await roll.roll.evaluate();
             roll.roll.options = {
                 ...roll.roll.options,
-                rollBreakdown: this.getRollBreakdown(roll.roll, roll),
+                breakdown: this.getRollBreakdown(roll.roll, roll),
                 damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
                 fullRestore: !!roll.fullRestore,
                 itemId: roll.itemId
