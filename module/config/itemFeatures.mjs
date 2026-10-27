@@ -1229,15 +1229,7 @@ export const createWeaponFeatures = () => ({
     brutal: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.description',
-        actions: [
-            {
-                type: 'effect',
-                chatDisplay: true,
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.brutal.actions.addDamage.description',
-                img: 'icons/skills/melee/strike-dagger-blood-red.webp'
-            }
-        ]
+        rollModifiers: ['br']
     },
     burning: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.burning.name',
@@ -2089,6 +2081,7 @@ export const createWeaponFeatures = () => ({
     massive: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.massive.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.massive.description',
+        rollModifiers: ['pw'],
         effects: [
             {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.massive.effects.massive.name',
@@ -2263,14 +2256,7 @@ export const createWeaponFeatures = () => ({
     powerful: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.description',
-        effects: [
-            {
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.description',
-                img: 'icons/magic/control/buff-flight-wings-runes-red-yellow.webp',
-                changes: []
-            }
-        ]
+        rollModifiers: ['pw']
     },
     protective: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.protective.name',
@@ -2434,26 +2420,12 @@ export const createWeaponFeatures = () => ({
     selfCorrecting: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.description',
-        effects: [
-            {
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.effects.selfCorrecting.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.effects.selfCorrecting.description',
-                img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
-                changes: []
-            }
-        ]
+        rollModifiers: ['sc6']
     },
     serrated: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.description',
-        effects: [
-            {
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.effects.serrated.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.effects.serrated.description',
-                img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
-                changes: []
-            }
-        ]
+        rollModifiers: ['sc8']
     },
     sharpwing: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.sharpwing.name',

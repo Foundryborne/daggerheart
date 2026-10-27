@@ -206,11 +206,11 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
             this.parent.actor.queueScrollText(options.scrollingTextData);
     }
 
-    static migrateData(source) {
+    static migrateData(source, options = {}) {
         for (const migration of Object.values(migrations)) {
-            migration(source);
+            migration(source, options);
         } 
 
-        return super.migrateData(source);
+        return super.migrateData(source, options);
     }
 }

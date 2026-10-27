@@ -7,8 +7,11 @@ import DaggerheartMenu from '../../sidebar/tabs/daggerheartMenu.mjs';
 import { socketEvent } from '../../../systemRegistration/socket.mjs';
 import DhActor from '../../../documents/actor.mjs';
 
+/** @import DhParty from '../../../data/actor/party.mjs'; */
+
 /** @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
+/** @extends {DHBaseActorSheet<DhActor<DhParty>>} */
 export default class PartySheet extends DHBaseActorSheet {
     constructor(options) {
         super(options);
@@ -487,6 +490,8 @@ export default class PartySheet extends DHBaseActorSheet {
 
         for (const li of html.querySelectorAll('.inventory-item')) {
             const item = await getDocFromElement(li);
+            if (!item) continue;
+            
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.inventory.search.add(item.id);
             const { menu } = this.#filteredItems.inventory;

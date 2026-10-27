@@ -1,7 +1,12 @@
 
-export default function damageReductionMigration(source) {
-    source.conditionals ??= [];
-    source.changes ??= [];
+export default function damageReductionMigration(source, options) {
+    if (options.partial === false) {
+        source.conditionals ??= [];
+        source.changes ??= [];
+    }
+
+    // This may occur on a partial update. If this is the case, don't update unless both exist
+    if (!source.conditionals || !source.changes) return;
 
     const typeRegex = /system\.rules\.damageReduction\.reduceSeverity\.(physical|magical)/;
     const reductionTypes = new Set(source.changes?.map(c => c.key?.match(typeRegex)?.[1]).filter(Boolean));

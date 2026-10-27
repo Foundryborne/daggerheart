@@ -162,6 +162,16 @@ export default class DHWeapon extends BaseDataItem {
             this.attack.damage.main.value.dice = versatileData.damage.dice;
             this.attack.damage.main.value.bonus = versatileData.damage.bonus;
         }
+
+        // Add roll modifiers to the weapon from weapon features
+        this.rollModifiers = {};
+        const weaponFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
+        for (const key of Object.keys(this.itemFeatures)) {
+            const weaponData = weaponFeatures[key];
+            if (weaponData?.rollModifiers) {
+                this.rollModifiers[key] = { label: _loc(weaponData.label), modifiers: weaponData.rollModifiers };
+            }
+        }
     }
 
     /**
@@ -183,7 +193,7 @@ export default class DHWeapon extends BaseDataItem {
 
             if (type?.size) {
                 const typeTags = Array.from(type)
-                    .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
+                    .map(t => _loc(CONFIG.DH.GENERAL.damageTypes[t]?.abbreviation))
                     .join(' | ');
                 parts.push(` (${typeTags})`); // Add a space in front and put it inside a ().
             }
@@ -206,7 +216,7 @@ export default class DHWeapon extends BaseDataItem {
         if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
-            const str = Roll.replaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
+            const str = Roll.replaceFormulaData(value.getFormula(), this.getRollData() ?? {});
 
             const icons = Array.from(type ?? [])
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)

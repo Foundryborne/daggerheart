@@ -1,9 +1,13 @@
+import { MoveContext } from '../../../data/action/move-context.mjs';
 import { getDocFromElement, signedNumber } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import { prepareFeatureData } from '../sheet-helpers.mjs';
 
+/** @import { DhAdversary } from '../../../data/actor/_module.mjs'; */
+
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
+/** @extends {DHBaseActorSheet<DhActor<DhAdversary>>} */
 export default class AdversarySheet extends DHBaseActorSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
@@ -256,27 +260,16 @@ export default class AdversarySheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #reactionRoll(event) {
-        const config = {
+        const config = await MoveContext.build({
+            actor: this.actor,
             event,
             title: game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll'),
             headerTitle: game.i18n.localize('DAGGERHEART.ACTORS.Adversary.adversaryReactionRoll.headerTitle'),
-            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                {
-                    action: {
-                        actionType: 'reaction', 
-                        roll: {}
-                    }
-                }, 
-                this.document
-            ),
             roll: {
                 type: 'trait'
             },
-            actionType: 'reaction',
-            hasRoll: true,
-            data: this.actor.getRollData()
-        };
-
+            actionType: 'reaction'
+        });
         this.actor.diceRoll(config);
     }
 

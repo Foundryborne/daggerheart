@@ -202,7 +202,7 @@ export default class DamageField extends fields.SchemaField {
      * @returns Formula value object
      */
     static getFormulaValue(part, data) {
-        return data.hasRoll && part.resultBased && data.roll.withFear && part.valueAlt
+        return data.hasRoll && part.resultBased && data.evaluated?.withFear && part.valueAlt
             ? part.valueAlt
             : part.value;
     }
@@ -315,7 +315,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
      * @returns {string} the formula associated with this damage field
      */
     getFormula() {
-        if (this.custom.enabled) return this.custom.formula;
+        if (this.custom?.enabled) return this.custom.formula;
 
         const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : `@${this.multiplier}`;
         if (!multiplier) return String(this.bonus || 0);
