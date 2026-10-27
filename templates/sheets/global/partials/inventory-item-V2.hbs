@@ -84,18 +84,18 @@ Parameters:
                     {{#if @root.editable}}
                         {{#if (and (eq actorType 'character') (eq type 'weapon'))}}
                             {{#if item.system.itemFeatures.versatile}}
-                                <a data-action="toggleVersatileWeapon"
+                                <a class="{{#unless item.system.versatileActive}}inactive{{/unless}}" data-action="toggleVersatileWeapon" 
                                     data-tooltip="DAGGERHEART.UI.Tooltip.toggleVersatile">
                                     <i class="fa-solid fa-right-left" inert></i>
                                 </a>
                             {{/if}}
-                            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+                            <a class="{{#unless item.system.equipped}}inactive{{/unless}}" data-action="toggleEquipItem"
                                 data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
                                 <i class="fa-solid fa-hands" inert></i>
                             </a>
                         {{/if}}
                         {{#if (and (eq actorType 'character') (eq type 'armor'))}}
-                            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+                            <a class="{{#unless item.system.equipped}}inactive{{/unless}}" data-action="toggleEquipItem"
                                 data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
                                 <i class="fa-solid fa-fw fa-shield" inert></i>
                             </a>

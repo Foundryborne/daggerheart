@@ -525,7 +525,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = getDocFromElementSync(target);
                     return doc.isOwner && doc && doc.system.itemFeatures?.versatile;
                 },
-                onClick: (event, target) => CharacterSheet.#onToggleEquipItem.call(this, event, target)
+                onClick: (event, target) => CharacterSheet.#onToggleVersatileWeapon.call(this, event, target)
             },
             {
                 label: 'equip',
