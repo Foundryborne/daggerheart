@@ -71,7 +71,7 @@ export default class D20Roll extends DHRoll {
 
         this.baseTerms = foundry.utils.deepClone(this.dice);
 
-        this.options.roll.modifiers = this.applyBaseBonus();
+        this.options.roll.modifiers = this.getRollBonuses();
 
         let actorExperiences = this.options.data.system?.experiences ?? {};
         if (this.options.roll.companionRoll) {
@@ -105,13 +105,10 @@ export default class D20Roll extends DHRoll {
         }
     }
 
-    applyBaseBonus() {
+    getRollBonuses() {
         const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
         modifiers.push(
-            ...this.getBonus(
-                'system.bonuses.roll',
-                'Roll Bonus'
-            )
+            ...this.getBonus('system.bonuses.roll')
         );
 
         return modifiers;

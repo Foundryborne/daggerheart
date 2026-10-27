@@ -52,6 +52,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs',
+        'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
         'systems/daggerheart/templates/dialogs/downtime/activities.hbs',
         'systems/daggerheart/templates/dialogs/tagTeamDialog/parts/tagTeamDamageParts.hbs',
         'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs',

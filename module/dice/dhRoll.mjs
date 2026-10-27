@@ -93,11 +93,35 @@ export default class DHRoll extends BaseRoll {
      */
     static async buildEvaluate(roll, config = {}, message = {}) {
         await roll.evaluate();
+
         config.roll = foundry.utils.deepClone({
             ...config.roll,
-            ...roll.options.roll
+            ...roll.options.roll,
+            breakdown: this.getRollBreakdown(roll, roll.options.roll)
         });
         config.evaluated = roll;
+    }
+
+    static getRollBreakdown(roll, optionsData) {
+        const modifiers = foundry.utils.deepClone(optionsData.modifiers);
+
+        const rollBreakdown = [];
+        for (let i = 0; i < roll.terms.length; i++) {
+            if (!roll.terms[i].isDeterministic) continue;
+
+            const termTotal = roll.terms[i].total;
+            if (typeof termTotal === 'number') {
+                const value = (roll.terms[i - 1]?.operator === '-' ? -1 : 1) * termTotal;
+                const baseIndex = modifiers.findIndex(x => x.value === value);
+                const matchedModifier = modifiers[baseIndex];
+                const label = matchedModifier?.label ?? 'Custom Modifier';
+
+                if (baseIndex !== -1) modifiers.splice(baseIndex, 1);
+                rollBreakdown.push({ label, value });
+            }
+        }
+
+        return rollBreakdown;
     }
 
     /** 
@@ -176,9 +200,23 @@ export default class DHRoll extends BaseRoll {
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
         const automationSettings = game.system.settings.automation;
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
+ 
+        const rollTooltip = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
+            { modifiers: this.options.roll.breakdown }
+        );
+ 
+        const damageRollTooltip = chatData.damage?.main ? 
+            await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
+                { modifiers: chatData.damage.main.options.breakdown }
+            ) : null; 
+
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            rollTooltip,
+            damageRollTooltip,
             damageTypes: chatData.damage?.main?.options?.damageTypes
                 ?.map(damageType => ({
                     ...CONFIG.DH.GENERAL.damageTypes[damageType]
@@ -243,7 +281,7 @@ export default class DHRoll extends BaseRoll {
         }
     }
 
-    applyBaseBonus() {
+    getRollBonuses() {
         return [];
     }
 
@@ -276,14 +314,39 @@ export default class DHRoll extends BaseRoll {
         }, 0);
     }
 
+    getBonusBreakdown() {
+        const changeKeys = this.getActionChangeKeys();
+        const effectBreakdown = Object.values(this.options.bonusEffects)
+            .filter(effect => effect.selected)
+            .map(effect => {
+                const totalValue = effect.changes.reduce((acc, change) => {
+                    if (!changeKeys.some(key => change.key?.includes(key))) return acc;
+                    const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                        this.data,
+                        change,
+                        effect.origEffect
+                    );
+                    
+                    return Number.isNumeric(changeValue) ? acc + Number.parseInt(changeValue) : acc; 
+                }, 0);
+
+                return { label: effect.origEffect.name, value: totalValue };
+            }
+            );
+
+        return [
+
+            ...effectBreakdown
+        ]
+    }
+
     /**
      * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
      * that match a given change.key partial path.
      * @param {string} path The full or partial effect.change key 
-     * @param {string} label The label to give the modifiers
      * @returns {[{ label: string, value: any} ]}
      */
-    getBonus(path, label) {
+    getBonus(path) {
         const modifiers = [];
         for (const effect of Object.values(this.options.bonusEffects)) {
             if (!effect.selected) continue;
@@ -301,7 +364,7 @@ export default class DHRoll extends BaseRoll {
                     effect.origEffect
                 );
                 const typedValue = change.type === 'add' ? changeValue : -changeValue;
-                modifiers.push({ label: label, value: typedValue });
+                modifiers.push({ label: effect.name, value: typedValue });
             }
         }
 
@@ -315,7 +378,7 @@ export default class DHRoll extends BaseRoll {
     constructFormula(config) {
         this.terms = Roll.parse(this.options.roll.formula, config.data);
 
-        this.options.roll.modifiers = this.applyBaseBonus();
+        this.options.roll.modifiers = this.getRollBonuses();
         this.addModifiers();
 
         if (this.options.extraFormula) {

@@ -36,6 +36,7 @@ export default class DamageRoll extends DHRoll {
             await roll.roll.evaluate();
             roll.roll.options = {
                 ...roll.roll.options,
+                breakdown: this.getRollBreakdown(roll.roll, roll),
                 damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
                 fullRestore: !!roll.fullRestore,
                 itemId: roll.itemId
@@ -121,7 +122,7 @@ export default class DamageRoll extends DHRoll {
         return { formula, total };
     }
 
-    applyBaseBonus() {
+    getRollBonuses() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
         const modifiers = [...this.getBonus(`system.bonuses.${type}`)];
 
@@ -159,7 +160,7 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            formulaData.modifiers = this.applyBaseBonus(formulaData);
+            formulaData.modifiers = this.getRollBonuses(formulaData);
             this.addModifiers(formulaData);
             formulaData.modifiers?.forEach(m => {
                 formulaData.roll.terms.push(...this.formatModifier(m.value));

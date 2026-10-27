@@ -1,0 +1,5 @@
+<div class="roll-modifiers-container">
+    {{#each modifiers as |bonus|}}
+        <span class="roll-modifier-container">{{numberFormat bonus.value sign=true}} {{bonus.label}}</span>
+    {{/each}}
+</div>
