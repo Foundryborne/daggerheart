@@ -103,7 +103,7 @@ export default class DHRoll extends BaseRoll {
     }
 
     static getRollBreakdown(roll, optionsData) {
-        const modifiers = foundry.utils.deepClone(optionsData.modifiers);
+        const modifiers = foundry.utils.deepClone(optionsData.modifiers) ?? [];
 
         const rollBreakdown = [];
         for (let i = 0; i < roll.terms.length; i++) {
@@ -334,10 +334,7 @@ export default class DHRoll extends BaseRoll {
             }
             );
 
-        return [
-
-            ...effectBreakdown
-        ]
+        return [...effectBreakdown];
     }
 
     /**
