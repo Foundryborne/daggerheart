@@ -13,9 +13,9 @@
     "gmNotes": "",
     "resource": null,
     "actions": {
-      "DctZ42zT0WPqc6Lz": {
-        "type": "healing",
-        "_id": "DctZ42zT0WPqc6Lz",
+      "MESGNBGIReGomg5u": {
+        "type": "effect",
+        "_id": "MESGNBGIReGomg5u",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -42,33 +42,13 @@
           "recovery": "shortRest",
           "consumeOnSuccess": false
         },
-        "damage": {
-          "main": null,
-          "resources": {}
-        },
+        "effects": [],
         "target": {
-          "type": "self",
+          "type": "any",
           "amount": null
         },
-        "effects": [],
-        "roll": {
-          "type": "diceSet",
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "custom",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null,
-            "custom": "@scale@system.tokens.warlock.patronDie"
-          },
-          "useDefault": false
-        },
         "name": "Spend Favor",
-        "range": "self"
+        "range": ""
       }
     },
     "featureForm": "passive",

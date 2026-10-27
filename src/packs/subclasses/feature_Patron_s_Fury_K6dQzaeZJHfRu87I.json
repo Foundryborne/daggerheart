@@ -69,15 +69,7 @@
       "transfer": false,
       "statuses": [],
       "system": {
-        "changes": [
-          {
-            "key": "system.bonuses.damage",
-            "type": "add",
-            "value": "@system.tier@system.tokens.warlock.patronDie",
-            "priority": null,
-            "phase": "initial"
-          }
-        ],
+        "changes": [],
         "duration": {
           "description": "",
           "type": "scene"
