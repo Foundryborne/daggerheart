@@ -1,7 +1,7 @@
 import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
-import { RollConfig } from '../../data/action/config.mjs';
+import { MoveContext } from '../../data/action/move-context.mjs';
 import DamageRoll from '../../dice/damageRoll.mjs';
 import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
@@ -532,7 +532,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         const memberData = this.party.system.tagTeam.members[memberKey];
         const action = await foundry.utils.fromUuid(memberData.rollChoice);
-        const config = await RollConfig.build({
+        const config = await MoveContext.build({
             ...memberData.rollData.options,
             action,
             dialog: {

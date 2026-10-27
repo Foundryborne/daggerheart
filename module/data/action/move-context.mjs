@@ -6,12 +6,11 @@ import D20Roll from '../../dice/d20Roll.mjs';
 
 /** 
  * Action specific state/context for a specific use of an action.
- * This needs a rename, but the codebase uses "config" system wide, so its not an easy thing to rename.
  */
-export class RollConfig {
+export class MoveContext {
     /**
      * 
-     * @param {import('./_types').RollConfigParams} data RollConfig data or creation data for one 
+     * @param {import('./_types').MoveContextParams} data RollConfig data or creation data for one 
      * @param {object} options  Resolved document types for overrides. 
      *                          Mostly used to pass the event without mutation or in build() after parsing the source data. 
      * @param {Event} [options.event]
@@ -192,7 +191,7 @@ export class RollConfig {
         // This allows passing users to pass plain objects to functions that expect a RollConfig.
         // Do not change this behavior without careful consideration - the code likes to bolt on props and they could be lost
         // todo: initialize if not already initialized
-        if (data instanceof RollConfig && foundry.utils.isEmpty(options)) {
+        if (data instanceof MoveContext && foundry.utils.isEmpty(options)) {
             return data;
         }
 
@@ -210,7 +209,7 @@ export class RollConfig {
     }
 
     toJSON() {
-        // RollConfig is pasted to roll.options. We don't want certain properties to get serialized in the roll
+        // MoveContext is pasted to roll.options. We don't want certain properties to get serialized in the roll
         // We can't omit "data" yet until we reduce reliance on it
         return omit(this, ['actor', 'item', 'action', 'effects', 'event', 'evaluated']);
     }

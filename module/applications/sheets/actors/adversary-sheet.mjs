@@ -1,4 +1,4 @@
-import { RollConfig } from '../../../data/action/config.mjs';
+import { MoveContext } from '../../../data/action/move-context.mjs';
 import { getDocFromElement, signedNumber } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import { prepareFeatureData } from '../sheet-helpers.mjs';
@@ -260,7 +260,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #reactionRoll(event) {
-        const config = await RollConfig.build({
+        const config = await MoveContext.build({
             actor: this.actor,
             event,
             title: game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll'),

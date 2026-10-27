@@ -4,9 +4,9 @@ import * as dice from './_module.mjs';
 
 /**
  * Data used to build a RollConfig object such as duality rolls.
- * @see RollConfig
+ * @see MoveContext
  */
-interface RollConfigParams {
+interface MoveContextParams {
     event: Event;
     actor: DhActor;
     item: DhItem;

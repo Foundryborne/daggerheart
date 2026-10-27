@@ -30,7 +30,7 @@ export default class SaveField extends fields.SchemaField {
     /**
      * Reaction Roll Action Workflow part.
      * Must be called within Action context or similar.
-     * @param {RollConfig} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {MoveContext} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {object[]} [targets=null]     Array of targets to override pre-selected ones.
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
@@ -132,7 +132,7 @@ export default class SaveField extends fields.SchemaField {
 
     /**
      * Update a Roll ChatMessage for a token according to his Reaction Roll result.
-     * @param {RollConfig} result        Result from the Reaction Roll
+     * @param {MoveContext} result        Result from the Reaction Roll
      * @param {object} message       ChatMessage to update
      * @param {string} targetId      Token ID
      */

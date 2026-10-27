@@ -1,6 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { getAllResourceLabels, triggerChatRollFx } from '../helpers/utils.mjs';
-import { RollConfig } from './_module.mjs';
 import BaseRoll from './baseRoll.mjs';
 
 export default class DHRoll extends BaseRoll {
@@ -10,13 +9,12 @@ export default class DHRoll extends BaseRoll {
      * Creates a new Daggerheart roll
      * @param {string} formula 
      * @param {object} data 
-     * @param {RollConfig | import('./_types').RollConfigParams} options 
+     * @param {MoveContext | import('../data/action/_types').MoveContextParams} options 
      */
     constructor(formula, data = {}, options = {}) {
         // @todo: Consider constructing a RollConfig here if its a plain object to guarantee certain properties
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
-        // @todo - move to config. Currently we can't do so because a single move can have an attack roll *and* a damage roll,
-        // which each need their own separate list of effects. Perhaps an option of when an bonus effect applies would work.
+        // @todo - config should generate the options, and include the bonusEffects. The options here are per roll, and RollConfig.
         options.bonusEffects ??= this.bonusEffectBuilder();
 
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
@@ -37,8 +35,8 @@ export default class DHRoll extends BaseRoll {
     static DefaultDialog = D20RollDialog;
 
     /**
-     * @param {Partial<RollConfig>} config
-     * @returns {Promise<RollConfig>}
+     * @param {Partial<MoveContext>} config
+     * @returns {Promise<MoveContext>}
      */
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
@@ -58,8 +56,8 @@ export default class DHRoll extends BaseRoll {
     }
 
     /** 
-     * @param {Partial<RollConfig>} config 
-     * @returns {Promise<RollConfig>}
+     * @param {Partial<MoveContext>} config 
+     * @returns {Promise<MoveContext>}
      */
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
@@ -103,7 +101,7 @@ export default class DHRoll extends BaseRoll {
     }
 
     static getRollBreakdown(roll, optionsData) {
-        const modifiers = foundry.utils.deepClone(optionsData.modifiers);
+        const modifiers = foundry.utils.deepClone(optionsData.modifiers) ?? [];
 
         const rollBreakdown = [];
         for (let i = 0; i < roll.terms.length; i++) {
@@ -143,10 +141,10 @@ export default class DHRoll extends BaseRoll {
 
     /**
      * @param {DHRoll} roll 
-     * @param {RollConfig} config
+     * @param {MoveContext} config
      */
     static async toMessage(roll, config) {
-        config = await RollConfig.build(config);
+        config = await game.system.api.data.actions.MoveContext.build(config);
         const { actor, item, action } = config;
         let actionDescription = null;
         if (action?.chatDisplay) {
@@ -408,7 +406,7 @@ export default class DHRoll extends BaseRoll {
         return modifierTotal;
     }
 
-    /** @param {RollConfig} config */
+    /** @param {MoveContext} config */
     static temporaryModifierBuilder(config) {
         return {};
     }

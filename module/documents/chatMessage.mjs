@@ -188,7 +188,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     async onRollDamage(event) {
         event.stopPropagation();
-        const config = await this.system.getConfig({ event });
+        const config = await this.system.getContext({ event });
         await this.system.action?.workflow.get('damage')?.execute(config, this._id, true);
     }
 
@@ -201,7 +201,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
 
-        const config = await this.system.getConfig({ event });
+        const config = await this.system.getContext({ event });
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({
@@ -293,7 +293,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (!game.user.isGM) return;
         
         const targets = this.system.currentHitTargets;
-        const config = await this.system.getConfig({ event });
+        const config = await this.system.getContext({ event });
         this.system.action?.workflow.get('save')?.execute(config, targets, true);
     }
 
@@ -307,7 +307,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
 
 
-        const config = await this.system.getConfig({ event });
+        const config = await this.system.getContext({ event });
 
         if (this.system.hasUnfinishedSaves) {
             const confirm = await foundry.applications.api.DialogV2.confirm({

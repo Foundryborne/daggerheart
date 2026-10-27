@@ -219,7 +219,7 @@ export default class DamageRoll extends DHRoll {
         return formulaData;
     }
 
-    /** @param {RollConfig} config **/
+    /** @param {MoveContext} config **/
     static temporaryModifierBuilder(config) {
         const mods = {};
         
