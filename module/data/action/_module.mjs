@@ -11,7 +11,7 @@ import TransformAction from './transformAction.mjs';
 import EvolutionAction from './evolutionAction.mjs';
 import GroupedAction from './groupedAction.mjs';
 
-export { RollConfig } from './config.mjs';
+export { MoveContext } from './move-context.mjs';
 
 export const actionsTypes = {
     base: BaseAction,

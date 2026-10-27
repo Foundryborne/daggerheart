@@ -45,7 +45,7 @@ declare global {
     type DHBaseAction = InstanceType<typeof DHBaseAction>;
     type DhScene = InstanceType<typeof documents.DhScene>;
     type DhTokenDocument = InstanceType<typeof documents.DhTokenDocument>;
-    type RollConfig = actionData.RollConfig;
+    type MoveContext = actionData.MoveContext;
     
     /**
      * A simple event framework used throughout Foundry Virtual Tabletop.

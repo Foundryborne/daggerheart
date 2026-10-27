@@ -7,7 +7,7 @@ import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
-import { RollConfig } from '../data/action/config.mjs';
+import { MoveContext } from '../data/action/move-context.mjs';
 
 export default class DhActor extends Actor {
     parties = new Set();
@@ -706,19 +706,19 @@ export default class DhActor extends Actor {
     }
 
     /**
-     * @param {Partial<RollConfig>} config
-     * @returns {Promise<RollConfig>}
+     * @param {Partial<MoveContext>} config
+     * @returns {Promise<MoveContext>}
      */
     async diceRoll(config) {
-        config = config instanceof RollConfig && config.actor === this
+        config = config instanceof MoveContext && config.actor === this
             ? config
-            : await RollConfig.build(config, { actor: this });
+            : await MoveContext.build(config, { actor: this });
         return await config.rollClass.build(config);
     }
 
     async rollTrait(trait, options = {}) {
         const abilityLabel = game.i18n.localize(abilities[trait].label);
-        const config = await RollConfig.build({
+        const config = await MoveContext.build({
             title: _loc('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),

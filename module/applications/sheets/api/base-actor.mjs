@@ -230,6 +230,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                     const doc = await getDocFromElement(target),
                         action = doc?.system?.attack ?? doc;
                     const config = await action.prepareConfig(event);
+                    config.roll = null;
                     config.hasRoll = false;
                     return action && action.workflow.get('damage').execute(config, null, true);
                 }

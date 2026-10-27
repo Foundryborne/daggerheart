@@ -1,5 +1,5 @@
 import { abilities } from '../config/actorConfig.mjs';
-import { RollConfig } from '../data/action/config.mjs';
+import { MoveContext } from '../data/action/move-context.mjs';
 import { createHtmlElement, getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export function DhDualityRollEnricher(match, _options) {
@@ -90,7 +90,7 @@ export const enrichedDualityRoll = async (
 ) => {
     const shouldGrantResources = grantResources === undefined ? true : grantResources;
 
-    const config = await RollConfig.build({
+    const config = await MoveContext.build({
         event,
         title,
         headerTitle: label,

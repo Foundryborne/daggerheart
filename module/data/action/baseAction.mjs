@@ -3,7 +3,7 @@ import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
 import TriggerField from '../fields/triggerField.mjs';
-import { RollConfig } from './config.mjs';
+import { MoveContext } from './move-context.mjs';
 import { resolveNearestDocument } from '../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
@@ -286,7 +286,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Create the basic config common to every action type
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {RollConfig}
+     * @returns {MoveContext}
      */
     prepareBaseConfig(event, configOptions = {}) {
         const item = this.item;
@@ -294,7 +294,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const itemTitle = !item || item.name === actionTitle ? '' : `${item.name} - `;
 
         // We can't initialize the roll config yet as other field types will want to make their own modifications
-        return new RollConfig({
+        return new MoveContext({
             event,
             action: this,
             title: `${itemTitle}${actionTitle}`,
@@ -305,7 +305,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Create the config for that action used for its workflow
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {Promise<RollConfig>}
+     * @returns {Promise<MoveContext>}
      */
     async prepareConfig(event, configOptions = {}) {
         const config = this.prepareBaseConfig(event, configOptions);

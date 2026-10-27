@@ -1,4 +1,4 @@
-import { RollConfig } from '../action/config.mjs';
+import { MoveContext } from '../action/move-context.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 import { ChatDamageData } from './chatDamageData.mjs';
 
@@ -134,9 +134,9 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     /** Returns a RollConfig object for the roll contained in this message */
-    async getConfig({ event } = {}) {
+    async getContext({ event } = {}) {
         const action = this.action;
-        const config = await RollConfig.build({
+        const config = await MoveContext.build({
             ...this.system,
             event,
             actor: this.actor,

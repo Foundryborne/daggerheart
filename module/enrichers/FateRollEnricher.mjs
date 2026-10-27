@@ -1,4 +1,4 @@
-import { RollConfig } from '../dice/_module.mjs';
+import { MoveContext } from '../data/action/_module.mjs';
 import { createHtmlElement, getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export function DhFateRollEnricher(match, _options) {
@@ -65,7 +65,7 @@ export const renderFateButton = async event => {
 };
 
 export const enrichedFateRoll = async ({ target, title, label, fateType }, event) => {
-    const config = await RollConfig.build({
+    const config = await MoveContext.build({
         event: event ?? {},
         title: title,
         headerTitle: label,
