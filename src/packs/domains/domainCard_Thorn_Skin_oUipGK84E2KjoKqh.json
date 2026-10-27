@@ -86,20 +86,30 @@
         "range": "self",
         "img": "icons/magic/nature/thorns-hand-glow-green.webp"
       },
-      "IVAyyVf8gqFWB7bP": {
-        "type": "effect",
-        "_id": "IVAyyVf8gqFWB7bP",
+      "Ar5hrLCzuOQSFuU0": {
+        "type": "attack",
+        "damage": {
+          "main": null,
+          "resources": {}
+        },
+        "_id": "Ar5hrLCzuOQSFuU0",
         "systemPath": "actions",
-        "description": "<p>When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you're within Melee range of the attacker, deal that amount of damage back to them.</p><p>When you take a rest, clear all unspent tokens.</p>",
+        "baseAction": false,
+        "description": "",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
+        "triggers": [],
+        "areas": [],
         "cost": [
           {
-            "key": "resource",
-            "itemId": "oUipGK84E2KjoKqh",
-            "value": 1,
             "scalable": true,
+            "key": "resource",
+            "value": 1,
             "step": 1,
+            "itemId": "oUipGK84E2KjoKqh",
             "consumeOnSuccess": false
           }
         ],
@@ -109,20 +119,34 @@
           "recovery": null,
           "consumeOnSuccess": false
         },
-        "effects": [],
         "target": {
           "type": "any",
           "amount": null
         },
-        "name": "Use Tokens",
-        "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
-        "range": "",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "scale",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
         },
-        "triggers": [],
-        "areas": []
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spend Tokens",
+        "range": "",
+        "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp"
       }
     },
     "resource": {
