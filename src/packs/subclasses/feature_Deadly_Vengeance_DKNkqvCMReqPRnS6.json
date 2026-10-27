@@ -13,13 +13,9 @@
     "gmNotes": "",
     "resource": null,
     "actions": {
-      "nI9nJfG3lqAE2hsw": {
-        "type": "attack",
-        "damage": {
-          "main": null,
-          "resources": {}
-        },
-        "_id": "nI9nJfG3lqAE2hsw",
+      "g1nxHBuHbeRc60qc": {
+        "type": "effect",
+        "_id": "g1nxHBuHbeRc60qc",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -37,16 +33,6 @@
             "value": 1,
             "itemId": null,
             "step": null,
-            "scaleMax": null,
-            "consumeOnSuccess": false
-          },
-          {
-            "scalable": true,
-            "key": "freelyScaleable",
-            "value": 1,
-            "step": 1,
-            "scaleMax": 4,
-            "itemId": null,
             "consumeOnSuccess": false
           }
         ],
@@ -56,31 +42,10 @@
           "recovery": null,
           "consumeOnSuccess": false
         },
+        "effects": [],
         "target": {
           "type": "any",
           "amount": null
-        },
-        "effects": [],
-        "roll": {
-          "type": "diceSet",
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "custom",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null,
-            "custom": "@scale@system.tokens.warlock.patronDie"
-          },
-          "useDefault": false
-        },
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
         },
         "name": "Spend Favor",
         "range": ""
