@@ -199,10 +199,11 @@ export default class DHRoll extends BaseRoll {
         const automationSettings = game.system.settings.automation;
         const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
  
-        const rollTooltip = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
-            { modifiers: this.options.roll.breakdown }
-        );
+        const rollTooltip = this.options.roll ?
+            await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
+                { modifiers: this.options.roll.breakdown }
+            ) : null;
  
         const damageRollTooltip = chatData.damage?.main ? 
             await foundry.applications.handlebars.renderTemplate(

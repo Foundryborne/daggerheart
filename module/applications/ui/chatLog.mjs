@@ -203,6 +203,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 : item.system.actions.get(event.currentTarget.id);
         if (event.currentTarget.dataset.directDamage) {
             const config = await action.prepareConfig(event);
+            config.roll = null;
             config.hasRoll = false;
             action.workflow.get('damage').execute(config, null, true);
         } else action.use(event);

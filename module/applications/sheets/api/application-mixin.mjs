@@ -528,6 +528,7 @@ export default function DHApplicationMixin(Base) {
                         const doc = await getDocFromElement(target);
                         const action = doc.system.attack;
                         const config = await action.prepareConfig(event);
+                        config.roll = null;
                         config.hasRoll = false;
                         return action && action.workflow.get('damage').execute(config, null, true);
                     }

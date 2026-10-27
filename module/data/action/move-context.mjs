@@ -52,7 +52,6 @@ export class MoveContext {
         this.hasSave = Boolean(action?.hasSave);
         this.hasDamage = Boolean(action?.hasDamage);
         this.hasEffect = Boolean(action?.hasEffect);
-        this.hasRoll = Boolean(action?.hasRoll || data.roll);
         this.hasTarget = data.hasTarget ?? Boolean(action?.hasTarget); // targetField sets it to true, even though the action has it to false
         this.hasHealing = Boolean(action?.hasHealing);
         this.onSave = action?.save?.damageMod;
@@ -63,7 +62,15 @@ export class MoveContext {
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
 
+        // Set the roll has hasRoll. If roll is explicitly set to null, or hasRoll explicitly set to false, keep as null
+        this.roll = data.roll ?? 
+            (data.hasRoll === false || !action?.hasRoll || this.roll === null ? null : action?.roll ?? {});
+        this.hasRoll = !!this.roll;
+
         this.roll = data.roll ?? (this.hasRoll ? action?.roll ?? {} : null);
+        this.hasRoll = data.roll === null ? false : Boolean(action?.hasRoll || data.roll);
+        
+
         this.damage = data.damage;
         
         this.resourceUpdates = new ResourceUpdateMap(this.actor);
