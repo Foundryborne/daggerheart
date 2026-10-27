@@ -65,12 +65,8 @@ export class MoveContext {
         // Set the roll has hasRoll. If roll is explicitly set to null, or hasRoll explicitly set to false, keep as null
         this.roll = data.roll ?? 
             (data.hasRoll === false || !action?.hasRoll || this.roll === null ? null : action?.roll ?? {});
-        this.hasRoll = !!this.roll;
-
-        this.roll = data.roll ?? (this.hasRoll ? action?.roll ?? {} : null);
-        this.hasRoll = data.roll === null ? false : Boolean(action?.hasRoll || data.roll);
+        this.hasRoll = Boolean(this.roll);
         
-
         this.damage = data.damage;
         
         this.resourceUpdates = new ResourceUpdateMap(this.actor);
