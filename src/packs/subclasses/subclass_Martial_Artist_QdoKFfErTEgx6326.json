@@ -6,8 +6,10 @@
   "img": "icons/magic/holy/meditation-chi-focus-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart SRD H&F",
+      "page": null,
+      "campaignFrame": "",
+      "artist": ""
     },
     "description": "<p>Play the Martial Artist if you want to use a variety of fighting styles to eliminate your foes.</p>",
     "gmNotes": "",
