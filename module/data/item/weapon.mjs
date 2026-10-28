@@ -153,7 +153,6 @@ export default class DHWeapon extends BaseDataItem {
         const versatileActive = this.parent.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.itemFlags.versatileActive);
         const versatileData = this.itemFeatures.versatile?.config;
         if (versatileData && versatileActive) {
-            this.versatileActive = true;
             this.attack.range = versatileData.range;
             this.attack.roll.trait = versatileData.trait;
             if (versatileData.damage.type.size) {
