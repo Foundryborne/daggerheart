@@ -436,7 +436,7 @@ export default class DHRoll extends BaseRoll {
                 }
 
                 return acc;
-            }, {}) ?? []
+            }, {}) ?? {}
         );
     }
 
