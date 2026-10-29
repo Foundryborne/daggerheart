@@ -444,6 +444,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static async onRollReductionDice(event, target) {
+        event.stopPropagation();
         const element = target.closest('[data-reduction-index]');
         if (!element) return;
 
