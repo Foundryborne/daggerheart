@@ -6,8 +6,10 @@
   "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart SRD H&F",
+      "page": null,
+      "campaignFrame": "",
+      "artist": ""
     },
     "description": "<p>Play the Juggernaut if you want to pulverize your opponents with crushing blows.</p>",
     "gmNotes": "",
