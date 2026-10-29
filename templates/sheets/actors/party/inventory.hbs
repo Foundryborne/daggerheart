@@ -20,47 +20,18 @@
     {{/if}}
 
     <div class="items-section">
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.weapon'
-        type='weapon'
-        actorType='party'
-        collection=@root.inventory.weapons
-        isGlassy=true
-        canCreate=@root.editable
-        hideResources=true
-        hideContextMenu=true
-        isQuantifiable=true
-        }}
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.armor'
-        type='armor'
-        actorType='party'
-        collection=@root.inventory.armor
-        isGlassy=true
-        canCreate=@root.editable
-        hideResources=true
-        hideContextMenu=true
-        isQuantifiable=true
-        }}
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.consumable'
-        type='consumable'
-        actorType='party'
-        collection=@root.inventory.consumables
-        isGlassy=true
-        canCreate=@root.editable
-        hideContextMenu=true
-        isQuantifiable=true
-        }}
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.loot'
-        type='loot'
-        actorType='party'
-        collection=@root.inventory.loot
-        isGlassy=true
-        canCreate=@root.editable
-        hideContextMenu=true
-        isQuantifiable=true
-        }}
+        {{#each @root.inventory.sections as |section|}}
+            {{> 'daggerheart.inventory-items'
+                title=section.title
+                type=section.type
+                actorType='party'
+                collection=section.collection
+                isGlassy=true
+                canCreate=section.canCreate
+                hideResources=true
+                hideContextMenu=true
+                isQuantifiable=section.isQuantifiable
+            }}
+        {{/each}}
     </div>
 </section>

@@ -373,8 +373,9 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 f.field.label = undefined;
             }
 
+            // Set defaults for name and value. undefined value means match all. null matches strictly null.
             f.name ??= f.key;
-            f.value = this.presets?.filter?.[f.name]?.value ?? null;
+            f.value = this.presets?.filter?.[f.name]?.value;
         }
 
         // Inject attribution if any exist and it hasn't already been added
@@ -385,6 +386,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 label: 'DAGGERHEART.ITEMS.FIELDS.attribution.source.label', 
                 choices: [...this.sources].sort().map(s => ({ value: s, label: s }))
             })
+        }
+
+        // Assign index value to choices, so that the filter can match the exact value rather than trying to guess types
+        for (const f of filters.filter(f => Array.isArray(f.choices))) {
+            for (const [index, entry] of f.choices.entries()) {
+                entry.index = index;
+            }
         }
 
         return filters;
@@ -477,7 +485,15 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     async _onInputFilterBrowser(event) {
         this.#filteredItems.browser.input.clear();
 
-        if (event) this.fieldFilter.find(f => f.name === event.target.name).value = event.target.value;
+        if (event) {
+            // Set the value in the filter. Those with choices use the index value and pull from the data there
+            // Null is a valid value, but undefined matches everything
+            const filter = this.fieldFilter.find(f => f.name === event.target.name);
+            const value = event.target.value;
+            filter.value = filter.choices
+                ? filter.choices[value ? Number(value) : null]?.value
+                : value || undefined;
+        }
 
         for (const li of this.element.querySelectorAll('.item-container')) {
             const itemUUID = li.dataset.itemUuid;
@@ -488,7 +504,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             const matchesMenu =
                 this.fieldFilter.length === 0 ||
                 this.fieldFilter.every(
-                    f => (!f.value && f.value !== false) || ItemBrowser.evaluateFilter(item, this.createFilterData(f))
+                    f => f.value === undefined || ItemBrowser.evaluateFilter(item, this.createFilterData(f))
                 );
             if (matchesMenu) this.#filteredItems.browser.input.add(item.id);
 
@@ -520,7 +536,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     createFilterData(filter) {
         return {
             field: filter.key,
-            value: isNaN(filter.value)
+            value: filter.value === null || typeof filter.value === 'boolean' || !Number.isNumeric(filter.value)
                 ? ['true', 'false'].includes(filter.value)
                     ? filter.value === 'true'
                     : filter.value

@@ -808,7 +808,7 @@ export default class DhActor extends Actor {
         const batch = [];
 
         // First add/update the item to the target actor
-        const allowStacking = targetActor.system.metadata.quantifiable?.includes(item.type);
+        const allowStacking = !targetActor.system.metadata.unquantifiable?.includes(item.type);
         const existing = allowStacking ? targetActor.items.find(x => itemIsIdentical(x, item)) : null;
         if (existing) {
             batch.push({
