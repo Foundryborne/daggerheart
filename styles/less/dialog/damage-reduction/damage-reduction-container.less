@@ -15,27 +15,11 @@
 
         .divider {
             width: 100%;
-        }
 
-        .rules-button {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            border-radius: 50%;
-
-            &.inactive {
-                opacity: 0.4;
-
-                ::after {
-                    position: absolute;
-                    content: '/';
-                    color: red;
-                    font-weight: 700;
-                    font-size: 1.8em;
-                    left: 5px;
-                    top: 0;
-                    rotate: 13deg;
-                }
+            &.flexed {
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
         }
 
@@ -83,7 +67,7 @@
                 display: flex;
                 flex-direction: column;
                 flex: 1;
-                cursor: pointer;
+                cursor: pointer; 
 
                 .reduction-label {
                     display: flex;
@@ -115,24 +99,6 @@
                         flex-wrap: wrap;
                         gap: 4px;
                         align-items: center;
-
-                        .item-tags {
-                            display: flex;
-                            gap: 10px;
-
-                            .tag {
-                                align-items: center;
-                                background: light-dark(@dark-15, @beige-15);
-                                border-radius: 3px;
-                                border: 1px solid light-dark(@dark, @beige);
-                                display: flex;
-                                flex-direction: row;
-                                flex-wrap: wrap;
-                                font-size: var(--font-size-12);
-                                justify-content: start;
-                                padding: 3px 5px;
-                            }
-                        }
                     }
 
                     .reduction-roll-section {
@@ -146,13 +112,48 @@
                     }
                 }
             }
+
+            .reduction-separator {
+                content: '';
+                border-bottom: 1px solid @golden-40;
+                margin: 4px 0 1px;
+            }
         }
 
-        .reduction-summary {
+        .tag {
+            align-items: center;
+            background: light-dark(@dark-15, @beige-15);
+            border-radius: 3px;
+            border: 1px solid light-dark(@dark, @beige);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            font-size: var(--font-size-12);
+            justify-content: start;
+            padding: 3px 5px;
+
+            &.inactive {
+                background: @red;
+                color: @dark-red;
+                border-color: @golden;
+            }
+
+            &.active {
+                background: @green;
+                color: @dark-green;
+                border-color: @golden;
+            }
+        }
+
+        .simple-text {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 2px;
+            gap: 4px;
+            width: 100;
+
+            &.crossed-out {
+                text-decoration: line-through;
+            }
         }
 
         .mark-selection {

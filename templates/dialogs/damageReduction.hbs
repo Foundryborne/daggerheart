@@ -23,17 +23,15 @@
                             <div class="reduction-cost-section">
                                 <span>{{localize "DAGGERHEART.GENERAL.Cost.single"}}: </span>
                                 {{#if (empty reduction.costs)}}
-                                    {{localize "DAGGERHEART.GENERAL.none"}}
+                                    <span>{{localize "DAGGERHEART.GENERAL.none"}}</span>
                                 {{else}}
-                                    <div class="item-tags">
-                                        {{#each reduction.costs as |cost key|}}
-                                            <div class="tag">
-                                                <span>{{cost.value}}</span>
-                                                &nbsp;
-                                                <span>{{cost.label}}</span>
-                                            </div>
-                                        {{/each}}
-                                    </div>
+                                    {{#each reduction.costs as |cost key|}}
+                                        <div class="tag">
+                                            <span>{{cost.value}}</span>
+                                            &nbsp;
+                                            <span>{{cost.label}}</span>
+                                        </div>
+                                    {{/each}}
                                 {{/if}}
                             </div>
                             <div class="reduction-roll-section">
@@ -53,24 +51,19 @@
                             </div>
                         </div>
                     </div>
+                    {{#if (and (not @last) (gt @root.reductions.length 1))}}
+                        <div class="reduction-separator"></div>
+                    {{/if}}
                 {{/each}}
             </div>
         </div>
     {{/if}}
 
     <div class="section-container full-width">
-        <h4 class="divider">{{localize "DAGGERHEART.GENERAL.armor"}}</h4>
+        <h4 class="divider flexed">{{localize "DAGGERHEART.GENERAL.armor"}} <a class="tag {{#unless rulesOn}}inactive{{else}}active{{/unless}}" data-action="toggleRules">{{#unless rulesOn}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.rulesDisabled"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.rulesEnabled"}}{{/unless}}</a></h4>
 
-        {{#if rulesToggleable}}
-            <button type="button" class="rules-button {{#unless rulesOn}}inactive{{/unless}}" data-action="toggleRules" data-tooltip-text="{{#if rulesOn}}{{localize "DAGGERHEART.UI.Tooltip.rulesOn"}}{{else}}{{localize "DAGGERHEART.UI.Tooltip.rulesOff"}}{{/if}}">
-                <i class="fa-solid fa-book"></i>
-            </button>
-        {{/if}}
-        <div class="resources-container">
-            <div class="resource-container">
-                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.maxUseableArmor"}}</h4>
-                <div class="markers-subtitle">{{availableArmor}}</div>
-            </div>
+        <div class="simple-text {{#unless rulesOn}}crossed-out{{/unless}}">
+            {{localize "DAGGERHEART.APPLICATIONS.DamageReduction.maxUseableArmor"}}: {{availableArmor}}
         </div>
 
         {{#each marks.armor as |source|}}

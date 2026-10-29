@@ -680,6 +680,8 @@
             },
             "DamageReduction": {
                 "maxUseableArmor": "Useable Armor Slots",
+                "rulesEnabled": "Rules Enabled",
+                "rulesDisabled": "Rules Disabled",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
                 "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
