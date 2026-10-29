@@ -325,7 +325,7 @@ export const typeConfig = {
                 choices: () =>
                     [
                         { value: null, label: 'DAGGERHEART.GENERAL.none' },
-                        ...Object.entries(CONFIG.DH.ITEM.itemSubCategories).map(
+                        ...Object.entries(CONFIG.DH.ITEM.itemCategories).map(
                             ([key, value]) => ({ value: key, label: value.label })
                         )
                     ]

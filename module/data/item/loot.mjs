@@ -35,13 +35,13 @@ export default class DHLoot extends BaseDataItem {
 
     get hasDescription() {
         return super.hasDescription 
-            || CONFIG.DH.ITEM.itemSubCategories[this.category]?.hasDescription?.(this.parent, this.categoryData);
+            || CONFIG.DH.ITEM.itemCategories[this.category]?.hasDescription?.(this.parent, this.categoryData);
     }
 
     _initialize(options) {
         super._initialize(options);
 
-        const categoryDataField = CONFIG.DH.ITEM.itemSubCategories[this.category]?.data;
+        const categoryDataField = CONFIG.DH.ITEM.itemCategories[this.category]?.data;
         if (categoryDataField) {
             try {
                 this.categoryData = categoryDataField.initialize(
@@ -58,7 +58,7 @@ export default class DHLoot extends BaseDataItem {
         const hadNoConfig = !data?.categoryData;
         data = super._cleanData(data, options, _state);
 
-        const categoryDataField = CONFIG.DH.ITEM.itemSubCategories[this.category]?.data;
+        const categoryDataField = CONFIG.DH.ITEM.itemCategories[this.category]?.data;
         if (data && categoryDataField) {
             const innerState = { ..._state, source: data.categoryData };
             if (hadNoConfig && foundry.utils.isEmpty(data.categoryData)) {
@@ -73,7 +73,7 @@ export default class DHLoot extends BaseDataItem {
     /** @inheritdoc */
     async getDescriptionData(options, config) {
         const data = await super.getDescriptionData(options, config);
-        const categoryData = CONFIG.DH.ITEM.itemSubCategories[this.category];
+        const categoryData = CONFIG.DH.ITEM.itemCategories[this.category];
         try {
             await categoryData?.updateDescriptionData?.(this.parent, data, options, config);
         } catch (ex) {
@@ -87,7 +87,7 @@ export default class DHLoot extends BaseDataItem {
         if (allowed === false) return false;
 
         if (changed.system?.category && changed.system.category !== this.category) {
-            const categoryDataField = CONFIG.DH.ITEM.itemSubCategories[changed.system.category]?.data;
+            const categoryDataField = CONFIG.DH.ITEM.itemCategories[changed.system.category]?.data;
             changed.system.categoryData = _replace(
                 categoryDataField?.clean(changed.system.categoryData ?? categoryDataField?.getInitialValue()) ?? {}
             );

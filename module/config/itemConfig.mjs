@@ -199,4 +199,4 @@ export const evolutionRelationships = {
  * Intended to be injected into by modules, primarily the premium module
  * @type {Record<string, { label: string; sheetGroup?: string; data?: foundry.data.fields.DataField; hasDescription?: (item: DhItem, data: object) => boolean; updateDescriptionData?: (item: DhItem, data: object, options, config) }>}
  */
-export const itemSubCategories = {};
+export const itemCategories = {};

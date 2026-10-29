@@ -35,13 +35,13 @@ export default class LootSheet extends DHBaseItemSheet {
 
     async _prepareContext(options) {
         const item = this.item;
-        const itemSubCategories = CONFIG.DH.ITEM.itemSubCategories;
+        const itemCategories = CONFIG.DH.ITEM.itemCategories;
         
         const context = await super._prepareContext(options);
-        context.categoryLabel = _loc(itemSubCategories[item.system.category]?.label ?? `TYPES.Item.loot`);
-        context.choices = mapValues(itemSubCategories, c => c.label);
+        context.categoryLabel = _loc(itemCategories[item.system.category]?.label ?? `TYPES.Item.loot`);
+        context.choices = mapValues(itemCategories, c => c.label);
 
-        const categoryField = itemSubCategories[item.system.category]?.data;
+        const categoryField = itemCategories[item.system.category]?.data;
         if (categoryField) {
             context.categoryDataLabel = _loc(categoryField.label) ?? context.categoryLabel; 
             context.categoryData = mapValues(categoryField.fields, (field, k) => ({

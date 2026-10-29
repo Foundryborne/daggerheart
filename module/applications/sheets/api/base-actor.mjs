@@ -146,7 +146,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             // Move qualifying items to that section
             const lootSection = context.inventory.sections[3];
             const presentCategories = new Set(this.document.itemTypes.loot.map(l => l.system.category).filter(Boolean));
-            for (const [key, data] of Object.entries(CONFIG.DH.ITEM.itemSubCategories)) {
+            for (const [key, data] of Object.entries(CONFIG.DH.ITEM.itemCategories)) {
                 if (presentCategories.has(key) && data.sheetGroup) {
                     context.inventory.sections.push({
                         ...lootSection,
