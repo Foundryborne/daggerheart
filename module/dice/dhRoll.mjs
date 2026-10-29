@@ -6,7 +6,14 @@ export default class DHRoll extends BaseRoll {
     baseTerms = [];
     constructor(formula, data = {}, options = {}) {
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
-        options.bonusEffects = this.bonusEffectBuilder();
+
+        // Calculate bonusEffects if the given options.effects includes ActiveEffect instances
+        // When deserialized or cloned, the effects are plain objects (empty in the dev branch) and bonusEffects is already calculated.
+        // However, when damage automation is on, the options is the same instace as the action one, so the bonusEffects needs to be overwritten.
+        // TODO: make options a new object in createRollInstance, that pre-injects bonusEffectBuilder.
+        if (!options.bonusEffects || this.options.effects?.every(e => e instanceof ActiveEffect)) {
+            options.bonusEffects = this.bonusEffectBuilder();
+        }
 
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
@@ -169,7 +176,8 @@ export default class DHRoll extends BaseRoll {
         } else return msgData;
     }
 
-    // TODO - Possibly remove this completly if actorRoll.renderHTML implementation can take over getting the chatData prepared.
+    // TODO - Refactor _prepareChatRenderContext so that the stuff in renderTemplate are in there
+    // Then defer to the each damage roll's _prepareChatRenderContext() and include damageTypes only on the actual main damage
     /** @inheritDoc */
     async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false, ...options } = {}) {
         if (!this._evaluated) return;
@@ -180,6 +188,11 @@ export default class DHRoll extends BaseRoll {
         return foundry.applications.handlebars.renderTemplate(template, {
             roll: this,
             ...chatData,
+            damageTypes: chatData.damage?.main?.options?.damageTypes
+                ?.map(damageType => ({
+                    ...CONFIG.DH.GENERAL.damageTypes[damageType]
+                }))
+                .filter(Boolean),
             targetData: chatData.hasTarget ? {
                 currentTargets: chatData._getCurrentTargets(),
                 selectedTargetsData: chatData._getSelectedTargetsData()
@@ -265,7 +278,7 @@ export default class DHRoll extends BaseRoll {
         return Object.values(this.options.bonusEffects).reduce((acc, effect) => {
             if (!effect.selected) return acc;
             return acc + effect.changes.reduce((acc, change) => {
-                if (!change.key.includes(path)) return acc;
+                if (!change.key?.includes(path)) return acc;
                 const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
                     this.data,
                     change,
@@ -289,7 +302,7 @@ export default class DHRoll extends BaseRoll {
         for (const effect of Object.values(this.options.bonusEffects)) {
             if (!effect.selected) continue;
             for (const change of effect.changes) {
-                if (!change.key.includes(path)) continue;
+                if (!change.key?.includes(path)) continue;
                 
                 // TODO: We should handle override and all other modes. It'll have to be done in a different way
                 // as we cannot just go through each change and sum them up. We'll have to get the total value with
@@ -386,7 +399,7 @@ export default class DHRoll extends BaseRoll {
                 }
 
                 return acc;
-            }, {}) ?? []
+            }, {}) ?? {}
         );
     }
 
