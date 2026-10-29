@@ -689,6 +689,7 @@
                 "usedMarks": "Used Marks",
                 "reduceSeverity": "Severity Reduced By {nr}",
                 "incomingDamageTitle": "Incoming Damage",
+                "additionalRules": "Additional Rules",
                 "damageReductionsTitle": "Damage Reductions",
                 "rollvaluePlaceholder": "Not Rolled",
                 "unfinishedReductionsTitle": "",
