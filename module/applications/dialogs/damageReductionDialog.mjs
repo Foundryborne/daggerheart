@@ -141,7 +141,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             ...x,
             label: _loc(x.label),
             value: itemAbleRollParse(x.value, originActor),
-            enabled: false,
+            enabled: !x.costs || !Object.keys(x.costs).length,
             isDeterministic: (new Roll(x.value)).isDeterministic
         }));
 
@@ -392,6 +392,18 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static async takeDamage() {
+        const unresolvedReductions = this.reductions.some(x => !x.isDeterministic && !x.roll);
+        if (unresolvedReductions) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: _loc('DAGGERHEART.APPLICATIONS.DamageReduction.unfinishedReductionsDialog.title')
+                },
+                content: _loc('DAGGERHEART.APPLICATIONS.DamageReduction.unfinishedReductionsDialog.content')
+            });
+
+            if (!confirmed) return;
+        }
+
         const { selectedStressMarks, stressReductions, currentDamage } = this.getDamageInfo();
         const armorChanges = this.marks.armor.reduce((acc, source) => {
             const amount = Object.values(source.marks).filter(x => x.selected).length;
@@ -421,7 +433,10 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static onToggleReduction(_, target) {
-        const reduction = this.reductions[target.dataset.reductionIndex];
+        const element = target.closest('[data-reduction-index]');
+        if (!element) return;
+
+        const reduction = this.reductions[element.dataset.reductionIndex];
         if (!reduction) return;
 
         reduction.enabled = !reduction.enabled;
@@ -429,7 +444,6 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static async onRollReductionDice(event, target) {
-        event.stopPropagation();
         const element = target.closest('[data-reduction-index]');
         if (!element) return;
 

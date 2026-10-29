@@ -689,7 +689,12 @@
                 "usedMarks": "Used Marks",
                 "reduceSeverity": "Severity Reduced By {nr}",
                 "damageReductionsTitle": "Damage Reductions",
-                "rollvaluePlaceholder": "Not Rolled"
+                "rollvaluePlaceholder": "Not Rolled",
+                "unfinishedReductionsTitle": "",
+                "unfinishedReductionsDialog": {
+                    "title": "Unfinished Reductions",
+                    "content": "All damage reductions have not been rolled. Are you sure you want to continue?"
+                }
             },
             "DeathMove": {
                 "selectMove": "Select Move",

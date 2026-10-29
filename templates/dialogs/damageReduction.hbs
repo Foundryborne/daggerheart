@@ -1,46 +1,59 @@
 <div class="damage-reduction-container">
     {{#if reductions.length}}
+        <div class="damage-data-section">
+            <div class="damage-data-row">
+                <span class="data-data-title">Incoming Damage</span>
+                <span>{{damage}}</span>
+                {{#if reducedDamage}}
+                    <i class="fa-solid fa-long-arrow-right"></i>
+                    <span>{{reducedDamage}}</span>
+                {{/if}}
+            </div>
+        </div>
         <div class="section-container full-width">
             <h4 class="divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.damageReductionsTitle"}}</h4>
             <div class="reductions-container">
                 {{#each reductions as |reduction index|}}
-                    <div class="reduction-container {{#if reduction.enabled}}enabled{{/if}}" data-action="toggleReduction" data-reduction-index="{{index}}">
-                        <div class="reduction-info-section">
-                            <div class="info-part">
-                                <span>{{reduction.label}}</span>
-                            </div>
-                            {{#each reduction.costs as |cost key|}}
-                                <div class="info-part">
-                                    <span>{{key}}</span>: 
-                                    <span>{{cost.value}}</span>
-                                </div>
-                            {{/each}}
-                            {{#unless reduction.isDeterministic}}
-                                <a data-action="rollReductionDice"><i class="fa-solid fa-dice"></i></a>
-                            {{/unless}}
+                    <div class="reduction-outer-container" data-action="toggleReduction" data-reduction-index="{{index}}">
+                        <div class="reduction-label">
+                            <span>{{reduction.label}}</span>
+                            <span class="activity-label">{{#if reduction.enabled}}Enabled{{else}}Disabled{{/if}}</span>
                         </div>
-                        <div class="reduction-roll-section">
-                            <label>{{localize "DAGGERHEART.GENERAL.value"}}: </label>
-                            {{#if reduction.isDeterministic}}
-                                <span>{{reduction.value}}</span>
-                            {{else}}
-                                {{#if reduction.roll}}
-                                    <span>{{reduction.roll.total}}</span>
+                        <div class="reduction-inner-container {{#unless reduction.enabled}}inactive{{/unless}}">
+                            <div class="reduction-cost-section">
+                                <span>Costs: </span>
+                                {{#if (empty reduction.costs)}}
+                                    {{localize "DAGGERHEART.GENERAL.none"}}
                                 {{else}}
-                                    <span class="not-rolled">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.rollvaluePlaceholder"}}</span>
+                                    <div class="item-tags">
+                                        {{#each reduction.costs as |cost key|}}
+                                            <div class="tag">
+                                                <span>{{cost.value}}</span>
+                                                <span>{{key}}</span>
+                                            </div>
+                                        {{/each}}
+                                    </div>
                                 {{/if}}
-                            {{/if}}
+                            </div>
+                            <div class="reduction-roll-section">
+                                {{#unless reduction.isDeterministic}}
+                                    <a data-action="rollReductionDice"><i class="fa-solid fa-dice"></i></a>
+                                {{/unless}}
+                                <label>{{localize "DAGGERHEART.GENERAL.value"}}: </label>
+                                {{#if reduction.isDeterministic}}
+                                    <span>{{reduction.value}}</span>
+                                {{else}}
+                                    {{#if reduction.roll}}
+                                        <span>{{reduction.roll.total}}</span>
+                                    {{else}}
+                                        <span class="not-rolled">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.rollvaluePlaceholder"}}</span>
+                                    {{/if}}
+                                {{/if}}
+                            </div>
                         </div>
                     </div>
                 {{/each}}
             </div>
-            {{#unless (isNullish this.reducedDamage)}}
-                <div class="reduction-summary">
-                    <div>{{this.damage}}</div>
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                    <div>{{this.reducedDamage}}</div>
-                </div>
-            {{/unless}}
         </div>
     {{/if}}
 

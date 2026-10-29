@@ -74,44 +74,74 @@
 
         .reductions-container {
             display: flex;
-            gap: 8px;
+            flex-direction: column;
             width: 100%;
             padding: 0 8px;
 
-            .reduction-container {
+            .reduction-outer-container {
                 display: flex;
-                justify-content: space-between;
-                gap: 8px;
+                flex-direction: column;
                 flex: 1;
-                border: 1px solid @golden;
-                padding: 2px 4px;
-                border-radius: 6px;
                 cursor: pointer;
-                opacity: 0.4;
 
-                &.enabled {
-                    opacity: 1;
-                }
-
-                .reduction-info-section {
-                    flex: 1;
+                .reduction-label {
                     display: flex;
-                    flex-wrap: wrap;
-                    gap: 4px;
                     align-items: center;
+                    justify-content: space-between;
+                    gap: 4px;
+                    font-size: var(--font-size-18);
+                    text-align: center;
 
-                    .info-part {
-                        display: flex;
+                    .activity-label {
+                        font-variant: all-small-caps;
                     }
                 }
 
-                .reduction-roll-section {
-                    label {
-                        font-weight: bold;
+                .reduction-inner-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 8px;
+
+                    &.inactive {
+                        opacity: 0.4;
+                        pointer-events: none;
                     }
 
-                    .not-rolled {
-                        font-style: italic;
+                    .reduction-cost-section {
+                        flex: 1;
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 4px;
+                        align-items: center;
+
+                        .item-tags {
+                            display: flex;
+                            gap: 10px;
+
+                            .tag {
+                                align-items: center;
+                                background: light-dark(@dark-15, @beige-15);
+                                border-radius: 3px;
+                                border: 1px solid light-dark(@dark, @beige);
+                                display: flex;
+                                flex-direction: row;
+                                flex-wrap: wrap;
+                                font-size: var(--font-size-12);
+                                justify-content: start;
+                                padding: 3px 5px;
+                            }
+                        }
+                    }
+
+                    .reduction-roll-section {
+                        label {
+                            font-weight: bold;
+                        }
+
+                        .not-rolled {
+                            font-style: italic;
+                        }
                     }
                 }
             }
