@@ -10,7 +10,7 @@
                 <h3>{{localize "DAGGERHEART.ITEMS.Weapon.primaryWeapon.full"}}</h3>
             {{/if}}
             <h3>
-                {{localize (concat 'DAGGERHEART.CONFIG.Traits.' source.system.attack.roll.trait '.short')}}
+                {{weaponTraitLabel}}
                 <span>-</span>
                 {{localize (concat 'DAGGERHEART.CONFIG.Range.' source.system.attack.range '.name')}}
                 {{#if formula}}

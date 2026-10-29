@@ -2017,8 +2017,14 @@
                 }
             },
             "TraitsSpecial": {
-                "spellcast": "Spellcast Trait",
-                "highest": "Best Trait"
+                "spellcast": {
+                    "label": "Spellcast Trait",
+                    "short": "SpellT"
+                },
+                "highest": {
+                    "label": "Best Trait",
+                    "short": "BestT"
+                }
             },
             "Triggers": {
                 "postDamageReduction": {
