@@ -494,6 +494,13 @@ export default class DhCharacter extends DhCreature {
         return trait === 'spellcast' ? this.spellcastModifierTrait?.key ?? null : trait;
     }
 
+    resolveTraitLabel(traitString, short) {
+        const trait = this.resolveTrait(traitString) ?? 'strength';
+        const traitData = CONFIG.DH.ACTIONS.rollTypeTraits[trait];
+
+        return _loc(short ? traitData.short : traitData.label); 
+    }
+
     async updateArmorValue({ value: armorChange = 0, clear = false }) {
         if (armorChange === 0 && !clear) return;
 

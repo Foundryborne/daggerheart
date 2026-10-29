@@ -2019,11 +2019,11 @@
             "TraitsSpecial": {
                 "spellcast": {
                     "label": "Spellcast Trait",
-                    "short": "SpellT"
+                    "short": "Spellcast Trait"
                 },
                 "highest": {
                     "label": "Best Trait",
-                    "short": "BestT"
+                    "short": "Best Trait"
                 }
             },
             "Triggers": {
