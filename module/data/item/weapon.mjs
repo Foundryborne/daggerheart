@@ -181,8 +181,7 @@ export default class DHWeapon extends BaseDataItem {
     _getTags() {
         const { attack, burden } = this;
 
-        const traitLabel = this.actor?.system.resolveTraitLabel(attack.roll.trait, false) ?? 
-            CONFIG.DH.ACTIONS.rollTypeTraits[attack.roll.trait].label;
+        const traitLabel = CONFIG.DH.ACTIONS.rollTypeTraits[attack.roll.trait].label;
         const tags = [
             _loc(traitLabel),
             _loc(`DAGGERHEART.CONFIG.Range.${attack.range}.name`),
