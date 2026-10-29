@@ -181,7 +181,7 @@ export default class DHWeapon extends BaseDataItem {
     _getTags() {
         const { attack, burden } = this;
 
-        const traitLabel = CONFIG.DH.ACTIONS.rollTypeTraits[attack.roll.trait].label;
+        const traitLabel = CONFIG.DH.ACTIONS.rollTypeTraits[attack.roll.trait]?.label ?? 'DAGGERHEART.GENERAL.none';
         const tags = [
             _loc(traitLabel),
             _loc(`DAGGERHEART.CONFIG.Range.${attack.range}.name`),
@@ -214,9 +214,11 @@ export default class DHWeapon extends BaseDataItem {
         const labels = [];
         const { roll, range, damage } = this.attack;
 
-        const traitLabel = this.actor?.system.resolveTraitLabel(roll.trait, true) ?? 
-            CONFIG.DH.ACTIONS.rollTypeTraits[roll.trait].short;
-        if (roll.trait) labels.push(_loc(traitLabel));
+        const traitLabel = CONFIG.DH.ACTOR.traits[this.actor?.system.resolveTrait?.(roll.trait)]?.short
+            ?? CONFIG.DH.ACTIONS.rollTypeTraits[roll.trait]?.short
+            ?? 'DAGGERHEART.GENERAL.none';
+
+        if (traitLabel) labels.push(_loc(traitLabel));
         if (range) labels.push(_loc(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
