@@ -200,7 +200,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         }
         if (
             item instanceof Item &&
-            ((!actor && item.system.quantity > 1) || actor?.metadata.quantifiable?.includes(item?.type))
+            ((!actor && item.system.quantity > 1) || (actor && !actor.metadata.unquantifiable?.includes(item?.type)))
         ) {
             tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`);
         }

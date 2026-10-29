@@ -67,7 +67,8 @@ export default class DhItem extends foundry.documents.Item {
     get hasDescription() {
         return Boolean(this.system.description) 
             || !foundry.utils.isEmpty(this.system.itemFeatures)
-            || (Boolean(this.system.gmNotes) && game.user.isGM);
+            || (Boolean(this.system.gmNotes) && game.user.isGM)
+            || this.system.hasDescription;
     }
 
     /** @inheritDoc */
