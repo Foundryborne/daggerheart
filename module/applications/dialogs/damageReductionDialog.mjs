@@ -142,7 +142,13 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             label: _loc(x.label),
             value: itemAbleRollParse(x.value, originActor),
             enabled: !x.costs || !Object.keys(x.costs).length,
-            isDeterministic: (new Roll(x.value)).isDeterministic
+            isDeterministic: (new Roll(x.value)).isDeterministic,
+            costs: x.costs ? Object.entries(x.costs).reduce((acc, [key, cost]) => { 
+                const configData = CONFIG.DH.GENERAL.healingTypes[key];
+                const label = configData ? _loc(configData.label) : key;
+                acc[key] = { label, value: cost.value };
+                return acc;
+            }, {}) : {}
         }));
 
         return {
