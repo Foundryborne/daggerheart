@@ -112,7 +112,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
             case attack.id:
             case trait.id:
                 return this.useDefault || !this.trait
-                    ? (this.parent.item.system.attack?.roll?.trait ?? 'agility')
+                    ? (this.parent.item.system.attack?.roll?.trait ?? null)
                     : actor.system.resolveTrait(this.trait);
             default:
                 return null;

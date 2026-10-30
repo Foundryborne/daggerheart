@@ -202,6 +202,15 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         return true;
     }
 
+    /** 
+     * Given a trait from the rollTypes collections, resolves what trait that is for this actor.
+     * For most actors, it is null, and only has a value for characters
+     * @param {keyof typeof CONFIG.DH.ACTIONS.rollTypeTraits} trait
+     */
+    resolveTrait(trait) {
+        return null;
+    }
+
     async _preUpdate(changes, options, userId) {
         const allowed = await super._preUpdate(changes, options, userId);
         if (allowed === false) return;
