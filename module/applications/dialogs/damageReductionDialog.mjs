@@ -51,7 +51,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         tag: 'form',
         classes: ['daggerheart', 'views', 'damage-reduction'],
         position: {
-            width: 280,
+            width: 320,
             height: 'auto'
         },
         actions: {

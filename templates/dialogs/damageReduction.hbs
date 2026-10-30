@@ -14,41 +14,33 @@
             <h4 class="divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.damageReductionsTitle"}}</h4>
             <div class="reductions-container">
                 {{#each reductions as |reduction index|}}
-                    <div class="reduction-outer-container" data-action="toggleReduction" data-reduction-index="{{index}}">
-                        <div class="reduction-label">
-                            <span>{{reduction.label}}</span>
-                            <span class="activity-label">{{#if reduction.enabled}}{{localize "DAGGERHEART.GENERAL.enabled"}}{{else}}{{localize "DAGGERHEART.GENERAL.disabled"}}{{/if}}</span>
-                        </div>
-                        <div class="reduction-inner-container {{#unless reduction.enabled}}inactive{{/unless}}">
+                    <div class="reduction {{#unless reduction.enabled}}inactive{{/unless}}" data-action="toggleReduction" data-reduction-index="{{index}}">
+                        <span class="label">{{reduction.label}}</span>
+                        {{#unless (empty reduction.costs)}}
                             <div class="reduction-cost-section">
-                                <span>{{localize "DAGGERHEART.GENERAL.Cost.single"}}: </span>
-                                {{#if (empty reduction.costs)}}
-                                    <span>{{localize "DAGGERHEART.GENERAL.none"}}</span>
-                                {{else}}
-                                    {{#each reduction.costs as |cost key|}}
-                                        <div class="tag">
-                                            <span>{{cost.value}}</span>
-                                            &nbsp;
-                                            <span>{{cost.label}}</span>
-                                        </div>
-                                    {{/each}}
-                                {{/if}}
+                                {{#each reduction.costs as |cost key|}}
+                                    <div class="tag">
+                                        <span>{{cost.value}}</span>
+                                        &nbsp;
+                                        <span>{{cost.label}}</span>
+                                    </div>
+                                {{/each}}
                             </div>
-                            <div class="reduction-roll-section">
-                                {{#unless reduction.isDeterministic}}
-                                    <a data-action="rollReductionDice"><i class="fa-solid fa-dice"></i></a>
-                                {{/unless}}
-                                <label>{{localize "DAGGERHEART.GENERAL.value"}}: </label>
-                                {{#if reduction.isDeterministic}}
-                                    <span>{{reduction.value}}</span>
+                        {{/unless}}
+                        <div class="reduction-roll-section">
+                            {{#unless reduction.isDeterministic}}
+                                <a data-action="rollReductionDice"><i class="fa-solid fa-dice"></i></a>
+                            {{/unless}}
+                            <label>{{localize "DAGGERHEART.GENERAL.value"}}: </label>
+                            {{#if reduction.isDeterministic}}
+                                <span>{{reduction.value}}</span>
+                            {{else}}
+                                {{#if reduction.roll}}
+                                    <span>{{reduction.roll.total}}</span>
                                 {{else}}
-                                    {{#if reduction.roll}}
-                                        <span>{{reduction.roll.total}}</span>
-                                    {{else}}
-                                        <span class="not-rolled">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.rollvaluePlaceholder"}}</span>
-                                    {{/if}}
+                                    <span class="not-rolled">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.rollvaluePlaceholder"}}</span>
                                 {{/if}}
-                            </div>
+                            {{/if}}
                         </div>
                     </div>
                     {{#if (and (not @last) (gt @root.reductions.length 1))}}
