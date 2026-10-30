@@ -680,6 +680,8 @@
             },
             "DamageReduction": {
                 "maxUseableArmor": "Useable Armor Slots",
+                "rulesEnabled": "Rules Enabled",
+                "rulesDisabled": "Rules Disabled",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
                 "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
@@ -687,7 +689,16 @@
                 "title": "Damage Reduction",
                 "unncessaryStress": "You don't need to expend stress",
                 "usedMarks": "Used Marks",
-                "reduceSeverity": "Severity Reduced By {nr}"
+                "reduceSeverity": "Severity Reduced By {nr}",
+                "incomingDamageTitle": "Incoming Damage",
+                "additionalRules": "Additional Rules",
+                "damageReductionsTitle": "Damage Reductions",
+                "rollvaluePlaceholder": "Not Rolled",
+                "unfinishedReductionsTitle": "",
+                "unfinishedReductionsDialog": {
+                    "title": "Unfinished Reductions",
+                    "content": "All damage reductions have not been rolled. Are you sure you want to continue?"
+                }
             },
             "DeathMove": {
                 "selectMove": "Select Move",
@@ -3308,6 +3319,7 @@
             "damageType": "Damage Type",
             "description": "Description",
             "difficulty": "Difficulty",
+            "disabled": "Disabled",
             "downtime": "Downtime",
             "dropActorsHere": "Drop Actors here",
             "dropFeaturesHere": "Drop Features here",

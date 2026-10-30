@@ -170,6 +170,19 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
     }, {});
 };
 
+export const convertDamageToThreshold = (damage, damageThresholds) => {
+    if (damage <= 0) return 0;
+
+    const { major, severe } = damageThresholds;
+    const massiveDamageEnabled = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
+        .massiveDamage.enabled;
+    if (massiveDamageEnabled && damage >= damageThresholds.severe * 2) {
+        return 4;
+    }
+
+    return (severe && damage >= severe) ? 3 : (major && damage >= major) ? 2 : 1;
+}
+
 export const getDamageKey = damage => {
     return ['none', 'minor', 'major', 'severe', 'massive', 'any'][damage];
 };
