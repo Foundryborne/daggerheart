@@ -42,7 +42,7 @@
       }
     },
     "tier": 1,
-    "description": "<p>A human-sized insect with tearing claws and a stinging tail.</p>",
+    "description": "<p>A human-sized arachnid with tearing claws and a stinging tail.</p>",
     "attack": {
       "name": "Pincers",
       "img": "icons/creatures/claws/pincer-crab-brown.webp",

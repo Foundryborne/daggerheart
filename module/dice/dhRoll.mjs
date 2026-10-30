@@ -14,8 +14,14 @@ export default class DHRoll extends BaseRoll {
     constructor(formula, data = {}, options = {}) {
         // @todo: Consider constructing a RollConfig here if its a plain object to guarantee certain properties
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
-        // @todo - config should generate the options, and include the bonusEffects. The options here are per roll, and RollConfig.
-        options.bonusEffects ??= this.bonusEffectBuilder();
+
+        // Calculate bonusEffects if the given options.effects includes ActiveEffect instances
+        // When deserialized or cloned, the effects are plain objects (empty in the dev branch) and bonusEffects is already calculated.
+        // However, when damage automation is on, the options is the same instace as the action one, so the bonusEffects needs to be overwritten.
+        // TODO: make options a new object in createRollInstance, that pre-injects bonusEffectBuilder.
+        if (!options.bonusEffects || this.options.effects?.every(e => e instanceof ActiveEffect)) {
+            options.bonusEffects = this.bonusEffectBuilder();
+        }
 
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
