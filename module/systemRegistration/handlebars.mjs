@@ -49,6 +49,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/actionTypes/transform.hbs',
         'systems/daggerheart/templates/actionTypes/evolution.hbs',
         'systems/daggerheart/templates/actionTypes/grouped.hbs',
+        'systems/daggerheart/templates/characterCreation/partials/sidebar-item.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/beastformData.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs',
