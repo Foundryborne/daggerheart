@@ -1,13 +1,14 @@
 <input type="hidden" name="{{concat "system.changes." index ".type"}}" value="{{type}}" />
 <input type="hidden" name="{{concat "system.changes." index ".phase"}}" value="{{phase}}" />
-{{formField fields.value.fields.label name=(concat "system.changes." index ".value.label") value=value.label localize=true}}
+<input type="hidden" name="{{concat "system.changes." index ".priority"}}" value="{{priority}}" />
+
 <div class="two-columns even">
+    {{formField fields.value.fields.label name=(concat "system.changes." index ".value.label") value=value.label localize=true}}
     {{formField fields.value.fields.value name=(concat "system.changes." index ".value.value") value=value.value localize=true}}
-    {{formField fields.priority name=(concat "system.changes." index ".priority") value=priority localize=true}}
 </div>
 
 <div class="one-column">
-    <fieldset>
+    <fieldset class="optional">
         <legend>
             <span>{{localize "DAGGERHEART.GENERAL.Cost.plural"}}</span>
             <a data-action="addDamageReductionCost" data-reduction-index="{{index}}"><i class="fa-solid fa-plus"></i></a>

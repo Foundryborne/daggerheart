@@ -114,18 +114,14 @@
       "system": {
         "changes": [
           {
-            "key": "system.rules.damageReduction.reductions.armoredShell.label",
-            "type": "override",
-            "value": "Armored Shell",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.rules.damageReduction.reductions.armoredShell.value",
-            "type": "override",
-            "value": "@system.armorScore.max",
-            "priority": 51,
-            "phase": "initial"
+            "type": "damageReduction",
+            "phase": "initial",
+            "priority": 0,
+            "value": {
+              "label": "Armored Shell",
+              "value": "@system.armorScore.max",
+              "costs": []
+            }
           }
         ],
         "duration": {

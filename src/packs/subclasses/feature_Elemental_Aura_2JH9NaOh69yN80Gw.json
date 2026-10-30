@@ -389,18 +389,14 @@
       "system": {
         "changes": [
           {
-            "key": "system.rules.damageReduction.reductions.elementalAuraAir.label",
-            "type": "override",
-            "value": "Elemental Aura: Air",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.rules.damageReduction.reductions.elementalAuraAir.value",
-            "type": "override",
-            "value": "1d8",
-            "priority": null,
-            "phase": "initial"
+            "type": "damageReduction",
+            "phase": "initial",
+            "priority": 0,
+            "value": {
+              "label": "Elemental Aura: Air",
+              "value": "1d8",
+              "costs": []
+            }
           }
         ],
         "conditionals": [],

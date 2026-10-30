@@ -47,28 +47,16 @@ export default class DamageReductionChange extends foundry.abstract.DataModel {
         defaultPriority: 50,
         handler: (actor, change, _options) => {
             if (change.value.label && change.value.value) {
+                const damageReduction = {
+                    label: change.value.label,
+                    value: change.value.value,
+                    costs: change.value.costs 
+                };
                 foundry.utils.setProperty(
                     actor,
-                    `system.rules.damageReduction.reductions.test.label`,
-                    change.value.label
+                    'system.rules.damageReduction.reductions',
+                    [...actor.system.rules.damageReduction.reductions, damageReduction]
                 );
-
-                foundry.utils.setProperty(
-                    actor,
-                    `system.rules.damageReduction.reductions.test.value`,
-                    change.value.value
-                );
-
-                if (change.value.costs.length) {
-                    foundry.utils.setProperty(
-                        actor,
-                        `system.rules.damageReduction.reductions.test.costs`,
-                        change.value.costs.reduce((acc, c) => {
-                            acc[c.type] = { value: c.value };
-                            return acc;
-                        }, {})
-                    );
-                }
             }
 
             return {};
