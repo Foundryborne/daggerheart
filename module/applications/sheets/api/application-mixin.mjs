@@ -603,7 +603,9 @@ export default function DHApplicationMixin(Base) {
                 inactives: []
             };
 
-            const effects = this.document.allApplicableEffects?.({ noTransferArmor: true }) ?? this.document.effects;
+            const effects = this.document.allApplicableEffects?.({ 
+                noTransferArmor: true, noHidden: true 
+            }) ?? this.document.effects;
             for (const effect of effects) {
                 const list = effect.active ? context.effects.actives : context.effects.inactives;
                 const rollData = (effect.item ?? effect.actor ?? this.document).getRollData();

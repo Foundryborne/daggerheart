@@ -10,7 +10,7 @@
       "type": "simple",
       "value": 1,
       "progression": "decreasing",
-      "max": "1",
+      "max": "@system.tokens.seraph.sparingTouch",
       "icon": "fa-solid fa-hands-praying",
       "recovery": "longRest",
       "diceStates": {},
@@ -180,7 +180,61 @@
     "featureForm": "passive",
     "actorResources": []
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Sparing Touch: Resource",
+      "type": "base",
+      "system": {
+        "conditionals": [],
+        "changes": [
+          {
+            "key": "system.tokens.seraph.sparingTouch",
+            "type": "override",
+            "value": 1,
+            "priority": 0,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": [],
+        "hidden": true
+      },
+      "_id": "gCFlGb6hUtqEbRcA",
+      "img": "icons/magic/holy/prayer-hands-glowing-yellow.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "<p>You start with 1 use. You may gain more later.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!GfOSgVJW8bS1OjNq.gCFlGb6hUtqEbRcA"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!GfOSgVJW8bS1OjNq"

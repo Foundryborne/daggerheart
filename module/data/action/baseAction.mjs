@@ -229,11 +229,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
             : 1;
         actorData.roll = {};
+
         actorData.action = {
             actionType: this.actionType,
             damage: this.damage,
-            roll: this.roll
+            roll: data.roll ?? this.roll
         };
+
+        actorData.message = data.message;
 
         return actorData;
     }

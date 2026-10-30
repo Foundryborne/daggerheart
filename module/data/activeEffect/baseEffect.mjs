@@ -97,7 +97,8 @@ export default class BaseEffect extends foundry.data.ActiveEffectTypeDataModel {
                     choices: CONFIG.DH.GENERAL.simpleDispositions
                 }),
                 { label: 'DAGGERHEART.ACTIVEEFFECT.Config.targetDispositions' }
-            )
+            ),
+            hidden: new fields.BooleanField({ label: 'DAGGERHEART.EFFECTS.hidden.label', hint: 'DAGGERHEART.EFFECTS.hidden.hint' })
         };
     }
 

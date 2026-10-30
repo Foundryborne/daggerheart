@@ -15,6 +15,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             showItem: DhActiveEffectConfig.#onShowItem,
             addConditional: DhActiveEffectConfig.#onAddConditional,
             removeConditional: DhActiveEffectConfig.#onRemoveConditional,
+            toggleHideChange: DhActiveEffectConfig.#onToggleHiddenChange,
             addCustomChange: DhActiveEffectConfig.#onAddCustomChange,
             removeCustomChange: DhActiveEffectConfig.#onRemoveCustomChange
         }
@@ -429,6 +430,12 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         return this.submit({ updateData: { system: { conditionals } } });
     }
 
+    static #onToggleHiddenChange() {
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        submitData.system.hidden = !submitData.system.hidden;
+        return this.submit({updateData: {system: { hidden: submitData.system.hidden }}});
+    }
+    
     /**
      * Handles adding a custom change type
      * @this {DhActiveEffectConfig}
