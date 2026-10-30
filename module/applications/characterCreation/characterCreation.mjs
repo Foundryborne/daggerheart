@@ -400,9 +400,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         const inventory = await this.setup.class?.system?.fetchInventoryChoices();
 
         return {
-            armor: characterGuide.armor ?? null,
-            primaryWeapon: characterGuide.primary ?? null,
-            secondaryWeapon: characterGuide.secondary ?? null,
+            ...(characterGuide ?? {}),
             inventory: {
                 take: inventory.take?.filter(x => x) ?? [],
                 choiceA:

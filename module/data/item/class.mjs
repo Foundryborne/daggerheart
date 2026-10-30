@@ -81,8 +81,8 @@ export default class DHClass extends BaseDataItem {
     async fetchSuggestedGear() {
         const data = this.characterGuide;
         return {
-            primary: await fromUuid(data.suggestedPrimaryWeapon),
-            secondary: await fromUuid(data.suggestedSecondaryWeapon),
+            primaryWeapon: await fromUuid(data.suggestedPrimaryWeapon),
+            secondaryWeapon: await fromUuid(data.suggestedSecondaryWeapon),
             armor: await fromUuid(data.suggestedArmor)
         }
     }

@@ -516,14 +516,16 @@ export async function getFeaturesHTMLData(features) {
         const base = feature.item ?? feature;
         const item = base.system ? base : await foundry.utils.fromUuid(typeof base === 'string' ? base : base.uuid);
         if (item) {
-            result.push({ 
+            result.push({
+                name: item.name,
                 label: item.name, 
                 description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(
                     item.system.description
                 )
             });
         } else {
-            result.push({ 
+            result.push({
+                name: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.feature')}),
                 label: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.feature')}),
                 description: _loc('DAGGERHEART.GENERAL.missingItemDescription')
             })
