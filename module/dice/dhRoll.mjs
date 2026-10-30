@@ -189,16 +189,33 @@ export default class DHRoll extends BaseRoll {
         } else return msgData;
     }
 
-    // TODO - Refactor _prepareChatRenderContext so that the stuff in renderTemplate are in there
-    // Then defer to the each damage roll's _prepareChatRenderContext() and include damageTypes only on the actual main damage
     /** @inheritDoc */
-    async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false, ...options } = {}) {
-        if (!this._evaluated) return;
+    async _prepareChatRenderContext({ flavor, isPrivate = false, ...options } = {}) {
+        // todo: call _prepareChatRenderContext on damage rolls and then include them here
+        // then move the damage types and roll tooltip to damageRoll _prepareChatRenderContext so they can be encapsulated
+        // There are some quirks that have to be solved for this to be possible, for example:
+        // - on damage rolls without d20/duality, this.options.damageTypes is empty, but options.system.message.damage.main.options.damageTypes isn't    
+        let chatData = {};
+        if (isPrivate) {
+            chatData = {
+                user: game.user.id,
+                flavor: null,
+                title: '???',
+                roll: {
+                    total: '??'
+                },
+                hasRoll: true,
+                isPrivate
+            };
+        } else if (options.message) {
+            options.message.system.user = game.user.id;
+            options.message.system.allResourceLabels = getAllResourceLabels();
+            chatData = options.message?.system ?? {};
+        }
 
         const metagamingSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Metagaming);
         const automationSettings = game.system.settings.automation;
-        const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
- 
+
         const rollTooltip = this.options.roll ?
             await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs',
@@ -211,7 +228,7 @@ export default class DHRoll extends BaseRoll {
                 { modifiers: chatData.damage.main.options.breakdown }
             ) : null; 
 
-        return foundry.applications.handlebars.renderTemplate(template, {
+        return {
             roll: this,
             ...chatData,
             rollTooltip,
@@ -232,26 +249,6 @@ export default class DHRoll extends BaseRoll {
             appliesEffects: chatData.appliesEffects,
             metagamingSettings,
             automationSettings
-        });
-    }
-
-    /** @inheritDoc */
-    async _prepareChatRenderContext({ flavor, isPrivate = false, ...options } = {}) {
-        if (isPrivate) {
-            return {
-                user: game.user.id,
-                flavor: null,
-                title: '???',
-                roll: {
-                    total: '??'
-                },
-                hasRoll: true,
-                isPrivate
-            };
-        } else {
-            options.message.system.user = game.user.id;
-            options.message.system.allResourceLabels = getAllResourceLabels();
-            return options.message.system;
         }
     }
 
