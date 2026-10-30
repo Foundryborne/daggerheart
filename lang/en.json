@@ -2892,6 +2892,9 @@
                         "name": "Attack Name",
                         "trait": "Attack Trait"
                     }
+                },
+                "damageReduction": {
+                    "name": "Damage Reduction"
                 }
             },
             "Conditionals": {

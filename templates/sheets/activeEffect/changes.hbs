@@ -36,6 +36,17 @@
         </fieldset>
     {{/if}}
 
+    {{#each damageReductions as |reduction index|}}
+        <fieldset class="typed-change-container optional">
+            <legend>
+                {{localize "DAGGERHEART.EFFECTS.ChangeTypes.damageReduction.name"}} 
+                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{reduction.changeIndex}}" data-type="damageReduction"></a>
+            </legend>
+
+            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/damageReduction.hbs" reduction index=reduction.changeIndex fields=@root.systemFields.changes.element.types.damageReduction.fields}}
+        </fieldset>
+    {{/each}}
+
     {{#if creatableTypes}}
         <div class="add-change">
             <select class="change-type">
