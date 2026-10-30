@@ -16,6 +16,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(options = {}) {
         super(options);
         this.items = [];
+        this.sources = new Set();
         this.fieldFilter = [];
         this.selectedMenu = { path: [], data: null };
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
@@ -257,6 +258,15 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 'name'
             );
 
+            // Build Item Sources. We skip for features, as feature attribution isn't generally useful and may be sometimes missed
+            this.sources = new Set();
+            for (const item of this.items) {
+                const source = item.system?.attribution?.source;
+                if (source && item.type !== 'feature') {
+                    this.sources.add(source);
+                }
+            }
+
             /* If any noticeable slowdown occurs, consider replacing with enriching description on clicking to expand descriptions */
             for (const item of this.items) {
                 if (['weapon', 'armor'].includes(item.type)) {
@@ -351,7 +361,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     async _createFieldFilter() {
-        const filters = ItemBrowser.getFolderConfig(this.selectedMenu.data, 'filters');
+        const filters = foundry.utils.deepClone(ItemBrowser.getFolderConfig(this.selectedMenu.data, 'filters'));
         for (const f of filters) {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
@@ -365,6 +375,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
             f.name ??= f.key;
             f.value = this.presets?.filter?.[f.name]?.value ?? null;
+        }
+
+        // Inject attribution if any exist and it hasn't already been added
+        if (this.sources.size) {
+            filters.push({ 
+                key: 'system.attribution.source',
+                name: 'source', 
+                label: 'DAGGERHEART.ITEMS.FIELDS.attribution.source.label', 
+                choices: [...this.sources].sort().map(s => ({ value: s, label: s }))
+            })
         }
 
         return filters;
@@ -460,8 +480,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         if (event) this.fieldFilter.find(f => f.name === event.target.name).value = event.target.value;
 
         for (const li of this.element.querySelectorAll('.item-container')) {
-            const itemUUID = li.dataset.itemUuid,
-                item = this.items.find(i => i.uuid === itemUUID);
+            const itemUUID = li.dataset.itemUuid;
+            const item = this.items.find(i => i.uuid === itemUUID);
 
             if (!item) continue;
 

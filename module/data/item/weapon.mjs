@@ -180,15 +180,17 @@ export default class DHWeapon extends BaseDataItem {
      */
     _getTags() {
         const { attack, burden } = this;
+
+        const traitLabel = CONFIG.DH.ACTIONS.rollTypeTraits[attack.roll.trait]?.label ?? 'DAGGERHEART.GENERAL.none';
         const tags = [
-            game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${attack.roll.trait}.name`),
-            game.i18n.localize(`DAGGERHEART.CONFIG.Range.${attack.range}.name`),
-            game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`)
+            _loc(traitLabel),
+            _loc(`DAGGERHEART.CONFIG.Range.${attack.range}.name`),
+            _loc(`DAGGERHEART.CONFIG.Burden.${burden}`)
         ];
 
         if (attack.damage.main) {
             const { value, type } = attack.damage.main;
-            const parts = value.custom.enabled ? [game.i18n.localize('DAGGERHEART.GENERAL.custom')] : [value.dice];
+            const parts = value.custom.enabled ? [_loc('DAGGERHEART.GENERAL.custom')] : [value.dice];
             if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
             if (type?.size) {
@@ -212,8 +214,12 @@ export default class DHWeapon extends BaseDataItem {
         const labels = [];
         const { roll, range, damage } = this.attack;
 
-        if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
-        if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
+        const traitLabel = CONFIG.DH.ACTOR.traits[this.actor?.system.resolveTrait?.(roll.trait)]?.short
+            ?? CONFIG.DH.ACTIONS.rollTypeTraits[roll.trait]?.short
+            ?? 'DAGGERHEART.GENERAL.none';
+
+        if (traitLabel) labels.push(_loc(traitLabel));
+        if (range) labels.push(_loc(`DAGGERHEART.CONFIG.Range.${range}.short`));
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
             const str = Roll.replaceFormulaData(value.getFormula(), this.getRollData() ?? {});

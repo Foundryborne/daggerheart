@@ -4,6 +4,7 @@ export const traits = {
     agility: {
         id: 'agility',
         label: 'DAGGERHEART.CONFIG.Traits.agility.name',
+        short: 'DAGGERHEART.CONFIG.Traits.agility.short',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.agility.verb.sprint',
             'DAGGERHEART.CONFIG.Traits.agility.verb.leap',
@@ -13,6 +14,7 @@ export const traits = {
     strength: {
         id: 'strength',
         label: 'DAGGERHEART.CONFIG.Traits.strength.name',
+        short: 'DAGGERHEART.CONFIG.Traits.strength.short',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.strength.verb.lift',
             'DAGGERHEART.CONFIG.Traits.strength.verb.smash',
@@ -22,6 +24,7 @@ export const traits = {
     finesse: {
         id: 'finesse',
         label: 'DAGGERHEART.CONFIG.Traits.finesse.name',
+        short: 'DAGGERHEART.CONFIG.Traits.finesse.short',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.finesse.verb.control',
             'DAGGERHEART.CONFIG.Traits.finesse.verb.hide',
@@ -31,6 +34,7 @@ export const traits = {
     instinct: {
         id: 'instinct',
         label: 'DAGGERHEART.CONFIG.Traits.instinct.name',
+        short: 'DAGGERHEART.CONFIG.Traits.instinct.short',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.instinct.verb.perceive',
             'DAGGERHEART.CONFIG.Traits.instinct.verb.sense',
@@ -40,6 +44,7 @@ export const traits = {
     presence: {
         id: 'presence',
         label: 'DAGGERHEART.CONFIG.Traits.presence.name',
+        short: 'DAGGERHEART.CONFIG.Traits.presence.short',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.presence.verb.charm',
             'DAGGERHEART.CONFIG.Traits.presence.verb.perform',
@@ -49,6 +54,7 @@ export const traits = {
     knowledge: {
         id: 'knowledge',
         label: 'DAGGERHEART.CONFIG.Traits.knowledge.name',
+        short: 'DAGGERHEART.CONFIG.Traits.knowledge.short',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.knowledge.verb.recall',
             'DAGGERHEART.CONFIG.Traits.knowledge.verb.analyze',

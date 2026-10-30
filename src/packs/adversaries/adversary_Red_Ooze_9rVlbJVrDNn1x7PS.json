@@ -240,7 +240,7 @@
       "_id": "QGQTLWXIMMLUvm7c",
       "img": "icons/magic/fire/flame-burning-embers-yellow.webp",
       "system": {
-        "description": "<p>The @Lookup[@name] can only move within Very Close range as their normal movement. They light any flammable object they touch on fi re.</p>",
+        "description": "<p>The @Lookup[@name] can only move within Very Close range as their normal movement. They light any flammable object they touch on fire.</p>",
         "resource": null,
         "actions": {},
         "attribution": {},
