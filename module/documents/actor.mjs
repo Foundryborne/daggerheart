@@ -7,6 +7,8 @@ import { ResourceUpdateMap } from '../data/actor/resource-update-map.mjs';
 import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
+import { MoveContext } from '../data/action/move-context.mjs';
+
 export default class DhActor extends Actor {
     parties = new Set();
 
@@ -704,41 +706,31 @@ export default class DhActor extends Actor {
     }
 
     /**
-     * @param {Partial<RollConfig>} config
+     * @param {Partial<MoveContext>} config
+     * @returns {Promise<MoveContext>}
      */
     async diceRoll(config) {
-        config.source = { ...(config.source ?? {}), actor: this.uuid };
-        config.data = this.getRollData();
-        config.resourceUpdates = new ResourceUpdateMap(this);
-        const rollClass = config.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : this.rollClass;
-        return await rollClass.build(config);
+        config = config instanceof MoveContext && config.actor === this
+            ? config
+            : await MoveContext.build(config, { actor: this });
+        return await config.rollClass.build(config);
     }
 
     async rollTrait(trait, options = {}) {
         const abilityLabel = game.i18n.localize(abilities[trait].label);
-        const config = {
-            event: null,
-            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+        const config = await MoveContext.build({
+            title: _loc('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.name}`,
-            effects: await game.system.api.data.actions.actionsTypes.base.getActionRelevantEffects(
-                {
-                    action: {
-                        actionType: 'action', 
-                        roll: { type: 'trait', trait: trait }
-                    }
-                }, 
-                this
-            ),
             roll: {
-                trait: trait,
-                type: 'trait'
+                type: 'trait',
+                trait
             },
-            hasRoll: true,
             actionType: 'action',
-            ...options
-        };
+            ...options,
+            actor: this
+        });
         return await this.diceRoll(config);
     }
 
@@ -816,7 +808,7 @@ export default class DhActor extends Actor {
         const batch = [];
 
         // First add/update the item to the target actor
-        const allowStacking = targetActor.system.metadata.quantifiable?.includes(item.type);
+        const allowStacking = !targetActor.system.metadata.unquantifiable?.includes(item.type);
         const existing = allowStacking ? targetActor.items.find(x => itemIsIdentical(x, item)) : null;
         if (existing) {
             batch.push({

@@ -31,6 +31,7 @@ export default class EffectsField extends fields.ArrayField {
             // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
             config.mute = true;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
+            config.actionChatMessageHandled = true;
         }
         if (EffectsField.getAutomation() || force) {
             targets ??= 

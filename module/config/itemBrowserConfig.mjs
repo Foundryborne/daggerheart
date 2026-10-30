@@ -316,6 +316,22 @@ export const typeConfig = {
             }
         ]
     },
+    loot: {
+        filters: [
+            {
+                key: 'system.category',
+                name: 'category',
+                label: 'DAGGERHEART.ITEMS.Item.FIELDS.category.label',
+                choices: () =>
+                    [
+                        { value: null, label: 'DAGGERHEART.GENERAL.none' },
+                        ...Object.entries(CONFIG.DH.ITEM.itemCategories).map(
+                            ([key, value]) => ({ value: key, label: value.label })
+                        )
+                    ]
+            }
+        ]
+    },
     features: {
         columns: [],
         filters: []
@@ -573,6 +589,7 @@ export const compendiumConfig = {
                 id: 'loots',
                 keys: ['loots'],
                 label: 'DAGGERHEART.UI.ItemBrowser.folders.loots',
+                listType: 'loot',
                 type: ['loot']
             }
         },

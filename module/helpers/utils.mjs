@@ -520,13 +520,14 @@ export function getIconVisibleActiveEffects(effects) {
         return !effect.disabled && (alwaysShown || conditionalShown);
     });
 }
+
 export async function getFeaturesHTMLData(features) {
     const result = [];
     for (const feature of features) {
         if (!feature) continue;
         
         const base = feature.item ?? feature;
-        const item = base.system ? base : await foundry.utils.fromUuid(base.uuid);
+        const item = base.system ? base : await foundry.utils.fromUuid(typeof base === 'string' ? base : base.uuid);
         if (item) {
             result.push({ 
                 label: item.name, 
@@ -899,15 +900,24 @@ export function camelize(str) {
 
 /** 
  * Bulk load a list of documents using uuids. Returns the documents in the same order.
+ * @param {(string | { uuid: string } | { item: string })[]} uuids
  * @returns {Promise<foundry.abstract.Document[]>}
  */
 export async function fromUuids(uuids) {
     // Set up base entries. Each step works on a sublist of these objects
-    const entries = uuids.map(uuid => ({
-        uuid,
-        parsed: foundry.utils.parseUuid(uuid),
-        value: foundry.utils.fromUuidSync(uuid)
-    }));
+    // Certain feature objects have an item prop and or a compatibility uuid prop. We fetch from there too
+    const entries = uuids
+        .map(uuidOrObj => {
+            const isObject = !!uuidOrObj && typeof uuidOrObj === 'object';
+            const uuid = isObject ? uuidOrObj.uuid ?? uuidOrObj.item : uuidOrObj;
+            if (typeof uuid !== 'string') return null;
+            return {
+                uuid,
+                parsed: foundry.utils.parseUuid(uuid),
+                value: foundry.utils.fromUuidSync(uuid)
+            };
+        })
+        .filter(Boolean);
 
     // Handle missing uuids for embedded documents first
     // A value may be index data, so we check if its a document
@@ -1078,4 +1088,17 @@ export function measureExact(pointA, pointB, { grid = null } = {}) {
         Math.pow(((pointA.y ?? 0) - (pointB.y ?? 0)) / size, 2) +
         Math.pow((pointA.z ?? 0) - (pointB.z ?? 0), 2)
     ) * cost;
+}
+
+/** 
+ * Recursively finds the first parent document of the given object.
+ * Similar to data.getNearestDocument(), but with a filter and works on the ever outdated forge.
+ */
+export function resolveNearestDocument(model, documentClass = foundry.abstract.Document) {
+    if (!model) return null;
+    return model instanceof documentClass
+        ? model
+        : model.parent
+            ? resolveNearestDocument(model.parent, documentClass)
+            : null;
 }

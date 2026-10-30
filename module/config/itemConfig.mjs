@@ -193,3 +193,10 @@ export const evolutionRelationships = {
     
     inactive: { id: 'inactive', label: 'DAGGERHEART.CONFIG.evolutionRelationship.inactive' }
 };
+
+/** 
+ * Sub categories read by the loot sheet during data preparation. 
+ * Intended to be injected into by modules, primarily the premium module
+ * @type {Record<string, { label: string; sheetGroup?: string; data?: foundry.data.fields.DataField; hasDescription?: (item: DhItem, data: object) => boolean; updateDescriptionData?: (item: DhItem, data: object, options, config) }>}
+ */
+export const itemCategories = {};

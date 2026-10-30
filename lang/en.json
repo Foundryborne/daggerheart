@@ -3498,6 +3498,9 @@
                 "gmNotes": {
                     "label": "GM Notes"
                 },
+                "quantity": {
+                    "label": "Quantity"
+                },
                 "loreReference": {
                     "label": "Lore Reference",
                     "hint": "Path or id of full description journal page"
@@ -3654,6 +3657,13 @@
                 "evolutionFeature": "Evolution Feature",
                 "evolutionLocked": "Features with an evolution action must be of evolution type",
                 "actorResources": "Actor Resources"
+            },
+            "Item": {
+                "FIELDS": {
+                    "category": {
+                        "label": "Category"
+                    }
+                }
             },
             "Subclass": {
                 "spellcastingTrait": "Spellcasting Trait",

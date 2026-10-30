@@ -1,3 +1,4 @@
+import { mapValues } from '../../../helpers/functional.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 
 /** @import { DHLoot } from '../../../data/item/_module.mjs'; */
@@ -31,4 +32,25 @@ export default class LootSheet extends DHBaseItemSheet {
             scrollable: ['']
         }
     };
+
+    async _prepareContext(options) {
+        const item = this.item;
+        const itemCategories = CONFIG.DH.ITEM.itemCategories;
+        
+        const context = await super._prepareContext(options);
+        context.categoryLabel = _loc(itemCategories[item.system.category]?.label ?? `TYPES.Item.loot`);
+        context.choices = mapValues(itemCategories, c => c.label);
+
+        const categoryField = itemCategories[item.system.category]?.data;
+        if (categoryField) {
+            context.categoryDataLabel = _loc(categoryField.label) ?? context.categoryLabel; 
+            context.categoryData = mapValues(categoryField.fields, (field, k) => ({
+                field,
+                name: `system.categoryData.${k}`,
+                value: this.item._source.system.categoryData?.[k]
+            }));
+        }
+
+        return context;
+    }
 }
