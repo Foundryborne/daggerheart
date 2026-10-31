@@ -99,6 +99,7 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
  * @property {boolean} hasLimitedView
  * @property {boolean} useSize whether token size configuration is valid at the actor level for this actor type
  * @property {boolean} hasInventory whether this actor supports inventory items a display of them. A gold field will still be necessary.
+ * @property {string[]} unquantifiable The inventory items that are never quantifiable on this actor type
  * @property {boolean} transferrableWithoutOwner if true, item transfers done by players without permissions will be sent to the GM
  */
 
@@ -116,6 +117,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             hasLimitedView: true,
             usesSize: false,
             hasInventory: false,
+            unquantifiable: [],
             transferrableWithoutOwner: false
         };
     }
@@ -200,6 +202,15 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      */
     isItemAvailable(item) {
         return true;
+    }
+
+    /** 
+     * Given a trait from the rollTypes collections, resolves what trait that is for this actor.
+     * For most actors, it is null, and only has a value for characters
+     * @param {keyof typeof CONFIG.DH.ACTIONS.rollTypeTraits} trait
+     */
+    resolveTrait(trait) {
+        return null;
     }
 
     async _preUpdate(changes, options, userId) {

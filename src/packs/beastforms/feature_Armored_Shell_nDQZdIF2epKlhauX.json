@@ -114,15 +114,23 @@
       "system": {
         "changes": [
           {
-            "key": "system.resistance.physical.reduction",
-            "type": "add",
+            "key": "system.rules.damageReduction.reductions.armoredShell.label",
+            "type": "override",
+            "value": "Armored Shell",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.rules.damageReduction.reductions.armoredShell.value",
+            "type": "override",
             "value": "@system.armorScore.max",
-            "priority": 21,
+            "priority": 51,
             "phase": "initial"
           }
         ],
         "duration": {
-          "description": ""
+          "description": "",
+          "type": ""
         },
         "rangeDependence": null,
         "stacking": null,
@@ -144,7 +152,14 @@
       "_stats": {
         "compendiumSource": null
       },
-      "start": null,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
       "showIcon": 1,
       "folder": null,
       "_key": "!items.effects!nDQZdIF2epKlhauX.OY3lEB3vuDKNLzxv"

@@ -102,10 +102,32 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         if (this.document.metadata.hasInventory) {
             context.inventory = {
                 currencies: {},
-                weapons: this.document.itemTypes.weapon.sort((a, b) => a.sort - b.sort),
-                armor: this.document.itemTypes.armor.sort((a, b) => a.sort - b.sort),
-                consumables: this.document.itemTypes.consumable.sort((a, b) => a.sort - b.sort),
-                loot: this.document.itemTypes.loot.sort((a, b) => a.sort - b.sort)
+                sections: [
+                    {
+                        type: 'weapon',
+                        title: 'TYPES.Item.weapon',
+                        collection: this.document.itemTypes.weapon.sort((a, b) => a.sort - b.sort)
+                    },
+                    {
+                        type: 'armor',
+                        title: 'TYPES.Item.armor',
+                        collection: this.document.itemTypes.armor.sort((a, b) => a.sort - b.sort)
+                    },
+                    {
+                        type: 'consumable',
+                        title: 'TYPES.Item.consumable',
+                        collection: this.document.itemTypes.consumable.sort((a, b) => a.sort - b.sort)
+                    },
+                    {
+                        type: 'loot',
+                        title: 'TYPES.Item.loot',
+                        collection: this.document.itemTypes.loot.sort((a, b) => a.sort - b.sort)
+                    }
+                ].map(v => ({ 
+                    ...v, 
+                    canCreate: context.editable,
+                    isQuantifiable: !this.actor.metadata.unquantifiable.includes(v.type)
+                }))
             };
             const { title, ...currencies } = game.settings.get(
                 CONFIG.DH.id,
@@ -119,6 +141,24 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 };
             }
             context.inventory.hasCurrency = Object.values(context.inventory.currencies).some(c => c.enabled);
+
+            // Add loot sections for item categories that have a loot section
+            // Move qualifying items to that section
+            const lootSection = context.inventory.sections[3];
+            const presentCategories = new Set(this.document.itemTypes.loot.map(l => l.system.category).filter(Boolean));
+            for (const [key, data] of Object.entries(CONFIG.DH.ITEM.itemCategories)) {
+                if (presentCategories.has(key) && data.sheetGroup) {
+                    context.inventory.sections.push({
+                        ...lootSection,
+                        title: _loc(data.sheetGroup),
+                        canCreate: false,
+                        collection: lootSection.collection.filter(i => i.system.category === key)
+                    });
+                    lootSection.collection = lootSection.collection.filter(i => i.system.category !== key);
+                }
+            }
+
+            // Set canCreate and 
         }
 
         return context;

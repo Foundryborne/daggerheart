@@ -680,6 +680,8 @@
             },
             "DamageReduction": {
                 "maxUseableArmor": "Useable Armor Slots",
+                "rulesEnabled": "Rules Enabled",
+                "rulesDisabled": "Rules Disabled",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
                 "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
@@ -687,7 +689,16 @@
                 "title": "Damage Reduction",
                 "unncessaryStress": "You don't need to expend stress",
                 "usedMarks": "Used Marks",
-                "reduceSeverity": "Severity Reduced By {nr}"
+                "reduceSeverity": "Severity Reduced By {nr}",
+                "incomingDamageTitle": "Incoming Damage",
+                "additionalRules": "Additional Rules",
+                "damageReductionsTitle": "Damage Reductions",
+                "rollvaluePlaceholder": "Not Rolled",
+                "unfinishedReductionsTitle": "",
+                "unfinishedReductionsDialog": {
+                    "title": "Unfinished Reductions",
+                    "content": "All damage reductions have not been rolled. Are you sure you want to continue?"
+                }
             },
             "DeathMove": {
                 "selectMove": "Select Move",
@@ -1968,7 +1979,8 @@
                         "sprint": "Sprint",
                         "leap": "Leap",
                         "maneuver": "Maneuver"
-                    }
+                    },
+                    "description": "A high Agility means you’re fast on your feet, nimble on difficult terrain, and quick to react to danger. You’ll make an Agility Roll to scurry up a rope, sprint to cover, or bound from rooftop to rooftop."
                 },
                 "strength": {
                     "name": "Strength",
@@ -1977,7 +1989,8 @@
                         "lift": "Lift",
                         "smash": "Smash",
                         "grapple": "Grapple"
-                    }
+                    },
+                    "description": "A high Strength means you’re better at feats that test your physical prowess and stamina. You’ll make a Strength Roll to break through a door, lift heavy objects, or hold your ground against a charging foe."
                 },
                 "finesse": {
                     "name": "Finesse",
@@ -1986,7 +1999,8 @@
                         "control": "Control",
                         "hide": "Hide",
                         "tinker": "Tinker"
-                    }
+                    },
+                    "description": "A high Finesse means you’re skilled at tasks that require accuracy, stealth, or the utmost control. You’ll make a Finesse Roll to use fine tools, escape notice, or strike with precision."
                 },
                 "instinct": {
                     "name": "Instinct",
@@ -1995,7 +2009,8 @@
                         "perceive": "Perceive",
                         "sense": "Sense",
                         "navigate": "Navigate"
-                    }
+                    },
+                    "description": "A high Instinct means you have a keen sense of your surroundings and a natural intuition. You’ll make an Instinct Roll to sense danger, notice details in the world around you, or track an elusive foe."
                 },
                 "presence": {
                     "name": "Presence",
@@ -2004,7 +2019,8 @@
                         "charm": "Charm",
                         "perform": "Perform",
                         "deceive": "Deceive"
-                    }
+                    },
+                    "description": "A high Presence means you have a strong force of personality and a facility for social situations. You’ll make a Presence Roll to plead your case, intimidate a foe, or capture the attention of a crowd."
                 },
                 "knowledge": {
                     "name": "Knowledge",
@@ -2013,12 +2029,19 @@
                         "recall": "Recall",
                         "analyze": "Analyze",
                         "comprehend": "Comprehend"
-                    }
+                    },
+                    "description": "A high Knowledge means you know information others don’t and understand how to apply your mind through deduction and inference. You’ll make a Knowledge Roll to interpret facts, see the patterns clearly, or remember important information."
                 }
             },
             "TraitsSpecial": {
-                "spellcast": "Spellcast Trait",
-                "highest": "Best Trait"
+                "spellcast": {
+                    "label": "Spellcast Trait",
+                    "short": "Spellcast Trait"
+                },
+                "highest": {
+                    "label": "Best Trait",
+                    "short": "Best Trait"
+                }
             },
             "Triggers": {
                 "postDamageReduction": {
@@ -3312,6 +3335,7 @@
             "damageType": "Damage Type",
             "description": "Description",
             "difficulty": "Difficulty",
+            "disabled": "Disabled",
             "downtime": "Downtime",
             "dropActorsHere": "Drop Actors here",
             "dropFeaturesHere": "Drop Features here",
@@ -3496,6 +3520,9 @@
                 "gmNotes": {
                     "label": "GM Notes"
                 },
+                "quantity": {
+                    "label": "Quantity"
+                },
                 "loreReference": {
                     "label": "Lore Reference",
                     "hint": "Path or id of full description journal page"
@@ -3652,6 +3679,13 @@
                 "evolutionFeature": "Evolution Feature",
                 "evolutionLocked": "Features with an evolution action must be of evolution type",
                 "actorResources": "Actor Resources"
+            },
+            "Item": {
+                "FIELDS": {
+                    "category": {
+                        "label": "Category"
+                    }
+                }
             },
             "Subclass": {
                 "spellcastingTrait": "Spellcasting Trait",

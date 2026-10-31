@@ -31,12 +31,12 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static includes(list, item) {
-        return list.includes(item);
+        return Boolean(list?.includes(item));
     }
 
     static times(nr, block) {
-        var accum = '';
-        for (var i = 0; i < nr; ++i) accum += block.fn(i);
+        let accum = '';
+        for (let i = 0; i < nr; ++i) accum += block.fn(i);
         return accum;
     }
 

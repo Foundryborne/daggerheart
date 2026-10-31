@@ -6,8 +6,10 @@
   "img": "icons/skills/melee/strike-dagger-blood-red.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart SRD H&F",
+      "page": null,
+      "campaignFrame": "",
+      "artist": ""
     },
     "description": "<p>Play the Executioners Guild if you want to strike down your targets with lethal precision.</p>",
     "gmNotes": "",

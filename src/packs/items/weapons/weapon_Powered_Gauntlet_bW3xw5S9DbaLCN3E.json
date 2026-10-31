@@ -6,7 +6,50 @@
   "img": "icons/equipment/hand/gauntlet-armored-leather-teal-orange.webp",
   "system": {
     "description": "",
-    "actions": {},
+    "actions": {
+      "eEbxZKVYLmVRQ20C": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Charge",
+        "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.",
+        "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "itemId": null,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "effects": [
+          {
+            "_id": "U9VqbdZzzA1KZmME",
+            "onSave": false
+          }
+        ],
+        "_id": "eEbxZKVYLmVRQ20C",
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        }
+      }
+    },
     "tier": 3,
     "equipped": false,
     "secondary": true,
@@ -114,40 +157,20 @@
       "charged": {
         "value": "charged",
         "effectIds": [
-          "n5EB7pI0kv2Zx35G"
+          "U9VqbdZzzA1KZmME"
         ],
         "actionIds": [
-          "GlA0PwKQSq5vwh7D"
-        ],
-        "config": {}
+          "eEbxZKVYLmVRQ20C"
+        ]
       }
     }
   },
   "effects": [
     {
       "name": "Charged",
-      "description": "<p>Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.</p>",
+      "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.",
       "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
-      "transfer": false,
-      "_id": "n5EB7pI0kv2Zx35G",
-      "type": "base",
       "system": {
-        "changes": [
-          {
-            "key": "system.proficiency",
-            "type": "add",
-            "value": 1,
-            "priority": null,
-            "phase": "initial"
-          }
-        ],
-        "duration": {
-          "description": "",
-          "type": ""
-        },
-        "rangeDependence": null,
-        "stacking": null,
-        "targetDispositions": [],
         "conditionals": [
           {
             "type": "weaponRestriction",
@@ -160,9 +183,27 @@
             ],
             "traits": []
           }
-        ]
+        ],
+        "changes": [
+          {
+            "key": "system.proficiency",
+            "type": "add",
+            "value": 1,
+            "phase": "initial"
+          }
+        ],
+        "duration": {
+          "description": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
       },
+      "transfer": false,
+      "_id": "U9VqbdZzzA1KZmME",
+      "type": "base",
       "disabled": false,
+      "start": null,
       "duration": {
         "value": null,
         "units": "seconds",
@@ -171,22 +212,14 @@
       },
       "tint": "#ffffff",
       "statuses": [],
+      "showIcon": 1,
+      "folder": null,
       "sort": 0,
       "flags": {},
       "_stats": {
         "compendiumSource": null
       },
-      "start": {
-        "time": 0,
-        "combat": null,
-        "combatant": null,
-        "initiative": null,
-        "round": null,
-        "turn": null
-      },
-      "showIcon": 1,
-      "folder": null,
-      "_key": "!items.effects!bW3xw5S9DbaLCN3E.n5EB7pI0kv2Zx35G"
+      "_key": "!items.effects!bW3xw5S9DbaLCN3E.U9VqbdZzzA1KZmME"
     }
   ],
   "sort": 0,

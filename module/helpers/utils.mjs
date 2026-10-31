@@ -170,6 +170,19 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
     }, {});
 };
 
+export const convertDamageToThreshold = (damage, damageThresholds) => {
+    if (damage <= 0) return 0;
+
+    const { major, severe } = damageThresholds;
+    const massiveDamageEnabled = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules)
+        .massiveDamage.enabled;
+    if (massiveDamageEnabled && damage >= damageThresholds.severe * 2) {
+        return 4;
+    }
+
+    return (severe && damage >= severe) ? 3 : (major && damage >= major) ? 2 : 1;
+}
+
 export const getDamageKey = damage => {
     return ['none', 'minor', 'major', 'severe', 'massive', 'any'][damage];
 };
@@ -516,14 +529,16 @@ export async function getFeaturesHTMLData(features) {
         const base = feature.item ?? feature;
         const item = base.system ? base : await foundry.utils.fromUuid(typeof base === 'string' ? base : base.uuid);
         if (item) {
-            result.push({ 
+            result.push({
+                name: item.name,
                 label: item.name, 
                 description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(
                     item.system.description
                 )
             });
         } else {
-            result.push({ 
+            result.push({
+                name: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.feature')}),
                 label: _loc('DAGGERHEART.GENERAL.missingX', { x: _loc('TYPES.Item.feature')}),
                 description: _loc('DAGGERHEART.GENERAL.missingItemDescription')
             })

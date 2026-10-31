@@ -74,6 +74,11 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     async _preparePartContext(partId, context) {
         await super._preparePartContext(partId, context);
         switch (partId) {
+            case 'header': {
+                const traits = CONFIG.DH.ACTIONS.rollTypeTraits;
+                context.weaponTraitLabel = _loc(traits[this.document.system.attack?.roll.trait]?.label ?? 'DAGGERHEART.GENERAL.none');
+                break;
+            }
             case 'settings': {
                 const weaponFeatures = CONFIG.DH.ITEM.allWeaponFeatures();
                 const featureIds = Object.keys(this.item._source.system.itemFeatures);

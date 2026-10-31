@@ -7,6 +7,7 @@ import { attributeField, stressDamageReductionRule, bonusField, GoldField } from
 import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 import { getArmorSources } from '../../helpers/utils.mjs';
+import FormulaField from '../fields/formulaField.mjs';
 
 export default class DhCharacter extends DhCreature {
     /**@override */
@@ -20,7 +21,7 @@ export default class DhCharacter extends DhCreature {
             settingSheet: DHCharacterSettings,
             isNPC: false,
             hasInventory: true,
-            quantifiable: ['loot', 'consumable']
+            unquantifiable: ['weapon', 'armor']
         });
     }
 
@@ -188,6 +189,13 @@ export default class DhCharacter extends DhCreature {
             rules: new fields.SchemaField({
                 ...commonActorRules({
                     damageReduction: {
+                        reductions: new fields.TypedObjectField(new fields.SchemaField({
+                            label: new fields.StringField(),
+                            value: new FormulaField(),
+                            costs: new fields.TypedObjectField(new fields.SchemaField({
+                                value: new fields.NumberField({ initial: 1, min: 0 })
+                            }))
+                        })),
                         magical: new fields.BooleanField({
                             initial: false,
                             label: 'DAGGERHEART.GENERAL.Rules.damageReduction.magical.label',
@@ -477,11 +485,7 @@ export default class DhCharacter extends DhCreature {
         }
     }
 
-    /** 
-     * Given a trait from the rollTypes collections, resolves what trait that is for this actor.
-     * For most actors, it is null, and only has a value for characters
-     * @param {keyof typeof CONFIG.DH.ACTIONS.rollTypeTraits} trait
-     */
+    /** @inheritdoc */
     resolveTrait(trait) {
         if (trait === 'highest') {
             let highest = 'strength';

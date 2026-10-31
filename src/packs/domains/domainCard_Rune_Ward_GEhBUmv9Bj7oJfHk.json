@@ -10,67 +10,39 @@
     "level": 1,
     "type": "spell",
     "actions": {
-      "VwtkvnNeU9tZQMDT": {
-        "type": "attack",
-        "_id": "VwtkvnNeU9tZQMDT",
+      "kvZVvvcAnR21ykD7": {
+        "type": "effect",
+        "_id": "kvZVvvcAnR21ykD7",
         "systemPath": "actions",
+        "baseAction": false,
         "description": "<p>The ward's holder can spend a Hope to reduce incoming damage by <strong>1d8</strong>.</p><p>If the Ward Die result is 8, the ward's power ends after it reduces damage this turn. It can be recharged for free on your next rest.</p>",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
-        "cost": [
-          {
-            "key": "hope",
-            "value": 1,
-            "scalable": false,
-            "step": null,
-            "itemId": null,
-            "consumeOnSuccess": false
-          }
-        ],
+        "triggers": [],
+        "areas": [],
+        "cost": [],
         "uses": {
           "value": null,
           "max": "",
           "recovery": null,
           "consumeOnSuccess": false
         },
-        "damage": {
-          "main": null,
-          "resources": {}
-        },
+        "effects": [
+          {
+            "_id": "uYQKVoBqHav1lpMI",
+            "onSave": false
+          }
+        ],
         "target": {
           "type": "any",
           "amount": null
         },
-        "effects": [],
-        "roll": {
-          "type": "diceSet",
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d8",
-            "compare": null,
-            "treshold": null
-          },
-          "useDefault": false
-        },
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
-        "name": "Reduce Damage",
-        "img": "icons/commodities/gems/gem-faceted-diamond-pink-gold.webp",
+        "name": "Give Rune Ward",
         "range": "",
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "triggers": [],
-        "areas": []
+        "img": "icons/commodities/gems/gem-faceted-diamond-pink-gold.webp"
       }
     },
     "attribution": {
@@ -88,6 +60,73 @@
   "flags": {},
   "_id": "GEhBUmv9Bj7oJfHk",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Rune Ward",
+      "disabled": false,
+      "img": "icons/commodities/treasure/brooch-jeweled-pink.webp",
+      "description": "<p>The ward's holder can spend a Hope to reduce incoming damage by <strong>1d8</strong>.</p><p>If the Ward Die result is 8, the ward's power ends after it reduces damage this turn. It can be recharged for free on your next rest.</p>",
+      "transfer": false,
+      "statuses": [],
+      "system": {
+        "changes": [
+          {
+            "key": "system.rules.damageReduction.reductions.runeWard.label",
+            "type": "override",
+            "value": "Rune Ward",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.rules.damageReduction.reductions.runeWard.value",
+            "type": "override",
+            "value": "1d8",
+            "priority": null,
+            "phase": "initial"
+          },
+          {
+            "key": "system.rules.damageReduction.reductions.runeWard.costs.hope.value",
+            "type": "override",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
+        "conditionals": [],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "uYQKVoBqHav1lpMI",
+      "type": "base",
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "tint": "#ffffff",
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!GEhBUmv9Bj7oJfHk.uYQKVoBqHav1lpMI"
+    }
+  ],
   "_key": "!items!GEhBUmv9Bj7oJfHk"
 }
