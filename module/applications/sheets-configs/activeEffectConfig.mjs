@@ -258,7 +258,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 partContext.changes = partContext.changes.filter(c => !!c);
                 partContext.typedChanges = typedChanges;
                 partContext.creatableTypes = ['armor', 'standardAttack', 'damageReduction']
-                    .filter(t => !typedChanges[t])
+                    .filter(t => !typedChanges[t] || !typedChanges[t].single)
                     .map(t => ({ value: t, label: _loc(CONFIG.DH.EFFECTS.customChangeTypes[t]?.label) }));
                 
                 partContext.damageReductions = this.document.changes.reduce((acc, x, index) => {

@@ -1,3 +1,4 @@
+import { resolveNearestDocument } from '../../../helpers/utils.mjs';
 import FormulaField from '../../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -16,8 +17,7 @@ export default class DamageReductionChange extends foundry.abstract.DataModel {
             phase: new fields.StringField({ required: true, blank: false, initial: 'initial' }),
             value: new fields.SchemaField({
                 label: new fields.StringField({
-                    required: true, 
-                    nullable: false,
+                    nullable: true,
                     label: 'DAGGERHEART.GENERAL.label'
                 }),
                 value: new FormulaField({
@@ -45,10 +45,10 @@ export default class DamageReductionChange extends foundry.abstract.DataModel {
     static changeEffect = {
         label: 'Damage Reduction',
         defaultPriority: 50,
-        handler: (actor, change, _options) => {
-            if (change.value.label && change.value.value) {
+        handler: (actor, change, options) => {
+            if (change.value.value) {
                 const damageReduction = {
-                    label: change.value.label,
+                    label: change.value.label ? change.value.label : resolveNearestDocument(change).name,
                     value: change.value.value,
                     costs: change.value.costs 
                 };
@@ -76,4 +76,6 @@ export default class DamageReductionChange extends foundry.abstract.DataModel {
             }
         };
     }
+
+
 }
