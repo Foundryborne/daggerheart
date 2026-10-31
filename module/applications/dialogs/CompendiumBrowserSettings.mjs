@@ -1,3 +1,5 @@
+import { tagifyElement } from '../../helpers/utils.mjs';
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class CompendiumBrowserSettings extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -27,6 +29,10 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
 
     /** @override */
     static PARTS = {
+        attributionSources: {
+            id: 'attribution-sources',
+            template: 'systems/daggerheart/templates/dialogs/compendiumBrowserSettingsDialog/attribution-sources.hbs'
+        },
         packs: {
             id: 'packs',
             template: 'systems/daggerheart/templates/dialogs/compendiumBrowserSettingsDialog/packs.hbs'
@@ -44,9 +50,34 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
     }
 
     /**@inheritdoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        const element = this.element.querySelector('.attribution-source-input');
+        const tagifyOptions = Object.keys(CONFIG.DH.GENERAL.attributionSources).flatMap(groupKey => {
+            const group = CONFIG.DH.GENERAL.attributionSources[groupKey];
+            return group.values.map(x => ({ id: x.label, ...x }));
+        });
+        tagifyElement(element, tagifyOptions, CompendiumBrowserSettings.#onAttributionSourceSelect.bind(this));
+    }
+
+    static async #onAttributionSourceSelect(selectedOptions) {
+        const sources = this.browserSettings.excludedAttributionSources;
+        const selectedFeatures = selectedOptions.map(x => x.value);
+        const toRemove = sources.filter(x => !selectedFeatures.includes(x));
+        const toAdd = selectedFeatures.filter(x => !sources.includes(x)); 
+        this.browserSettings.excludedAttributionSources = [
+            ...this.browserSettings.excludedAttributionSources.filter(x => !toRemove.includes(x)),
+            ...toAdd
+        ];
+        this.render();
+    }
+
+    /**@inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
 
+        context.excludedAttributionSources = this.browserSettings.excludedAttributionSources;
         const excludedSourceData = this.browserSettings.excludedSources;
         const excludedPackData = this.browserSettings.excludedPacks;
         context.typePackCollections = game.packs.reduce((acc, pack) => {

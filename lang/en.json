@@ -565,6 +565,7 @@
             },
             "CompendiumBrowserSettings": {
                 "title": "Enable Compendiums",
+                "excludedAttributeSources": "Excluded Attribute Sources",
                 "enableSource": "Enable Source",
                 "disableSource": "Disable Source",
                 "worldCompendiums": "World Compendiums"
