@@ -7,6 +7,10 @@ export const customChangeTypes = {
     standardAttack: {
         id: 'standardAttack',
         label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.name'
+    },
+    damageReduction: {
+        id: 'damageReduction',
+        label: 'DAGGERHEART.EFFECTS.ChangeTypes.damageReduction.name'
     }
 };
 

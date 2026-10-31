@@ -4,7 +4,7 @@
             <div class="damage-data-row">
                 <span class="data-data-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.incomingDamageTitle"}}</span>
                 <span>{{damage}}</span>
-                {{#if reducedDamage}}
+                {{#if reducedDamage includeZero=true}}
                     <i class="fa-solid fa-long-arrow-right"></i>
                     <span>{{reducedDamage}}</span>
                 {{/if}}

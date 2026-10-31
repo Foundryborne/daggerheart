@@ -46,18 +46,14 @@
       "system": {
         "changes": [
           {
-            "key": "system.rules.damageReduction.reductions.warded.label",
-            "type": "override",
-            "value": "Warded",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.rules.damageReduction.reductions.warded.value",
-            "type": "override",
-            "value": "@system.armorScore.max",
-            "priority": 51,
-            "phase": "initial"
+            "type": "damageReduction",
+            "phase": "initial",
+            "priority": 0,
+            "value": {
+              "label": "Warded",
+              "value": "@system.armorScore.max",
+              "costs": []
+            }
           }
         ],
         "duration": {

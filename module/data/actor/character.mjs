@@ -189,10 +189,10 @@ export default class DhCharacter extends DhCreature {
             rules: new fields.SchemaField({
                 ...commonActorRules({
                     damageReduction: {
-                        reductions: new fields.TypedObjectField(new fields.SchemaField({
+                        reductions: new fields.ArrayField(new fields.SchemaField({
                             label: new fields.StringField(),
                             value: new FormulaField(),
-                            costs: new fields.TypedObjectField(new fields.SchemaField({
+                            costs: new fields.ArrayField(new fields.SchemaField({
                                 value: new fields.NumberField({ initial: 1, min: 0 })
                             }))
                         })),
