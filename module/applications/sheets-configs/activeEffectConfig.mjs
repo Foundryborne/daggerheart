@@ -1,4 +1,5 @@
 import autocomplete from 'autocompleter';
+import { pickBy } from '../../helpers/functional.mjs';
 
 const { FormDataExtended } = foundry.applications.ux;
 export default class DhActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
@@ -7,6 +8,13 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
         const actorType = this.document.actor?.type;
         this.changeChoices = DhActiveEffectConfig.getChangeChoices({ actorType });
+        this.damageReductionCostOptionKeys = Object.keys(pickBy(CONFIG.DH.GENERAL.healingTypes, (_, k) => [
+            'hitPoints',
+            'stress',
+            'hope',
+            'hope',
+            'armor'
+        ].includes(k)));
     }
 
     static DEFAULT_OPTIONS = {
@@ -16,7 +24,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             addConditional: DhActiveEffectConfig.#onAddConditional,
             removeConditional: DhActiveEffectConfig.#onRemoveConditional,
             addCustomChange: DhActiveEffectConfig.#onAddCustomChange,
-            removeCustomChange: DhActiveEffectConfig.#onRemoveCustomChange
+            removeCustomChange: DhActiveEffectConfig.#onRemoveCustomChange,
+            addDamageReductionCost: DhActiveEffectConfig.#onAddDamageReductionCost,
+            deleteDamageReductionCost: DhActiveEffectConfig.#onDeleteDamageReductionCost
         }
     };
 
@@ -247,9 +257,37 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 }, {});
                 partContext.changes = partContext.changes.filter(c => !!c);
                 partContext.typedChanges = typedChanges;
-                partContext.creatableTypes = ['armor', 'standardAttack']
-                    .filter(t => !typedChanges[t])
+                partContext.creatableTypes = ['armor', 'standardAttack', 'damageReduction']
+                    .filter(t => !typedChanges[t] || !typedChanges[t].single)
                     .map(t => ({ value: t, label: _loc(CONFIG.DH.EFFECTS.customChangeTypes[t]?.label) }));
+                
+                partContext.damageReductions = this.document.changes.reduce((acc, x, index) => {
+                    if (x.type === 'damageReduction') {
+                        const baseCostOptions = this.damageReductionCostOptionKeys.reduce((acc, costKey) => {
+                            if (!x.value.costs.find(x => x.type === costKey)) {
+                                acc[costKey] = CONFIG.DH.GENERAL.healingTypes[costKey];
+                            }
+
+                            return acc;
+                        }, {});
+                        acc.push({
+                            ...x,
+                            changeIndex: index,
+                            value: {
+                                ...x.value,
+                                costs: x.value.costs.map(x => ({
+                                    ...x,
+                                    costOptions: { 
+                                        ...(x.type ? { [x.type]: CONFIG.DH.GENERAL.healingTypes[x.type]} : {}), 
+                                        ...baseCostOptions 
+                                    }
+                                })) 
+                            }
+                        });
+                    }
+
+                    return acc;
+                }, []);
                 break;
         }
 
@@ -289,6 +327,36 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         } else {
             changes[index].value.damageThresholds = null;
         }
+
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    static #onAddDamageReductionCost(event) {
+        const element = event.target.closest('[data-reduction-index]')
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        const index = Number(element.dataset.reductionIndex);
+
+        changes[index].value.costs = changes[index].value.costs ? Object.values(changes[index].value.costs) : [];
+        const availableType = this.damageReductionCostOptionKeys
+            .find(x => !changes[index].value.costs.some(cost => cost.type === x));
+        if (!availableType) return;
+
+        changes[index].value.costs.push({ type: availableType, value: 1 });
+
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
+    static #onDeleteDamageReductionCost(event) {
+        const { reductionIndex, costIndex } = 
+            event.target.closest('[data-reduction-index]').dataset;
+        
+        const submitData = this._processFormData(null, this.form, new FormDataExtended(this.form));
+        const changes = Object.values(submitData.system?.changes ?? {});
+        const rIndex = Number(reductionIndex);
+        const cIndex = Number(costIndex);
+        changes[rIndex].value.costs = Object.values(changes[rIndex].value.costs);
+        changes[rIndex].value.costs.splice(cIndex, 1); 
 
         return this.submit({ updateData: { system: { changes } } });
     }

@@ -71,25 +71,19 @@
       "system": {
         "changes": [
           {
-            "key": "system.rules.damageReduction.reductions.runeWard.label",
-            "type": "override",
-            "value": "Rune Ward",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.rules.damageReduction.reductions.runeWard.value",
-            "type": "override",
-            "value": "1d8",
-            "priority": null,
-            "phase": "initial"
-          },
-          {
-            "key": "system.rules.damageReduction.reductions.runeWard.costs.hope.value",
-            "type": "override",
-            "value": 1,
-            "priority": null,
-            "phase": "initial"
+            "type": "damageReduction",
+            "phase": "initial",
+            "priority": 0,
+            "value": {
+              "label": "Rune Ward",
+              "value": "1d8",
+              "costs": [
+                {
+                  "type": "hope",
+                  "value": 1
+                }
+              ]
+            }
           }
         ],
         "conditionals": [],

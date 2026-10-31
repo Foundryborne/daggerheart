@@ -137,16 +137,16 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             {}
         );
 
-        const reductions = Object.values(originActor.system.rules.damageReduction.reductions).map(x => ({
+        const reductions = originActor.system.rules.damageReduction.reductions.map(x => ({
             ...x,
             label: _loc(x.label),
             value: itemAbleRollParse(x.value, originActor),
             enabled: !x.costs || !Object.keys(x.costs).length,
             isDeterministic: (new Roll(x.value)).isDeterministic,
-            costs: x.costs ? Object.entries(x.costs).reduce((acc, [key, cost]) => { 
-                const configData = CONFIG.DH.GENERAL.healingTypes[key];
-                const label = configData ? _loc(configData.label) : key;
-                acc[key] = { label, value: cost.value };
+            costs: x.costs ? x.costs.reduce((acc, cost) => { 
+                const configData = CONFIG.DH.GENERAL.healingTypes[cost.type];
+                const label = configData ? _loc(configData.label) : cost.type;
+                acc[cost.type] = { label, value: cost.value };
                 return acc;
             }, {}) : {}
         }));
@@ -398,7 +398,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static async takeDamage() {
-        const unresolvedReductions = this.reductions.some(x => !x.isDeterministic && !x.roll);
+        const unresolvedReductions = this.reductions.some(x => x.enabled && !x.isDeterministic && !x.roll);
         if (unresolvedReductions) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
