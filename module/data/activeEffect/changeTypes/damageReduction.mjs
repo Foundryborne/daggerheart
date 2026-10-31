@@ -70,7 +70,6 @@ export default class DamageReductionChange extends foundry.abstract.DataModel {
             priority: 0,
             phase: 'initial',
             value: {
-                label: 'New Reduction',
                 value: '1',
                 costs: []
             }

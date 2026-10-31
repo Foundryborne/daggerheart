@@ -416,6 +416,12 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
             const comparator = CONFIG.DH.EFFECTS.conditionalComparators[event.target.value];
             parent.querySelector('.conditional-value').hidden = comparator.ignoresValue;
         }
+
+        if (event.target.name.match('name')) {
+            for (const element of this.element.querySelectorAll('[data-placeholder-is-name]')) {
+                element.placeholder = event.target.value;
+            }
+        }
     }
 
     /** @inheritDoc */
