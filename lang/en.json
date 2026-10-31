@@ -2574,10 +2574,6 @@
                     "name": "Omnipresent",
                     "description": "You can make attacks against targets within Very Far range, but must do so with disadvantage."
                 },
-                "otherwordly": {
-                    "name": "Otherwordly",
-                    "description": "On a successful attack, you can deal physical or magic damage."
-                },
                 "padded": {
                     "name": "Padded",
                     "description": "Gain this weapon's tier + 1 to damage thresholds.",
