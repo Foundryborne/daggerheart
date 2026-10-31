@@ -417,7 +417,7 @@ export default class DHRoll extends BaseRoll {
         return (
             // todo: improve safety. When used improperly, effects is a list of data, not active effects
             // it can be worked around provisionarily by using getActionRelevantEffects()
-            this.options.effects?.reduce((acc, effect) => {
+            (this.options.effects ?? []).reduce((acc, effect) => {
                 if (!(effect instanceof ActiveEffect)) return acc;
 
                 const action = this.options.action;
@@ -439,7 +439,7 @@ export default class DHRoll extends BaseRoll {
                 }
 
                 return acc;
-            }, {}) ?? {}
+            }, {})
         );
     }
 
