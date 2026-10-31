@@ -13,8 +13,8 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         this.originalIsCritical = config.isCritical;
         this.selectedEffects = this.config.bonusEffects;
 
-        this.actionCloneActor = config.actor.getActionClone(config.action, { role: 'origin' });
-        this.canChooseDamageType = this.actionCloneActor.system.rules.attack.canChooseDamageType;
+        this.actionCloneActor = config.actor?.getActionClone(config.action, { role: 'origin' });
+        this.canChooseDamageType = this.actionCloneActor?.system.rules.attack.canChooseDamageType;
         
         if (this.canChooseDamageType)
             this.config.damageFormula.damageTypes = new Set([this.config.damageFormula.damageTypes.first()]);
