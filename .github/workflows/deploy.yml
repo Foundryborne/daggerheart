@@ -121,11 +121,10 @@ jobs:
           --arg title "$RELEASE_NAME" \
           --arg url "$RELEASE_URL" \
           --arg body "$RELEASE_BODY" \
-          '{
+          '("# [Daggerheart " + $title + "](" + $url + ")\n") as $header |
+          {
             embeds: [{
-              title: "Daggerheart " + $title,
-              url: $url,
-              description: (if ($body | length) > 4096 then ($body[:4000] + "\n\n… [Read the full release notes](" + $url + ")") else $body end)
+              description: ($header + (if ($body | length) > 3800 then ($body[:3800] + "\n\n… [Read the full release notes](" + $url + ")") else $body end))
             }]
           }')
 
