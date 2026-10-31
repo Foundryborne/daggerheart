@@ -2,6 +2,7 @@ import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import { triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
+/** The class for d20 rolls, but also the base class for all "main action rolls" like duality rolls */
 export default class D20Roll extends DHRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
