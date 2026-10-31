@@ -110,17 +110,31 @@
     "gmNotes": "",
     "resource": null,
     "quantity": 1,
-    "itemFeatures": {}
+    "itemFeatures": {
+      "otherwordly": {
+        "value": "otherwordly",
+        "effectIds": [
+          "XlHX00XLEPQxMOwN"
+        ],
+        "actionIds": []
+      }
+    }
   },
   "effects": [
     {
-      "name": "DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.name",
-      "description": "DAGGERHEART.CONFIG.WeaponFeature.otherwordly.effects.otherwordly.description",
+      "name": "Otherwordly",
+      "description": "On a successful attack, you can deal physical or magic damage.",
       "img": "icons/weapons/swords/sword-flanged-lightning.webp",
       "system": {
+        "conditionals": [
+          {
+            "type": "weaponRestriction",
+            "weaponType": "sameWeapon"
+          }
+        ],
         "changes": [
           {
-            "key": "system.rules.attack.damage.canChooseDamageType",
+            "key": "system.rules.attack.canChooseDamageType",
             "type": "override",
             "value": 1,
             "phase": "initial"
@@ -133,7 +147,7 @@
         "stacking": null,
         "targetDispositions": []
       },
-      "_id": "WT5wBYRkENaUPvBw",
+      "_id": "XlHX00XLEPQxMOwN",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -143,7 +157,6 @@
         "expiry": null,
         "expired": false
       },
-      "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -154,7 +167,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!6gFvOFTE97QZ74Zr.WT5wBYRkENaUPvBw"
+      "_key": "!items.effects!6gFvOFTE97QZ74Zr.XlHX00XLEPQxMOwN"
     }
   ],
   "sort": 0,
