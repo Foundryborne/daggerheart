@@ -261,7 +261,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                 await feature.update({ 'system.resource.value': resetValue });
             }
 
-            expireActiveEffects(this.actor, [this.shortRest ? 'shortRest' : 'longRest']);
+            expireActiveEffects(this.actor, [this.shortrest ? 'shortRest' : 'longRest']);
 
             this.close();
         } else {
