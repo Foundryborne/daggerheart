@@ -66,7 +66,15 @@
       "transfer": false,
       "statuses": [],
       "system": {
-        "changes": [],
+        "changes": [
+          {
+            "key": "system.rules.attack.canChooseDamageType",
+            "type": "override",
+            "value": 1,
+            "priority": null,
+            "phase": "initial"
+          }
+        ],
         "duration": {
           "description": "",
           "type": "scene"
@@ -74,7 +82,15 @@
         "rangeDependence": null,
         "stacking": null,
         "targetDispositions": [],
-        "conditionals": []
+        "conditionals": [
+          {
+            "type": "actionType",
+            "actionTypes": [
+              "attack"
+            ],
+            "traits": []
+          }
+        ]
       },
       "_id": "RtscqiOS754ouvOM",
       "type": "base",
