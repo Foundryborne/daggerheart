@@ -123,7 +123,7 @@ jobs:
           --arg body "$RELEASE_BODY" \
           '{
             embeds: [{
-              title: $title,
+              title: "Daggerheart " + $title,
               url: $url,
               description: (if ($body | length) > 4096 then ($body[:4000] + "\n\n… [Read the full release notes](" + $url + ")") else $body end)
             }]
