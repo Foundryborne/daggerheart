@@ -21,8 +21,7 @@ export class MoveContext {
     constructor(data = {}, { actor, item, action } = {}) {
         // Store documents and resolve missing ones
         this.action = action ??= data.action;
-        const baseActor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor;
-        this.actor = baseActor.getActionClone(this.action, { role: 'origin' });
+        this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor;
         this.item = item ??= data.item ?? data.action?.item;
 
         this.message = data.message;
