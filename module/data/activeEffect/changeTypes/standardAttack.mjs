@@ -42,7 +42,7 @@ export default class StandardAttackChange extends foundry.abstract.DataModel {
                 trait: new fields.StringField({
                     label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.FIELDS.trait',
                     nullable: true,
-                    choices: CONFIG.DH.ACTOR.abilities,
+                    choices: CONFIG.DH.ACTIONS.rollTypeTraits,
                     initial: null
                 })
             })
