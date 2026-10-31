@@ -37,10 +37,10 @@
             <fieldset class="one-column drop-section primary-weapon-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedPrimaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if suggestedGear.primary}}
-                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{suggestedGear.primary.uuid}}">
-                            <img class="image" src="{{suggestedGear.primary.img}}" />
-                            <span>{{suggestedGear.primary.name}}</span>
+                    {{#if suggestedGear.primaryWeapon}}
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{suggestedGear.primaryWeapon.uuid}}">
+                            <img class="image" src="{{suggestedGear.primaryWeapon.img}}" />
+                            <span>{{suggestedGear.primaryWeapon.name}}</span>
                             <div class="controls">
                                 {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedPrimaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
@@ -54,10 +54,10 @@
             <fieldset class="one-column drop-section secondary-weapon-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedSecondaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if suggestedGear.secondary}}
-                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{suggestedGear.secondary.uuid}}">
-                            <img class="image" src="{{suggestedGear.secondary.img}}" />
-                            <span>{{suggestedGear.secondary.name}}</span>
+                    {{#if suggestedGear.secondaryWeapon}}
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{suggestedGear.secondaryWeapon.uuid}}">
+                            <img class="image" src="{{suggestedGear.secondaryWeapon.img}}" />
+                            <span>{{suggestedGear.secondaryWeapon.name}}</span>
                             <div class="controls">
                                 {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedSecondaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
