@@ -13,6 +13,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         this.originalIsCritical = config.isCritical;
         this.selectedEffects = this.config.bonusEffects;
         this.canChooseDamageType = config.actor.system.rules.attack.canChooseDamageType;
+        
+        if (this.canChooseDamageType)
+            this.config.damageFormula.damageTypes = new Set([this.config.damageFormula.damageTypes.first()]);
     }
 
     static DEFAULT_OPTIONS = {
@@ -146,9 +149,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
-    static #onUpdateDamageType(_, button) {
+    static async #onUpdateDamageType(_, button) {
         this.config.damageFormula.damageTypes = new Set([button.dataset.type]);
-        game.user.setFlag(
+        await game.user.setFlag(
             CONFIG.DH.id, 
             CONFIG.DH.FLAGS.userFlags.previousDamageTypeChoice, 
             button.dataset.type
