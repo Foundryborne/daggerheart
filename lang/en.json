@@ -309,6 +309,7 @@
                             }
                         }
                     },
+                    "subTypes": { "label": "Subtypes" },
                     "tier": {
                         "label": "Tier"
                     },
