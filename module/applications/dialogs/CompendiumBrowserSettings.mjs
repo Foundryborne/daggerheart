@@ -1,11 +1,11 @@
-import { tagifyElement } from '../../helpers/utils.mjs';
-
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class CompendiumBrowserSettings extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor() {
+    constructor(attributionSourceOptions, campaignFrameOptions) {
         super();
 
+        this.attributionSourceOptions = attributionSourceOptions;
+        this.campaignFrameOptions = campaignFrameOptions;
         this.browserSettings = game.settings
             .get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.CompendiumBrowserSettings)
             .toObject();
@@ -29,6 +29,7 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
 
     /** @override */
     static PARTS = {
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         attributionSources: {
             id: 'attribution-sources',
             template: 'systems/daggerheart/templates/dialogs/compendiumBrowserSettingsDialog/attribution-sources.hbs'
@@ -40,6 +41,15 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         footer: { template: 'systems/daggerheart/templates/dialogs/compendiumBrowserSettingsDialog/footer.hbs' }
     };
 
+    /** @inheritdoc */
+    static TABS = {
+        primary: {
+            tabs: [{ id: 'sources' }, { id: 'compendiumPacks' }],
+            initial: 'sources',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
+        }
+    };
+
     static #browserPackTypes = ['Actor', 'Item'];
 
     _attachPartListeners(partId, htmlElement, options) {
@@ -47,30 +57,12 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
 
         for (const element of htmlElement.querySelectorAll('.pack-checkbox'))
             element.addEventListener('change', this.toggleTypedPack.bind(this));
-    }
 
-    /**@inheritdoc */
-    async _onRender(context, options) {
-        await super._onRender(context, options);
+        for (const element of htmlElement.querySelectorAll('.attribution-source-checkbox'))
+            element.addEventListener('change', this.toggleAttributionSource.bind(this));
 
-        const element = this.element.querySelector('.attribution-source-input');
-        const tagifyOptions = Object.keys(CONFIG.DH.GENERAL.attributionSources).flatMap(groupKey => {
-            const group = CONFIG.DH.GENERAL.attributionSources[groupKey];
-            return group.values.map(x => ({ id: x.label, ...x }));
-        });
-        tagifyElement(element, tagifyOptions, CompendiumBrowserSettings.#onAttributionSourceSelect.bind(this));
-    }
-
-    static async #onAttributionSourceSelect(selectedOptions) {
-        const sources = this.browserSettings.excludedAttributionSources;
-        const selectedFeatures = selectedOptions.map(x => x.value);
-        const toRemove = sources.filter(x => !selectedFeatures.includes(x));
-        const toAdd = selectedFeatures.filter(x => !sources.includes(x)); 
-        this.browserSettings.excludedAttributionSources = [
-            ...this.browserSettings.excludedAttributionSources.filter(x => !toRemove.includes(x)),
-            ...toAdd
-        ];
-        this.render();
+        for (const element of htmlElement.querySelectorAll('.campaign-frame-checkbox'))
+            element.addEventListener('change', this.toggleCampaignFrame.bind(this));
     }
 
     /**@inheritdoc */
@@ -78,6 +70,27 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         const context = await super._prepareContext(_options);
 
         context.excludedAttributionSources = this.browserSettings.excludedAttributionSources;
+        context.excludedCampaignFrames = this.browserSettings.excludedCampaignFrames;
+
+        context.sources = {
+            attributionSources: {
+                label: _loc('DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.sources'),
+                entries: this.attributionSourceOptions.map(x => ({
+                    label: x, 
+                    checked: !this.browserSettings.excludedAttributionSources.includes(x),
+                    class: 'attribution-source-checkbox'
+                }))
+            },
+            campaignFrames: {
+                label: _loc('DAGGERHEART.APPLICATIONS.CompendiumBrowserSettings.campaignFrames'),
+                entries: this.campaignFrameOptions.map(x => ({ 
+                    label: x, 
+                    checked: !this.browserSettings.excludedCampaignFrames.includes(x),
+                    class: 'campaign-frame-checkbox'  
+                }))
+            }
+        };
+
         const excludedSourceData = this.browserSettings.excludedSources;
         const excludedPackData = this.browserSettings.excludedPacks;
         context.typePackCollections = game.packs.reduce((acc, pack) => {
@@ -136,6 +149,28 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
         button.closest('.source-container').querySelector('.checks-container').classList.toggle('collapsed');
     }
 
+    toggleAttributionSource(event) {
+        const key = event.target.dataset.key;
+        const sources = this.browserSettings.excludedAttributionSources;
+        if (sources.find(x => x === key)) 
+            this.browserSettings.excludedAttributionSources = sources.filter(x => x !== key);  
+        else 
+            this.browserSettings.excludedAttributionSources.push(key);
+        
+        this.render();
+    }
+
+    toggleCampaignFrame(_event, button) {
+        const key = event.target.dataset.key;
+        const sources = this.browserSettings.excludedCampaignFrames;
+        if (sources.find(x => x === key)) 
+            this.browserSettings.excludedCampaignFrames = sources.filter(x => x !== key);  
+        else 
+            this.browserSettings.excludedCampaignFrames.push(key);
+        
+        this.render();
+    }
+
     toggleTypedPack(event) {
         event.stopPropagation();
 
@@ -167,8 +202,21 @@ export default class CompendiumBrowserSettings extends HandlebarsApplicationMixi
     }
 
     static async configure() {
+        const attributionSourceOptions = [];
+        const campaignFrameOptions = [];
+        for (const pack of game.packs.filter(x => ['Actor', 'Item'].includes(x.metadata.type))) {
+            const indexes = await pack.getIndex({ fields: ['system.attribution.source', 'system.attribution.campaignFrame'] });
+            for (const index of indexes) {
+                const { source, campaignFrame } = index.system.attribution;
+                if (source && !attributionSourceOptions.includes(source))
+                    attributionSourceOptions.push(source);
+                if (campaignFrame && !campaignFrameOptions.includes(campaignFrame))
+                    campaignFrameOptions.push(campaignFrame);
+            }
+        }
+
         return new Promise(resolve => {
-            const app = new this();
+            const app = new this(attributionSourceOptions, campaignFrameOptions);
             app.addEventListener('close', () => resolve(app.updated), { once: true });
             app.render({ force: true });
         });
