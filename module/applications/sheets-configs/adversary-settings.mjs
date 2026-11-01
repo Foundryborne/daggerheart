@@ -1,4 +1,5 @@
 import { DHDamageData } from '../../data/fields/action/damageField.mjs';
+import { tagifyElement } from '../../helpers/utils.mjs';
 import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -54,6 +55,21 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         }
     };
 
+    /**@inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        const subTypeOptions = Object.values(CONFIG.DH.ACTOR.adversarySubTypes);
+        if (subTypeOptions.length) {
+            const element = htmlElement.querySelector('.sub-types-input');
+            tagifyElement(element, subTypeOptions, this.#onUpdateSubTypes.bind(this));
+        }
+    }
+
+    #onUpdateSubTypes(options) {
+        this.document.update({ 'system.subTypes': options.map(x => x.value) });
+    }
+
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
@@ -69,6 +85,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         context.featureGroups = featureGroups;
         context.typeDataFields = this.document.system.typeData ? 
             context.systemFields.typeData.types[this.document.system.typeData.type]?.fields : null;
+        context.availableSubTypes = Boolean(Object.keys(CONFIG.DH.ACTOR.adversarySubTypes).length);
 
         return context;
     }

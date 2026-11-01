@@ -36,6 +36,7 @@ export default class DhpAdversary extends DhCreature {
                 choices: CONFIG.DH.ACTOR.allAdversaryTypes,
                 initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
+            subTypes: new fields.SetField(new fields.StringField()),
             typeData: new fields.TypedSchemaField(CONFIG.DH.ACTOR.adversaryTypeModels, 
                 { nullable: true, initial: null }
             ),

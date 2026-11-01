@@ -163,6 +163,9 @@ export const adversaryTypes = {
     }
 };
 
+/* Currently only for modueles to assign to. Format: { [id]: id: string, label: string, cssClass?: string } */
+export const adversarySubTypes = {};
+
 export const adversaryTypeModels = {
     horde: HordeAdversaryType
 }
