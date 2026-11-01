@@ -91,6 +91,7 @@
         {{/if}}
     </div>
 
+    {{#if hasAdditionalRules}}
     <div class="section-container full-width">
         <h4 class="divider">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.additionalRules"}}</h4>
 
@@ -142,6 +143,7 @@
             <div class="threshold-label {{#if (gte key @root.currentDamageMarksNr)}}active{{/if}}">{{immunity}}</div>
         {{/each}}
     </div>
+    {{/if}}
 
     <footer class="padded">
         <button type="button" data-action="takeDamage">
