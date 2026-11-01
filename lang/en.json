@@ -3335,7 +3335,7 @@
             "customModifier": "Custom Modifier",
             "d20Roll": "D20 Roll",
             "damage": "Damage",
-            "damageModifier": "Weapon Modifier",
+            "damageModifier": "Base Modifier",
             "damageRoll": "Damage Roll",
             "damageType": "Damage Type",
             "description": "Description",

@@ -101,7 +101,7 @@ export default class DHRoll extends BaseRoll {
         config.roll = foundry.utils.deepClone({
             ...config.roll,
             ...roll.options.roll,
-            breakdown: this.getRollBreakdown(roll, roll.options.roll, config.item)
+            breakdown: this.getRollBreakdown(roll, roll.options.roll, config.action)
         });
         config.evaluated = roll;
     }
@@ -110,8 +110,8 @@ export default class DHRoll extends BaseRoll {
         return [];
     }
 
-    static getRollBreakdown(roll, optionsData, item) {
-        const baseTerms = this.getRollBreakdownBaseTerms(item);
+    static getRollBreakdown(roll, optionsData, action) {
+        const baseTerms = this.getRollBreakdownBaseTerms(action);
         const modifiers = foundry.utils.deepClone(optionsData.modifiers) ?? [];
 
         const rollBreakdown = [];

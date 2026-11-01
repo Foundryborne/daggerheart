@@ -26,7 +26,7 @@
         <div class="dice-tooltip">
             <div class="wrapper">
                 {{#if damage.main}}
-                    {{> damage label=(localize "DAGGERHEART.GENERAL.damage") roll=damage.main isDirect=isDirect }}
+                    {{> damage label=(localize "DAGGERHEART.GENERAL.damage") roll=damage.main isDirect=isDirect totalTooltip=@root.damageRollTooltip }}
                 {{/if}}
 
                 {{#each damage.resources as |roll key| }}
@@ -96,7 +96,7 @@
                 {{/each}}
                 
                 {{#if roll.modifierTotal}}
-                    <div class="roll-die{{#if (gt roll.modifierTotal 0)}} has-plus{{/if}}" data-tooltip="{{@root.damageRollTooltip}}">
+                    <div class="roll-die{{#if (gt roll.modifierTotal 0)}} has-plus{{/if}}" {{#if totalTooltip}}data-tooltip="{{totalTooltip}}"{{/if}}>
                         <div class="font-20">{{roll.modifierTotal}}</div>
                     </div>
                 {{/if}}
