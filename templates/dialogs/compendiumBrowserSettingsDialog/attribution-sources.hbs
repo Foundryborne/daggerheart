@@ -1,0 +1,26 @@
+<section class='tab {{tabs.sources.cssClass}} {{tabs.sources.id}}' data-tab='{{tabs.sources.id}}' data-group='{{tabs.sources.group}}'>
+    <div class="types-container">
+        {{#each sources as |source|}}
+            <div class="type-container">
+                <span class="section-header">{{source.label}}</span>
+
+                {{#if source.entries.length}}
+                    <div class="sources-container">
+                        <div class="source-container">
+                            <div class="checks-container">
+                                {{#each source.entries as |entry|}}
+                                    <label class="check-container">
+                                        <input type="checkbox" class="{{entry.class}}" data-key="{{entry.label}}" {{checked entry.checked}} />
+                                        <span>{{entry.label}}</span>
+                                    </label>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                {{else}}
+                    <span class="empty-text">{{localize "DAGGERHEART.GENERAL.none"}}</span>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+</section>
