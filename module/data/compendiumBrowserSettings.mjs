@@ -3,6 +3,8 @@ export default class CompendiumBrowserSettings extends foundry.abstract.DataMode
         const fields = foundry.data.fields;
 
         return {
+            excludedAttributionSources: new fields.ArrayField(new fields.StringField()),
+            excludedCampaignFrames: new fields.ArrayField(new fields.StringField()),
             excludedSources: new fields.TypedObjectField(
                 new fields.SchemaField({
                     excludedDocumentTypes: new fields.ArrayField(
@@ -23,6 +25,14 @@ export default class CompendiumBrowserSettings extends foundry.abstract.DataMode
     }
 
     isEntryExcluded(item) {
+        if (this.excludedAttributionSources.includes(item.system.attribution?.source)) {
+            return true;
+        }
+
+        if (this.excludedCampaignFrames.includes(item.system.attribution?.campaignFrame)) {
+            return true;
+        }
+
         const pack = game.packs.get(item.pack);
         if (!pack) return false;
 

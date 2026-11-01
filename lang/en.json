@@ -565,6 +565,9 @@
             },
             "CompendiumBrowserSettings": {
                 "title": "Enable Compendiums",
+                "sources": "Sources",
+                "campaignFrames": "Campaign Frames",
+                "excludedAttributeSources": "Excluded Attribute Sources",
                 "enableSource": "Enable Source",
                 "disableSource": "Disable Source",
                 "worldCompendiums": "World Compendiums"
@@ -3263,7 +3266,8 @@
                 "deathMoves": "Deathmoves",
                 "sources": "Sources",
                 "packs": "Packs",
-                "conditionals": "Conditionals"
+                "conditionals": "Conditionals",
+                "compendiumPacks": "Compendium packs"
             },
             "Tiers": {
                 "singular": "Tier",

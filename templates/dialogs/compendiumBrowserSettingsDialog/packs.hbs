@@ -1,8 +1,8 @@
-<div>
+<section class='tab {{tabs.compendiumPacks.cssClass}} {{tabs.compendiumPacks.id}}' data-tab='{{tabs.compendiumPacks.id}}' data-group='{{tabs.compendiumPacks.group}}'>
     <div class="types-container">
         {{#each typePackCollections as |type|}}
             <div class="type-container">
-                <label>{{type.label}}</label>
+                <span class="section-header">{{type.label}}</span>
 
                 <div class="sources-container">
                     {{#each type.sources as |source|}}
@@ -33,4 +33,4 @@
             </div>
         {{/each}}
     </div>
-</div>
+</section>
