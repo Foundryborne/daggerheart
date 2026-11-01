@@ -96,7 +96,7 @@
                 {{/each}}
                 
                 {{#if roll.modifierTotal}}
-                    <div class="roll-die{{#if (gt roll.modifierTotal 0)}} has-plus{{/if}}">
+                    <div class="roll-die{{#if (gt roll.modifierTotal 0)}} has-plus{{/if}}" data-tooltip="{{@root.damageRollTooltip}}">
                         <div class="font-20">{{roll.modifierTotal}}</div>
                     </div>
                 {{/if}}

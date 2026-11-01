@@ -36,7 +36,7 @@ export default class DamageRoll extends DHRoll {
             await roll.roll.evaluate();
             roll.roll.options = {
                 ...roll.roll.options,
-                breakdown: this.getRollBreakdown(roll.roll, roll),
+                breakdown: this.getRollBreakdown(roll.roll, roll, config.item),
                 damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
                 fullRestore: !!roll.fullRestore,
                 itemId: roll.itemId
@@ -136,6 +136,13 @@ export default class DamageRoll extends DHRoll {
             'system.rules.attack.damage.hpDamageMultiplier',
             `system.bonuses.${type}`
         ];
+    }
+    
+    static getRollBreakdownBaseTerms(item) {
+        const dice = item?.system.attack.damage.main.value;
+        if (!dice) return null;
+
+        return [{ label: 'Weapon Modifier', value: dice.bonus }];
     }
 
     constructFormulas(config) {
