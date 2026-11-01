@@ -139,10 +139,10 @@ export default class DamageRoll extends DHRoll {
     }
     
     static getRollBreakdownBaseTerms(item) {
-        const dice = item?.system.attack.damage.main.value;
-        if (!dice) return null;
+        const damageBonus = item?.system.attack.damage.main.value.bonus;
+        if (!damageBonus) return [];
 
-        return [{ label: 'Weapon Modifier', value: dice.bonus }];
+        return [{ label: 'DAGGERHEART.GENERAL.damageModifier', value: damageBonus }];
     }
 
     constructFormulas(config) {
