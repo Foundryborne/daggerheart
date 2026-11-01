@@ -13,6 +13,34 @@
         }
     }
 
+    .section-header {
+        display: flex;
+        align-items: center;
+        font-size: var(--font-size-16);
+        font-family: @font-subtitle;
+        font-weight: bold;
+
+        &::before {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, light-dark(@dark-blue, @golden) 100%);
+            margin-right: 8px;
+        }
+        &::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, light-dark(@dark-blue, @golden) 0%, rgba(0, 0, 0, 0) 100%);
+            margin-left: 8px;
+        }
+    }
+
+    .empty-text {
+        text-align: center;
+        font-style: italic;
+    }
+
     .types-container {
         display: flex;
         flex-direction: column;

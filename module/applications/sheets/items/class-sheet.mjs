@@ -1,3 +1,4 @@
+import { fromUuids } from '../../../helpers/utils.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 
 /** @import { DHClass } from '../../../data/item/_module.mjs'; */
@@ -74,7 +75,7 @@ export default class ClassSheet extends DHBaseItemSheet {
 
     /**@inheritdoc */
     get relatedDocs() {
-        return this.document.system.features.map(x => x.item);
+        return this.document.system.features.map(x => fromUuidSync(x.item, { strict: false }));
     }
 
     /**@inheritdoc */
@@ -91,15 +92,9 @@ export default class ClassSheet extends DHBaseItemSheet {
             'inventory.choiceB'
         ];
 
-        for (let path of paths) {
+        for (const path of paths) {
             const docDatas = [].concat(foundry.utils.getProperty(this.document, `system.${path}`) ?? []);
-
-            const docs = [];
-            for (var docData of docDatas) {
-                const doc = await foundry.utils.fromUuid(docData.uuid);
-                docs.push(doc);
-            }
-
+            const docs = await fromUuids(docDatas);
             docs.filter(doc => doc).forEach(doc => (doc.apps[this.id] = this));
         }
     }
@@ -109,6 +104,10 @@ export default class ClassSheet extends DHBaseItemSheet {
         const context = await super._prepareContext(options);
         context.domains = this.document.system.domains;
         context.subclasses = await this.document.system.fetchSubclasses();
+        context.hopeFeatures = await fromUuids(this.document.system.hopeFeatures);
+        context.classFeatures = await fromUuids(this.document.system.classFeatures);
+        context.suggestedGear = await this.document.system.fetchSuggestedGear();
+        context.inventory = await this.document.system.fetchInventoryChoices();
         return context;
     }
 
@@ -150,7 +149,7 @@ export default class ClassSheet extends DHBaseItemSheet {
                     const filteredChoiceA = this.document.system.inventory.choiceA;
                     if (filteredChoiceA.length < 2)
                         return await this.document.update({
-                            'system.inventory.choiceA': [...filteredChoiceA.map(x => x.uuid), item.uuid]
+                            'system.inventory.choiceA': [...filteredChoiceA, item.uuid]
                         });
                 }
             } else if (item.type === 'loot') {
@@ -158,13 +157,13 @@ export default class ClassSheet extends DHBaseItemSheet {
                     const filteredTake = this.document.system.inventory.take.filter(x => x);
                     if (filteredTake.length < 3)
                         return await this.document.update({
-                            'system.inventory.take': [...filteredTake.map(x => x.uuid), item.uuid]
+                            'system.inventory.take': [...filteredTake, item.uuid]
                         });
                 } else if (target.classList.contains('choice-b-section')) {
                     const filteredChoiceB = this.document.system.inventory.choiceB.filter(x => x);
                     if (filteredChoiceB.length < 2)
                         return await this.document.update({
-                            'system.inventory.choiceB': [...filteredChoiceB.map(x => x.uuid), item.uuid]
+                            'system.inventory.choiceB': [...filteredChoiceB, item.uuid]
                         });
                 }
             }
@@ -185,7 +184,7 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeItemFromCollection(_event, element) {
         const { uuid, target } = element.dataset;
         const prop = foundry.utils.getProperty(this.document.system, target);
-        await this.document.update({ [`system.${target}`]: prop.filter(i => i && i.uuid !== uuid).map(x => x.uuid) });
+        await this.document.update({ [`system.${target}`]: prop.filter(i => i !== uuid) });
     }
 
     /**

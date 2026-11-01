@@ -39,7 +39,7 @@
                 "physical"
               ],
               "attackRange": "melee",
-              "trait": "instinct",
+              "trait": "highest",
               "damageFormula": "@profd8 + @profd6",
               "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp"
             },

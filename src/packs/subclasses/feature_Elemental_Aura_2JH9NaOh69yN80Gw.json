@@ -6,7 +6,15 @@
   "img": "icons/magic/control/debuff-energy-hold-green.webp",
   "system": {
     "description": "<p>Once per rest while Channeling, you can assume an aura matching your element. The aura affects targets within Close range until your Channeling ends.</p><ul><li><p><strong>Fire</strong>: When an adversary marks 1 or more Hit Points, they must also mark a Stress.</p></li><li><p><strong>Earth</strong>: Your allies gain a +1 bonus to Strength.</p></li><li><p><strong>Water</strong>: When an adversary deals damage to you, you can mark a Stress to move them anywhere within Very Close range of where they are.</p></li><li><p><strong>Air</strong>: When you or an ally takes damage from an attack beyond Melee range, reduce the damage by 1d8.</p></li></ul>",
-    "resource": null,
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "1",
+      "recovery": "shortRest",
+      "progression": "decreasing",
+      "dieFaces": "d4",
+      "icon": "fa-solid fa-leaf"
+    },
     "actions": {
       "AdOnKhi7g6zQu2iv": {
         "type": "damage",
@@ -15,7 +23,16 @@
         "description": "<p>When an adversary marks 1 or more Hit Points, they must also mark a Stress.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "resource",
+            "value": 1,
+            "itemId": "2JH9NaOh69yN80Gw",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -81,7 +98,16 @@
         "description": "<p>Your allies gain a +1 bonus to Strength.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "resource",
+            "value": 1,
+            "itemId": "2JH9NaOh69yN80Gw",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -121,7 +147,16 @@
         "description": "<p>When an adversary deals damage to you, you can mark a Stress to move them anywhere within Very Close range of where they are.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "resource",
+            "value": 1,
+            "itemId": "2JH9NaOh69yN80Gw",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -157,69 +192,54 @@
         },
         "triggers": []
       },
-      "hAsKFFewtTqd1gg9": {
-        "type": "attack",
-        "_id": "hAsKFFewtTqd1gg9",
+      "Z5jBzKtGiWh6y1KS": {
+        "type": "effect",
+        "_id": "Z5jBzKtGiWh6y1KS",
         "systemPath": "actions",
+        "baseAction": false,
         "description": "<p>When you or an ally takes damage from an attack beyond Melee range, reduce the damage by 1d8.</p>",
         "chatDisplay": true,
+        "originItem": {
+          "type": "itemCollection"
+        },
         "actionType": "action",
-        "cost": [],
+        "triggers": [],
+        "areas": [
+          {
+            "name": "Elemental Aura: Air",
+            "type": "attached",
+            "shape": "emanation",
+            "size": "veryClose",
+            "hasHole": false,
+            "effects": [
+              "I7zovLpRwEEbM1pO"
+            ]
+          }
+        ],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "resource",
+            "value": 1,
+            "itemId": "2JH9NaOh69yN80Gw",
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
           "recovery": null,
           "consumeOnSuccess": false
         },
-        "damage": {
-          "main": null,
-          "resources": {}
-        },
+        "effects": [],
         "target": {
-          "type": "self",
+          "type": "any",
           "amount": null
         },
-        "effects": [],
-        "roll": {
-          "type": "diceSet",
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d8",
-            "compare": null,
-            "treshold": null
-          },
-          "useDefault": false
-        },
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
         "name": "Air",
-        "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
-        "range": "self",
-        "areas": [
-          {
-            "name": "Elemental Aura: Air",
-            "type": "attached",
-            "shape": "emanation",
-            "size": "close",
-            "hasHole": false,
-            "effects": [
-              "vnKV5hsO4DVjURAl"
-            ]
-          }
-        ],
-        "baseAction": false,
-        "originItem": {
-          "type": "itemCollection"
-        },
-        "triggers": []
+        "range": "",
+        "img": "icons/magic/air/air-burst-spiral-blue-gray.webp"
       }
     },
     "attribution": {
@@ -367,19 +387,30 @@
       "transfer": false,
       "statuses": [],
       "system": {
-        "rangeDependence": null,
-        "changes": [],
+        "changes": [
+          {
+            "type": "damageReduction",
+            "phase": "initial",
+            "priority": 0,
+            "value": {
+              "label": "Elemental Aura: Air",
+              "value": "1d8",
+              "costs": []
+            }
+          }
+        ],
+        "conditionals": [],
         "duration": {
           "description": "",
           "type": ""
         },
+        "rangeDependence": null,
         "stacking": null,
         "targetDispositions": [
           1
-        ],
-        "conditionals": []
+        ]
       },
-      "_id": "vnKV5hsO4DVjURAl",
+      "_id": "I7zovLpRwEEbM1pO",
       "type": "base",
       "start": {
         "time": 0,
@@ -403,7 +434,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!2JH9NaOh69yN80Gw.vnKV5hsO4DVjURAl"
+      "_key": "!items.effects!2JH9NaOh69yN80Gw.I7zovLpRwEEbM1pO"
     }
   ],
   "sort": 100000,

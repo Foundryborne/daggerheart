@@ -24,35 +24,40 @@ export const ruleChoice = {
 export const templateRanges = {
     self: {
         id: 'self',
-        short: 's',
+        shortKey: 's',
+        short: 'DAGGERHEART.CONFIG.Range.self.short',
         label: 'DAGGERHEART.CONFIG.Range.self.name',
         description: 'DAGGERHEART.CONFIG.Range.self.description',
         distance: 0
     },
     melee: {
         id: 'melee',
-        short: 'm',
+        shortKey: 'm',
+        short: 'DAGGERHEART.CONFIG.Range.melee.short',
         label: 'DAGGERHEART.CONFIG.Range.melee.name',
         description: 'DAGGERHEART.CONFIG.Range.melee.description',
         distance: 1
     },
     veryClose: {
         id: 'veryClose',
-        short: 'vc',
+        shortKey: 'vc',
+        short: 'DAGGERHEART.CONFIG.Range.veryClose.short',
         label: 'DAGGERHEART.CONFIG.Range.veryClose.name',
         description: 'DAGGERHEART.CONFIG.Range.veryClose.description',
         distance: 3
     },
     close: {
         id: 'close',
-        short: 'c',
+        shortKey: 'c',
+        short: 'DAGGERHEART.CONFIG.Range.close.short',
         label: 'DAGGERHEART.CONFIG.Range.close.name',
         description: 'DAGGERHEART.CONFIG.Range.close.description',
         distance: 10
     },
     far: {
         id: 'far',
-        short: 'f',
+        shortKey: 'f',
+        short: 'DAGGERHEART.CONFIG.Range.far.short',
         label: 'DAGGERHEART.CONFIG.Range.far.name',
         description: 'DAGGERHEART.CONFIG.Range.far.description',
         distance: 20
@@ -63,7 +68,8 @@ export const range = {
     ...templateRanges,
     veryFar: {
         id: 'veryFar',
-        short: 'vf',
+        shortKey: 'vf',
+        short: 'DAGGERHEART.CONFIG.Range.veryFar.short',
         label: 'DAGGERHEART.CONFIG.Range.veryFar.name',
         description: 'DAGGERHEART.CONFIG.Range.veryFar.description',
         distance: 30

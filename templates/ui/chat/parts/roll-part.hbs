@@ -22,7 +22,7 @@
     <div class="dice-roll" data-action="expandRoll">
         <div class="roll-part-header"><div><span>{{localize "DAGGERHEART.GENERAL.formula"}}</span></div></div>
         <div class="roll-part-content dice-result">
-            <div class="dice-tooltip">
+            <div class="dice-tooltip" data-tooltip="{{@root.rollTooltip}}">
                 <div class="wrapper">
                     <div class="roll-dice">
                         {{#if roll.fateDie}}
@@ -108,3 +108,7 @@
     </div>
     {{/unless}}
 </div>
+{{!-- 
+{{#*inline "rollTooltip"}}
+    {{> "systems/daggerheart/templates/ui/tooltip/rollModifiers.hbs" modifiers}}
+{{/inline}} --}}

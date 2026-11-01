@@ -3,25 +3,25 @@ import { expireActiveEffects, refreshIsAllowed } from '../../helpers/utils.mjs';
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(actor, shortrest) {
+    constructor(actor, shortRest) {
         super({});
 
         this.actor = actor;
-        this.shortrest = shortrest;
+        this.shortRest = shortRest;
 
         this.moveData = foundry.utils.deepClone(game.system.settings.homebrew.restMoves);
         this.nrChoices = {
             shortRest: {
                 taken: 0,
                 max:
-                    (shortrest ? this.moveData.shortRest.nrChoices : 0) +
-                    actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].shortMoves
+                    (shortRest ? this.moveData.shortRest.nrChoices : 0) +
+                    actor.system.bonuses.rest[`${shortRest ? 'short' : 'long'}Rest`].shortMoves
             },
             longRest: {
                 taken: 0,
                 max:
-                    (!shortrest ? this.moveData.longRest.nrChoices : 0) +
-                    actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].longMoves
+                    (!shortRest ? this.moveData.longRest.nrChoices : 0) +
+                    actor.system.bonuses.rest[`${shortRest ? 'short' : 'long'}Rest`].longMoves
             }
         };
 
@@ -61,7 +61,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.title = game.i18n.localize(
-            `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+            `DAGGERHEART.APPLICATIONS.Downtime.${this.shortRest ? 'shortRest' : 'longRest'}.title`
         );
         context.selectedActivity = this.selectedActivity;
         context.moveData = this.moveData;
@@ -96,7 +96,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             .reduce((acc, x) => {
                 if (x.system.actions) {
                     const recoverable = x.system.actions.reduce((acc, action) => {
-                        if (refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], action.uses.recovery)) {
+                        if (refreshIsAllowed([this.shortRest ? 'shortRest' : 'longRest'], action.uses.recovery)) {
                             acc.push({
                                 title: x.name,
                                 name: action.name,
@@ -118,7 +118,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             if (
                 x.system.resource &&
                 x.system.resource.type &&
-                refreshIsAllowed([this.shortrest ? 'shortRest' : 'longRest'], x.system.resource.recovery)
+                refreshIsAllowed([this.shortRest ? 'shortRest' : 'longRest'], x.system.resource.recovery)
             ) {
                 acc.push({
                     title: game.i18n.localize(`TYPES.Item.${x.type}`),
@@ -203,13 +203,13 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             },
             speaker: cls.getSpeaker(),
             title: game.i18n.localize(
-                `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+                `DAGGERHEART.APPLICATIONS.Downtime.${this.shortRest ? 'shortRest' : 'longRest'}.title`
             ),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/downtime.hbs',
                 {
                     title: game.i18n.localize(
-                        `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+                        `DAGGERHEART.APPLICATIONS.Downtime.${this.shortRest ? 'shortRest' : 'longRest'}.title`
                     ),
                     actor: { name: this.actor.name, img: this.actor.img },
                     moves: moves,

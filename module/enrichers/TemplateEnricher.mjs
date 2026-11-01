@@ -3,7 +3,7 @@ import { parseInlineParams } from './parser.mjs';
 
 /** Supports a template such as `@Template[type:emanation|range:far]` */
 export function DhTemplateEnricher(match, _options) {
-    const params = parseInlineParams(match[1]);
+    const params = parseInlineParams(match[1], { first: 'type' });
     const { 
         type = CONFIG.DH.GENERAL.templateTypes.circle.id,
         angle = CONFIG.MeasuredTemplate.defaults.angle
@@ -13,7 +13,7 @@ export function DhTemplateEnricher(match, _options) {
     const range =
         params.range && Number.isNaN(Number(params.range))
             ? Object.values(CONFIG.DH.GENERAL.templateRanges).find(
-                x => x.id.toLowerCase() === params.range || x.short === params.range
+                x => x.id.toLowerCase() === params.range || x.shortKey === params.range
             )?.id
             : params.range;
 
@@ -21,7 +21,7 @@ export function DhTemplateEnricher(match, _options) {
 
     const label = game.i18n.localize(`DAGGERHEART.CONFIG.TemplateTypes.${type}`);
     const rangeDisplay = Number.isNaN(Number(range))
-        ? game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`)
+        ? _loc(CONFIG.DH.GENERAL.range[range]?.label)
         : range;
 
     let angleDisplay = '';

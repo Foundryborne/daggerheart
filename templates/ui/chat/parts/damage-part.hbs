@@ -11,7 +11,9 @@
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#if damage.main}}
-                {{> result roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
+                <span data-tooltip="{{@root.damageRollTooltip}}">
+                    {{> result roll=damage.main label=(localize "DAGGERHEART.GENERAL.damage") }}
+                </span>
             {{/if}}
             {{#each damage.resources as | roll key | }}
                 {{#with (lookup @root.allResourceLabels key) as | labelData |}}

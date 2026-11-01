@@ -3,9 +3,20 @@
     data-tab='{{tabs.settings.id}}'
     data-group='{{tabs.settings.group}}'
 >
-    <fieldset class="two-columns">
+    <fieldset class="standard-form">
         <legend>{{localize tabs.settings.label}}</legend>
-        <span>{{localize "DAGGERHEART.GENERAL.quantity"}}</span>
-        {{formField systemFields.quantity value=source.system.quantity}}
+        {{#if choices}}        
+            {{formGroup systemFields.category value=source.system.category choices=choices localize=true}}
+        {{/if}}
+        {{formGroup systemFields.quantity value=source.system.quantity localize=true}}
     </fieldset>
+
+    {{#if categoryData}}
+        <fieldset class="standard-form">
+            <legend>{{localize categoryDataLabel}}</legend>
+            {{#each categoryData as |entry key|}}
+                {{formGroup entry.field localize=true name=entry.name value=entry.value}}
+            {{/each}}
+        </fieldset>
+    {{/if}}
 </section>

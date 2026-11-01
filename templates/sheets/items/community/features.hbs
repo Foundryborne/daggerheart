@@ -7,8 +7,8 @@
     {{> 'daggerheart.inventory-items'
         title='DAGGERHEART.GENERAL.features'
         type='feature'
-        collection=document.system.features
-        canCreate=(or document.parent isGM)
+        collection=features
+        canCreate=document.parent
         showActions=false
     }}
 </section>

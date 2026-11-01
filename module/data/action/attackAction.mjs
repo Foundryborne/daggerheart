@@ -1,4 +1,4 @@
-import { nestedReplaceFormulaData } from '../../helpers/utils.mjs';
+import { nestedReplaceFormulaData, resolveNearestDocument } from '../../helpers/utils.mjs';
 import DHDamageAction from './damageAction.mjs';
 
 export default class DHAttackAction extends DHDamageAction {
@@ -64,15 +64,20 @@ export default class DHAttackAction extends DHDamageAction {
         const labels = [];
         const { roll, range, damage } = this;
 
-        if (roll.trait) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
-        if (range) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
+        const actor = resolveNearestDocument(this, Actor);
+        const traitLabel = CONFIG.DH.ACTOR.traits[actor?.system.resolveTrait?.(roll.trait)]?.short
+            ?? CONFIG.DH.ACTIONS.rollTypeTraits[roll.trait]?.short
+            ?? 'DAGGERHEART.GENERAL.none';
+
+        if (traitLabel) labels.push(_loc(traitLabel));
+        if (range) labels.push(_loc(CONFIG.DH.GENERAL.range[range]?.short) ?? range);
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
             const damageString = nestedReplaceFormulaData(value.getFormula(), this.actor?.getRollData() ?? {});
             const str = damageString
                 ? damageString
-                : game.i18n.format('DAGGERHEART.GENERAL.missingX', {
-                    x: game.i18n.localize('DAGGERHEART.GENERAL.damage')
+                : _loc('DAGGERHEART.GENERAL.missingX', {
+                    x: _loc('DAGGERHEART.GENERAL.damage')
                 });
 
             const icons = Array.from(type ?? [])

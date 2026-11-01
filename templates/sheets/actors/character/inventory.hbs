@@ -17,36 +17,16 @@
     {{/if}}
 
     <div class="items-section">
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.weapon'
-        type='weapon'
-        collection=@root.inventory.weapons
-        isGlassy=true
-        canCreate=@root.editable
-        }}
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.armor'
-        type='armor'
-        collection=@root.inventory.armor
-        isGlassy=true
-        canCreate=@root.editable
-        }}
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.consumable'
-        type='consumable'
-        collection=@root.inventory.consumables
-        isGlassy=true
-        canCreate=@root.editable
-        isQuantifiable=true
-        }}
-        {{> 'daggerheart.inventory-items'
-        title='TYPES.Item.loot'
-        type='loot'
-        collection=@root.inventory.loot
-        isGlassy=true
-        canCreate=@root.editable
-        showActions=@root.editable
-        isQuantifiable=true
-        }}
+        {{#each @root.inventory.sections as |section|}}
+            {{> 'daggerheart.inventory-items'
+                title=section.title
+                type=section.type
+                collection=section.collection
+                isGlassy=true
+                canCreate=section.canCreate
+                showActions=(and section.canCreate (eq section.type 'loot'))
+                isQuantifiable=section.isQuantifiable
+            }}
+        {{/each}}
     </div>
 </section>
