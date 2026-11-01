@@ -896,7 +896,8 @@ export default class DhActor extends Actor {
      */
     async takeDamage(args, { actionUuid = null, isDirect = false } = {}) {
         args = this.#parseDamageArgs(args);
-        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args) === false) return null;
+        const action = await fromUuid(actionUuid);
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, args, action) === false) return null;
 
         const updates = args.resourceUpdates;
         if (args.main) {
@@ -904,7 +905,7 @@ export default class DhActor extends Actor {
             args.main.value = this.calculateDamage(args.main.value, args.main.damageTypes);
         }
 
-        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, args) === false) return null;
+        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, args, action) === false) return null;
 
         // Convert deducted resources to a record of updates. Return if nothing to do.
         if (!updates.some(u => u.value) && !args.main) return null; 
@@ -985,7 +986,7 @@ export default class DhActor extends Actor {
 
         await this.modifyResource(updates);
 
-        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates) === false) return null;
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates, action) === false) return null;
 
         return updates;
     }
