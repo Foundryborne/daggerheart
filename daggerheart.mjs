@@ -364,12 +364,6 @@ Hooks.on('setup', () => {
         }
     };
 
-    CONFIG.DH.ACTOR.adversarySubTypes.withered = {
-        id: 'withered',
-        label: 'Withered',
-        cssClass: 'withered'
-    };
-
     // Setup enricher on window
     enricherRenderSetup(window.document);
 });
