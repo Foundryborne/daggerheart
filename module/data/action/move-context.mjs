@@ -31,7 +31,8 @@ export class MoveContext {
         this.title = data.title ?? _loc(action?.name);
         this.headerTitle = data.headerTitle;
         this.actionType = data.actionType ?? action?.actionType ?? 'action';
-        
+        this.fateType = data.fateType;
+
         this.selectedMessageMode = data.selectedMessageMode ?? game.settings.get('core', 'messageMode');
         this.tierLimit = data.tierLimit;
         this.modifications = data.modifications;

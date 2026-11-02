@@ -69,10 +69,8 @@ export const enrichedFateRoll = async ({ target, title, label, fateType }, event
         event: event ?? {},
         title: title,
         headerTitle: label,
-        roll: {
-            type: 'fate',
-            fateType
-        },
+        roll: {},
+        fateType,
         hasRoll: true,
         skips: { reaction: true }
     });

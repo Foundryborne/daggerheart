@@ -39,15 +39,15 @@ export default class FateRoll extends D20Roll {
     }
 
     get fateDie() {
-        return this.options.roll.fateType;
+        return (!this.terms.length || this.terms[0].modifiers.includes('h')) ? 'Hope' : 'Fear';
     }
 
     get withHope() {
-        return this.options.roll.fateType === 'Hope';
+        return this.fateDie === 'Hope';
     }
 
     get withFear() {
-        return this.options.roll.fateType === 'Fear';
+        return this.fateDie === 'Fear';
     }
 
     get totalLabel() {
@@ -72,7 +72,7 @@ export default class FateRoll extends D20Roll {
             return;
         }
         const { FearDie, HopeDie } = game.system.api.dice.diceTypes;
-        this.terms[0] = this.options.roll.fateType === 'Hope' ? new HopeDie({ faces: 12 }) : new FearDie({ faces: 12 });
+        this.terms[0] = this.options.fateType === 'Hope' ? new HopeDie({ faces: 12 }) : new FearDie({ faces: 12 });
     }
 
     /** @inheritdoc */
