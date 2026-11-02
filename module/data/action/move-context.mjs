@@ -23,6 +23,15 @@ export class MoveContext {
         this.action = action ??= data.action;
         this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor;
         this.item = item ??= data.item ?? data.action?.item;
+        
+        // Redirect to the partner if companion. Ideally we shouldn't do this and keep it on the partner,
+        // but the system as a whole expects the partner to be the main roll.
+        // todo: make it work somehow in the dice
+        const partner = this.actor?.system?.partner;
+        if (partner) {
+            this.companion = this.actor;
+            this.actor = partner;
+        }
 
         this.message = data.message;
         this.event ??= data.event;
@@ -39,6 +48,8 @@ export class MoveContext {
         this.costs = data.costs ?? [];
         this.targets = data.targets ?? [];
         this.countdowns = data.countdowns;
+        /** The list of selected experiences */
+        this.experiences = data.experiences ?? [];
         this.skips = foundry.utils.mergeObject({
             resources: false,
             triggers: false,
@@ -114,7 +125,7 @@ export class MoveContext {
 
     getRollData() {
         const data = this.action?.getRollData() ?? this.item?.getRollData() ?? this.actor?.getRollData() ?? {};
-        data.experiences ??= {};
+        data.experiences = this.companion?.system?.experiences ?? this.actor?.system.experiences ?? {};
         data.traits ??= {};
         data.rules ??= {};
         data.action ??= {
