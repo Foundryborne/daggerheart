@@ -107,40 +107,41 @@ jobs:
           echo "Failed to notify Foundry VTT registry with status code $HTTP_STATUS"
           exit 1
         fi
+        
+    # Post the release notes to Discord
+    - name: Post Release Notes to Discord
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        RELEASE_NAME: ${{ github.event.release.name || github.ref_name }}
+        RELEASE_BODY: ${{ github.event.release.body }}
+        RELEASE_URL: ${{ github.event.release.html_url }}
+      run: |
+        PAYLOAD=$(jq -n \
+          --arg title "$RELEASE_NAME" \
+          --arg url "$RELEASE_URL" \
+          --arg body "$RELEASE_BODY" \
+          '{
+            embeds: [{
+              title: ("Daggerheart " + $title),
+              url: $url,
+              description: (
+                if ($body | length) > 3800
+                then ($body[:3800] + "\n\n… [Read the full release notes](" + $url + ")")
+                else $body
+                end
+              )
+            }]
+          }')
 
-        - name: Post Release Notes to Discord
-          env:
-            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-            RELEASE_NAME: ${{ github.event.release.name || github.ref_name }}
-            RELEASE_BODY: ${{ github.event.release.body }}
-            RELEASE_URL: ${{ github.event.release.html_url }}
-          run: |
-            PAYLOAD=$(jq -n \
-              --arg title "$RELEASE_NAME" \
-              --arg url "$RELEASE_URL" \
-              --arg body "$RELEASE_BODY" \
-              '{
-                embeds: [{
-                  title: ("Daggerheart " + $title),
-                  url: $url,
-                  description: (
-                    if ($body | length) > 3800
-                    then ($body[:3800] + "\n\n… [Read the full release notes](" + $url + ")")
-                    else $body
-                    end
-                  )
-                }]
-              }')
+        HTTP_STATUS=$(curl -s -o response.txt -w "%{http_code}" -X POST "$DISCORD_WEBHOOK_URL" \
+          -H "Content-Type: application/json" \
+          -d "$PAYLOAD")
 
-            HTTP_STATUS=$(curl -s -o response.txt -w "%{http_code}" -X POST "$DISCORD_WEBHOOK_URL" \
-              -H "Content-Type: application/json" \
-              -d "$PAYLOAD")
+        echo "Response: $(cat response.txt)"
 
-            echo "Response: $(cat response.txt)"
-
-            if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
-              echo "Successfully posted release notes to Discord."
-            else
-              echo "Failed to post release notes to Discord with status code $HTTP_STATUS"
-              exit 1
-            fi
+        if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+          echo "Successfully posted release notes to Discord."
+        else
+          echo "Failed to post release notes to Discord with status code $HTTP_STATUS"
+          exit 1
+        fi
