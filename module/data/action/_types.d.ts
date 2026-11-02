@@ -25,6 +25,8 @@ interface MoveContextParams {
     countdowns: unknown;
     hasRoll: boolean;
     rollType?: keyof typeof CONFIG.Dice.daggerheart;
+    /** The list of selected experiences */
+    experiences: unknown[];
     roll: {
         lite?: boolean;
         type?: string;
