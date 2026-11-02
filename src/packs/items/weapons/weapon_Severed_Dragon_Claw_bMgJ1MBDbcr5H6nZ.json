@@ -3,7 +3,7 @@
   "name": "Severed Dragon Claw",
   "type": "weapon",
   "_id": "bMgJ1MBDbcr5H6nZ",
-  "img": "icons/creatures/claws/claw-scaled-red.webp",
+  "img": "icons/weapons/swords/shortsword-hooked-blue.webp",
   "system": {
     "attribution": {
       "source": "Daggerheart SRD",
@@ -15,17 +15,7 @@
     "resource": null,
     "quantity": 1,
     "actions": {
-      "bWNQYdjog9uNuNfL": {
-        "type": "damage",
-        "chatDisplay": true,
-        "name": "Destruction",
-        "description": "On a successful attack, all adversaries within Very Close range must mark a Stress.",
-        "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
-        "range": "veryClose",
-        "target": {
-          "type": "hostile",
-          "amount": null
-        },
+      "BoXPTrrbKLZ2ZnHf": {
         "damage": {
           "main": null,
           "resources": {
@@ -42,14 +32,24 @@
                 "bonus": null
               },
               "base": false,
+              "itemId": null,
               "resultBased": false,
               "fullRestore": false,
-              "valueAlt": null,
-              "itemId": null
+              "valueAlt": null
             }
           }
         },
-        "_id": "bWNQYdjog9uNuNfL",
+        "type": "damage",
+        "chatDisplay": true,
+        "name": "Destruction",
+        "description": "On a successful attack, all adversaries within Very Close range must mark a Stress.",
+        "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
+        "range": "veryClose",
+        "target": {
+          "type": "hostile",
+          "amount": null
+        },
+        "_id": "BoXPTrrbKLZ2ZnHf",
         "effects": [],
         "systemPath": "actions",
         "baseAction": false,
@@ -167,19 +167,18 @@
       "destructive": {
         "value": "destructive",
         "effectIds": [
-          "vQJCrV4wxxhGUcBX"
+          "BKjcjKaFtV4IGfe5"
         ],
         "actionIds": [
-          "bWNQYdjog9uNuNfL"
-        ],
-        "config": {}
+          "BoXPTrrbKLZ2ZnHf"
+        ]
       }
     }
   },
   "effects": [
     {
       "name": "Destructive",
-      "description": "DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility",
+      "description": "-1 to Agility",
       "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
       "system": {
         "changes": [
@@ -190,15 +189,15 @@
             "phase": "initial"
           }
         ],
+        "conditionals": [],
         "duration": {
           "description": ""
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": [],
-        "conditionals": []
+        "targetDispositions": []
       },
-      "_id": "vQJCrV4wxxhGUcBX",
+      "_id": "BKjcjKaFtV4IGfe5",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -218,7 +217,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!bMgJ1MBDbcr5H6nZ.vQJCrV4wxxhGUcBX"
+      "_key": "!items.effects!bMgJ1MBDbcr5H6nZ.BKjcjKaFtV4IGfe5"
     }
   ],
   "sort": 0,
