@@ -67,6 +67,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         const { damageFormula, resourceFormulas } = this.roll.constructFormulas(this.config); 
         context.damageFormula = damageFormula;
         context.resourceFormulas = resourceFormulas;
+        const damageTypes = damageFormula?.damageTypes ?? new Set();
 
         context.hasHealing = this.config.hasHealing;
         context.directDamage = this.config.directDamage;
@@ -88,7 +89,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             const previousDamageType = 
                 game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.previousDamageTypeChoice);
             context.selectedDamageTypes = 
-                previousDamageType ? new Set([previousDamageType]) : damageFormula.damageTypes;  
+                previousDamageType ? new Set([previousDamageType]) : damageTypes;  
 
             context.canChooseDamageType = true;
             context.damageTypesChoices = Object.entries(CONFIG.DH.GENERAL.damageTypes).reduce((acc, [key, data]) => {
@@ -100,7 +101,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
                 return acc;
             }, {});
         } else {
-            context.selectedDamageTypes = damageFormula.damageTypes;
+            context.selectedDamageTypes = damageTypes;
         }
 
         return context;
