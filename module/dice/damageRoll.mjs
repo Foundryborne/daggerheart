@@ -36,7 +36,7 @@ export default class DamageRoll extends DHRoll {
             await roll.roll.evaluate();
             roll.roll.options = {
                 ...roll.roll.options,
-                breakdown: this.getRollBreakdown(roll.roll, roll),
+                breakdown: this.getRollBreakdown(roll.roll, roll, config.action),
                 damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
                 fullRestore: !!roll.fullRestore,
                 itemId: roll.itemId
@@ -136,6 +136,13 @@ export default class DamageRoll extends DHRoll {
             'system.rules.attack.damage.hpDamageMultiplier',
             `system.bonuses.${type}`
         ];
+    }
+    
+    static getRollBreakdownBaseTerms(action) {
+        const damageBonus = action?.damage?.main.value.bonus;
+        if (!damageBonus) return [];
+
+        return [{ label: _loc('DAGGERHEART.GENERAL.damageModifier'), value: damageBonus }];
     }
 
     constructFormulas(config) {

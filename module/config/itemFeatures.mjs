@@ -1450,8 +1450,8 @@ export const createWeaponFeatures = () => ({
         ],
         effects: [
             {
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility',
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility.description',
                 img: 'icons/skills/melee/strike-flail-spiked-pink.webp',
                 system: {
                     changes: [

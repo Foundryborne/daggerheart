@@ -6,15 +6,10 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export default class D20RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(roll, config = {}, options = {}) {
         super(options);
-
         this.roll = roll;
         this.config = config;
-        this.config.experiences = [];
         this.originalActionType = config.actionType;
         this.selectedEffects = this.config.bonusEffects;
-
-        this.item = config.item;
-        this.action = config.action;
     }
 
     static DEFAULT_OPTIONS = {
@@ -46,7 +41,15 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     get actor() {
-        return this.config?.data?.parent;
+        return this.config.actor ?? null;
+    }
+
+    get item() {
+        return this.config.item ?? null;
+    }
+
+    get action() {
+        return this.config.action ?? null;
     }
 
     /** @override */
@@ -76,8 +79,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         context.hasSelectedEffects = Boolean(this.selectedEffects && Object.keys(this.selectedEffects).length);
         context.selectedEffects = this.selectedEffects;
 
-        this.config.costs ??= [];
-        if (this.config.costs?.length) {
+        if (this.config.costs.length) {
             const updatedCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(
                 this.action ?? { actor: this.actor },
                 this.config.costs
@@ -105,11 +107,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.rollType = this.roll?.constructor.name;
             context.rallyDie = this.roll.rallyChoices;
 
-            const actorExperiences = this.config.data?.system?.experiences || {};
-            const companionExperiences = this.config.roll.companionRoll
-                ? (this.config.data?.companion?.system.experiences ?? {})
-                : null;
-            const experiences = companionExperiences ?? actorExperiences;
+            const experiences = this.config.data?.experiences ?? {};
             context.experiences = Object.keys(experiences).map(id => ({
                 id,
                 ...experiences[id]
@@ -195,9 +193,9 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                     ...this.config.costs,
                     {
                         extKey: button.dataset.key,
-                        key: this.config?.data?.parent?.isNPC ? 'fear' : 'hope',
+                        key: this.config?.actor?.isNPC ? 'fear' : 'hope',
                         value: 1,
-                        name: this.config.data?.system.experiences?.[button.dataset.key]?.name
+                        name: this.config.data?.experiences?.[button.dataset.key]?.name
                     }
                 ];
         this.render();
