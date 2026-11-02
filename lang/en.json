@@ -2236,17 +2236,17 @@
                 },
                 "deflecting": {
                     "name": "Deflecting",
-                    "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack.",
+                    "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your available Armor Slots against the attack.",
                     "actions": {
                         "deflect": {
                             "name": "Deflect",
-                            "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack."
+                            "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your available Armor Slots against the attack."
                         }
                     },
                     "effects": {
                         "deflecting": {
                             "name": "Deflecting",
-                            "description": "Gain a bonus to your Evasion equal to your Armor Score against the attack"
+                            "description": "Gain a bonus to your Evasion equal to your available Armor Slots against the attack"
                         }
                     }
                 },
@@ -3333,8 +3333,10 @@
             "criticalShort": "Critical",
             "currentLevel": "Current Level",
             "custom": "Custom",
+            "customModifier": "Custom Modifier",
             "d20Roll": "D20 Roll",
             "damage": "Damage",
+            "damageModifier": "Base Modifier",
             "damageRoll": "Damage Roll",
             "damageType": "Damage Type",
             "description": "Description",

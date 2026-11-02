@@ -218,6 +218,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
 
     syncSelectedTokens = foundry.utils.debounce(async () => {
+        if (!game.user.isGM) return;
+        
         if (this.targeting.usingSelect && this.parent.id) this.updateTargetHTML();
     }, 50);
 
@@ -228,6 +230,10 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
      * @param {"targets" | "select" | null} [options.tab] If set, switches to this tab before updates
      */
     async updateTargetHTML({ tab = null } = {}) {
+        const chatMessageHTML = ui.chat.element.querySelector(`.chat-message[data-message-id="${this.parent.id}"]`);
+        const element = chatMessageHTML.querySelector('.chat-roll .target-section .roll-part-content .wrapper');
+        if (!element) return;
+
         if (tab) this.targeting.usingSelect = tab === 'select';
         const targetTokensHTML = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/ui/chat/parts/target-tokens-part.hbs',
@@ -242,8 +248,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 isGM: game.user.isGM
             }
         );
-        const chatMessageHTML = ui.chat.element.querySelector(`.chat-message[data-message-id="${this.parent.id}"]`);
-        const element = chatMessageHTML.querySelector('.chat-roll .target-section .roll-part-content .wrapper');
+
         element.outerHTML = targetTokensHTML;
         this.parent.addTargetSectionListeners(chatMessageHTML);
     }

@@ -101,12 +101,17 @@ export default class DHRoll extends BaseRoll {
         config.roll = foundry.utils.deepClone({
             ...config.roll,
             ...roll.options.roll,
-            breakdown: this.getRollBreakdown(roll, roll.options.roll)
+            breakdown: this.getRollBreakdown(roll, roll.options.roll, config.action)
         });
         config.evaluated = roll;
     }
 
-    static getRollBreakdown(roll, optionsData) {
+    static getRollBreakdownBaseTerms() {
+        return [];
+    }
+
+    static getRollBreakdown(roll, optionsData, action) {
+        const baseTerms = this.getRollBreakdownBaseTerms(action);
         const modifiers = foundry.utils.deepClone(optionsData.modifiers) ?? [];
 
         const rollBreakdown = [];
@@ -116,11 +121,18 @@ export default class DHRoll extends BaseRoll {
             const termTotal = roll.terms[i].total;
             if (typeof termTotal === 'number') {
                 const value = (roll.terms[i - 1]?.operator === '-' ? -1 : 1) * termTotal;
-                const baseIndex = modifiers.findIndex(x => x.value === value);
-                const matchedModifier = modifiers[baseIndex];
-                const label = matchedModifier?.label ?? 'Custom Modifier';
+                let label = _loc('DAGGERHEART.GENERAL.customModifier');
 
-                if (baseIndex !== -1) modifiers.splice(baseIndex, 1);
+                const baseTermsIndex = baseTerms.findIndex(x => x.value === value);
+                const modifierIndex = modifiers.findIndex(x => x.value === value);
+                if (baseTermsIndex !== -1) {
+                    label = baseTerms[baseTermsIndex].label;
+                    baseTerms.splice(baseTermsIndex, 1);
+                } else if (modifierIndex !== -1){
+                    label = modifiers[modifierIndex].label;
+                    modifiers.splice(modifierIndex, 1);
+                }
+
                 rollBreakdown.push({ label, value });
             }
         }
@@ -421,8 +433,9 @@ export default class DHRoll extends BaseRoll {
                 if (!(effect instanceof ActiveEffect)) return acc;
 
                 const action = this.options.action;
-                const rollData = action?.getRollData();
-                const conditionalsPassed = action && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
+                const rollData = this.options.getRollData?.() ?? action?.getRollData();
+                const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
+
                 // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
                 if (
                     conditionalsPassed && 

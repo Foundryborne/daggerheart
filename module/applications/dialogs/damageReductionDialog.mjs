@@ -221,6 +221,10 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         context.currentDamageMarksNr = currentDamage;
 
         context.reductions = this.reductions;
+        context.hasAdditionalRules = 
+            context.availableStressReductions || 
+            context.reduceSeverity || 
+            context.thresholdImmunities;
 
         return context;
     }

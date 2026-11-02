@@ -69,7 +69,7 @@ export default class CompanionSheet extends DHBaseActorSheet {
     static async #actionRoll(event) {
         const partner = this.actor.system.partner;
         if (!partner) return ui.notifications.warn('DAGGERHEART.UI.Notifications.partnerRequired', { localize: true });
-        const config = {
+        const result = await this.actor.diceRoll({
             event,
             title: `${game.i18n.localize('DAGGERHEART.GENERAL.Roll.action')}: ${this.actor.name}`,
             headerTitle: `Companion ${game.i18n.localize('DAGGERHEART.GENERAL.Roll.action')}`,
@@ -78,9 +78,7 @@ export default class CompanionSheet extends DHBaseActorSheet {
                 companionRoll: true
             },
             hasRoll: true
-        };
-
-        const result = await partner.diceRoll(config);
+        });
         this.consumeResource(result?.costs);
         result?.resourceUpdates.updateResources();
     }

@@ -1409,7 +1409,7 @@ export const createWeaponFeatures = () => ({
                                 {
                                     key: 'system.evasion',
                                     type: 'add',
-                                    value: '@system.armorScore.max',
+                                    value: '@system.armorScore.max - @system.armorScore.value',
                                     priority: 21
                                 }
                             ]
@@ -1450,8 +1450,8 @@ export const createWeaponFeatures = () => ({
         ],
         effects: [
             {
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility',
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility.description',
                 img: 'icons/skills/melee/strike-flail-spiked-pink.webp',
                 system: {
                     changes: [

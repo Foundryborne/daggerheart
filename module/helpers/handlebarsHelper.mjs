@@ -31,7 +31,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static includes(list, item) {
-        return Boolean(list?.includes(item));
+        return Boolean(list?.includes?.(item));
     }
 
     static times(nr, block) {
