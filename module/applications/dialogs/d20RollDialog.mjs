@@ -193,7 +193,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                     ...this.config.costs,
                     {
                         extKey: button.dataset.key,
-                        key: this.config?.data?.parent?.isNPC ? 'fear' : 'hope',
+                        key: this.config?.actor?.isNPC ? 'fear' : 'hope',
                         value: 1,
                         name: this.config.data?.experiences?.[button.dataset.key]?.name
                     }
