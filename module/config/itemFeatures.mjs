@@ -1409,7 +1409,7 @@ export const createWeaponFeatures = () => ({
                                 {
                                     key: 'system.evasion',
                                     type: 'add',
-                                    value: '@system.armorScore.max',
+                                    value: '@system.armorScore.max - @system.armorScore.value',
                                     priority: 21
                                 }
                             ]
