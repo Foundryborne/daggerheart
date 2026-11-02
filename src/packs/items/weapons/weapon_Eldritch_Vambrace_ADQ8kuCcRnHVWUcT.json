@@ -16,11 +16,11 @@
     "resource": null,
     "quantity": 1,
     "actions": {
-      "B3PW3yWLtXAN2bZq": {
+      "eXTjCN7FiPPIG68X": {
         "type": "effect",
         "chatDisplay": true,
         "name": "Deflect",
-        "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack.",
+        "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your available Armor Slots against the attack.",
         "img": "icons/skills/melee/hand-grip-sword-strike-orange.webp",
         "target": {
           "type": "self",
@@ -38,11 +38,11 @@
         ],
         "effects": [
           {
-            "_id": "lWlxUPj4Ma4TPkqb",
+            "_id": "ZTLJvEHo5LQa1Pla",
             "onSave": false
           }
         ],
-        "_id": "B3PW3yWLtXAN2bZq",
+        "_id": "eXTjCN7FiPPIG68X",
         "systemPath": "actions",
         "baseAction": false,
         "originItem": {
@@ -158,40 +158,39 @@
       "deflecting": {
         "value": "deflecting",
         "effectIds": [
-          "lWlxUPj4Ma4TPkqb"
+          "ZTLJvEHo5LQa1Pla"
         ],
         "actionIds": [
-          "B3PW3yWLtXAN2bZq"
-        ],
-        "config": {}
+          "eXTjCN7FiPPIG68X"
+        ]
       }
     }
   },
   "effects": [
     {
       "name": "Deflecting",
-      "description": "Gain a bonus to your Evasion equal to your Armor Score against the attack",
+      "description": "Gain a bonus to your Evasion equal to your available Armor Slots against the attack",
       "img": "icons/skills/melee/hand-grip-sword-strike-orange.webp",
       "system": {
         "changes": [
           {
             "key": "system.evasion",
             "type": "add",
-            "value": "@system.armorScore.max",
+            "value": "@system.armorScore.max - @system.armorScore.value",
             "priority": 21,
             "phase": "initial"
           }
         ],
+        "conditionals": [],
         "duration": {
           "description": ""
         },
         "rangeDependence": null,
         "stacking": null,
-        "targetDispositions": [],
-        "conditionals": []
+        "targetDispositions": []
       },
       "transfer": false,
-      "_id": "lWlxUPj4Ma4TPkqb",
+      "_id": "ZTLJvEHo5LQa1Pla",
       "type": "base",
       "disabled": false,
       "start": null,
@@ -210,7 +209,7 @@
       "_stats": {
         "compendiumSource": null
       },
-      "_key": "!items.effects!ADQ8kuCcRnHVWUcT.lWlxUPj4Ma4TPkqb"
+      "_key": "!items.effects!ADQ8kuCcRnHVWUcT.ZTLJvEHo5LQa1Pla"
     }
   ],
   "sort": 0,

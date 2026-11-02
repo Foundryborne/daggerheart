@@ -139,7 +139,7 @@ export default class DamageRoll extends DHRoll {
     }
     
     static getRollBreakdownBaseTerms(action) {
-        const damageBonus = action?.damage?.main.value.bonus;
+        const damageBonus = action?.damage?.main?.value.bonus;
         if (!damageBonus) return [];
 
         return [{ label: _loc('DAGGERHEART.GENERAL.damageModifier'), value: damageBonus }];
