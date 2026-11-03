@@ -132,6 +132,10 @@ export class MoveContext {
             actionType: this.actionType, 
             roll: this.roll
         };
+        data.scale = this.costs?.length // Right now only return the first scalable cost.
+            ? (this.costs.find(c => c.scalable)?.total ?? 1)
+            : 1;
+
         return data;
     }
 
