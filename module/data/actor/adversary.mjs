@@ -5,6 +5,7 @@ import DhCreature from './creature.mjs';
 import { bonusField } from '../fields/actorField.mjs';
 import { getTierAdjustedAdversary } from './tierAdjustment.mjs';
 import { signedNumber } from '../../helpers/utils.mjs';
+import { updateSubTypes } from './helpers.mjs';
 
 export default class DhpAdversary extends DhCreature {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
@@ -36,7 +37,11 @@ export default class DhpAdversary extends DhCreature {
                 choices: CONFIG.DH.ACTOR.allAdversaryTypes,
                 initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
-            subTypes: new fields.SetField(new fields.StringField()),
+            subTypes: new fields.TypedObjectField(new fields.SchemaField({
+                value: new fields.StringField({ required: true, nullable: false }),
+                featureIds: new fields.ArrayField(new fields.StringField({ required: true })),
+                effectIds: new fields.ArrayField(new fields.StringField({ required: true }))
+            })),
             typeData: new fields.TypedSchemaField(CONFIG.DH.ACTOR.adversaryTypeModels, 
                 { nullable: true, initial: null }
             ),
@@ -236,6 +241,10 @@ export default class DhpAdversary extends DhCreature {
             const newType = CONFIG.DH.ACTOR.adversaryTypeModels[changes.system.type] ?? null;
             const newTypeData = newType ? (new newType()).toObject() : null;
             changes.system.typeData = newTypeData;
+        }
+
+        if (changes.system?.subTypes) {
+            await updateSubTypes(this.parent, changes);
         }
     }
 

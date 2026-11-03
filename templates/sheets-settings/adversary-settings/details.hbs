@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label>{{localize "DAGGERHEART.ACTORS.Adversary.FIELDS.subTypes.label"}}</label>
                 <div class="form-fields">
-                    <input class="sub-types-input" name="system.subTypes" value="{{document._source.system.subTypes}}" />
+                    <input class="sub-types-input" name="system.subTypes" value="{{@root.selectedSubTypes}}" />
                 </div>
             </div>
         {{/if}}

@@ -122,8 +122,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
                 const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
                 context.adversaryType = _loc(adversaryTypes[this.document.system.type].label);
-                context.adversarySubTypes = this.document.system.subTypes.reduce((acc, curr) => {
-                    const data = CONFIG.DH.ACTOR.adversarySubTypes[curr];
+                context.adversarySubTypes = Object.keys(this.document.system.subTypes).reduce((acc, curr) => {
+                    const data = CONFIG.DH.ACTOR.adversarySubTypes[curr.value];
                     if (data) {
                         acc.push({
                             label: _loc(data.label),
