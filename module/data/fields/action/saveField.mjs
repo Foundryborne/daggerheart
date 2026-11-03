@@ -89,13 +89,16 @@ export default class SaveField extends fields.SchemaField {
                                         message
                                     });
                             const result = await rollSave;
-                            await SaveField.updateSaveMessage.call(
-                                this, 
-                                result.evaluated.total, 
-                                result.evaluated.isCritical, 
-                                message, 
-                                target.id
-                            );
+                            if (result?.evaluated) {
+                                await SaveField.updateSaveMessage.call(
+                                    this, 
+                                    result.evaluated.total, 
+                                    result.evaluated.isCritical, 
+                                    message, 
+                                    target.id
+                                );
+                            } 
+                            
                             subResolve();
                         } else subResolve();
                     })
