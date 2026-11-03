@@ -27,9 +27,11 @@ export default class DhRegionLayer extends foundry.canvas.layers.RegionLayer {
                 line: { ...tools.line, order: 9 },
                 emanation: { ...tools.emanation, order: 10 },
                 polygon: { ...tools.polygon, order: 11 },
-                hole: { ...tools.hole, order: 12 },
-                snap: { ...tools.snap, order: 13 },
-                clear: { ...tools.clear, order: 14 }
+                grid: { ...tools.grid, order: 12 },
+                hole: { ...tools.hole, order: 13 },
+                snap: { ...tools.snap, order: 14 },
+                togglePalette: { ...tools.togglePalette, order: 15 },
+                clear: { ...tools.clear, order: 16 }
             }
         };
     }
