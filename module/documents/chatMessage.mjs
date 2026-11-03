@@ -268,12 +268,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         if (this.system.source.item && this.system.source.action) {
             const action = this.system.action;
             if (!action || !action?.hasSave) return;
-            game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result =>
-                emitGMUpdate(
+            game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result => {
+                if (!result) return;
+                
+                return emitGMUpdate(
                     GMUpdateEvent.UpdateSaveMessage,
                     game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(
                         action,
-                        result,
+                        result.evaluated.total,
+                        result.evaluated.isCritical,
                         this,
                         token.id
                     ),
@@ -281,10 +284,11 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                         action: action.uuid,
                         message: this._id,
                         token: token.id,
-                        result
+                        saveTotal: result.evaluated.total,
+                        isCritical: result.evaluated.isCritical
                     }
                 )
-            );
+            });
         }
     }
 
