@@ -66,7 +66,12 @@ export async function updateSubTypes(document, changes) {
             featureCreateData.push({
                 ...featureData,
                 _id: featureId,
-                type: 'feature'
+                type: 'feature',
+                name: _loc(featureData.name),
+                system: {
+                    ...(featureData.system ?? {}),
+                    description: _loc(featureData.system?.description)
+                }
             });
         }
     }

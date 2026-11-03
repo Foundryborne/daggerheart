@@ -48,7 +48,7 @@ export const renderFateButton = async event => {
     const button = event.target,
         target = getCommandTarget({ allowNull: true });
 
-    const fateTypeData = getFateTypeData(button.dataset?.fatetype);
+    const fateTypeData = getFateTypeData(button.dataset?.fateType);
 
     if (!fateTypeData) ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.fateTypeParsing'));
     const { value: fateType } = fateTypeData;
