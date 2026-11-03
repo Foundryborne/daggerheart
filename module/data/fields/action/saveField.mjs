@@ -89,7 +89,13 @@ export default class SaveField extends fields.SchemaField {
                                         message
                                     });
                             const result = await rollSave;
-                            await SaveField.updateSaveMessage.call(this, result, message, target.id);
+                            await SaveField.updateSaveMessage.call(
+                                this, 
+                                result.evaluated.total, 
+                                result.evaluated.isCritical, 
+                                message, 
+                                target.id
+                            );
                             subResolve();
                         } else subResolve();
                     })
@@ -132,16 +138,17 @@ export default class SaveField extends fields.SchemaField {
 
     /**
      * Update a Roll ChatMessage for a token according to his Reaction Roll result.
-     * @param {MoveContext} result        Result from the Reaction Roll
+     * @param {number} saveTotal     Total from the Reaction Roll
+     * @param {boolean} isCritical   If the save roll was a critical          
      * @param {object} message       ChatMessage to update
      * @param {string} targetId      Token ID
      */
-    static async updateSaveMessage(result, message, targetId) {
-        if (!result) return;
+    static async updateSaveMessage(saveTotal, isCritical, message, targetId) {
+        if (saveTotal === null || saveTotal === undefined) return;
 
         const chatMessage = ui.chat.collection.get(message._id);
         await chatMessage.update({
-            [`system.targetSaves.${targetId}`]: { value: result.evaluated.total, isCritical: result.evaluated.isCritical }
+            [`system.targetSaves.${targetId}`]: { value: saveTotal, isCritical: Boolean(isCritical) }
         });
     }
 

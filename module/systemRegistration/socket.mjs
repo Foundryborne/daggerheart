@@ -101,7 +101,8 @@ const EVENT_HANDLERS = {
                 const message = game.messages.get(data.data.message);
                 if (!message) return;
                 game.system.api.fields.ActionFields.SaveField.updateSaveMessage(
-                    data.data.result,
+                    data.data.saveTotal,
+                    data.data.isCritical,
                     message,
                     data.data.token
                 );
