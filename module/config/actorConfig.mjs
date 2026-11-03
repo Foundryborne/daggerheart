@@ -163,7 +163,20 @@ export const adversaryTypes = {
     }
 };
 
-/* Currently only for modueles to assign to. Format: { [id]: id: string, label: string, cssClass?: string, attribution?: { source: string, campaignFrame: string } } */
+/* Currently only for modules to assign to. Format: 
+    { 
+        [id]: {
+            id: string, 
+            label: string, 
+            cssClass?: string, 
+            attribution?: { 
+                source: string, 
+                campaignFrame: string 
+            },
+            effects: [{ ...effectData }],
+            features: [{ ...featureData }] 
+        } 
+*/
 export const adversarySubTypes = {};
 
 export const adversaryTypeModels = {
