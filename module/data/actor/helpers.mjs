@@ -30,7 +30,11 @@ export async function updateSubTypes(document, changes) {
             foundry.utils.deepClone(CONFIG.DH.ACTOR.adversarySubTypes[subType.value]) : null;
         for (const feature of data?.features ?? []) {
             const { actions, ...featureData } = feature;
-            featureData.effects ??= [];
+            featureData.effects = featureData.effects ? featureData.effects.map(effect => ({
+                ...effect,
+                name: _loc(effect.name),
+                description: effect.description ? _loc(effect.description) : undefined 
+            })) : [];
             featureData.system.actions ??= {}; 
 
             for (const action of actions) {
