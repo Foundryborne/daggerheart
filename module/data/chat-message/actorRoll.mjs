@@ -145,6 +145,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             roll: this.roll?.options.roll ?? {
                 type: action?.actionType ?? 'action'
             },
+            costs: this.costs,
             evaluated: this.roll,
             damage: this.damage,
             message: this.parent
