@@ -69,30 +69,28 @@
                 </ul>
             </section>
         {{/if}}
-        {{#unless (empty source.system.experiences)}}
-            <section class="experience-section">
-                <div class="title">
-                    <side-line-div class="invert"></side-line-div>
-                    <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
-                    <side-line-div></side-line-div>
-                </div>
-                <div class="experience-list">
-                    {{#each source.system.experiences as |experience id|}}
-                        <div class="experience-row" data-tooltip-text="{{experience.description}}">
-                            <span class="experience-value">
-                                +{{experience.value}}
-                            </span>
-                            <span class="experience-name">{{experience.name}}</span>
-                            <div class="controls">
-                                <a data-action="sendExpToChat" data-id="{{id}}">
-                                    <i class="fa-regular fa-message"></i>
-                                </a>
-                            </div>
+        <section class="experience-section">
+            <div class="title">
+                <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
+                <side-line-div></side-line-div>
+            </div>
+            <div class="experience-list">
+                {{#each source.system.experiences as |experience id|}}
+                    <div class="experience-row" data-tooltip-text="{{experience.description}}">
+                        <span class="experience-value">
+                            +{{experience.value}}
+                        </span>
+                        <span class="experience-name">{{experience.name}}</span>
+                        <div class="controls">
+                            <a data-action="sendExpToChat" data-id="{{id}}">
+                                <i class="fa-regular fa-message"></i>
+                            </a>
                         </div>
-                    {{/each}}
-                </div>
-            </section>
-        {{/unless}}
+                    </div>
+                {{/each}}
+            </div>
+        </section>
     </div>
     <div class="reaction-section">
         <button type="button" data-action="reactionRoll">
