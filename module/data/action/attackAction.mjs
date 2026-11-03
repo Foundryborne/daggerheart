@@ -69,7 +69,7 @@ export default class DHAttackAction extends DHDamageAction {
             ?? CONFIG.DH.ACTIONS.rollTypeTraits[roll.trait]?.short
             ?? 'DAGGERHEART.GENERAL.none';
 
-        if (traitLabel) labels.push(_loc(traitLabel));
+        if (roll.trait && traitLabel) labels.push(_loc(traitLabel));
         if (range) labels.push(_loc(CONFIG.DH.GENERAL.range[range]?.short) ?? range);
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {
