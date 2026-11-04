@@ -91,6 +91,29 @@
                 {{/each}}
             </div>
         </section>
+        {{#if collosusData.actors}}
+            <section class="collosus-section">
+                <div class="title">
+                    <side-line-div class="invert"></side-line-div>
+                    <h3>Collosus</h3>
+                    <side-line-div></side-line-div>
+                </div>
+                <div class="part-list">
+                    {{#each collosusData.actors as |data|}}
+                        {{log data}}
+                        <div class="actor {{#if data.active}}active{{/if}} {{#if data.current}}current{{/if}}" data-role="{{data.role}}">
+                            <img src="{{data.actor.img}}" />
+                            <a class="name" data-action="editDoc" data-item-uuid="{{data.actor.uuid}}">
+                                {{data.actor.name}}
+                                {{#if (eq data.role 'framework')}}
+                                    <i class="fa-solid fa-crown" data-tooltip aria-label="Framework"></i>
+                                {{/if}}
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
+            </section>
+        {{/if}}
     </div>
     <div class="reaction-section">
         <button type="button" data-action="reactionRoll">

@@ -124,8 +124,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
                 break;
             case 'sidebar':
-                const attackBonus = this.document.system.attack?.roll.bonus;
-                context.attackBonus = !attackBonus ? '-' : (Number.isNumeric(attackBonus) ? signedNumber(attackBonus, { zero: '+' }) : `+${attackBonus}`);
+                await this._prepareSidebarContext(context, options);
                 break;
             case 'features': 
                 await this._prepareFeaturesContext(context, options);
@@ -204,6 +203,17 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+    }
+
+    async _prepareSidebarContext(context, options) {
+        const attackBonus = this.document.system.attack?.roll.bonus;
+        context.attackBonus = !attackBonus ? '-' : (Number.isNumeric(attackBonus) ? signedNumber(attackBonus, { zero: '+' }) : `+${attackBonus}`);
+        
+        if (this.actor.system.type === 'collosus' && this.actor.system.typeData?.type === 'collosus') {
+            context.collosusData = {
+                actors: await this.actor.system.typeData?.calculatePartStatus()
+            };
+        }
     }
 
     /**

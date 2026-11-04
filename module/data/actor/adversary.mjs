@@ -41,7 +41,7 @@ export default class DhpAdversary extends DhCreature {
             ),
             motivesAndTactics: new fields.StringField(),
             notes: new fields.HTMLField(),
-            difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
+            difficulty: new fields.NumberField({ required: true, initial: 0, integer: true }),
             criticalThreshold: new fields.NumberField({
                 required: true,
                 integer: true,
@@ -197,6 +197,8 @@ export default class DhpAdversary extends DhCreature {
                 }
             })
         }
+
+        this.typeData?.prepareBaseData?.();
     }
 
     /** @inheritdoc */
@@ -226,15 +228,26 @@ export default class DhpAdversary extends DhCreature {
     /*  Event Handlers                              */
     /* -------------------------------------------- */
 
+    /** @inheritdoc */    
+    async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return false;
+
+        this.typeData?._preCreate?.(data, options, user);
+    }
+
     /** @inheritdoc */
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
+        // If the adversary type has changed and this will change the type data, perform a full replace
         if (changes.system?.type && changes.system.type !== this.type) {
             const newType = CONFIG.DH.ACTOR.adversaryTypeModels[changes.system.type] ?? null;
             const newTypeData = newType ? (new newType()).toObject() : null;
-            changes.system.typeData = newTypeData;
+            changes.system.typeData = _replace(newTypeData);
+        } else if (this.typeData) {
+            await this.typeData._preUpdate?.(changes, options, user);
         }
     }
 
@@ -288,5 +301,8 @@ export default class DhpAdversary extends DhCreature {
                 existingHordeFeature?.delete();
             }
         }
+
+        // Pass update to typeData, if it has any handling
+        this.typeData?._onUpdate?.(changes, options, userId);
     }
 }
