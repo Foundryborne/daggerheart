@@ -21,7 +21,7 @@ export async function updateSubTypes(document, changes) {
     const addedSubTypes = Object.values(pickBy(changes.system.subTypes, (_, k) => !(k in existingSubTypes)));
 
     for (const subType of removedSubTypes) {
-        featureRemoveData.push(...(subType.featureIds ?? []));
+        featureRemoveData.push(...(subType.featureIds ?? []).filter(x => document.items.has(x)));
     }
 
     for (const subType of addedSubTypes) {
