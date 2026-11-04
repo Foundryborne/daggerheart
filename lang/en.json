@@ -266,10 +266,10 @@
                     },
                     "damageThresholds": {
                         "major": {
-                            "label": "Major"
+                            "label": "Major Threshold"
                         },
                         "severe": {
-                            "label": "Severe"
+                            "label": "Severe Threshold"
                         }
                     },
                     "description": {
@@ -330,7 +330,8 @@
                 "horderHp": "Horde/HP",
                 "adversaryReactionRoll": {
                     "headerTitle": "Adversary Reaction Roll"
-                }
+                },
+                "stats": "Stats"
             },
             "Base": {
                 "CannotAddType": "Cannot add {itemType} items to {actorType} actors.",

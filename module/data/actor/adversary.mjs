@@ -60,14 +60,12 @@ export default class DhpAdversary extends DhCreature {
                 major: new fields.NumberField({
                     required: true,
                     initial: 0,
-                    integer: true,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                    integer: true
                 }),
                 severe: new fields.NumberField({
                     required: true,
                     initial: 0,
-                    integer: true,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                    integer: true
                 })
             }),
             rules: new fields.SchemaField({
