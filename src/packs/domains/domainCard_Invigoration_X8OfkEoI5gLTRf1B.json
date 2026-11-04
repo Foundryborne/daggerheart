@@ -52,8 +52,8 @@
             "multiplier": "scale",
             "flatMultiplier": 1,
             "dice": "d6",
-            "compare": null,
-            "treshold": null
+            "compare": "equal",
+            "treshold": 6
           },
           "useDefault": false
         },
