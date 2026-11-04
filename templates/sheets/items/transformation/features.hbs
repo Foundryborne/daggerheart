@@ -8,11 +8,14 @@
         <span data-tooltip="{{systemFields.loreReference.hint}}">{{systemFields.loreReference.label}}</span>
         {{formInput systemFields.loreReference value=(coalesce source.system.loreReference "")}}
     </fieldset>
-    {{> 'daggerheart.inventory-items'
-        title='DAGGERHEART.GENERAL.features'
-        type='feature'
-        collection=document.system.features
-        canCreate=(or document.parent isGM)
-        showActions=false
-    }}
+    <fieldset class="drop-section">
+        <legend>{{localize "DAGGERHEART.GENERAL.features"}}</legend>
+        <div class="feature-list">
+            {{#each features as |feature|}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='class' feature=feature}}
+            {{else}}
+                <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
+            {{/each}}
+        </div>
+    </fieldset>
 </section>

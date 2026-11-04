@@ -9,6 +9,8 @@
             <div class="feature-list">
                 {{#each hopeFeatures as |feature|}}
                     {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='hope' feature=feature}}
+                {{else}}
+                    <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
                 {{/each}}
             </div>
         </fieldset>
@@ -18,6 +20,8 @@
             <div class="feature-list">
                 {{#each classFeatures as |feature|}}
                     {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='class' feature=feature}}
+                {{else}}
+                    <div class="drag-area">{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing=(localize "TYPES.Item.feature")}}</div>
                 {{/each}}
             </div>
         </fieldset>
