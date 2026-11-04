@@ -17,7 +17,7 @@ export async function updateSubTypes(document, changes) {
         { applyOperators: true }
     );
     const existingSubTypes = document.system.subTypes;
-    const removedSubTypes = Object.values(existingSubTypes).filter(f => !(f.value.value in changedSubTypes));
+    const removedSubTypes = Object.values(existingSubTypes).filter(f => !(f.value in changedSubTypes));
     const addedSubTypes = Object.values(pickBy(changes.system.subTypes, (_, k) => !(k in existingSubTypes)));
 
     for (const subType of removedSubTypes) {

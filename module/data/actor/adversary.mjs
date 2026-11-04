@@ -243,7 +243,7 @@ export default class DhpAdversary extends DhCreature {
             changes.system.typeData = newTypeData;
         }
 
-        if (changes.system?.subTypes) {
+        if (Object.keys(changes.system?.subTypes ?? {}).length) {
             await updateSubTypes(this.parent, changes);
         }
     }
