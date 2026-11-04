@@ -51,6 +51,20 @@ export default class DhScene extends Scene {
         this.updateEmbeddedDocuments('Token', entries, { animation: { movementSpeed: 1.5 } });
     }, 0);
 
+    /** @inheritdoc */
+    async view(options) {
+        const result = await super.view(options);
+
+        // When viewing a scene, reset all collosus actors, to allow them find their frameworkActor/partActor links
+        for (const token of this.tokens) {
+            const actor = token.actor;
+            if (actor?.type === 'adversary' || actor.system?.type === 'collosus') {
+                actor.reset();
+            }
+        }
+        return result;
+    }
+
     prepareBaseData() {
         super.prepareBaseData();
 

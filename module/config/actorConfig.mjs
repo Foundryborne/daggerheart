@@ -1,4 +1,4 @@
-import { HordeAdversaryType } from '../data/actor/adversaryTypes/_module.mjs';
+import { CollosusAdversaryType, HordeAdversaryType } from '../data/actor/adversaryTypes/_module.mjs';
 
 export const traits = {
     agility: {
@@ -105,6 +105,12 @@ export const adversaryTypes = {
         description: 'DAGGERHEART.ACTORS.Adversary.bruiser.description',
         bpCost: 4
     },
+    collosus: {
+        id: 'collosus',
+        label: 'DAGGERHEART.CONFIG.AdversaryType.collosus.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.collosus.description',
+        bpCost: 0 // todo: determine
+    },
     horde: {
         id: 'horde',
         label: 'DAGGERHEART.CONFIG.AdversaryType.horde.label',
@@ -179,6 +185,7 @@ export const adversaryTypes = {
 export const adversarySubTypes = {};
 
 export const adversaryTypeModels = {
+    collosus: CollosusAdversaryType,
     horde: HordeAdversaryType
 }
 
