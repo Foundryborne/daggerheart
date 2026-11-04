@@ -19,6 +19,11 @@
         <div class="tag">
             <span>{{adversaryType}}</span>
         </div>
+        {{#each adversarySubTypes}}
+            <div class="tag {{cssClass}}">
+                <span>{{label}}</span>
+            </div>
+        {{/each}}
         {{#if (eq source.system.type 'horde')}}
             <div class="tag">
                 <span>{{source.system.typeData.hordeHP}}</span>

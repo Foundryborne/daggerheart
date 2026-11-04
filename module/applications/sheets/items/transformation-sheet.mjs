@@ -1,3 +1,4 @@
+import { fromUuids } from '../../../helpers/utils.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 
 /** @import { DHTransformation } from '../../../data/item/_module.mjs'; */
@@ -44,6 +45,9 @@ export default class TransformationSheet extends DHBaseItemSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
+            case 'features':
+                context.features = await fromUuids(this.document.system.features);
+                break;
             case 'questions':
                 const { TextEditor } = foundry.applications.ux;
                 context.enrichedQuestions = 

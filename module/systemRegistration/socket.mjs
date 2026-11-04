@@ -99,9 +99,11 @@ const EVENT_HANDLERS = {
                 break;
             case GMUpdateEvent.UpdateSaveMessage:
                 const message = game.messages.get(data.data.message);
-                if (!message) return;
+                if (!message || !data.data) return;
+                
                 game.system.api.fields.ActionFields.SaveField.updateSaveMessage(
-                    data.data.result,
+                    data.data.saveTotal,
+                    data.data.isCritical,
                     message,
                     data.data.token
                 );

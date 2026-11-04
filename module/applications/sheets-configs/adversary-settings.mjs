@@ -1,4 +1,5 @@
 import { DHDamageData } from '../../data/fields/action/damageField.mjs';
+import { tagifyElement } from '../../helpers/utils.mjs';
 import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -54,6 +55,32 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         }
     };
 
+    /**@inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        if (partId === 'details') {
+            const subTypeOptions = Object.values(CONFIG.DH.ACTOR.adversarySubTypes);
+            if (subTypeOptions.length) {
+                const element = htmlElement.querySelector('.sub-types-input');
+                tagifyElement(element, subTypeOptions, this.#onUpdateSubTypes.bind(this));
+            }
+        }
+    }
+
+    async #onUpdateSubTypes(options) {
+        const document = this.document;
+        const selectedSubTypes = options.map(x => x.value);
+        const toRemove = Object.keys(document._source.system.subTypes).filter(f => !selectedSubTypes.includes(f));
+        const toAdd = selectedSubTypes.filter(f => !(f in document._source.system.subTypes)); 
+        await document.update({ 
+            'system.subTypes': {
+                ...Object.fromEntries(toAdd.map(f => [f, { value: f }])),
+                ...Object.fromEntries(toRemove.map(f => [f, _del]))
+            }
+        });
+    }
+
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
@@ -69,6 +96,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         context.featureGroups = featureGroups;
         context.typeDataFields = this.document.system.typeData ? 
             context.systemFields.typeData.types[this.document.system.typeData.type]?.fields : null;
+        context.availableSubTypes = Boolean(Object.keys(CONFIG.DH.ACTOR.adversarySubTypes).length);
+        context.selectedSubTypes = Object.keys(this.document.system.subTypes);
 
         return context;
     }

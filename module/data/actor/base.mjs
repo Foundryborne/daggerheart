@@ -135,6 +135,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             schema.attribution = new fields.SchemaField({
                 source: new fields.StringField(),
                 page: new fields.NumberField(),
+                campaignFrame: new fields.StringField(),
                 artist: new fields.StringField()
             });
         }

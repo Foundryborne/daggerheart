@@ -66,10 +66,9 @@ export default class DHAttackAction extends DHDamageAction {
 
         const actor = resolveNearestDocument(this, Actor);
         const traitLabel = CONFIG.DH.ACTOR.traits[actor?.system.resolveTrait?.(roll.trait)]?.short
-            ?? CONFIG.DH.ACTIONS.rollTypeTraits[roll.trait]?.short
             ?? 'DAGGERHEART.GENERAL.none';
 
-        if (traitLabel) labels.push(_loc(traitLabel));
+        if (roll.trait) labels.push(_loc(traitLabel));
         if (range) labels.push(_loc(CONFIG.DH.GENERAL.range[range]?.short) ?? range);
 
         for (const { value, type } of [damage.main, ...damage.resources].filter(d => !!d)) {

@@ -18,7 +18,7 @@
         </div>
     {{/if}}
     {{#unless targeting.usingSelect}}
-        {{#if (and hasSave currentTargets.length)}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
+        {{#if (and isGM (and hasSave currentTargets.length))}}<div class="roll-part-extra roll-all-save-button">{{localize "DAGGERHEART.UI.Chat.saveRoll.reactionRollAllTargets"}}<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
         <div class="roll-targets">
             {{#each currentTargets}}
                 <div class="roll-target" data-token="{{id}}">

@@ -33,15 +33,23 @@ export default class DHTransformation extends BaseDataItem {
     /* -------------------------------------------- */
 
     /** @inheritdoc */
-    async getDescriptionData() {
+    async getDescriptionData(options) {
+        const showReferenceInline = options.type === 'sheet';
+        const reference = (CONFIG.DH.lore.transformation[this.loreReference] ?? this.loreReference ?? '').replace(/\[\]/g, '');
+        const label = _loc('DAGGERHEART.ITEMS.Base.viewReference');
+        const referenceLink = showReferenceInline && reference?.includes('JournalEntry.')
+            ? `<p>@UUID[${reference}]{${label}}</p>` : '';
+
+        const baseDescription = `${this.description}${referenceLink}`
         const features = await getFeaturesHTMLData(await fromUuids(this._source.features));
-        if (!features.length) return { prefix: null, value: this.description, suffix: null };
+        if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
+        
         const suffix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
             { features }
         );
 
-        return { prefix: null, value: this.description, suffix };
+        return { prefix: null, value: baseDescription, suffix };
     }
 
     /** @inheritdoc */

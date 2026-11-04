@@ -2,15 +2,15 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "The official implementation of the Daggerheart system on Foundry VTT",
-    "version": "2.12.4",
+    "version": "2.12.5",
     "compatibility": {
         "minimum": "14.364",
-        "verified": "14.369",
+        "verified": "14.370",
         "maximum": "14"
     },
     "url": "https://github.com/Foundryborne/daggerheart",
     "manifest": "https://raw.githubusercontent.com/Foundryborne/daggerheart/v14/system.json",
-    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.12.4/system.zip",
+    "download": "https://github.com/Foundryborne/daggerheart/releases/download/2.12.5/system.zip",
     "authors": [
         {
             "name": "WBHarry"

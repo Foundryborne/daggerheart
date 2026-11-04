@@ -69,10 +69,9 @@ export default class DHAncestry extends BaseDataItem {
             ? `<p>@UUID[${reference}]{${label}}</p>` : '';
 
         const baseDescription = `${this.description}${referenceLink}`;
-
         const features = await getFeaturesHTMLData(this.features);
-
         if (!features.length) return { prefix: null, value: baseDescription, suffix: null };
+        
         const suffix = await foundry.applications.handlebars.renderTemplate(
             'systems/daggerheart/templates/sheets/items/description.hbs',
             { features }
