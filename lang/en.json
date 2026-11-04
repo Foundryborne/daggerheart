@@ -327,6 +327,17 @@
                 },
                 "hordeDamage": "Horde Damage (Half HP)",
                 "horderHp": "Horde/HP",
+                "collosusType": {
+                    "FIELDS": {
+                        "role": {
+                            "label": "Role",
+                            "choices": {
+                                "framework": "Framework",
+                                "part": "Part"
+                            }
+                        }
+                    }
+                },
                 "adversaryReactionRoll": {
                     "headerTitle": "Adversary Reaction Roll"
                 }
@@ -1046,6 +1057,10 @@
                 "bruiser": {
                     "label": "Bruiser",
                     "description": "Tough adversaries with powerful attacks."
+                },
+                "collosus": {
+                    "label": "Collosus",
+                    "description": "Large adversaries that use multiple adversary stat blocks."
                 },
                 "horde": {
                     "label": "Horde",
@@ -3272,6 +3287,7 @@
                 "notes": "Notes",
                 "optional": "Optional",
                 "packs": "Packs",
+                "parts": "Parts",
                 "partyMembers": "Party Members",
                 "potentialAdversaries": "Potential Adversaries",
                 "projects": "Projects",

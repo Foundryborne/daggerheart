@@ -11,6 +11,9 @@
             {{#if (eq document._source.system.typeData.type 'horde')}}
                 {{formGroup typeDataFields.hordeHP value=document._source.system.typeData.hordeHP name="system.typeData.hordeHP" label=(localize "DAGGERHEART.ACTORS.Adversary.horderHp")}}
             {{/if}}
+            {{#if (eq document._source.system.typeData.type 'collosus')}}
+                {{formGroup typeDataFields.role value=document._source.system.typeData.role name="system.typeData.role" localize=true}}
+            {{/if}}
             {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
         </div>
         {{formGroup systemFields.size value=document._source.system.size label=(localize "DAGGERHEART.GENERAL.tokenSize") localize=true}}
@@ -18,18 +21,18 @@
         {{formField systemFields.motivesAndTactics value=document._source.system.motivesAndTactics label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label")}}
     </fieldset>
 
-    <fieldset class="flex">
-        <legend>{{localize "DAGGERHEART.GENERAL.DamageThresholds.title"}}</legend>
-        {{formGroup systemFields.damageThresholds.fields.major value=document._source.system.damageThresholds.major label=(localize "DAGGERHEART.GENERAL.DamageThresholds.majorThreshold")}}
-        {{formGroup systemFields.damageThresholds.fields.severe value=document._source.system.damageThresholds.severe label=(localize "DAGGERHEART.GENERAL.DamageThresholds.severeThreshold")}}
-    </fieldset>
-    
-    <div class="fieldsets-section">
+    {{#unless (eq document.system.typeData.role "part")}}
         <fieldset class="flex">
-            <legend>{{localize "DAGGERHEART.GENERAL.Resource.plural"}}</legend>
-            {{#each resources as |resource|}}
-                {{formGroup resource.field value=resource.value name=resource.name}}
-            {{/each}}
-         </fieldset>
-    </div>
+            <legend>{{localize "DAGGERHEART.GENERAL.DamageThresholds.title"}}</legend>
+            {{formGroup systemFields.damageThresholds.fields.major value=document._source.system.damageThresholds.major label=(localize "DAGGERHEART.GENERAL.DamageThresholds.majorThreshold")}}
+            {{formGroup systemFields.damageThresholds.fields.severe value=document._source.system.damageThresholds.severe label=(localize "DAGGERHEART.GENERAL.DamageThresholds.severeThreshold")}}
+        </fieldset>
+    {{/unless}}
+    
+    <fieldset class="flex">
+        <legend>{{localize "DAGGERHEART.GENERAL.Resource.plural"}}</legend>
+        {{#each resources as |resource|}}
+            {{formGroup resource.field value=resource.value name=resource.name}}
+        {{/each}}
+    </fieldset>
 </section>

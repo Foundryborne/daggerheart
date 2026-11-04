@@ -1,0 +1,29 @@
+<section
+    class='tab {{tabs.parts.cssClass}} {{tabs.parts.id}}'
+    data-tab='{{tabs.parts.id}}'
+    data-group='{{tabs.parts.group}}'
+>
+    <fieldset class="collosus-parts">
+        <legend>Parts</legend>
+        {{#each parts as |part idx|}}
+            <div class="part" data-idx="{{idx}}">
+                {{#if part.actor}}
+                    <img class="portrait" src="{{part.actor.img}}" />
+                    <span class="name">{{part.actor.name}}</span>
+                {{else}}
+                    <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
+                    <span class="name">Missing</span>
+                {{/if}}
+                <input type="number" value="{{part.quantity}}" data-part-quantity/>
+                <div class="controls">
+                    <a data-action="removeCollosusPart" data-tooltip aria-label="DAGGERHEART.UI.Tooltip.deleteItem">
+                        <i class="fa-solid fa-trash" inert></i>
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+        <div class="drag-area">
+            <span>{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing="Part"}}</span>
+        </div>
+    </fieldset>
+</section>
