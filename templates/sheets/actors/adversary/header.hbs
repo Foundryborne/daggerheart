@@ -44,9 +44,11 @@
         <span class="description">
             <i>{{{description}}}</i>
         </span>
-        <span class="motives-and-tatics">
-            <b>{{localize 'DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label'}}: </b>{{{source.system.motivesAndTactics}}}
-        </span>
+        {{#if source.system.motivesAndTactics}}
+            <span class="motives-and-tatics">
+                <b>{{localize 'DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label'}}: </b>{{{source.system.motivesAndTactics}}}
+            </span>
+        {{/if}}
     </div>
 
     {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}

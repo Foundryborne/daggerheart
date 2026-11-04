@@ -1,0 +1,49 @@
+<section
+    class='tab {{tabs.collosus.cssClass}} {{tabs.collosus.id}}'
+    data-tab='{{tabs.collosus.id}}'
+    data-group='{{tabs.collosus.group}}'
+>
+    {{#if (eq collosus.role "framework")}}
+    <fieldset class="collosus-parts">
+        <legend>Parts</legend>
+        {{#each collosus.parts as |part idx|}}
+            <div class="part" data-idx="{{idx}}">
+                {{#if part.actor}}
+                    <img class="portrait" src="{{part.actor.img}}" />
+                    <a class="name" data-action="editDoc" data-item-uuid="{{part.actor.uuid}}">{{part.actor.name}}</a>
+                {{else}}
+                    <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
+                    <span class="name">Missing</span>
+                {{/if}}
+                <input type="number" value="{{part.quantity}}" data-part-quantity/>
+                <div class="controls">
+                    <a data-action="removeCollosusPart" data-tooltip aria-label="DAGGERHEART.UI.Tooltip.deleteItem">
+                        <i class="fa-solid fa-trash" inert></i>
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+        <div class="drag-area">
+            <span>{{localize "DAGGERHEART.GENERAL.missingDragDropThing" thing="Part"}}</span>
+        </div>
+    </fieldset>
+    {{else}}
+    <fieldset>
+        <legend>Framework</legend>
+        <div class="framework">
+            {{#if collosus.framework.actor}}
+                <img class="portrait" src="{{collosus.framework.actor.img}}" />
+                <a class="name" data-action="editDoc" data-item-uuid="{{collosus.framework.actor.uuid}}">{{collosus.framework.actor.name}}</a>
+                {{#unless collosus.framework.linked}}
+                    <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.collosus.Notifications.FrameworkNotLinked">
+                        <i class="fa-solid fa-warning" inert></i>
+                    </span>
+                {{/unless}}
+            {{else}}
+                <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
+                <span class="name">Missing</span>
+            {{/if}}
+        </div>
+    </fieldset>
+    {{/if}}
+</section>

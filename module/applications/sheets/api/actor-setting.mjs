@@ -7,7 +7,7 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
  * Base settings sheet for Daggerheart actors.
- * @extends {DHApplicationMixin<ActorSheetV2>}
+ * @template T
  */
 export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2) {
     /**@inheritdoc */
@@ -36,7 +36,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
         return options;
     }
 
-    /** @returns {foundry.documents.Actor} */
+    /** @returns {T} */
     get actor() {
         return this.document;
     }
@@ -58,6 +58,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
                 const data = this.actor._source.system.resources[key];
                 const config = resourceConfig[key];
                 return {
+                    key,
                     label: config.label,
                     name: `system.resources.${key}.max`,
                     value: data.max ?? config.max,
