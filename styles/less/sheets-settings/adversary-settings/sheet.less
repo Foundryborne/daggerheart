@@ -2,13 +2,10 @@
 @import '../../utils/fonts.less';
 
 .application.daggerheart.dh-style.dialog.adversary-settings {
-    .tab {
-        &.details.active,
-        &.attack.active {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    .tab.active {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacer-8);
 
         .fieldsets-section {
             display: flex;
