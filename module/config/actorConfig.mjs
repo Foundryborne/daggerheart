@@ -173,7 +173,6 @@ export const adversaryTypes = {
                 source: string, 
                 campaignFrame: string 
             },
-            effects: [{ ...effectData }],
             features: [{ ...featureData }] 
         } 
 */
