@@ -17,7 +17,7 @@ export async function updateSubTypes(document, changes) {
         { applyOperators: true }
     );
     const existingSubTypes = document.system.subTypes;
-    const removedSubTypes = Object.values(existingSubTypes).filter(f => !(f.value.value in changedSubTypes));
+    const removedSubTypes = Object.values(existingSubTypes).filter(f => !(f.value in changedSubTypes));
     const addedSubTypes = Object.values(pickBy(changes.system.subTypes, (_, k) => !(k in existingSubTypes)));
 
     for (const subType of removedSubTypes) {
@@ -37,32 +37,24 @@ export async function updateSubTypes(document, changes) {
             })) : [];
             featureData.system.actions ??= {}; 
 
-            for (const action of actions) {
-                const effectsToAdd = (action.effects ?? []).map(effect => ({
-                    ...effect,
-                    transfer: false,
-                    _id: effect._id || foundry.utils.randomID(),
-                    name: _loc(effect.name),
-                    description: _loc(effect.description)
-                }));
+            const groupActions = actions.filter(x => x.type === 'grouped');
+            const nonGroupActions = actions.filter(x => x.type !== 'grouped');
+            for (const action of nonGroupActions) {
+                addFeatureAction(action, featureData);
+            }
 
-                const cls = game.system.api.models.actions.actionsTypes[action.type];
-                const actionId = foundry.utils.randomID();
-                featureData.system.actions[actionId] = new cls(
-                    {
-                        ...cls.getSourceConfig(document.system),
-                        ...action,
-                        type: action.type,
-                        _id: actionId,
-                        name: _loc(action.name),
-                        description: _loc(action.description),
-                        effects: effectsToAdd.map(x => ({ _id: x._id })),
-                        systemPath: 'actions'
-                    },
-                    { parent: document.system }
-                );
-                
-                featureData.effects.push(...effectsToAdd);
+            const actionValues = Object.values(featureData.system.actions);
+            for (const action of groupActions) {
+                const actionId = addFeatureAction(action, featureData);
+                const addedAction = featureData.system.actions[actionId];
+                await addedAction.updateSource({ 'grouped.groupedActions': 
+                    addedAction.grouped.groupedActions.reduce((acc, curr) => {
+                        const actionId = actionValues.find(x => x.name === _loc(curr))?._id;
+                        if (actionId) acc.push(actionId);
+
+                        return acc;
+                    }, [])
+                })
             }
 
             const featureId = foundry.utils.randomID();
@@ -102,4 +94,35 @@ export async function updateSubTypes(document, changes) {
     }
     
     await foundry.documents.modifyBatch(aeBatch);
+}
+
+function addFeatureAction(action, featureData) {
+    const effectsToAdd = (action.effects ?? []).map(effect => ({
+        ...effect,
+        transfer: false,
+        _id: effect._id || foundry.utils.randomID(),
+        name: _loc(effect.name),
+        description: _loc(effect.description)
+    }));
+
+    const cls = game.system.api.models.actions.actionsTypes[action.type];
+    const actionId = foundry.utils.randomID();
+    featureData.system.actions[actionId] = new cls(
+        {
+            ...cls.getSourceConfig(document.system),
+            ...action,
+            type: action.type,
+            _id: actionId,
+            name: _loc(action.name),
+            description: _loc(action.description),
+            effects: effectsToAdd.map(x => ({ _id: x._id })),
+            areas: (action.areas ?? []).map(x => ({ ...x, name: _loc(x.name) })),
+            systemPath: 'actions'
+        },
+        { parent: document.system }
+    );
+    
+    featureData.effects.push(...effectsToAdd);
+
+    return actionId;
 }
