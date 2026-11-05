@@ -2,7 +2,7 @@
 @import '../../utils/fonts.less';
 
 .application.daggerheart.dh-style.dialog.environment-settings {
-    .tab.features {
+    .tab.features.active {
         max-height: 450px;
         overflow-y: auto;
 
@@ -38,6 +38,11 @@
                     }
                 }
             }
+        }
+        
+        .drag-area {
+            min-height: 40px;
+            margin-top: var(--spacer-8);
         }
     }
 }
