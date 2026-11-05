@@ -55,51 +55,6 @@ export default class DhTokenDocument extends foundry.documents.TokenDocument {
     }
 
     /**@inheritdoc */
-    static async _preCreateOperation(documents, operation, user) {
-        const allowed = await super._preCreateOperation(documents, operation, user);
-        if (allowed === false) return false;
-
-        const tokenSizes = game.system.settings.homebrew.tokenSizes;
-        for (const document of documents) {
-            const actor = document.actor;
-            if (actor?.system.metadata.usesSize) {
-                const tokenSize = tokenSizes[actor.system.size];
-                if (tokenSize && actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
-                    document.updateSource({
-                        width: tokenSize,
-                        height: tokenSize,
-                        depth: tokenSize
-                    });
-                }
-            }
-        }
-    }
-
-    /**@inheritdoc */
-    _onRelatedUpdate(update = {}, operation = {}) {
-        super._onRelatedUpdate(update, operation);
-
-        if (!this.actor?.isOwner) return;
-
-        const updates = Array.isArray(update) ? update : [update];
-        const activeGM = game.users.activeGM; // Let the active GM take care of updates if available
-        for (let update of updates) {
-            if (
-                this.actor.system.metadata.usesSize &&
-                update.system?.size &&
-                activeGM &&
-                game.user.id === activeGM.id
-            ) {
-                const tokenSizes = game.system.settings.homebrew.tokenSizes;
-                const tokenSize = tokenSizes[update.system.size];
-                if (tokenSize !== this.width || tokenSize !== this.height || tokenSize !== this.depth) {
-                    this.parent?.syncTokenDimensions(this, update.system.size);
-                }
-            }
-        }
-    }
-
-    /**@inheritdoc */
     getSnappedPosition(data = {}) {
         const grid = this.parent?.grid ?? BaseScene.defaultGrid;
         const x = data.x ?? this.x;
@@ -482,6 +437,55 @@ export default class DhTokenDocument extends foundry.documents.TokenDocument {
         };
     }
     //#endregion
+
+    /* -------------------------------------------- */
+    /*  Event handlers                              */
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    static async _preCreateOperation(documents, operation, user) {
+        const allowed = await super._preCreateOperation(documents, operation, user);
+        if (allowed === false) return false;
+
+        const tokenSizes = game.system.settings.homebrew.tokenSizes;
+        for (const document of documents) {
+            const actor = document.actor;
+            if (actor?.system.metadata.usesSize) {
+                const tokenSize = tokenSizes[actor.system.size];
+                if (tokenSize && actor.system.size !== CONFIG.DH.ACTOR.tokenSize.custom.id) {
+                    document.updateSource({
+                        width: tokenSize,
+                        height: tokenSize,
+                        depth: tokenSize
+                    });
+                }
+            }
+        }
+    }
+
+    /** @inheritdoc */
+    _onRelatedUpdate(update = {}, operation = {}) {
+        super._onRelatedUpdate(update, operation);
+
+        if (!this.actor?.isOwner) return;
+
+        const updates = Array.isArray(update) ? update : [update];
+        const activeGM = game.users.activeGM; // Let the active GM take care of updates if available
+        for (let update of updates) {
+            if (
+                this.actor.system.metadata.usesSize &&
+                update.system?.size &&
+                activeGM &&
+                game.user.id === activeGM.id
+            ) {
+                const tokenSizes = game.system.settings.homebrew.tokenSizes;
+                const tokenSize = tokenSizes[update.system.size];
+                if (tokenSize !== this.width || tokenSize !== this.height || tokenSize !== this.depth) {
+                    this.parent?.syncTokenDimensions(this, update.system.size);
+                }
+            }
+        }
+    }
 
     async _preDelete() {
         if (this.actor && !this.actor.prototypeToken?.actorLink) {

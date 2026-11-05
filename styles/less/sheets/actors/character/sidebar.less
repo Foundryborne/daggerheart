@@ -386,11 +386,15 @@
         }
     }
 
-    .equipment-section,
-    .loadout-section,
-    .experience-section {
+    .shortcut-items-section > section {
         .title {
-            .section-title();
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+            h3 {
+                font-size: var(--font-size-20);
+            }
         }
     }
 
