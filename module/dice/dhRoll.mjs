@@ -374,7 +374,7 @@ export default class DHRoll extends BaseRoll {
                     change,
                     effect.origEffect
                 );
-                const typedValue = change.type === 'add' ? changeValue : -changeValue;
+                const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
                 modifiers.push({ label: effect.name, value: typedValue });
             }
         }
