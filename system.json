@@ -2,7 +2,7 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "The official implementation of the Daggerheart system on Foundry VTT",
-    "version": "2.12.5",
+    "version": "2.12.6",
     "compatibility": {
         "minimum": "14.364",
         "verified": "14.370",

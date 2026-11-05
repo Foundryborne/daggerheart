@@ -49,7 +49,7 @@ export async function updateSubTypes(document, changes) {
                 const addedAction = featureData.system.actions[actionId];
                 await addedAction.updateSource({ 'grouped.groupedActions': 
                     addedAction.grouped.groupedActions.reduce((acc, curr) => {
-                        const actionId = actionValues.find(x => x.name === _loc(curr))?._id;
+                        const actionId = actionValues.find(x => x._id === curr.padStart(16, 'x'))?._id;
                         if (actionId) acc.push(actionId);
 
                         return acc;
@@ -106,7 +106,7 @@ function addFeatureAction(action, featureData) {
     }));
 
     const cls = game.system.api.models.actions.actionsTypes[action.type];
-    const actionId = foundry.utils.randomID();
+    const actionId = action._id ? action._id.padStart(16, 'x') : foundry.utils.randomID();
     featureData.system.actions[actionId] = new cls(
         {
             ...cls.getSourceConfig(document.system),
