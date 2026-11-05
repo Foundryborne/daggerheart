@@ -4,6 +4,10 @@ import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
 export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) {
+    /**
+     * Creates a new DHActionBaseConfig
+     * @param {DHBaseAction} action 
+     */
     constructor(action) {
         super({});
 
@@ -11,6 +15,10 @@ export default class DHActionBaseConfig extends DaggerheartSheet(ApplicationV2) 
         this.actionUuid = action.uuid; // store uuid to avert stale references in render
         this.openSection = null;
         this.openTrigger = this.action.triggers.length > 0 ? 0 : null;
+    }
+
+    get item() {
+        return this.action?.item;
     }
 
     get title() {
