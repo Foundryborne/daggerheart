@@ -148,7 +148,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         super._attachPartListeners(partId, htmlElement, options);
         const changeChoices = this.changeChoices;
 
-        htmlElement.querySelectorAll('.effect-change-input').forEach(element => {
+        for (const element of htmlElement.querySelectorAll('.effect-change-input')) {
             autocomplete({
                 input: element,
                 fetch: function (text, update) {
@@ -194,7 +194,14 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 },
                 minLength: 0
             });
-        });
+            // Block submit from enter key in case it was autocomplete handling
+            // While autocompleter has a preventSubmit param, it doesn't seem to work here
+            element.addEventListener('keydown', event => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                }
+            })
+        }
 
         htmlElement.querySelector('.stacking-change-checkbox')
             ?.addEventListener('change', this.#onStackingChangeToggle.bind(this));
