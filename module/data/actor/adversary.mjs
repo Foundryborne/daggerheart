@@ -60,14 +60,12 @@ export default class DhpAdversary extends DhCreature {
                 major: new fields.NumberField({
                     required: true,
                     initial: 0,
-                    integer: true,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                    integer: true
                 }),
                 severe: new fields.NumberField({
                     required: true,
                     initial: 0,
-                    integer: true,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                    integer: true
                 })
             }),
             rules: new fields.SchemaField({
@@ -243,7 +241,7 @@ export default class DhpAdversary extends DhCreature {
             changes.system.typeData = newTypeData;
         }
 
-        if (changes.system?.subTypes) {
+        if (Object.keys(changes.system?.subTypes ?? {}).length) {
             await updateSubTypes(this.parent, changes);
         }
     }
