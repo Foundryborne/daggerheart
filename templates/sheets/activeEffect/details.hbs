@@ -3,6 +3,7 @@
     {{formGroup fields.description value=source.description rootId=rootId}}
     {{formGroup fields.disabled value=source.disabled rootId=rootId}}
     {{formGroup systemFields.targetDispositions value=source.system.targetDispositions name=(concat "system.targetDispositions") localize=true}}
+    {{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}
 
     {{#if isActorEffect}}
         {{formGroup fields.origin value=source.origin rootId=rootId disabled=true}}
@@ -10,6 +11,8 @@
         {{formGroup fields.transfer value=source.transfer rootId=rootId}}
     {{/if}}
 
-    {{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}
+    {{#if isItemEffect}}
+        {{formGroup systemFields.hidden value=source.system.hidden rootId=rootId localize=true}}
+    {{/if}}
     {{formGroup fields.showIcon value=source.showIcon options=showIconOptions rootId=rootId}}
 </section>
