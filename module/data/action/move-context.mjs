@@ -85,11 +85,12 @@ export class MoveContext {
         this.resourceUpdates = new ResourceUpdateMap(this.actor);
         this.dialog = {}; // updated when keybindings are applied
 
-        // Create roll data. This should probably not be done here, but the codebase expects if
-        // Roll construction will often refer to data props, and expects it to exist even on deserialization
-        // Moving more of the roll construction stuff to here may help convert this
-        // For now we keep this data minimal to not bloat roll objects
-        this.data = pick(this.getRollData(), ['experiences', 'traits', 'rules', 'action']);
+        // Create roll data. This should probably not be done here, but the codebase expects it
+        // For now we keep this data minimal to not bloat roll objects.
+        // roll.data exists, so eventually remove this, pass config.getRollData() instead of config.data as roll data, 
+        // and replace roll.options.data in Roll objects with roll.data.
+        // This shouldn't happen until a major release occurs, as it will impact a large amount of code
+        this.data = pick(this.getRollData(), ['experiences', 'traits', 'rules', 'action', 'criticalThreshold']);
 
         const damage = action?.damage;
         if (actor && damage) {
