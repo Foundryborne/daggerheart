@@ -3,11 +3,10 @@
     data-tab='{{tabs.details.id}}'
     data-group='{{tabs.details.group}}'
 >
-    <fieldset>
+    <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.GENERAL.description"}}</legend>
         {{formInput systemFields.description value=document._source.system.description}}
+        {{formGroup systemFields.motives value=document._source.system.motives}}
     </fieldset>
-
-    {{formGroup systemFields.motives value=document._source.system.motives}}
     {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
 </section>
