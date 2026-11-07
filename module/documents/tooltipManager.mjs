@@ -200,6 +200,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         }
         if (
             item instanceof Item &&
+            item.isInventoryItem &&
             ((!actor && item.system.quantity > 1) || (actor && !actor.metadata.unquantifiable?.includes(item?.type)))
         ) {
             tags.unshift(`${_loc('DAGGERHEART.GENERAL.quantity')} ${item.system.quantity}`);
