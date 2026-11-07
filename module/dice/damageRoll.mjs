@@ -256,7 +256,7 @@ export default class DamageRoll extends DHRoll {
                 };
             }
 
-            const item = config.data.parent.items?.get(config.source.item);
+            const item = actor.items.get(config.source.item);
             for (const [key, data] of Object.entries(item?.system.rollModifiers ?? {})) {
                 mods[key] = {
                     label: data.label,

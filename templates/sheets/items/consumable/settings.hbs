@@ -3,12 +3,9 @@
     data-tab='{{tabs.settings.id}}'
     data-group='{{tabs.settings.group}}'
 >
-    <fieldset class="two-columns">
+    <fieldset class="standard-form">
         <legend>{{localize tabs.settings.label}}</legend>
-        <span>{{localize "DAGGERHEART.GENERAL.quantity"}}</span>
-        {{formField systemFields.quantity value=source.system.quantity}}
-
-        <span>{{localize "DAGGERHEART.ITEMS.Consumable.consumeOnUse"}}</span>
-        {{formField systemFields.consumeOnUse value=source.system.consumeOnUse}}
+        {{formGroup systemFields.quantity value=source.system.quantity}}
+        {{formGroup systemFields.consumeOnUse value=source.system.consumeOnUse id=(concat @root.partId "-consumeOnUse")}}
     </fieldset>
 </section>

@@ -3669,7 +3669,11 @@
                 "featuresLabel": "Community Feature"
             },
             "Consumable": {
-                "consumeOnUse": "Consume On Use"
+                "FIELDS": {
+                    "consumeOnUse": {
+                        "label": "Consume On Use"
+                    }
+                }
             },
             "DomainCard": {
                 "type": "Type",

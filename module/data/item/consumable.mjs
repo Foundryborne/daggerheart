@@ -2,6 +2,9 @@ import BaseDataItem from './base.mjs';
 
 export default class DHConsumable extends BaseDataItem {
     /** @inheritDoc */
+    static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, 'DAGGERHEART.ITEMS.Consumable'];
+
+    /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.consumable',
