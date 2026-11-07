@@ -48,7 +48,7 @@ export default class DhItem extends foundry.documents.Item {
      * @returns {boolean} Returns `true` if the item is an inventory item.
      */
     get isInventoryItem() {
-        return this.system.metadata.isInventoryItem ?? false;
+        return this.system?.metadata?.isInventoryItem ?? false;
     }
 
     /** 
