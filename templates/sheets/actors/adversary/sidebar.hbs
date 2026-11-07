@@ -54,7 +54,7 @@
     </div>
     <div class="shortcut-items-section">
         {{#if document.system.attack}}
-            <div class="attack-section">
+            <section class="attack-section">
                 <div class="title">
                     <side-line-div class="invert"></side-line-div>
                     <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
@@ -67,9 +67,9 @@
                         noCompendiumEdit=true
                     }}
                 </ul>
-            </div>
+            </section>
         {{/if}}
-        <div class="experience-section">
+        <section class="experience-section">
             <div class="title">
                 <side-line-div class="invert"></side-line-div>
                 <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
@@ -90,7 +90,7 @@
                     </div>
                 {{/each}}
             </div>
-        </div>
+        </section>
     </div>
     <div class="reaction-section">
         <button type="button" data-action="reactionRoll">
