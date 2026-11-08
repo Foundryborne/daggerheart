@@ -407,8 +407,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     /**
      * If an action with consumeOnSuccess hasn't consumed resources initially, this function will do so if there were no initial targets.
      */
-    consumeOnSuccess() {
-        if (!this.system.successConsumed && !this.system.targets.length) this.system.action?.consume(this.system, true);
+    async consumeOnSuccess() {
+        if (!this.system.successConsumed && !this.system.targets.length) {
+            const config = await this.system.getContext();
+            await config.spendResources({ successCost: true });
+            if (config.roll && !config.roll.success) {
+                await this.update({ 'system.successConsumed': true });
+            }
+        }
     }
 
     hoverTarget(event) {

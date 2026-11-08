@@ -25,7 +25,8 @@ export default class DamageRoll extends DHRoll {
     static DefaultDialog = DamageDialog;
 
     static createRollInstance(config) {
-        return new this(undefined, config.data, config);
+        // damage still uses plain objects, and requires passing in data
+        return new this(undefined, config.getRollData?.() ?? config.data ?? {}, config);
     }
 
     /** @inheritdoc */
@@ -156,13 +157,13 @@ export default class DamageRoll extends DHRoll {
         if (!formulaData) return null;
         this.options.isCritical = config.isCritical;
 
-        formulaData.roll = new this.constructor(Roll.replaceFormulaData(formulaData.formula, config.data));
-        formulaData.roll.terms = Roll.parse(formulaData.roll.formula, config.data);
+        formulaData.roll = new this.constructor(Roll.replaceFormulaData(formulaData.formula, this.data));
+        formulaData.roll.terms = Roll.parse(formulaData.roll.formula, this.data);
 
         if (formulaData.extraFormula) {
             formulaData.roll.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                ...this.constructor.parse(formulaData.extraFormula, this.options.data)
+                ...this.constructor.parse(formulaData.extraFormula, this.data)
             );
         }
 

@@ -41,15 +41,16 @@ export default class DamageField extends fields.SchemaField {
 
         if (!damageFormula && !resourceFormulas.length) return false;
 
+        // todo: add some way to configure damage in MoveContext, and pass the MoveContext
         messageId = config.message?._id ?? messageId;
-        const message = game.messages.get(messageId);
         const damageConfig = {
             dialog: {},
             ...config,
             damageFormula,
             resourceFormulas, 
-            data: this.getRollData(),
-            isCritical: Boolean(message?.system.roll?.isCritical)
+            isCritical: Boolean(config.evaluated?.isCritical),
+            // this will go away once the pipeline swaps to using MoveContext
+            data: config.getRollData()
         };
         delete damageConfig.evaluate;
 

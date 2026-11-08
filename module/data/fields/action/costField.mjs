@@ -27,72 +27,14 @@ export default class CostField extends fields.ArrayField {
     }
 
     /**
-     * Cost Consumption Action Workflow part.
-     * Consume configured action resources.
-     * Must be called within Action context or similar.
-     * @param {object} config                   Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
-     * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
-     */
-    static async execute(config, successCost = false) {
-        const actor = this.actor.system.partner ?? this.actor,
-            usefulResources = {
-                ...foundry.utils.deepClone(actor.system.resources),
-                fear: {
-                    value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                    max: game.system.settings.homebrew.maxFear,
-                    reversed: false
-                }
-            };
-
-        if (this.parent?.parent) {
-            for (var cost of config.costs) {
-                if (cost.itemId) {
-                    usefulResources[cost.key] = {
-                        value: cost.value,
-                        target: this.parent.parent,
-                        itemId: cost.itemId
-                    };
-                }
-            }
-        }
-
-        const resources = CostField.getRealCosts(config.costs)
-            .filter(
-                c =>
-                    (!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
-                    (successCost && c.consumeOnSuccess)
-            )
-            .reduce((a, c) => {
-                const resource = usefulResources[c.key];
-                if (resource) {
-                    a.push({
-                        key: c.key,
-                        value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                        target: resource.target,
-                        itemId: resource.itemId
-                    });
-                }
-
-                return a;
-            }, []);
-
-        config.resourceUpdates.addResources(resources);
-    }
-
-    /**
      * Update Action Workflow config object.
      * Must be called within Action context or similar.
-     * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
-     * @returns {boolean}       Return false if fast-forwarded and no more uses.
+     * @param {MoveContext} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @returns {boolean} returns true
      */
     prepareConfig(config) {
-        const costs = this.cost?.length ? foundry.utils.deepClone(this.cost) : [];
-        config.costs = CostField.calcCosts.call(this, costs);
-        const hasCost = CostField.hasCost.call(this, config.costs);
-        if (config.dialog.configure === false && !hasCost) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
-            return hasCost;
-        }
+        config.costs = CostField.calcCosts.call(this, this.cost?.length ? foundry.utils.deepClone(this.cost) : []);
+        return true;
     }
 
     /**
@@ -122,38 +64,6 @@ export default class CostField extends fields.ArrayField {
             if (c.scalable) c.maxStep = Math.floor((c.max - c.value) / c.step);
             return c;
         });
-    }
-
-    /**
-     * Check if the current Actor currently has all needed resources.
-     * Must be called within Action context.
-     * @param {*} costs
-     * @returns {boolean}
-     */
-    static hasCost(costs) {
-        const realCosts = CostField.getRealCosts.call(this, costs),
-            hasFearCost = realCosts.findIndex(c => c.key === 'fear');
-
-        if (hasFearCost > -1) {
-            const fearCost = realCosts.splice(hasFearCost, 1)[0];
-            if (
-                !game.user.isGM ||
-                fearCost.total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
-            )
-                return false;
-        }
-
-        /* isReversed is a sign that the resource is inverted, IE it counts upwards instead of down */
-        const resources = CostField.getResources.call(this, realCosts);
-        return realCosts.reduce(
-            (a, c) =>
-                !resources[c.key]
-                    ? a
-                    : a && resources[c.key].isReversed
-                        ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
-                        : resources[c.key]?.value >= (c.total ?? c.value),
-            true
-        );
     }
 
     /**

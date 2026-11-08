@@ -1,5 +1,5 @@
 import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
-import { omit, pick } from '../../helpers/functional.mjs';
+import { omit } from '../../helpers/functional.mjs';
 import D20Roll from '../../dice/d20Roll.mjs';
 
 /** @import DHBaseAction from './baseAction.mjs'; */
@@ -19,12 +19,13 @@ export class MoveContext {
      * @param {DHBaseAction} [options.action]
      */
     constructor(data = {}, { actor, item, action } = {}) {
-        // Store documents and resolve missing ones
-        this.action = action ??= data.action;
+        // Store documents and resolve missing 
+        /** @type {DHBaseAction | null} */
+        this.action = action ??= data.action ?? null;
         /** @type {DhActor | null} */
         this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor ?? null;
         /** @type {DhItem | null} */
-        this.item = item ??= data.item ?? data.action?.item;
+        this.item = item ??= data.item ?? data.action?.item ?? null;
         
         // Redirect to the partner if companion. Ideally we shouldn't do this and keep it on the partner,
         // but the system as a whole expects the partner to be the main roll.
@@ -87,13 +88,6 @@ export class MoveContext {
         this.resourceUpdates = new ResourceUpdateMap(this.actor);
         this.dialog = {}; // updated when keybindings are applied
 
-        // Create roll data. This should probably not be done here, but the codebase expects it
-        // For now we keep this data minimal to not bloat roll objects.
-        // roll.data exists, so eventually remove this, pass config.getRollData() instead of config.data as roll data, 
-        // and replace roll.options.data in Roll objects with roll.data.
-        // This shouldn't happen until a major release occurs, as it will impact a large amount of code
-        this.data = pick(this.getRollData(), ['experiences', 'traits', 'rules', 'action', 'criticalThreshold']);
-
         const damage = action?.damage;
         if (actor && damage) {
             this.isDirect = damage.main?.direct;
@@ -117,6 +111,12 @@ export class MoveContext {
             action: action?.id,
             originItem: action?.originItem
         };
+    }
+
+    /** @deprecated */
+    get data() {
+        foundry.utils.logCompatibilityWarning('MoveContext#data is deprecated. Use MoveContext#getRollData() instead', { since: '2.12.8' })
+        return this.getRollData();
     }
 
     /**
@@ -160,6 +160,17 @@ export class MoveContext {
             this.dialog.configure = false;
         }
 
+        if (this.costs && (this.action || this.actor)) {
+            const CostField = game.system.api.fields.ActionFields.CostField;
+            this.costs = CostField.calcCosts.call(this.action ?? { actor: this.actor }, this.costs);
+        }
+
+        if (this.uses) {
+            this.uses.value ??= 0;
+            this.uses.remaining = this.action?.remainingUses;
+            this.uses.enabled ??= true;
+        }
+
         this.applyKeybindings();
     }
 
@@ -198,11 +209,10 @@ export class MoveContext {
     async getActionRelevantEffects() {
         if (!this.actor) return [];
 
-        // todo: replace this.data reference with this.getRollData(). Because of the way cost is handled rn, we can't do that
-        // Luckily, roll phase conditionals don't require very precise roll data yet, data compare is prep phase
+        const rollData = this.getRollData();
         const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
         return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            const conditionalPassed = effect.system.testConditionals(this.data, { 
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
                 phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
             });
             if (conditionalPassed)
@@ -210,6 +220,121 @@ export class MoveContext {
 
             return acc;
         }, []);
+    }
+
+    /** 
+     * Tests if the costs can be sufficiently paid for by the actor
+     * @returns {boolean}
+     */
+    testSufficientResources() {
+        if (!this.costs) return true;
+
+        const actionLike = this.action ?? { actor: this.actor };
+
+        const CostField = game.system.api.fields.ActionFields.CostField;
+        const realCosts = CostField.getRealCosts.call(actionLike, this.costs);
+        const hasFearCost = realCosts.findIndex(c => c.key === 'fear');
+
+        if (hasFearCost > -1) {
+            const fearCost = realCosts.splice(hasFearCost, 1)[0];
+            if (
+                !game.user.isGM ||
+                fearCost.total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
+            )
+                return false;
+        }
+
+        /* isReversed is a sign that the resource is inverted, IE it counts upwards instead of down */
+        const resources = CostField.getResources.call(actionLike, realCosts);
+        return realCosts.reduce(
+            (a, c) =>
+                !resources[c.key]
+                    ? a
+                    : a && resources[c.key].isReversed
+                        ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
+                        : resources[c.key]?.value >= (c.total ?? c.value),
+            true
+        );
+    }
+
+    /** 
+     * Tests if there are sufficient uses for this action
+     * @returns {boolean}
+     */
+    testSufficientUses() {
+        if (!this.uses) return true;
+
+        const uses = this.uses;
+        let max = uses.max ?? 0;
+        if (isNaN(max)) {
+            const roll = new Roll(Roll.replaceFormulaData(uses.max, this.getRollData())).evaluateSync();
+            max = roll.total;
+        }
+        return (uses.hasOwnProperty('enabled') && !uses.enabled) || uses.value + 1 <= max;
+    }
+
+    /** 
+     * Spend all costs and uses, and whatever else may have been added to resourceUpdates
+     * @param {object} [options]
+     * @param {boolean} [options.successCost=false]     Consume only resources configured as "On Success only"
+     */
+    async spendResources({ successCost = false } = {}) {
+        const CostField = game.system.api.fields.ActionFields.CostField;
+        const actor = this.actor.system.partner ?? this.actor;
+        const usefulResources = {
+            ...foundry.utils.deepClone(actor.system.resources),
+            fear: {
+                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                max: game.system.settings.homebrew.maxFear,
+                reversed: false
+            }
+        };
+
+        const item = this.item;
+        if (item) {
+            for (var cost of this.costs) {
+                if (cost.itemId) {
+                    usefulResources[cost.key] = {
+                        value: cost.value,
+                        target: this.parent.parent,
+                        itemId: cost.itemId
+                    };
+                }
+            }
+        }
+
+        const isSuccess = this.roll?.success; // is this the right property?
+        const resources = CostField.getRealCosts(this.costs)
+            .filter(
+                c =>
+                    (!successCost && (!c.consumeOnSuccess || isSuccess)) ||
+                    (successCost && c.consumeOnSuccess)
+            )
+            .reduce((a, c) => {
+                const resource = usefulResources[c.key];
+                if (resource) {
+                    a.push({
+                        key: c.key,
+                        value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
+                        target: resource.target,
+                        itemId: resource.itemId
+                    });
+                }
+
+                return a;
+            }, []);
+
+        this.resourceUpdates.addResources(resources);
+        await this.resourceUpdates.updateResources();
+
+        if (
+            this.action &&
+            this.uses?.enabled &&
+            ((!successCost && (!this.uses?.consumeOnSuccess || isSuccess)) ||
+                (successCost && this.uses?.consumeOnSuccess))
+        ) {
+            await this.action.update({ 'uses.value': this.action.uses.value + 1 });
+        }
     }
 
     static async build(data, options = {}) {
