@@ -23,7 +23,7 @@ export default class DHRoll extends BaseRoll {
             options.bonusEffects = this.bonusEffectBuilder();
         }
 
-        if (!this.data || !Object.keys(this.data).length) this.data = options.data;
+        if (!this.data || !Object.keys(this.data).length) this.data = options.data ?? {};
     }
 
     get title() {
