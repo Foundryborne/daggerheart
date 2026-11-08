@@ -93,6 +93,8 @@
  * Convention for the redefined ones is --dh-{element}-color-{thing}.
  *
  * --dh ones are implicitly system styles and are not namespaced. This allows them to be usable in things like embeds.
+ *
+ * Some CSS variables are commented out to allow fake non-static fallbacks. Empty doesn't seem to work dynamically at least in FF.
  */
 @scope (.theme-light, .theme-dark) to (.themed) {
     --dh-card-trim-color: @golden;
@@ -117,6 +119,12 @@
     --dh-immunity-color-border: @chat-purple;
     --dh-immunity-color-bg: @chat-purple-10;
     --dh-warning-glow: light-dark(@dark-blue, @golden-90);
+    --dh-sidebar-status-color-bg: light-dark(@dark-blue, @golden);
+    --dh-sidebar-status-color-label: light-dark(@beige, @dark-blue);
+    --dh-pip-on-color: light-dark(@dark-blue, @golden);
+    // --dh-pip-on-color-border: ; /* explicitly unset, to allow less var to fallback */
+    --dh-pip-off-color: light-dark(@dark-blue-10, @golden-40);
+    // --dh-pip-off-color-border: ; /* explicitly unset, to allow less var to fallback */
 
     .dh-style :scope,
     :scope.dh-style,
@@ -271,3 +279,9 @@
 @resistance-color-bg: var(--dh-resistance-color-bg);
 @immunity-color-border: var(--dh-immunity-color-border);
 @immunity-color-bg: var(--dh-immunity-color-bg);
+@sidebar-status-color-bg: var(--dh-sidebar-status-color-bg);
+@sidebar-status-color-label: var(--dh-sidebar-status-color-label);
+@pip-on-color: var(--dh-pip-on-color);
+@pip-on-color-border: var(--dh-pip-on-color-border, var(--color-border));
+@pip-off-color: var(--dh-pip-off-color);
+@pip-off-color-border: var(--dh-pip-off-color-border, var(--color-border));
