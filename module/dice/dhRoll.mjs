@@ -191,7 +191,8 @@ export default class DHRoll extends BaseRoll {
             system: { 
                 ...foundry.utils.deepClone(config), 
                 actionDescription,
-                reloadCheckValue: reloadResult.rollValue 
+                reloadCheckValue: reloadResult.rollValue,
+                successConsumed: config.roll?.success
             },
             rolls: [roll]
         };
