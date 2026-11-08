@@ -1,3 +1,5 @@
+import { resetAndRerenderActors } from '../../helpers/utils.mjs';
+
 export default class DhAppearance extends foundry.abstract.DataModel {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.SETTINGS.Appearance'];
 
@@ -70,5 +72,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 ui.resources.render({ force: true }).then(() => ui.resources.handleOffset());
             }
         }
+
+        resetAndRerenderActors();
     }
 }
