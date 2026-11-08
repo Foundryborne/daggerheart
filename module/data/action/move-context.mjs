@@ -21,7 +21,9 @@ export class MoveContext {
     constructor(data = {}, { actor, item, action } = {}) {
         // Store documents and resolve missing ones
         this.action = action ??= data.action;
-        this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor;
+        /** @type {DhActor | null} */
+        this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor ?? null;
+        /** @type {DhItem | null} */
         this.item = item ??= data.item ?? data.action?.item;
         
         // Redirect to the partner if companion. Ideally we shouldn't do this and keep it on the partner,
@@ -149,7 +151,7 @@ export class MoveContext {
 
         this.effects = await this.getActionRelevantEffects();
 
-        this.guaranteedCritical = this.data?.parent?.appliedEffects.reduce((a, c) => {
+        this.guaranteedCritical = this.actor?.appliedEffects.reduce((a, c) => {
             const change = c.system.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
             if (change) a = true;
             return a;
@@ -196,6 +198,8 @@ export class MoveContext {
     async getActionRelevantEffects() {
         if (!this.actor) return [];
 
+        // todo: replace this.data reference with this.getRollData(). Because of the way cost is handled rn, we can't do that
+        // Luckily, roll phase conditionals don't require very precise roll data yet, data compare is prep phase
         const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
         return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
             const conditionalPassed = effect.system.testConditionals(this.data, { 
