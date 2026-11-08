@@ -134,7 +134,7 @@
                                     <span><i class="fa-regular fa-circle"></i></span>
                                 {{/if}}
                                 <span class="label">{{localize "DAGGERHEART.GENERAL.Advantage.full"}}</span>
-                                {{#if @root.rollConfig.data.advantageSources.length}}
+                                {{#if @root.rollData.advantageSources.length}}
                                     <span class="advantage-chip-tooltip" data-tooltip="{{concat "#advantage#" @root.rollConfig.source.actor}}"><i class="fa-solid fa-circle-info"></i></span>
                                 {{/if}}
                             </button>
@@ -145,7 +145,7 @@
                                     <span><i class="fa-regular fa-circle"></i></span>
                                 {{/if}}
                                 <span class="label">{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</span>
-                                {{#if @root.rollConfig.data.disadvantageSources.length}}
+                                {{#if @root.rollData.disadvantageSources.length}}
                                     <span class="advantage-chip-tooltip" data-tooltip="{{concat "#disadvantage#" @root.rollConfig.source.actor}}"><i class="fa-solid fa-circle-info"></i></span>
                                 {{/if}}
                             </button>
