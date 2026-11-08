@@ -1,4 +1,3 @@
-import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
 import { originItemField } from '../chat-message/actorRoll.mjs';
@@ -267,13 +266,23 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(null, config);
             if (!config) return;
+        } else if (config.dialog.configure === false) {
+            // Test for sufficient resources
+            if (!config.testSufficientUses()) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.actionNoUsesRemaining'));
+                return;
+            }
+            if (!config.testSufficientResources()) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
+                return;
+            }
         }
 
         // Execute the Action Worflow in order based of schema fields
         const result = await this.executeWorkflow(config);
         if (result === false) return;
 
-        await config.resourceUpdates.updateResources();
+        await config.spendResources();
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
@@ -323,24 +332,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      */
     requireConfigurationDialog(config) {
         return !config.event.shiftKey && !config.hasRoll && (config.costs?.length || config.uses);
-    }
-
-    /**
-     * Consume Action configured resources & uses.
-     * That method is only used when we want those resources to be consumed outside of the use method workflow.
-     * @param {object} config                Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
-     * @param {boolean} successCost
-     */
-    async consume(config, successCost = false) {
-        config.resourceUpdates = new ResourceUpdateMap(config.actionActor);
-        await this.workflow.get('cost')?.execute(config, successCost);
-        await this.workflow.get('uses')?.execute(config, successCost);
-
-        if (config.roll && !config.roll.success && successCost) {
-            setTimeout(() => {
-                (config.message ?? config.parent).update({ 'system.successConsumed': true });
-            }, 50);
-        }
     }
 
     /**
