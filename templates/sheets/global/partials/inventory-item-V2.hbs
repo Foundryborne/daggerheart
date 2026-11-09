@@ -29,9 +29,6 @@ Parameters:
     <div class="item-main">
         <div class="inventory-item-header{{#if hideContextMenu}} padded{{/if}}" {{#unless (or noExtensible (not item.hasDescription))}}data-action="toggleExtended" {{/unless}}>
             {{!-- Image --}}
-            {{log type}}
-            {{log @root.editable}}
-            {{log (or isUsable showActions)}}
             <div class="img-portrait" draggable="true"
                 {{#if (or isUsable showActions)}}
                     data-action='{{ifThen (and (not inactive) item.usable) "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'
