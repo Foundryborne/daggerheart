@@ -60,7 +60,7 @@ export default class DhItem extends foundry.documents.Item {
         const pack = actor?.pack ? game.packs.get(actor.pack) : null;
         const hasActions = this.system.actionsList?.size || this.system.actionsList?.length;
         const isValidType = actor?.type === 'character' || this.type === 'feature';
-        return !pack?.locked && this.isOwner && isValidType && hasActions;
+        return Boolean(!pack?.locked && this.isOwner && isValidType && hasActions);
     }
 
     /** Returns true if the item has a description, usually if there is a description field, or if there are item features */

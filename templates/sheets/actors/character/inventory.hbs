@@ -24,8 +24,9 @@
                 collection=section.collection
                 isGlassy=true
                 canCreate=section.canCreate
-                showActions=(and section.canCreate (eq section.type 'loot'))
+                showActions=(eq section.type 'loot')
                 isQuantifiable=section.isQuantifiable
+                isUsable=@root.editable
             }}
         {{/each}}
     </div>
