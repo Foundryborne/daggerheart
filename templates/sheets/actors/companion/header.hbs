@@ -10,11 +10,6 @@
             spellcheck="false"
         />
     </h1>
-    {{#if useResourcePips}}
-        <div class="resource-section">
-            {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=document.system.resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" largePips=true }}
-        </div>
-    {{/if}}
     <div class="status-section {{#if useResourcePips}}pip-display{{/if}}">
         <div class="status-number">
             <div class='status-value'>
@@ -24,11 +19,15 @@
                 <h4>{{localize "DAGGERHEART.GENERAL.evasion"}}</h4>
             </div>
         </div>
-        {{#unless useResourcePips}}
+        {{#if useResourcePips}}
+            <div class="resource-section">
+                {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=document.system.resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" largePips=true }}
+            </div>
+        {{else}}
             <div class="resource-section">
                 {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=document.system.resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" }}
             </div>
-        {{/unless}}
+        {{/if}}
         <div class='level-div'>
             <h3 class='label'>
                 {{localize 'DAGGERHEART.GENERAL.level'}}
