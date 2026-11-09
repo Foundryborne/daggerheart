@@ -40,6 +40,7 @@
                 collection=document.system.domainCards.loadout
                 canCreate=@root.editable
                 inVault=false
+                isUsable=@root.editable
             }}
             {{> 'daggerheart.inventory-items'
                 title='DAGGERHEART.GENERAL.Tabs.vault'
@@ -48,6 +49,7 @@
                 collection=document.system.domainCards.vault
                 canCreate=@root.editable
                 inVault=true
+                isUsable=@root.editable
             }}
         {{/if}}
     </div>
