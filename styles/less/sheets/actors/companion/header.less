@@ -43,7 +43,7 @@
         }
 
         .resource-section {
-            width: 100%;
+            width: fit-content;
             display: flex;
             justify-content: center;
         }
@@ -54,8 +54,12 @@
             justify-content: center;
 
             &.pip-display {
-                width: 100%;
                 justify-content: space-around;
+
+                .resource-section .slot-value .slot-bar {
+                    display: grid;
+                    grid-template-columns: repeat(6, auto);
+                }
             }
 
             .status-number {
