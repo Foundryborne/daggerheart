@@ -16,7 +16,8 @@ Parameters:
 - hideModifyControls {boolean}: If true, hides the edit and delete options (todo: swap to show, only party cares to show this)
 - hideDescription {boolean} : If true, hides the item's description.
 - hideResources {boolean} : If true, hides the item's resources.
-- showActions {boolean} : If true show feature's actions.
+- showActions {boolean} : If true show feature's actions. Also allows using an item if usable is undefined
+- isUsable {boolean}: Allows using an item via its icon regardless of whether actions are shown are not, so long as the item is usable. If false, actions will not be shown.
 --}}
 
 <li class="inventory-item {{#if inactive}}inactive{{/if}}" data-item-id="{{item.id}}"
@@ -28,13 +29,18 @@ Parameters:
     <div class="item-main">
         <div class="inventory-item-header{{#if hideContextMenu}} padded{{/if}}" {{#unless (or noExtensible (not item.hasDescription))}}data-action="toggleExtended" {{/unless}}>
             {{!-- Image --}}
+            {{log type}}
+            {{log @root.editable}}
+            {{log (or isUsable showActions)}}
             <div class="img-portrait" draggable="true"
-                {{#unless (eq showActions false)}}data-action='{{ifThen (and (not inactive) item.usable) "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'{{/unless}}
+                {{#if (or isUsable showActions)}}
+                    data-action='{{ifThen (and (not inactive) item.usable) "useItem" (ifThen (hasProperty item "toChat" ) "toChat" "editDoc" ) }}'
+                {{/if}}
                 {{#unless hideTooltip}} {{#if (eq type 'attack' )}} data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}
             >
                     <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" 
             />
-                {{#if (and (not inactive) item.usable (ne showActions false))}}
+                {{#if (and (not inactive) item.usable (or isUsable showActions))}}
                     {{#if @root.isNPC}}
                         <img class="roll-img d20" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
                     {{else}}
@@ -155,7 +161,7 @@ Parameters:
         {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
     {{/if}}
     {{!-- Actions Buttons --}}
-    {{#if (and showActions item.system.actions.size)}}
+    {{#if (and showActions (ne isUsable false) item.system.actions.size)}}
     <div class="item-buttons">
         {{#each item.system.actions as | action |}}
             {{#unless action.isGrouped}}
