@@ -256,6 +256,35 @@
             }
         }
 
+        .collosus-section {
+            .part-list {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                .actor {
+                    padding-left: 10px;
+                    display: grid;
+                    align-items: center;
+                    gap: 4px;
+                    grid-template: "img name"
+                        / 28px 1fr;
+                    &:not(.active) {
+                        opacity: 0.8;
+                    }
+                    &.current {
+                        color: @color-text-emphatic;
+                        a {
+                            pointer-events: none;
+                        }
+                    }
+                    img {
+                        width: 28px;
+                        height: 28px;
+                    }
+                }
+            }
+        }
+
         .reaction-section {
             display: flex;
             margin: 10px;

@@ -848,8 +848,8 @@ export function getArmorSources(actor) {
  * Triggers a reset and non-forced re-render on all given actors (if given)
  * or all world actors and actors in all scenes to show immediate results for a changed setting.
  */
-export function resetAndRerenderActors() {
-    const actors = new Set(
+export function resetAndRerenderActors(actors) {
+    actors ??= new Set(
         [game.actors.contents, game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])].flat()
     );
     for (const actor of actors) {

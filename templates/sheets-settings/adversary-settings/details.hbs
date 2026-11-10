@@ -11,6 +11,9 @@
             {{#if (eq document._source.system.typeData.type 'horde')}}
                 {{formGroup typeDataFields.hordeHP value=document._source.system.typeData.hordeHP name="system.typeData.hordeHP" label=(localize "DAGGERHEART.ACTORS.Adversary.horderHp")}}
             {{/if}}
+            {{#if (eq document._source.system.typeData.type 'collosus')}}
+                {{formGroup typeDataFields.role value=document._source.system.typeData.role name="system.typeData.role" localize=true}}
+            {{/if}}
             {{formGroup systemFields.size value=document._source.system.size label=(localize "DAGGERHEART.GENERAL.tokenSize") localize=true}}
         </div>
         {{#if availableSubTypes}}
@@ -29,8 +32,10 @@
         <legend>{{localize "DAGGERHEART.ACTORS.Adversary.stats"}}</legend>
         <div class="nest-inputs">
             {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
-            {{formGroup systemFields.damageThresholds.fields.major value=document._source.system.damageThresholds.major}}
-            {{formGroup systemFields.damageThresholds.fields.severe value=document._source.system.damageThresholds.severe}}
+            {{#unless (eq document.system.typeData.role "part")}}
+                {{formGroup systemFields.damageThresholds.fields.major value=document._source.system.damageThresholds.major}}
+                {{formGroup systemFields.damageThresholds.fields.severe value=document._source.system.damageThresholds.severe}}
+            {{/unless}}
         </div>
         <div class="nest-inputs">
             {{#each resources as |resource|}}

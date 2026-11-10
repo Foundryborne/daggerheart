@@ -328,6 +328,24 @@
                 },
                 "hordeDamage": "Horde Damage (Half HP)",
                 "horderHp": "Horde/HP",
+                "collosus": {
+                    "FIELDS": {
+                        "role": {
+                            "label": "Role",
+                            "choices": {
+                                "framework": "Framework",
+                                "part": "Part"
+                            }
+                        }
+                    },
+                    "Notifications": {
+                        "OnlyParts": "Only Collosi Parts can be added to the parts list",
+                        "OnlyFrameworks": "Only Collosi Frameworks can be added",
+                        "MustBeSameCompendium": "Collosi Parts and Frameworks must be in the same compendium",
+                        "MustOwnBoth": "You must be an owner of both documents to establish a link",
+                        "FrameworkNotLinked": "This part isn't linked to this framework, and updates will not propagate."
+                    }
+                },
                 "adversaryReactionRoll": {
                     "headerTitle": "Adversary Reaction Roll"
                 },
@@ -1048,6 +1066,10 @@
                 "bruiser": {
                     "label": "Bruiser",
                     "description": "Tough adversaries with powerful attacks."
+                },
+                "collosus": {
+                    "label": "Collosus",
+                    "description": "Large adversaries that use multiple adversary stat blocks."
                 },
                 "horde": {
                     "label": "Horde",
@@ -3250,6 +3272,7 @@
                 "attack": "Attack",
                 "base": "Base",
                 "biography": "Biography",
+                "collosus": "Collosus",
                 "compendiumPacks": "Compendium packs",
                 "conditionals": "Conditionals",
                 "configuration": "Configuration",
