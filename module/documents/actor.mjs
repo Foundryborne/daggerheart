@@ -8,6 +8,7 @@ import { abilities } from '../config/actorConfig.mjs';
 import { DHDamageData } from '../data/fields/action/damageField.mjs';
 
 import { MoveContext } from '../data/action/move-context.mjs';
+import DhpAdversary from '../data/actor/adversary.mjs';
 
 export default class DhActor extends Actor {
     parties = new Set();
@@ -206,14 +207,19 @@ export default class DhActor extends Actor {
     /**@inheritdoc */
     static getDefaultArtwork(actorData) {
         const { type } = actorData;
-        const Model = CONFIG.Actor.dataModels[type];
-        const img = Model.DEFAULT_ICON ?? this.DEFAULT_ICON;
-        return {
-            img,
-            texture: {
-                src: img
-            }
-        };
+
+        if (type === 'adversary') {
+            return DhpAdversary.getTypeDefaultArtwork(actorData.system?.type);
+        } else {
+            const Model = CONFIG.Actor.dataModels[type];
+            const img = Model.DEFAULT_ICON ?? this.DEFAULT_ICON;
+            return {
+                img,
+                texture: {
+                    src: img
+                }
+            };
+        }
     }
 
     static createDialog(data, createOptions, options, renderOptions) {
@@ -1480,10 +1486,6 @@ export default class DhActor extends Actor {
         }
 
         this.updateSource(update);
-    }
-
-    _preUpdate(changed, options, user) {
-        return super._preUpdate(changed, options, user);
     }
 
     _onUpdate(changes, options, userId) {

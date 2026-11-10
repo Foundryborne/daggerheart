@@ -103,63 +103,113 @@ export const adversaryTypes = {
         id: 'bruiser',
         label: 'DAGGERHEART.CONFIG.AdversaryType.bruiser.label',
         description: 'DAGGERHEART.ACTORS.Adversary.bruiser.description',
-        bpCost: 4
+        bpCost: 4,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     horde: {
         id: 'horde',
         label: 'DAGGERHEART.CONFIG.AdversaryType.horde.label',
         description: 'DAGGERHEART.ACTORS.Adversary.horde.description',
-        bpCost: 2
+        bpCost: 2,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     leader: {
         id: 'leader',
         label: 'DAGGERHEART.CONFIG.AdversaryType.leader.label',
         description: 'DAGGERHEART.ACTORS.Adversary.leader.description',
         bpCost: 3,
-        bpDescription: 'DAGGERHEART.CONFIG.AdversaryType.leader.'
+        bpDescription: 'DAGGERHEART.CONFIG.AdversaryType.leader.',
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     minion: {
         id: 'minion',
         label: 'DAGGERHEART.CONFIG.AdversaryType.minion.label',
         description: 'DAGGERHEART.ACTORS.Adversary.minion.description',
         bpCost: 1,
-        partyAmountPerBP: true
+        partyAmountPerBP: true,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     ranged: {
         id: 'ranged',
         label: 'DAGGERHEART.CONFIG.AdversaryType.ranged.label',
         description: 'DAGGERHEART.ACTORS.Adversary.ranged.description',
-        bpCost: 2
+        bpCost: 2,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     skulk: {
         id: 'skulk',
         label: 'DAGGERHEART.CONFIG.AdversaryType.skulk.label',
         description: 'DAGGERHEART.ACTORS.Adversary.skulk.description',
-        bpCost: 2
+        bpCost: 2,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     social: {
         id: 'social',
         label: 'DAGGERHEART.CONFIG.AdversaryType.social.label',
         description: 'DAGGERHEART.ACTORS.Adversary.social.description',
-        bpCost: 1
+        bpCost: 1,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     solo: {
         id: 'solo',
         label: 'DAGGERHEART.CONFIG.AdversaryType.solo.label',
         description: 'DAGGERHEART.ACTORS.Adversary.solo.description',
-        bpCost: 5
+        bpCost: 5,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     standard: {
         id: 'standard',
         label: 'DAGGERHEART.CONFIG.AdversaryType.standard.label',
         description: 'DAGGERHEART.ACTORS.Adversary.standard.description',
-        bpCost: 2
+        bpCost: 2,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     },
     support: {
         id: 'support',
         label: 'DAGGERHEART.CONFIG.AdversaryType.support.label',
         description: 'DAGGERHEART.ACTORS.Adversary.support.description',
-        bpCost: 1
+        bpCost: 1,
+        defaultImage: {
+            img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
+            dynamicToken: null
+        }
     }
 };
 

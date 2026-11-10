@@ -174,6 +174,27 @@ export default class DhpAdversary extends DhCreature {
         }
     }
 
+    /** 
+     * Get the specific actor image and tokenartwork for a specific adversary type
+     * @param {string} type 
+     * @returns {{ img: string, texture: { src: string } }}
+     */
+    static getTypeDefaultArtwork(type) {
+        const adversaryType = type ?? CONFIG.DH.ACTOR.adversaryTypes.standard.id;
+        const data = CONFIG.DH.ACTOR.adversaryTypes[adversaryType].defaultImage;
+        return {
+            img: data.img,
+            texture: {
+                src: data.token
+            },
+            ring: {
+                subject: {
+                    texture: data.dynamicToken
+                }
+            }
+        };
+    }
+
     /* -------------------------------------------- */
     /*  Data Preparation                            */
     /* -------------------------------------------- */
@@ -239,6 +260,25 @@ export default class DhpAdversary extends DhCreature {
             const newType = CONFIG.DH.ACTOR.adversaryTypeModels[changes.system.type] ?? null;
             const newTypeData = newType ? (new newType()).toObject() : null;
             changes.system.typeData = newTypeData;
+
+            if (!this.parent.isToken) {
+                const { img: currentDefaultImg, texture: currentDefaultTexture, ring: currentRing } = 
+                    this.parent.constructor.getDefaultArtwork(this.parent.toObject());
+                const { img: changedDefaultImg, texture: changedDefaultTexture, ring: changedRing } = 
+                    DhpAdversary.getTypeDefaultArtwork(changes.system.type);
+
+                if (this.parent.img === currentDefaultImg) {
+                    foundry.utils.setProperty(changes, 'img', changedDefaultImg);
+                }
+
+                if (this.parent.prototypeToken.texture.src === currentDefaultTexture.src) {
+                    foundry.utils.setProperty(changes, 'prototypeToken.texture.src', changedDefaultTexture.src);
+                }
+
+                if (this.parent.prototypeToken.ring.subject.texture === currentRing.subject.texture) {
+                    foundry.utils.setProperty(changes, 'prototypeToken.ring.subject.texture', changedRing.subject.texture);
+                } 
+            }
         }
 
         if (Object.keys(changes.system?.subTypes ?? {}).length) {
