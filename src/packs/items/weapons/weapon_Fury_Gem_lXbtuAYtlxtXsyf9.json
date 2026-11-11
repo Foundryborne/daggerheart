@@ -16,13 +16,13 @@
     "resource": null,
     "quantity": 1,
     "actions": {
-      "XpE38Dn617zBvsiX": {
+      "9yyR8h90BONsUG7U": {
         "type": "effect",
         "chatDisplay": true,
         "name": "Burn",
-        "description": "When you roll a 6 on a damage die, the target must mark a Stress.",
+        "description": "When you roll the maximum result on a damage die, the target must mark a Stress.",
         "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
-        "_id": "XpE38Dn617zBvsiX",
+        "_id": "9yyR8h90BONsUG7U",
         "effects": [],
         "systemPath": "actions",
         "baseAction": false,
@@ -145,9 +145,8 @@
         "value": "burning",
         "effectIds": [],
         "actionIds": [
-          "XpE38Dn617zBvsiX"
-        ],
-        "config": {}
+          "9yyR8h90BONsUG7U"
+        ]
       }
     }
   },
