@@ -321,7 +321,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {boolean}
      */
     requireConfigurationDialog(config) {
-        return !config.event.shiftKey && !config.hasRoll && (config.costs?.length || config.uses);
+        return !config.event.shiftKey && 
+            !config.hasRoll && (
+            (config.costs?.length && !config.groupAction?.forceSelect) || 
+                config.uses
+        );
     }
 
     /**
