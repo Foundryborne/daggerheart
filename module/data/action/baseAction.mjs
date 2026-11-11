@@ -393,5 +393,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
             delete source.damage.parts;
         }
+
+        for (const area of (source.areas ?? [])) {
+            if (!CONFIG.DH.GENERAL.sceneRanges[area.size]) {
+                area.size = CONFIG.DH.GENERAL.sceneRanges.far.id;
+            }
+        }
     }
 }

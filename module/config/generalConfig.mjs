@@ -21,15 +21,7 @@ export const ruleChoice = {
     }
 };
 
-export const templateRanges = {
-    self: {
-        id: 'self',
-        shortKey: 's',
-        short: 'DAGGERHEART.CONFIG.Range.self.short',
-        label: 'DAGGERHEART.CONFIG.Range.self.name',
-        description: 'DAGGERHEART.CONFIG.Range.self.description',
-        distance: 0
-    },
+export const sceneRanges = {
     melee: {
         id: 'melee',
         shortKey: 'm',
@@ -62,6 +54,18 @@ export const templateRanges = {
         description: 'DAGGERHEART.CONFIG.Range.far.description',
         distance: 20
     }
+};
+
+export const templateRanges = {
+    self: {
+        id: 'self',
+        shortKey: 's',
+        short: 'DAGGERHEART.CONFIG.Range.self.short',
+        label: 'DAGGERHEART.CONFIG.Range.self.name',
+        description: 'DAGGERHEART.CONFIG.Range.self.description',
+        distance: 0
+    },
+    ...sceneRanges
 };
 
 export const range = {
