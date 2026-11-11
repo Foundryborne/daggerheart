@@ -107,7 +107,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     horde: {
@@ -118,7 +120,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     leader: {
@@ -130,7 +134,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     minion: {
@@ -142,7 +148,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     ranged: {
@@ -153,7 +161,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     skulk: {
@@ -164,7 +174,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     social: {
@@ -175,7 +187,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     solo: {
@@ -186,7 +200,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     standard: {
@@ -197,7 +213,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     },
     support: {
@@ -208,7 +226,9 @@ export const adversaryTypes = {
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
             token: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
-            dynamicToken: null
+            dynamicToken: null,
+            tokenScale: 1,
+            dynamicTokenScale: 1
         }
     }
 };
