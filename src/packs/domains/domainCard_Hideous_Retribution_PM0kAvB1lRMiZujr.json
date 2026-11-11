@@ -22,7 +22,7 @@
             "resultBased": false,
             "fullRestore": false,
             "value": {
-              "multiplier": "cast",
+              "multiplier": "prof",
               "flatMultiplier": 1,
               "dice": "d6",
               "bonus": null,

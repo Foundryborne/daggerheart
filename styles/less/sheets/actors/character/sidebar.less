@@ -132,7 +132,7 @@
                                 position: absolute;
                                 right: 0;
                                 font-size: 12px;
-                                color: light-dark(@beige, @dark-blue);
+                                color: @sidebar-status-color-label;
                             }
                         }
                     }
@@ -158,7 +158,7 @@
                     height: 22px;
                     width: 95px;
                     border-radius: 3px;
-                    background: light-dark(@dark-blue, @golden);
+                    background: @sidebar-status-color-bg;
 
                     display: flex;
                     align-items: center;
@@ -171,13 +171,13 @@
                         font-weight: bold;
                         text-align: center;
                         line-height: 18px;
-                        color: light-dark(@beige, @dark-blue);
+                        color: @sidebar-status-color-label;
                         font-size: var(--font-size-12);
                     }
 
                     i {
                         font-size: 12px;
-                        color: light-dark(@beige, @dark-blue);
+                        color: @sidebar-status-color-label;
                     }
 
                     &:hover {
@@ -205,8 +205,8 @@
                     .slot-label {
                         display: flex;
                         align-items: center;
-                        color: light-dark(@beige, @dark-blue);
-                        background: light-dark(@dark-blue, @golden);
+                        color: @sidebar-status-color-label;
+                        background: @sidebar-status-color-bg;
                         padding: 0 5px;
                         width: 120%;
                         font-weight: bold;
@@ -323,14 +323,14 @@
                     padding: 2px 10px;
                     width: 100%;
                     border-radius: 3px;
-                    background: light-dark(@dark-blue, @golden);
+                    background: @sidebar-status-color-bg;
 
                     h4 {
                         font-weight: bold;
                         text-align: center;
                         line-height: 18px;
                         font-size: var(--font-size-12);
-                        color: light-dark(@beige, @dark-blue);
+                        color: @sidebar-status-color-label;
                     }
                 }
             }
@@ -386,11 +386,15 @@
         }
     }
 
-    .equipment-section,
-    .loadout-section,
-    .experience-section {
+    .shortcut-items-section > section {
         .title {
-            .section-title();
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+            h3 {
+                font-size: var(--font-size-20);
+            }
         }
     }
 

@@ -17,7 +17,7 @@
     border: 1px solid @color-border;
     border-radius: 6px;
     z-index: 1;
-    color: @color-text-emphatic;
+    color: @pip-on-color;
     width: fit-content;
     min-height: 22px;
     flex-wrap: wrap;
@@ -30,8 +30,8 @@
     .slot:not(:has(i)) {
         width: 15px;
         height: 10px;
-        border: 1px solid @color-border;
-        background: light-dark(@dark-blue-10, @golden-10);
+        border: 1px solid @pip-off-color-border;
+        background: @pip-off-color;
         border-radius: 3px;
 
         &.large {
@@ -39,14 +39,15 @@
         }
 
         &.filled {
-            background: light-dark(@dark-blue, @golden);
+            background: @pip-on-color;
+            border-color: @pip-on-color-border;
         }
     }
 
     &.armor .slot {
         font-size: var(--font-size-12);
         .fa-shield-halved {
-            color: light-dark(@dark-blue-40, @golden-40);
+            color: rgb(from @pip-off-color r g b / max(alpha, 0.25));
         }
     }
 
@@ -69,8 +70,8 @@
     .slot-label {
         display: flex;
         align-items: center;
-        color: light-dark(@beige, @dark-blue);
-        background: light-dark(@dark-blue, @golden);
+        color: @sidebar-status-color-label;
+        background: @sidebar-status-color-bg;
         padding: 0 5px;
         width: fit-content;
         font-weight: bold;
@@ -177,7 +178,7 @@
         position: relative;
         height: 22px;
         width: 79px;
-        background: light-dark(@dark-blue, @golden);
+        background: @sidebar-status-color-bg;
 
         &.pointy {
             clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
@@ -188,7 +189,7 @@
             font-weight: bold;
             text-align: center;
             line-height: 18px;
-            color: light-dark(@beige, @dark-blue);
+            color: @sidebar-status-color-label;
         }
     }
 }

@@ -174,6 +174,30 @@ export default class DhpAdversary extends DhCreature {
         }
     }
 
+    /** 
+     * Get the specific actor image and tokenartwork for a specific adversary type
+     * @param {string} type 
+     * @returns {{ img: string, texture: { src: string } }}
+     */
+    static getTypeDefaultArtwork(type) {
+        const adversaryType = type ?? CONFIG.DH.ACTOR.adversaryTypes.standard.id;
+        const data = CONFIG.DH.ACTOR.adversaryTypes[adversaryType].defaultImage;
+        return {
+            img: data.img,
+            texture: {
+                src: data.token,
+                scaleY: data.tokenScale,
+                scaleX: data.tokenScale
+            },
+            ring: {
+                subject: {
+                    texture: data.dynamicToken,
+                    scale: data.dynamicTokenScale
+                }
+            }
+        };
+    }
+
     /* -------------------------------------------- */
     /*  Data Preparation                            */
     /* -------------------------------------------- */
@@ -230,7 +254,43 @@ export default class DhpAdversary extends DhCreature {
     /*  Event Handlers                              */
     /* -------------------------------------------- */
 
-    /** @inheritdoc */
+    /**@inheritdoc */
+    async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return;
+
+        const { img, texture, ring } = DhpAdversary.getTypeDefaultArtwork(this.type);
+        const shouldUpdateArtwork = (current, currentDefault) => {
+            return current === currentDefault || current === DhpAdversary.DEFAULT_ICON || !current;
+        } 
+
+        if (shouldUpdateArtwork(this.parent.img, img)) {
+            await this.parent.updateSource({ img });
+        }
+
+        if (shouldUpdateArtwork(this.parent.prototypeToken.texture.src, texture.src)) {
+            await this.parent.prototypeToken.updateSource({
+                texture: {
+                    src: texture.src,
+                    scaleY: texture.scaleY,
+                    scaleX: texture.scaleX
+                }
+            });
+        }
+
+        if (shouldUpdateArtwork(this.parent.prototypeToken.ring.subject.texture, ring.subject.texture)) {
+            await this.parent.prototypeToken.updateSource({
+                ring: {
+                    subject: {
+                        texture: ring.subject.texture,
+                        scale: ring.subject.scale
+                    }
+                }
+            });
+        } 
+    }
+
+    /**@inheritdoc */
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
@@ -239,6 +299,32 @@ export default class DhpAdversary extends DhCreature {
             const newType = CONFIG.DH.ACTOR.adversaryTypeModels[changes.system.type] ?? null;
             const newTypeData = newType ? (new newType()).toObject() : null;
             changes.system.typeData = newTypeData;
+
+            if (!this.parent.isToken) {
+                const { img: currentDefaultImg, texture: currentDefaultTexture, ring: currentRing } = 
+                    this.parent.constructor.getDefaultArtwork(this.parent.toObject());
+                const { img: changedDefaultImg, texture: changedDefaultTexture, ring: changedRing } = 
+                    DhpAdversary.getTypeDefaultArtwork(changes.system.type);
+
+                const shouldUpdateArtwork = (current, currentDefault) => {
+                    return current === currentDefault || current === DhpAdversary.DEFAULT_ICON || !current;
+                } 
+
+                if (shouldUpdateArtwork(this.parent.img, currentDefaultImg)) {
+                    foundry.utils.setProperty(changes, 'img', changedDefaultImg);
+                }
+
+                if (shouldUpdateArtwork(this.parent.prototypeToken.texture.src, currentDefaultTexture.src)) {
+                    foundry.utils.setProperty(changes, 'prototypeToken.texture.src', changedDefaultTexture.src);
+                    foundry.utils.setProperty(changes, 'prototypeToken.texture.scaleY', changedDefaultTexture.scaleY);
+                    foundry.utils.setProperty(changes, 'prototypeToken.texture.scaleX', changedDefaultTexture.scaleX);
+                }
+
+                if (shouldUpdateArtwork(this.parent.prototypeToken.ring.subject.texture, currentRing.subject.texture)) {
+                    foundry.utils.setProperty(changes, 'prototypeToken.ring.subject.texture', changedRing.subject.texture);
+                    foundry.utils.setProperty(changes, 'prototypeToken.ring.subject.scale', changedRing.subject.scale);
+                } 
+            }
         }
 
         if (Object.keys(changes.system?.subTypes ?? {}).length) {
