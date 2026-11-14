@@ -2165,11 +2165,11 @@
                 },
                 "burning": {
                     "name": "Burning",
-                    "description": "When you roll a 6 on a damage die, the target must mark a Stress.",
+                    "description": "When you roll the maximum result on a damage die, the target must mark a Stress.",
                     "actions": {
                         "burn": {
                             "name": "Burn",
-                            "description": "When you roll a 6 on a damage die, the target must mark a Stress."
+                            "description": "When you roll the maximum result on a damage die, the target must mark a Stress."
                         }
                     }
                 },
@@ -3960,6 +3960,8 @@
                 "deleteItemText": "Are you sure you want to delete the item?",
                 "deleteResourceTitle": "Delete Homebrew Resource",
                 "deleteResourceText": "Are you sure you want to delete the resource?",
+                "deleteAdversaryTypeTitle": "Delete Adversary Type",
+                "deleteAdversaryTypeText": "Are you sure you want to delete the adversary type?",
                 "reset": "Reset",
                 "FIELDS": {
                     "domains": {
@@ -4002,6 +4004,13 @@
                     },
                     "tokenSizes": {
                         "label": "Token Sizes"
+                    },
+                    "adversaryTypes": {
+                        "defaultImage": {
+                            "img": "Default Actor Portrait",
+                            "token": "Default Token Image",
+                            "dynamicToken": "Default Dynamic Token Image"
+                        }
                     }
                 },
                 "currency": {

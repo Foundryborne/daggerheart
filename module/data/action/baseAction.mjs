@@ -321,7 +321,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {boolean}
      */
     requireConfigurationDialog(config) {
-        return !config.event.shiftKey && !config.hasRoll && (config.costs?.length || config.uses);
+        return !config.event.shiftKey && 
+            !config.hasRoll && (
+            (config.costs?.length && !config.groupAction?.forceSelect) || 
+                config.uses
+        );
     }
 
     /**
@@ -392,6 +396,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             }
 
             delete source.damage.parts;
+        }
+
+        for (const area of (source.areas ?? [])) {
+            if (!CONFIG.DH.GENERAL.sceneRanges[area.size]) {
+                area.size = CONFIG.DH.GENERAL.sceneRanges.far.id;
+            }
         }
     }
 }

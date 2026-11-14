@@ -29,8 +29,8 @@ export default class AreasField extends fields.ArrayField {
             /* Could be opened up to allow numbers to be input aswell. Probably best handled via an autocomplete in that case to allow the select options but also free text */
             size: new fields.StringField({
                 nullable: false,
-                choices: CONFIG.DH.GENERAL.range,
-                initial: CONFIG.DH.GENERAL.range.veryClose.id,
+                choices: CONFIG.DH.GENERAL.sceneRanges,
+                initial: CONFIG.DH.GENERAL.sceneRanges.veryClose.id,
                 label: 'DAGGERHEART.ACTIONS.Config.area.size'
             }),
             hasHole: new fields.BooleanField({ 

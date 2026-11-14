@@ -6,7 +6,36 @@
   "img": "icons/weapons/staves/staff-engraved-red.webp",
   "system": {
     "description": "",
-    "actions": {},
+    "actions": {
+      "JoHFW5bJy115D1qh": {
+        "type": "effect",
+        "chatDisplay": true,
+        "name": "Burn",
+        "description": "When you roll the maximum result on a damage die, the target must mark a Stress.",
+        "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
+        "_id": "JoHFW5bJy115D1qh",
+        "effects": [],
+        "systemPath": "actions",
+        "baseAction": false,
+        "originItem": {
+          "type": "itemCollection"
+        },
+        "actionType": "action",
+        "triggers": [],
+        "areas": [],
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
     "tier": 3,
     "equipped": false,
     "secondary": false,
@@ -115,9 +144,8 @@
         "value": "burning",
         "effectIds": [],
         "actionIds": [
-          "9j81Lxp3sDskHFDS"
-        ],
-        "config": {}
+          "JoHFW5bJy115D1qh"
+        ]
       }
     }
   },

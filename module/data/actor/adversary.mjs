@@ -181,7 +181,7 @@ export default class DhpAdversary extends DhCreature {
      */
     static getTypeDefaultArtwork(type) {
         const adversaryType = type ?? CONFIG.DH.ACTOR.adversaryTypes.standard.id;
-        const data = CONFIG.DH.ACTOR.adversaryTypes[adversaryType].defaultImage;
+        const data = CONFIG.DH.ACTOR.allAdversaryTypes()[adversaryType].defaultImage;
         return {
             img: data.img,
             texture: {
@@ -268,7 +268,8 @@ export default class DhpAdversary extends DhCreature {
             await this.parent.updateSource({ img });
         }
 
-        if (shouldUpdateArtwork(this.parent.prototypeToken.texture.src, texture.src)) {
+        const shouldUpdateToken = shouldUpdateArtwork(this.parent.prototypeToken.texture.src, texture.src);
+        if (shouldUpdateToken) {
             await this.parent.prototypeToken.updateSource({
                 texture: {
                     src: texture.src,
@@ -278,7 +279,10 @@ export default class DhpAdversary extends DhCreature {
             });
         }
 
-        if (shouldUpdateArtwork(this.parent.prototypeToken.ring.subject.texture, ring.subject.texture)) {
+        if (
+            shouldUpdateToken && 
+            shouldUpdateArtwork(this.parent.prototypeToken.ring.subject.texture, ring.subject.texture)
+        ) {
             await this.parent.prototypeToken.updateSource({
                 ring: {
                     subject: {
@@ -314,13 +318,18 @@ export default class DhpAdversary extends DhCreature {
                     foundry.utils.setProperty(changes, 'img', changedDefaultImg);
                 }
 
-                if (shouldUpdateArtwork(this.parent.prototypeToken.texture.src, currentDefaultTexture.src)) {
+                const shouldUpdateToken = 
+                    shouldUpdateArtwork(this.parent.prototypeToken.texture.src, currentDefaultTexture.src);
+                if (shouldUpdateToken) {
                     foundry.utils.setProperty(changes, 'prototypeToken.texture.src', changedDefaultTexture.src);
                     foundry.utils.setProperty(changes, 'prototypeToken.texture.scaleY', changedDefaultTexture.scaleY);
                     foundry.utils.setProperty(changes, 'prototypeToken.texture.scaleX', changedDefaultTexture.scaleX);
                 }
 
-                if (shouldUpdateArtwork(this.parent.prototypeToken.ring.subject.texture, currentRing.subject.texture)) {
+                if (
+                    shouldUpdateToken && 
+                    shouldUpdateArtwork(this.parent.prototypeToken.ring.subject.texture, currentRing.subject.texture)
+                ) {
                     foundry.utils.setProperty(changes, 'prototypeToken.ring.subject.texture', changedRing.subject.texture);
                     foundry.utils.setProperty(changes, 'prototypeToken.ring.subject.scale', changedRing.subject.scale);
                 } 
