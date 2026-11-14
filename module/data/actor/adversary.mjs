@@ -181,7 +181,7 @@ export default class DhpAdversary extends DhCreature {
      */
     static getTypeDefaultArtwork(type) {
         const adversaryType = type ?? CONFIG.DH.ACTOR.adversaryTypes.standard.id;
-        const data = CONFIG.DH.ACTOR.adversaryTypes[adversaryType].defaultImage;
+        const data = CONFIG.DH.ACTOR.allAdversaryTypes()[adversaryType].defaultImage;
         return {
             img: data.img,
             texture: {
