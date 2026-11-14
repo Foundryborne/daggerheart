@@ -21,7 +21,13 @@
         {{#if selectedAdversaryType}}
             <div class="type-edit-container">
                 {{formGroup settingFields.schema.fields.adversaryTypes.element.fields.label name=(concat "adversaryTypes." selectedAdversaryType.id ".label") value=selectedAdversaryType.label localize=true }}
-                <textarea name="{{concat "adversaryTypes." selectedAdversaryType.id ".description"}}">{{selectedAdversaryType.description}}</textarea>
+                {{formGroup settingFields.schema.fields.adversaryTypes.element.fields.defaultImage.fields.img name=(concat "adversaryTypes." selectedAdversaryType.id ".defaultImage.img") value=selectedAdversaryType.defaultImage.img localize=true }}
+                {{formGroup settingFields.schema.fields.adversaryTypes.element.fields.defaultImage.fields.token name=(concat "adversaryTypes." selectedAdversaryType.id ".defaultImage.token") value=selectedAdversaryType.defaultImage.token localize=true }}
+                {{formGroup settingFields.schema.fields.adversaryTypes.element.fields.defaultImage.fields.dynamicToken name=(concat "adversaryTypes." selectedAdversaryType.id ".defaultImage.dynamicToken") value=selectedAdversaryType.defaultImage.dynamicToken localize=true }}
+                <div class="form-fields">
+                    <label>{{localize "DAGGERHEART.GENERAL.description"}}</label>
+                    <textarea name="{{concat "adversaryTypes." selectedAdversaryType.id ".description"}}">{{selectedAdversaryType.description}}</textarea>
+                </div>
             </div>
         {{/if}}
     </fieldset>
