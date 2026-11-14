@@ -13,9 +13,32 @@
     "gmNotes": "",
     "resource": null,
     "actions": {
-      "ka7wdfcKZgPaK80a": {
-        "type": "effect",
-        "_id": "ka7wdfcKZgPaK80a",
+      "BWJjtORlj5BvnOnG": {
+        "type": "damage",
+        "damage": {
+          "main": null,
+          "resources": {
+            "hitPoints": {
+              "base": false,
+              "itemId": null,
+              "applyTo": "hitPoints",
+              "resultBased": false,
+              "fullRestore": false,
+              "value": {
+                "multiplier": "scale",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": true,
+                  "formula": "@scale"
+                }
+              },
+              "valueAlt": null
+            }
+          }
+        },
+        "_id": "BWJjtORlj5BvnOnG",
         "systemPath": "actions",
         "baseAction": false,
         "description": "",
@@ -33,6 +56,16 @@
             "value": 1,
             "itemId": null,
             "step": null,
+            "scaleMax": null,
+            "consumeOnSuccess": false
+          },
+          {
+            "scalable": true,
+            "key": "freelyScaleable",
+            "value": 1,
+            "step": 1,
+            "scaleMax": 4,
+            "itemId": null,
             "consumeOnSuccess": false
           }
         ],
@@ -42,11 +75,11 @@
           "recovery": "shortRest",
           "consumeOnSuccess": false
         },
-        "effects": [],
         "target": {
           "type": "any",
           "amount": 1
         },
+        "effects": [],
         "name": "Mark Stress",
         "range": "melee"
       }

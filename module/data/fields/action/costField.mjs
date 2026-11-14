@@ -18,6 +18,7 @@ export default class CostField extends fields.ArrayField {
             value: new fields.NumberField({ nullable: true, initial: 1, min: 0 }),
             scalable: new fields.BooleanField({ initial: false }),
             step: new fields.NumberField({ nullable: true, initial: null }),
+            scaleMax: new fields.NumberField({ nullable: true, initial: null, min: 1 }),
             consumeOnSuccess: new fields.BooleanField({
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label'
@@ -113,13 +114,13 @@ export default class CostField extends fields.ArrayField {
             c.step = c.step ?? 1;
             c.total = c.value + c.scale * c.step;
             c.enabled = c.hasOwnProperty('enabled') ? c.enabled : true;
-            c.max =
+            c.max = c.scaleMax ?? (
                 c.key === 'fear'
                     ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
                     : resources[c.key].isReversed
                         ? resources[c.key].max - resources[c.key].value
-                        : resources[c.key].value;
-            if (c.scalable) c.maxStep = Math.floor((c.max - c.value) / c.step);
+                        : resources[c.key].value);
+            if (c.scalable) c.maxStep = c.scaleMax ? (c.scaleMax - 1) : Math.floor((c.max - c.value) / c.step);
             return c;
         });
     }
@@ -146,12 +147,16 @@ export default class CostField extends fields.ArrayField {
         /* isReversed is a sign that the resource is inverted, IE it counts upwards instead of down */
         const resources = CostField.getResources.call(this, realCosts);
         return realCosts.reduce(
-            (a, c) =>
-                !resources[c.key]
-                    ? a
-                    : a && resources[c.key].isReversed
-                        ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
-                        : resources[c.key]?.value >= (c.total ?? c.value),
+            (acc, c) => {
+                const resource = resources[c.key];
+                if (!resource) return acc;
+                if (resource.scaleMax) return c.total <= resource.scaleMax;
+
+                return acc && 
+                    resource.isReversed
+                    ? resource.value + (c.total ?? c.value) <= resource.max
+                    : resource.value >= (c.total ?? c.value)
+            },
             true
         );
     }
@@ -173,9 +178,23 @@ export default class CostField extends fields.ArrayField {
             }
         }
 
-        return {
+        const modelResources = {
             ...actorResources,
             ...itemResources
+        };
+
+        const actionResources = this.cost.reduce((acc, cost) => {
+            if (!modelResources[cost.key]) acc[cost.key] = {
+                ...cost,
+                max: cost.max ?? cost.scaleMax
+            };
+
+            return acc;
+        }, {});
+
+        return {
+            ...modelResources,
+            ...actionResources
         };
     }
 
