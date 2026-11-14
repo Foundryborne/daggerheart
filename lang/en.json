@@ -3960,6 +3960,8 @@
                 "deleteItemText": "Are you sure you want to delete the item?",
                 "deleteResourceTitle": "Delete Homebrew Resource",
                 "deleteResourceText": "Are you sure you want to delete the resource?",
+                "deleteAdversaryTypeTitle": "Delete Adversary Type",
+                "deleteAdversaryTypeText": "Are you sure you want to delete the adversary type?",
                 "reset": "Reset",
                 "FIELDS": {
                     "domains": {

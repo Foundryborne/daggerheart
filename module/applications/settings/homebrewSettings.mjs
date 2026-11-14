@@ -548,6 +548,15 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     static async deleteAdversaryType(_, target) {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize(`DAGGERHEART.SETTINGS.Homebrew.deleteAdversaryTypeTitle`)
+            },
+            content: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.deleteAdversaryTypeText')
+        });
+
+        if (!confirmed) return;
+
         const { key } = target.dataset;
         await this.settings.updateSource({ [`adversaryTypes.${key}`]: _del });
 
