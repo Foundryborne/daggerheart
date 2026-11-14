@@ -184,7 +184,27 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 new fields.SchemaField({
                     id: new fields.StringField({ required: true }),
                     label: new fields.StringField({ required: true, label: 'DAGGERHEART.GENERAL.label' }),
-                    description: new fields.StringField()
+                    description: new fields.StringField(),
+                    defaultImage: new fields.SchemaField({
+                        img: new fields.FilePathField({
+                            categories: ['IMAGE'],
+                            base64: false,
+                            initial: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg'
+                        }),
+                        token: new fields.FilePathField({
+                            categories: ['IMAGE'],
+                            base64: false,
+                            initial: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg'
+                        }),
+                        dynamicToken: new fields.FilePathField({
+                            nullable: true,
+                            categories: ['IMAGE'],
+                            base64: false,
+                            initial: null
+                        }),
+                        tokenScale: new fields.NumberField({ initial: 1 }),
+                        dynamicTokenScale: new fields.NumberField({ initial: 1 })
+                    })
                 })
             ),
             resources: new fields.TypedObjectField(
