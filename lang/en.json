@@ -337,6 +337,12 @@
                                 "framework": "Framework",
                                 "part": "Part"
                             }
+                        },
+                        "parts": {
+                            "label": "Parts"
+                        },
+                        "frameworkUuid": {
+                            "label": "Framework"
                         }
                     },
                     "Notifications": {

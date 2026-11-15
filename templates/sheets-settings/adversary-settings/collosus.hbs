@@ -5,7 +5,7 @@
 >
     {{#if (eq collosus.role "framework")}}
     <fieldset class="collosus-parts">
-        <legend>Parts</legend>
+        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.collosus.FIELDS.parts.label"}}</legend>
         {{#each collosus.parts as |part idx|}}
             <div class="part" data-idx="{{idx}}">
                 {{#if part.actor}}
@@ -13,7 +13,7 @@
                     <a class="name" data-action="editDoc" data-item-uuid="{{part.actor.uuid}}">{{part.actor.name}}</a>
                 {{else}}
                     <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
-                    <span class="name">Missing</span>
+                    <span class="name">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "DOCUMENT.Actor")}}</span>
                 {{/if}}
                 <input type="number" value="{{part.quantity}}" data-part-quantity/>
                 <div class="controls">
@@ -29,7 +29,7 @@
     </fieldset>
     {{else}}
     <fieldset>
-        <legend>Framework</legend>
+        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.collosus.FIELDS.frameworkUuid.label"}}</legend>
         <div class="framework">
             {{#if collosus.framework.actor}}
                 <img class="portrait" src="{{collosus.framework.actor.img}}" />
@@ -41,7 +41,7 @@
                 {{/unless}}
             {{else}}
                 <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
-                <span class="name">Missing</span>
+                <span class="name">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "DOCUMENT.Actor")}}</span>
             {{/if}}
         </div>
     </fieldset>

@@ -42,6 +42,8 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             parts: new fields.ArrayField(
                 new fields.SchemaField({
                     uuid: new fields.DocumentUUIDField({ type: 'Actor' }),
+                    // Backup uuid after re-linking, used to restore the actor
+                    originalUuid: new fields.DocumentUUIDField({ type: 'Actor' }),
                     quantity: new fields.NumberField({ integer: true, nullable: false, min: 0, max: 10, initial: 0 })
                 })
             ),
@@ -148,6 +150,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
     async #fetchPartBaseActor(uuid) {
         const thisActor = resolveNearestDocument(this, Actor);
         const actor = await fromUuid(uuid);
+        if (!actor) return null;
         return actor.pack && !thisActor.pack 
             ? game.actors.find(a => a._stats.compendiumSource === actor.uuid) ?? actor
             : actor;
@@ -259,7 +262,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
 
         // Grabs missing parts and creates them.
         const missingParts = (await this.calculatePartStatus())
-            .filter(p => p.role === 'part' && !p.actor.token)
+            .filter(p => p.role === 'part' && p.actor && !p.actor.token)
             .map(p => p.actor);
         
         const scene = token.scene;
@@ -315,6 +318,14 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         }
 
         if (role === 'framework') {
+            // If the uuid doesn't resolve and there is an originalUuid, point to compendium uuid instead.
+            // This handles the user deleting a part, and allows fetching a new one from the compendium
+            for (const part of this.parts) {
+                if (part.originalUuid && !part.uuid.startsWith('Compendium.') && !fromUuidSync(part.uuid, { strict: false })) {
+                    part.uuid = part.originalUuid;
+                }
+            }
+
             const token = actor.getActiveTokens().at(0)?.document;
             actor.system.resources.hitPoints = { value: 0, max: 0 };
             this.partActors = token?.scene?.tokens.filter(t => 
@@ -366,7 +377,11 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         if (!foundry.utils.isEmpty(partRemaps)) {
             data.system ??= {};
             data.system.typeData = foundry.utils.mergeObject(data.system.typeData ?? {}, { 
-                parts: checkedParts.map(p => ({ ...p, uuid: partRemaps[p.uuid] ?? p.uuid }))
+                parts: checkedParts.map(p => ({ 
+                    ...p, 
+                    uuid: partRemaps[p.uuid] ?? p.uuid, 
+                    originalUuid: p.uuid?.startsWith('Compendium') ? p.uuid : p.originalUuid
+                }))
             })
         }
     }
@@ -387,6 +402,13 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             } else {
                 // todo: add the main token, and cancel creating one, trusting the framework will add everything else
                 throw new Error('TODO: Handle dragging part when main doesn\'t exist');
+            }
+        }
+
+        // Remove originalUuids if this is in the pack
+        if (data.system?.typeData?.parts?.length && actor.pack) {
+            for (const part of data.system.typeData.parts) {
+                part.originalUuid = null;
             }
         }
     }

@@ -95,22 +95,27 @@
             <section class="collosus-section">
                 <div class="title">
                     <side-line-div class="invert"></side-line-div>
-                    <h3>Collosus</h3>
+                    <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.collosus.label"}}</h3>
                     <side-line-div></side-line-div>
                 </div>
                 <div class="part-list">
                     {{#each collosusData.actors as |data|}}
-                        <div class="actor {{#unless data.active}}inactive{{/unless}} {{#if data.current}}current{{/if}}" data-role="{{data.role}}">
-                            <img src="{{data.actor.img}}" />
-                            <a class="name" data-action="editDoc" data-item-uuid="{{data.actor.uuid}}" {{#unless data.active}}data-tooltip aria-label="This actor doesn't have a token in the scene"{{/unless}}>
-                                {{data.actor.name}}
-                                {{#if (eq data.role 'framework')}}
-                                    <i class="fa-solid fa-crown" data-tooltip aria-label="Framework"></i>
-                                {{/if}}
-                                {{#unless data.active}}
-                                    <i class="fa-solid fa-warning" inert></i>
-                                {{/unless}}
-                            </a>
+                        <div class="actor {{#unless data.active}}inactive{{/unless}} {{#if data.current}}current{{/if}}" data-role="{{data.role}}">                        
+                            {{#if data.actor}}
+                                <img src="{{data.actor.img}}" />
+                                <a class="name" data-action="editDoc" data-item-uuid="{{data.actor.uuid}}" {{#unless data.active}}data-tooltip aria-label="This actor doesn't have a token in the scene"{{/unless}}>
+                                    {{data.actor.name}}
+                                    {{#if (eq data.role 'framework')}}
+                                        <i class="fa-solid fa-crown" data-tooltip aria-label="Framework"></i>
+                                    {{/if}}
+                                    {{#unless data.active}}
+                                        <i class="fa-solid fa-warning" inert></i>
+                                    {{/unless}}
+                                </a>
+                            {{else}}
+                                <i class="fa-solid fa-link"></i>
+                                <div class="name">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "DOCUMENT.Actor")}}</div>
+                            {{/if}}
                         </div>
                     {{/each}}
                 </div>
