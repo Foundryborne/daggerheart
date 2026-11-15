@@ -44,6 +44,24 @@ export default class DhActorDirectory extends foundry.applications.sidebar.tabs.
         }
     }
 
+    /**
+     * Work around foundry core bug. Remove when https://github.com/foundryvtt/foundryvtt/issues/14954 is fixed and bump min version
+     * @inheritdoc
+     */
+    async _createDroppedFolderDocuments(folder, documents) {
+        if (folder.pack) {
+            const pack = game.packs.get(folder.pack);
+            if (pack) documents = await pack.getDocuments({ _id__in: documents.map(d => d._id) });
+        }
+        try {
+            const transformed = documents.map(d => game.actors.fromCompendium(d, { keepId: true }));
+            await this.documentClass.createDocuments(transformed, { pack: this.collection.collection, keepId: true });
+        } catch(err) {
+            ui.notifications.error(err.message);
+            throw err;
+        }
+    }
+
     _getEntryContextOptions() {
         const options = super._getEntryContextOptions();
         options.push(
