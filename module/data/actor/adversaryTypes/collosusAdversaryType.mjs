@@ -166,7 +166,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         if (!actor || !frameworkActor) return null;
 
         const isFrameworkActive = frameworkActor.token
-            || frameworkActor.pack
+            || (actor.pack && frameworkActor.pack)
             || frameworkActor.prototypeToken?.actorLink
             || (actor !== frameworkActor && !actor.token);
         const data = [
