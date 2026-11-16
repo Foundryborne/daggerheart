@@ -38,7 +38,8 @@
 
                 {{#if message.blind}}
                     <span class="aside">{{localize "DAGGERHEART.UI.Chat.blind"}}</span>
-                {{else if isWhisper}}
+                {{else if whisperTo}}
+                    {{! isWhisper is suppressed for rolls by foundry, but we lack other indicator, so we still need it}}
                     <span class="aside whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
                 {{/if}}
             </div>
