@@ -3543,6 +3543,7 @@
             "Armor": {
                 "baseScore": "Base Score",
                 "scoreShort": "Score",
+                "header": "Tier {tier} Armor",
                 "baseThresholds": {
                     "base": "Base Thresholds",
                     "major": "Major Threshold",
@@ -3711,6 +3712,7 @@
             "Weapon": {
                 "weaponType": "Weapon Type",
                 "configureAttack": "Configure Attack",
+                "header": "Tier {tier} Weapon ({type})",
                 "primaryWeapon": {
                     "full": "Primary Weapon",
                     "short": "Primary"
