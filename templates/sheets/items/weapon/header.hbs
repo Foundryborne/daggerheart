@@ -4,11 +4,13 @@
         <line-div></line-div>
         <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
         <div class='item-description'>
-            {{#if source.system.secondary}}
-                <h3>{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon.full"}}</h3>
-            {{else}}
-                <h3>{{localize "DAGGERHEART.ITEMS.Weapon.primaryWeapon.full"}}</h3>
-            {{/if}}
+            <h3>
+                {{
+                    localize "DAGGERHEART.ITEMS.Weapon.header"
+                    tier=document.system.tier
+                    type=(localize (ifThen source.system.secondary "DAGGERHEART.ITEMS.Weapon.secondaryWeapon.short" "DAGGERHEART.ITEMS.Weapon.primaryWeapon.short"))
+                }}
+            </h3>
             <h3>
                 {{weaponTraitLabel}}
                 <span>-</span>
