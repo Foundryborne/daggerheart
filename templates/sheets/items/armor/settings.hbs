@@ -3,20 +3,26 @@
     data-tab='{{tabs.settings.id}}'
     data-group='{{tabs.settings.group}}'
 >
-    <fieldset class="two-columns">
+    <fieldset class="standard-form">
         <legend>{{localize tabs.settings.label}}</legend>
-        <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
-        {{ formInput systemFields.tier value=source.system.tier }}
-        <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</span>
-        {{ formInput systemFields.armor.fields.max value=source.system.armor.max }}
+        {{ formGroup systemFields.tier value=source.system.tier localize=true}}
+        <div class="form-group">
+            <label>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}</label>
+            <div class="nest-inputs">
+                {{ formField systemFields.baseThresholds.fields.major value=source.system.baseThresholds.major label=(localize "DAGGERHEART.ITEMS.Armor.baseThresholds.major") }}
+                {{ formField systemFields.baseThresholds.fields.severe value=source.system.baseThresholds.severe label=(localize "DAGGERHEART.ITEMS.Armor.baseThresholds.severe") }}
+            </div>
+        </div>
+        {{ formGroup systemFields.armor.fields.max value=source.system.armor.max localize=true}}
+    </fieldset>
 
-        <span>{{localize "TYPES.Item.feature"}}</span>
-        <input type="text" class="features-input" value="{{features}}" />
-
-        <span>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}</span>
-        <div class="nest-inputs">
-            {{ formField systemFields.baseThresholds.fields.major value=source.system.baseThresholds.major label=(localize "DAGGERHEART.ITEMS.Armor.baseThresholds.major") }}
-            {{ formField systemFields.baseThresholds.fields.severe value=source.system.baseThresholds.severe label=(localize "DAGGERHEART.ITEMS.Armor.baseThresholds.severe") }}
+    <fieldset class="standard-form">
+        <legend>{{localize "TYPES.Item.feature"}}</legend>
+        <div class="form-group">
+            <label>{{localize "TYPES.Item.feature"}}</label>
+            <div class="form-fields">
+                <input type="text" class="features-input" value="{{features}}" />
+            </div>
         </div>
     </fieldset>
 
