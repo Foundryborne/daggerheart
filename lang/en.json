@@ -3533,6 +3533,9 @@
                 "loreReference": {
                     "label": "Lore Reference",
                     "hint": "Path or id of full description journal page"
+                },
+                "tier": {
+                    "label": "Tier"
                 }
             },
             "Ancestry": {

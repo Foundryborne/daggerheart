@@ -393,6 +393,14 @@
             pointer-events: none;
         }
 
+        &.standard-form,
+        .standard-form {
+            gap: 10px;
+            .form-group label {
+                font-weight: normal;
+            }
+        }
+
         .nest-inputs {
             display: flex;
             align-items: center;
@@ -429,13 +437,19 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .form-group {
+                display: block;
+            }
         }
 
-        .form-group:not(.standard-form *) {
+        .form-group:not(.standard-form *),
+        .nest-inputs .form-group {
             width: 100%;
             label {
                 font-weight: bold;
                 font-size: smaller;
+                line-height: unset;
             }
 
             &.checkbox {
