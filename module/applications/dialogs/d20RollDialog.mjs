@@ -72,6 +72,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     };
 
     async _prepareContext(_options) {
+        // Re-initialize if required first, then get the roll data
+        await this.config.initialize();
         const rollData = this.config.getRollData();
 
         const context = await super._prepareContext(_options);
@@ -140,7 +142,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }));
     }
 
-    static updateRollConfiguration(_event, _, formData) {
+    static async updateRollConfiguration(_event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
 
         this.config.selectedMessageMode = rest.selectedMessageMode;
@@ -202,7 +204,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                         name: rollData.experiences[button.dataset.key]?.name
                     }
                 ];
-        this.config.initialize();
         this.render();
     }
 
@@ -212,7 +213,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             const overrideType = this.originalActionType === 'reaction' ? 'trait' : 'reaction';
             this.config.actionType = 
                 this.config.actionType === this.originalActionType ? overrideType : this.originalActionType;
-            this.config.initialize();
             this.render();
         }
     }
