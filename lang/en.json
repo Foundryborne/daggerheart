@@ -4166,6 +4166,7 @@
                     "rollHealing": "Roll Healing",
                     "applyEffect": "Apply Effects"
                 },
+                "blind": "Blind",
                 "clearResource": "Clear {quantity} {resource}",
                 "clearResourceFully": "Fully Clear {resource}",
                 "damageSummary": {

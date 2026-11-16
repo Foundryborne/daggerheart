@@ -36,8 +36,10 @@
                     {{/if}}
                 </div>
 
-                {{#if isWhisper}}
-                    <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+                {{#if message.blind}}
+                    <span class="aside">{{localize "DAGGERHEART.UI.Chat.blind"}}</span>
+                {{else if isWhisper}}
+                    <span class="aside whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
                 {{/if}}
             </div>
         </div>
