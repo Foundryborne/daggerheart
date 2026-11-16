@@ -296,13 +296,14 @@ export class MoveContext {
             }
         };
 
+        // Include item costs
         const item = this.item;
         if (item) {
-            for (var cost of this.costs) {
+            for (const cost of this.costs) {
                 if (cost.itemId) {
                     usefulResources[cost.key] = {
                         value: cost.value,
-                        target: this.parent.parent,
+                        target: item,
                         itemId: cost.itemId
                     };
                 }
