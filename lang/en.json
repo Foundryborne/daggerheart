@@ -505,7 +505,8 @@
                 "macroCopyNotification": "A macro to open the Path Viewer has been copied to your clipboard. Paste it in a macro on your hotbar."
             },
             "Attribution": {
-                "title": "Attribution"
+                "title": "Attribution",
+                "other": "Other"
             },
             "CharacterCreation": {
                 "tabs": {
