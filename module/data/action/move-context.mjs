@@ -143,6 +143,10 @@ export class MoveContext {
         return data;
     }
 
+    /** 
+     * Perform data sanitation and get data based on current parameters.
+     * Can be called after making changes to data in order to re-initialize using new data.
+     */
     async initialize() {
         this.rollType = this.roll?.lite
             ? 'DHRoll'
@@ -162,6 +166,7 @@ export class MoveContext {
         }
 
         if (this.costs && (this.action || this.actor)) {
+            // todo: consider deleting calcCosts and handling all sanitization here
             const CostField = game.system.api.fields.ActionFields.CostField;
             this.costs = CostField.calcCosts.call(this.action ?? { actor: this.actor }, this.costs);
         }

@@ -30,11 +30,11 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             icon: 'fa-solid fa-dice'
         },
         actions: {
-            updateIsAdvantage: this.updateIsAdvantage,
-            selectExperience: this.selectExperience,
-            toggleReaction: this.toggleReaction,
-            toggleSelectedEffect: this.toggleSelectedEffect,
-            submitRoll: this.submitRoll
+            updateIsAdvantage: this.#onUpdateIsAdvantage,
+            selectExperience: this.#onSelectExperience,
+            toggleReaction: this.#onToggleReaction,
+            toggleSelectedEffect: this.#onToggleSelectedEffect,
+            submitRoll: this.#onSubmitRoll
         },
         form: {
             handler: this.updateRollConfiguration,
@@ -163,7 +163,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
-    static updateIsAdvantage(_, button) {
+    /** @this D20RollDialog */
+    static #onUpdateIsAdvantage(_, button) {
         const advantage = Number(button.dataset.advantage);
         this.advantage = advantage === 1;
         this.disadvantage = advantage === -1;
@@ -182,7 +183,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
-    static selectExperience(_, button) {
+    /** @this D20RollDialog */
+    static #onSelectExperience(_, button) {
         const rollData = this.config.getRollData();
         this.config.experiences =
             this.config.experiences.indexOf(button.dataset.key) > -1
@@ -200,25 +202,29 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                         name: rollData.experiences[button.dataset.key]?.name
                     }
                 ];
+        this.config.initialize();
         this.render();
     }
 
-    static toggleReaction() {
+    /** @this D20RollDialog */
+    static #onToggleReaction() {
         if (this.config.roll) {
             const overrideType = this.originalActionType === 'reaction' ? 'trait' : 'reaction';
             this.config.actionType = 
                 this.config.actionType === this.originalActionType ? overrideType : this.originalActionType;
-                
+            this.config.initialize();
             this.render();
         }
     }
 
-    static toggleSelectedEffect(_event, button) {
+    /** @this D20RollDialog */
+    static #onToggleSelectedEffect(_event, button) {
         this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
         this.render();
     }
 
-    static async submitRoll(event) {
+    /** @this D20RollDialog */
+    static async #onSubmitRoll(event) {
         await this.close({ submitted: true });
     }
 
