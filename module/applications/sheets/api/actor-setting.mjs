@@ -78,11 +78,15 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
 
     async _onDragStart(event) {
         const featureItemEl = event.currentTarget.closest('.feature-item, .inventory-item[data-type="feature"]');
+        const dragView = event.currentTarget.closest('.inventory-item-header') ?? featureItemEl;
         const feature = this.actor.items.get(featureItemEl?.dataset.itemId);
         if (feature && event.target.closest('.tab.features')) {
             const featureData = { ...feature.toDragData(), fromInternal: true };
             event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
-            event.dataTransfer.setDragImage(featureItemEl.querySelector('img'), 60, 0);
+            if (dragView) {
+                const bounds = dragView.getBoundingClientRect();
+                event.dataTransfer.setDragImage(dragView, event.clientX - bounds.left, event.clientY - bounds.top);
+            }
         }
     }
 

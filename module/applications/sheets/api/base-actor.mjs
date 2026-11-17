@@ -515,20 +515,24 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 fromInternal: true
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(attackData));
-            event.dataTransfer.setDragImage(attackItem.querySelector('img'), 60, 0);
+            const bounds = attackItem.getBoundingClientRect();
+            event.dataTransfer.setDragImage(attackItem, event.clientX - bounds.left, event.clientY - bounds.top);
             return;
         }
 
         const item = await getDocFromElement(event.target);
         if (item) {
-            const inventoryItem = event.currentTarget.closest('.inventory-item');
+            const inventoryItem = event.currentTarget.closest('.inventory-item-header, .inventory-item');
             const dragData = {
                 ...item.toDragData(),
                 originActor: this.document.uuid,
                 originId: item.id
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-            if (inventoryItem) event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+            if (inventoryItem) {
+                const bounds = inventoryItem.getBoundingClientRect();
+                event.dataTransfer.setDragImage(inventoryItem, event.clientX - bounds.left, event.clientY - bounds.top);
+            }
             return;
         }
 
