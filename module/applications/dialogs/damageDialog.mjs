@@ -134,7 +134,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         if (targets.length === 0)
             return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noTokenTargeted'));
 
-        const actorId = this.roll.data.parent.id;
+        const actorId = this.config.actor?.id;
         const range = this.config.damageOptions.groupAttack.range;
         const groupAttackTokens = game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(actorId, range);
 
