@@ -331,10 +331,10 @@ Hooks.on('setup', () => {
     ];
 
     const damageThresholds = ['damageThresholds.major', 'damageThresholds.severe'];
-    const traits = Object.keys(game.system.api.data.actors.DhCharacter.schema.fields.traits.fields).map(
+    const traits = Object.keys(CONFIG.Actor.dataModels.character.schema.fields.traits.fields).map(
         trait => `traits.${trait}.value`
     );
-    const resistance = Object.values(game.system.api.data.actors.DhCharacter.schema.fields.resistance.fields).flatMap(
+    const resistance = Object.values(CONFIG.Actor.dataModels.character.schema.fields.resistance.fields).flatMap(
         type => Object.keys(type.fields).map(x => `resistance.${type.name}.${x}`)
     );
     const actorCommon = {

@@ -1340,7 +1340,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }
 
             const itemData = item.toObject();
-            const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
+            const data = await CONFIG.Item.dataModels.beastform.getWildcardImage(this.document, itemData);
             if (data?.selectedImage) {
                 if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
                 else itemData.system.tokenImg = data.selectedImage;
