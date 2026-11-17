@@ -136,7 +136,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
                 source: new fields.StringField(),
                 page: new fields.NumberField(),
                 campaignFrame: new fields.StringField(),
-                artist: new fields.StringField()
+                artist: new fields.StringField(),
+                srd: new fields.BooleanField({ nullable: false, initial: false })
             });
         }
         if (this.metadata.isNPC) schema.description = new fields.HTMLField({ required: true, nullable: true });
@@ -173,9 +174,10 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
 
     get attributionLabel() {
         if (!this.attribution) return null;
-
-        const { source, page } = this.attribution;
-        return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+        
+        const { source, page, campaignFrame, srd } = this.attribution;
+        const srdTag = srd ? `(${_loc('DAGGERHEART.APPLICATIONS.Attribution.srd')})` : null;
+        return [campaignFrame || source, srdTag, page ? `pg ${page}.` : null].filter(x => x).join(' ');
     }
 
     /* -------------------------------------------- */

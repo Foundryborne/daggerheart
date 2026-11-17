@@ -816,7 +816,7 @@ export const rollTypes = {
 export const attributionSources = {
     daggerheart: {
         label: 'Daggerheart',
-        values: [{ label: 'Daggerheart SRD' }, { label: 'Daggerheart SRD H&F'}]
+        values: [{ label: 'Core Rulebook' }, { label: 'Daggerheart: Hope & Fear'}]
     }
 };
 

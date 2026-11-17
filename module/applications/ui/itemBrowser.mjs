@@ -1,4 +1,4 @@
-import { getDocFromElement } from '../../helpers/utils.mjs';
+import { getDocFromElement, sortBy } from '../../helpers/utils.mjs';
 import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -380,11 +380,22 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         // Inject attribution if any exist and it hasn't already been added
         if (this.sources.size) {
+            const other = _loc('DAGGERHEART.APPLICATIONS.Attribution.other');
+            const groupByValue = Object.values(CONFIG.DH.GENERAL.attributionSources).reduce((r, g) => {
+                for (const value of g.values) {
+                    r[value.label] ??= g.label;
+                }
+                return r;
+            }, {})
+
             filters.push({ 
                 key: 'system.attribution.source',
                 name: 'source', 
                 label: 'DAGGERHEART.ITEMS.FIELDS.attribution.source.label', 
-                choices: [...this.sources].sort().map(s => ({ value: s, label: s }))
+                choices: sortBy(
+                    [...this.sources].sort().map(s => ({ group: groupByValue[s] ?? other, value: s, label: s })),
+                    v => v.group === 'Daggerheart' ? 0 : v.group
+                )
             })
         }
 

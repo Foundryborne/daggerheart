@@ -506,7 +506,8 @@
             },
             "Attribution": {
                 "title": "Attribution",
-                "other": "Other"
+                "other": "Other",
+                "srd": "SRD"
             },
             "CharacterCreation": {
                 "tabs": {
@@ -3494,6 +3495,9 @@
                     },
                     "artist": {
                         "label": "Artist"
+                    },
+                    "srd": {
+                        "label": "Is SRD?"
                     }
                 },
                 "resource": {
