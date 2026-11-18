@@ -410,12 +410,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async consumeOnSuccess() {
         if (!this.system.successConsumed) {
             const config = await this.system.getContext();
-            if (config.roll && config.action && !config.roll.success) {
-                await config.action.workflow.get('cost')?.execute(config, true);
-                await config.action.workflow.get('uses')?.execute(config, true);
-                await config.resourceUpdates.updateResources();
+            await config.spendResources({ successCost: true });
+            if (config.roll && !config.roll.success) {
+                await this.update({ 'system.successConsumed': true });
             }
-            await this.update({ 'system.successConsumed': true });
         }
     }
 

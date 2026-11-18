@@ -266,13 +266,23 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(null, config);
             if (!config) return;
+        } else if (config.dialog.configure === false) {
+            // Test for sufficient resources
+            if (!config.testSufficientUses()) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.actionNoUsesRemaining'));
+                return;
+            }
+            if (!config.testSufficientResources()) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
+                return;
+            }
         }
 
         // Execute the Action Worflow in order based of schema fields
         const result = await this.executeWorkflow(config);
         if (result === false) return;
 
-        await config.resourceUpdates.updateResources();
+        await config.spendResources();
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
@@ -321,10 +331,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {boolean}
      */
     requireConfigurationDialog(config) {
-        return !config.event.shiftKey && 
-            !config.hasRoll && (
+        if (config.event.shiftKey) return false;
+        return !config.hasRoll && (
             (config.costs?.length && !config.groupAction?.forceSelect) || 
-                config.uses
+            config.uses
         );
     }
 

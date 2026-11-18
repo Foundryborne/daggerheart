@@ -23,7 +23,9 @@ export default class DHRoll extends BaseRoll {
             options.bonusEffects = this.bonusEffectBuilder();
         }
 
-        if (!this.data || !Object.keys(this.data).length) this.data = options.data ?? {};
+        if (!this.data || !Object.keys(this.data).length) {
+            this.data = options.getRollData?.() ?? options.data ?? {};
+        }
     }
 
     get title() {
@@ -279,7 +281,7 @@ export default class DHRoll extends BaseRoll {
         if (Array.isArray(modifier)) {
             return [
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                ...this.constructor.parse(modifier.join(' + '), this.options.data)
+                ...this.constructor.parse(modifier.join(' + '), this.data)
             ];
         } else if (Number.isNumeric(modifier)) {
             const numTerm = modifier < 0 ? '-' : '+';
@@ -291,7 +293,7 @@ export default class DHRoll extends BaseRoll {
             const numTerm = modifier < 0 ? '-' : '+';
             return [
                 new foundry.dice.terms.OperatorTerm({ operator: numTerm }),
-                ...this.constructor.parse(modifier, this.options.data)
+                ...this.constructor.parse(modifier, this.data)
             ];
         }
     }
@@ -396,7 +398,7 @@ export default class DHRoll extends BaseRoll {
         if (this.options.extraFormula) {
             this.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                ...this.constructor.parse(this.options.extraFormula, this.options.data)
+                ...this.constructor.parse(this.options.extraFormula, this.data)
             );
         }
         return (this._formula = this.constructor.getFormula(this.terms));
