@@ -6,9 +6,10 @@
     "description": "<p>You can drink this potion to gain a +1 bonus to your Evasion until you mark a Hit Point.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "consumeOnUse": true,
     "gmNotes": "",

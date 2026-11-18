@@ -5,10 +5,11 @@
   "system": {
     "loreReference": "warborne",
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "campaignFrame": "",
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Being part of a warborne community means you come from a place that is, or was, ravaged by war.</p>",
     "gmNotes": "",

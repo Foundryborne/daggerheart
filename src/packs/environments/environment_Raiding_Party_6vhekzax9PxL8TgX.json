@@ -9,8 +9,9 @@
     "impulses": "Light it on fire, overwhelm with speed and numbers, take everything that isn't nailed down",
     "difficulty": 11,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {
       "Z1qk14bnBBCM7Tnq": {

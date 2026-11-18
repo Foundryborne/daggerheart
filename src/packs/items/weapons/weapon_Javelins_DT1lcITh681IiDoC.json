@@ -6,10 +6,11 @@
   "img": "icons/weapons/polearms/javelin-hooked.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "artist": "",
-      "campaignFrame": ""
+      "campaignFrame": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

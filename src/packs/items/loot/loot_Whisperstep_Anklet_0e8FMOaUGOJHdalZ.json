@@ -6,9 +6,10 @@
     "description": "<p>This anklet makes your steps silent as long as you don't move faster than walking speed.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {}

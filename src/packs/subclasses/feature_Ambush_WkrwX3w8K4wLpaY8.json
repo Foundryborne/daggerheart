@@ -6,8 +6,9 @@
   "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>Your \"Marked for Death\" feature uses <strong>d6s</strong> instead of d4s.</p>",
     "gmNotes": "",

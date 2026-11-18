@@ -35,9 +35,10 @@
     "type": "social",
     "impulses": "Provide opportunities for adventurers, nurture community",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

@@ -5,10 +5,11 @@
   "system": {
     "loreReference": "duneborne",
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "campaignFrame": "",
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Being part of a duneborne community means you've made a home among the shifting sands and arid climate of the desert.</p>",
     "gmNotes": "",

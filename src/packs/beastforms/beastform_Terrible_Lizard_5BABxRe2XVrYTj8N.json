@@ -46,9 +46,10 @@
     },
     "examples": "Brachiosaurus, Tyrannosaurus, etc.",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "effects": [

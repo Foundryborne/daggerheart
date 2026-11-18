@@ -21,9 +21,10 @@
     "type": "exploration",
     "impulses": "Misdirect and disorient, replay apocalypses both public and personal",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

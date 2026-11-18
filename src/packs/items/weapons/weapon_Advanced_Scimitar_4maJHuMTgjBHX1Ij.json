@@ -6,9 +6,10 @@
   "img": "icons/weapons/swords/scimitar-guard-red.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

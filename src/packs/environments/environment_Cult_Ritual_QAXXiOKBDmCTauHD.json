@@ -22,9 +22,10 @@
     "type": "event",
     "impulses": "Profane the land, unite the Mortal Realm with the Circles Below",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

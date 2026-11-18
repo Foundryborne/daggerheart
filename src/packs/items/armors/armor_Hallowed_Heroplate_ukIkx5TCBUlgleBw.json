@@ -6,10 +6,11 @@
   "img": "icons/equipment/chest/breastplate-collared-steel-grey.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "artist": "",
-      "campaignFrame": ""
+      "campaignFrame": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

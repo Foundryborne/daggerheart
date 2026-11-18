@@ -6,8 +6,9 @@
   "img": "icons/magic/death/weapon-sword-skull-purple.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>Once per long rest when you fail an attack, you can <strong>spend a Hope</strong> to make it a success instead.</p>",
     "gmNotes": "",

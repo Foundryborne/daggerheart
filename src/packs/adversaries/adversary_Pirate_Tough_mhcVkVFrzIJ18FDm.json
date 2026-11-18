@@ -129,9 +129,10 @@
     },
     "motivesAndTactics": "Plunder, raid, smash, terrorize",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "size": "medium",
     "advantageSources": [],

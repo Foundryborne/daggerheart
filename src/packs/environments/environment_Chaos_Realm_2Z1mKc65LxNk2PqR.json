@@ -21,9 +21,10 @@
     "type": "traversal",
     "impulses": "Annihilate certainty, consume power, defy logic",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

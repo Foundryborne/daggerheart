@@ -31,9 +31,10 @@
     "type": "social",
     "impulses": "Drive the desperate to certain doom, profi t off  of ragged hope",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

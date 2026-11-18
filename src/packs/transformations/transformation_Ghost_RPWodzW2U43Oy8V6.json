@@ -5,9 +5,10 @@
   "img": "icons/magic/death/undead-ghost-scream-teal.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Ghosts are the spirits of the once-living who are bound to the Mortal Realm.</p>",
     "gmNotes": "",

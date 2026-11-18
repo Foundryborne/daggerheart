@@ -6,9 +6,10 @@
   "img": "icons/weapons/thrown/shuriken-triple-purple.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

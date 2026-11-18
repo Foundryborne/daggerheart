@@ -6,8 +6,9 @@
   "img": "icons/magic/unholy/hand-marked-pink.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>You have advantage on attacks against Hexed creatures.</p>",
     "gmNotes": "",

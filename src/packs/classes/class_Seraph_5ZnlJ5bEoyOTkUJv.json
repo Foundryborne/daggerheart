@@ -52,9 +52,10 @@
     },
     "isMulticlass": false,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "backgroundQuestions": [
       "Which god did you devote yourself to? What incredible feat did they perform for you in a moment of desperation?",

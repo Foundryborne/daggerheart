@@ -6,9 +6,10 @@
     "description": "<p>You can attune this map to one creature at a time. The map always shows the attuned creature's location.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {}

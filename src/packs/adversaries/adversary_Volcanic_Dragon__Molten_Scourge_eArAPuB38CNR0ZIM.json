@@ -129,9 +129,10 @@
     },
     "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "size": "gargantuan",
     "advantageSources": [],

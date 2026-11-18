@@ -9,8 +9,9 @@
     "impulses": "Poison the party with deadly gasses, rumble and collapse, split the party, turn them around",
     "difficulty": 11,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {
       "vGJG6PfuucD4WEsB": {

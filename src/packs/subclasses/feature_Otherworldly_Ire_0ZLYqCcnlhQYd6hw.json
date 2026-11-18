@@ -6,8 +6,9 @@
   "img": "icons/magic/death/skull-energy-light-white.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>Once per rest when you take damage, you can <strong>spend any number of Favor</strong> to roll that many Patron Dice and target a number of creatures within Close range equal to the highest result. Each target must mark a Hit Point.</p>",
     "gmNotes": "",

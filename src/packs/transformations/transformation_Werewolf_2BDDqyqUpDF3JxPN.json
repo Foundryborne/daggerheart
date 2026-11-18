@@ -5,9 +5,10 @@
   "img": "icons/creatures/mammals/wolf-howl-moon-forest-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Werewolves are creatures who transform into large supernatural wolves.</p>",
     "gmNotes": "",

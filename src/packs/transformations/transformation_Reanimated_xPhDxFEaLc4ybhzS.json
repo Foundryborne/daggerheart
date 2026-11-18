@@ -5,9 +5,10 @@
   "img": "icons/magic/death/hand-dirt-undead-zombie.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Reanimated are corpses who have been brought back to life.</p>",
     "gmNotes": "",

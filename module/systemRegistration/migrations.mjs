@@ -11,6 +11,7 @@ import { Migration_2_10_10_FixMoves } from './migration-handlers/2_10_10-fixmove
 import { Migration_2_11_0_ItemFeatures } from './migration-handlers/2_11_0-itemfeatures.mjs';
 import { Migration_2_11_0_ProtectiveAttribution } from './migration-handlers/2_11_0-protective.mjs';
 import { Migration_2_12_9_Fungril } from './migration-handlers/2_12_9-fungril.mjs';
+import { Migration_2_13_0_Attribution } from './migration-handlers/2_13_0-attribution.mjs';
 
 export async function runMigrations() {
     // All migrations here are meant for the active gm to run. 
@@ -354,7 +355,8 @@ export async function runMigrations() {
         new Migration_2_10_10_FixMoves(),
         new Migration_2_11_0_ItemFeatures(),
         new Migration_2_11_0_ProtectiveAttribution(),
-        new Migration_2_12_9_Fungril()
+        new Migration_2_12_9_Fungril(),
+        new Migration_2_13_0_Attribution()
     ].filter(m => m.version && foundry.utils.isNewerVersion(m.version, lastMigrationVersion));
 
     for (const handler of migrations) {

@@ -9,8 +9,9 @@
     "impulses": "Dance the night away, eat and be merry, make secret deals, trade valuable information",
     "difficulty": 14,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {
       "XrsOn1uflDlwE4EM": {
