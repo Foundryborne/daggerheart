@@ -19,7 +19,67 @@
     "featureForm": "passive",
     "actorResources": []
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Face Your Fear",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "type": "bonus",
+            "phase": "initial",
+            "priority": 20,
+            "affects": "damage",
+            "identifier": "face-your-fear",
+            "value": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d10",
+              "bonus": null
+            },
+            "damageType": "magical"
+          }
+        ],
+        "duration": {
+          "description": "",
+          "type": ""
+        },
+        "conditionals": [],
+        "rangeDependence": null,
+        "stacking": null,
+        "targetDispositions": []
+      },
+      "_id": "E1bCKdWTeLopfn13",
+      "img": "icons/magic/light/orb-hand-green.webp",
+      "disabled": false,
+      "start": {
+        "time": 0,
+        "combat": null,
+        "combatant": null,
+        "initiative": null,
+        "round": null,
+        "turn": null
+      },
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null
+      },
+      "_key": "!items.effects!D3ffFWSXCza4WGcM.E1bCKdWTeLopfn13"
+    }
+  ],
   "sort": 0,
   "flags": {},
   "_key": "!items!D3ffFWSXCza4WGcM"

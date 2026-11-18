@@ -45,9 +45,10 @@ export default class BonusChange extends foundry.abstract.DataModel {
                     nullable: false,
                     required: true
                 }),
-                flatMultiplier: new fields.NumberField({
-                    nullable: true,
-                    initial: 0,
+                flatMultiplier: new fields.StringField({
+                    nullable: false,
+                    blank: false,
+                    initial: '0',
                     label: 'DAGGERHEART.ACTIONS.Config.damage.flatMultiplier'
                 }),
                 dice: new fields.StringField({
@@ -57,7 +58,7 @@ export default class BonusChange extends foundry.abstract.DataModel {
                     nullable: false,
                     required: true
                 }),
-                bonus: new fields.NumberField({ nullable: true, initial: null, label: 'DAGGERHEART.GENERAL.bonus' })
+                bonus: new fields.StringField({ nullable: false, blank: false, initial: '0', label: 'DAGGERHEART.GENERAL.bonus' })
             })
         }
     }
@@ -91,10 +92,10 @@ export default class BonusChange extends foundry.abstract.DataModel {
             }
         }
 
-        if (!multiplier) return String(bonus || 0);
+        if (!multiplier || multiplier === '0') return String(bonus || 0);
         const finalDice = `${multiplier ?? 1}${dice}`;
-        const sign = this.value.bonus < 0 ? ' - ' : ' + ';
-        return bonus ? `${finalDice}${sign}${Math.abs(bonus)}` : finalDice;
+        const sign = Number(bonus) < 0 ? ' - ' : ' + ';
+        return bonus && bonus !== '0' ? `${finalDice}${sign}${Math.abs(bonus)}` : finalDice;
     }
 
     #applyDiceAdjustment(value, adjustment, rollData) {
