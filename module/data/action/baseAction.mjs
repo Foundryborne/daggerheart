@@ -284,13 +284,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         // While rolling will consume resources automatically, some moves don't have rolls
         // We catch those here
-        if (!config.resourcesSpent) {
+        if (!config.flags.resourcesSpent) {
             await config.spendResources();
         }
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled)
+        if (this.chatDisplay && !config.skips.createMessage && !config.flags.actionChatMessageHandled)
             await this.toChat(null, config);
 
         return config;

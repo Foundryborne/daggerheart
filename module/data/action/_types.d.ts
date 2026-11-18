@@ -20,13 +20,16 @@ interface MoveContextParams {
     selectedMessageMode: unknown;
     tierLimit: number;
     modifications: unknown;
-    costs: unknown[];
     targets: unknown[];
     countdowns: unknown;
     hasRoll: boolean;
     rollType?: keyof typeof CONFIG.Dice.daggerheart;
+
     /** The list of selected experiences */
-    experiences: unknown[];
+    experiences: string[];
+    /** The list of selected costs */
+    costs: MoveCost[];
+
     roll: {
         lite?: boolean;
         type?: string;
@@ -52,9 +55,31 @@ interface MoveContextParams {
         originItem: string;
     };
     evaluated: dice.DHRoll;
-    /** If set, skips creation of dedicated toChat messages of used actions due to it having already been created */
-    actionChatMessageHandled: false;
+
+    /** Processing flags. Not part of the move, but tracks information about its usage */
+    flags?: Partial<MoveFlags>;
 }
+
+/** Processing flags. Not part of the move, but tracks information about its usage */
+export interface MoveFlags {
+    /** If set, skips creation of dedicated toChat messages. Used to prevent duplicates. */
+    actionChatMessageHandled: boolean;
+    /** If set, spentResources has been executed */
+    resourcesSpent: boolean;
+    /** If set, roll sound will be muted by the system */
+    mute: boolean;
+}
+
+export interface MoveCost {
+    key: string; 
+    scale: number; 
+    step: number; 
+    total: number; 
+    enabled: boolean; 
+    max: number; 
+    maxStep: number;
+}
+
 
 declare module './baseAction.mjs' {
     export default interface DHBaseAction {

@@ -42,8 +42,8 @@ export default class SaveField extends fields.SchemaField {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
             // TODO: Find a better solution instead of simulating an empty roll and muting the roll sound
-            config.mute = true;
-            config.actionChatMessageHandled ||= config.action?.chatDisplay;
+            config.flags.mute = true;
+            config.flags.actionChatMessageHandled ||= config.action?.chatDisplay;
             message = config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
         }
         if (SaveField.getAutomation() !== CONFIG.DH.SETTINGS.actionAutomationChoices.never.id || force) {

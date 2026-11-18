@@ -26,6 +26,8 @@ export class MoveContext {
         this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor ?? null;
         /** @type {DhItem | null} */
         this.item = item ??= data.item ?? data.action?.item ?? null;
+        this.message = data.message;
+        this.event ??= data.event;
         
         // Redirect to the partner if companion. Ideally we shouldn't do this and keep it on the partner,
         // but the system as a whole expects the partner to be the main roll.
@@ -35,9 +37,6 @@ export class MoveContext {
             this.companion = this.actor;
             this.actor = partner;
         }
-
-        this.message = data.message;
-        this.event ??= data.event;
 
         // Passthrough certain props. This allows RollConfigs to be recreated
         this.title = data.title ?? _loc(action?.name);
@@ -49,11 +48,8 @@ export class MoveContext {
         this.selectedMessageMode = data.selectedMessageMode ?? game.settings.get('core', 'messageMode');
         this.tierLimit = data.tierLimit;
         this.modifications = data.modifications;
-        this.costs = data.costs ?? [];
         this.targets = data.targets ?? [];
         this.countdowns = data.countdowns;
-        /** The list of selected experiences */
-        this.experiences = data.experiences ?? [];
         this.skips = foundry.utils.mergeObject({
             // @todo remove and make it a diceRoll() prop instead. This is not used in move context, just specific roll functions
             resources: false,
@@ -64,12 +60,13 @@ export class MoveContext {
         }, data.skips ?? {});
         this.damageOptions = data.damageOptions ?? {};
 
-        /** Processing flag - If set, skips creation of dedicated toChat messages. Used to prevent duplicates. */
-        this.actionChatMessageHandled = Boolean(data.actionChatMessageHandled ?? false);
-        /** Processing flag - If set, spentResources has been executed */
-        this.resourcesSpent = data.resourcesSpent ?? false;
+        /** The list of selected experiences for the roll. Changes in the dialog. */
+        this.experiences = data.experiences ?? [];
+        /** The list of selected costs. Consumed via spendResources() and changes in the dialog */
+        this.costs = data.costs ?? [];
         
         // Initialize props based on the documents and action
+        // todo: determine which ones we can kill. hasTarget may need an alternative solution
         this.hasSave = Boolean(action?.hasSave);
         this.hasDamage = Boolean(action?.hasDamage);
         this.hasEffect = Boolean(action?.hasEffect);
@@ -78,7 +75,7 @@ export class MoveContext {
         this.onSave = action?.save?.damageMod;
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
-        this.rollType = data.rollType ?? null;
+        this.rollType = data.rollType ?? null; // todo: move to roll?
         /** Evaluated main roll @type {InstanceType<typeof game.system.api.dice.DHRoll>} */
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
@@ -116,6 +113,17 @@ export class MoveContext {
             action: action?.id,
             originItem: action?.originItem
         };
+
+        /** 
+         * Processing flags. Not part of the move, but tracks information about its usage.
+         * Maybe also be used to perform auxiliary handling that isn't part of resolving a move (like muting the roll sound)
+         * @type {import('./_types').MoveFlags}
+         */
+        this.flags = foundry.utils.mergeObject({
+            actionChatMessageHandled: false,
+            resourcesSpent: false,
+            mute: false
+        }, data.flags ?? {});
     }
 
     /** @deprecated */
@@ -347,7 +355,7 @@ export class MoveContext {
             await this.action.update({ 'uses.value': this.action.uses.value + 1 });
         }
 
-        this.resourcesSpent = true;
+        this.flags.resourcesSpent = true;
     }
 
     static async build(data, options = {}) {
