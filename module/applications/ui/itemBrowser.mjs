@@ -632,12 +632,15 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     async _onDragStart(event) {
-        const { itemUuid } = event.target.closest('[data-item-uuid]').dataset,
-            item = await foundry.utils.fromUuid(itemUuid),
-            dragData = item.toDragData();
+        const { itemUuid } = event.target.closest('[data-item-uuid]').dataset;
+        const item = await foundry.utils.fromUuid(itemUuid);
+        const dragData = item.toDragData();
 
+        const img = event.target.querySelector('img') ?? event.target.closest('img');
+        const { width, height } = img.getBoundingClientRect();
+        const preview = foundry.applications.ux.DragDrop.implementation.createDragImage(img, width, height);
         event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        event.dataTransfer.setDragImage(event.target.querySelector('img'), 0, 0);
+        event.dataTransfer.setDragImage(preview, width / 2, height / 2);
     }
 
     _canDragStart() {

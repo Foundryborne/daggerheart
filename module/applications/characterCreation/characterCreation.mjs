@@ -599,9 +599,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     async _onDragStart(event) {
         const target = event.currentTarget;
-
         event.dataTransfer.setData('text/plain', JSON.stringify(target.dataset));
-        event.dataTransfer.setDragImage(target, 60, 0);
     }
 
     async _onDrop(event) {
