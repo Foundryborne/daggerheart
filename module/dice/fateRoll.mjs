@@ -39,7 +39,7 @@ export default class FateRoll extends D20Roll {
     }
 
     get fateDie() {
-        return this.options.fateType;
+        return this.options.roll?.fateType ?? this.options.fateType;
     }
 
     get withHope() {

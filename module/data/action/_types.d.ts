@@ -23,19 +23,13 @@ interface MoveContextParams {
     targets: unknown[];
     countdowns: unknown;
     hasRoll: boolean;
-    rollType?: keyof typeof CONFIG.Dice.daggerheart;
 
     /** The list of selected experiences */
     experiences: string[];
     /** The list of selected costs */
     costs: MoveCost[];
 
-    roll: {
-        lite?: boolean;
-        type?: string;
-        trait?: string;
-        difficulty?: number;
-    };
+    roll?: MoveRollProps;
     damage: unknown;
     damageOptions: {
         groupAttack?: boolean;
@@ -58,6 +52,15 @@ interface MoveContextParams {
 
     /** Processing flags. Not part of the move, but tracks information about its usage */
     flags?: Partial<MoveFlags>;
+}
+
+export interface MoveRollProps {
+    rollClass?: keyof typeof CONFIG.Dice.daggerheart;
+    lite?: boolean;
+    type?: string;
+    trait?: string;
+    fateType?: string;
+    difficulty?: number;
 }
 
 /** Processing flags. Not part of the move, but tracks information about its usage */

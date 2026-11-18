@@ -42,7 +42,6 @@ export class MoveContext {
         this.title = data.title ?? _loc(action?.name);
         this.headerTitle = data.headerTitle;
         this.actionType = data.actionType ?? action?.actionType ?? 'action';
-        this.fateType = data.fateType;
         this.groupAction = data.groupAction;
 
         this.selectedMessageMode = data.selectedMessageMode ?? game.settings.get('core', 'messageMode');
@@ -75,12 +74,11 @@ export class MoveContext {
         this.onSave = action?.save?.damageMod;
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
-        this.rollType = data.rollType ?? null; // todo: move to roll?
         /** Evaluated main roll @type {InstanceType<typeof game.system.api.dice.DHRoll>} */
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
 
-        // Set the roll has hasRoll. If roll is explicitly set to null, or hasRoll explicitly set to false, keep as null
+        /** Data used to configure the roll. The actual is in evaluated. @type {import('./_types').MoveRollProps | null} */
         this.roll = data.roll ?? 
             (data.hasRoll === false || !action?.hasRoll || this.roll === null ? null : action?.roll ?? {});
         this.hasRoll = Boolean(this.roll);
@@ -136,7 +134,7 @@ export class MoveContext {
      * @returns {typeof CONFIG.Dice.daggerheart[keyof typeof CONFIG.Dice.daggerheart]}
      */
     get rollClass() {
-        return CONFIG.Dice.daggerheart[this.rollType] ?? CONFIG.Dice.daggerheart['DHRoll'];
+        return CONFIG.Dice.daggerheart[this.roll?.rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
     }
 
     getRollData() {
@@ -160,11 +158,14 @@ export class MoveContext {
      * Can be called after making changes to data in order to re-initialize using new data.
      */
     async initialize() {
-        this.rollType = this.roll?.lite
-            ? 'DHRoll'
-            : this.fateType
-                ? 'FateRoll'
-                : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+        if (this.roll) {
+            this.roll.rollClass = this.roll?.lite
+                ? 'DHRoll'
+                : this.roll.fateType
+                    ? 'FateRoll'
+                    : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+        }
+
 
         this.effects = await this.getActionRelevantEffects();
 
