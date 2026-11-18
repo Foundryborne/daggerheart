@@ -1,5 +1,6 @@
 import { prepareFeatureData, simplifyDescriptionForEmbed } from '../../applications/sheets/sheet-helpers.mjs';
 import { createShallowProxy, getScrollTextData } from '../../helpers/utils.mjs';
+import BonusAdjustment from '../activeEffect/changeTypes/bonusAdjustment.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
@@ -84,7 +85,10 @@ export const commonActorRules = (extendedData = { damageReduction: {}, attack: {
             }),
             ...(extendedData.attack?.damage ?? {})
         })
-    })
+    }),
+    bonusAdjustments: new fields.TypedObjectField(
+        new fields.EmbeddedDataField(BonusAdjustment)
+    )
 });
 
 /**

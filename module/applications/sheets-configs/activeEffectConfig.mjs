@@ -1,5 +1,6 @@
 import autocomplete from 'autocompleter';
 import { pickBy } from '../../helpers/functional.mjs';
+import { changeTypes } from '../../data/activeEffect/_module.mjs';
 
 const { FormDataExtended } = foundry.applications.ux;
 export default class DhActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
@@ -211,10 +212,36 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
         htmlElement.querySelector('.armor-damage-thresholds-checkbox')
             ?.addEventListener('change', this.#onArmorDamageThresholdToggle.bind(this));
+
+        for (const bonusEl of htmlElement.querySelectorAll('fieldset[data-type=bonus]')) {
+            const affects = bonusEl.querySelector('.affects select');
+            const damageTypeArea = bonusEl.querySelector('.damageType');
+            const damageType = damageTypeArea.querySelector('select');
+            if (affects && damageTypeArea && damageType) {
+                affects.addEventListener('change', () => {
+                    damageTypeArea.hidden = affects.value === 'roll';
+                    if (affects.value === 'roll') {
+                        damageType.value = '';
+                    }
+                })
+            }
+        }
+
+        // Generally hide flat multiplier if multiplier isn't set to flat
+        for (const formulaRow of htmlElement.querySelectorAll('.formula')) {
+            const multiplier = formulaRow.querySelector('.multiplier select');
+            const flatMultiplierContainer = formulaRow.querySelector('.flatMultiplier');
+            if (multiplier && flatMultiplierContainer) {
+                multiplier.addEventListener('change', () => {
+                    flatMultiplierContainer.hidden = multiplier.value !== 'flat';
+                });
+            }
+        }
     }
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
+        context.nameSlug = this.document.name.slugify();
         context.systemFields = context.document.system.schema.fields;
 
         return context;
@@ -257,16 +284,17 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                 partContext.conditionalOptions = CONFIG.DH.EFFECTS.conditionalTypes;
                 break;
             case 'changes':
-                const typedChanges = this.document.changes.reduce((acc, change, index) => {
-                    if (change.single) acc[change.type] = { ...change, index };
-
+                const typedChanges = (this.document._source.changes ?? []).reduce((acc, change, index) => {
+                    acc[change.type] ??= [];
+                    acc[change.type].push({ ...change, index });
                     return acc;
                 }, {});
                 partContext.changes = partContext.changes.filter(c => !!c);
                 partContext.typedChanges = typedChanges;
-                partContext.creatableTypes = ['armor', 'standardAttack', 'damageReduction']
-                    .filter(t => !typedChanges[t] || !typedChanges[t].single)
-                    .map(t => ({ value: t, label: _loc(CONFIG.DH.EFFECTS.customChangeTypes[t]?.label) }));
+                partContext.creatableTypes = Object.keys(changeTypes)
+                    .filter(t => !typedChanges[t] || !typedChanges[t][0].single)
+                    .map(t => ({ value: t, label: _loc(CONFIG.DH.EFFECTS.customChangeTypes[t]?.label) }))
+                    .sort((a, b) => a.label.localeCompare(b.label));
                 
                 partContext.damageReductions = this.document.changes.reduce((acc, x, index) => {
                     if (x.type === 'damageReduction') {
@@ -427,6 +455,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         if (event.target.name.match('name')) {
             for (const element of this.element.querySelectorAll('[data-placeholder-is-name]')) {
                 element.placeholder = event.target.value;
+            }
+            for (const element of this.element.querySelectorAll('[data-placeholder-is-name-slug]')) {
+                element.placeholder = event.target.value.slugify();
             }
         }
     }

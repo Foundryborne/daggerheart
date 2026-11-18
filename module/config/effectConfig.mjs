@@ -4,6 +4,14 @@ export const customChangeTypes = {
         priority: 20,
         label: 'DAGGERHEART.EFFECTS.ChangeTypes.armor.name'
     },
+    bonus: {
+        id: 'bonus',
+        label: 'DAGGERHEART.EFFECTS.ChangeTypes.bonus.name'
+    },
+    bonusAdjustment: {
+        id: 'bonusAdjustment',
+        label: 'DAGGERHEART.EFFECTS.ChangeTypes.bonusAdjustment.name'
+    },
     standardAttack: {
         id: 'standardAttack',
         label: 'DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.name'
