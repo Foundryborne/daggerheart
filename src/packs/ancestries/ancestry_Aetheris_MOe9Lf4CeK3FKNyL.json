@@ -5,10 +5,11 @@
   "system": {
     "loreReference": "aetheris",
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "campaignFrame": "",
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Aetheris are humanoids most easily recognized by their wings and sacred markings.</p>",
     "gmNotes": "",

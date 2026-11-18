@@ -6,8 +6,9 @@
   "img": "icons/magic/control/energy-stream-link-large-white.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>When you succeed with Hope on an action roll against a target, you can <strong>spend any number of Favor</strong> to force the target to mark an equal number of Stress.</p>",
     "gmNotes": "",

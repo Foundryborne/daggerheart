@@ -6,10 +6,11 @@
   "img": "icons/skills/toxins/cup-goblet-poisoned-spilled.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "campaignFrame": "",
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Play the Poisoners Guild if you want to debilitate your targets with punishing afflictions.</p>",
     "gmNotes": "",

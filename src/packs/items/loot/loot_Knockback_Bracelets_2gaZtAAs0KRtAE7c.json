@@ -5,9 +5,10 @@
   "img": "icons/equipment/wrist/bracer-reinforced.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>On a successful weapon attack, you can knock your target back up to Close range from their location.</p>",
     "gmNotes": "",

@@ -47,9 +47,10 @@
     },
     "examples": "Elephant, Mammoth, Rhinoceros, etc.",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "effects": [

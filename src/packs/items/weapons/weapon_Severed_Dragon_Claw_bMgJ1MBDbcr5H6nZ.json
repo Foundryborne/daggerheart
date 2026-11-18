@@ -6,9 +6,10 @@
   "img": "icons/weapons/swords/shortsword-hooked-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

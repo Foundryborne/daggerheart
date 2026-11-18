@@ -9,9 +9,10 @@
       "Compendium.daggerheart.communities.Item.TQ1AIQjndC4mYmmU"
     ],
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "loreReference": "wildborne",
     "gmNotes": ""

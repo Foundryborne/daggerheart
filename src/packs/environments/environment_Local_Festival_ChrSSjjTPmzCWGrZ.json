@@ -9,8 +9,9 @@
     "impulses": "Express local culture and history, forge new relationships, reinforce community",
     "difficulty": 11,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {
       "LTxP8vZW7KiVkU7l": {

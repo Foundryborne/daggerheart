@@ -108,9 +108,10 @@
       "dieFaces": "d4"
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "domainTouched": 4,
     "gmNotes": "",
@@ -130,7 +131,7 @@
           {
             "key": "system.bonuses.roll.bonus",
             "type": "add",
-            "value": "2",
+            "value": 2,
             "priority": null,
             "phase": "initial"
           }

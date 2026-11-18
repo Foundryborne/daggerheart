@@ -6,9 +6,10 @@
     "description": "<p>You gain a +1 bonus to your Hope Die when you make the Risk It All death move.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {}

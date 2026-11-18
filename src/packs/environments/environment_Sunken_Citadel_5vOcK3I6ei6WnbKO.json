@@ -9,8 +9,9 @@
     "impulses": "Draw them deep, drown them, reveal ancient wonders",
     "difficulty": 16,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {
       "0xlyOLCOac2BMPBx": {
@@ -30,7 +31,7 @@
       "type": "feature",
       "system": {
         "featureForm": "passive",
-        "description": "<p>This environment is underwater (see the \"Moving and Fighting Underwater\" rules on page 168 of the core rulebook). In addition to those rules, a creature who breathes air tracks their supply with an Air Supply Countdown. Its starting value is equal to 3 + their tier, and it ticks down when they take an action. If a PC fails an action roll or rolls with Fear, you can use a GM move to tick down their countdown an additional time. If the roll is a failure with Fear, you can tick it down twice instead. Once their countdown triggers, a PC must mark a Stress whenever they take an action underwater until they resurface.</p><section id=\"secret-irxVAP0EjUCUAA0e\" class=\"secret\"><p>Have you ever known anyone who drowned? What do you think about to keep calm and stretch your air supply?</p></section>",
+        "description": "<p>This environment is underwater (see the \"Moving and Fighting Underwater\" rules on page 168 of the Daggerheart Core Rulebook). In addition to those rules, a creature who breathes air tracks their supply with an Air Supply Countdown. Its starting value is equal to 3 + their tier, and it ticks down when they take an action. If a PC fails an action roll or rolls with Fear, you can use a GM move to tick down their countdown an additional time. If the roll is a failure with Fear, you can tick it down twice instead. Once their countdown triggers, a PC must mark a Stress whenever they take an action underwater until they resurface.</p><section id=\"secret-irxVAP0EjUCUAA0e\" class=\"secret\"><p>Have you ever known anyone who drowned? What do you think about to keep calm and stretch your air supply?</p></section>",
         "attribution": {},
         "gmNotes": "",
         "resource": null,

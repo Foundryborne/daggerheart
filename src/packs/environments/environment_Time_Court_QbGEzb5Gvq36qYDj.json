@@ -9,8 +9,9 @@
     "impulses": "Find the truth, mete out justice, nullify their powers",
     "difficulty": 20,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {
       "Dh1UipXuHjMyzcbU": {

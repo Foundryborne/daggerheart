@@ -129,9 +129,10 @@
     },
     "motivesAndTactics": "Defend lair, dive-bomb, fly, hunt, intimidate",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "size": "gargantuan",
     "advantageSources": [],

@@ -29,9 +29,10 @@
     "type": "exploration",
     "impulses": "Draw in the curious, echo the past",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

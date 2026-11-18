@@ -5,9 +5,10 @@
   "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Vampires are undead creatures with sharp fangs who feed on the blood of the living.</p>",
     "gmNotes": "",

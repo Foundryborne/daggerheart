@@ -9,8 +9,9 @@
     "impulses": "Conjure images of sand and surf, give them a breather, prepare them for the conflict ahead",
     "difficulty": 14,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {},
     "notes": ""

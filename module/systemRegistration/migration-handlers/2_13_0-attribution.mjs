@@ -8,7 +8,7 @@ export class Migration_2_13_0_Attribution extends MigrationHandlerBase {
     migrateCompendiums = true;
 
     #REMAP = {
-        'Daggerheart SRD': 'Core Rulebook',
+        'Daggerheart SRD': 'Daggerheart Core Rulebook',
         'Daggerheart SRD H&F': 'Daggerheart: Hope & Fear'
     };
 

@@ -6,8 +6,9 @@
   "img": "icons/creatures/reptiles/serpent-horned-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>You are immune to poisons and other toxins.</p>",
     "gmNotes": "",

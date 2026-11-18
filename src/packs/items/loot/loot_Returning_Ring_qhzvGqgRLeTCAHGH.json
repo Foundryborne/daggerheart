@@ -6,9 +6,10 @@
     "description": "<p>When you throw your primary weapon while wearing this ring, the weapon appears in your hand immediately after the attack.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {}

@@ -6,8 +6,9 @@
   "img": "icons/magic/symbols/runes-triangle-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>When you fail a roll, you can <strong>spend 3 Hope</strong> to reroll with advantage.</p>",
     "gmNotes": "",

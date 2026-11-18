@@ -127,9 +127,10 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "motivesAndTactics": "Hide in plain sight, preserve the forest, root down, swing branches",
     "size": "large",

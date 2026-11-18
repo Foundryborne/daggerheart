@@ -6,10 +6,11 @@
   "img": "icons/skills/melee/strike-hammer-destructive-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "artist": "",
-      "campaignFrame": ""
+      "campaignFrame": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

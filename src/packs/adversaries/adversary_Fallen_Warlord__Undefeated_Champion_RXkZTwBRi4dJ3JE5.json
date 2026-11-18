@@ -139,9 +139,10 @@
     },
     "motivesAndTactics": "Dispatch merciless death, punish the defi ant, secure victory at any cost",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "size": "medium",
     "advantageSources": [],

@@ -6,9 +6,10 @@
     "description": "<p>You can shatter this orb to make the area within Very Far range appear as though it's moonlit nighttime for the next 24 hours.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "consumeOnUse": true,
     "gmNotes": "",

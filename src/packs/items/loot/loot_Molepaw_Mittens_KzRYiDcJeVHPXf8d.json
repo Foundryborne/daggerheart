@@ -6,9 +6,10 @@
     "description": "<p>Spend a Hope to swim through earth as if it were water for the next 10 minutes.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {

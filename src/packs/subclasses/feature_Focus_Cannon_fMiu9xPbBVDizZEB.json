@@ -6,8 +6,9 @@
   "img": "icons/magic/light/beam-rays-orange.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p><strong>Spend a Focus</strong> to make an Instinct Roll against an adversary within Far range. On a success, deal <strong>d20+3</strong> magic damage using your Proficiency.</p>",
     "gmNotes": "",
