@@ -100,14 +100,14 @@ export class MoveContext {
             this.isDirect = damage.main?.direct;
             const groupAttackTokens = damage.main?.groupAttack
                 ? game.system.api.fields.ActionFields.DamageField.getGroupAttackTokens(
-                    this.actor.id,
-                    this.damage.main.groupAttack
+                    actor.id,
+                    damage.main.groupAttack
                 )
                 : null;
             this.damageOptions.groupAttack ??= damage.main?.groupAttack
                 ? {
                     numAttackers: Math.max(groupAttackTokens.length, 1),
-                    range: this.damage.main.groupAttack
+                    range: damage.main.groupAttack
                 }
                 : null;
         }
