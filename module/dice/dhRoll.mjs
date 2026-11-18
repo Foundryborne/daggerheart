@@ -1,4 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
+import BonusChange from '../data/activeEffect/changeTypes/bonus.mjs';
 import { getAllResourceLabels, triggerChatRollFx } from '../helpers/utils.mjs';
 import BaseRoll from './baseRoll.mjs';
 
@@ -21,6 +22,11 @@ export default class DHRoll extends BaseRoll {
         // TODO: make options a new object in createRollInstance, that pre-injects bonusEffectBuilder.
         if (!options.bonusEffects || this.options.effects?.every(e => e instanceof ActiveEffect)) {
             options.bonusEffects = this.bonusEffectBuilder();
+        } else {
+            // Ensure bonuses are restored
+            for (const effect of Object.values(options.bonusEffects)) {
+                effect.bonuses = effect.bonuses?.map(b => new BonusChange(b)) ?? [];
+            }
         }
 
         if (!this.data || !Object.keys(this.data).length) {
@@ -358,9 +364,9 @@ export default class DHRoll extends BaseRoll {
      * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
      * that match a given change.key partial path.
      * @param {string} path The full or partial effect.change key 
-     * @returns {[{ label: string, value: any} ]}
+     * @returns {{ label: string, value: any}[]}
      */
-    getBonus(path) {
+    getModifiers(path) {
         const modifiers = [];
         for (const effect of Object.values(this.options.bonusEffects)) {
             if (!effect.selected) continue;
@@ -380,9 +386,22 @@ export default class DHRoll extends BaseRoll {
                 const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
                 modifiers.push({ label: effect.name, value: typedValue });
             }
+            for (const bonus of effect.bonuses) {
+                const adjustments = this.data.rules?.bonusAdjustments?.[bonus.identifier] ?? [];
+                const formula = bonus.getFormula({ adjustments, rollData: this.data });
+                modifiers.push({ label: effect.name, value: formula, damageType: bonus.damageType })
+            }
         }
 
         return modifiers;
+    }
+
+    /** @deprecated */
+    getBonus(path) {
+        foundry.utils.logCompatibilityWarning('DHRoll#getBonus() is deprecated. Use DHRoll#getModifiers() instead', {
+            since: '2.13.0'
+        });
+        return this.getModifiers(path);
     }
 
     getFaces(faces) {
@@ -429,6 +448,15 @@ export default class DHRoll extends BaseRoll {
 
     bonusEffectBuilder() {
         const changeKeys = this.getActionChangeKeys();
+        
+        // Retroactively figure out if this is damage, healing, or a roll
+        // This needs a refactor, but so does action change keys and this method in general
+        const affects = changeKeys.some(c => c.startsWith('system.bonuses.damage'))
+            ? 'damage'
+            : changeKeys.some(c => c.startsWith('system.bonuses.healing'))
+                ? 'healing'
+                : 'roll';
+
         return (
             // todo: improve safety. When used improperly, effects is a list of data, not active effects
             // it can be worked around provisionarily by using getActionRelevantEffects()
@@ -440,15 +468,16 @@ export default class DHRoll extends BaseRoll {
                 const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
 
                 // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
-                if (
-                    conditionalsPassed && 
-                    (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
-                ) {
+                if (!conditionalsPassed) return acc;
+                
+                const bonuses = effect.system.changes?.filter(c => c.type === 'bonus' && c.affects === affects);
+                if (effect.system.changes?.some(x => changeKeys.some(key => x.key?.includes(key) || bonuses?.length))) {
                     acc[effect.id] = {
                         id: effect.id,
                         name: effect.name,
                         description: effect.description,
                         changes: effect.system.changes,
+                        bonuses,
                         origEffect: effect,
                         selected: !effect.disabled
                     };

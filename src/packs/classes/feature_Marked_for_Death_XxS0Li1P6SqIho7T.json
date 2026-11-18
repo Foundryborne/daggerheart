@@ -112,11 +112,18 @@
       "system": {
         "changes": [
           {
-            "key": "system.bonuses.damage.bonus",
-            "type": "add",
-            "value": "(@system.tier)d4",
-            "priority": null,
-            "phase": "initial"
+            "type": "bonus",
+            "phase": "initial",
+            "priority": 20,
+            "affects": "damage",
+            "identifier": "marked-for-death",
+            "value": {
+              "multiplier": "tier",
+              "flatMultiplier": 0,
+              "dice": "d4",
+              "bonus": null
+            },
+            "damageType": null
           }
         ],
         "duration": {
