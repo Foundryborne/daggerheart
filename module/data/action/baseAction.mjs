@@ -282,7 +282,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const result = await this.executeWorkflow(config);
         if (result === false) return;
 
-        await config.spendResources();
+        // While rolling will consume resources automatically, some moves don't have rolls
+        // We catch those here
+        if (!config.resourcesSpent) {
+            await config.spendResources();
+        }
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 

@@ -721,7 +721,11 @@ export default class DhActor extends Actor {
         config = config instanceof MoveContext && config.actor === this
             ? config
             : await MoveContext.build(config, { actor: this });
-        return await config.rollClass.build(config);
+        const result = await config.rollClass.build(config);
+        if (!config.skips.resources) {
+            await config.spendResources();
+        }
+        return result;
     }
 
     async rollTrait(trait, options = {}) {

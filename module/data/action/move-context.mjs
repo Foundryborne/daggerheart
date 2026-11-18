@@ -55,6 +55,7 @@ export class MoveContext {
         /** The list of selected experiences */
         this.experiences = data.experiences ?? [];
         this.skips = foundry.utils.mergeObject({
+            // @todo remove and make it a diceRoll() prop instead. This is not used in move context, just specific roll functions
             resources: false,
             triggers: false,
             createMessage: false,
@@ -62,8 +63,11 @@ export class MoveContext {
             reaction: false
         }, data.skips ?? {});
         this.damageOptions = data.damageOptions ?? {};
-        /** If set, skips creation of dedicated toChat messages. Used to prevent duplicates. */
+
+        /** Processing flag - If set, skips creation of dedicated toChat messages. Used to prevent duplicates. */
         this.actionChatMessageHandled = Boolean(data.actionChatMessageHandled ?? false);
+        /** Processing flag - If set, spentResources has been executed */
+        this.resourcesSpent = data.resourcesSpent ?? false;
         
         // Initialize props based on the documents and action
         this.hasSave = Boolean(action?.hasSave);
@@ -342,6 +346,8 @@ export class MoveContext {
         ) {
             await this.action.update({ 'uses.value': this.action.uses.value + 1 });
         }
+
+        this.resourcesSpent = true;
     }
 
     static async build(data, options = {}) {
