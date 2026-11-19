@@ -16,28 +16,48 @@
         </ol>
     </div>
 
-    {{#if typedChanges.armor}}
-        <fieldset class="typed-change-container armor-change-container optional">
+    {{#each typedChanges.bonus as |bonus|}}
+        <fieldset class="typed-change-container optional" data-type="bonus">
             <legend>
-                {{localize "DAGGERHEART.GENERAL.armor"}} 
-                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{typedChanges.armor.index}}" data-type="armor"></a>
+                {{localize "DAGGERHEART.EFFECTS.ChangeTypes.bonus.name"}} 
+                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{bonus.index}}" data-type="bonus"></a>
             </legend>
-            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs" typedChanges.armor fields=@root.systemFields.changes.element.types.armor.fields}}
+            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/bonus.hbs" bonus fields=@root.systemFields.changes.element.types.bonus.fields}}
         </fieldset>
-    {{/if}}
+    {{/each}}
 
-    {{#if typedChanges.standardAttack}}
-        <fieldset class="typed-change-container optional {{#if typeChanges.standardAttack}}active{{/if}}">
+    {{#each typedChanges.bonusAdjustment as |bonusAdjustment|}}
+        <fieldset class="typed-change-container optional" data-type="bonusAdjustment">
+            <legend>
+                {{localize "DAGGERHEART.EFFECTS.ChangeTypes.bonusAdjustment.name"}} 
+                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{bonusAdjustment.index}}" data-type="bonusAdjustment"></a>
+            </legend>
+            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/bonusAdjustment.hbs" bonusAdjustment fields=@root.systemFields.changes.element.types.bonusAdjustment.fields}}
+        </fieldset>
+    {{/each}}
+
+    {{#each typedChanges.armor as |armor|}}
+        <fieldset class="typed-change-container armor-change-container optional" data-type="armor">
+            <legend>
+                {{localize "DAGGERHEART.EFFECTS.ChangeTypes.armor.name"}} 
+                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{armor.index}}" data-type="armor"></a>
+            </legend>
+            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/armorChange.hbs" armor fields=@root.systemFields.changes.element.types.armor.fields}}
+        </fieldset>
+    {{/each}}
+
+    {{#each typedChanges.standardAttack as |standardAttack|}}
+        <fieldset class="typed-change-container optional" data-type="standardAttack">
             <legend>
                 {{localize "DAGGERHEART.EFFECTS.ChangeTypes.standardAttack.name"}} 
-                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{typedChanges.standardAttack.index}}" data-type="standardAttack"></a>
+                <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{standardAttack.index}}" data-type="standardAttack"></a>
             </legend>
-            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/standardAttack.hbs" typedChanges.standardAttack fields=@root.systemFields.changes.element.types.standardAttack.fields}}
+            {{> "systems/daggerheart/templates/sheets/activeEffect/typeChanges/standardAttack.hbs" standardAttack fields=@root.systemFields.changes.element.types.standardAttack.fields}}
         </fieldset>
-    {{/if}}
+    {{/each}}
 
     {{#each damageReductions as |reduction index|}}
-        <fieldset class="typed-change-container optional">
+        <fieldset class="typed-change-container optional" data-type="damageReduction">
             <legend>
                 {{localize "DAGGERHEART.EFFECTS.ChangeTypes.damageReduction.name"}} 
                 <a class="icon fa-solid fa-trash" data-action="removeCustomChange" data-index="{{reduction.changeIndex}}" data-type="damageReduction"></a>

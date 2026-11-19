@@ -125,7 +125,7 @@ export default class DamageRoll extends DHRoll {
 
     getRollBonuses() {
         const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        const modifiers = [...this.getBonus(`system.bonuses.${type}`)];
+        const modifiers = [...this.getModifiers(`system.bonuses.${type}`)];
 
         return modifiers;
     }

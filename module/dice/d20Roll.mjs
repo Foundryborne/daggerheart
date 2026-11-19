@@ -103,7 +103,7 @@ export default class D20Roll extends DHRoll {
     getRollBonuses() {
         const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
         modifiers.push(
-            ...this.getBonus('system.bonuses.roll')
+            ...this.getModifiers('system.bonuses.roll')
         );
 
         return modifiers;

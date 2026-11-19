@@ -84,6 +84,7 @@
         gap: 0;
         overflow-y: auto;
         scrollbar-gutter: stable;
+        gap: var(--spacer-8);
 
         .basic-changes {
             header,
@@ -158,6 +159,11 @@
                 width: 100%;
             }
 
+            > .flexrow {
+                width: 100%;
+                gap: 10px;
+            }
+
             .form-group {
                 display: block;
             }
@@ -175,13 +181,21 @@
                     }
                 }
             }
+
+            .formula {
+                .plus {
+                    font-weight: bold;
+                    margin-top: var(--font-size-14);
+                    font-size: var(--font-size-22);
+                }
+            }
         }
 
         .add-change {
             width: 100%;
             display: flex;
             justify-content: end;
-            margin-top: 1rem;
+            margin-top: var(--spacer-8);
             gap: var(--spacer-8);
             select {
                 flex: 0 1 fit-content;

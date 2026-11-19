@@ -418,6 +418,9 @@ export default class DhItem extends foundry.documents.Item {
             }
         }
 
+        // Also delete invalid effects
+        effectsToDelete.push(...this.effects.invalidDocumentIds);
+
         /** @type {foundry.abstract.types.DatabaseWriteOperation[]} */
         const batch = [{
             parent: this.parent,

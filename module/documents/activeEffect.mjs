@@ -168,7 +168,10 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     }
 
     static _applyChangeUnguided(actor, change, changes, options) {
-        change.value = DhActiveEffect.getChangeValue(actor, change, change.effect);
+        if (change.type in CONST.ACTIVE_EFFECT_CHANGE_TYPES) {
+            // snapshot the value but only if its a base change type (prevents bonus from getting clobbered)
+            change.value = DhActiveEffect.getChangeValue(actor, change, change.effect);
+        }
         super._applyChangeUnguided(actor, change, changes, options);
     }
 

@@ -1,0 +1,16 @@
+<input type="hidden" name="{{concat "system.changes." index ".type"}}" value="{{type}}" />
+<input type="hidden" name="{{concat "system.changes." index ".phase"}}" value="{{phase}}" />
+<input type="hidden" name="{{concat "system.changes." index ".priority"}}" value="{{priority}}" />
+
+<div class="nest-inputs">
+    {{formGroup fields.affects name=(concat "system.changes." index ".affects") value=affects classes="affects"}}
+    {{formGroup fields.identifier name=(concat "system.changes." index ".identifier") value=identifier placeholder=@root.nameSlug dataset=(object placeholderIsNameSlug='')}}
+</div>
+<div class="nest-inputs formula">
+    {{formGroup fields.value.fields.multiplier value=value.multiplier name=(concat "system.changes." index ".value.multiplier") classes="multiplier" localize=true}}
+    {{formGroup fields.value.fields.flatMultiplier value=value.flatMultiplier name=(concat "system.changes." index ".value.flatMultiplier") localize=true classes="flatMultiplier" hidden=(ne value.multiplier 'flat')}}
+    {{formGroup fields.value.fields.dice value=value.dice name=(concat "system.changes." index ".value.dice") localize=true}}
+    <span class="plus">+</span>
+    {{formGroup fields.value.fields.bonus value=value.bonus name=(concat "system.changes." index ".value.bonus") localize=true}}
+    {{formGroup fields.damageType name=(concat "system.changes." index ".damageType") value=damageType localize=true classes="damageType" hidden=(eq affects "roll")}}
+</div>
