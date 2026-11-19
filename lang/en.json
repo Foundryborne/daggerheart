@@ -350,7 +350,7 @@
                         "OnlyFrameworks": "Only Collosi Frameworks can be added",
                         "MustBeSameCompendium": "Collosi Parts and Frameworks must be in the same compendium",
                         "MustOwnBoth": "You must be an owner of both documents to establish a link",
-                        "FrameworkNotLinked": "This part isn't linked to this framework, and updates will not propagate."
+                        "FrameworkNotLinked": "This part isn't linked to this framework, and updates will not propagate until added to the scene."
                     }
                 },
                 "adversaryReactionRoll": {

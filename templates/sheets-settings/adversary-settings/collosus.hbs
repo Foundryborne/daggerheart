@@ -11,6 +11,11 @@
                 {{#if part.actor}}
                     <img class="portrait" src="{{part.actor.img}}" />
                     <a class="name" data-action="editDoc" data-item-uuid="{{part.actor.uuid}}">{{part.actor.name}}</a>
+                    {{#unless part.linked}}
+                        <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.collosus.Notifications.FrameworkNotLinked">
+                            <i class="fa-solid fa-warning" inert></i>
+                        </span>
+                    {{/unless}}
                 {{else}}
                     <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
                     <span class="name">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "DOCUMENT.Actor")}}</span>

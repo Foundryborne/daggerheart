@@ -61,24 +61,32 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
      */
     async isLinkedFramework(otherActor) {
         const actor = resolveNearestDocument(this, Actor);
-        const framework = [actor, otherActor].find(a => a.system?.typeData?.role === 'framework');
-        const part = [actor, otherActor].find(a => a.system?.typeData?.role === 'part');
+        const framework = [actor, otherActor].find(a => a?.system?.typeData?.role === 'framework');
+        const part = [actor, otherActor].find(a => a?.system?.typeData?.role === 'part');
         if (!framework?.system?.typeData || !part?.system?.typeData) return false;
 
-        // Special case - linked tokens
-        if (part.token && part.frameworkActor === framework) return true;
+        // Special case - directly linked tokens
+        if (part.token && part.system.typeData.frameworkActor === framework) return true;
+
+        // If a part is a non-compendium actor and the framework is a compendium actor, its not linked directly
+        if (part.pack !== framework.pack) return false;
+
+        const matchingPart = framework.system.typeData.parts.find(p => this.#testUuid(part, p.uuid));
+        if (!matchingPart) return false;
 
         // For unlinked tokens, it is linked if the fetchPartBaseActor retrieves it, as that's what propagation actually uses
-        // this method can be made async if we instead replicate the logic without the fetch by looking into game.actors.find()
-        const matchingPart = framework.system.typeData.parts.find(p => this.#testUuid(part, p.uuid));
-        return matchingPart ? (await this.#fetchPartBaseActor(matchingPart.uuid)) === part : false;
+        // Furthermore, this tries to handle the case in which the same part is referenced in multiple frameworks, by selecting the highest prioritized one
+        const basePartActor = await this.#fetchPartBaseActor(matchingPart.uuid);
+        if (basePartActor !== part) return false;
+        const baseFramework = await part.system.typeData.fetchFrameworkActor({ compendium: Boolean(part.pack) });
+        return baseFramework === framework;
     }
 
     /** 
      * Fetches the framework actor of this actor, which can be itself.
      * This prioritizes linked framework actor of the active group if its token, but otherwise it searches the compendium.
      */
-    async fetchFrameworkActor() {
+    async fetchFrameworkActor({ compendium = true } = {}) {
         const activeFrameworkActor = this.frameworkActor ?? (this.role === 'framework' ? resolveNearestDocument(this, Actor) : null);
         if (activeFrameworkActor) return activeFrameworkActor;
         const actor = resolveNearestDocument(this, Actor);
@@ -112,8 +120,10 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             if (result) return result;
         }
 
-        // Search in compendiums. Prioritize current pack
-        for (const pack of sortBy(game.packs.contents, p => p._id === actor.pack ? 0 : 1)) {
+        // Search in same pack or in the pack of the compendium source
+        const compendiumSourcePack = foundry.utils.parseUuid(actor._stats.compendiumSource)?.collection?.metadata?.id;
+        const pack = game.packs.get(actor.pack ?? compendiumSourcePack);
+        if (pack && compendium) {
             const frameworks = await pack.getDocuments({
                 type__in: ['adversary'],
                 system: {
@@ -214,7 +224,9 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
                     actor: resolvedActor,
                     baseActor,
                     activeActor,
-                    active: Boolean(actor.token ? activeActor : resolvedActor)
+                    active: Boolean(actor.token ? activeActor : resolvedActor),
+                    /** If true, the framework actor will propagate data to the token */
+                    linked: await frameworkActor.system.typeData.isLinkedFramework(resolvedActor)
                 });
             }
         }
@@ -445,7 +457,9 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             const parts = await Promise.all(this.parts.map(p => this.#fetchPartBaseActor(p.uuid)));
             const source = thisActor.system._source;
             for (const part of parts.filter(Boolean)) {
-                if (!thisActor.pack && part.pack) continue; // do not update pack actors on world actor changes
+                const isLinked = await this.isLinkedFramework(part);
+                if (!isLinked) continue;
+
                 part.update({
                     system: {
                         tier: source.tier,
