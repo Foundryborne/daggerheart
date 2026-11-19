@@ -28,8 +28,15 @@ interface MoveContextParams {
     experiences: string[];
     /** The list of selected costs */
     costs: MoveCost[];
+    /** The uses that will be spent by this action */
+    uses: {
+        value: number;
+        max: string;
+        recovery: string;
+        consumeOnSuccess: boolean;
+    };
 
-    roll?: MoveRollProps;
+    roll: MoveRollProps;
     damage: unknown;
     damageOptions: {
         groupAttack?: boolean;
@@ -82,7 +89,6 @@ export interface MoveCost {
     max: number; 
     maxStep: number;
 }
-
 
 declare module './baseAction.mjs' {
     export default interface DHBaseAction {

@@ -63,6 +63,8 @@ export class MoveContext {
         this.experiences = data.experiences ?? [];
         /** The list of selected costs. Consumed via spendResources() and changes in the dialog */
         this.costs = data.costs ?? [];
+        /** The uses that will be spent by this context */
+        this.uses = data.uses ?? {};
         
         // Initialize props based on the documents and action
         // todo: determine which ones we can kill. hasTarget may need an alternative solution
@@ -297,7 +299,7 @@ export class MoveContext {
      * @param {object} [options]
      * @param {boolean} [options.successCost=false]     Consume only resources configured as "On Success only"
      */
-    async spendResources({ successCost = false } = {}) {
+    async spendResources({ successCost = false, alwaysConsume = false } = {}) {
         const CostField = game.system.api.fields.ActionFields.CostField;
         const actor = this.actor.system.partner ?? this.actor;
         const usefulResources = {
@@ -327,6 +329,7 @@ export class MoveContext {
         const resources = CostField.getRealCosts(this.costs)
             .filter(
                 c =>
+                    alwaysConsume ||
                     (!successCost && (!c.consumeOnSuccess || isSuccess)) ||
                     (successCost && c.consumeOnSuccess)
             )
@@ -350,7 +353,8 @@ export class MoveContext {
         if (
             this.action &&
             this.uses?.enabled &&
-            ((!successCost && (!this.uses?.consumeOnSuccess || isSuccess)) ||
+            (alwaysConsume || 
+                (!successCost && (!this.uses?.consumeOnSuccess || isSuccess)) ||
                 (successCost && this.uses?.consumeOnSuccess))
         ) {
             await this.action.update({ 'uses.value': this.action.uses.value + 1 });

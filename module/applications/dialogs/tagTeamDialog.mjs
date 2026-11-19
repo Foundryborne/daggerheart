@@ -1,4 +1,3 @@
-import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
 import { ChatDamageData } from '../../data/chat-message/chatDamageData.mjs';
 import { MemberData } from '../../data/tagTeamData.mjs';
 import { MoveContext } from '../../data/action/move-context.mjs';
@@ -466,7 +465,13 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         delete rollData.options.messageRoll;
         this.updatePartyData(
             {
-                [`system.tagTeam.members.${member}.rollData`]: rollData
+                [`system.tagTeam.members.${member}`]: {
+                    rollData,
+                    itemUuid: result.item?.uuid,
+                    actionUuid: result.action?.uuid,
+                    costs: result.costs,
+                    uses: result.uses
+                }
             },
             this.getUpdatingParts(button)
         );
@@ -487,6 +492,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         });
     }
 
+    /** @returns {Promise<MoveContext>} */
     async makeAbilityRoll(event, memberKey) {
         const actor = game.actors.find(x => x.id === memberKey);
         if (!actor) return;
@@ -771,15 +777,26 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         /* Handle resource updates from the finished TagTeamRoll */
         const tagTeamData = this.party.system.tagTeam;
 
-        const actorResourceMaps = Object.keys(tagTeamData.members).reduce((acc, key) => {
-            acc[key] = new ResourceUpdateMap(game.actors.get(key));
-            return acc;
-        }, {});
+        // Create resource maps and add move costs. We presume they all succeeded, as we don't have support for multi actor contexts
+        // Multi actor costs can be handled by adding actor uuid as a prop to costs
+        /** @type {Record<string, MoveContext>} */
+        const actorContexts = {};
+        for (const [key, data] of Object.entries(tagTeamData.members)) {
+            const actor = game.actors.get(key);
+            const fakeContext = await MoveContext.build({
+                actor,
+                item: await fromUuid(data.itemUuid),
+                action: await fromUuid(data.actionUuid),
+                costs: data.costs,
+                uses: data.uses
+            });
+            actorContexts[key] = fakeContext;
+        }
 
         if (shouldUseHopeFearAutomation({ gmAsPlayer: true })) {
-            const fearResourceMap = actorResourceMaps[tagTeamData.initiator.memberId];
+            const fearResourceMap = actorContexts[tagTeamData.initiator.memberId].resourceUpdates;
             for (const memberId in tagTeamData.members) {
-                const resourceMap = actorResourceMaps[memberId]; 
+                const resourceMap = actorContexts[memberId].resourceUpdates; 
                 if (finalRoll.isCritical) {
                     resourceMap.addResources([
                         { key: 'stress', value: -1, enabled: true },
@@ -795,12 +812,14 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
 
         /* Even with Hope/Fear automation off, the hope cost of performing the TagTeamRoll can still optionally be subtracted */
         if (tagTeamData.initiator.cost) {
-            const resourceMap = actorResourceMaps[tagTeamData.initiator.memberId];
+            const resourceMap = actorContexts[tagTeamData.initiator.memberId].resourceUpdates;
             resourceMap.addResources([{ key: 'hope', value: -tagTeamData.initiator.cost, enabled: true }]);
         }
 
-        for (const resourceMap of Object.values(actorResourceMaps))
-            resourceMap.updateResources();
+        for (const context of Object.values(actorContexts)) {
+            // todo: check if success, and prevent retarget from changing the consumption
+            context.spendResources({ alwaysConsume: true });
+        }
 
         /* Fin */
         this.cancelRoll({ confirm: false });

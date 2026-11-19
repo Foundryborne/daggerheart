@@ -252,7 +252,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Main method to use the Action
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {object}
+     * @returns {MoveContext}
      */
     async use(event, configOptions = {}) {
         if (!this.actor) throw new Error('An Action can\'t be used outside of an Actor context.');
