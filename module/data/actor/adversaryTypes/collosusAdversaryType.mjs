@@ -360,7 +360,6 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             );
             actor.system.description ||= this.frameworkActor?.system?.description;
         } else if (role === 'part') {
-            actor.system.resources.stress.value = 0;
             actor.system.resources.stress.readonly = true;
         }
     }
@@ -448,10 +447,15 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         // Relink parts on update
         this.#relinkPartsData(changes);
 
-        // Redirect stress updates to the framework actor 
-        if (this.frameworkActor && typeof changes.system?.resources?.stress?.value === 'number') {
-            this.frameworkActor.update({ 'system.resources.stress.value': changes.system.resources.stress.value });
-            delete changes.system.resources.stress;
+        // Part actors can't update stress value, but may redirect to the linked framework actor if there is one
+        const hasStressValueChange = typeof changes.system?.resources?.stress?.value === 'number';
+        if (hasStressValueChange && this.role === 'part') {
+            if (this.frameworkActor) {
+                this.frameworkActor?.update({ 'system.resources.stress.value': changes.system.resources.stress.value });
+                delete changes.system.resources.stress;
+            } else if (!options.fromCollosusFramework) {
+                delete changes.system.resources.stress.value;
+            }
         }
     }
 
