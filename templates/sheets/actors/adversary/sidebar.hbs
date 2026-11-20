@@ -104,7 +104,7 @@
                 </div>
                 <div class="part-list">
                     {{#each collosusData.actors as |data|}}
-                        <div class="actor {{#unless data.active}}inactive{{/unless}} {{#if data.current}}current{{/if}}" data-role="{{data.role}}">                        
+                        <div class="actor {{#unless data.active}}inactive{{/unless}} {{#if (eq @root.document.uuid data.actor.uuid)}}current{{/if}}" data-role="{{data.role}}">                        
                             {{#if data.actor}}
                                 <img src="{{data.actor.img}}" />
                                 <a class="name" data-action="editDoc" data-item-uuid="{{data.actor.uuid}}" {{#unless data.active}}data-tooltip aria-label="This actor doesn't have a token in the scene"{{/unless}}>
