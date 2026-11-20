@@ -23,8 +23,14 @@
                 max='{{resource.max}}'
                 value='{{resource.value}}'
             ></progress>
-            <input class="bar-input" name="{{key}}" min="0" max='{{resource.max}}'
-                    value="{{resource.value}}" type="number">
+            <input 
+                class="bar-input" 
+                name="{{key}}" 
+                min="0" 
+                max='{{resource.max}}'
+                value="{{resource.value}}"
+                type="number"
+                {{disabled resource.readonly}}>
             <span>/</span>
             <span class="bar-label">{{resource.max}}</span>
         </div>

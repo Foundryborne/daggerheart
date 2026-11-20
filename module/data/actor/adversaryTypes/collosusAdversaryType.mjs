@@ -359,6 +359,9 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
                 this.frameworkActor?.system?.experiences ?? {}
             );
             actor.system.description ||= this.frameworkActor?.system?.description;
+        } else if (role === 'part') {
+            actor.system.resources.stress.value = 0;
+            actor.system.resources.stress.readonly = true;
         }
     }
 
@@ -397,6 +400,10 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             })
         }
     }
+
+    /* -------------------------------------------- */
+    /*  Event Handlers                  */
+    /* -------------------------------------------- */
 
     async _preCreate(data) {
         // If the main actor was dragged after the parts, perform a relink
