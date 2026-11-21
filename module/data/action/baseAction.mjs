@@ -252,7 +252,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Main method to use the Action
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {object}
+     * @returns {MoveContext}
      */
     async use(event, configOptions = {}) {
         if (!this.actor) throw new Error('An Action can\'t be used outside of an Actor context.');
@@ -282,11 +282,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const result = await this.executeWorkflow(config);
         if (result === false) return;
 
-        await config.spendResources();
+        // While rolling will consume resources automatically, some moves don't have rolls
+        // We catch those here
+        if (!config.flags.resourcesSpent) {
+            await config.spendResources();
+        }
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled)
+        if (this.chatDisplay && !config.skips.createMessage && !config.flags.actionChatMessageHandled)
             await this.toChat(null, config);
 
         return config;

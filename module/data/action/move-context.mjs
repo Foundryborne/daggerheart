@@ -26,6 +26,8 @@ export class MoveContext {
         this.actor = actor ??= data.actor ?? data.action?.actor ?? data.item?.actor ?? null;
         /** @type {DhItem | null} */
         this.item = item ??= data.item ?? data.action?.item ?? null;
+        this.message = data.message;
+        this.event ??= data.event;
         
         // Redirect to the partner if companion. Ideally we shouldn't do this and keep it on the partner,
         // but the system as a whole expects the partner to be the main roll.
@@ -36,25 +38,19 @@ export class MoveContext {
             this.actor = partner;
         }
 
-        this.message = data.message;
-        this.event ??= data.event;
-
         // Passthrough certain props. This allows RollConfigs to be recreated
         this.title = data.title ?? _loc(action?.name);
         this.headerTitle = data.headerTitle;
         this.actionType = data.actionType ?? action?.actionType ?? 'action';
-        this.fateType = data.fateType;
         this.groupAction = data.groupAction;
 
         this.selectedMessageMode = data.selectedMessageMode ?? game.settings.get('core', 'messageMode');
         this.tierLimit = data.tierLimit;
         this.modifications = data.modifications;
-        this.costs = data.costs ?? [];
         this.targets = data.targets ?? [];
         this.countdowns = data.countdowns;
-        /** The list of selected experiences */
-        this.experiences = data.experiences ?? [];
         this.skips = foundry.utils.mergeObject({
+            // @todo remove and make it a diceRoll() prop instead. This is not used in move context, just specific roll functions
             resources: false,
             triggers: false,
             createMessage: false,
@@ -62,10 +58,16 @@ export class MoveContext {
             reaction: false
         }, data.skips ?? {});
         this.damageOptions = data.damageOptions ?? {};
-        /** If set, skips creation of dedicated toChat messages. Used to prevent duplicates. */
-        this.actionChatMessageHandled = Boolean(data.actionChatMessageHandled ?? false);
+
+        /** The list of selected experiences for the roll. Changes in the dialog. */
+        this.experiences = data.experiences ?? [];
+        /** The list of selected costs. Consumed via spendResources() and changes in the dialog */
+        this.costs = data.costs ?? [];
+        /** The uses that will be spent by this context */
+        this.uses = data.uses ?? {};
         
         // Initialize props based on the documents and action
+        // todo: determine which ones we can kill. hasTarget may need an alternative solution
         this.hasSave = Boolean(action?.hasSave);
         this.hasDamage = Boolean(action?.hasDamage);
         this.hasEffect = Boolean(action?.hasEffect);
@@ -74,12 +76,11 @@ export class MoveContext {
         this.onSave = action?.save?.damageMod;
         this.isDirect = false;
         this.targetUuid = action?.targetUuid;
-        this.rollType = data.rollType ?? null;
         /** Evaluated main roll @type {InstanceType<typeof game.system.api.dice.DHRoll>} */
         this.evaluated = data.evaluated ?? null;
         this.evaluate = action ? this.hasRoll : null; // todo: determine use and see if action filter is required
 
-        // Set the roll has hasRoll. If roll is explicitly set to null, or hasRoll explicitly set to false, keep as null
+        /** Data used to configure the roll. The actual is in evaluated. @type {import('./_types').MoveRollProps | null} */
         this.roll = data.roll ?? 
             (data.hasRoll === false || !action?.hasRoll || this.roll === null ? null : action?.roll ?? {});
         this.hasRoll = Boolean(this.roll);
@@ -112,6 +113,17 @@ export class MoveContext {
             action: action?.id,
             originItem: action?.originItem
         };
+
+        /** 
+         * Processing flags. Not part of the move, but tracks information about its usage.
+         * Maybe also be used to perform auxiliary handling that isn't part of resolving a move (like muting the roll sound)
+         * @type {import('./_types').MoveFlags}
+         */
+        this.flags = foundry.utils.mergeObject({
+            actionChatMessageHandled: false,
+            resourcesSpent: false,
+            mute: false
+        }, data.flags ?? {});
     }
 
     /** @deprecated */
@@ -124,7 +136,7 @@ export class MoveContext {
      * @returns {typeof CONFIG.Dice.daggerheart[keyof typeof CONFIG.Dice.daggerheart]}
      */
     get rollClass() {
-        return CONFIG.Dice.daggerheart[this.rollType] ?? CONFIG.Dice.daggerheart['DHRoll'];
+        return CONFIG.Dice.daggerheart[this.roll?.rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
     }
 
     getRollData() {
@@ -148,11 +160,14 @@ export class MoveContext {
      * Can be called after making changes to data in order to re-initialize using new data.
      */
     async initialize() {
-        this.rollType = this.roll?.lite
-            ? 'DHRoll'
-            : this.fateType
-                ? 'FateRoll'
-                : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+        if (this.roll) {
+            this.roll.rollClass = this.roll?.lite
+                ? 'DHRoll'
+                : this.roll.fateType
+                    ? 'FateRoll'
+                    : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+        }
+
 
         this.effects = await this.getActionRelevantEffects();
 
@@ -284,7 +299,7 @@ export class MoveContext {
      * @param {object} [options]
      * @param {boolean} [options.successCost=false]     Consume only resources configured as "On Success only"
      */
-    async spendResources({ successCost = false } = {}) {
+    async spendResources({ successCost = false, alwaysConsume = false } = {}) {
         const CostField = game.system.api.fields.ActionFields.CostField;
         const actor = this.actor.system.partner ?? this.actor;
         const usefulResources = {
@@ -314,6 +329,7 @@ export class MoveContext {
         const resources = CostField.getRealCosts(this.costs)
             .filter(
                 c =>
+                    alwaysConsume ||
                     (!successCost && (!c.consumeOnSuccess || isSuccess)) ||
                     (successCost && c.consumeOnSuccess)
             )
@@ -337,11 +353,14 @@ export class MoveContext {
         if (
             this.action &&
             this.uses?.enabled &&
-            ((!successCost && (!this.uses?.consumeOnSuccess || isSuccess)) ||
+            (alwaysConsume || 
+                (!successCost && (!this.uses?.consumeOnSuccess || isSuccess)) ||
                 (successCost && this.uses?.consumeOnSuccess))
         ) {
             await this.action.update({ 'uses.value': this.action.uses.value + 1 });
         }
+
+        this.flags.resourcesSpent = true;
     }
 
     static async build(data, options = {}) {

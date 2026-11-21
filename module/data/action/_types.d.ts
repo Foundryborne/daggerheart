@@ -20,19 +20,23 @@ interface MoveContextParams {
     selectedMessageMode: unknown;
     tierLimit: number;
     modifications: unknown;
-    costs: unknown[];
     targets: unknown[];
     countdowns: unknown;
     hasRoll: boolean;
-    rollType?: keyof typeof CONFIG.Dice.daggerheart;
+
     /** The list of selected experiences */
-    experiences: unknown[];
-    roll: {
-        lite?: boolean;
-        type?: string;
-        trait?: string;
-        difficulty?: number;
+    experiences: string[];
+    /** The list of selected costs */
+    costs: MoveCost[];
+    /** The uses that will be spent by this action */
+    uses: {
+        value: number;
+        max: string;
+        recovery: string;
+        consumeOnSuccess: boolean;
     };
+
+    roll: MoveRollProps;
     damage: unknown;
     damageOptions: {
         groupAttack?: boolean;
@@ -52,8 +56,38 @@ interface MoveContextParams {
         originItem: string;
     };
     evaluated: dice.DHRoll;
-    /** If set, skips creation of dedicated toChat messages of used actions due to it having already been created */
-    actionChatMessageHandled: false;
+
+    /** Processing flags. Not part of the move, but tracks information about its usage */
+    flags?: Partial<MoveFlags>;
+}
+
+export interface MoveRollProps {
+    rollClass?: keyof typeof CONFIG.Dice.daggerheart;
+    lite?: boolean;
+    type?: string;
+    trait?: string;
+    fateType?: string;
+    difficulty?: number;
+}
+
+/** Processing flags. Not part of the move, but tracks information about its usage */
+export interface MoveFlags {
+    /** If set, skips creation of dedicated toChat messages. Used to prevent duplicates. */
+    actionChatMessageHandled: boolean;
+    /** If set, spentResources has been executed */
+    resourcesSpent: boolean;
+    /** If set, roll sound will be muted by the system */
+    mute: boolean;
+}
+
+export interface MoveCost {
+    key: string; 
+    scale: number; 
+    step: number; 
+    total: number; 
+    enabled: boolean; 
+    max: number; 
+    maxStep: number;
 }
 
 declare module './baseAction.mjs' {

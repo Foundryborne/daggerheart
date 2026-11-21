@@ -154,7 +154,7 @@ export default class DHRoll extends BaseRoll {
         if (config.skips?.createMessage) {
             await triggerChatRollFx([roll]);
         } else if (!config.source?.message) {
-            config.actionChatMessageHandled ||= config.action?.chatDisplay;
+            config.flags.actionChatMessageHandled ||= config.action?.chatDisplay;
             config.message = await this.toMessage(roll, config);
         }
     }
@@ -189,7 +189,7 @@ export default class DHRoll extends BaseRoll {
             user: game.user.id,
             title: roll.title,
             speaker: cls.getSpeaker({ actor }),
-            sound: config.mute ? null : CONFIG.sounds.dice,
+            sound: config.flags.mute ? null : CONFIG.sounds.dice,
             system: { 
                 ...foundry.utils.deepClone(config), 
                 actionDescription,

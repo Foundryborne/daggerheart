@@ -32,6 +32,8 @@ import Localization from '@client/helpers/localization.mjs';
 import * as globalUI from '@client/ui.mjs';
 import DhTokenLayer from './module/canvas/tokens.mjs';
 import DHBaseAction from './module/data/action/baseAction.mjs';
+import WorldCollection from '@client/documents/abstract/world-collection.mjs';
+import DhActorCollection from './module/documents/collections/actorCollection.mjs';
 
 // Foundry's use of `Object.assign(globalThis) means many globally available objects are not read as such
 // This declare global hopefully fixes that
@@ -101,7 +103,9 @@ declare global {
             get scene(): documents.DhScene | null;
             get tokens(): DhTokenLayer;
         };
-        const game: Game;
+        const game: Omit<Game, 'actors'> & {
+            actors: WorldCollection<DhActor> & DhActorCollection;
+        };
         const _loc: Localization['localize'];
     }
 }
