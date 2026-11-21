@@ -20,7 +20,7 @@ import {
 import { placeables, DhTokenLayer } from './module/canvas/_module.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 import TokenManager from './module/documents/tokenManager.mjs';
-import { pick } from './module/helpers/utils.mjs';
+import { createHtmlElement, pick } from './module/helpers/utils.mjs';
 import { dhTriggers, dhColorsets, getDiceRoles } from './module/config/dsnConfig.mjs';
 import { createArmorFeatures, createWeaponFeatures } from './module/config/itemFeatures.mjs';
 
@@ -369,6 +369,20 @@ Hooks.on('setup', () => {
 });
 
 Hooks.on('ready', async () => {
+    // Check for outdated modules. We don't use ui.notifications so that the notification sticks permanently
+    // Even the "permanent" flag isn't fully permanent, and a user might just click through and not read them
+    const checkedOutdatedIds = ['daggerheart-plus'];
+    const outOfDate = game.modules.filter(
+        m => m.active && checkedOutdatedIds.includes(m.id) && !foundry.utils.isNewerVersion(m.compatibility?.verified, '13.99999')
+    );
+    if (outOfDate.length) {
+        const modules = game.i18n.getListFormatter({ type: 'disjunction' }).format(outOfDate.map(m => m.title ?? m.id));
+        const element = document.getElementById('notifications');
+        const paragraph = createHtmlElement('p', { text: _loc('DAGGERHEART.UI.Notifications.outdatedModules', { modules })})
+        const notification = createHtmlElement('li', { className: 'notification error', html: paragraph });
+        element.append(notification);
+    }
+
     const appearanceSettings = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
     const homebrewSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew);
     ui.resources = new CONFIG.ui.resources();

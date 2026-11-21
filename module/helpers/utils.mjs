@@ -210,8 +210,13 @@ export const damageKeyToNumber = key => {
  */
 export function createHtmlElement(tagName, { text = null, html = null, className = null, attributes, data }) {
     const tag = document.createElement(tagName);
-    if (text) tag.textContent = text;
-    if (html) tag.innerHTML = html;
+    if (text) {
+        tag.textContent = text;
+    } else if (html instanceof HTMLElement) {
+        tag.append(html);
+    } else {
+        tag.innerHTML = html;
+    }
     if (className) tag.classList.add(...className.split(' '));
     for (const [key, value] of Object.entries(attributes ?? {})) {
         tag.setAttribute(key, value);
