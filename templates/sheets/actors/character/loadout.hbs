@@ -36,20 +36,20 @@
             {{> 'daggerheart.inventory-items'
                 title='DAGGERHEART.GENERAL.Tabs.loadout'
                 type='domainCard'
-                isGlassy=true
                 collection=document.system.domainCards.loadout
                 canCreate=@root.editable
                 inVault=false
                 isUsable=@root.editable
+                showActions=true
             }}
             {{> 'daggerheart.inventory-items'
                 title='DAGGERHEART.GENERAL.Tabs.vault'
                 type='domainCard'
-                isGlassy=true
                 collection=document.system.domainCards.vault
                 canCreate=@root.editable
                 inVault=true
                 isUsable=@root.editable
+                showActions=true
             }}
         {{/if}}
     </div>
