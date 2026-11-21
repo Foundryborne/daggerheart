@@ -216,7 +216,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
 
                 const parts = foundry.utils.deepClone(this.actor.system.toObject().typeData?.parts ?? []);
                 if (parts.some(p => p.uuid === uuid)) {
-                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.colossus.Notifications.AlreadyAddedPart'));
+                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.AlreadyAddedPart'));
                     return false;
                 } 
                 parts.push({ uuid: document.uuid, quantity: 1 });
