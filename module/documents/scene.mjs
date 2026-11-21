@@ -55,10 +55,10 @@ export default class DhScene extends Scene {
     async view(options) {
         const result = await super.view(options);
 
-        // When viewing a scene, reset all collosus actors, to allow them find their frameworkActor/partActor links
+        // When viewing a scene, reset all colossus actors, to allow them find their frameworkActor/partActor links
         for (const token of this.tokens) {
             const actor = token.actor;
-            if (actor?.type === 'adversary' || actor.system?.type === 'collosus') {
+            if (actor?.type === 'adversary' || actor.system?.type === 'colossus') {
                 actor.reset();
             }
         }

@@ -1,4 +1,4 @@
-import { CollosusAdversaryType, HordeAdversaryType } from '../data/actor/adversaryTypes/_module.mjs';
+import { ColossusAdversaryType, HordeAdversaryType } from '../data/actor/adversaryTypes/_module.mjs';
 
 export const traits = {
     agility: {
@@ -112,10 +112,10 @@ export const adversaryTypes = {
             dynamicTokenScale: 1
         }
     },
-    collosus: {
-        id: 'collosus',
-        label: 'DAGGERHEART.CONFIG.AdversaryType.collosus.label',
-        description: 'DAGGERHEART.ACTORS.Adversary.collosus.description',
+    colossus: {
+        id: 'colossus',
+        label: 'DAGGERHEART.CONFIG.AdversaryType.colossus.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.colossus.description',
         bpCost: 0, // todo: determine
         defaultImage: {
             img: 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg',
@@ -262,7 +262,7 @@ export const adversaryTypes = {
 export const adversarySubTypes = {};
 
 export const adversaryTypeModels = {
-    collosus: CollosusAdversaryType,
+    colossus: ColossusAdversaryType,
     horde: HordeAdversaryType
 }
 

@@ -1,18 +1,18 @@
 <section
-    class='tab {{tabs.collosus.cssClass}} {{tabs.collosus.id}}'
-    data-tab='{{tabs.collosus.id}}'
-    data-group='{{tabs.collosus.group}}'
+    class='tab {{tabs.colossus.cssClass}} {{tabs.colossus.id}}'
+    data-tab='{{tabs.colossus.id}}'
+    data-group='{{tabs.colossus.group}}'
 >
-    {{#if (eq collosus.role "framework")}}
-    <fieldset class="collosus-parts">
-        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.collosus.FIELDS.parts.label"}}</legend>
-        {{#each collosus.parts as |part idx|}}
+    {{#if (eq colossus.role "framework")}}
+    <fieldset class="colossus-parts">
+        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.parts.label"}}</legend>
+        {{#each colossus.parts as |part idx|}}
             <div class="part" data-idx="{{idx}}">
                 {{#if part.actor}}
                     <img class="portrait" src="{{part.actor.img}}" />
                     <a class="name" data-action="editDoc" data-item-uuid="{{part.actor.uuid}}">{{part.actor.name}}</a>
                     {{#unless part.linked}}
-                        <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.collosus.Notifications.FrameworkNotLinked">
+                        <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.colossus.Notifications.FrameworkNotLinked">
                             <i class="fa-solid fa-warning" inert></i>
                         </span>
                     {{/unless}}
@@ -22,7 +22,7 @@
                 {{/if}}
                 <input type="number" value="{{part.quantity}}" data-part-quantity/>
                 <div class="controls">
-                    <a data-action="removeCollosusPart" data-tooltip aria-label="DAGGERHEART.UI.Tooltip.deleteItem">
+                    <a data-action="removeColossusPart" data-tooltip aria-label="DAGGERHEART.UI.Tooltip.deleteItem">
                         <i class="fa-solid fa-trash" inert></i>
                     </a>
                 </div>
@@ -34,13 +34,13 @@
     </fieldset>
     {{else}}
     <fieldset>
-        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.collosus.FIELDS.frameworkUuid.label"}}</legend>
+        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.frameworkUuid.label"}}</legend>
         <div class="framework">
-            {{#if collosus.framework.actor}}
-                <img class="portrait" src="{{collosus.framework.actor.img}}" />
-                <a class="name" data-action="editDoc" data-item-uuid="{{collosus.framework.actor.uuid}}">{{collosus.framework.actor.name}}</a>
-                {{#unless collosus.framework.linked}}
-                    <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.collosus.Notifications.FrameworkNotLinked">
+            {{#if colossus.framework.actor}}
+                <img class="portrait" src="{{colossus.framework.actor.img}}" />
+                <a class="name" data-action="editDoc" data-item-uuid="{{colossus.framework.actor.uuid}}">{{colossus.framework.actor.name}}</a>
+                {{#unless colossus.framework.linked}}
+                    <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.colossus.Notifications.FrameworkNotLinked">
                         <i class="fa-solid fa-warning" inert></i>
                     </span>
                 {{/unless}}

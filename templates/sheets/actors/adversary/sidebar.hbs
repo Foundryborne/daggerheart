@@ -95,15 +95,15 @@
                 </div>
             </section>
         {{/unless}}
-        {{#if collosusData.actors}}
-            <section class="collosus-section">
+        {{#if colossusData.actors}}
+            <section class="colossus-section">
                 <div class="title">
                     <side-line-div class="invert"></side-line-div>
-                    <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.collosus.label"}}</h3>
+                    <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.colossus.label"}}</h3>
                     <side-line-div></side-line-div>
                 </div>
                 <div class="part-list">
-                    {{#each collosusData.actors as |data|}}
+                    {{#each colossusData.actors as |data|}}
                         <div class="actor {{#unless data.active}}inactive{{/unless}} {{#if (eq @root.document.uuid data.actor.uuid)}}current{{/if}}" data-role="{{data.role}}">                        
                             {{#if data.actor}}
                                 <img src="{{data.actor.img}}" />

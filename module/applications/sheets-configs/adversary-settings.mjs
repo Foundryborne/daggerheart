@@ -20,7 +20,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             removeAttack: this.#onRemoveAttack,
             addDamage: this.#onAddDamage,
             removeDamage: this.#onRemoveDamage,
-            removeCollosusPart: this.#onRemoveCollosusPart
+            removeColossusPart: this.#onRemoveColossusPart
         }
     };
 
@@ -35,9 +35,9 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             id: 'details',
             template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/details.hbs'
         },
-        collosus: {
-            id: 'collosus',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/collosus.hbs'
+        colossus: {
+            id: 'colossus',
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/colossus.hbs'
         },
         attack: {
             id: 'attack',
@@ -58,7 +58,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
     /** @override */
     static TABS = {
         primary: {
-            tabs: [{ id: 'details' }, { id: 'collosus' }, { id: 'attack' }, { id: 'experiences' }, { id: 'features' }],
+            tabs: [{ id: 'details' }, { id: 'colossus' }, { id: 'attack' }, { id: 'experiences' }, { id: 'features' }],
             initial: 'details',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -76,7 +76,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             }
         }
 
-        if (partId === 'collosus') {
+        if (partId === 'colossus') {
             for (const element of htmlElement.querySelectorAll('input[data-part-quantity]')) {
                 element.addEventListener('blur', () => {
                     const idx = Number(element.closest('[data-idx]').dataset.idx);
@@ -106,11 +106,11 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         const result = super._prepareTabs(group);
 
         const actor = this.actor;
-        const isCollosus = actor.system.typeData?.type === 'collosus';
-        const collosusRole = isCollosus ? actor.system.typeData.role : null;
+        const isColossus = actor.system.typeData?.type === 'colossus';
+        const colossusRole = isColossus ? actor.system.typeData.role : null;
         if (group === 'primary') {
-            if (collosusRole !== 'framework') delete result.parts;
-            if (collosusRole === 'part') delete result.experiences;
+            if (colossusRole !== 'framework') delete result.parts;
+            if (colossusRole === 'part') delete result.experiences;
         }
         
         return result;
@@ -135,9 +135,9 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         context.availableSubTypes = Boolean(Object.keys(CONFIG.DH.ACTOR.adversarySubTypes).length);
         context.selectedSubTypes = Object.keys(this.document.system.subTypes);
 
-        // Filter out data that is not configurable for collosi
+        // Filter out data that is not configurable for colossi
         // These still exist under the hood, but its more user friendly to exclude
-        if (this.actor.system.typeData?.type === 'collosus') {
+        if (this.actor.system.typeData?.type === 'colossus') {
             const role = this.actor.system.typeData.role;
             context.resources = context.resources.filter(r => role === 'framework' ? r.key !== 'hitPoints' : r.key !== 'stress');
         }
@@ -150,10 +150,10 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         context = await super._preparePartContext(partId, context);
         const actor = this.actor;
         switch (partId) {
-            case 'collosus': {
-                if (actor.system.typeData?.type === 'collosus') {
+            case 'colossus': {
+                if (actor.system.typeData?.type === 'colossus') {
                     const framework = await actor.system.typeData.fetchFrameworkActor();
-                    context.collosus = {
+                    context.colossus = {
                         role: actor.system.typeData?.role,
                         framework: {
                             actor: framework,
@@ -194,9 +194,9 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
      */
     async _onDropActor(event, document) {
         const tab = event.target.closest('.tab');
-        if (tab.dataset.tab === 'collosus') {
+        if (tab.dataset.tab === 'colossus') {
             if (!document.isOwner) {
-                ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.collosus.Notifications.MustOwnBoth'));
+                ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.MustOwnBoth'));
                 return false;
             }
 
@@ -204,19 +204,19 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             const typeData = document.system.typeData;
             const uuid = document.uuid;
             const thisRole = actor.system.typeData?.role;
-            const thatRole = typeData?.type === 'collosus' ? typeData.role : null;
+            const thatRole = typeData?.type === 'colossus' ? typeData.role : null;
             if (thisRole === 'framework') {
                 if (thatRole !== 'part') {
-                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.collosus.Notifications.OnlyParts'));
+                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.OnlyParts'));
                     return false;
                 } else if ((actor.pack || this.pack) && actor.pack !== this.pack) {
-                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.collosus.Notifications.MustBeSameCompendium'));
+                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.MustBeSameCompendium'));
                     return false;
                 }
 
                 const parts = foundry.utils.deepClone(this.actor.system.toObject().typeData?.parts ?? []);
                 if (parts.some(p => p.uuid === uuid)) {
-                    ui.notifications.warn('This Collosi Part was already added');
+                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.AlreadyAddedPart'));
                     return false;
                 } 
                 parts.push({ uuid: document.uuid, quantity: 1 });
@@ -317,7 +317,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
      * @this DHAdversarySettings 
      * @type {ApplicationClickAction}
      */
-    static async #onRemoveCollosusPart(event) {
+    static async #onRemoveColossusPart(event) {
         const index = event.target.closest('[data-idx]').dataset.idx;
         if (Number.isNumeric(index)) {
             const parts = this.actor.system.toObject().typeData?.parts ?? [];
