@@ -172,7 +172,7 @@ export default class DhActor extends Actor {
         if (source.type === 'adversary') {
             if (source.system?.type === 'collosus') {
                 source.system.type = 'colossus';
-                source.system.typeData.type = 'colossus';
+                if (source.system.typeData) source.system.typeData.type = 'colossus';
             }
 
             for (const effect of (source.effects ?? [])) {
