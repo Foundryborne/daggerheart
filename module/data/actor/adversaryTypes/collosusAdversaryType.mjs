@@ -2,14 +2,14 @@ import { calculateDepositLocations, getWorldActor, omit, resolveNearestDocument,
 import { ResetBatch } from '../reset-batch.mjs';
 
 /** 
- * The main type data for a collosus adversary framework or part.
- * This class also hosts a distributed collection of the current linked state of any collosus tokens.
+ * The main type data for a colossus adversary framework or part.
+ * This class also hosts a distributed collection of the current linked state of any colossus tokens.
  * Certain places handle additional logic this can't handle:
  * 1) TokenDocument has some handling in _preCreate and _onCreate
  * 2) Scene has some handling in order to link token actors together when the scene is made
  */
-export default class CollosusAdversaryType extends foundry.abstract.DataModel {
-    /** A statically reset batch, to allow collosus parts to request sibling requests without infinite recursion or bad performance */
+export default class ColossusAdversaryType extends foundry.abstract.DataModel {
+    /** A statically reset batch, to allow colossus parts to request sibling requests without infinite recursion or bad performance */
     static #resetBatch = new ResetBatch();
 
     /** 
@@ -19,7 +19,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
     frameworkActor = null;
 
     /** 
-     * The collection of currently managed parts of the collosus. Only has contents for framework actors/
+     * The collection of currently managed parts of the colossus. Only has contents for framework actors/
      * @type {DhActor[]}
      */
     partActors = [];
@@ -27,12 +27,12 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            type: new fields.StringField({ required: true, nullable: false, blank: false, initial: 'collosus' }),
+            type: new fields.StringField({ required: true, nullable: false, blank: false, initial: 'colossus' }),
             role: new fields.StringField({
-                label: 'DAGGERHEART.ACTORS.Adversary.collosus.FIELDS.role.label',
+                label: 'DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.role.label',
                 choices: {
-                    framework: 'DAGGERHEART.ACTORS.Adversary.collosus.FIELDS.role.choices.framework',
-                    part: 'DAGGERHEART.ACTORS.Adversary.collosus.FIELDS.role.choices.part'
+                    framework: 'DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.role.choices.framework',
+                    part: 'DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.role.choices.part'
                 },
                 nullable: false,
                 initial: 'framework'
@@ -48,8 +48,8 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
                 })
             ),
             /**
-             * Inverted link data for the collosus. This one is prioritized as the main framework for data propagation.
-             * A collosus may still pick parts that are not the main one, if they don't exist.
+             * Inverted link data for the colossus. This one is prioritized as the main framework for data propagation.
+             * A colossus may still pick parts that are not the main one, if they don't exist.
              */
             frameworkUuid: new fields.DocumentUUIDField({ type: 'Actor', relativize: true, nullable: true, initial: null })
         }
@@ -100,7 +100,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         if (actor.token) {
             const mainCandidate = actor.token.scene.tokens.find(t =>
                 t.actor?.type === 'adversary'
-                && t.actor.system?.type === 'collosus'
+                && t.actor.system?.type === 'colossus'
                 && t.actor.system.typeData?.role === 'framework'
                 && t.actor.system.typeData.parts?.some(p => this.#testUuid(actor, p.uuid))
             );
@@ -112,7 +112,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         if (!actor.pack) {
             const candidateFrameworks = game.actors.filter(a =>
                 a.type === 'adversary'
-                && a.system.type === 'collosus'
+                && a.system.type === 'colossus'
                 && a.system.typeData?.role === 'framework'
                 && a.system.typeData.parts?.some(p => this.#testUuid(actor, p.uuid))
             );
@@ -127,7 +127,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             const frameworks = await pack.getDocuments({
                 type__in: ['adversary'],
                 system: {
-                    type__in: ['collosus'],
+                    type__in: ['colossus'],
                     typeData: {
                         role__in: ['framework']
                     }
@@ -195,7 +195,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             const validUuids = frameworkActor.system.typeData?.parts?.map(p => p.uuid);
             const actors = actor.token.scene?.tokens.filter(t => 
                 t.actor?.type === 'adversary'
-                && t.actor.system?.type === 'collosus'
+                && t.actor.system?.type === 'colossus'
                 && t.actor.system.typeData?.role === 'part'
                 && !t.actor.system.typeData?.frameworkActor
                 && validUuids.some(u => this.#testUuid(t.actor, u))
@@ -251,7 +251,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         // Part one, update abandoned parts, and assign to this one
         const abandonedParts = token.scene?.tokens.filter(t => 
             t.actor?.type === 'adversary'
-            && t.actor.system?.type === 'collosus'
+            && t.actor.system?.type === 'colossus'
             && t.actor.system.typeData?.role === 'part'
             && !t.actor.frameworkActor
         )?.map(t => t.actor);
@@ -280,8 +280,8 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
         const scene = token.scene;
         const toCreate = [];
         for (const basePartActor of missingParts) {
-            if (basePartActor.system.type !== 'collosus') {
-                ui.notifications.warn('Not a collosus part')
+            if (basePartActor.system.type !== 'colossus') {
+                ui.notifications.warn('Not a colossus part')
                 return;
             }
 
@@ -342,7 +342,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             actor.system.resources.hitPoints = { value: 0, max: 0 };
             this.partActors = token?.scene?.tokens.filter(t => 
                 t.actor?.type === 'adversary'
-                && t.actor.system?.type === 'collosus'
+                && t.actor.system?.type === 'colossus'
                 && t.actor.system.typeData?.role === 'part'
                 && t.actor.system.typeData.frameworkUuid === actor.uuid
             ).map(t => t.actor) ?? [];
@@ -453,7 +453,7 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
             if (this.frameworkActor) {
                 this.frameworkActor?.update({ 'system.resources.stress.value': changes.system.resources.stress.value });
                 delete changes.system.resources.stress;
-            } else if (!options.fromCollosusFramework) {
+            } else if (!options.fromColossusFramework) {
                 delete changes.system.resources.stress.value;
             }
         }
@@ -484,20 +484,20 @@ export default class CollosusAdversaryType extends foundry.abstract.DataModel {
                         }
 
                     }
-                }, { fromCollosusFramework: true });
+                }, { fromColossusFramework: true });
             }
         }
 
         this.frameworkActor?.sheet?.render();
         for (const part of this.partActors) {
-            CollosusAdversaryType.#resetBatch.reset(part);
+            ColossusAdversaryType.#resetBatch.reset(part);
         }
     }
 
     _onDelete() {
-        CollosusAdversaryType.#resetBatch.reset(this.frameworkActor);
+        ColossusAdversaryType.#resetBatch.reset(this.frameworkActor);
         for (const part of this.partActors) {
-            CollosusAdversaryType.#resetBatch.reset(part);
+            ColossusAdversaryType.#resetBatch.reset(part);
         }
     }
 }

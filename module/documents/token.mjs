@@ -448,8 +448,8 @@ export default class DhTokenDocument extends foundry.documents.TokenDocument {
         if (allowed === false) return false;
 
         const actor = this.actor;
-        const isCollosus = actor?.type === 'adversary' && actor.system.type === 'collosus';
-        if (isCollosus && actor.system.typeData?.role === 'part') {
+        const isColossus = actor?.type === 'adversary' && actor.system.type === 'colossus';
+        if (isColossus && actor.system.typeData?.role === 'part') {
             // Parts cannot ever ever be actorLink. This is because the same part may be used multiple times (ex: left vs right leg)
             this._source.actorLink = false;
             // Note: Updating the link is handled in the type data's preCreate
@@ -460,11 +460,11 @@ export default class DhTokenDocument extends foundry.documents.TokenDocument {
     async _onCreate(data, options, userId) {
         super._onCreate(data, options, userId);
 
-        // If the created actor is a collosus part, create its part data
+        // If the created actor is a colossus part, create its part data
         // The part data will link itself to this actor
         const actor = this.actor;
-        const isCollosus = actor?.type === 'adversary' && actor.system.type === 'collosus';
-        if (isCollosus && actor.system.typeData?.role === 'framework') {
+        const isColossus = actor?.type === 'adversary' && actor.system.type === 'colossus';
+        if (isColossus && actor.system.typeData?.role === 'framework') {
             actor.system.typeData.placeParts(this)
         }
     }
