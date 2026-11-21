@@ -6,9 +6,10 @@
     "description": "<p>Once per session, you can roll this set of runic dice to reveal the full name of the last person you touched.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {

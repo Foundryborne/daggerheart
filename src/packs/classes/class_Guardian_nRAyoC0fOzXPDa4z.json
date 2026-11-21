@@ -52,9 +52,10 @@
     },
     "isMulticlass": false,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "backgroundQuestions": [
       "Who from your community did you fail to protect, and why do you still think of them?",

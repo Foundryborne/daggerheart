@@ -24,7 +24,7 @@ export default class DHArmor extends BaseDataItem {
             equipped: new fields.BooleanField({ initial: false }),
             armor: new fields.SchemaField({
                 current: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
-                max: new fields.NumberField({ required: true, integer: true, initial: 0 })
+                max: new fields.NumberField({ required: true, integer: true, initial: 0, label: 'DAGGERHEART.ITEMS.Armor.baseScore' })
             }),
             baseThresholds: new fields.SchemaField({
                 major: new fields.NumberField({ integer: true, initial: 0 }),

@@ -1,9 +1,16 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { getAllResources } from '../../helpers/utils.mjs';
 
+/** @import DHRoll from '../../dice/dhRoll.mjs'; */
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class D20RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
+    /**
+     * @param {DHRoll} roll 
+     * @param {MoveContext} config 
+     * @param {object} options 
+     */
     constructor(roll, config = {}, options = {}) {
         super(options);
         this.roll = roll;
@@ -23,11 +30,11 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             icon: 'fa-solid fa-dice'
         },
         actions: {
-            updateIsAdvantage: this.updateIsAdvantage,
-            selectExperience: this.selectExperience,
-            toggleReaction: this.toggleReaction,
-            toggleSelectedEffect: this.toggleSelectedEffect,
-            submitRoll: this.submitRoll
+            updateIsAdvantage: this.#onUpdateIsAdvantage,
+            selectExperience: this.#onSelectExperience,
+            toggleReaction: this.#onToggleReaction,
+            toggleSelectedEffect: this.#onToggleSelectedEffect,
+            submitRoll: this.#onSubmitRoll
         },
         form: {
             handler: this.updateRollConfiguration,
@@ -65,8 +72,13 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     };
 
     async _prepareContext(_options) {
+        // Re-initialize if required first, then get the roll data
+        await this.config.initialize();
+        const rollData = this.config.getRollData();
+
         const context = await super._prepareContext(_options);
         context.rollConfig = this.config;
+        context.rollData = rollData;
         context.hasRoll = !!this.config.hasRoll;
         context.canRoll = true;
         context.selectedMessageMode = this.config.selectedMessageMode ?? game.settings.get('core', 'messageMode');
@@ -80,34 +92,24 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         context.selectedEffects = this.selectedEffects;
 
         if (this.config.costs.length) {
-            const updatedCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(
-                this.action ?? { actor: this.actor },
-                this.config.costs
-            );
-            context.costs = updatedCosts.map(x => ({
+            context.costs = this.config.costs.map(x => ({
                 ...x,
                 label: x.itemId
                     ? this.action.parent.parent.name
                     : game.i18n.localize(getAllResources()[x.key].label)
             }));
-            context.canRoll = game.system.api.fields.ActionFields.CostField.hasCost.call(
-                this.action ?? { actor: this.actor },
-                updatedCosts
-            );
-            this.config.data.scale = this.config.costs[0].total;
+            context.canRoll = this.config.testSufficientResources();
         }
         if (this.config.uses?.max) {
-            context.uses = game.system.api.fields.ActionFields.UsesField.calcUses.call(this.action, this.config.uses);
-            context.canRoll =
-                context.canRoll &&
-                game.system.api.fields.ActionFields.UsesField.hasUses.call(this.action, context.uses);
+            context.uses = this.config.uses;
+            context.canRoll &&= this.config.testSufficientUses();
         }
         if (this.roll) {
             context.roll = this.roll;
             context.rollType = this.roll?.constructor.name;
             context.rallyDie = this.roll.rallyChoices;
 
-            const experiences = this.config.data?.experiences ?? {};
+            const experiences = rollData.experiences;
             context.experiences = Object.keys(experiences).map(id => ({
                 id,
                 ...experiences[id]
@@ -140,7 +142,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }));
     }
 
-    static updateRollConfiguration(_event, _, formData) {
+    static async updateRollConfiguration(_event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
 
         this.config.selectedMessageMode = rest.selectedMessageMode;
@@ -163,7 +165,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
-    static updateIsAdvantage(_, button) {
+    /** @this D20RollDialog */
+    static #onUpdateIsAdvantage(_, button) {
         const advantage = Number(button.dataset.advantage);
         this.advantage = advantage === 1;
         this.disadvantage = advantage === -1;
@@ -171,17 +174,20 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.config.roll.advantage = this.config.roll.advantage === advantage ? 0 : advantage;
         if (this.config.roll.advantage === 0) return this.render();
 
+        const rollData = this.config.getRollData();
         const defaultFaces =
             this.config.roll.advantage === 1
-                ? this.config.data.rules.roll?.defaultAdvantageDice
-                : this.config.data.rules.roll?.defaultDisadvantageDice;
+                ? rollData.rules.roll?.defaultAdvantageDice
+                : rollData.rules.roll?.defaultDisadvantageDice;
         const faces = Number.parseInt(defaultFaces);
         this.roll.advantageFaces = Number.isNaN(faces) ? this.roll.advantageFaces : faces;
 
         this.render();
     }
 
-    static selectExperience(_, button) {
+    /** @this D20RollDialog */
+    static #onSelectExperience(_, button) {
+        const rollData = this.config.getRollData();
         this.config.experiences =
             this.config.experiences.indexOf(button.dataset.key) > -1
                 ? this.config.experiences.filter(x => x !== button.dataset.key)
@@ -195,28 +201,30 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                         extKey: button.dataset.key,
                         key: this.config?.actor?.isNPC ? 'fear' : 'hope',
                         value: 1,
-                        name: this.config.data?.experiences?.[button.dataset.key]?.name
+                        name: rollData.experiences[button.dataset.key]?.name
                     }
                 ];
         this.render();
     }
 
-    static toggleReaction() {
+    /** @this D20RollDialog */
+    static #onToggleReaction() {
         if (this.config.roll) {
             const overrideType = this.originalActionType === 'reaction' ? 'trait' : 'reaction';
             this.config.actionType = 
                 this.config.actionType === this.originalActionType ? overrideType : this.originalActionType;
-                
             this.render();
         }
     }
 
-    static toggleSelectedEffect(_event, button) {
+    /** @this D20RollDialog */
+    static #onToggleSelectedEffect(_event, button) {
         this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
         this.render();
     }
 
-    static async submitRoll(event) {
+    /** @this D20RollDialog */
+    static async #onSubmitRoll(event) {
         await this.close({ submitted: true });
     }
 

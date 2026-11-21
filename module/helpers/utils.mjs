@@ -1,6 +1,6 @@
 import { diceTypes, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
-import { sortBy } from './functional.mjs';
+import { shuffleArray, sortBy } from './functional.mjs';
 export * from './functional.mjs';
 
 /**
@@ -848,8 +848,8 @@ export function getArmorSources(actor) {
  * Triggers a reset and non-forced re-render on all given actors (if given)
  * or all world actors and actors in all scenes to show immediate results for a changed setting.
  */
-export function resetAndRerenderActors() {
-    const actors = new Set(
+export function resetAndRerenderActors(actors) {
+    actors ??= new Set(
         [game.actors.contents, game.scenes.contents.flatMap(s => s.tokens.contents).flatMap(t => t.actor ?? [])].flat()
     );
     for (const actor of actors) {
@@ -1107,4 +1107,65 @@ export function resolveNearestDocument(model, documentClass = foundry.abstract.D
         : model.parent
             ? resolveNearestDocument(model.parent, documentClass)
             : null;
+}
+
+/**
+ * Returns calculated positions for token depositing. The algorithm could stand to be better.
+ * Original comment: This is an overcomplicated mess, but I'm stupid
+ * @returns {{x: number; y: number }[]}
+ */
+export function calculateDepositLocations(tokenDocument, newTokens) {
+    const activeScene = game.scenes.viewed;
+    const nrRandomPositions = Math.ceil(newTokens.length / 8) * 8;
+    const { x: actorX, y: actorY } = tokenDocument;
+    const { sizeX, sizeY } = activeScene.grid;
+
+    return shuffleArray(
+        [...Array(nrRandomPositions).keys()].map((_, index) => {
+            const nonZeroIndex = index + 1;
+            const indexFloor = Math.floor(index / 8);
+            const distanceCoefficient = indexFloor + 1;
+            const side = 3 + indexFloor * 2;
+            const sideMiddle = Math.ceil(side / 2);
+            const inbetween = 1 + indexFloor * 2;
+            const inbetweenMiddle = Math.ceil(inbetween / 2);
+
+            if (index < side) {
+                const distance =
+                    nonZeroIndex === sideMiddle
+                        ? 0
+                        : nonZeroIndex < sideMiddle
+                            ? -nonZeroIndex
+                            : nonZeroIndex - sideMiddle;
+                return { x: actorX - sizeX * distance, y: actorY - sizeY * distanceCoefficient };
+            } else if (index < side + inbetween) {
+                const inbetweenIndex = nonZeroIndex - side;
+                const distance =
+                    inbetweenIndex === inbetweenMiddle
+                        ? 0
+                        : inbetweenIndex < inbetweenMiddle
+                            ? -inbetweenIndex
+                            : inbetweenIndex - inbetweenMiddle;
+                return { x: actorX + sizeX * distanceCoefficient, y: actorY + sizeY * distance };
+            } else if (index < 2 * side + inbetween) {
+                const sideIndex = nonZeroIndex - side - inbetween;
+                const distance =
+                    sideIndex === sideMiddle
+                        ? 0
+                        : sideIndex < sideMiddle
+                            ? sideIndex
+                            : -(sideIndex - sideMiddle);
+                return { x: actorX + sizeX * distance, y: actorY + sizeY * distanceCoefficient };
+            } else {
+                const inbetweenIndex = nonZeroIndex - 2 * side - inbetween;
+                const distance =
+                    inbetweenIndex === inbetweenMiddle
+                        ? 0
+                        : inbetweenIndex < inbetweenMiddle
+                            ? inbetweenIndex
+                            : -(inbetweenIndex - inbetweenMiddle);
+                return { x: actorX - sizeX * distanceCoefficient, y: actorY + sizeY * distance };
+            }
+        })
+    );
 }

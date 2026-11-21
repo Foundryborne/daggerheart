@@ -36,9 +36,10 @@
     "featureState": 1,
     "isMulticlass": false,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "linkedClass": "Compendium.daggerheart.classes.Item.nRAyoC0fOzXPDa4z",
     "gmNotes": ""

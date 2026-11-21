@@ -6,9 +6,10 @@
     "description": "<p>You can blow this dust in an adversary's face to prevent them from clearing Stress until your next long rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "consumeOnUse": true,
     "gmNotes": "",

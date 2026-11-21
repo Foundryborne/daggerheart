@@ -1,4 +1,4 @@
-import { getDocFromElement } from '../../helpers/utils.mjs';
+import { getDocFromElement, sortBy } from '../../helpers/utils.mjs';
 import { RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -380,11 +380,22 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         // Inject attribution if any exist and it hasn't already been added
         if (this.sources.size) {
+            const other = _loc('DAGGERHEART.APPLICATIONS.Attribution.other');
+            const groupByValue = Object.values(CONFIG.DH.GENERAL.attributionSources).reduce((r, g) => {
+                for (const value of g.values) {
+                    r[value.label] ??= g.label;
+                }
+                return r;
+            }, {})
+
             filters.push({ 
                 key: 'system.attribution.source',
                 name: 'source', 
                 label: 'DAGGERHEART.ITEMS.FIELDS.attribution.source.label', 
-                choices: [...this.sources].sort().map(s => ({ value: s, label: s }))
+                choices: sortBy(
+                    [...this.sources].sort().map(s => ({ group: groupByValue[s] ?? other, value: s, label: s })),
+                    v => v.group === 'Daggerheart' ? 0 : v.group
+                )
             })
         }
 
@@ -621,12 +632,15 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     async _onDragStart(event) {
-        const { itemUuid } = event.target.closest('[data-item-uuid]').dataset,
-            item = await foundry.utils.fromUuid(itemUuid),
-            dragData = item.toDragData();
+        const { itemUuid } = event.target.closest('[data-item-uuid]').dataset;
+        const item = await foundry.utils.fromUuid(itemUuid);
+        const dragData = item.toDragData();
 
+        const img = event.target.querySelector('img') ?? event.target.closest('img');
+        const { width, height } = img.getBoundingClientRect();
+        const preview = foundry.applications.ux.DragDrop.implementation.createDragImage(img, width, height);
         event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        event.dataTransfer.setDragImage(event.target.querySelector('img'), 0, 0);
+        event.dataTransfer.setDragImage(preview, width / 2, height / 2);
     }
 
     _canDragStart() {

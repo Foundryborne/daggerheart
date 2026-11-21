@@ -6,9 +6,10 @@
     "description": "<p>You gain advantage on action rolls to climb sheer surfaces.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {}

@@ -871,13 +871,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static async #onRollAttribute(event, button) {
         const result = await this.document.rollTrait(button.dataset.attribute, { event });
         if (!result) return;
-
-        /* This could be avoided by baking config.costs into config.resourceUpdates. Didn't feel like messing with it at the time */
-        const costResources =
-            result.costs?.filter(x => x.enabled).map(cost => ({ ...cost, value: -cost.value })) ||
-            {};
-        result.resourceUpdates.addResources(costResources);
-        await result.resourceUpdates.updateResources();
     }
 
     //TODO: redo toggleEquipItem method
@@ -1340,7 +1333,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }
 
             const itemData = item.toObject();
-            const data = await game.system.api.data.items.DHBeastform.getWildcardImage(this.document, itemData);
+            const data = await CONFIG.Item.dataModels.beastform.getWildcardImage(this.document, itemData);
             if (data?.selectedImage) {
                 if (data.usesDynamicToken) itemData.system.tokenRingImg = data.selectedImage;
                 else itemData.system.tokenImg = data.selectedImage;

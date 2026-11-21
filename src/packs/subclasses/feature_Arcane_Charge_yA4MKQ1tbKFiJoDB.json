@@ -18,9 +18,10 @@
     },
     "actions": {},
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "granter": null,
@@ -36,7 +37,7 @@
           {
             "key": "system.bonuses.damage.bonus",
             "type": "add",
-            "value": "10",
+            "value": 10,
             "priority": null,
             "phase": "initial"
           }

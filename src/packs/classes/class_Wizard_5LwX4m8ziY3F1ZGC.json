@@ -56,9 +56,10 @@
     },
     "isMulticlass": false,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "backgroundQuestions": [
       "What responsibilities did your community once count on you for?\nHow did you let them down?",

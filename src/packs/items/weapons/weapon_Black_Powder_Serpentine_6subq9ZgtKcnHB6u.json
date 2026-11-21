@@ -6,9 +6,10 @@
   "img": "icons/weapons/guns/gun-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

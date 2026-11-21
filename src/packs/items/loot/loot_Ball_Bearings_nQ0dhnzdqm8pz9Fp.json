@@ -6,9 +6,10 @@
     "description": "<p>This pouch contains perfectly smooth metal spheres.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {}

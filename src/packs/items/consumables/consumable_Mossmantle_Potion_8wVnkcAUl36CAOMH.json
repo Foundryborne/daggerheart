@@ -6,9 +6,10 @@
     "description": "<p>You can drink this tea to perfectly blend into natural environments until your next rest.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "consumeOnUse": true,
     "gmNotes": "",

@@ -122,9 +122,10 @@
       }
     },
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "size": "gargantuan",
     "advantageSources": [],
@@ -483,7 +484,7 @@
         {
           "name": "Drowning Embrace",
           "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
-          "transfer": true,
+          "transfer": false,
           "_id": "X8NF2OB23mSpDvlx",
           "type": "base",
           "system": {

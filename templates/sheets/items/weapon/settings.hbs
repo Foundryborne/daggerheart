@@ -9,7 +9,7 @@
             <a data-action="configureAttack" data-tooltip="{{localize 'DAGGERHEART.ITEMS.Weapon.configureAttack'}}"><i class="fa-solid fa-wrench icon-button"></i></a>
         </legend>
         {{formGroup systemFields.tier value=source.system.tier localize=true}}
-        {{formGroup systemFields.secondary value=source.system.secondary localize=true}}
+        {{formGroup systemFields.secondary value=source.system.secondary localize=true id=(concat document.uuid "-secondary")}}
         {{formGroup systemFields.attack.fields.roll.fields.trait value=source.system.attack.roll.trait name="system.attack.roll.trait" localize=true}}
         {{formGroup systemFields.attack.fields.range value=source.system.attack.range name="system.attack.range" localize=true}}
         {{formGroup systemFields.burden value=source.system.burden localize=true}}

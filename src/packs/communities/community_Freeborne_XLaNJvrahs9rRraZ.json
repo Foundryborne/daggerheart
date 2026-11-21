@@ -5,10 +5,11 @@
   "system": {
     "loreReference": "freeborne",
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "campaignFrame": "",
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Being part of a freeborne community means you're from a collective that once lived under tyrannical rule but is now liberated.</p>",
     "gmNotes": "",

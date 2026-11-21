@@ -54,8 +54,9 @@ export default class DhCreature extends BaseDataActor {
             const autoEffects = this.parent.effects.filter(
                 x => x.flags.daggerheart?.autoApplyFlagId === autoApplyFlagId
             );
+            // If stress is higher or equal than max, perform automation, but only if max has a value
             if (changes.system.resources.stress.value >= this.resources.stress.max) {
-                if (!autoEffects.length)
+                if (!autoEffects.length && this.resources.stress.max) {
                     this.parent.createEmbeddedDocuments('ActiveEffect', [
                         {
                             name: game.i18n.localize(name),
@@ -65,6 +66,7 @@ export default class DhCreature extends BaseDataActor {
                             flags: { daggerheart: { autoApplyFlagId } }
                         }
                     ]);
+                }
             } else if (this.resources.stress.value >= this.resources.stress.max) {
                 this.parent.deleteEmbeddedDocuments(
                     'ActiveEffect',

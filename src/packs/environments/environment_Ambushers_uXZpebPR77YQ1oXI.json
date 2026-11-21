@@ -12,9 +12,10 @@
     "type": "event",
     "impulses": "Escape, group up, protect the most vulnerable",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

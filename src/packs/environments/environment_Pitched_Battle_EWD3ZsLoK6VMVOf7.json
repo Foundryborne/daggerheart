@@ -31,9 +31,10 @@
     "type": "event",
     "impulses": "Seize people, land, and wealth, spill blood for greed and glory",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

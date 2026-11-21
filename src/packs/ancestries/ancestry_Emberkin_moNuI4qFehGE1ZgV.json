@@ -5,10 +5,11 @@
   "system": {
     "loreReference": "emberkin",
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
       "campaignFrame": "",
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Emberkin are humanoids whose bodies are made of flesh and fire.</p>",
     "gmNotes": "",

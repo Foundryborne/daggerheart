@@ -5,9 +5,10 @@
   "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "<p>Shapeshifters are creatures who can change their physical form.</p>",
     "gmNotes": "",

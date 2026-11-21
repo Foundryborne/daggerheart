@@ -2,8 +2,12 @@ import { DHDamageData } from '../../data/fields/action/damageField.mjs';
 import { tagifyElement } from '../../helpers/utils.mjs';
 import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
-/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+/** 
+ * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
+ * @import { DhAdversary } from '../../data/actor/_module.mjs';
+ */
 
+/** @extends {DHBaseActorSettings<DhActor<DhAdversary>>} */
 export default class DHAdversarySettings extends DHBaseActorSettings {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -15,7 +19,8 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             addAttack: this.#onAddAttack,
             removeAttack: this.#onRemoveAttack,
             addDamage: this.#onAddDamage,
-            removeDamage: this.#onRemoveDamage
+            removeDamage: this.#onRemoveDamage,
+            removeCollosusPart: this.#onRemoveCollosusPart
         }
     };
 
@@ -29,6 +34,10 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         details: {
             id: 'details',
             template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/details.hbs'
+        },
+        collosus: {
+            id: 'collosus',
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/collosus.hbs'
         },
         attack: {
             id: 'attack',
@@ -49,7 +58,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
     /** @override */
     static TABS = {
         primary: {
-            tabs: [{ id: 'details' }, { id: 'attack' }, { id: 'experiences' }, { id: 'features' }],
+            tabs: [{ id: 'details' }, { id: 'collosus' }, { id: 'attack' }, { id: 'experiences' }, { id: 'features' }],
             initial: 'details',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -64,6 +73,17 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             if (subTypeOptions.length) {
                 const element = htmlElement.querySelector('.sub-types-input');
                 tagifyElement(element, subTypeOptions, this.#onUpdateSubTypes.bind(this));
+            }
+        }
+
+        if (partId === 'collosus') {
+            for (const element of htmlElement.querySelectorAll('input[data-part-quantity]')) {
+                element.addEventListener('blur', () => {
+                    const idx = Number(element.closest('[data-idx]').dataset.idx);
+                    const parts = this.actor.system.toObject()?.typeData?.parts ?? [];
+                    parts[idx].quantity = Number(element.value);
+                    this.actor.update({ 'system.typeData.parts': parts });
+                })
             }
         }
     }
@@ -81,6 +101,22 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         });
     }
 
+    /** @inheritdoc */
+    _prepareTabs(group) {
+        const result = super._prepareTabs(group);
+
+        const actor = this.actor;
+        const isCollosus = actor.system.typeData?.type === 'collosus';
+        const collosusRole = isCollosus ? actor.system.typeData.role : null;
+        if (group === 'primary') {
+            if (collosusRole !== 'framework') delete result.parts;
+            if (collosusRole === 'part') delete result.experiences;
+        }
+        
+        return result;
+    }
+
+    /** @inheritdoc */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
@@ -99,6 +135,36 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         context.availableSubTypes = Boolean(Object.keys(CONFIG.DH.ACTOR.adversarySubTypes).length);
         context.selectedSubTypes = Object.keys(this.document.system.subTypes);
 
+        // Filter out data that is not configurable for collosi
+        // These still exist under the hood, but its more user friendly to exclude
+        if (this.actor.system.typeData?.type === 'collosus') {
+            const role = this.actor.system.typeData.role;
+            context.resources = context.resources.filter(r => role === 'framework' ? r.key !== 'hitPoints' : r.key !== 'stress');
+        }
+
+        return context;
+    }
+
+    /** @inheritdoc */
+    async _preparePartContext(partId, context) {
+        context = await super._preparePartContext(partId, context);
+        const actor = this.actor;
+        switch (partId) {
+            case 'collosus': {
+                if (actor.system.typeData?.type === 'collosus') {
+                    const framework = await actor.system.typeData.fetchFrameworkActor();
+                    context.collosus = {
+                        role: actor.system.typeData?.role,
+                        framework: {
+                            actor: framework,
+                            linked: await actor.system.typeData?.isLinkedFramework(framework)
+                        },
+                        parts: (await actor.system.typeData.calculatePartStatus())?.filter(p => p.role === 'part')
+                    };
+                }
+
+            }
+        }
         return context;
     }
 
@@ -118,6 +184,47 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             }
         }
         return super._processSubmitData(event, form, submitData, options);
+    }
+
+    /**
+     * 
+     * @param {DragEvent} event 
+     * @param {DhActor} document 
+     * @returns 
+     */
+    async _onDropActor(event, document) {
+        const tab = event.target.closest('.tab');
+        if (tab.dataset.tab === 'collosus') {
+            if (!document.isOwner) {
+                ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.collosus.Notifications.MustOwnBoth'));
+                return false;
+            }
+
+            const actor = this.actor;
+            const typeData = document.system.typeData;
+            const uuid = document.uuid;
+            const thisRole = actor.system.typeData?.role;
+            const thatRole = typeData?.type === 'collosus' ? typeData.role : null;
+            if (thisRole === 'framework') {
+                if (thatRole !== 'part') {
+                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.collosus.Notifications.OnlyParts'));
+                    return false;
+                } else if ((actor.pack || this.pack) && actor.pack !== this.pack) {
+                    ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.collosus.Notifications.MustBeSameCompendium'));
+                    return false;
+                }
+
+                const parts = foundry.utils.deepClone(this.actor.system.toObject().typeData?.parts ?? []);
+                if (parts.some(p => p.uuid === uuid)) {
+                    ui.notifications.warn('This Collosi Part was already added');
+                    return false;
+                } 
+                parts.push({ uuid: document.uuid, quantity: 1 });
+                return this.actor.update({ 'system.typeData.parts': parts });
+            }
+        }
+
+        return super._onDropActor(event, document)
     }
 
     /* -------------------------------------------- */
@@ -203,6 +310,19 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
 
         if (confirm) {
             this.actor.update({ 'system.attack': null });
+        }
+    }
+
+    /**
+     * @this DHAdversarySettings 
+     * @type {ApplicationClickAction}
+     */
+    static async #onRemoveCollosusPart(event) {
+        const index = event.target.closest('[data-idx]').dataset.idx;
+        if (Number.isNumeric(index)) {
+            const parts = this.actor.system.toObject().typeData?.parts ?? [];
+            parts.splice(Number(index), 1);
+            this.actor.update({ 'system.typeData.parts': parts });
         }
     }
 }

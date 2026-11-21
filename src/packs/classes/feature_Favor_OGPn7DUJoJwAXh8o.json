@@ -6,8 +6,9 @@
   "img": "icons/creatures/magical/spirit-fear-energy-pink.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>You start with 3 Favor. You can use a downtime move to show tribute to your patron. Describe how and gain Favor equal to your Spellcast trait. Additionally, when you succeed on an action roll with Hope, you can choose to gain a Favor instead of a Hope.</p>",
     "gmNotes": "",

@@ -252,7 +252,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /**
      * Main method to use the Action
      * @param {Event} event Event from the button used to trigger the Action
-     * @returns {object}
+     * @returns {MoveContext}
      */
     async use(event, configOptions = {}) {
         if (!this.actor) throw new Error('An Action can\'t be used outside of an Actor context.');
@@ -266,17 +266,31 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(null, config);
             if (!config) return;
+        } else if (config.dialog.configure === false) {
+            // Test for sufficient resources
+            if (!config.testSufficientUses()) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.actionNoUsesRemaining'));
+                return;
+            }
+            if (!config.testSufficientResources()) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
+                return;
+            }
         }
 
         // Execute the Action Worflow in order based of schema fields
         const result = await this.executeWorkflow(config);
         if (result === false) return;
 
-        await config.resourceUpdates.updateResources();
+        // While rolling will consume resources automatically, some moves don't have rolls
+        // We catch those here
+        if (!config.flags.resourcesSpent) {
+            await config.spendResources();
+        }
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
-        if (this.chatDisplay && !config.skips.createMessage && !config.actionChatMessageHandled)
+        if (this.chatDisplay && !config.skips.createMessage && !config.flags.actionChatMessageHandled)
             await this.toChat(null, config);
 
         return config;
@@ -321,10 +335,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
      * @returns {boolean}
      */
     requireConfigurationDialog(config) {
-        return !config.event.shiftKey && 
-            !config.hasRoll && (
+        if (config.event.shiftKey) return false;
+        return !config.hasRoll && (
             (config.costs?.length && !config.groupAction?.forceSelect) || 
-                config.uses
+            config.uses
         );
     }
 

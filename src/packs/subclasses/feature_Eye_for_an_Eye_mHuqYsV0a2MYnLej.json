@@ -6,8 +6,9 @@
   "img": "icons/skills/melee/shield-block-bash-yellow.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>Once per rest when an adversary within Melee range forces you to mark any number of Hit Points, you can <strong>mark a Stress</strong> to force them to mark the same number of Hit Points.</p>",
     "gmNotes": "",

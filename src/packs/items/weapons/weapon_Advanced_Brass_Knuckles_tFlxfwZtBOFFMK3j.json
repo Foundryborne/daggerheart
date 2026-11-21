@@ -6,9 +6,10 @@
   "img": "icons/weapons/fist/fist-knuckles-spiked-gold.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "description": "",
     "gmNotes": "",

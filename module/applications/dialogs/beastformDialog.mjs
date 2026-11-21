@@ -303,7 +303,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
                     }
                     let selected = app.selected.toObject();
                     const evolved = app.evolved.form ? app.evolved.form.toObject() : null;
-                    const data = await game.system.api.data.items.DHBeastform.getWildcardImage(
+                    const data = await CONFIG.Item.dataModels.beastform.getWildcardImage(
                         app.configData.actor,
                         evolved ?? app.selected
                     );
@@ -349,20 +349,19 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
     async _onDragStart(event) {
         const target = event.currentTarget;
         const abort = () => event.preventDefault();
-        if (!this.selected) abort();
+        if (!this.selected) return abort();
 
         const draggedForm = await foundry.utils.fromUuid(target.dataset.uuid);
-        if (['evolved', 'hybrid'].includes(draggedForm.system.beastformType)) abort();
+        if (['evolved', 'hybrid'].includes(draggedForm.system.beastformType)) return abort();
 
         if (this.selected.system.beastformType === 'evolved') {
-            if (draggedForm.system.tier > this.selected.system.evolved.maximumTier) abort();
+            if (draggedForm.system.tier > this.selected.system.evolved.maximumTier) return abort();
         }
         if (this.selected.system.beastformType === 'hybrid') {
-            if (draggedForm.system.tier > this.selected.system.hybrid.maximumTier) abort();
+            if (draggedForm.system.tier > this.selected.system.hybrid.maximumTier) return abort();
         }
 
         event.dataTransfer.setData('text/plain', JSON.stringify(target.dataset));
-        event.dataTransfer.setDragImage(target, 60, 0);
     }
 
     async _onDrop(event) {

@@ -56,9 +56,10 @@
     },
     "isMulticlass": false,
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "backgroundQuestions": [
       "Who taught you to fight, and why did they stay behind when you left home?",

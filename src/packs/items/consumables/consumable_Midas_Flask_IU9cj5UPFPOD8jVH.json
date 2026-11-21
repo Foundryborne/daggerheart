@@ -6,9 +6,10 @@
     "description": "<p>You can pour this small flask of alchemical liquid over a mundane item to instantly transmute it into a handful of gold.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "consumeOnUse": true,
     "gmNotes": "",

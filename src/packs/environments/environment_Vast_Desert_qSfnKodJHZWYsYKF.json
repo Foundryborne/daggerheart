@@ -9,8 +9,9 @@
     "impulses": "Dehydrate, show desolate beauty, threaten danger on the horizon",
     "difficulty": 14,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
-      "page": null
+      "source": "Daggerheart: Hope & Fear",
+      "page": null,
+      "srd": true
     },
     "potentialAdversaries": {
       "pefTawH0Dv5bd4fz": {

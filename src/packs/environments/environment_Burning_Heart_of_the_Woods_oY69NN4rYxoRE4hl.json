@@ -34,9 +34,10 @@
     "type": "exploration",
     "impulses": "Beat out an uncanny rhythm for all to follow, corrupt the woods",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

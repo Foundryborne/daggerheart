@@ -6,8 +6,9 @@
   "img": "icons/weapons/daggers/dagger-crooked-ice-blue.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>The first time in a scene you succeed on an attack, you deal double damage.</p>",
     "gmNotes": "",

@@ -141,11 +141,9 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
+            // Remember to also update refreshFrame() if any changes occur here
             if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
-                const { source, page, campaignFrame } = this.document.system.attribution;
-                const attribution = [source, page ? `pg ${page}.` : null, campaignFrame ? ` (${campaignFrame})` : null]
-                    .filter(x => x)
-                    .join('. ');
+                const attribution = this.document.system.attributionLabel;
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
                 this.window.controls.insertAdjacentHTML('beforebegin', element);
             }
@@ -162,11 +160,8 @@ export default function DHApplicationMixin(Base) {
          */
         refreshFrame() {
             if (this.document.system.metadata.hasAttribution && this.hasHeaderAttribution) {
-                const { source, page } = this.document.system.attribution;
-                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
-
                 const label = this.window.header.querySelector('.attribution-header-label');
-                label.innerHTML = attribution;
+                label.innerHTML = this.document.system.attributionLabel;
             }
         }
 

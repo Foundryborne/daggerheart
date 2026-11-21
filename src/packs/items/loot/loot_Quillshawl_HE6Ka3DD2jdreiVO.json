@@ -6,9 +6,10 @@
     "description": "<p>If an adversary attacks you within Melee range, they must succeed on a Reaction Roll (12) or mark a Hit Point.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {

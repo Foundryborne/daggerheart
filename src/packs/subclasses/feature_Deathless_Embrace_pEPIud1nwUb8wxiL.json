@@ -6,8 +6,9 @@
   "img": "icons/magic/unholy/hands-circle-light-green.webp",
   "system": {
     "attribution": {
-      "source": "Daggerheart SRD",
-      "page": null
+      "source": "Daggerheart Core Rulebook",
+      "page": null,
+      "srd": true
     },
     "description": "<p>Once per rest, <strong>spend any number of Favor</strong> to roll an equal number of Patron Dice. For each result of 4 or higher, clear a Hit Point.</p>",
     "gmNotes": "",

@@ -1,6 +1,8 @@
-@import '../utils/colors.less';
-@import '../utils/fonts.less';
-@import '../utils/mixin.less';
+// Handles base styling of all messages, not just DH specific ones
+
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+@import '../../utils/mixin.less';
 
 .daggerheart.chat-sidebar.theme-light,
 #interface.theme-light {
@@ -100,10 +102,14 @@
                         .name {
                             flex: 1;
                         }
+                        .aside,
                         .whisper-to {
-                            color: @color-text-subtle;
+                            color: var(--text-color);
+                            opacity: .8;
+                            font-weight: lighter;
                             flex: 0;
                             white-space: nowrap;
+                            font-size: var(--font-size-12);
                         }
                     }
                 }

@@ -7,7 +7,7 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
  * Base settings sheet for Daggerheart actors.
- * @extends {DHApplicationMixin<ActorSheetV2>}
+ * @template T
  */
 export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2) {
     /**@inheritdoc */
@@ -36,7 +36,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
         return options;
     }
 
-    /** @returns {foundry.documents.Actor} */
+    /** @returns {T} */
     get actor() {
         return this.document;
     }
@@ -58,6 +58,7 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
                 const data = this.actor._source.system.resources[key];
                 const config = resourceConfig[key];
                 return {
+                    key,
                     label: config.label,
                     name: `system.resources.${key}.max`,
                     value: data.max ?? config.max,
@@ -78,11 +79,15 @@ export default class DHBaseActorSettings extends DHApplicationMixin(ActorSheetV2
 
     async _onDragStart(event) {
         const featureItemEl = event.currentTarget.closest('.feature-item, .inventory-item[data-type="feature"]');
+        const dragView = event.currentTarget.closest('.inventory-item-header') ?? featureItemEl;
         const feature = this.actor.items.get(featureItemEl?.dataset.itemId);
         if (feature && event.target.closest('.tab.features')) {
             const featureData = { ...feature.toDragData(), fromInternal: true };
             event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
-            event.dataTransfer.setDragImage(featureItemEl.querySelector('img'), 60, 0);
+            if (dragView) {
+                const bounds = dragView.getBoundingClientRect();
+                event.dataTransfer.setDragImage(dragView, event.clientX - bounds.left, event.clientY - bounds.top);
+            }
         }
     }
 

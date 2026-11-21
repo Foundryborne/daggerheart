@@ -31,9 +31,10 @@
     "type": "traversal",
     "impulses": "Bar crossing, carry away the unready, divide the land",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

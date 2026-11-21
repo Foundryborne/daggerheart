@@ -10,38 +10,40 @@
             {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.hitPoints label="DAGGERHEART.GENERAL.HitPoints.short" key="system.resources.hitPoints.value" action="toggleHitPoints" }}
             {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" }}
         </div>
-        <div class="status-section">
-            <div class="status-number">
-                <div class='status-value'>
-                    {{#if source.system.difficulty}}
-                    <p>{{source.system.difficulty}}</p>
-                    {{else}}
-                    <p>-</p>
-                    {{/if}}
-                </div>
-                <div class="status-label">
-                    <h4>{{localize "DAGGERHEART.GENERAL.difficulty"}}</h4>
-                </div>
-            </div>
-            <div class="status-number">
-                <div class="status-value">
-                    <p>{{attackBonus}}</p>
-                </div>
-                <div class="status-label">
-                    <h4>{{localize "DAGGERHEART.GENERAL.attack"}}</h4>
-                </div>
-            </div>
-            {{#if (lt source.system.criticalThreshold 20)}}
+        {{#if (or document.system.attack source.system.difficulty (lt source.system.criticalThreshold 20))}}
+            <div class="status-section">
                 <div class="status-number">
-                    <div class="status-value">
-                        <p>{{source.system.criticalThreshold}}+</p>
+                    <div class='status-value'>
+                        {{#if source.system.difficulty}}
+                        <p>{{source.system.difficulty}}</p>
+                        {{else}}
+                        <p>-</p>
+                        {{/if}}
                     </div>
                     <div class="status-label">
-                        <h4>{{localize "DAGGERHEART.GENERAL.criticalShort"}}</h4>
+                        <h4>{{localize "DAGGERHEART.GENERAL.difficulty"}}</h4>
                     </div>
                 </div>
-            {{/if}}
-        </div>
+                <div class="status-number">
+                    <div class="status-value">
+                        <p>{{attackBonus}}</p>
+                    </div>
+                    <div class="status-label">
+                        <h4>{{localize "DAGGERHEART.GENERAL.attack"}}</h4>
+                    </div>
+                </div>
+                {{#if (lt source.system.criticalThreshold 20)}}
+                    <div class="status-number">
+                        <div class="status-value">
+                            <p>{{source.system.criticalThreshold}}+</p>
+                        </div>
+                        <div class="status-label">
+                            <h4>{{localize "DAGGERHEART.GENERAL.criticalShort"}}</h4>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        {{/if}}
         <div class="status-section">
             <div class="threshold-section">
                 <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
@@ -69,28 +71,60 @@
                 </ul>
             </section>
         {{/if}}
-        <section class="experience-section">
-            <div class="title">
-                <side-line-div class="invert"></side-line-div>
-                <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
-                <side-line-div></side-line-div>
-            </div>
-            <div class="experience-list">
-                {{#each source.system.experiences as |experience id|}}
-                    <div class="experience-row" data-tooltip-text="{{experience.description}}">
-                        <span class="experience-value">
-                            +{{experience.value}}
-                        </span>
-                        <span class="experience-name">{{experience.name}}</span>
-                        <div class="controls">
-                            <a data-action="sendExpToChat" data-id="{{id}}">
-                                <i class="fa-regular fa-message"></i>
-                            </a>
+        {{#unless (empty source.system.experiences)}}
+            <section class="experience-section">
+                <div class="title">
+                    <side-line-div class="invert"></side-line-div>
+                    <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
+                    <side-line-div></side-line-div>
+                </div>
+                <div class="experience-list">
+                    {{#each source.system.experiences as |experience id|}}
+                        <div class="experience-row" data-tooltip-text="{{experience.description}}">
+                            <span class="experience-value">
+                                +{{experience.value}}
+                            </span>
+                            <span class="experience-name">{{experience.name}}</span>
+                            <div class="controls">
+                                <a data-action="sendExpToChat" data-id="{{id}}">
+                                    <i class="fa-regular fa-message"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                {{/each}}
-            </div>
-        </section>
+                    {{/each}}
+                </div>
+            </section>
+        {{/unless}}
+        {{#if collosusData.actors}}
+            <section class="collosus-section">
+                <div class="title">
+                    <side-line-div class="invert"></side-line-div>
+                    <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.collosus.label"}}</h3>
+                    <side-line-div></side-line-div>
+                </div>
+                <div class="part-list">
+                    {{#each collosusData.actors as |data|}}
+                        <div class="actor {{#unless data.active}}inactive{{/unless}} {{#if (eq @root.document.uuid data.actor.uuid)}}current{{/if}}" data-role="{{data.role}}">                        
+                            {{#if data.actor}}
+                                <img src="{{data.actor.img}}" />
+                                <a class="name" data-action="editDoc" data-item-uuid="{{data.actor.uuid}}" {{#unless data.active}}data-tooltip aria-label="This actor doesn't have a token in the scene"{{/unless}}>
+                                    {{data.actor.name}}
+                                    {{#if (eq data.role 'framework')}}
+                                        <i class="fa-solid fa-crown" data-tooltip aria-label="Framework"></i>
+                                    {{/if}}
+                                    {{#unless data.active}}
+                                        <i class="fa-solid fa-warning" inert></i>
+                                    {{/unless}}
+                                </a>
+                            {{else}}
+                                <i class="fa-solid fa-link"></i>
+                                <div class="name">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "DOCUMENT.Actor")}}</div>
+                            {{/if}}
+                        </div>
+                    {{/each}}
+                </div>
+            </section>
+        {{/if}}
     </div>
     <div class="reaction-section">
         <button type="button" data-action="reactionRoll">

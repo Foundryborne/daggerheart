@@ -5,9 +5,9 @@
 >
     <fieldset class="standard-form">
         <legend>{{localize tabs.settings.label}}</legend>
-        {{#if choices}}        
+        {{#unless (empty choices)}}
             {{formGroup systemFields.category value=source.system.category choices=choices localize=true}}
-        {{/if}}
+        {{/unless}}
         {{formGroup systemFields.quantity value=source.system.quantity localize=true}}
     </fieldset>
 

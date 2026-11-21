@@ -31,9 +31,10 @@
     "type": "event",
     "impulses": "Bleed out the will to fi ght, breach the walls, build tension",
     "attribution": {
-      "source": "Daggerheart SRD",
+      "source": "Daggerheart Core Rulebook",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     }
   },
   "flags": {},

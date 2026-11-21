@@ -6,9 +6,10 @@
     "description": "<p>A PC who takes a rest in the temporal sanctuary can choose an additional downtime move.</p>",
     "quantity": 1,
     "attribution": {
-      "source": "Daggerheart SRD H&F",
+      "source": "Daggerheart: Hope & Fear",
       "page": null,
-      "artist": ""
+      "artist": "",
+      "srd": true
     },
     "gmNotes": "",
     "actions": {}

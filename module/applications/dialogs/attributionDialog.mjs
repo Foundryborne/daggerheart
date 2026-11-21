@@ -11,6 +11,27 @@ export default class AttributionDialog extends HandlebarsApplicationMixin(Applic
             const group = CONFIG.DH.GENERAL.attributionSources[groupKey];
             return group.values.map(x => ({ group: group.label, ...x }));
         });
+
+        this.#loadSources(); // load sources without awaiting
+    }
+
+    /**
+     * Start a fetch for additional sources from world actors/items and current pack.
+     * because they are needed for an autocomplete, this can run in the background without issues.
+     */
+    async #loadSources() {
+        const existing = new Set(this.sources.map(x => x.label));
+        const pack = game.packs.get(this.item.pack);
+        for (const source of [game.items.contents, game.actors.contents, pack?.getDocuments()]) {
+            const documents = await source ?? [];
+            for (const document of documents) {
+                const attribution = document?.system?.attribution?.source;
+                if (attribution && !existing.has(attribution)) {
+                    this.sources.push({ group: _loc('DAGGERHEART.APPLICATIONS.Attribution.other'), label: attribution });
+                    existing.add(attribution);
+                }
+            }
+        }
     }
 
     get title() {
@@ -41,7 +62,7 @@ export default class AttributionDialog extends HandlebarsApplicationMixin(Applic
                         update(sources);
                     } else {
                         text = text.toLowerCase();
-                        var suggestions = sources.filter(n => n.label.toLowerCase().includes(text));
+                        const suggestions = sources.filter(n => n.label.toLowerCase().includes(text));
                         update(suggestions);
                     }
                 },
