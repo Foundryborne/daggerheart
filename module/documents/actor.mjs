@@ -785,6 +785,7 @@ export default class DhActor extends Actor {
         rollData.id = this.id;
         rollData.name = this.name;
         rollData.system = this.system.getRollData();
+        rollData.flags = this.flags;
         rollData.prof = this.system.proficiency ?? 1;
         rollData.cast = this.system.spellcastModifier ?? 1;
         rollData.fear = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear);
