@@ -182,10 +182,10 @@ export class MoveContext {
             this.dialog.configure = false;
         }
 
-        if (this.costs && (this.action || this.actor)) {
-            // todo: consider deleting calcCosts and handling all sanitization here
+        if (this.costs && this.actor) {
+            // todo: consider deleting calcCosts and handling all sanitization here. A lot of the bind logic is confusing to follow
             const CostField = game.system.api.fields.ActionFields.CostField;
-            this.costs = CostField.calcCosts.call(this.action ?? { actor: this.actor }, this.costs);
+            this.costs = CostField.calcCosts.call(this.action.actor ? this.action : { actor: this.actor }, this.costs);
         }
 
         if (this.uses) {
@@ -302,6 +302,8 @@ export class MoveContext {
      * @param {boolean} [options.successCost=false]     Consume only resources configured as "On Success only"
      */
     async spendResources({ successCost = false, alwaysConsume = false } = {}) {
+        if (!this.actor) return; // nothing to spend resources on
+
         const CostField = game.system.api.fields.ActionFields.CostField;
         const actor = this.actor.system.partner ?? this.actor;
         const usefulResources = {
