@@ -237,10 +237,20 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         // This is often due to reflavoring or a character name chosen later.
         const actor = this.parent;
         const isNameChanged = changes.name && actor.name !== changes.name;
+        const isImgChanged = changes.img && actor.img !== changes.img;
         const prototypeName = actor.prototypeToken?.name;
+        const prototypeImg = actor.prototypeToken?.texture.src;
         const isPrototypeNameChanging = changes.prototypeToken?.name && changes.prototypeToken?.name !== prototypeName;
+        const isPrototypeImgChanging = changes.prototypeToken?.texture?.src && 
+            changes.prototypeToken?.texture?.src !== prototypeName;
         if (!actor.token && isNameChanged && actor.name === prototypeName && !isPrototypeNameChanging) {
             changes.prototypeToken = foundry.utils.mergeObject(changes.prototypeToken ?? {}, { name: changes.name });
+        }
+        if (!actor.token && isImgChanged && actor.img === prototypeImg && !isPrototypeImgChanging) {
+            changes.prototypeToken = foundry.utils.mergeObject(
+                changes.prototypeToken ?? {}, 
+                { texture: { src: changes.img } }
+            );
         }
 
         if (changes.system?.resources) {
