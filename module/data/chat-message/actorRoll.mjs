@@ -139,7 +139,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         const config = await MoveContext.build({
             ...this.system,
             event,
-            actor: this.actionActor,
+            actor: action?.actor ?? this.actionActor,
             item: this.item,
             action,
             roll: this.roll?.options.roll ?? {
