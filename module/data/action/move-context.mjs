@@ -69,9 +69,9 @@ export class MoveContext {
         // Initialize props based on the documents and action
         // todo: determine which ones we can kill. hasTarget may need an alternative solution
         this.hasSave = Boolean(action?.hasSave);
-        this.hasDamage = Boolean(action?.hasDamage);
+        this.hasDamage = Boolean(action?.hasDamage || data.damageFormula);
         this.hasEffect = Boolean(action?.hasEffect);
-        this.hasTarget = data.hasTarget ?? Boolean(action?.hasTarget); // targetField sets it to true, even though the action has it to false
+        this.hasTarget = data.hasTarget ?? Boolean(action?.hasTarget); // targetField sets it to true, even though the action has it to false TODO: can we check targets?
         this.hasHealing = Boolean(action?.hasHealing);
         this.onSave = action?.save?.damageMod;
         this.isDirect = false;
@@ -83,6 +83,8 @@ export class MoveContext {
         /** Data used to configure the roll. The actual is in evaluated. @type {import('./_types').MoveRollProps | null} */
         this.roll = data.roll ?? 
             (data.hasRoll === false || !action?.hasRoll || this.roll === null ? null : action?.roll ?? {});
+        this.damageFormula = data.damageFormula;
+        this.resourceFormulas = data.resourceFormulas;
         this.hasRoll = Boolean(this.roll);
         
         this.damage = data.damage;
@@ -180,10 +182,10 @@ export class MoveContext {
             this.dialog.configure = false;
         }
 
-        if (this.costs && (this.action || this.actor)) {
-            // todo: consider deleting calcCosts and handling all sanitization here
+        if (this.costs && this.actor) {
+            // todo: consider deleting calcCosts and handling all sanitization here. A lot of the bind logic is confusing to follow
             const CostField = game.system.api.fields.ActionFields.CostField;
-            this.costs = CostField.calcCosts.call(this.action ?? { actor: this.actor }, this.costs);
+            this.costs = CostField.calcCosts.call(this.action.actor ? this.action : { actor: this.actor }, this.costs);
         }
 
         if (this.uses) {
@@ -300,6 +302,8 @@ export class MoveContext {
      * @param {boolean} [options.successCost=false]     Consume only resources configured as "On Success only"
      */
     async spendResources({ successCost = false, alwaysConsume = false } = {}) {
+        if (!this.actor) return; // nothing to spend resources on
+
         const CostField = game.system.api.fields.ActionFields.CostField;
         const actor = this.actor.system.partner ?? this.actor;
         const usefulResources = {

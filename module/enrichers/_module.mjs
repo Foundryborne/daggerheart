@@ -1,4 +1,4 @@
-import { DhDamageEnricher, renderDamageButton } from './DamageEnricher.mjs';
+import { DhDamageEnricher, rollDamageButton } from './DamageEnricher.mjs';
 import { DhDualityRollEnricher, renderDualityButton } from './DualityRollEnricher.mjs';
 import { DhFateRollEnricher, renderFateButton } from './FateRollEnricher.mjs';
 import { DhEffectEnricher } from './EffectEnricher.mjs';
@@ -53,7 +53,7 @@ export function enricherRenderSetup(element) {
     element.addEventListener('click', event => {
         if (event.target.closest('.enriched-damage-button')) {
             event.stopPropagation();
-            return renderDamageButton(event);
+            return rollDamageButton(event);
         } else if (event.target.closest('.duality-roll-button')) {
             event.stopPropagation();
             return renderDualityButton(event);

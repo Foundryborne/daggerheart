@@ -1,5 +1,6 @@
 import { parseInlineParams } from './parser.mjs';
 import { abilityCosts } from '../config/generalConfig.mjs';
+import { MoveContext } from '../data/action/_module.mjs';
 
 const { fear, resource, ...resourceTypes } = abilityCosts;
 export function DhDamageEnricher(match, _options) {
@@ -40,7 +41,7 @@ function getDamageMessage(damage, types, inline) {
     return dualityElement;
 }
 
-export const renderDamageButton = async event => {
+export const rollDamageButton = async event => {
     const button = event.target;
     const value = button.dataset.value;
     const types = button.dataset.type
@@ -55,7 +56,7 @@ export const renderDamageButton = async event => {
     const damageFormula = isDamage ? {
         formula: value,
         applyTo: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
-        damageTypes: damageTypes
+        damageTypes
     } : null;
 
     /* The enricher only takes 1 value, so we only use a single type even if multiples are erroneously passed in */
@@ -64,19 +65,16 @@ export const renderDamageButton = async event => {
         applyTo: types[0]
     }] : [];
 
-    const config = {
-        event: event,
-        title: game.i18n.localize('Damage Roll'),
-        data: { bonuses: [] },
-        source: {},
-        hasDamage: true,
+    const config = await MoveContext.build({
+        event,
+        title: _loc('DAGGERHEART.GENERAL.damageRoll'),
         hasTarget: true,
         targets: Array.from(game.user.targets).map(t =>
             game.system.api.fields.ActionFields.TargetField.formatTarget(t)
         ),
         damageFormula,
         resourceFormulas
-    };
+    });
 
     CONFIG.Dice.daggerheart.DamageRoll.build(config);
 };
