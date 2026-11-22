@@ -341,7 +341,7 @@ export const typeConfig = {
             {
                 key: 'system.type',
                 label: 'DAGGERHEART.GENERAL.type',
-                format: type => (type ? `DAGGERHEART.CONFIG.DomainCardTypes.${type}` : '-')
+                format: type => (type ? _loc(CONFIG.DH.DOMAIN.cardTypes[type]?.label ?? type) : '-')
             },
             {
                 key: 'system.domain',

@@ -48,6 +48,7 @@ export default class DomainCardSheet extends DHBaseItemSheet {
         const context = await super._prepareContext(options);
         context.domain = CONFIG.DH.DOMAIN.allDomains()[this.document.system.domain];
         context.domainChoices = CONFIG.DH.DOMAIN.orderedDomains();
+        context.cardType = CONFIG.DH.DOMAIN.cardTypes[this.document.system.type];
 
         return context;
     }

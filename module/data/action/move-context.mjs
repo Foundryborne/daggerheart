@@ -185,7 +185,7 @@ export class MoveContext {
         if (this.costs && this.actor) {
             // todo: consider deleting calcCosts and handling all sanitization here. A lot of the bind logic is confusing to follow
             const CostField = game.system.api.fields.ActionFields.CostField;
-            this.costs = CostField.calcCosts.call(this.action.actor ? this.action : { actor: this.actor }, this.costs);
+            this.costs = CostField.calcCosts.call(this.action?.actor ? this.action : { actor: this.actor }, this.costs);
         }
 
         if (this.uses) {

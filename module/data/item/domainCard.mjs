@@ -110,10 +110,10 @@ export default class DHDomainCard extends BaseDataItem {
      */
     _getTags() {
         const tags = [
-            game.i18n.localize(`DAGGERHEART.CONFIG.DomainCardTypes.${this.type}`),
+            _loc(CONFIG.DH.DOMAIN.cardTypes[this.type].label),
             this.domainLabel,
-            `${game.i18n.localize('DAGGERHEART.GENERAL.levelShort')}: ${this.level}`,
-            `${game.i18n.localize('DAGGERHEART.ITEMS.DomainCard.recallCost')}: ${this.recallCost}`
+            `${_loc('DAGGERHEART.GENERAL.levelShort')}: ${this.level}`,
+            `${_loc('DAGGERHEART.ITEMS.DomainCard.recallCost')}: ${this.recallCost}`
         ];
 
         return tags;
@@ -126,7 +126,7 @@ export default class DHDomainCard extends BaseDataItem {
     _getLabels() {
         const labels = [];
 
-        if (this.type) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.DomainCardTypes.${this.type}`));
+        if (this.type) labels.push(_loc(CONFIG.DH.DOMAIN.cardTypes[this.type].label));
         if (this.domainLabel) labels.push(this.domainLabel);
         if (this.recallCost) {
             labels.push({
