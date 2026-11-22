@@ -77,7 +77,7 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
         cls.create({
             user: game.user.id,
             speaker: cls.getSpeaker({ actor: this.actor }),
-            title: 'Resource Roll',
+            title: _loc('DAGGERHEART.UI.Chat.resourceRoll.title'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/resource-roll.hbs',
                 {
