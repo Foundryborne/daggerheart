@@ -69,9 +69,9 @@ export class MoveContext {
         // Initialize props based on the documents and action
         // todo: determine which ones we can kill. hasTarget may need an alternative solution
         this.hasSave = Boolean(action?.hasSave);
-        this.hasDamage = Boolean(action?.hasDamage);
+        this.hasDamage = Boolean(action?.hasDamage || data.damageFormula);
         this.hasEffect = Boolean(action?.hasEffect);
-        this.hasTarget = data.hasTarget ?? Boolean(action?.hasTarget); // targetField sets it to true, even though the action has it to false
+        this.hasTarget = data.hasTarget ?? Boolean(action?.hasTarget); // targetField sets it to true, even though the action has it to false TODO: can we check targets?
         this.hasHealing = Boolean(action?.hasHealing);
         this.onSave = action?.save?.damageMod;
         this.isDirect = false;
@@ -83,6 +83,8 @@ export class MoveContext {
         /** Data used to configure the roll. The actual is in evaluated. @type {import('./_types').MoveRollProps | null} */
         this.roll = data.roll ?? 
             (data.hasRoll === false || !action?.hasRoll || this.roll === null ? null : action?.roll ?? {});
+        this.damageFormula = data.damageFormula;
+        this.resourceFormulas = data.resourceFormulas;
         this.hasRoll = Boolean(this.roll);
         
         this.damage = data.damage;
