@@ -175,15 +175,15 @@ export class MoveContext {
     async initialize() {
         // Acquire bonus effects for the main roll and damage, so that we can start getting modifiers
         // todo: support bonus effects defined in data that don't come from effects somehow
-        this.bonusEffects = this.#mergeBonusEffects(this.bonusEffects, this.roll ? this.extractEffects('roll') : {});
-        this.damageEffects = this.#mergeBonusEffects(this.damageEffects, this.hasDamage || this.hasHealing ? this.extractEffects(this.hasHealing ? 'healing' : 'damage') : {}); // todo: include healing
+        this.bonusEffects = this.#mergeBonusEffects(this.bonusEffects, this.roll ? this.#extractEffects('roll') : {});
+        this.damageEffects = this.#mergeBonusEffects(this.damageEffects, this.hasDamage || this.hasHealing ? this.#extractEffects(this.hasHealing ? 'healing' : 'damage') : {}); // todo: include healing
         
         const rollData = this.getRollData();
 
         // Extract Roll and damage modifiers
         if (this.roll) {
             this.roll.modifiers = foundry.utils.deepClone(this.roll.baseModifiers) ?? [];
-            this.roll.modifiers.push(...this.extractModifiers('roll', { rollData }));
+            this.roll.modifiers.push(...this.#extractModifiers('roll', { rollData }));
             const actorExperiences = rollData.experiences;
             for (const m of this.experiences?.filter(m => !!actorExperiences[m]) ?? []) {
                 this.roll.modifiers.push({
@@ -194,7 +194,7 @@ export class MoveContext {
         }
         if (this.damageFormula) {
             const type = this.hasHealing ? 'healing' : 'damage';
-            this.damageFormula.modifiers = this.extractModifiers(type, { rollData });
+            this.damageFormula.modifiers = this.#extractModifiers(type, { rollData });
         }
 
         this.guaranteedCritical = this.actor?.appliedEffects.reduce((a, c) => {
@@ -240,87 +240,6 @@ export class MoveContext {
                     ? D20Roll.ADV_MODE.DISADVANTAGE
                     : D20Roll.ADV_MODE.NORMAL;
         }
-    }
-
-    /**
-     * Reads effects to return a list of toggleable bonus effects for the roll
-     * @param {"roll" | "damage" | "healing"} type 
-     * @returns {Record<string, import('./_types').MoveBonusEffect>} toggleable bonus effects for the type of roll
-     */
-    extractEffects(type) {
-        if (!this.actor) return {};
-
-        const rollData = this.getRollData();
-        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
-        const effects = [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            const conditionalPassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
-            });
-            if (conditionalPassed)
-                acc.push(effect);
-
-            return acc;
-        }, []);
-        
-        const changeKeys = [`system.bonuses.${type}`];
-        if (type === 'damage' || type === 'healing') changeKeys.push('system.rules.attack.damage.hpDamageMultiplier');
-
-        return (effects ?? []).reduce((acc, effect) => {
-            if (!(effect instanceof ActiveEffect)) return acc;
-
-            const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
-
-            // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
-            if (
-                conditionalsPassed && 
-                (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
-            ) {
-                acc[effect.id] = {
-                    id: effect.id,
-                    name: effect.name,
-                    description: effect.description,
-                    changes: effect.system.changes,
-                    origEffect: effect,
-                    selected: !effect.disabled
-                };
-            }
-
-            return acc;
-        }, {});
-    }
-
-    /**
-     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
-     * that match a given change.key partial path.
-     * @param {"roll" | "damage" | "healing"} type 
-     * @returns {[{ label: string, value: any} ]}
-     */
-    extractModifiers(type, { rollData } = {}) {
-        const bonusEffects = type === 'roll' ? this.bonusEffects : this.damageEffects;
-        const path = `system.bonuses.${type}`
-
-        const modifiers = [];
-        for (const effect of Object.values(bonusEffects)) {
-            if (!effect.selected) continue;
-            for (const change of effect.changes) {
-                if (!change.key?.includes(path)) continue;
-                
-                // TODO: We should handle override and all other modes. It'll have to be done in a different way
-                // as we cannot just go through each change and sum them up. We'll have to get the total value with
-                // overrides and everything considered.
-                if (!['add', 'subtract'].includes(change.type)) continue;
-
-                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
-                    rollData ?? this.getRollData(),
-                    change,
-                    effect.origEffect
-                );
-                const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
-                modifiers.push({ label: effect.name, value: typedValue });
-            }
-        }
-
-        return modifiers;
     }
 
     /** 
@@ -471,6 +390,87 @@ export class MoveContext {
         // MoveContext is pasted to roll.options. We don't want certain properties to get serialized in the roll
         // We can't omit "data" yet until we reduce reliance on it
         return omit(this, ['actor', 'item', 'action', 'effects', 'event', 'evaluated']);
+    }
+
+    /**
+     * Reads effects to return a list of toggleable bonus effects for the roll
+     * @param {"roll" | "damage" | "healing"} type 
+     * @returns {Record<string, import('./_types').MoveBonusEffect>} toggleable bonus effects for the type of roll
+     */
+    #extractEffects(type) {
+        if (!this.actor) return {};
+
+        const rollData = this.getRollData();
+        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        const effects = [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
+            if (conditionalPassed)
+                acc.push(effect);
+
+            return acc;
+        }, []);
+        
+        const changeKeys = [`system.bonuses.${type}`];
+        if (type === 'damage' || type === 'healing') changeKeys.push('system.rules.attack.damage.hpDamageMultiplier');
+
+        return (effects ?? []).reduce((acc, effect) => {
+            if (!(effect instanceof ActiveEffect)) return acc;
+
+            const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
+
+            // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+            if (
+                conditionalsPassed && 
+                (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
+            ) {
+                acc[effect.id] = {
+                    id: effect.id,
+                    name: effect.name,
+                    description: effect.description,
+                    changes: effect.system.changes,
+                    origEffect: effect,
+                    selected: !effect.disabled
+                };
+            }
+
+            return acc;
+        }, {});
+    }
+
+    /**
+     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path.
+     * @param {"roll" | "damage" | "healing"} type 
+     * @returns {[{ label: string, value: any} ]}
+     */
+    #extractModifiers(type, { rollData } = {}) {
+        const bonusEffects = type === 'roll' ? this.bonusEffects : this.damageEffects;
+        const path = `system.bonuses.${type}`
+
+        const modifiers = [];
+        for (const effect of Object.values(bonusEffects)) {
+            if (!effect.selected) continue;
+            for (const change of effect.changes) {
+                if (!change.key?.includes(path)) continue;
+                
+                // TODO: We should handle override and all other modes. It'll have to be done in a different way
+                // as we cannot just go through each change and sum them up. We'll have to get the total value with
+                // overrides and everything considered.
+                if (!['add', 'subtract'].includes(change.type)) continue;
+
+                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                    rollData ?? this.getRollData(),
+                    change,
+                    effect.origEffect
+                );
+                const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
+                modifiers.push({ label: effect.name, value: typedValue });
+            }
+        }
+
+        return modifiers;
     }
 
     #mergeBonusEffects(effects, newEffects) {
