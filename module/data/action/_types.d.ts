@@ -68,6 +68,8 @@ export interface MoveRollProps {
     trait?: string;
     fateType?: string;
     difficulty?: number;
+    /** Toggleable bonus effects for the main roll. Does not support passing in custom bonuses yet */
+    bonusEffects?: MoveBonusEffect[];
 }
 
 /** Processing flags. Not part of the move, but tracks information about its usage */
@@ -78,6 +80,15 @@ export interface MoveFlags {
     resourcesSpent: boolean;
     /** If set, roll sound will be muted by the system */
     mute: boolean;
+}
+
+export interface MoveBonusEffect {
+    id: string;
+    name: string;
+    description: string;
+    changes: unknown;
+    origEffect: unknown;
+    selected: boolean;
 }
 
 export interface MoveCost {

@@ -146,15 +146,6 @@ export default class DamageRoll extends DHRoll {
 
         return modifiers;
     }
-
-    /** @inheritdoc */
-    getActionChangeKeys() {
-        const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        return [
-            'system.rules.attack.damage.hpDamageMultiplier',
-            `system.bonuses.${type}`
-        ];
-    }
     
     static getRollBreakdownBaseTerms(action) {
         const damageBonus = action?.damage?.main?.value.bonus;
