@@ -77,7 +77,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     get actionActor() {
         if (!this.source.actor) return null;
-        return fromUuidSync(this.source.actor);
+        const actor = fromUuidSync(this.source.actor);
+        return actor instanceof Actor ? actor : null;
     }
 
     get item() {
