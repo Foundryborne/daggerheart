@@ -4270,7 +4270,8 @@
                     "confirmText": "Are you sure you want to reroll?"
                 },
                 "resourceRoll": {
-                    "playerMessage": "{user} rerolled their {name}"
+                    "playerMessage": "{user} rerolled their {name}",
+                    "title": "Resource Roll"
                 },
                 "saveRoll": {
                     "reactionRollAllTargets": "Reaction Roll All Targets"
