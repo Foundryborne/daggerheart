@@ -59,8 +59,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     }
 
     async _prepareContext(_options) {
-        // Re-initialize if required first, then get the roll data
-        await this.config.initialize();
+        await this.config.initialize(); // Re-initialize if required first
         
         const context = await super._prepareContext(_options);
         context.config = CONFIG.DH;
