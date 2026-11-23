@@ -331,26 +331,6 @@ export class MoveContext {
         }
     }
 
-    /**
-     * Get all potentially applicable effects on the actor for the action's RollDialog
-     * @returns {Promise<DhActiveEffect[]>}
-     */
-    async getActionRelevantEffects() {
-        if (!this.actor) return [];
-
-        const rollData = this.getRollData();
-        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
-        return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            const conditionalPassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
-            });
-            if (conditionalPassed)
-                acc.push(effect);
-
-            return acc;
-        }, []);
-    }
-
     /** 
      * Tests if the costs can be sufficiently paid for by the actor
      * @returns {boolean}
