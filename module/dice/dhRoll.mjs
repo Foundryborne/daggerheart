@@ -346,37 +346,6 @@ export default class DHRoll extends BaseRoll {
         return [...effectBreakdown];
     }
 
-    /**
-     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
-     * that match a given change.key partial path.
-     * @param {string} path The full or partial effect.change key 
-     * @returns {[{ label: string, value: any} ]}
-     */
-    getBonus(path) {
-        const modifiers = [];
-        for (const effect of Object.values(this.options.bonusEffects)) {
-            if (!effect.selected) continue;
-            for (const change of effect.changes) {
-                if (!change.key?.includes(path)) continue;
-                
-                // TODO: We should handle override and all other modes. It'll have to be done in a different way
-                // as we cannot just go through each change and sum them up. We'll have to get the total value with
-                // overrides and everything considered.
-                if (!['add', 'subtract'].includes(change.type)) continue;
-
-                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
-                    this.data,
-                    change,
-                    effect.origEffect
-                );
-                const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
-                modifiers.push({ label: effect.name, value: typedValue });
-            }
-        }
-
-        return modifiers;
-    }
-
     getFaces(faces) {
         return Number(faces.startsWith('d') ? faces.replace('d', '') : faces);
     }

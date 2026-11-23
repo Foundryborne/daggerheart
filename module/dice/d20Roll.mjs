@@ -72,16 +72,6 @@ export default class D20Roll extends DHRoll {
 
         this.baseTerms = foundry.utils.deepClone(this.dice);
 
-        this.options.roll.modifiers = this.getRollBonuses();
-
-        const actorExperiences = this.data?.experiences ?? {};
-        for (const m of this.options.experiences?.filter(m => !!actorExperiences[m]) ?? []) {
-            this.options.roll.modifiers.push({
-                label: actorExperiences[m].name,
-                value: actorExperiences[m].value
-            });
-        }
-
         this.addModifiers();
         if (this.options.extraFormula) {
             this.terms.push(
@@ -98,15 +88,6 @@ export default class D20Roll extends DHRoll {
             this.d20.number = 2;
             this.d20.modifiers.push(this.hasAdvantage ? 'kh' : 'kl');
         }
-    }
-
-    getRollBonuses() {
-        const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
-        modifiers.push(
-            ...this.getBonus('system.bonuses.roll')
-        );
-
-        return modifiers;
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {

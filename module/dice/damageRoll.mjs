@@ -122,13 +122,6 @@ export default class DamageRoll extends DHRoll {
         }
         return { formula, total };
     }
-
-    getRollBonuses() {
-        const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        const modifiers = [...this.getBonus(`system.bonuses.${type}`)];
-
-        return modifiers;
-    }
     
     static getRollBreakdownBaseTerms(action) {
         const damageBonus = action?.damage?.main?.value.bonus;
@@ -159,7 +152,6 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            formulaData.modifiers = this.getRollBonuses(formulaData);
             this.addModifiers(formulaData);
             formulaData.modifiers?.forEach(m => {
                 formulaData.roll.terms.push(...this.formatModifier(m.value));
@@ -218,7 +210,9 @@ export default class DamageRoll extends DHRoll {
         return formulaData;
     }
 
-    /** @param {MoveContext} config **/
+    /** 
+     * These create "modifiers" that are not the same as the bonus damage modifiers. Might need joining.
+     * @param {MoveContext} config **/
     static temporaryModifierBuilder(config) {
         const mods = {};
         
