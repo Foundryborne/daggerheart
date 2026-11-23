@@ -5,8 +5,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         classes: ['daggerheart'],
         actions: {
             combat: DHTokenHUD.#onToggleCombat,
-            togglePartyTokens: DHTokenHUD.#togglePartyTokens,
-            toggleCompanions: DHTokenHUD.#toggleCompanions
+            togglePartyTokens: DHTokenHUD.#onTogglePartyTokens,
+            toggleCompanions: DHTokenHUD.#onToggleCompanions,
+            toggleColossi: DHTokenHUD.#onToggleColossi
         }
     };
 
@@ -60,6 +61,12 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         context.hasCompanion = this.actor.system.companion;
         context.companionOnCanvas = context.hasCompanion && this.actor.system.companion.getActiveTokens().length > 0;
 
+        const isColossus = this.actor?.type === 'adversary' && this.actor.system.type === 'colossus';
+        if (isColossus && this.actor.system.typeData?.role === 'framework') {
+            context.isColossusFramework = true;
+            context.colossiPartsOnCanvas = false;
+        }
+
         return context;
     }
 
@@ -96,7 +103,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         }
     }
 
-    static async #togglePartyTokens(_, button) {
+    static async #onTogglePartyTokens(_, button) {
         const icon = button.querySelector('img');
         icon.classList.toggle('flipped');
         button.dataset.tooltip = game.i18n.localize(
@@ -108,7 +115,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         await this.toggleClowncar(this.actor.system.partyMembers);
     }
 
-    static async #toggleCompanions(_, button) {
+    static async #onToggleCompanions(_, button) {
         const icon = button.querySelector('img');
         icon.classList.toggle('flipped');
         button.dataset.tooltip = game.i18n.localize(
@@ -118,6 +125,18 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         );
 
         await this.toggleClowncar([this.actor.system.companion]);
+    }
+
+    static async #onToggleColossi(_, button) {
+        const isColossus = this.actor?.type === 'adversary' && this.actor.system.type === 'colossus';
+        if (!isColossus || this.actor.system.typeData?.role !== 'framework') return;
+
+        if (this.actor.system.typeData.partActors?.length) {
+            await this.toggleClowncar(this.actor.system.typeData.partActors);
+            await this.actor.update({ 'system.typeData.partActors': _del });
+        } else {
+            await this.actor.system.typeData.placeParts();
+        }
     }
 
     async toggleClowncar(actors) {
