@@ -1,5 +1,5 @@
-import { ResourceUpdateMap } from '../../data/actor/resource-update-map.mjs';
-import { shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
+import { MoveContext } from '../../data/action/_module.mjs';
+import { pick, shouldUseHopeFearAutomation } from '../../helpers/utils.mjs';
 import { emitGMUpdate, GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -319,7 +319,7 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             return acc;
         }, {});
 
-        await this.party.update({
+        await this.updatePartyData({
             'system.groupRoll': _replace(
                 new game.system.api.data.GroupRollData({
                     ...this.party.system.groupRoll.toObject(),
@@ -362,7 +362,11 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
         delete rollData.options.messageRoll;
         this.updatePartyData(
             {
-                [basePath]: { rollData, successful: null }
+                [basePath]: { 
+                    rollData,
+                    successful: null,
+                    ...pick(result, ['costs', 'uses'])
+                }
             },
             this.getUpdatingParts(button)
         );
@@ -481,9 +485,26 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
 
         await cls.create(msgData);
 
+        // Create resource maps and add move costs. We presume they all succeeded, as we don't have support for multi actor contexts
+        // Multi actor costs can be handled by adding actor uuid as a prop to costs
+        for (const data of Object.values(this.party.system.groupRoll.aidingCharacters)) {
+            const actor = game.actors.get(data.id);
+            const fakeContext = await MoveContext.build({
+                actor,
+                costs: data.costs,
+                uses: data.uses
+            });
+            fakeContext.spendResources({ alwaysConsume: true });
+        }
+
         /* Handle resource updates for the finished GroupRoll */
+        const leaderContext = await MoveContext.build({
+            actor,
+            costs: this.party.system.groupRoll.leader.costs,
+            uses: this.party.system.groupRoll.leader.uses
+        })
         if (shouldUseHopeFearAutomation({ gmAsPlayer: true })) {
-            const resourceMap = new ResourceUpdateMap(actor);
+            const resourceMap = leaderContext.resourceUpdates
             if (totalRoll.isCritical) {
                 resourceMap.addResources([
                     { key: 'stress', value: -1 },
@@ -494,9 +515,8 @@ export default class GroupRollDialog extends HandlebarsApplicationMixin(Applicat
             } else {
                 resourceMap.addResources([{ key: 'fear', value: 1 }]);
             }
-
-            resourceMap.updateResources();
         }
+        leaderContext.spendResources();
 
         /* Fin */
         this.cancelRoll({ confirm: false });

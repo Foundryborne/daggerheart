@@ -347,7 +347,7 @@ export default class TagTeamDialog extends HandlebarsApplicationMixin(Applicatio
         const error = this.checkInitiatorHopeError(this.initiator);
         if (error) return error;
 
-        await this.party.update({
+        await this.updatePartyData({
             'system.tagTeam': _replace(
                 new game.system.api.data.TagTeamData({
                     ...this.party.system.tagTeam.toObject(),
