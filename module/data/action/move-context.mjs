@@ -447,8 +447,7 @@ export class MoveContext {
      */
     #extractModifiers(type, { rollData } = {}) {
         const bonusEffects = type === 'roll' ? this.bonusEffects : this.damageEffects;
-        const paths = [`system.bonuses.${type}`]
-
+        const path = `system.bonuses.${type}`;
         const modifiers = [];
 
         // Add some roll only modifiers
@@ -462,19 +461,13 @@ export class MoveContext {
                     value: rollData.traits[this.roll.trait].value
                 });
             }
-
-            for (const w of ['primaryWeapon', 'secondaryWeapon']) {
-                if (this.item && this.item.id === rollData[w]?.id) {
-                    paths.push(`roll.${w}`);
-                }
-            }
         }
 
         // Add from effects
         for (const effect of Object.values(bonusEffects)) {
             if (!effect.selected) continue;
             for (const change of effect.changes) {
-                if (!paths.some(path => !change.key?.includes(path))) continue;
+                if (!change.key?.includes(path)) continue;
                 
                 // TODO: We should handle override and all other modes. It'll have to be done in a different way
                 // as we cannot just go through each change and sum them up. We'll have to get the total value with
