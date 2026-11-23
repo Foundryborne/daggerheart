@@ -87,8 +87,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             icon
         }));
 
-        context.hasSelectedEffects = !foundry.utils.isEmpty(this.config.roll.bonusEffects ?? {});
-        context.selectedEffects = this.config.roll.bonusEffects;
+        context.hasSelectedEffects = !foundry.utils.isEmpty(this.config.bonusEffects);
+        context.selectedEffects = this.config.bonusEffects;
 
         if (this.config.costs.length) {
             context.costs = this.config.costs.map(x => ({
@@ -218,7 +218,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     /** @this D20RollDialog */
     static #onToggleSelectedEffect(_event, button) {
-        const effect = this.config.roll.bonusEffects[button.dataset.key];
+        const effect = this.config.bonusEffects[button.dataset.key];
         effect.selected = !effect.selected;
         this.render();
     }
