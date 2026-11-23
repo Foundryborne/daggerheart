@@ -170,8 +170,15 @@ export class MoveContext {
                     : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
         }
 
+        // The config is overriden for damage/healing. This needs to be refactored to be able to extract for all phases
+        // Get new bonus effects but preserve existing references and selected status (in case of double re-init)
+        if (this.roll) {
+            const newEffects = this.extractEffects('roll');
+            this.roll.bonusEffects = this.#mergeBonusEffects(this.roll.bonusEffects, newEffects);
+        }
 
-        this.effects = await this.getActionRelevantEffects();
+        // backwards compat. Might be good to get rid of later
+        this.bonusEffects = this.roll?.bonusEffects ?? {};
 
         this.guaranteedCritical = this.actor?.appliedEffects.reduce((a, c) => {
             const change = c.system.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
@@ -195,6 +202,53 @@ export class MoveContext {
         }
 
         this.applyKeybindings();
+    }
+
+    /**
+     * Reads effects to return a list of toggleable bonus effects for the roll
+     * @param {"roll" | "damage" | "healing"} type 
+     * @returns {Record<string, import('./_types').MoveBonusEffect>} toggleable bonus effects for the type of roll
+     */
+    extractEffects(type) {
+        if (!this.actor) return {};
+
+        const rollData = this.getRollData();
+        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        const effects = [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
+            if (conditionalPassed)
+                acc.push(effect);
+
+            return acc;
+        }, []);
+        
+        const changeKeys = [`system.bonuses.${type}`];
+        if (type === 'damage' || type === 'healing') changeKeys.push('system.rules.attack.damage.hpDamageMultiplier');
+
+        return (effects ?? []).reduce((acc, effect) => {
+            if (!(effect instanceof ActiveEffect)) return acc;
+
+            const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
+
+            // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+            if (
+                conditionalsPassed && 
+                (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
+            ) {
+                acc[effect.id] = {
+                    id: effect.id,
+                    name: effect.name,
+                    description: effect.description,
+                    changes: effect.system.changes,
+                    origEffect: effect,
+                    selected: !effect.disabled
+                };
+            }
+
+            return acc;
+        }, {});
     }
 
     /** 
@@ -394,5 +448,23 @@ export class MoveContext {
         // We can't omit "data" yet until we reduce reliance on it
         return omit(this, ['actor', 'item', 'action', 'effects', 'event', 'evaluated']);
     }
-}
 
+    #mergeBonusEffects(effects, newEffects) {
+        if (effects) {
+            const newKeys = Object.keys(newEffects);
+            for (const key of newKeys) {
+                effects[key] = foundry.utils.mergeObject(
+                    effects[key] ?? {}, 
+                    { ...newEffects[key], selected: effects[key]?.selected },
+                    { recursive: false }
+                );
+            }
+            for (const oldKey of Object.keys(effects).filter(k => !newKeys.includes(k))) {
+                delete effects[oldKey];
+            }
+            return effects;
+        } else {
+            return newEffects;
+        }
+    }
+}

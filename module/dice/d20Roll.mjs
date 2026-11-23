@@ -109,11 +109,6 @@ export default class D20Roll extends DHRoll {
         return modifiers;
     }
 
-    /** @inheritdoc */
-    getActionChangeKeys() {
-        return ['system.bonuses.roll'];
-    }
-
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
 
