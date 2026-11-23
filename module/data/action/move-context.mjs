@@ -142,7 +142,14 @@ export class MoveContext {
      * @returns {typeof CONFIG.Dice.daggerheart[keyof typeof CONFIG.Dice.daggerheart]}
      */
     get rollClass() {
-        return CONFIG.Dice.daggerheart[this.roll?.rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
+        if (!this.roll) return CONFIG.Dice.daggerheart['DHRoll'];
+
+        const rollClass = this.roll.lite
+            ? 'DHRoll'
+            : this.roll.fateType
+                ? 'FateRoll'
+                : this.actor?.rollClass?.name ?? (this.roll.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+        return CONFIG.Dice.daggerheart[rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
     }
 
     getRollData() {
@@ -166,14 +173,6 @@ export class MoveContext {
      * Can be called after making changes to data in order to re-initialize using new data.
      */
     async initialize() {
-        if (this.roll) {
-            this.roll.rollClass = this.roll?.lite
-                ? 'DHRoll'
-                : this.roll.fateType
-                    ? 'FateRoll'
-                    : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
-        }
-
         // Acquire bonus effects for the main roll and damage, so that we can start getting modifiers
         // todo: support bonus effects defined in data that don't come from effects somehow
         this.bonusEffects = this.#mergeBonusEffects(this.bonusEffects, this.roll ? this.extractEffects('roll') : {});
@@ -219,7 +218,28 @@ export class MoveContext {
             this.uses.enabled ??= true;
         }
 
-        this.applyKeybindings();
+        // Apply configure prop, but only if not set to allow overrides
+        // todo: should this be a thing in skips?
+        const event = this.event;
+        this.dialog.configure ??= !event || !(event.shiftKey || event.altKey || event.ctrlKey)
+
+        // Determine advantage mode
+        if (this.roll) {
+            const keys = {
+                normal: event && (event.shiftKey || event.altKey || event.ctrlKey),
+                advantage: Boolean(event?.altKey),
+                disadvantage: Boolean(event?.ctrlKey)
+            };
+
+            const advantage = this.roll.advantage === D20Roll.ADV_MODE.ADVANTAGE || keys.advantage || this.advantage;
+            const disadvantage =
+                this.roll.advantage === D20Roll.ADV_MODE.DISADVANTAGE || keys.disadvantage || this.disadvantage;
+            this.roll.advantage = advantage && !disadvantage
+                ? D20Roll.ADV_MODE.ADVANTAGE :
+                !advantage && disadvantage
+                    ? D20Roll.ADV_MODE.DISADVANTAGE
+                    : D20Roll.ADV_MODE.NORMAL;
+        }
     }
 
     /**
@@ -301,34 +321,6 @@ export class MoveContext {
         }
 
         return modifiers;
-    }
-
-    /** 
-     * Apply the results of an event's options to data
-     * This occurs during the initialize phase
-     */
-    applyKeybindings(event = this.event) {
-        // Apply configure prop, but only if not set to allow overrides
-        // todo: should this be a thing in skips?
-        this.dialog.configure ??= !event || !(event.shiftKey || event.altKey || event.ctrlKey)
-
-        const keys = {
-            normal: event && (event.shiftKey || event.altKey || event.ctrlKey),
-            advantage: Boolean(event?.altKey),
-            disadvantage: Boolean(event?.ctrlKey)
-        };
-
-        // Determine advantage mode
-        if (this.roll) {
-            const advantage = this.roll.advantage === D20Roll.ADV_MODE.ADVANTAGE || keys.advantage || this.advantage;
-            const disadvantage =
-                this.roll.advantage === D20Roll.ADV_MODE.DISADVANTAGE || keys.disadvantage || this.disadvantage;
-            this.roll.advantage = advantage && !disadvantage
-                ? D20Roll.ADV_MODE.ADVANTAGE :
-                !advantage && disadvantage
-                    ? D20Roll.ADV_MODE.DISADVANTAGE
-                    : D20Roll.ADV_MODE.NORMAL;
-        }
     }
 
     /** 
