@@ -64,7 +64,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         const isColossus = this.actor?.type === 'adversary' && this.actor.system.type === 'colossus';
         if (isColossus && this.actor.system.typeData?.role === 'framework') {
             context.isColossusFramework = true;
-            context.colossiPartsOnCanvas = false;
+            context.colossiPartsOnCanvas = Boolean(this.actor.system.typeData.partActors?.length);
         }
 
         return context;
@@ -103,27 +103,25 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         }
     }
 
-    static async #onTogglePartyTokens(_, button) {
+    flipClowncarIcon(button, retrieveText, depositText) {
         const icon = button.querySelector('img');
         icon.classList.toggle('flipped');
-        button.dataset.tooltip = game.i18n.localize(
-            icon.classList.contains('flipped')
-                ? 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrievePartyTokens'
-                : 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositPartyTokens'
-        );
+        button.dataset.tooltip = _loc(icon.classList.contains('flipped') ? retrieveText : depositText);
+    }
 
+    static async #onTogglePartyTokens(_, button) {
+        this.flipClowncarIcon(
+            button, 
+            'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrievePartyTokens', 
+            'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositPartyTokens');
         await this.toggleClowncar(this.actor.system.partyMembers);
     }
 
     static async #onToggleCompanions(_, button) {
-        const icon = button.querySelector('img');
-        icon.classList.toggle('flipped');
-        button.dataset.tooltip = game.i18n.localize(
-            icon.classList.contains('flipped')
-                ? 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveCompanionTokens'
-                : 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositCompanionTokens'
-        );
-
+        this.flipClowncarIcon(
+            button, 
+            'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveCompanionTokens', 
+            'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositCompanionTokens');
         await this.toggleClowncar([this.actor.system.companion]);
     }
 
@@ -131,10 +129,23 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         const isColossus = this.actor?.type === 'adversary' && this.actor.system.type === 'colossus';
         if (!isColossus || this.actor.system.typeData?.role !== 'framework') return;
 
+        const retrieveText = 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiParts';
+        const depositText = 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositColossiParts';
         if (this.actor.system.typeData.partActors?.length) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiTitle`)
+                },
+                content: game.i18n.localize('DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiText')
+            });
+    
+            if (!confirmed) return;
+
+            this.flipClowncarIcon(button, retrieveText, depositText);
             await this.toggleClowncar(this.actor.system.typeData.partActors);
             await this.actor.update({ 'system.typeData.partActors': _del });
         } else {
+            this.flipClowncarIcon(button, retrieveText, depositText);
             await this.actor.system.typeData.placeParts();
         }
     }

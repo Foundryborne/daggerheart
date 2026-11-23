@@ -808,7 +808,11 @@
                     "depositPartyTokens": "Deposit Party Tokens",
                     "retrievePartyTokens": "Retrieve Party Tokens",
                     "depositCompanionTokens": "Deposit Companion Token",
-                    "retrieveCompanionTokens": "Retrieve Companion Token"
+                    "retrieveCompanionTokens": "Retrieve Companion Token",
+                    "depositColossiParts": "Deposit Colossi Parts",
+                    "retrieveColossiParts": "Retrieve Colossi Parts",
+                    "retrieveColossiTitle": "Retrieve Colossi Parts",
+                    "retrieveColossiText": "Retrieving the colossi parts removes them, losing any data on marked hit points, applied active effects etc. Are you sure?"
                 }
             },
             "ImageSelect": {
