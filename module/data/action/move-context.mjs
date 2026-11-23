@@ -503,7 +503,7 @@ export class MoveContext {
             for (const key of newKeys) {
                 effects[key] = foundry.utils.mergeObject(
                     effects[key] ?? {}, 
-                    { ...newEffects[key], selected: effects[key]?.selected },
+                    { ...newEffects[key], selected: effects[key]?.selected ?? newEffects[key]?.selected },
                     { recursive: false }
                 );
             }
