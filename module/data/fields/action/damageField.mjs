@@ -51,7 +51,6 @@ export default class DamageField extends fields.SchemaField {
             resourceFormulas, 
             isCritical: Boolean(config.evaluated?.isCritical)
         });
-        damageConfig.bonusEffects = damageConfig.damageEffects; // todo: remove
 
         if (DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id)
             damageConfig.dialog.configure = false;

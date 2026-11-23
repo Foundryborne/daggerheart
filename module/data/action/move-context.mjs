@@ -65,6 +65,10 @@ export class MoveContext {
         this.costs = data.costs ?? [];
         /** The uses that will be spent by this context */
         this.uses = data.uses ?? {};
+        /** Resolved bonus effect data, mostly to restore selected status */
+        this.bonusEffects = data.bonusEffects ?? {};
+        /** Resolved bonus effect data for damage, mostly to restore selected status */
+        this.damageEffects = data.damageEffects ?? {};
         
         // Initialize props based on the documents and action
         // todo: determine which ones we can kill. hasTarget may need an alternative solution
