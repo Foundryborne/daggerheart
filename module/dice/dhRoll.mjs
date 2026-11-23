@@ -253,10 +253,6 @@ export default class DHRoll extends BaseRoll {
         }
     }
 
-    getRollBonuses() {
-        return [];
-    }
-
     addModifiers(roll) {
         roll = roll ?? this.options.roll;
         roll.modifiers?.forEach(m => {
@@ -315,8 +311,6 @@ export default class DHRoll extends BaseRoll {
 
     constructFormula(config) {
         this.terms = Roll.parse(this.options.roll.formula, config.data);
-
-        this.options.roll.modifiers = this.getRollBonuses();
         this.addModifiers();
 
         if (this.options.extraFormula) {

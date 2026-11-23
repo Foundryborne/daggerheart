@@ -168,27 +168,6 @@ export default class DualityRoll extends D20Roll {
             );
     }
 
-    getRollBonuses() {
-        const modifiers = super.getRollBonuses();
-
-        if (this.options.roll.trait && this.data.traits?.[this.options.roll.trait])
-            modifiers.unshift({
-                label: _loc(
-                    this.options.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id
-                        ? 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
-                        : `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`),
-                value: this.data.traits[this.options.roll.trait].value
-            });
-
-        const weapons = ['primaryWeapon', 'secondaryWeapon'];
-        weapons.forEach(w => {
-            if (this.options.source.item && this.options.source.item === this.data[w]?.id)
-                modifiers.push(...this.getBonus(`roll.${w}`));
-        });
-
-        return modifiers;
-    }
-
     /** @inheritdoc */
     getActionChangeKeys() {
         return ['system.bonuses.roll'];
