@@ -249,17 +249,16 @@ export class MoveContext {
             if (!(effect instanceof ActiveEffect)) return acc;
 
             const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
-
-            // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
-            if (
-                conditionalsPassed && 
-                (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
-            ) {
+            if (!conditionalsPassed) return acc;
+            
+            const bonuses = effect.system.changes?.filter(c => c.type === 'bonus' && c.affects === type);
+            if (effect.system.changes?.some(x => changeKeys.some(key => x.key?.includes(key))) || bonuses?.length) {
                 acc[effect.id] = {
                     id: effect.id,
                     name: effect.name,
                     description: effect.description,
                     changes: effect.system.changes,
+                    bonuses,
                     origEffect: effect,
                     selected: !effect.disabled
                 };
@@ -276,6 +275,7 @@ export class MoveContext {
      * @returns {[{ label: string, value: any} ]}
      */
     extractModifiers(type, { rollData } = {}) {
+        rollData ??= this.getRollData();
         const bonusEffects = type === 'roll' ? this.bonusEffects : this.damageEffects;
         const path = `system.bonuses.${type}`
 
@@ -297,6 +297,11 @@ export class MoveContext {
                 );
                 const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
                 modifiers.push({ label: effect.name, value: typedValue });
+            }
+            for (const bonus of effect.bonuses) {
+                const adjustments = rollData.rules?.bonusAdjustments?.[bonus.identifier] ?? [];
+                const formula = bonus.getFormula({ adjustments, rollData });
+                modifiers.push({ label: effect.name, value: formula, damageType: bonus.damageType })
             }
         }
 

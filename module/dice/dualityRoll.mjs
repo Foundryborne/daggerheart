@@ -183,7 +183,7 @@ export default class DualityRoll extends D20Roll {
         const weapons = ['primaryWeapon', 'secondaryWeapon'];
         weapons.forEach(w => {
             if (this.options.source.item && this.options.source.item === this.data[w]?.id)
-                modifiers.push(...this.getBonus(`roll.${w}`));
+                modifiers.push(...this.getModifiers(`roll.${w}`));
         });
 
         return modifiers;

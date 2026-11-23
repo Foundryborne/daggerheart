@@ -1,0 +1,22 @@
+<input type="hidden" name="{{concat "system.changes." index ".type"}}" value="{{type}}" />
+<input type="hidden" name="{{concat "system.changes." index ".phase"}}" value="{{phase}}" />
+
+<div class="nest-inputs">
+    {{formGroup fields.identifier name=(concat "system.changes." index ".identifier") value=identifier}}
+    {{formGroup fields.priority name=(concat "system.changes." index ".priority") value=priority placeholder="20" localize=true}}
+</div>
+<div class="nest-inputs">
+    {{> "typeSelect"}}
+    {{formGroup fields.change.types.dice.fields.mode name=(concat "system.changes." index ".change.mode") value=change.mode localize=true}}
+    {{formGroup fields.change.types.dice.fields.value name=(concat "system.changes." index ".change.value") value=change.value localize=true}}
+</div>
+
+{{#*inline "typeSelect"}}
+    <div class="form-group">
+        <label>Type</label>
+        <select name="{{concat "system.changes." index ".change.type"}}">
+            {{selectOptions fields.change.types selected=change.type localize=true}}
+        </select>
+    </div>
+
+{{/inline}}

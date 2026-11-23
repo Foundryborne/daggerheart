@@ -2931,6 +2931,31 @@
                         }
                     }
                 },
+                "bonus": {
+                    "name": "Bonus",
+                    "FIELDS": {
+                        "affects": {
+                            "label": "Affects"
+                        },
+                        "identifier": {
+                            "label": "Identifier"
+                        },
+                        "damageType": {
+                            "label": "Damage Type"
+                        }
+                    }
+                },
+                "bonusAdjustment": {
+                    "name": "Bonus Adjustment",
+                    "FIELDS": {
+                        "mode": {
+                            "label": "Mode"
+                        },
+                        "identifier": {
+                            "label": "Identifier"
+                        }
+                    }
+                },
                 "standardAttack": {
                     "name": "Standard Attack",
                     "FIELDS": {
