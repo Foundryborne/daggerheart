@@ -171,16 +171,16 @@ export class MoveContext {
         }
 
         // Acquire bonus effects for the main roll and damage, so that we can start getting modifiers
+        // todo: support bonus effects defined in data that don't come from effects somehow
         this.bonusEffects = this.#mergeBonusEffects(this.bonusEffects, this.roll ? this.extractEffects('roll') : {});
         this.damageEffects = this.#mergeBonusEffects(this.damageEffects, this.hasDamage || this.hasHealing ? this.extractEffects(this.hasHealing ? 'healing' : 'damage') : {}); // todo: include healing
         
         const rollData = this.getRollData();
 
-        // The config is overriden for damage/healing. This needs to be refactored to be able to extract for all phases
-        // Get new bonus effects but preserve existing references and selected status (in case of double re-init)
+        // Extract Roll and damage modifiers
         if (this.roll) {
             this.roll.modifiers = foundry.utils.deepClone(this.roll.baseModifiers) ?? [];
-            this.roll.modifiers.push(...this.extractModifiers({ bonusEffects: this.bonusEffects, path: 'system.bonuses.roll', rollData }));
+            this.roll.modifiers.push(...this.extractModifiers('roll', { rollData }));
             const actorExperiences = rollData.experiences;
             for (const m of this.experiences?.filter(m => !!actorExperiences[m]) ?? []) {
                 this.roll.modifiers.push({
@@ -189,13 +189,9 @@ export class MoveContext {
                 });
             }
         }
-
         if (this.damageFormula) {
             const type = this.hasHealing ? 'healing' : 'damage';
-            this.damageFormula.modifiers = [];            
-            // todo: how did temporary modifiers work?
-            const extractedModifiers = this.extractModifiers({ bonusEffects: this.damageEffects, path: `system.bonuses.${type}`, rollData });
-            this.damageFormula.modifiers.push(...extractedModifiers);
+            this.damageFormula.modifiers = this.extractModifiers(type, { rollData });
         }
 
         this.guaranteedCritical = this.actor?.appliedEffects.reduce((a, c) => {
@@ -272,10 +268,13 @@ export class MoveContext {
     /**
      * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
      * that match a given change.key partial path.
-     * @param {string} path The full or partial effect.change key 
+     * @param {"roll" | "damage" | "healing"} type 
      * @returns {[{ label: string, value: any} ]}
      */
-    extractModifiers({ bonusEffects, path, rollData }) {
+    extractModifiers(type, { rollData } = {}) {
+        const bonusEffects = type === 'roll' ? this.bonusEffects : this.damageEffects;
+        const path = `system.bonuses.${type}`
+
         const modifiers = [];
         for (const effect of Object.values(bonusEffects)) {
             if (!effect.selected) continue;
@@ -288,7 +287,7 @@ export class MoveContext {
                 if (!['add', 'subtract'].includes(change.type)) continue;
 
                 const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
-                    rollData,
+                    rollData ?? this.getRollData(),
                     change,
                     effect.origEffect
                 );
