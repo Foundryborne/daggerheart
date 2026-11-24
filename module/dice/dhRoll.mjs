@@ -1,5 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
-import { getAllResourceLabels, triggerChatRollFx } from '../helpers/utils.mjs';
+import { getAllResourceLabels } from '../helpers/utils.mjs';
 import BaseRoll from './baseRoll.mjs';
 
 export default class DHRoll extends BaseRoll {
@@ -43,20 +43,15 @@ export default class DHRoll extends BaseRoll {
     static DefaultDialog = D20RollDialog;
 
     /**
-     * @param {Partial<MoveContext>} config
-     * @returns {Promise<MoveContext>}
+     * Creates the roll object as well as the chat message, and returns the context (not the roll).
+     * @param {MoveContext} config 
+     * @param {unknown} message 
+     * @returns {MoveContext}
      */
     static async build(config = {}, message = {}) {
-        const roll = await this.buildConfigure(config, message);
-        if (!roll) return;
-
-        if (config.skips?.createMessage) config.messageRoll = roll;
-
-        if (config.evaluate !== false) {
-            await this.buildEvaluate(roll, config, message);
-        }
-        await this.buildPost(roll, config, message);
-        return config;
+        const cls = config.rollClass
+        if (!cls) throw new Error('You cannot call build() on the base roll class');
+        return cls.build(config, message);
     }
 
     static createRollInstance(config) {
@@ -66,6 +61,7 @@ export default class DHRoll extends BaseRoll {
     /** 
      * @param {Partial<MoveContext>} config 
      * @returns {Promise<MoveContext>}
+     * @protected
      */
     static async buildConfigure(config = {}, message = {}) {
         config.hooks = [...this.getHooks(), ''];
@@ -90,22 +86,6 @@ export default class DHRoll extends BaseRoll {
                 return [];
         }
         return roll;
-    }
-
-    /** 
-     * Evaluates the roll and assigns roll data into the config. 
-     * This is only called if config.evaluate is not set to false
-     * @protected
-     */
-    static async buildEvaluate(roll, config = {}, message = {}) {
-        await roll.evaluate();
-
-        config.roll = foundry.utils.deepClone({
-            ...config.roll,
-            ...roll.options.roll,
-            breakdown: this.getRollBreakdown(roll, roll.options.roll, config.action)
-        });
-        config.evaluated = roll;
     }
 
     static getRollBreakdownBaseTerms() {
@@ -140,23 +120,6 @@ export default class DHRoll extends BaseRoll {
         }
 
         return rollBreakdown;
-    }
-
-    /** 
-     * Runs any post configuration events that need to happen towards the end, such as hooks and dice so nice 
-     * @protected
-     */
-    static async buildPost(roll, config, message) {
-        for (const hook of config.hooks) {
-            if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
-        }
-
-        if (config.skips?.createMessage) {
-            await triggerChatRollFx([roll]);
-        } else if (!config.source?.message) {
-            config.flags.actionChatMessageHandled ||= config.action?.chatDisplay;
-            config.message = await this.toMessage(roll, config);
-        }
     }
 
     /**

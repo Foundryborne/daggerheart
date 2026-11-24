@@ -114,17 +114,56 @@ export default class D20Roll extends DHRoll {
         return ['system.bonuses.roll'];
     }
 
-    static async buildEvaluate(roll, config = {}, message = {}) {
-        await super.buildEvaluate(roll, config, message);
+    /** @inheritdoc */
+    static async build(config = {}, message = {}) {
+        const roll = await this.buildConfigure(config, message);
+        if (!roll) return;
 
-        const data = config.roll;
-        if (config.targets?.length) {
-            config.targets.forEach(target => {
-                const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
-                target.hit = roll.isCritical || roll.total >= difficulty;
+        if (config.skips?.createMessage) config.messageRoll = roll;
+
+        if (config.evaluate !== false) {
+            await roll.evaluate();
+
+            config.roll = foundry.utils.deepClone({
+                ...config.roll,
+                ...roll.options.roll,
+                breakdown: this.getRollBreakdown(roll, roll.options.roll, config.action)
             });
-            data.success = config.targets.some(target => target.hit);
-        } else if (config.roll.difficulty) data.success = roll.isCritical || roll.total >= config.roll.difficulty;
+            config.evaluated = roll;
+
+            const data = config.roll;
+            if (config.targets?.length) {
+                config.targets.forEach(target => {
+                    const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
+                    target.hit = roll.isCritical || roll.total >= difficulty;
+                });
+                data.success = config.targets.some(target => target.hit);
+            } else if (config.roll.difficulty) data.success = roll.isCritical || roll.total >= config.roll.difficulty;
+
+            if (roll._rallyIndex && roll.data?.parent)
+                roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
+
+            if (config.roll.fateType) {
+                config.roll.fate = {
+                    dice: roll.fateDie === 'Hope' ? roll.dHope.denomination : roll.dFear.denomination,
+                    value: roll.fateDie === 'Hope' ? roll.dHope.total : roll.dFear.total,
+                    fateDie: roll.fateDie
+                };
+            }
+        }
+
+        for (const hook of config.hooks) {
+            if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
+        }
+
+        if (config.skips?.createMessage) {
+            await triggerChatRollFx([roll]);
+        } else if (!config.source?.message) {
+            config.flags.actionChatMessageHandled ||= config.action?.chatDisplay;
+            config.message = await this.toMessage(roll, config);
+        }
+
+        return config;
     }
 
     resetFormula() {

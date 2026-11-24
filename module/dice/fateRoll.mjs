@@ -74,14 +74,4 @@ export default class FateRoll extends D20Roll {
         const { FearDie, HopeDie } = game.system.api.dice.diceTypes;
         this.terms[0] = this.fateDie === 'Hope' ? new HopeDie({ faces: 12 }) : new FearDie({ faces: 12 });
     }
-
-    /** @inheritdoc */
-    static async buildEvaluate(roll, config = {}, message = {}) {
-        await super.buildEvaluate(roll, config, message);
-        config.roll.fate = {
-            dice: roll.fateDie === 'Hope' ? roll.dHope.denomination : roll.dFear.denomination,
-            value: roll.fateDie === 'Hope' ? roll.dHope.total : roll.dFear.total,
-            fateDie: roll.fateDie
-        };
-    }
 }
