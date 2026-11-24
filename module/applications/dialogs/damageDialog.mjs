@@ -11,7 +11,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
          * Used for checking if the state has been altered 
          */  
         this.originalIsCritical = config.isCritical;
-        this.selectedEffects = this.config.bonusEffects;
+        this.selectedEffects = this.config.damageEffects;
 
         this.actionCloneActor = config.actor?.getActionClone(config.action, { role: 'origin' });
         this.canChooseDamageType = this.actionCloneActor?.system.rules?.attack?.canChooseDamageType;

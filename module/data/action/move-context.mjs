@@ -8,6 +8,8 @@ import D20Roll from '../../dice/d20Roll.mjs';
  * Action specific state/context for a specific use of an action.
  */
 export class MoveContext {
+    #effects;
+
     /**
      * 
      * @param {import('./_types').MoveContextParams} data RollConfig data or creation data for one 
@@ -65,6 +67,10 @@ export class MoveContext {
         this.costs = data.costs ?? [];
         /** The uses that will be spent by this context */
         this.uses = data.uses ?? {};
+        /** Resolved bonus effect data, mostly to restore selected status */
+        this.bonusEffects = data.bonusEffects ?? {};
+        /** Resolved bonus effect data for damage, mostly to restore selected status */
+        this.damageEffects = data.damageEffects ?? {};
         
         // Initialize props based on the documents and action
         // todo: determine which ones we can kill. hasTarget may need an alternative solution
@@ -138,15 +144,24 @@ export class MoveContext {
      * @returns {typeof CONFIG.Dice.daggerheart[keyof typeof CONFIG.Dice.daggerheart]}
      */
     get rollClass() {
-        return CONFIG.Dice.daggerheart[this.roll?.rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
+        if (!this.roll) return CONFIG.Dice.daggerheart['DHRoll'];
+
+        const rollClass = this.roll.lite
+            ? 'DHRoll'
+            : this.roll.fateType
+                ? 'FateRoll'
+                : this.actor?.rollClass?.name ?? (this.roll.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+        return CONFIG.Dice.daggerheart[rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
     }
 
     getRollData() {
         const data = this.action?.getRollData() ?? this.item?.getRollData() ?? this.actor?.getRollData() ?? {};
+        data.actionType = this.actionType;
         data.experiences = this.companion?.system?.experiences ?? this.actor?.system.experiences ?? {};
         data.traits ??= {};
         data.rules ??= {};
-        data.action ??= {
+        data.action = {
+            ...(data.action ?? {}),
             actionType: this.actionType, 
             roll: this.roll
         };
@@ -162,16 +177,27 @@ export class MoveContext {
      * Can be called after making changes to data in order to re-initialize using new data.
      */
     async initialize() {
-        if (this.roll) {
-            this.roll.rollClass = this.roll?.lite
-                ? 'DHRoll'
-                : this.roll.fateType
-                    ? 'FateRoll'
-                    : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
-        }
+        const rollData = this.getRollData();
+        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        this.#effects = [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
+            if (effect.name === 'Test Bonus') {
+                console.log('test');
+            }
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
+            if (conditionalPassed)
+                acc.push(effect);
 
+            return acc;
+        }, []);
 
-        this.effects = await this.getActionRelevantEffects();
+        // Acquire bonus effects for the main roll and damage, so that we can start getting modifiers
+        // todo: support bonus effects defined in user supplied data that aren't in effects
+        const damageVariant = this.hasHealing ? 'healing' : this.hasDamage ? 'damage' : null;
+        this.bonusEffects = this.#mergeBonusEffects(this.bonusEffects, this.roll ? this.#extractEffects('roll', { rollData }) : {});
+        this.damageEffects = this.#mergeBonusEffects(
+            this.damageEffects, damageVariant ? this.#extractEffects(damageVariant, { rollData }) : {});
 
         this.guaranteedCritical = this.actor?.appliedEffects.reduce((a, c) => {
             const change = c.system.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
@@ -223,26 +249,6 @@ export class MoveContext {
                     ? D20Roll.ADV_MODE.DISADVANTAGE
                     : D20Roll.ADV_MODE.NORMAL;
         }
-    }
-
-    /**
-     * Get all potentially applicable effects on the actor for the action's RollDialog
-     * @returns {Promise<DhActiveEffect[]>}
-     */
-    async getActionRelevantEffects() {
-        if (!this.actor) return [];
-
-        const rollData = this.getRollData();
-        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
-        return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            const conditionalPassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
-            });
-            if (conditionalPassed)
-                acc.push(effect);
-
-            return acc;
-        }, []);
     }
 
     /** 
@@ -393,6 +399,61 @@ export class MoveContext {
         // MoveContext is pasted to roll.options. We don't want certain properties to get serialized in the roll
         // We can't omit "data" yet until we reduce reliance on it
         return omit(this, ['actor', 'item', 'action', 'effects', 'event', 'evaluated']);
+    }
+
+    #extractEffects(type, { rollData }) {
+        if (!this.actor) return {};
+
+        // Recreation of getActionChangeKeys(). Eventually that function can be removed
+        const changeKeys = [`system.bonuses.${type}`];
+        if (type === 'damage' || type === 'healing') changeKeys.push('system.rules.attack.damage.hpDamageMultiplier');
+
+        return (
+            // todo: improve safety. When used improperly, effects is a list of data, not active effects
+            // it can be worked around provisionarily by using getActionRelevantEffects()
+            (this.#effects ?? []).reduce((acc, effect) => {
+                if (!(effect instanceof ActiveEffect)) return acc;
+
+                const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
+
+                // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+                if (
+                    conditionalsPassed && 
+                    (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
+                ) {
+                    acc[effect.id] = {
+                        id: effect.id,
+                        name: effect.name,
+                        description: effect.description,
+                        changes: effect.system.changes,
+                        origEffect: effect,
+                        selected: !effect.disabled
+                    };
+                }
+
+                return acc;
+            }, {})
+        );
+    }
+
+    /** Internal helper to merge new effects into old effects, removing/adding what exists, while maintaining references */
+    #mergeBonusEffects(effects, newEffects) {
+        if (effects) {
+            const newKeys = Object.keys(newEffects);
+            for (const key of newKeys) {
+                effects[key] = foundry.utils.mergeObject(
+                    effects[key] ?? {}, 
+                    { ...newEffects[key], selected: effects[key]?.selected ?? newEffects[key]?.selected },
+                    { recursive: false }
+                );
+            }
+            for (const oldKey of Object.keys(effects).filter(k => !newKeys.includes(k))) {
+                delete effects[oldKey];
+            }
+            return effects;
+        } else {
+            return newEffects;
+        }
     }
 }
 

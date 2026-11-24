@@ -6,6 +6,7 @@ import DHRoll from './dhRoll.mjs';
 export default class DamageRoll extends DHRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
+        this.bonusEffects = options.damageEffects ?? options.bonusEffects;
     }
 
     get isCritical() {
@@ -32,7 +33,7 @@ export default class DamageRoll extends DHRoll {
     /** @inheritdoc */
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
-        if (!roll) return;
+        if (!roll) return null;
 
         if (config.skips?.createMessage) config.messageRoll = roll;
 
