@@ -156,7 +156,6 @@ export class MoveContext {
 
     getRollData() {
         const data = this.action?.getRollData() ?? this.item?.getRollData() ?? this.actor?.getRollData() ?? {};
-        data.actionType = this.actionType;
         data.experiences = this.companion?.system?.experiences ?? this.actor?.system.experiences ?? {};
         data.traits ??= {};
         data.rules ??= {};
