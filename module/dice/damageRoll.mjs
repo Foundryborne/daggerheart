@@ -30,45 +30,50 @@ export default class DamageRoll extends DHRoll {
     }
 
     /** @inheritdoc */
-    static async buildEvaluate(roll, config = {}) {
-        if (config.dialog.configure === false) roll.constructFormulas(config);
+    static async build(config = {}, message = {}) {
+        const roll = await this.buildConfigure(config, message);
+        if (!roll) return;
+
+        if (config.skips?.createMessage) config.messageRoll = roll;
+
+        if (config.evaluate !== false) {
+            if (config.dialog.configure === false) roll.constructFormulas(config);
         
-        const evaluateRoll = async roll => {
-            await roll.roll.evaluate();
-            roll.roll.options = {
-                ...roll.roll.options,
-                breakdown: this.getRollBreakdown(roll.roll, roll, config.action),
-                damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
-                fullRestore: !!roll.fullRestore,
-                itemId: roll.itemId
-            };
-            return roll.roll;
-        }
+            const evaluateRoll = async roll => {
+                await roll.roll.evaluate();
+                roll.roll.options = {
+                    ...roll.roll.options,
+                    breakdown: this.getRollBreakdown(roll.roll, roll, config.action),
+                    damageTypes: roll.damageTypes ? [...roll.damageTypes] : [],
+                    fullRestore: !!roll.fullRestore,
+                    itemId: roll.itemId
+                };
+                return roll.roll;
+            }
 
-        const noExistingDamageConfig = !config.damage;
-        if (noExistingDamageConfig) config.damage = { main: null, resources: {} };
+            const noExistingDamageConfig = !config.damage;
+            if (noExistingDamageConfig) config.damage = { main: null, resources: {} };
 
-        if (config.damageFormula) {
-            config.damage.main = await evaluateRoll(config.damageFormula);
-            config.damage.main.options = { 
-                ...config.damage.main.options,
-                damageTypes: 
-                    config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
-            };
+            if (config.damageFormula) {
+                config.damage.main = await evaluateRoll(config.damageFormula);
+                config.damage.main.options = { 
+                    ...config.damage.main.options,
+                    damageTypes: 
+                        config.damageFormula.damageTypes ? [...config.damageFormula.damageTypes] : []
+                };
+            }
+            
+            for (const roll of config.resourceFormulas) {
+                config.damage.resources[roll.applyTo] = await evaluateRoll(roll);
+            }
+
+            if (noExistingDamageConfig) {
+                config.damage = new ChatDamageData(config.damage);
+            }
+
+            roll._evaluated = true;
         }
         
-        for (const roll of config.resourceFormulas) {
-            config.damage.resources[roll.applyTo] = await evaluateRoll(roll);
-        }
-
-        if (noExistingDamageConfig) {
-            config.damage = new ChatDamageData(config.damage);
-        }
-
-        roll._evaluated = true;
-    }
-
-    static async buildPost(roll, config, message) {
         const chatMessage = config.source?.message
             ? ui.chat.collection.get(config.source.message)
             : getDocumentClass('ChatMessage').applyMode({}, config.rollMode ?? 'public');
@@ -87,7 +92,17 @@ export default class DamageRoll extends DHRoll {
             whisper: chatMessage.whisper?.length > 0 ? chatMessage.whisper : null,
             blind: chatMessage.blind
         });
-        await super.buildPost(roll, config, message);
+
+        for (const hook of config.hooks) {
+            if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
+        }
+
+        if (config.skips?.createMessage) {
+            await triggerChatRollFx([roll]);
+        } else if (!config.source?.message) {
+            config.flags.actionChatMessageHandled ||= config.action?.chatDisplay;
+            config.message = await this.toMessage(roll, config);
+        }
 
         if (config.source?.message) {
             chatMessage.update({ 'system.damage': {
@@ -96,6 +111,8 @@ export default class DamageRoll extends DHRoll {
                 resources: config.damage.resources
             }});
         }
+
+        return config;
     }
 
     static formatGlobal(rolls) {
