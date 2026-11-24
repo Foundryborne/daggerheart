@@ -14,15 +14,7 @@ export default class DHRoll extends BaseRoll {
     constructor(formula, data = {}, options = {}) {
         // @todo: Consider constructing a RollConfig here if its a plain object to guarantee certain properties
         super(formula, data, foundry.utils.mergeObject(options, { roll: [] }, { overwrite: false }));
-
-        // Calculate bonusEffects if the given options.effects includes ActiveEffect instances
-        // When deserialized or cloned, the effects are plain objects (empty in the dev branch) and bonusEffects is already calculated.
-        // However, when damage automation is on, the options is the same instace as the action one, so the bonusEffects needs to be overwritten.
-        // TODO: make options a new object in createRollInstance, that pre-injects bonusEffectBuilder.
-        if (!options.bonusEffects || this.options.effects?.every(e => e instanceof ActiveEffect)) {
-            options.bonusEffects = this.bonusEffectBuilder();
-        }
-
+        options.bonusEffects ??= {};
         if (!this.data || !Object.keys(this.data).length) {
             this.data = options.getRollData?.() ?? options.data ?? {};
         }
@@ -261,10 +253,6 @@ export default class DHRoll extends BaseRoll {
         }
     }
 
-    getRollBonuses() {
-        return [];
-    }
-
     addModifiers(roll) {
         roll = roll ?? this.options.roll;
         roll.modifiers?.forEach(m => {
@@ -317,45 +305,12 @@ export default class DHRoll extends BaseRoll {
         return [...effectBreakdown];
     }
 
-    /**
-     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
-     * that match a given change.key partial path.
-     * @param {string} path The full or partial effect.change key 
-     * @returns {[{ label: string, value: any} ]}
-     */
-    getBonus(path) {
-        const modifiers = [];
-        for (const effect of Object.values(this.options.bonusEffects)) {
-            if (!effect.selected) continue;
-            for (const change of effect.changes) {
-                if (!change.key?.includes(path)) continue;
-                
-                // TODO: We should handle override and all other modes. It'll have to be done in a different way
-                // as we cannot just go through each change and sum them up. We'll have to get the total value with
-                // overrides and everything considered.
-                if (!['add', 'subtract'].includes(change.type)) continue;
-
-                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
-                    this.data,
-                    change,
-                    effect.origEffect
-                );
-                const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
-                modifiers.push({ label: effect.name, value: typedValue });
-            }
-        }
-
-        return modifiers;
-    }
-
     getFaces(faces) {
         return Number(faces.startsWith('d') ? faces.replace('d', '') : faces);
     }
 
     constructFormula(config) {
         this.terms = Roll.parse(this.options.roll.formula, config.data);
-
-        this.options.roll.modifiers = this.getRollBonuses();
         this.addModifiers();
 
         if (this.options.extraFormula) {
@@ -383,50 +338,5 @@ export default class DHRoll extends BaseRoll {
         }
 
         return modifierTotal;
-    }
-
-    /** @param {MoveContext} config */
-    static temporaryModifierBuilder(config) {
-        return {};
-    }
-
-    bonusEffectBuilder() {
-        const changeKeys = this.getActionChangeKeys();
-        return (
-            // todo: improve safety. When used improperly, effects is a list of data, not active effects
-            // it can be worked around provisionarily by using getActionRelevantEffects()
-            (this.options.effects ?? []).reduce((acc, effect) => {
-                if (!(effect instanceof ActiveEffect)) return acc;
-
-                const action = this.options.action;
-                const rollData = this.options.getRollData?.() ?? action?.getRollData();
-                const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
-
-                // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
-                if (
-                    conditionalsPassed && 
-                    (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
-                ) {
-                    acc[effect.id] = {
-                        id: effect.id,
-                        name: effect.name,
-                        description: effect.description,
-                        changes: effect.system.changes,
-                        origEffect: effect,
-                        selected: !effect.disabled
-                    };
-                }
-
-                return acc;
-            }, {})
-        );
-    }
-
-    /** 
-     * Returns the change keys associated with this roll class.
-     * @returns {string[]} 
-     */
-    getActionChangeKeys() {
-        return [];
     }
 }

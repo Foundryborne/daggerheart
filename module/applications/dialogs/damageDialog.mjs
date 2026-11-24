@@ -11,7 +11,6 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
          * Used for checking if the state has been altered 
          */  
         this.originalIsCritical = config.isCritical;
-        this.selectedEffects = this.config.bonusEffects;
 
         this.actionCloneActor = config.actor?.getActionClone(config.action, { role: 'origin' });
         this.canChooseDamageType = this.actionCloneActor?.system.rules?.attack?.canChooseDamageType;
@@ -32,7 +31,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             icon: 'fa-solid fa-dice'
         },
         actions: {
-            toggleSelectedEffect: this.toggleSelectedEffect,
+            toggleSelectedEffect: this.#onToggleSelectedEffect,
             updateDamageType: DamageDialog.#onUpdateDamageType,
             updateGroupAttack: this.updateGroupAttack,
             toggleCritical: this.toggleCritical,
@@ -60,6 +59,8 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     }
 
     async _prepareContext(_options) {
+        await this.config.initialize(); // Re-initialize if required first
+        
         const context = await super._prepareContext(_options);
         context.config = CONFIG.DH;
         context.title = this.config.title ?? this.title;
@@ -78,9 +79,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             label,
             icon
         }));
-        context.modifiers = this.config.modifiers;
-        context.hasSelectedEffects = Boolean(Object.keys(this.selectedEffects).length);
-        context.selectedEffects = this.selectedEffects;
+        context.modifiers = this.config.damageFormula?.tempModifiers;
+        context.hasSelectedEffects = !foundry.utils.isEmpty(this.config.damageEffects);
+        context.selectedEffects = this.config.damageEffects;
 
         context.damageOptions = this.config.damageOptions;
         context.rangeOptions = CONFIG.DH.GENERAL.groupAttackRange;
@@ -110,11 +111,12 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     static updateRollConfiguration(_event, _, formData) {
         const data = foundry.utils.expandObject(formData.object);
 
-        if (this.config.damageFormula) 
+        if (this.config.damageFormula) {
             foundry.utils.mergeObject(this.config.damageFormula, data.damageFormula);
+            foundry.utils.mergeObject(this.config.damageFormula.tempModifiers, data.modifiers);
+        }
         
         foundry.utils.mergeObject(this.config.resourceFormulas, data.resourceFormulas);
-        foundry.utils.mergeObject(this.config.modifiers, data.modifiers);
         this.config.selectedMessageMode = data.selectedMessageMode;
 
         if (data.damageOptions) {
@@ -147,8 +149,10 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         this.render();
     }
 
-    static toggleSelectedEffect(_event, button) {
-        this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
+    /** @this DamageDialog */
+    static #onToggleSelectedEffect(_event, button) {
+        const effect = this.config.damageEffects[button.dataset.key];
+        effect.selected = !effect.selected;
         this.render();
     }
 

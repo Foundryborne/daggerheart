@@ -16,7 +16,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.roll = roll;
         this.config = config;
         this.originalActionType = config.actionType;
-        this.selectedEffects = this.config.bonusEffects;
     }
 
     static DEFAULT_OPTIONS = {
@@ -88,8 +87,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             icon
         }));
 
-        context.hasSelectedEffects = Boolean(this.selectedEffects && Object.keys(this.selectedEffects).length);
-        context.selectedEffects = this.selectedEffects;
+        context.hasSelectedEffects = !foundry.utils.isEmpty(this.config.bonusEffects);
+        context.selectedEffects = this.config.bonusEffects;
 
         if (this.config.costs.length) {
             context.costs = this.config.costs.map(x => ({
@@ -219,7 +218,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     /** @this D20RollDialog */
     static #onToggleSelectedEffect(_event, button) {
-        this.selectedEffects[button.dataset.key].selected = !this.selectedEffects[button.dataset.key].selected;
+        const effect = this.config.bonusEffects[button.dataset.key];
+        effect.selected = !effect.selected;
         this.render();
     }
 

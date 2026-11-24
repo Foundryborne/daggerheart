@@ -1,6 +1,7 @@
 import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
 import { omit } from '../../helpers/functional.mjs';
 import D20Roll from '../../dice/d20Roll.mjs';
+import { parseRallyDice } from '../../helpers/utils.mjs';
 
 /** @import DHBaseAction from './baseAction.mjs'; */
 
@@ -65,6 +66,10 @@ export class MoveContext {
         this.costs = data.costs ?? [];
         /** The uses that will be spent by this context */
         this.uses = data.uses ?? {};
+        /** Resolved bonus effect data, mostly to restore selected status */
+        this.bonusEffects = data.bonusEffects ?? {};
+        /** Resolved bonus effect data for damage, mostly to restore selected status */
+        this.damageEffects = data.damageEffects ?? {};
         
         // Initialize props based on the documents and action
         // todo: determine which ones we can kill. hasTarget may need an alternative solution
@@ -138,7 +143,14 @@ export class MoveContext {
      * @returns {typeof CONFIG.Dice.daggerheart[keyof typeof CONFIG.Dice.daggerheart]}
      */
     get rollClass() {
-        return CONFIG.Dice.daggerheart[this.roll?.rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
+        if (!this.roll) return CONFIG.Dice.daggerheart['DHRoll'];
+
+        const rollClass = this.roll.lite
+            ? 'DHRoll'
+            : this.roll.fateType
+                ? 'FateRoll'
+                : this.actor?.rollClass?.name ?? (this.roll.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+        return CONFIG.Dice.daggerheart[rollClass] ?? CONFIG.Dice.daggerheart['DHRoll'];
     }
 
     getRollData() {
@@ -162,16 +174,30 @@ export class MoveContext {
      * Can be called after making changes to data in order to re-initialize using new data.
      */
     async initialize() {
+        // Acquire bonus effects for the main roll and damage, so that we can start getting modifiers
+        // todo: support bonus effects defined in data that don't come from effects somehow
+        this.bonusEffects = this.#mergeBonusEffects(this.bonusEffects, this.roll ? this.#extractEffects('roll') : {});
+        this.damageEffects = this.#mergeBonusEffects(this.damageEffects, this.hasDamage || this.hasHealing ? this.#extractEffects(this.hasHealing ? 'healing' : 'damage') : {}); // todo: include healing
+        
+        const rollData = this.getRollData();
+
+        // Extract Roll and damage modifiers
         if (this.roll) {
-            this.roll.rollClass = this.roll?.lite
-                ? 'DHRoll'
-                : this.roll.fateType
-                    ? 'FateRoll'
-                    : this.actor?.rollClass?.name ?? (this.roll?.type === 'trait' ? 'DualityRoll' : 'DHRoll');
+            this.roll.modifiers = foundry.utils.deepClone(this.roll.baseModifiers) ?? [];
+            this.roll.modifiers.push(...this.#extractModifiers('roll', { rollData }));
+            const actorExperiences = rollData.experiences;
+            for (const m of this.experiences?.filter(m => !!actorExperiences[m]) ?? []) {
+                this.roll.modifiers.push({
+                    label: actorExperiences[m].name,
+                    value: actorExperiences[m].value
+                });
+            }
         }
-
-
-        this.effects = await this.getActionRelevantEffects();
+        if (this.damageFormula) {
+            const type = this.hasHealing ? 'healing' : 'damage';
+            this.damageFormula.modifiers = this.#extractModifiers(type, { rollData });
+            this.damageFormula.tempModifiers ??= this.#createTemporaryModifiers(); // only create once, no merge/override
+        }
 
         this.guaranteedCritical = this.actor?.appliedEffects.reduce((a, c) => {
             const change = c.system.changes.find(ch => ch.key === 'system.rules.roll.guaranteedCritical');
@@ -194,26 +220,19 @@ export class MoveContext {
             this.uses.enabled ??= true;
         }
 
-        this.applyKeybindings();
-    }
-
-    /** 
-     * Apply the results of an event's options to data
-     * This occurs during the initialize phase
-     */
-    applyKeybindings(event = this.event) {
         // Apply configure prop, but only if not set to allow overrides
         // todo: should this be a thing in skips?
+        const event = this.event;
         this.dialog.configure ??= !event || !(event.shiftKey || event.altKey || event.ctrlKey)
-
-        const keys = {
-            normal: event && (event.shiftKey || event.altKey || event.ctrlKey),
-            advantage: Boolean(event?.altKey),
-            disadvantage: Boolean(event?.ctrlKey)
-        };
 
         // Determine advantage mode
         if (this.roll) {
+            const keys = {
+                normal: event && (event.shiftKey || event.altKey || event.ctrlKey),
+                advantage: Boolean(event?.altKey),
+                disadvantage: Boolean(event?.ctrlKey)
+            };
+
             const advantage = this.roll.advantage === D20Roll.ADV_MODE.ADVANTAGE || keys.advantage || this.advantage;
             const disadvantage =
                 this.roll.advantage === D20Roll.ADV_MODE.DISADVANTAGE || keys.disadvantage || this.disadvantage;
@@ -223,26 +242,6 @@ export class MoveContext {
                     ? D20Roll.ADV_MODE.DISADVANTAGE
                     : D20Roll.ADV_MODE.NORMAL;
         }
-    }
-
-    /**
-     * Get all potentially applicable effects on the actor for the action's RollDialog
-     * @returns {Promise<DhActiveEffect[]>}
-     */
-    async getActionRelevantEffects() {
-        if (!this.actor) return [];
-
-        const rollData = this.getRollData();
-        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
-        return [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            const conditionalPassed = effect.system.testConditionals(rollData, { 
-                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
-            });
-            if (conditionalPassed)
-                acc.push(effect);
-
-            return acc;
-        }, []);
     }
 
     /** 
@@ -394,5 +393,164 @@ export class MoveContext {
         // We can't omit "data" yet until we reduce reliance on it
         return omit(this, ['actor', 'item', 'action', 'effects', 'event', 'evaluated']);
     }
-}
 
+    /**
+     * Reads effects to return a list of toggleable bonus effects for the roll
+     * @param {"roll" | "damage" | "healing"} type 
+     * @returns {Record<string, import('./_types').MoveBonusEffect>} toggleable bonus effects for the type of roll
+     */
+    #extractEffects(type) {
+        if (!this.actor) return {};
+
+        const rollData = this.getRollData();
+        const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
+        const effects = [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
+            const conditionalPassed = effect.system.testConditionals(rollData, { 
+                phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
+            });
+            if (conditionalPassed)
+                acc.push(effect);
+
+            return acc;
+        }, []);
+        
+        const changeKeys = [`system.bonuses.${type}`];
+        if (type === 'damage' || type === 'healing') changeKeys.push('system.rules.attack.damage.hpDamageMultiplier');
+
+        return (effects ?? []).reduce((acc, effect) => {
+            if (!(effect instanceof ActiveEffect)) return acc;
+
+            const conditionalsPassed = rollData && effect.system?.testConditionals?.(rollData, { phase: 'roll' });
+
+            // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.
+            if (
+                conditionalsPassed && 
+                (effect.system.changes ?? []).some(x => changeKeys.some(key => x.key?.includes(key)))
+            ) {
+                acc[effect.id] = {
+                    id: effect.id,
+                    name: effect.name,
+                    description: effect.description,
+                    changes: effect.system.changes,
+                    origEffect: effect,
+                    selected: !effect.disabled
+                };
+            }
+
+            return acc;
+        }, {});
+    }
+
+    /**
+     * Grabs all instances of ActiveEffect.change values from the toggleable bonusEffects of the roll 
+     * that match a given change.key partial path.
+     * @param {"roll" | "damage" | "healing"} type 
+     * @returns {[{ label: string, value: any} ]}
+     */
+    #extractModifiers(type, { rollData } = {}) {
+        const bonusEffects = type === 'roll' ? this.bonusEffects : this.damageEffects;
+        const path = `system.bonuses.${type}`;
+        const modifiers = [];
+
+        // Add some roll only modifiers
+        if (type === 'roll') {
+            if (this.roll?.trait && rollData.traits?.[this.roll.trait]) {
+                modifiers.push({
+                    label: _loc(
+                        this.roll.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id
+                            ? 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
+                            : `DAGGERHEART.CONFIG.Traits.${this.roll.trait}.name`),
+                    value: rollData.traits[this.roll.trait].value
+                });
+            }
+        }
+
+        // Add from effects
+        for (const effect of Object.values(bonusEffects)) {
+            if (!effect.selected) continue;
+            for (const change of effect.changes) {
+                if (!change.key?.includes(path)) continue;
+                
+                // TODO: We should handle override and all other modes. It'll have to be done in a different way
+                // as we cannot just go through each change and sum them up. We'll have to get the total value with
+                // overrides and everything considered.
+                if (!['add', 'subtract'].includes(change.type)) continue;
+
+                const changeValue = game.system.api.documents.DhActiveEffect.getChangeValue(
+                    rollData ?? this.getRollData(),
+                    change,
+                    effect.origEffect
+                );
+                const typedValue = change.type === 'add' ? changeValue : (Number.isNumeric(changeValue) ? -changeValue : `-1 * (${changeValue})`);
+                modifiers.push({ label: effect.name, value: typedValue });
+            }
+        }
+
+        return modifiers;
+    }
+
+    /** 
+     * Extract what is referred to as "temporary modifiers". These are basically indirect modifiers.
+     * Some of these should join the main modifier list. Or be injected some other way. Perhaps for a future refactor.
+     * These only exist for damage
+     */
+    #createTemporaryModifiers() {
+        const actor = this.actor;
+        if (!actor) return {};
+
+        const mods = {};
+        // Bardic Rally
+        const rallyChoices = (actor.appliedEffects ?? []).reduce((a, c) => {
+            const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
+            if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
+            return a;
+        }, []);
+        if (rallyChoices.length) {
+            mods.rally = {
+                label: 'DAGGERHEART.CLASS.Feature.rallyDice',
+                values: rallyChoices,
+                value: null,
+                beforeCrit: true,
+                callback: part => {
+                    const rallyFaces = this.damageFormula.tempModifiers.rally.values.find(
+                        r => r.value === this.damageFormula.tempModifiers.rally.value
+                    )?.label;
+                    part.roll.terms.push(
+                        new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                        ...CONFIG.Dice.daggerheart.DamageRoll.parse(`1${rallyFaces}`)
+                    );
+                }
+            };
+        }
+
+        const item = this.item;
+        for (const [key, data] of Object.entries(item?.system.rollModifiers ?? {})) {
+            mods[key] = {
+                label: data.label,
+                enabled: true,
+                callback: part => part.roll.terms[0].modifiers.push(...data.modifiers)
+            };
+        }
+
+        return mods;
+    }
+
+    #mergeBonusEffects(effects, newEffects) {
+        if (effects) {
+            const newKeys = Object.keys(newEffects);
+            for (const key of newKeys) {
+                effects[key] = foundry.utils.mergeObject(
+                    effects[key] ?? {}, 
+                    { ...newEffects[key], selected: effects[key]?.selected ?? newEffects[key]?.selected },
+                    { recursive: false }
+                );
+            }
+            for (const oldKey of Object.keys(effects).filter(k => !newKeys.includes(k))) {
+                delete effects[oldKey];
+            }
+            return effects;
+        } else {
+            return newEffects;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import FormulaField from '../formulaField.mjs';
-import { getAllResourceLabels, setsEqual } from '../../../helpers/utils.mjs';
+import { getAllResourceLabels, omit, setsEqual } from '../../../helpers/utils.mjs';
 import IterableTypedObjectField from '../iterableTypedObjectField.mjs';
+import { MoveContext } from '../../action/_module.mjs';
 
 const fields = foundry.data.fields;
 
@@ -41,18 +42,15 @@ export default class DamageField extends fields.SchemaField {
 
         if (!damageFormula && !resourceFormulas.length) return false;
 
-        // todo: add some way to configure damage in MoveContext, and pass the MoveContext
+        // todo: find a way to reuse the config rather than create a new one
         messageId = config.message?._id ?? messageId;
-        const damageConfig = {
+        const damageConfig = await MoveContext.build({
             dialog: {},
-            ...config,
+            ...omit(config, ['evaluate']),
             damageFormula,
             resourceFormulas, 
-            isCritical: Boolean(config.evaluated?.isCritical),
-            // this will go away once the pipeline swaps to using MoveContext
-            data: config.getRollData()
-        };
-        delete damageConfig.evaluate;
+            isCritical: Boolean(config.evaluated?.isCritical)
+        });
 
         if (DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id)
             damageConfig.dialog.configure = false;

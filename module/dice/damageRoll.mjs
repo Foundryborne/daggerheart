@@ -1,6 +1,6 @@
 import DamageDialog from '../applications/dialogs/damageDialog.mjs';
 import { ChatDamageData } from '../data/chat-message/chatDamageData.mjs';
-import { getCritDamageBonus, parseRallyDice, triggerChatRollFx } from '../helpers/utils.mjs';
+import { getCritDamageBonus, triggerChatRollFx } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class DamageRoll extends DHRoll {
@@ -139,22 +139,6 @@ export default class DamageRoll extends DHRoll {
         }
         return { formula, total };
     }
-
-    getRollBonuses() {
-        const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        const modifiers = [...this.getBonus(`system.bonuses.${type}`)];
-
-        return modifiers;
-    }
-
-    /** @inheritdoc */
-    getActionChangeKeys() {
-        const type = this.options.messageType ?? (this.options.hasHealing ? 'healing' : 'damage');
-        return [
-            'system.rules.attack.damage.hpDamageMultiplier',
-            `system.bonuses.${type}`
-        ];
-    }
     
     static getRollBreakdownBaseTerms(action) {
         const damageBonus = action?.damage?.main?.value.bonus;
@@ -185,15 +169,14 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (isDamage && formulaData.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            formulaData.modifiers = this.getRollBonuses(formulaData);
             this.addModifiers(formulaData);
             formulaData.modifiers?.forEach(m => {
                 formulaData.roll.terms.push(...this.formatModifier(m.value));
             });
 
             /* To Remove When Reaction System */
-            for (const mod in config.modifiers) {
-                const modifier = config.modifiers[mod];
+            for (const mod in formulaData.tempModifiers) {
+                const modifier = formulaData.tempModifiers[mod];
                 if (
                     modifier.beforeCrit === true && 
                     (modifier.enabled || modifier.value)
@@ -201,8 +184,8 @@ export default class DamageRoll extends DHRoll {
             }
 
             /* To Remove When Reaction System */
-            for (const mod in config.modifiers) {
-                const modifier = config.modifiers[mod];
+            for (const mod in formulaData.tempModifiers) {
+                const modifier = formulaData.tempModifiers[mod];
                 if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(formulaData);
             }
 
@@ -242,49 +225,5 @@ export default class DamageRoll extends DHRoll {
         formulaData.roll._formula = this.constructor.getFormula(formulaData.roll.terms);
         
         return formulaData;
-    }
-
-    /** @param {MoveContext} config **/
-    static temporaryModifierBuilder(config) {
-        const mods = {};
-        
-        const actor = config.actor;
-        if (actor) {
-            // Bardic Rally
-            const rallyChoices = (actor.appliedEffects ?? []).reduce((a, c) => {
-                const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
-                if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
-                return a;
-            }, []);
-            if (rallyChoices.length) {
-                mods.rally = {
-                    label: 'DAGGERHEART.CLASS.Feature.rallyDice',
-                    values: rallyChoices,
-                    value: null,
-                    beforeCrit: true,
-                    callback: part => {
-                        const rallyFaces = config.modifiers.rally.values.find(
-                            r => r.value === config.modifiers.rally.value
-                        )?.label;
-                        part.roll.terms.push(
-                            new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                            ...this.parse(`1${rallyFaces}`)
-                        );
-                    }
-                };
-            }
-
-            const item = actor.items.get(config.source.item);
-            for (const [key, data] of Object.entries(item?.system.rollModifiers ?? {})) {
-                mods[key] = {
-                    label: data.label,
-                    enabled: true,
-                    callback: part => part.roll.terms[0].modifiers.push(...data.modifiers)
-                };
-            }
-        }
-
-        config.modifiers = mods;
-        return mods;
     }
 }
