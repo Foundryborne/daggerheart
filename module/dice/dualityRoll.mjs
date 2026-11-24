@@ -193,22 +193,20 @@ export default class DualityRoll extends D20Roll {
     getActionChangeKeys() {
         return ['system.bonuses.roll'];
     }
-
-    /** @inheritdoc */
-    static async buildEvaluate(roll, config = {}, message = {}) {
-        await super.buildEvaluate(roll, config, message);
-        if (roll._rallyIndex && roll.data?.parent)
-            roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
-    }
     
     /** @inheritdoc */
-    static async buildPost(roll, config, message) {
-        await super.buildPost(roll, config, message);
+    static async build(config, message) {
+        // super.build() returns this config on success, but null/undefined on cancellation or failure
+        config = await super.build(config, message);
+        if (!config) return null;
 
+        const roll = config.evaluated ?? config.messageRoll;
         await DualityRoll.dualityUpdate(config);
         await DualityRoll.handleTriggers(roll, config);
+        return config;
     }
 
+    // todo: move to actor or move context
     static async handleTriggers(roll, config) {
         if (!config.source?.actor || config.skips?.triggers) return;
 
