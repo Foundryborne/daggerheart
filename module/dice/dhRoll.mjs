@@ -339,9 +339,4 @@ export default class DHRoll extends BaseRoll {
 
         return modifierTotal;
     }
-
-    /** @param {MoveContext} config */
-    static temporaryModifierBuilder(config) {
-        return {};
-    }
 }

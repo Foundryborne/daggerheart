@@ -1,6 +1,7 @@
 import { ResourceUpdateMap } from '../actor/resource-update-map.mjs';
 import { omit } from '../../helpers/functional.mjs';
 import D20Roll from '../../dice/d20Roll.mjs';
+import { parseRallyDice } from '../../helpers/utils.mjs';
 
 /** @import DHBaseAction from './baseAction.mjs'; */
 
@@ -195,6 +196,7 @@ export class MoveContext {
         if (this.damageFormula) {
             const type = this.hasHealing ? 'healing' : 'damage';
             this.damageFormula.modifiers = this.#extractModifiers(type, { rollData });
+            this.damageFormula.tempModifiers ??= this.#createTemporaryModifiers(); // only create once, no merge/override
         }
 
         this.guaranteedCritical = this.actor?.appliedEffects.reduce((a, c) => {
@@ -485,6 +487,52 @@ export class MoveContext {
         }
 
         return modifiers;
+    }
+
+    /** 
+     * Extract what is referred to as "temporary modifiers". These are basically indirect modifiers.
+     * Some of these should join the main modifier list. Or be injected some other way. Perhaps for a future refactor.
+     * These only exist for damage
+     */
+    #createTemporaryModifiers() {
+        const actor = this.actor;
+        if (!actor) return {};
+
+        const mods = {};
+        // Bardic Rally
+        const rallyChoices = (actor.appliedEffects ?? []).reduce((a, c) => {
+            const change = c.system.changes.find(ch => ch.key === 'system.bonuses.rally');
+            if (change) a.push({ value: c.id, label: parseRallyDice(change.value, c) });
+            return a;
+        }, []);
+        if (rallyChoices.length) {
+            mods.rally = {
+                label: 'DAGGERHEART.CLASS.Feature.rallyDice',
+                values: rallyChoices,
+                value: null,
+                beforeCrit: true,
+                callback: part => {
+                    const rallyFaces = this.damageFormula.tempModifiers.rally.values.find(
+                        r => r.value === this.damageFormula.tempModifiers.rally.value
+                    )?.label;
+                    part.roll.terms.push(
+                        new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                        ...CONFIG.Dice.daggerheart.DamageRoll.parse(`1${rallyFaces}`)
+                    );
+                }
+            };
+        }
+
+        const item = this.item;
+        for (const [key, data] of Object.entries(item?.system.rollModifiers ?? {})) {
+            mods[key] = {
+                label: data.label,
+                enabled: true,
+                callback: part => part.roll.terms[0].modifiers.push(...data.modifiers)
+            };
+        }
+
+        return mods;
     }
 
     #mergeBonusEffects(effects, newEffects) {

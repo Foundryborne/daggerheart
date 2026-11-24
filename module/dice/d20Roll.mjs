@@ -139,7 +139,7 @@ export default class D20Roll extends DHRoll {
             config.flags.actionChatMessageHandled ||= config.action?.chatDisplay;
             config.message = await this.toMessage(roll, config);
         }
-
+        
         return config;
     }
 

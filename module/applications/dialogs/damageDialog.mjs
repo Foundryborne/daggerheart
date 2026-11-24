@@ -79,7 +79,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             label,
             icon
         }));
-        context.modifiers = this.config.modifiers;
+        context.modifiers = this.config.damageFormula?.tempModifiers;
         context.hasSelectedEffects = !foundry.utils.isEmpty(this.config.damageEffects);
         context.selectedEffects = this.config.damageEffects;
 
@@ -111,11 +111,12 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     static updateRollConfiguration(_event, _, formData) {
         const data = foundry.utils.expandObject(formData.object);
 
-        if (this.config.damageFormula) 
+        if (this.config.damageFormula) {
             foundry.utils.mergeObject(this.config.damageFormula, data.damageFormula);
+            foundry.utils.mergeObject(this.config.damageFormula.tempModifiers, data.modifiers);
+        }
         
         foundry.utils.mergeObject(this.config.resourceFormulas, data.resourceFormulas);
-        foundry.utils.mergeObject(this.config.modifiers, data.modifiers);
         this.config.selectedMessageMode = data.selectedMessageMode;
 
         if (data.damageOptions) {
