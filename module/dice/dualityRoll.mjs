@@ -196,7 +196,10 @@ export default class DualityRoll extends D20Roll {
     
     /** @inheritdoc */
     static async build(config, message) {
+        // super.build() returns this config on success, but null/undefined on cancellation or failure
         config = await super.build(config, message);
+        if (!config) return null;
+
         const roll = config.evaluated ?? config.messageRoll;
         await DualityRoll.dualityUpdate(config);
         await DualityRoll.handleTriggers(roll, config);
