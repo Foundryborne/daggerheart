@@ -1,4 +1,4 @@
-import DhpChatMessage from '../../documents/chatMessage.mjs';
+import DhChatMessage from '../../documents/chatMessage.mjs';
 import { DHDamageData, DHResourceData } from '../fields/action/damageField.mjs';
 import * as dice from './_module.mjs';
 
@@ -12,7 +12,7 @@ interface MoveContextParams {
     item: DhItem;
     action: DHBaseAction;
     /** Not persisted, but if set, informs followup events of what message to update */
-    message: DhpChatMessage;
+    message: DhChatMessage;
 
     title: string;
     headerTitle: string;
