@@ -1,4 +1,4 @@
-export default class DhBaseChatMessage extends foundry.abstract.TypeDataModel {
+export default class DhBaseChatData extends foundry.abstract.TypeDataModel {
     get isAuthor() {
         return this.parent?.isAuthor;
     }

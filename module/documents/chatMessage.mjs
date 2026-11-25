@@ -1,6 +1,4 @@
-import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
-
-export default class DhpChatMessage extends foundry.documents.ChatMessage {
+export default class DhChatMessage extends foundry.documents.ChatMessage {
     static #EXPAND_SECTIONS = [
         { selector: '.roll-section [data-action="expandRoll"]', key: 'roll' },
         { selector: '.damage-section', key: 'damage' },
@@ -105,7 +103,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const autoExpandRoll = game.settings.get(
                 CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance
             ).expandRollMessage;
-            for (const { selector, key } of DhpChatMessage.#EXPAND_SECTIONS) {
+            for (const { selector, key } of DhChatMessage.#EXPAND_SECTIONS) {
                 const elements = html.querySelectorAll(selector);
                 for (const element of elements) {
                     element.classList.toggle('expanded', autoExpandRoll[key]);
@@ -132,132 +130,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     addChatListeners(html) {
         this.system.addChatListeners?.(html);
-        this.addTargetSectionListeners(html);
-    }
-
-    addTargetSectionListeners(html) {
-        html.querySelectorAll('.roll-all-save-button').forEach(element =>
-            element.addEventListener('click', this.onRollAllSave.bind(this))
-        );
-
-        html.querySelectorAll('.target-save').forEach(element =>
-            element.addEventListener('click', this.onRollSave.bind(this))
-        );
-
-        html.querySelectorAll('.roll-target').forEach(element => {
-            element.addEventListener('mouseenter', this.hoverTarget);
-            element.addEventListener('mouseleave', this.unhoverTarget);
-            element.addEventListener('click', this.clickTarget);
-        });
-
-        html.querySelectorAll('.selected-to-targets-button').forEach(element => {
-            element.addEventListener('click', this.#onSelectedToTargets.bind(this));
-        });
-
-        html.querySelectorAll('.button-target-selection').forEach(element => {
-            element.addEventListener('click', this.#onTargetSelection.bind(this));
-        });
-
-        html.querySelectorAll('.token-target-container').forEach(element => {
-            if (element.dataset.token) {
-                element.addEventListener('pointerover', this.hoverTarget);
-                element.addEventListener('pointerout', this.unhoverTarget);
-                element.addEventListener('click', this.clickTarget);
-            }
-        });
-    }
-
-    async onRollSave(event) {
-        event.stopPropagation();
-        const tokenId = event.target.closest('[data-token]')?.dataset.token;
-        const token = game.canvas.tokens.get(tokenId);
-        
-        if (!token?.actor || !token.isOwner) return true;
-        if (this.system.source.item && this.system.source.action) {
-            const action = this.system.action;
-            if (!action || !action?.hasSave) return;
-            game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result => {
-                if (!result) return;
-                
-                return emitGMUpdate(
-                    GMUpdateEvent.UpdateSaveMessage,
-                    game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(
-                        action,
-                        result.evaluated.total,
-                        result.evaluated.isCritical,
-                        this,
-                        token.id
-                    ),
-                    {
-                        action: action.uuid,
-                        message: this._id,
-                        token: token.id,
-                        saveTotal: result.evaluated.total,
-                        isCritical: result.evaluated.isCritical
-                    }
-                )
-            });
-        }
-    }
-
-    async onRollAllSave(event) {
-        event.stopPropagation();
-        if (!game.user.isGM) return;
-        
-        const targets = this.system.currentHitTargets;
-        const config = await this.system.getContext({ event });
-        this.system.action?.workflow.get('save')?.execute(config, targets, true);
-    }
-
-    /**
-     * If an action with consumeOnSuccess hasn't consumed resources initially, this function will do so if there were no initial targets.
-     */
-    async consumeOnSuccess() {
-        if (!this.system.successConsumed) {
-            const config = await this.system.getContext();
-            await config.spendResources({ successCost: true });
-            if (config.roll && !config.roll.success) {
-                await this.update({ 'system.successConsumed': true });
-            }
-        }
-    }
-
-    hoverTarget(event) {
-        event.stopPropagation();
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (token && !token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
-    }
-
-    unhoverTarget(event) {
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (token && !token?.controlled) token._onHoverOut(event);
-    }
-
-    clickTarget(event) {
-        event.stopPropagation();
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token) {
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
-            return;
-        }
-        game.canvas.pan(token);
-    }
-
-    /** Handle the user clicking the button to convert selected to targets and update the chat message */
-    async #onSelectedToTargets(event) {
-        event.stopPropagation();
-        // Update the targets and ensure that we swap to the targets tab
-        if (!(await this.update({ 'system.targets': this.system._getCurrentTargets() }))) {
-            this.system.updateTargetHTML({ tab: 'targets' });
-        }
-    }
-
-    /** Handle changing tabs on the target section */
-    #onTargetSelection(event) {
-        event.stopPropagation();
-        if (!event.target.classList.contains('target-selected')) {
-            this.system.updateTargetHTML({ tab: event.target.dataset.selected ? 'select' : 'targets'});
-        }
     }
 
     // Some old v13 messages don't have system data and will cause errors here during roll construction otherwise. TODO. See if message.roll.options.effects can be saved/instantiated as actual ActiveEffects, then this can be removed.

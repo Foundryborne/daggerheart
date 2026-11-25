@@ -1,6 +1,6 @@
-import DhBaseChatMessage from './base';
+import DhBaseChatData from './base';
 
-export default class DHSystemMessage extends DhBaseChatMessage {
+export default class DHSystemMessage extends DhBaseChatData {
     static defineSchema() {
         const fields = foundry.data.fields;
 

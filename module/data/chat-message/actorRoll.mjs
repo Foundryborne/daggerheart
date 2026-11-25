@@ -1,8 +1,8 @@
 import { MoveContext } from '../action/move-context.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 import { ChatDamageData } from './chatDamageData.mjs';
-import DhBaseChatMessage from './base';
-import { emitGMCreate } from '../../systemRegistration/socket.mjs';
+import DhBaseChatData from './base.mjs';
+import { emitGMCreate, emitGMUpdate, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
 
 const fields = foundry.data.fields;
 
@@ -16,7 +16,7 @@ export const originItemField = () =>
         actionIndex: new fields.StringField()
     });
 
-export default class DHActorRoll extends DhBaseChatMessage {
+export default class DHActorRoll extends DhBaseChatData {
     constructor(data, options) {
         super(data, options);
 
@@ -176,6 +176,41 @@ export default class DHActorRoll extends DhBaseChatMessage {
         for (const element of html.querySelectorAll('.action-areas')) {
             element.addEventListener('click', this.onCreateAreas.bind(this));
         }
+
+        this.addTargetSectionListeners(html);
+    }
+
+    addTargetSectionListeners(html) {
+        html.querySelectorAll('.roll-all-save-button').forEach(element =>
+            element.addEventListener('click', this.onRollAllSave.bind(this))
+        );
+
+        html.querySelectorAll('.target-save').forEach(element =>
+            element.addEventListener('click', this.onRollSave.bind(this))
+        );
+
+        // todo: consider making these handlers generic for all token hover based on some data prop, and putting chatMessage proper
+        html.querySelectorAll('.roll-target').forEach(element => {
+            element.addEventListener('mouseenter', this.onHoverTarget);
+            element.addEventListener('mouseleave', this.onUnhoverTarget);
+            element.addEventListener('click', this.onClickTarget);
+        });
+
+        html.querySelectorAll('.selected-to-targets-button').forEach(element => {
+            element.addEventListener('click', this.onSelectedToTargets.bind(this));
+        });
+
+        html.querySelectorAll('.button-target-selection').forEach(element => {
+            element.addEventListener('click', this.onTargetSelection.bind(this));
+        });
+
+        html.querySelectorAll('.token-target-container').forEach(element => {
+            if (element.dataset.token) {
+                element.addEventListener('pointerover', this.onHoverTarget);
+                element.addEventListener('pointerout', this.onUnhoverTarget);
+                element.addEventListener('click', this.onClickTarget);
+            }
+        });
     }
 
     /**
@@ -274,7 +309,7 @@ export default class DHActorRoll extends DhBaseChatMessage {
         );
 
         element.outerHTML = targetTokensHTML;
-        this.parent.addTargetSectionListeners(chatMessageHTML);
+        this.addTargetSectionListeners(chatMessageHTML);
     }
 
     async getRerolledDamage() {
@@ -297,6 +332,19 @@ export default class DHActorRoll extends DhBaseChatMessage {
         await triggerChatRollFx(rerolls);
 
         return update;
+    }
+
+    /**
+     * If an action with consumeOnSuccess hasn't consumed resources initially, this function will do so if there were no initial targets.
+     */
+    async consumeOnSuccess() {
+        if (!this.successConsumed) {
+            const config = await this.getContext();
+            await config.spendResources({ successCost: true });
+            if (config.roll && !config.roll.success) {
+                await this.parent.update({ 'system.successConsumed': true });
+            }
+        }
     }
 
     prepareDerivedData() {
@@ -381,7 +429,7 @@ export default class DHActorRoll extends DhBaseChatMessage {
             if (!confirm) return;
         }
 
-        this.parent.consumeOnSuccess();
+        this.consumeOnSuccess();
         if (this.action) this.action.workflow.get('applyDamage')?.execute(config, targets, true);
         else {
             for (const target of targets) {
@@ -417,10 +465,9 @@ export default class DHActorRoll extends DhBaseChatMessage {
             if (!confirm) return;
         }
         
-        this.parent.consumeOnSuccess();
+        this.consumeOnSuccess();
         this.action?.workflow.get('effects')?.execute(config, targets, true);
     }
-
 
     async onCreateAreas(event) {
         const createArea = async selectedArea => {
@@ -497,4 +544,84 @@ export default class DHActorRoll extends DhBaseChatMessage {
         }
     }
     
+    async onRollAllSave(event) {
+        event.stopPropagation();
+        if (!game.user.isGM) return;
+        
+        const targets = this.currentHitTargets;
+        const config = await this.getContext({ event });
+        this.action?.workflow.get('save')?.execute(config, targets, true);
+    }
+
+
+    async onRollSave(event) {
+        event.stopPropagation();
+        const tokenId = event.target.closest('[data-token]')?.dataset.token;
+        const token = game.canvas.tokens.get(tokenId);
+        
+        if (!token?.actor || !token.isOwner) return true;
+        if (this.source.item && this.source.action) {
+            const action = this.action;
+            if (!action || !action?.hasSave) return;
+            game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result => {
+                if (!result) return;
+                
+                return emitGMUpdate(
+                    GMUpdateEvent.UpdateSaveMessage,
+                    game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(
+                        action,
+                        result.evaluated.total,
+                        result.evaluated.isCritical,
+                        this.parent,
+                        token.id
+                    ),
+                    {
+                        action: action.uuid,
+                        message: this.parent._id,
+                        token: token.id,
+                        saveTotal: result.evaluated.total,
+                        isCritical: result.evaluated.isCritical
+                    }
+                )
+            });
+        }
+    }
+
+    onHoverTarget(event) {
+        event.stopPropagation();
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (token && !token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
+    }
+
+    onUnhoverTarget(event) {
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (token && !token?.controlled) token._onHoverOut(event);
+    }
+
+    onClickTarget(event) {
+        event.stopPropagation();
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (!token) {
+            ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
+            return;
+        }
+        game.canvas.pan(token);
+    }
+
+    /** Handle the user clicking the button to convert selected to targets and update the chat message */
+    async onSelectedToTargets(event) {
+        event.stopPropagation();
+        // Update the targets and ensure that we swap to the targets tab
+        if (!(await this.parent.update({ 'system.targets': this._getCurrentTargets() }))) {
+            this.updateTargetHTML({ tab: 'targets' });
+        }
+    }
+
+    /** Handle changing tabs on the target section */
+    onTargetSelection(event) {
+        event.stopPropagation();
+        if (!event.target.classList.contains('target-selected')) {
+            this.updateTargetHTML({ tab: event.target.dataset.selected ? 'select' : 'targets'});
+        }
+    }
 }
