@@ -345,8 +345,11 @@ export default class AdversarySheet extends DHBaseActorSheet {
         if (this.document.system.type !== CONFIG.DH.ACTOR.adversaryTypes.colossus.id || !this.document.system.typeData) 
             return;
 
+        const missingParts = await this.document.system.typeData.getMissingParts();
+        if (!missingParts.length) return ui.notifications.info(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.AllPartsPlaced'));
+
         this.minimize();
-        await this.document.system.typeData.placeParts();
+        await this.document.system.typeData.placeParts({ missingParts });
         this.maximize();       
     }
 

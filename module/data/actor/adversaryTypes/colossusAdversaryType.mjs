@@ -236,25 +236,16 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
     }
 
     /**
-     * Create tokens for the parts in the scene
-     * TODO: consider working for a part as well, although avoid the infinite recursion
-     * @param {DhTokenDocument} token 
+     * Update abandoned parts, and assign to the framework one
+     * @param {DhAdversary} actor The Framework actor
+     * @param {Token} token The Framework actor's token
      */
-    async placeParts(token) {
-        const actor = resolveNearestDocument(this, Actor);
-        token ??= actor?.token;
-        if (this.role !== 'framework') {
-            throw new Error('Only frameworks can place parts');
-        } else if (!token) {
-            throw new Error('A token is required to place part tokens');
-        }
-
-        // Part one, update abandoned parts, and assign to this one
+    async handleAbandonedParts(actor, token) {
         const abandonedParts = token.scene?.tokens.filter(t => 
             t.actor?.type === 'adversary'
             && t.actor.system?.type === 'colossus'
             && t.actor.system.typeData?.role === 'part'
-            && !t.actor.frameworkActor
+            && !t.actor.system.typeData?.frameworkActor
         )?.map(t => t.actor);
         if (abandonedParts?.length) {
             const updates = [];
@@ -272,11 +263,32 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
                 actor.reset(); // Re-acquire the part list
             }
         }
+    }
 
-        // Grabs missing parts and creates them.
-        const missingParts = (await this.calculatePartStatus())
+    async getMissingParts() {
+        return (await this.calculatePartStatus())
             .filter(p => p.role === 'part' && p.actor && !p.actor.token)
             .map(p => p.actor);
+    }
+
+    /**
+     * Create tokens for the parts in the scene
+     * TODO: consider working for a part as well, although avoid the infinite recursion
+     * @param {DhTokenDocument} token 
+     */
+    async placeParts({token, missingParts} = {}) {
+        const actor = resolveNearestDocument(this, Actor);
+        token ??= actor?.token;
+        if (this.role !== 'framework') {
+            throw new Error('Only frameworks can place parts');
+        } else if (!token) {
+            throw new Error('A token is required to place part tokens');
+        }
+
+        await this.handleAbandonedParts(actor, token);
+
+        // Grabs missing parts and creates them.
+        missingParts ??= await this.getMissingParts();
         
         const toCreate = [];
         for (const basePartActor of missingParts) {
@@ -305,10 +317,12 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
             });
         }
 
-        await CONFIG.ux.TokenManager.createTokensWithPreview(toCreate, { elevation: token?.elevation });
+        const placementResult = 
+            await CONFIG.ux.TokenManager.createTokensWithPreview(toCreate, { elevation: token?.elevation });
 
         // Re-acquire the part list
         actor.reset();
+        return placementResult;
     }
 
     prepareBaseData() {

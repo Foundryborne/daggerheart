@@ -60,7 +60,7 @@ export default class DhTokenManager {
                     } 
                 }
             });
-            if (!previewToken) return null;
+            if (!previewToken) return false;
 
             const finalTokenData = {
                 ...previewToken.toObject(),

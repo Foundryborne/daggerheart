@@ -133,7 +133,13 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
 
         const retrieveText = 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiParts';
         const depositText = 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositColossiParts';
-        if (actor.system.typeData.partActors?.length) {
+        const missingParts = await actor.system.typeData.getMissingParts();
+        if (missingParts.length) {
+            const result = await actor.system.typeData.placeParts({ missingParts });
+            if (result === false) return;
+
+            this.flipClowncarIcon(button, retrieveText, depositText);
+        } else {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
                     title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiTitle`)
@@ -146,9 +152,6 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             this.flipClowncarIcon(button, retrieveText, depositText);
             await this.toggleClowncar(actor.system.typeData.partActors, document);
             await actor.update({ 'system.typeData.partActors': _del });
-        } else {
-            this.flipClowncarIcon(button, retrieveText, depositText);
-            await actor.system.typeData.placeParts();
         }
     }
 

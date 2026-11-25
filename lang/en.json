@@ -353,7 +353,8 @@
                         "OnlyFrameworks": "Only Colossi Frameworks can be added",
                         "MustBeSameCompendium": "Colossi Parts and Frameworks must be in the same compendium",
                         "MustOwnBoth": "You must be an owner of both documents to establish a link",
-                        "FrameworkNotLinked": "This part isn't linked to this framework, and updates will not propagate until added to the scene."
+                        "FrameworkNotLinked": "This part isn't linked to this framework, and updates will not propagate until added to the scene.",
+                        "AllPartsPlaced": "All the colossi parts are already present"
                     }
                 },
                 "adversaryReactionRoll": {

@@ -457,6 +457,18 @@ export default class DhTokenDocument extends foundry.documents.TokenDocument {
     }
 
     /** @inheritdoc */
+    async _onCreate(data, options, userId) {
+        await super._onCreate(data, options, userId);
+
+        // If the created actor is a colossus framework part, link up any existing abandoned parts.
+        const actor = this.actor;
+        const isColossus = actor?.type === 'adversary' && actor.system.type === 'colossus';
+        if (isColossus && actor.system.typeData?.role === 'framework') {
+            actor.system.typeData.handleAbandonedParts(actor, this)
+        }
+    }
+
+    /** @inheritdoc */
     static async _preCreateOperation(documents, operation, user) {
         const allowed = await super._preCreateOperation(documents, operation, user);
         if (allowed === false) return false;
