@@ -1,4 +1,4 @@
-import { emitGMUpdate, emitGMCreate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
+import { emitGMUpdate, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     static #EXPAND_SECTIONS = [
@@ -131,26 +131,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     }
 
     addChatListeners(html) {
-        html.querySelectorAll('.duality-action-damage').forEach(element =>
-            element.addEventListener('click', this.onRollDamage.bind(this))
-        );
-
-        html.querySelectorAll('.damage-button').forEach(element =>
-            element.addEventListener('click', this.onApplyDamage.bind(this))
-        );
-
-        html.querySelectorAll('.duality-action-effect').forEach(element =>
-            element.addEventListener('click', this.onApplyEffect.bind(this))
-        );
-
-        html.querySelectorAll('.undo-damage-button').forEach(element =>
-            element.addEventListener('click', this.onUndoDamage.bind(this))
-        );
-
-        for (const element of html.querySelectorAll('.action-areas')) {
-            element.addEventListener('click', this.onCreateAreas.bind(this));
-        }
-
+        this.system.addChatListeners?.(html);
         this.addTargetSectionListeners(html);
     }
 
@@ -184,79 +165,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 element.addEventListener('click', this.clickTarget);
             }
         });
-    }
-
-    async onRollDamage(event) {
-        event.stopPropagation();
-        const config = await this.system.getContext({ event });
-        await this.system.action?.workflow.get('damage')?.execute(config, this._id, true);
-    }
-
-    async onApplyDamage(event) {
-        event.stopPropagation();
-        if (this.system._getCurrentTargets().length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
-        const targets = this.system.currentHitTargets;
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
-
-        const config = await this.system.getContext({ event });
-
-        if (this.system.hasUnfinishedSaves) {
-            const confirm = await foundry.applications.api.DialogV2.confirm({
-                window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                content: `
-                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
-                    <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
-                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
-                `
-            });
-            if (!confirm) return;
-        }
-
-        this.consumeOnSuccess();
-        if (this.system.action) this.system.action.workflow.get('applyDamage')?.execute(config, targets, true);
-        else {
-            for (const target of targets) {
-                const actor = foundry.utils.fromUuidSync(target.actorId);
-                if (!actor) continue;
-
-                if (this.system.hasHealing) actor.takeHealing(this.system.damage);
-                else {
-                    actor.takeDamage(
-                        this.system.damage, 
-                        { actionUuid: this.system.action, isDirect: this.system.isDirect }
-                    );
-                }
-            }
-        }
-    }
-
-    async onUndoDamage(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        const { token: tokenId } = event.target.closest('[data-token]').dataset;
-        const actor = canvas.scene.tokens.get(tokenId)?.actor;
-        const resourcesUpdates = this.getFlag(CONFIG.DH.id, 'resourcesUpdates') ?? [];
-        const [index, actorDatas] = [...resourcesUpdates.entries()]?.find(([index, r]) => r.token?.id === tokenId)
-            ?? [];
-        const actorUpdates = actorDatas?.updates;
-        if (!actor || !actorUpdates) return;
-
-        const revertedUpdates = actorUpdates.map(u => ({...u, value: u.value * -1}));
-        const updated = await actor.modifyResource(revertedUpdates);
-        if (updated) {
-            resourcesUpdates[index].token.reverted = true;
-            await this.setFlag(CONFIG.DH.id, 'resourcesUpdates', resourcesUpdates);
-
-            const element = document.createElement('div');
-            element.innerHTML = this.content;
-            element.querySelector(`[data-token="${tokenId}"]`).classList.add('damage-reverted');
-            await this.update({ content: element.innerHTML });
-
-            this.renderHTML();
-        }
     }
 
     async onRollSave(event) {
@@ -299,109 +207,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const targets = this.system.currentHitTargets;
         const config = await this.system.getContext({ event });
         this.system.action?.workflow.get('save')?.execute(config, targets, true);
-    }
-
-    async onApplyEffect(event) {
-        event.stopPropagation();
-        if (this.system._getCurrentTargets().length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-        
-        const targets = this.system.currentHitTargets;
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsHit'));
-
-
-        const config = await this.system.getContext({ event });
-
-        if (this.system.hasUnfinishedSaves) {
-            const confirm = await foundry.applications.api.DialogV2.confirm({
-                window: { title: game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
-                content: `
-                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
-                    <p><i>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
-                    <p>${game.i18n.localize('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
-                `
-            });
-            if (!confirm) return;
-        }
-        
-        this.consumeOnSuccess();
-        this.system.action?.workflow.get('effects')?.execute(config, targets, true);
-    }
-
-    async onCreateAreas(event) {
-        const createArea = async selectedArea => {
-            const effects = selectedArea.effects.map(effect => this.system.action.item.effects.get(effect).uuid);
-            const { shape: shapeType, size: range, hasHole } = selectedArea;
-            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ 
-                shapeType, 
-                range, 
-                hasHole 
-            });
-
-            const scene = game.scenes.get(game.user.viewedScene);
-            const level = scene.levels.find(x => x.isView);
-
-            const regionData = {
-                name: selectedArea.name,
-                levels: level ? [level.id] : [],
-                shapes: [shapeData],
-                restriction: { enabled: false, type: 'move', priority: 0 },
-                behaviors:
-                    effects.length > 0
-                        ? [
-                            {
-                                name: game.i18n.localize('TYPES.RegionBehavior.applyActiveEffect'),
-                                type: 'applyActiveEffect',
-                                system: {
-                                    effects: effects
-                                }
-                            }
-                        ]
-                        : [],
-                displayMeasurements: true,
-                locked: false,
-                ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
-                visibility: CONST.REGION_VISIBILITY.ALWAYS
-            };
-            const placeRegion = data => {
-                canvas.regions.placeRegion(data, { 
-                    create: true, 
-                    attachToToken: selectedArea.type === CONFIG.DH.ACTIONS.areaTypes.attached.id 
-                });
-            };
-
-            // Regions with effects must be placed by the GM
-            if (effects.length > 0 && !game.user.isGM) {
-                if (!game.users.activeGM)
-                    return ui.notifications.error(
-                        game.i18n.localize('DAGGERHEART.UI.Notifications.behaviorRegionRequiresGM')
-                    );
-
-                const region = await canvas.regions.placeRegion(regionData, { create: false });
-                emitGMCreate('Region', placeRegion, region, scene.id);
-            } else {
-                placeRegion(regionData);
-            }
-        };
-
-        if (this.system.action.areas.length === 1) createArea(this.system.action.areas[0]);
-        else if (this.system.action.areas.length > 1) {
-            new foundry.applications.ux.ContextMenu.implementation(
-                event.target,
-                '.action-areas',
-                this.system.action.areas.map(area => ({
-                    label: area.name,
-                    onClick: () => createArea(area)
-                })),
-                {
-                    jQuery: false,
-                    fixed: true
-                }
-            );
-
-            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.action-areas');
-        }
     }
 
     /**

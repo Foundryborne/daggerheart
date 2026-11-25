@@ -1,6 +1,8 @@
 import { MoveContext } from '../action/move-context.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 import { ChatDamageData } from './chatDamageData.mjs';
+import DhBaseChatMessage from './base';
+import { emitGMCreate } from '../../systemRegistration/socket.mjs';
 
 const fields = foundry.data.fields;
 
@@ -14,7 +16,7 @@ export const originItemField = () =>
         actionIndex: new fields.StringField()
     });
 
-export default class DHActorRoll extends foundry.abstract.TypeDataModel {
+export default class DHActorRoll extends DhBaseChatMessage {
     constructor(data, options) {
         super(data, options);
 
@@ -155,6 +157,27 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return config;
     }
 
+    /** @inheritdoc */
+    addChatListeners(html) {
+        super.addChatListeners(html);
+
+        for (const element of html.querySelectorAll('.duality-action-damage')) {
+            element.addEventListener('click', this.onRollDamage.bind(this))
+        }
+
+        for (const element of html.querySelectorAll('.damage-button')) {
+            element.addEventListener('click', this.onApplyDamage.bind(this));
+        }
+
+        for (const element of html.querySelectorAll('.duality-action-effect')) {
+            element.addEventListener('click', this.onApplyEffect.bind(this));
+        }
+
+        for (const element of html.querySelectorAll('.action-areas')) {
+            element.addEventListener('click', this.onCreateAreas.bind(this));
+        }
+    }
+
     /**
      * Get the target data for the current targets of the roll. 
      * This will either be the initial targets, or the currently selected tokens depending on which tab the GM has open.
@@ -217,7 +240,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             tokens: uniqueTokens.slice(0, 3)
         }
     }
-
 
     syncSelectedTokens = foundry.utils.debounce(async () => {
         if (!game.user.isGM) return;
@@ -325,4 +347,154 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         
         return source;
     }
+
+    /* -------------------------------------------- */
+    /*  Event Listeners                             */
+    /* -------------------------------------------- */
+
+    async onRollDamage(event) {
+        event.stopPropagation();
+        const config = await this.getContext({ event });
+        await this.action?.workflow.get('damage')?.execute(config, this._id, true);
+    }
+
+    async onApplyDamage(event) {
+        event.stopPropagation();
+        if (this._getCurrentTargets().length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+
+        const targets = this.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
+        const config = await this.getContext({ event });
+
+        if (this.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: _loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
+        }
+
+        this.parent.consumeOnSuccess();
+        if (this.action) this.action.workflow.get('applyDamage')?.execute(config, targets, true);
+        else {
+            for (const target of targets) {
+                const actor = foundry.utils.fromUuidSync(target.actorId);
+                if (!actor) continue;
+
+                if (this.hasHealing) actor.takeHealing(this.damage);
+                else actor.takeDamage(this.damage, { actionUuid: this.action, isDirect: this.isDirect });
+            }
+        }
+    }
+
+    async onApplyEffect(event) {
+        event.stopPropagation();
+        if (this._getCurrentTargets().length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+        
+        const targets = this.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
+        const config = await this.getContext({ event });
+
+        if (this.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: _loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
+        }
+        
+        this.parent.consumeOnSuccess();
+        this.action?.workflow.get('effects')?.execute(config, targets, true);
+    }
+
+
+    async onCreateAreas(event) {
+        const createArea = async selectedArea => {
+            const effects = selectedArea.effects.map(effect => this.action.item.effects.get(effect).uuid);
+            const { shape: shapeType, size: range, hasHole } = selectedArea;
+            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ 
+                shapeType, 
+                range, 
+                hasHole 
+            });
+
+            const scene = game.scenes.get(game.user.viewedScene);
+            const level = scene.levels.find(x => x.isView);
+
+            const regionData = {
+                name: selectedArea.name,
+                levels: level ? [level.id] : [],
+                shapes: [shapeData],
+                restriction: { enabled: false, type: 'move', priority: 0 },
+                behaviors:
+                    effects.length > 0
+                        ? [
+                            {
+                                name: _loc('TYPES.RegionBehavior.applyActiveEffect'),
+                                type: 'applyActiveEffect',
+                                system: {
+                                    effects: effects
+                                }
+                            }
+                        ]
+                        : [],
+                displayMeasurements: true,
+                locked: false,
+                ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+                visibility: CONST.REGION_VISIBILITY.ALWAYS
+            };
+            const placeRegion = data => {
+                canvas.regions.placeRegion(data, { 
+                    create: true, 
+                    attachToToken: selectedArea.type === CONFIG.DH.ACTIONS.areaTypes.attached.id 
+                });
+            };
+
+            // Regions with effects must be placed by the GM
+            if (effects.length > 0 && !game.user.isGM) {
+                if (!game.users.activeGM)
+                    return ui.notifications.error(
+                        _loc('DAGGERHEART.UI.Notifications.behaviorRegionRequiresGM')
+                    );
+
+                const region = await canvas.regions.placeRegion(regionData, { create: false });
+                emitGMCreate('Region', placeRegion, region, scene.id);
+            } else {
+                placeRegion(regionData);
+            }
+        };
+
+        if (this.action.areas.length === 1) createArea(this.action.areas[0]);
+        else if (this.action.areas.length > 1) {
+            new foundry.applications.ux.ContextMenu.implementation(
+                event.target,
+                '.action-areas',
+                this.action.areas.map(area => ({
+                    label: area.name,
+                    onClick: () => createArea(area)
+                })),
+                {
+                    jQuery: false,
+                    fixed: true
+                }
+            );
+
+            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.action-areas');
+        }
+    }
+    
 }
