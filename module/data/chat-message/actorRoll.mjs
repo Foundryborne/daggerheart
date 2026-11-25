@@ -181,36 +181,36 @@ export default class DHActorRoll extends DhBaseChatData {
     }
 
     addTargetSectionListeners(html) {
-        html.querySelectorAll('.roll-all-save-button').forEach(element =>
+        for (const element of html.querySelectorAll('.roll-all-save-button')) {
             element.addEventListener('click', this.onRollAllSave.bind(this))
-        );
+        }
 
-        html.querySelectorAll('.target-save').forEach(element =>
+        for (const element of html.querySelectorAll('.target-save')) {
             element.addEventListener('click', this.onRollSave.bind(this))
-        );
+        }
 
-        // todo: consider making these handlers generic for all token hover based on some data prop, and putting chatMessage proper
-        html.querySelectorAll('.roll-target').forEach(element => {
+        // todo: consider making these handlers generic for all token hover/click and put in base
+        for (const element of html.querySelectorAll('.roll-target')) {
             element.addEventListener('mouseenter', this.onHoverTarget);
             element.addEventListener('mouseleave', this.onUnhoverTarget);
             element.addEventListener('click', this.onClickTarget);
-        });
+        }
 
-        html.querySelectorAll('.selected-to-targets-button').forEach(element => {
+        for (const element of html.querySelectorAll('.selected-to-targets-button')) {
             element.addEventListener('click', this.onSelectedToTargets.bind(this));
-        });
+        }
 
-        html.querySelectorAll('.button-target-selection').forEach(element => {
+        for (const element of html.querySelectorAll('.button-target-selection')) {
             element.addEventListener('click', this.onTargetSelection.bind(this));
-        });
+        }
 
-        html.querySelectorAll('.token-target-container').forEach(element => {
+        for (const element of html.querySelectorAll('.token-target-container')) {
             if (element.dataset.token) {
                 element.addEventListener('pointerover', this.onHoverTarget);
                 element.addEventListener('pointerout', this.onUnhoverTarget);
                 element.addEventListener('click', this.onClickTarget);
             }
-        });
+        }
     }
 
     /**
