@@ -114,7 +114,7 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             button, 
             'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrievePartyTokens', 
             'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositPartyTokens');
-        await this.toggleClowncar(this.actor.system.partyMembers);
+        await this.toggleClowncar(this.actor.system.partyMembers, this.document);
     }
 
     static async #onToggleCompanions(_, button) {
@@ -122,16 +122,18 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             button, 
             'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveCompanionTokens', 
             'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositCompanionTokens');
-        await this.toggleClowncar([this.actor.system.companion]);
+        await this.toggleClowncar([this.actor.system.companion], this.document);
     }
 
     static async #onToggleColossi(_, button) {
-        const isColossus = this.actor?.type === 'adversary' && this.actor.system.type === 'colossus';
-        if (!isColossus || this.actor.system.typeData?.role !== 'framework') return;
+        const actor = this.actor;
+        const document = this.document;
+        const isColossus = actor?.type === 'adversary' && actor.system.type === 'colossus';
+        if (!isColossus || actor.system.typeData?.role !== 'framework') return;
 
         const retrieveText = 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiParts';
         const depositText = 'DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositColossiParts';
-        if (this.actor.system.typeData.partActors?.length) {
+        if (actor.system.typeData.partActors?.length) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
                     title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiTitle`)
@@ -142,22 +144,22 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
             if (!confirmed) return;
 
             this.flipClowncarIcon(button, retrieveText, depositText);
-            await this.toggleClowncar(this.actor.system.typeData.partActors);
-            await this.actor.update({ 'system.typeData.partActors': _del });
+            await this.toggleClowncar(actor.system.typeData.partActors, document);
+            await actor.update({ 'system.typeData.partActors': _del });
         } else {
             this.flipClowncarIcon(button, retrieveText, depositText);
-            await this.actor.system.typeData.placeParts();
+            await actor.system.typeData.placeParts();
         }
     }
 
-    async toggleClowncar(actors) {
+    async toggleClowncar(actors, document) {
         const animationDuration = 500;
         const scene = game.scenes.get(game.user.viewedScene);
         /* getDependentTokens returns already removed tokens with id = null. Need to filter that until it's potentially fixed from Foundry */
         const activeTokens = actors.flatMap(member =>
             member.getDependentTokens({ scenes: scene }).filter(x => x._id && !x._destroyed)
         );
-        const { x: actorX, y: actorY } = this.document;
+        const { x: actorX, y: actorY } = document;
         if (activeTokens.length > 0) {
             for (let token of activeTokens) {
                 await token.update({ x: actorX, y: actorY, alpha: 0 }, { animation: { duration: animationDuration } });

@@ -343,8 +343,10 @@
                         },
                         "frameworkUuid": {
                             "label": "Framework"
-                        }
+                        },
+                        "adjacentParts": "Adjacent Parts"
                     },
+                    "adjacentSegments": "Adjacent Segments",
                     "Notifications": {
                         "AlreadyAddedPart": "This Colossi part was already added",
                         "OnlyParts": "Only Colossi Parts can be added to the parts list",
@@ -809,7 +811,7 @@
                     "retrievePartyTokens": "Retrieve Party Tokens",
                     "depositCompanionTokens": "Deposit Companion Token",
                     "retrieveCompanionTokens": "Retrieve Companion Token",
-                    "depositColossiParts": "Deposit Colossi Parts",
+                    "depositColossiParts": "Place Colossi Parts",
                     "retrieveColossiParts": "Retrieve Colossi Parts",
                     "retrieveColossiTitle": "Retrieve Colossi Parts",
                     "retrieveColossiText": "Retrieving the colossi parts removes them, losing any data on marked hit points, applied active effects etc. Are you sure?"

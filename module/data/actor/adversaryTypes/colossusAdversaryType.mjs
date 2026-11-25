@@ -1,4 +1,4 @@
-import { calculateDepositLocations, getWorldActor, omit, resolveNearestDocument, sortBy } from '../../../helpers/utils.mjs';
+import { getWorldActor, resolveNearestDocument, sortBy } from '../../../helpers/utils.mjs';
 import { ResetBatch } from '../reset-batch.mjs';
 
 /** 
@@ -51,7 +51,8 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
              * Inverted link data for the colossus. This one is prioritized as the main framework for data propagation.
              * A colossus may still pick parts that are not the main one, if they don't exist.
              */
-            frameworkUuid: new fields.DocumentUUIDField({ type: 'Actor', relativize: true, nullable: true, initial: null })
+            frameworkUuid: new fields.DocumentUUIDField({ type: 'Actor', relativize: true, nullable: true, initial: null }),
+            adjacentParts: new fields.StringField({ label: 'DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.adjacentParts', nullable: true, initial: null })
         }
     }
 
@@ -277,7 +278,6 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
             .filter(p => p.role === 'part' && p.actor && !p.actor.token)
             .map(p => p.actor);
         
-        const scene = token.scene;
         const toCreate = [];
         for (const basePartActor of missingParts) {
             if (basePartActor.system.type !== 'colossus') {
@@ -287,32 +287,25 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
 
             const partActor = await getWorldActor(basePartActor);
             toCreate.push({
-                ...omit(token.toObject(), ['_id', 'name']),
-                actorId: partActor.id,
-                actorLink: false,
-                delta: {
-                    system: {
-                        typeData: {
-                            frameworkUuid: actor.uuid
+                actorPreviewName: partActor.name,
+                previewSubtext: partActor.system.typeData.adjacentParts ? 
+                    `${_loc('DAGGERHEART.ACTORS.Adversary.colossus.adjacentSegments')}: ${partActor.system.typeData.adjacentParts }` : 
+                    undefined,
+                actor: partActor,
+                tokenData: {
+                    actorLink: false,
+                    delta: {
+                        system: {
+                            typeData: {
+                                frameworkUuid: actor.uuid
+                            }
                         }
                     }
-                },
-                x: token.x,
-                y: token.y // todo: offset, find an algorithm
+                }
             });
         }
 
-        // Reposition tokens
-        const animationDuration = 500;
-        const newTokens = await scene.createEmbeddedDocuments('Token', toCreate);
-        const positions = calculateDepositLocations(token, newTokens);
-        for (const token of newTokens) {
-            const position = positions.pop();
-            token.update(
-                { x: position.x, y: position.y, alpha: 1 },
-                { animation: { duration: animationDuration } }
-            );
-        }
+        await CONFIG.ux.TokenManager.createTokensWithPreview(toCreate, { elevation: token?.elevation });
 
         // Re-acquire the part list
         actor.reset();

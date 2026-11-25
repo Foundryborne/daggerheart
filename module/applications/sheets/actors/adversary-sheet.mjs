@@ -29,7 +29,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
             reactionRoll: AdversarySheet.#reactionRoll,
             toggleResourceDice: AdversarySheet.#toggleResourceDice,
             handleResourceDice: AdversarySheet.#handleResourceDice,
-            advanceResourceDie: AdversarySheet.#advanceResourceDie
+            advanceResourceDie: AdversarySheet.#advanceResourceDie,
+            placeColossiParts: AdversarySheet.#onPlaceColossiParts
         },
         dragDrop: [
             {
@@ -109,6 +110,14 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
 
+        const isColossusPart = 
+            this.document.system.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
+            this.document.system.typeData?.role === 'part';
+        const descriptionSuffix = (isColossusPart && this.document.system.typeData.adjacentParts) ? 
+            `<strong>${_loc('DAGGERHEART.ACTORS.Adversary.colossus.adjacentSegments')}</strong>: ${this.document.system.typeData.adjacentParts}` :
+            null;
+        context.extendedDescription = [this.document.system.description, ...(descriptionSuffix ? [descriptionSuffix] : [])].join('\n');
+        
         return context;
     }
 
@@ -330,6 +339,15 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
     static #advanceResourceDie(_, target) {
         this.updateResourceDie(target, true);
+    }
+
+    static async #onPlaceColossiParts() {
+        if (this.document.system.type !== CONFIG.DH.ACTOR.adversaryTypes.colossus.id || !this.document.system.typeData) 
+            return;
+
+        this.minimize();
+        await this.document.system.typeData.placeParts();
+        this.maximize();       
     }
 
     lowerResourceDie(event) {
