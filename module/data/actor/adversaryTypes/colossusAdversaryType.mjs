@@ -322,6 +322,7 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
 
         // Re-acquire the part list
         actor.reset();
+        actor.sheet.render();
         return placementResult;
     }
 

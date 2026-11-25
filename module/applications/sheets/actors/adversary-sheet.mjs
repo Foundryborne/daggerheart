@@ -233,6 +233,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
             context.colossusData = {
                 actors: await this.actor.system.typeData?.calculatePartStatus()
             };
+            context.colossusMissingActorTokens = 
+                Boolean((await this.actor.system.typeData?.getMissingParts())?.length); 
         }
     }
 

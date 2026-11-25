@@ -142,9 +142,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
         } else {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
-                    title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiTitle`)
+                    title: game.i18n.localize(`DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossi.title`)
                 },
-                content: game.i18n.localize('DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossiText')
+                content: game.i18n.localize('DAGGERHEART.APPLICATIONS.HUD.tokenHUD.retrieveColossi.content')
             });
     
             if (!confirmed) return;

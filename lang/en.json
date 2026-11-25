@@ -814,8 +814,10 @@
                     "retrieveCompanionTokens": "Retrieve Companion Token",
                     "depositColossiParts": "Place Colossi Parts",
                     "retrieveColossiParts": "Retrieve Colossi Parts",
-                    "retrieveColossiTitle": "Retrieve Colossi Parts",
-                    "retrieveColossiText": "Retrieving the colossi parts removes them, losing any data on marked hit points, applied active effects etc. Are you sure?"
+                    "retrieveColossi": {
+                        "title": "Retrieve Colossi Parts",
+                        "content": "Retrieving the colossi parts deletes all marked hit points, active effects, and features., This data cannot be recovered. Are you sure?"
+                    }
                 }
             },
             "ImageSelect": {

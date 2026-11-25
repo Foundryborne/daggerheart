@@ -101,7 +101,7 @@
                     <side-line-div class="invert"></side-line-div>
                     <a class="colossi-label-container" data-action="placeColossiParts" data-tooltip="DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositColossiParts">
                         <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.colossus.label"}}</h3>
-                        <img src="systems/daggerheart/assets/icons/arrow-dunk.png" />
+                        {{#if colossusMissingActorTokens}}<img src="systems/daggerheart/assets/icons/arrow-dunk.png" />{{/if}}
                     </a>
                     <side-line-div></side-line-div>
                 </div>
