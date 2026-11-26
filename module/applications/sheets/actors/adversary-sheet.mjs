@@ -118,11 +118,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
             case 'header':
-                const isColossusPart = 
-                    this.document.system.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
-                    this.document.system.typeData?.role === 'part';
-                if (isColossusPart) context.colossusAdjacentParts = this.document.system.typeData.adjacentParts;
-                break;
             case 'limited':
                 await this._prepareHeaderContext(context, options);
 
@@ -220,6 +215,11 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+
+        const isColossusPart = 
+            this.document.system.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
+            this.document.system.typeData?.role === 'part';
+        if (isColossusPart) context.colossusAdjacentParts = this.document.system.typeData.adjacentParts;
     }
 
     async _prepareSidebarContext(context, options) {
