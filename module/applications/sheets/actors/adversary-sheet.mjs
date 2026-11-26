@@ -231,6 +231,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         
         if (this.actor.system.type === 'colossus' && this.actor.system.typeData?.type === 'colossus') {
             context.colossusData = {
+                isFramework: this.actor.system.typeData?.role === 'framework',
                 actors: await this.actor.system.typeData?.calculatePartStatus()
             };
             context.colossusMissingActorTokens = 
