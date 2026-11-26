@@ -6,6 +6,7 @@ import DHRoll from './dhRoll.mjs';
 export default class DamageRoll extends DHRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
+        this.bonusEffects = options.damageEffects ?? options.bonusEffects;
     }
 
     get isCritical() {
