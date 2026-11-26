@@ -109,14 +109,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
             context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
-
-        const isColossusPart = 
-            this.document.system.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
-            this.document.system.typeData?.role === 'part';
-        const descriptionSuffix = (isColossusPart && this.document.system.typeData.adjacentParts) ? 
-            `<strong>${_loc('DAGGERHEART.ACTORS.Adversary.colossus.adjacentSegments')}</strong>: ${this.document.system.typeData.adjacentParts}` :
-            null;
-        context.extendedDescription = [this.document.system.description, ...(descriptionSuffix ? [descriptionSuffix] : [])].join('\n');
         
         return context;
     }
@@ -126,6 +118,11 @@ export default class AdversarySheet extends DHBaseActorSheet {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
             case 'header':
+                const isColossusPart = 
+                    this.document.system.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
+                    this.document.system.typeData?.role === 'part';
+                if (isColossusPart) context.colossusAdjacentParts = this.document.system.typeData.adjacentParts;
+                break;
             case 'limited':
                 await this._prepareHeaderContext(context, options);
 
