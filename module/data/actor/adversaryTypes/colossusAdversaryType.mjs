@@ -267,8 +267,8 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
 
     async getMissingParts() {
         return (await this.calculatePartStatus())
-            .filter(p => p.role === 'part' && p.actor && !p.actor.token)
-            .map(p => p.actor);
+            ?.filter(p => p.role === 'part' && p.actor && !p.actor.token)
+            .map(p => p.actor) ?? [];
     }
 
     /**
