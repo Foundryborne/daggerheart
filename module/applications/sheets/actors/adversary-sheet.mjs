@@ -120,20 +120,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
             case 'header':
             case 'limited':
                 await this._prepareHeaderContext(context, options);
-
-                const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
-                context.adversaryType = _loc(adversaryTypes[this.document.system.type].label);
-                context.adversarySubTypes = Object.keys(this.document.system.subTypes).reduce((acc, key) => {
-                    const data = CONFIG.DH.ACTOR.adversarySubTypes[key];
-                    if (data) {
-                        acc.push({
-                            label: _loc(data.label),
-                            cssClass: data.cssClass
-                        });
-                    }
-
-                    return acc;
-                }, []);
                 break;
             case 'sidebar':
                 await this._prepareSidebarContext(context, options);
@@ -215,6 +201,20 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+
+        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+        context.adversaryType = _loc(adversaryTypes[this.document.system.type].label);
+        context.adversarySubTypes = Object.keys(this.document.system.subTypes).reduce((acc, key) => {
+            const data = CONFIG.DH.ACTOR.adversarySubTypes[key];
+            if (data) {
+                acc.push({
+                    label: _loc(data.label),
+                    cssClass: data.cssClass
+                });
+            }
+
+            return acc;
+        }, []);
 
         const isColossusPart = 
             this.document.system.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
