@@ -74,8 +74,10 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
         this.resetUsed = true;
 
         const cls = getDocumentClass('ChatMessage');
-        const msg = {
+        cls.create({
             user: game.user.id,
+            speaker: cls.getSpeaker({ actor: this.actor }),
+            title: _loc('DAGGERHEART.UI.Chat.resourceRoll.title'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/resource-roll.hbs',
                 {
@@ -83,9 +85,7 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
                     name: this.item.name
                 }
             )
-        };
-
-        cls.create(msg);
+        });
         this.close();
     }
 

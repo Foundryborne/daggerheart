@@ -109,6 +109,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         const isColossus = actor.system.typeData?.type === 'colossus';
         const colossusRole = isColossus ? actor.system.typeData.role : null;
         if (group === 'primary') {
+            if (!isColossus) delete result.colossus;
             if (colossusRole !== 'framework') delete result.parts;
             if (colossusRole === 'part') delete result.experiences;
         }
