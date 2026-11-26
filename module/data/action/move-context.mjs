@@ -179,9 +179,6 @@ export class MoveContext {
         const rollData = this.getRollData();
         const applicableEffects = this.actor.allApplicableEffects({ noTransferArmor: true, noSelfArmor: true });
         this.#effects = [...applicableEffects].filter(e => !e.isSuppressed).reduce((acc, effect) => {
-            if (effect.name === 'Test Bonus') {
-                console.log('test');
-            }
             const conditionalPassed = effect.system.testConditionals(rollData, { 
                 phase: CONFIG.DH.EFFECTS.conditionalPhases.roll.id 
             });

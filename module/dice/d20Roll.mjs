@@ -117,7 +117,7 @@ export default class D20Roll extends DHRoll {
     /** @inheritdoc */
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
-        if (!roll) return config;
+        if (!roll) return;
 
         if (config.skips?.createMessage) config.messageRoll = roll;
 

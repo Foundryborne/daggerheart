@@ -33,7 +33,7 @@ export default class DamageRoll extends DHRoll {
     /** @inheritdoc */
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
-        if (!roll) return null;
+        if (!roll) return;
 
         if (config.skips?.createMessage) config.messageRoll = roll;
 
