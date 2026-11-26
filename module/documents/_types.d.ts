@@ -63,3 +63,9 @@ declare module './token.mjs' {
         object: DhTokenPlaceable;
     }
 }
+
+declare module './chatMessage.mjs' {
+    export default interface DhChatMessage<T extends DhBaseChatData = DhBaseChatData> {
+        system: T;
+    }
+}

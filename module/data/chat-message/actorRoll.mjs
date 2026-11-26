@@ -1,6 +1,8 @@
 import { MoveContext } from '../action/move-context.mjs';
 import { triggerChatRollFx } from '../../helpers/utils.mjs';
 import { ChatDamageData } from './chatDamageData.mjs';
+import DhBaseChatData from './base.mjs';
+import { emitGMCreate, emitGMUpdate, GMUpdateEvent } from '../../systemRegistration/socket.mjs';
 
 const fields = foundry.data.fields;
 
@@ -14,7 +16,7 @@ export const originItemField = () =>
         actionIndex: new fields.StringField()
     });
 
-export default class DHActorRoll extends foundry.abstract.TypeDataModel {
+export default class DHActorRoll extends DhBaseChatData {
     constructor(data, options) {
         super(data, options);
 
@@ -155,6 +157,62 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return config;
     }
 
+    /** @inheritdoc */
+    addChatListeners(html) {
+        super.addChatListeners(html);
+
+        for (const element of html.querySelectorAll('.duality-action-damage')) {
+            element.addEventListener('click', this.onRollDamage.bind(this))
+        }
+
+        for (const element of html.querySelectorAll('.damage-button')) {
+            element.addEventListener('click', this.onApplyDamage.bind(this));
+        }
+
+        for (const element of html.querySelectorAll('.duality-action-effect')) {
+            element.addEventListener('click', this.onApplyEffect.bind(this));
+        }
+
+        for (const element of html.querySelectorAll('.action-areas')) {
+            element.addEventListener('click', this.onCreateAreas.bind(this));
+        }
+
+        this.addTargetSectionListeners(html);
+    }
+
+    addTargetSectionListeners(html) {
+        for (const element of html.querySelectorAll('.roll-all-save-button')) {
+            element.addEventListener('click', this.onRollAllSave.bind(this))
+        }
+
+        for (const element of html.querySelectorAll('.target-save')) {
+            element.addEventListener('click', this.onRollSave.bind(this))
+        }
+
+        // todo: consider making these handlers generic for all token hover/click and put in base
+        for (const element of html.querySelectorAll('.roll-target')) {
+            element.addEventListener('mouseenter', this.onHoverTarget);
+            element.addEventListener('mouseleave', this.onUnhoverTarget);
+            element.addEventListener('click', this.onClickTarget);
+        }
+
+        for (const element of html.querySelectorAll('.selected-to-targets-button')) {
+            element.addEventListener('click', this.onSelectedToTargets.bind(this));
+        }
+
+        for (const element of html.querySelectorAll('.button-target-selection')) {
+            element.addEventListener('click', this.onTargetSelection.bind(this));
+        }
+
+        for (const element of html.querySelectorAll('.token-target-container')) {
+            if (element.dataset.token) {
+                element.addEventListener('pointerover', this.onHoverTarget);
+                element.addEventListener('pointerout', this.onUnhoverTarget);
+                element.addEventListener('click', this.onClickTarget);
+            }
+        }
+    }
+
     /**
      * Get the target data for the current targets of the roll. 
      * This will either be the initial targets, or the currently selected tokens depending on which tab the GM has open.
@@ -218,7 +276,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
     }
 
-
     syncSelectedTokens = foundry.utils.debounce(async () => {
         if (!game.user.isGM) return;
         
@@ -252,7 +309,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         );
 
         element.outerHTML = targetTokensHTML;
-        this.parent.addTargetSectionListeners(chatMessageHTML);
+        this.addTargetSectionListeners(chatMessageHTML);
     }
 
     async getRerolledDamage() {
@@ -275,6 +332,19 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         await triggerChatRollFx(rerolls);
 
         return update;
+    }
+
+    /**
+     * If an action with consumeOnSuccess hasn't consumed resources initially, this function will do so if there were no initial targets.
+     */
+    async consumeOnSuccess() {
+        if (!this.successConsumed) {
+            const config = await this.getContext();
+            await config.spendResources({ successCost: true });
+            if (config.roll && !config.roll.success) {
+                await this.parent.update({ 'system.successConsumed': true });
+            }
+        }
     }
 
     prepareDerivedData() {
@@ -324,5 +394,234 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
         
         return source;
+    }
+
+    /* -------------------------------------------- */
+    /*  Event Listeners                             */
+    /* -------------------------------------------- */
+
+    async onRollDamage(event) {
+        event.stopPropagation();
+        const config = await this.getContext({ event });
+        await this.action?.workflow.get('damage')?.execute(config, this._id, true);
+    }
+
+    async onApplyDamage(event) {
+        event.stopPropagation();
+        if (this._getCurrentTargets().length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+
+        const targets = this.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
+        const config = await this.getContext({ event });
+
+        if (this.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: _loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
+        }
+
+        this.consumeOnSuccess();
+        if (this.action) this.action.workflow.get('applyDamage')?.execute(config, targets, true);
+        else {
+            for (const target of targets) {
+                const actor = foundry.utils.fromUuidSync(target.actorId);
+                if (!actor) continue;
+
+                if (this.hasHealing) actor.takeHealing(this.damage);
+                else actor.takeDamage(this.damage, { actionUuid: this.action, isDirect: this.isDirect });
+            }
+        }
+    }
+
+    async onApplyEffect(event) {
+        event.stopPropagation();
+        if (this._getCurrentTargets().length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+        
+        const targets = this.currentHitTargets;
+        if (targets.length === 0)
+            return ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.noTargetsHit'));
+
+        const config = await this.getContext({ event });
+
+        if (this.hasUnfinishedSaves) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: _loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.title') },
+                content: `
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.unfinishedRolls')}</p>
+                    <p><i>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.warning')}</i></p>
+                    <p>${_loc('DAGGERHEART.APPLICATIONS.PendingReactionsDialog.confirmation')}</p>
+                `
+            });
+            if (!confirm) return;
+        }
+        
+        this.consumeOnSuccess();
+        this.action?.workflow.get('effects')?.execute(config, targets, true);
+    }
+
+    async onCreateAreas(event) {
+        const createArea = async selectedArea => {
+            const effects = selectedArea.effects.map(effect => this.action.item.effects.get(effect).uuid);
+            const { shape: shapeType, size: range, hasHole } = selectedArea;
+            const shapeData = CONFIG.Canvas.layers.regions.layerClass.getTemplateShape({ 
+                shapeType, 
+                range, 
+                hasHole 
+            });
+
+            const scene = game.scenes.get(game.user.viewedScene);
+            const level = scene.levels.find(x => x.isView);
+
+            const regionData = {
+                name: selectedArea.name,
+                levels: level ? [level.id] : [],
+                shapes: [shapeData],
+                restriction: { enabled: false, type: 'move', priority: 0 },
+                behaviors:
+                    effects.length > 0
+                        ? [
+                            {
+                                name: _loc('TYPES.RegionBehavior.applyActiveEffect'),
+                                type: 'applyActiveEffect',
+                                system: {
+                                    effects: effects
+                                }
+                            }
+                        ]
+                        : [],
+                displayMeasurements: true,
+                locked: false,
+                ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+                visibility: CONST.REGION_VISIBILITY.ALWAYS
+            };
+            const placeRegion = data => {
+                canvas.regions.placeRegion(data, { 
+                    create: true, 
+                    attachToToken: selectedArea.type === CONFIG.DH.ACTIONS.areaTypes.attached.id 
+                });
+            };
+
+            // Regions with effects must be placed by the GM
+            if (effects.length > 0 && !game.user.isGM) {
+                if (!game.users.activeGM)
+                    return ui.notifications.error(
+                        _loc('DAGGERHEART.UI.Notifications.behaviorRegionRequiresGM')
+                    );
+
+                const region = await canvas.regions.placeRegion(regionData, { create: false });
+                emitGMCreate('Region', placeRegion, region, scene.id);
+            } else {
+                placeRegion(regionData);
+            }
+        };
+
+        if (this.action.areas.length === 1) createArea(this.action.areas[0]);
+        else if (this.action.areas.length > 1) {
+            new foundry.applications.ux.ContextMenu.implementation(
+                event.target,
+                '.action-areas',
+                this.action.areas.map(area => ({
+                    label: area.name,
+                    onClick: () => createArea(area)
+                })),
+                {
+                    jQuery: false,
+                    fixed: true
+                }
+            );
+
+            CONFIG.ux.ContextMenu.triggerContextMenu(event, '.action-areas');
+        }
+    }
+    
+    async onRollAllSave(event) {
+        event.stopPropagation();
+        if (!game.user.isGM) return;
+        
+        const targets = this.currentHitTargets;
+        const config = await this.getContext({ event });
+        this.action?.workflow.get('save')?.execute(config, targets, true);
+    }
+
+
+    async onRollSave(event) {
+        event.stopPropagation();
+        const tokenId = event.target.closest('[data-token]')?.dataset.token;
+        const token = game.canvas.tokens.get(tokenId);
+        
+        if (!token?.actor || !token.isOwner) return true;
+        if (this.source.item && this.source.action) {
+            const action = this.action;
+            if (!action || !action?.hasSave) return;
+            game.system.api.fields.ActionFields.SaveField.rollSave.call(action, token.actor, event).then(result => {
+                if (!result) return;
+                
+                return emitGMUpdate(
+                    GMUpdateEvent.UpdateSaveMessage,
+                    game.system.api.fields.ActionFields.SaveField.updateSaveMessage.bind(
+                        action,
+                        result.evaluated.total,
+                        result.evaluated.isCritical,
+                        this.parent,
+                        token.id
+                    ),
+                    {
+                        action: action.uuid,
+                        message: this.parent._id,
+                        token: token.id,
+                        saveTotal: result.evaluated.total,
+                        isCritical: result.evaluated.isCritical
+                    }
+                )
+            });
+        }
+    }
+
+    onHoverTarget(event) {
+        event.stopPropagation();
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (token && !token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
+    }
+
+    onUnhoverTarget(event) {
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (token && !token?.controlled) token._onHoverOut(event);
+    }
+
+    onClickTarget(event) {
+        event.stopPropagation();
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (!token) {
+            ui.notifications.info(_loc('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
+            return;
+        }
+        game.canvas.pan(token);
+    }
+
+    /** Handle the user clicking the button to convert selected to targets and update the chat message */
+    async onSelectedToTargets(event) {
+        event.stopPropagation();
+        // Update the targets and ensure that we swap to the targets tab
+        if (!(await this.parent.update({ 'system.targets': this._getCurrentTargets() }))) {
+            this.updateTargetHTML({ tab: 'targets' });
+        }
+    }
+
+    /** Handle changing tabs on the target section */
+    onTargetSelection(event) {
+        event.stopPropagation();
+        if (!event.target.classList.contains('target-selected')) {
+            this.updateTargetHTML({ tab: event.target.dataset.selected ? 'select' : 'targets'});
+        }
     }
 }
