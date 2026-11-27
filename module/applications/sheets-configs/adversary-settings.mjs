@@ -139,6 +139,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         // Filter out data that is not configurable for colossi
         // These still exist under the hood, but its more user friendly to exclude
         if (this.actor.system.typeData?.type === 'colossus') {
+            context.isColossus = true;
             const role = this.actor.system.typeData.role;
             context.resources = context.resources.filter(r => role === 'framework' ? r.key !== 'hitPoints' : r.key !== 'stress');
         }

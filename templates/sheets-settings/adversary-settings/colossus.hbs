@@ -3,6 +3,7 @@
     data-tab='{{tabs.colossus.id}}'
     data-group='{{tabs.colossus.group}}'
 >
+    {{#if isColossus}}
     {{#if (eq colossus.role "framework")}}
     <fieldset class="colossus-parts">
         <legend>{{localize "DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.parts.label"}}</legend>
@@ -33,23 +34,24 @@
         </div>
     </fieldset>
     {{else}}
-    <fieldset>
-        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.frameworkUuid.label"}}</legend>
-        <div class="framework">
-            {{#if colossus.framework.actor}}
-                <img class="portrait" src="{{colossus.framework.actor.img}}" />
-                <a class="name" data-action="editDoc" data-item-uuid="{{colossus.framework.actor.uuid}}">{{colossus.framework.actor.name}}</a>
-                {{#unless colossus.framework.linked}}
-                    <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.colossus.Notifications.FrameworkNotLinked">
-                        <i class="fa-solid fa-warning" inert></i>
-                    </span>
-                {{/unless}}
-            {{else}}
-                <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
-                <span class="name">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "DOCUMENT.Actor")}}</span>
-            {{/if}}
-        </div>
-    </fieldset>
-    {{formGroup systemFields.typeData.types.colossus.fields.adjacentParts name="system.typeData.adjacentParts" value=document._source.system.typeData.adjacentParts localize=true }}
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.ACTORS.Adversary.colossus.FIELDS.frameworkUuid.label"}}</legend>
+            <div class="framework">
+                {{#if colossus.framework.actor}}
+                    <img class="portrait" src="{{colossus.framework.actor.img}}" />
+                    <a class="name" data-action="editDoc" data-item-uuid="{{colossus.framework.actor.uuid}}">{{colossus.framework.actor.name}}</a>
+                    {{#unless colossus.framework.linked}}
+                        <span data-tooltip aria-label="DAGGERHEART.ACTORS.Adversary.colossus.Notifications.FrameworkNotLinked">
+                            <i class="fa-solid fa-warning" inert></i>
+                        </span>
+                    {{/unless}}
+                {{else}}
+                    <i class="fa-solid fa-link-slash image-icon portrait" inert></i>
+                    <span class="name">{{localize "DAGGERHEART.GENERAL.missingX" x=(localize "DOCUMENT.Actor")}}</span>
+                {{/if}}
+            </div>
+        </fieldset>
+        {{formGroup systemFields.typeData.types.colossus.fields.adjacentParts name="system.typeData.adjacentParts" value=document._source.system.typeData.adjacentParts localize=true }}
+    {{/if}}
     {{/if}}
 </section>
