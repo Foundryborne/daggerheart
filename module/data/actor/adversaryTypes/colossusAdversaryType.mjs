@@ -312,7 +312,8 @@ export default class ColossusAdversaryType extends foundry.abstract.DataModel {
                                 frameworkUuid: actor.uuid
                             }
                         }
-                    }
+                    },
+                    sort: token.sort + 1
                 }
             });
         }
