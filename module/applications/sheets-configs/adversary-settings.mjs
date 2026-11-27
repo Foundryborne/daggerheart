@@ -210,7 +210,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
                 if (thatRole !== 'part') {
                     ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.OnlyParts'));
                     return false;
-                } else if ((actor.pack || this.pack) && actor.pack !== this.pack) {
+                } else if ((actor.pack || document.pack) && actor.pack !== document.pack) {
                     ui.notifications.warn(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.MustBeSameCompendium'));
                     return false;
                 }

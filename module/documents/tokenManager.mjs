@@ -39,7 +39,7 @@ export default class DhTokenManager {
      * @param {object} tokenData
      * @param {object} options
      */
-    async createTokensWithPreview(tokensData, { elevation } = {}) {
+    async createTokensWithPreview(createData, { elevation } = {}) {
         const scene = game.scenes.get(game.user.viewedScene);
         if (!scene) return;
 
@@ -47,20 +47,26 @@ export default class DhTokenManager {
         if (!level) return;
 
         const createElevation = elevation ?? level.elevation.bottom;
-        for (const tokenData of tokensData) {
-            const previewToken = await this.createPreview(tokenData.actor, {
-                name: tokenData.tokenPreviewName,
+        for (const data of createData) {
+            const previewToken = await this.createPreview(data.actor, {
+                ...data.tokenData,
+                name: data.tokenPreviewName,
                 level: game.user.viewedLevel,
                 elevation: createElevation,
-                flags: { daggerheart: { createPlacement: true } }
+                flags: { 
+                    daggerheart: { 
+                        createPlacement: true,
+                        previewSubtext: data.previewSubtext 
+                    } 
+                }
             });
-            if (!previewToken) return null;
+            if (!previewToken) return false;
 
             const finalTokenData = {
                 ...previewToken.toObject(),
-                name: tokenData.actor.prototypeToken.name,
-                displayName: tokenData.actor.prototypeToken.displayName,
-                flags: tokenData.actor.prototypeToken.flags
+                name: data.actor.prototypeToken.name,
+                displayName: data.actor.prototypeToken.displayName,
+                flags: data.actor.prototypeToken.flags
             };
 
             await canvas.scene.createEmbeddedDocuments(

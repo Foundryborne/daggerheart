@@ -29,7 +29,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
             reactionRoll: AdversarySheet.#reactionRoll,
             toggleResourceDice: AdversarySheet.#toggleResourceDice,
             handleResourceDice: AdversarySheet.#handleResourceDice,
-            advanceResourceDie: AdversarySheet.#advanceResourceDie
+            advanceResourceDie: AdversarySheet.#advanceResourceDie,
+            placeColossiParts: AdversarySheet.#onPlaceColossiParts
         },
         dragDrop: [
             {
@@ -108,7 +109,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
             context.resources.hitPoints.max < maxResource ? maxResource - context.resources.hitPoints.max : 0;
         context.resources.stress.emptyPips =
             context.resources.stress.max < maxResource ? maxResource - context.resources.stress.max : 0;
-
+        
         return context;
     }
 
@@ -119,20 +120,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
             case 'header':
             case 'limited':
                 await this._prepareHeaderContext(context, options);
-
-                const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
-                context.adversaryType = _loc(adversaryTypes[this.document.system.type].label);
-                context.adversarySubTypes = Object.keys(this.document.system.subTypes).reduce((acc, key) => {
-                    const data = CONFIG.DH.ACTOR.adversarySubTypes[key];
-                    if (data) {
-                        acc.push({
-                            label: _loc(data.label),
-                            cssClass: data.cssClass
-                        });
-                    }
-
-                    return acc;
-                }, []);
                 break;
             case 'sidebar':
                 await this._prepareSidebarContext(context, options);
@@ -214,6 +201,25 @@ export default class AdversarySheet extends DHBaseActorSheet {
             secrets: this.document.isOwner,
             relativeTo: this.document
         });
+
+        const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+        context.adversaryType = _loc(adversaryTypes[this.document.system.type].label);
+        context.adversarySubTypes = Object.keys(this.document.system.subTypes).reduce((acc, key) => {
+            const data = CONFIG.DH.ACTOR.adversarySubTypes[key];
+            if (data) {
+                acc.push({
+                    label: _loc(data.label),
+                    cssClass: data.cssClass
+                });
+            }
+
+            return acc;
+        }, []);
+
+        const isColossusPart = 
+            this.document.system.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
+            this.document.system.typeData?.role === 'part';
+        if (isColossusPart) context.colossusAdjacentParts = this.document.system.typeData.adjacentParts;
     }
 
     async _prepareSidebarContext(context, options) {
@@ -222,8 +228,11 @@ export default class AdversarySheet extends DHBaseActorSheet {
         
         if (this.actor.system.type === 'colossus' && this.actor.system.typeData?.type === 'colossus') {
             context.colossusData = {
+                isFramework: this.actor.system.typeData?.role === 'framework',
                 actors: await this.actor.system.typeData?.calculatePartStatus()
             };
+            context.colossusMissingActorTokens = 
+                Boolean((await this.actor.system.typeData?.getMissingParts())?.length); 
         }
     }
 
@@ -330,6 +339,18 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
     static #advanceResourceDie(_, target) {
         this.updateResourceDie(target, true);
+    }
+
+    static async #onPlaceColossiParts() {
+        if (this.document.system.type !== CONFIG.DH.ACTOR.adversaryTypes.colossus.id || !this.document.system.typeData) 
+            return;
+
+        const missingParts = await this.document.system.typeData.getMissingParts();
+        if (!missingParts.length) return ui.notifications.info(_loc('DAGGERHEART.ACTORS.Adversary.colossus.Notifications.AllPartsPlaced'));
+
+        this.minimize();
+        await this.document.system.typeData.placeParts({ missingParts });
+        this.maximize();       
     }
 
     lowerResourceDie(event) {

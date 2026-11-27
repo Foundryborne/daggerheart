@@ -7,7 +7,10 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         await super._draw(options);
 
         if (this.document.flags.daggerheart?.createPlacement)
-            this.previewHelp ||= this.addChild(this.#drawPreviewHelp());
+            this.addChild(this.#drawPreviewHelp());
+
+        if (this.document.flags.daggerheart?.previewSubtext)
+            this.addChild(this.#drawPreviewSubtext(this.document.flags.daggerheart.previewSubtext));
     }
 
     /**@inheritdoc */
@@ -361,5 +364,27 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
         helpText.anchor.set(helpText.width / 900, 1);
         helpText.scale.set(uiScale, uiScale);
         return helpText;
+    }
+
+    /**
+     * Draw a subtext for previews as a text object
+     * @param {string} subtext   The subtext to draw  
+     * @returns {PreciseText}    The Text object for the preview helper
+     */
+    #drawPreviewSubtext(subtext) {
+        const { uiScale, distance } = canvas.dimensions;
+
+        const textStyle = CONFIG.canvasTextStyle.clone();
+        textStyle.fontSize = 18;
+        textStyle.wordWrapWidth = this.w * 2.5;
+        textStyle.fontStyle = 'italic';
+
+        const textContainer = new foundry.canvas.containers.PreciseText(
+            subtext,
+            textStyle
+        );
+        textContainer.anchor.set(textContainer.width / 900, -(this.document.height * distance) - 0.5);
+        textContainer.scale.set(uiScale, uiScale);
+        return textContainer;
     }
 }
