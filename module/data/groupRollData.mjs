@@ -30,7 +30,26 @@ export class CharacterData extends foundry.abstract.DataModel {
             }),
             rollData: new fields.JSONField({ nullable: true, initial: null }),
             selected: new fields.BooleanField({ initial: false }),
-            successful: new fields.BooleanField({ nullable: true, initial: null })
+            successful: new fields.BooleanField({ nullable: true, initial: null }),
+            costs: new fields.ArrayField(
+                new fields.SchemaField({
+                    enabled: new fields.BooleanField(),
+                    extKey: new fields.StringField(),
+                    key: new fields.StringField(),
+                    value: new fields.NumberField(),
+                    total: new fields.NumberField(),
+                    scale: new fields.NumberField(),
+                    max: new fields.NumberField()
+                })
+            ),
+            uses: new fields.SchemaField({
+                consumeOnSuccess: new fields.BooleanField(),
+                enabled: new fields.BooleanField(),
+                max: new fields.StringField(),
+                recovery: new fields.StringField(),
+                remaining: new fields.NumberField(),
+                value: new fields.NumberField()
+            }, { nullable: true, initial: null })
         };
     }
 

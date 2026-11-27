@@ -3,8 +3,8 @@
         <summary class="action-section">
             <img class="action-img" src="{{action.img}}" />
             <div class="action-header header-label">
-                <h2 class="title">{{action.name}}</h2>
-                <span class="label">{{itemOrigin.name}}</span>
+                <h2 class="title">{{coalesce itemOrigin.name action.name}}</h2>
+                <span class="label">{{coalesce action.name itemOrigin.name}}</span>
             </div>
             <i class="fa-solid fa-chevron-down"></i>
         </summary>

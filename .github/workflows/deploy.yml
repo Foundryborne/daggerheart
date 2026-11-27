@@ -122,7 +122,7 @@ jobs:
           --arg title "$RELEASE_NAME" \
           --arg url "$RELEASE_URL" \
           --arg body "$RELEASE_BODY" \
-          '("# Daggerheart " + $title + "\n") as $header
+          '("<@&1572998728619524176>\n# Daggerheart " + $title + "\n") as $header
           | ($body | gsub("\r"; "")) as $body
           | ("\n\n… [Read the full release notes](<" + $url + ">)") as $more
           | {
@@ -132,7 +132,8 @@ jobs:
                 else ($header + $body)
                 end
               ),
-              flags: 4
+              flags: 4,
+              allowed_mentions: { roles: ["1572998728619524176"] }
             }')
 
         HTTP_STATUS=$(curl -s -o response.txt -w "%{http_code}" -X POST "$DISCORD_WEBHOOK_URL" \

@@ -343,15 +343,18 @@
                         },
                         "frameworkUuid": {
                             "label": "Framework"
-                        }
+                        },
+                        "adjacentParts": "Adjacent Parts"
                     },
+                    "adjacentSegments": "Adjacent Segments",
                     "Notifications": {
                         "AlreadyAddedPart": "This Colossi part was already added",
                         "OnlyParts": "Only Colossi Parts can be added to the parts list",
                         "OnlyFrameworks": "Only Colossi Frameworks can be added",
                         "MustBeSameCompendium": "Colossi Parts and Frameworks must be in the same compendium",
                         "MustOwnBoth": "You must be an owner of both documents to establish a link",
-                        "FrameworkNotLinked": "This part isn't linked to this framework, and updates will not propagate until added to the scene."
+                        "FrameworkNotLinked": "This part isn't linked to this framework, and updates will not propagate until added to the scene.",
+                        "AllPartsPlaced": "All the colossi parts are already present"
                     }
                 },
                 "adversaryReactionRoll": {
@@ -808,7 +811,13 @@
                     "depositPartyTokens": "Deposit Party Tokens",
                     "retrievePartyTokens": "Retrieve Party Tokens",
                     "depositCompanionTokens": "Deposit Companion Token",
-                    "retrieveCompanionTokens": "Retrieve Companion Token"
+                    "retrieveCompanionTokens": "Retrieve Companion Token",
+                    "depositColossiParts": "Place Colossi Parts",
+                    "retrieveColossiParts": "Retrieve Colossi Parts",
+                    "retrieveColossi": {
+                        "title": "Retrieve Colossi Parts",
+                        "content": "Retrieving the colossi parts deletes all marked hit points, active effects, and features., This data cannot be recovered. Are you sure?"
+                    }
                 }
             },
             "ImageSelect": {
@@ -4270,7 +4279,8 @@
                     "confirmText": "Are you sure you want to reroll?"
                 },
                 "resourceRoll": {
-                    "playerMessage": "{user} rerolled their {name}"
+                    "playerMessage": "{user} rerolled their {name}",
+                    "title": "Resource Roll"
                 },
                 "saveRoll": {
                     "reactionRollAllTargets": "Reaction Roll All Targets"

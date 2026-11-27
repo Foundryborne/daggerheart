@@ -99,7 +99,16 @@
             <section class="colossus-section">
                 <div class="title">
                     <side-line-div class="invert"></side-line-div>
-                    <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.colossus.label"}}</h3>
+                    {{#if (and document.token colossusData.isFramework)}}
+                        <a class="colossi-label-container" data-action="placeColossiParts" data-tooltip="DAGGERHEART.APPLICATIONS.HUD.tokenHUD.depositColossiParts">
+                            <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.colossus.label"}}</h3>
+                            {{#if colossusMissingActorTokens}}<img src="systems/daggerheart/assets/icons/arrow-dunk.png" />{{/if}}
+                        </a>
+                    {{else}}
+                        <div class="colossi-label-container">
+                            <h3>{{localize "DAGGERHEART.CONFIG.AdversaryType.colossus.label"}}</h3>
+                        </div>
+                    {{/if}}
                     <side-line-div></side-line-div>
                 </div>
                 <div class="part-list">

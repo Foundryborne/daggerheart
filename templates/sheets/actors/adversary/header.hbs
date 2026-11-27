@@ -43,6 +43,9 @@
     <div class="adversary-info">
         <span class="description">
             <i>{{{description}}}</i>
+            {{#if colossusAdjacentParts}}
+                <span><strong>{{localize "DAGGERHEART.ACTORS.Adversary.colossus.adjacentSegments"}}</strong>: {{colossusAdjacentParts}}</span>
+            {{/if}}
         </span>
         {{#if source.system.motivesAndTactics}}
             <span class="motives-and-tatics">
