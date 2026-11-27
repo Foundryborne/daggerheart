@@ -139,6 +139,7 @@ export default class DhItem extends foundry.documents.Item {
                 const feature = grantedFeaturesByUuid[itemUuid];
                 sources.push(
                     foundry.utils.mergeObject(feature.toObject(), {
+                        _id: foundry.utils.randomID(),
                         _stats: {
                             compendiumSource: itemUuid.startsWith('Compendium.') ? itemUuid : null,
                             duplicateSource: !itemUuid.startsWith('Compendium.') ? itemUuid : null
