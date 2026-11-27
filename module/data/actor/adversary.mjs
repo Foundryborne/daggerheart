@@ -165,12 +165,18 @@ export default class DhpAdversary extends DhCreature {
             damage: this.attack.getDamageFormula()
         } : null;
 
+        const isColossusPart = 
+            this.type === CONFIG.DH.ACTOR.adversaryTypes.colossus.id && 
+            this.typeData?.role === 'part';
+        const colossusAdjacentParts = isColossusPart ? this.typeData.adjacentParts : null;
+
         return {
             ...(await super._prepareEmbedContext(options)),
             actor: this.parent,
             type: _loc(adversaryTypes[this.type]?.label),
             attack,
-            experiences: Object.values(this.experiences).map(e => ({ name: e.name, value: signedNumber(e.value) }))
+            experiences: Object.values(this.experiences).map(e => ({ name: e.name, value: signedNumber(e.value) })),
+            colossusAdjacentParts
         }
     }
 
