@@ -1,15 +1,19 @@
+// Base theming for the resource bars (both pips and non-pips).
+// * Anything that starts with slot- is for pips
+// * Anything that starts with status- is for non-pips
+
 // Theme sidebar backgrounds
 .appTheme({
-    .slot-value .slot-bar {
+    .slot-section .slot-bar {
         background: @dark-blue;
     }     
 }, {
-    .slot-value .slot-bar {
+    .slot-section .slot-bar {
         background-image: url('../assets/parchments/dh-parchment-light.png');
     }   
 });
 
-/** Pips styling, can exist standalone even without a slot-value */
+/** Standalone pips styling, can exist standalone even without a slot-section */
 .slot-bar {
     display: flex;
     gap: 4px;
@@ -57,7 +61,8 @@
     }
 }
 
-.slot-value {
+/** Main pips style */
+.slot-section {
     display: flex;
     flex-direction: column;
     font-size: 1.5rem;
@@ -89,7 +94,45 @@
     }
 }
 
-.status-bar {
+/** Variant horizontal pips, overrides base styles */
+.slot-section:where(.horizontal) {
+    flex-direction: row;    
+    align-items: stretch;
+    justify-content: unset;
+
+    .slot-label {
+        border-radius: 6px 0px 0px 6px;
+        padding: 0 4px;
+        .value {
+            font-variant-numeric: tabular-nums;
+            border: unset;
+            padding: 0;
+            .current {
+                display: inline-block;
+                text-align: end;
+                width: 2ch;
+            }
+            .max {
+                display: inline-block;
+                text-align: start;
+                width: 2ch;
+            }
+        }
+        .label {
+            padding: 0;
+        }
+    }
+    
+    .slot-bar {
+        align-items: center;
+        border-radius: 0 6px 6px 0;
+        padding: 2px 5px;
+        width: fit-content;     
+    }
+}
+
+/** Main non-pips style */
+.status-section {
     display: flex;
     flex-direction: column;
     align-items: center;

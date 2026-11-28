@@ -1164,7 +1164,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const effect = await foundry.utils.fromUuid(event.target.dataset.uuid);
         const value = Math.max(Math.min(Number.parseInt(event.target.value), effect.system.armorData.max), 0);
         event.target.value = value;
-        const progressBar = event.target.closest('.status-bar.armor-slots').querySelector('progress');
+        const progressBar = event.target.closest('.status-section.armor-slots').querySelector('progress');
         progressBar.value = value;
     }
 

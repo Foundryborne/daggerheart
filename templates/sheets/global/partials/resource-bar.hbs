@@ -1,5 +1,5 @@
 {{#if useResourcePips}}
-    <div class="slot-value">
+    <div class="slot-section">
         <div class="slot-bar">
             {{#times resource.max}}
                 <span class='slot {{#if (gte ../resource.value (add this 1))}}filled{{/if}} {{#if ../largePips}}large{{/if}}' data-action="{{../action}}" data-value="{{add this 1}}">
@@ -16,7 +16,7 @@
         </div> 
     </div>
 {{else}}
-    <div class="status-bar">
+    <div class="status-section">
         <div class='status-value'>
             <progress
                 class='progress-bar'

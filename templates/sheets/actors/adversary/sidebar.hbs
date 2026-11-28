@@ -11,7 +11,7 @@
             {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" }}
         </div>
         {{#if (or document.system.attack source.system.difficulty (lt source.system.criticalThreshold 20))}}
-            <div class="status-section">
+            <div class="stat-row">
                 <div class="status-number">
                     <div class='status-value'>
                         {{#if source.system.difficulty}}
