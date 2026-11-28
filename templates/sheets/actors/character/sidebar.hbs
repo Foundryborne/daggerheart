@@ -9,7 +9,7 @@
             {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.hitPoints label="DAGGERHEART.GENERAL.HitPoints.short" key="system.resources.hitPoints.value" action="toggleHitPoints" }}
             {{> "systems/daggerheart/templates/sheets/global/partials/resource-bar.hbs" resource=resources.stress label="DAGGERHEART.GENERAL.stress" key="system.resources.stress.value" action="toggleStress" }}
         </div>
-        <div class="status-section {{#if useResourcePips}}pip-display{{/if}}">
+        <div class="stat-row {{#if useResourcePips}}pip-display{{/if}}">
             <div class="status-number">
                 <div class='status-value'>
                     <p>{{document.system.evasion}}</p>
@@ -20,29 +20,29 @@
             </div>
 
             {{#if document.system.armorScore.max}}
-                <div class="status-bar armor-slots">
-                    {{#if useResourcePips}}
-                    <div class='slot-value'>
-                        <div class="slot-bar armor">
-                        {{#times document.system.armorScore.max}}
-                            <a class="slot" data-action="toggleArmor" data-value="{{add this 1}}">
-                                {{#if (gte ../document.system.armorScore.value (add this 1))}}
-                                    <i class="fa-solid fa-shield"></i>
-                                {{else}}
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                {{/if}}
-                            </a>
-                        {{/times}}
-                        </div>
-                        <a class="slot-label" data-action="toggleArmorMangement" {{disabled (not @root.editable)}}>
-                            <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
-                            <div class="slot-value-container">
-                                <span class="value">{{document.system.armorScore.value}} / {{document.system.armorScore.max}}</span>
-                                {{#if @root.editable}}<i class="fa-solid fa-gear" inert></i>{{/if}}
-                            </div>
-                        </a> 
+                {{#if useResourcePips}}
+                <div class='slot-section armor-slots'>
+                    <div class="slot-bar armor">
+                    {{#times document.system.armorScore.max}}
+                        <a class="slot" data-action="toggleArmor" data-value="{{add this 1}}">
+                            {{#if (gte ../document.system.armorScore.value (add this 1))}}
+                                <i class="fa-solid fa-shield"></i>
+                            {{else}}
+                                <i class="fa-solid fa-shield-halved"></i>
+                            {{/if}}
+                        </a>
+                    {{/times}}
                     </div>
-                    {{else}}
+                    <a class="slot-label" data-action="toggleArmorMangement" {{disabled (not @root.editable)}}>
+                        <span class="label">{{localize "DAGGERHEART.GENERAL.armorSlots"}}</span>
+                        <div class="slot-value-container">
+                            <span class="value">{{document.system.armorScore.value}} / {{document.system.armorScore.max}}</span>
+                            {{#if @root.editable}}<i class="fa-solid fa-gear" inert></i>{{/if}}
+                        </div>
+                    </a> 
+                </div>
+                {{else}}
+                <div class="status-section armor-slots">
                     <div class='status-value'>
                         <progress
                             class='progress-bar stress-color'
@@ -57,8 +57,9 @@
                         <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
                         {{#if @root.editable}}<i class="fa-solid fa-gear" inert></i>{{/if}}
                     </a>
-                    {{/if}}
                 </div>
+
+                {{/if}}
             {{else}}
                 <div class="status-number armor-slots">
                     <div class='status-value'>

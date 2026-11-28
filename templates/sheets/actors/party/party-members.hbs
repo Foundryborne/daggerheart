@@ -88,7 +88,7 @@
                     <section class="body">
                         <section class="resources">
                             {{#unless (or (eq member.type 'companion') (eq member.type 'npc')) }}
-                                <div class="slot-section">
+                                <div class="slot-section horizontal">
                                     <div class="slot-label" data-tooltip="DAGGERHEART.GENERAL.HitPoints.plural">
                                         <span class="label">
                                             <i class="fa-solid fa-heart" inert></i>
@@ -110,7 +110,7 @@
                             {{/unless}}
 
                             {{#unless (eq member.type 'npc')}}
-                                <div class="slot-section">
+                                <div class="slot-section horizontal">
                                     <div class="slot-label" data-tooltip="DAGGERHEART.GENERAL.stress">
                                         <span class="label">
                                             <i class="fa-solid fa-bolt" inert></i>
@@ -132,7 +132,7 @@
                             {{/unless}}
 
                             {{#if member.armorScore.max}}
-                                <div class="slot-section">
+                                <div class="slot-section horizontal">
                                     <div class="slot-label" data-tooltip="DAGGERHEART.GENERAL.armorSlots">
                                         <span class="label">
                                             <i class="fa-solid fa-shield" inert></i>

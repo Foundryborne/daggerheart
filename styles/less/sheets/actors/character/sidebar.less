@@ -11,10 +11,8 @@
             background: url(../assets/svg/experience-shield.svg) no-repeat;
         }
 
-        .info-section .status-section .status-bar.armor-slots {  
-            .slot-value .slot-bar {
-                background: @dark-blue;
-            }     
+        .info-section .stat-row .slot-section.armor-slots .slot-bar {
+            background: @dark-blue;
         }
     }
 }, {
@@ -29,10 +27,8 @@
             filter: brightness(0) drop-shadow(0 0 3px @dark-blue);
         }
 
-        .info-section .status-section .status-bar.armor-slots { 
-            .slot-value .slot-bar {
-                background-image: url('../assets/parchments/dh-parchment-light.png');
-            }   
+        .info-section .stat-row .slot-section.armor-slots .slot-bar {
+            background-image: url('../assets/parchments/dh-parchment-light.png');
         }
     }
 });
@@ -85,8 +81,6 @@
         margin-bottom: -16px;
 
         &.pip-display {
-            gap: 15px;
-
             .resources-section {
                 justify-content: space-around;
                 margin: 8px 2px 0 2px;
@@ -98,7 +92,7 @@
             justify-content: space-evenly;
         }
 
-        .status-section {
+        .stat-row {
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
@@ -106,139 +100,51 @@
 
             &.pip-display {
                 align-items: end;
-
-                .status-bar.armor-slots {
-                    width: 100px;
-                    height: auto;
-
-                    .slot-value {
-                        position: relative;
-                        height: auto;
-
-                        .slot-bar {
-                            border-radius: 6px 6px 0 0;
-                        }
-                    }
-
-                    .slot-label {
-                        .slot-value-container {
-                            position: relative;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 100%;
-
-                            i {
-                                position: absolute;
-                                right: 0;
-                                font-size: 12px;
-                                color: @sidebar-status-color-label;
-                            }
-                        }
-                    }
-
-                    .status-value {
-                        padding: 0 5px;
-                    }
-                }
             }
 
-            .status-bar.armor-slots {
+            // Armor Slot styling of either kind
+            .status-section.armor-slots,
+            .slot-section.armor-slots {
                 display: flex;
-                width: 95px;
                 white-space: nowrap;
 
-                .status-label {
-                    height: 30px;
-                }
-
-                .status-label {
-                    padding: 2px 2px;
-                    position: relative;
-                    height: 22px;
-                    width: 95px;
-                    border-radius: 3px;
-                    background: @sidebar-status-color-bg;
-
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 4px;
-                    border: 1px solid transparent;
-                    transition: all 0.3s ease;
-
-                    h4 {
-                        font-weight: bold;
-                        text-align: center;
-                        line-height: 18px;
-                        color: @sidebar-status-color-label;
-                        font-size: var(--font-size-12);
+                .progress-bar {
+                    border-bottom: none;
+                    border-radius: 6px 6px 0 0;
+                    &::-webkit-progress-bar,
+                    &::-webkit-progress-value {
+                        border-radius: 6px 6px 0 0;
                     }
-
+                }
+                
+                .status-label,
+                .slot-label {
+                    color: @sidebar-status-color-label;
+                    background: @sidebar-status-color-bg;
+                    
                     i {
-                        font-size: 12px;
+                        font-size: var(--font-size-12);
                         color: @sidebar-status-color-label;
                     }
 
                     &:hover {
                         background: light-dark(@light-black, @dark-blue);
-                        border: 1px solid @color-border;
+                        border: 1px solid @sidebar-status-color-bg;
 
                         h4,
+                        .label,
+                        .value,
                         i {
                             color: @color-text-emphatic;
                         }
                     }
                 }
-                .slot-value {
-                    font-size: 1.2rem;
-                    width: 80px;
-                    height: 30px;
-                    color: light-dark(@dark-blue, @beige);
-                    flex-direction: column;
+            }
 
-                    .slot-bar {
-                        background: @dark-blue;
-                        justify-content: center;
-                        border-bottom: none;
-                    }
-                    .slot-label {
-                        display: flex;
-                        align-items: center;
-                        color: @sidebar-status-color-label;
-                        background: @sidebar-status-color-bg;
-                        padding: 0 5px;
-                        width: 120%;
-                        font-weight: bold;
-                        border-radius: 5px;
-                        font-size: var(--font-size-12);
-                        flex-wrap: wrap;
-                        justify-content: center;
-                        border: 1px solid transparent;
-                        transition: all 0.3s ease;
+            // Armor slot styling for numerical slots
+            .status-section.armor-slots {
+                width: 95px;
 
-                        &:hover {
-                            background: light-dark(@light-black, @dark-blue);
-                            border: 1px solid @color-border;
-
-                            .label,
-                            .value,
-                            i {
-                                color: @color-text-emphatic;
-                            }
-                        }
-
-                        .label {
-                            padding-right: 1px;
-                            border-bottom: 1px solid @dark-golden;
-                        }
-
-                        .value {
-                            padding-left: 6px;
-                            border-left: 0;
-                        }
-                    }
-                }
                 .status-value {
                     padding: 0 6px;
                     font-size: 1.2rem;
@@ -255,12 +161,78 @@
                         width: 30px;
                     }
                 }
-                .progress-bar {
-                    border-bottom: none;
+
+                .status-label {
+                    padding: 2px 2px;
+                    position: relative;
+                    height: 22px;
+                    width: 95px;
+                    border-radius: 3px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 4px;
+                    border: 1px solid transparent;
+                    transition: all 0.3s ease;
+
+                    h4 {
+                        font-weight: bold;
+                        text-align: center;
+                        line-height: 18px;
+                        font-size: var(--font-size-12);
+                    }
+                }
+            }
+
+            // Armor slot styling for pip slots
+            .slot-section.armor-slots {
+                width: 100px;
+                height: auto;
+                font-size: 1.2rem;
+                flex-direction: column;
+
+                .slot-bar {
                     border-radius: 6px 6px 0 0;
-                    &::-webkit-progress-bar,
-                    &::-webkit-progress-value {
-                        border-radius: 6px 6px 0 0;
+                    background: @dark-blue;
+                    justify-content: center;
+                    border-bottom: none;                
+                    width: 80px;
+                }
+
+                .slot-label {
+                    display: flex;
+                    align-items: center;
+                    padding: 0 5px;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    font-size: var(--font-size-12);
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    border: 1px solid transparent;
+                    transition: all 0.3s ease;
+
+                    .label {
+                        padding-right: 1px;
+                        border-bottom: 1px solid @dark-golden;
+                    }
+
+                    .value {
+                        padding-left: 6px;
+                        border-left: 0;
+                    }
+                    
+                    .slot-value-container {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                    }
+
+                    i {
+                        position: absolute;
+                        right: 0;
                     }
                 }
             }
@@ -279,7 +251,7 @@
                     display: flex;
                     width: 50px;
                     height: 30px;
-                    border: 1px solid @color-border;
+                    border: 1px solid @sidebar-status-color-bg;
                     border-bottom: none;
                     border-radius: 6px 6px 0 0;
                     padding: 0 6px;
